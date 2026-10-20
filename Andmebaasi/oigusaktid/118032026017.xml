@@ -1,0 +1,2000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="f5bf3d9f-3aba-4619-8c2a-5a99c8645ba3" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>RTHS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>2024-12-11</aktikuupaev>
+		
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2025-01-02+02:00</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>102012025003</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-09-01</joustumine>
+		</vastuvoetud>
+		
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-03-18+02:00</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>17</RTartikkel><aktViide>118032026017</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-05-01+03:00</kehtivuseAlgus>
+		<kehtivuseLopp>2027-12-31+02:00</kehtivuseLopp></kehtivus>
+		<versioon>
+			<dokumentVersioon>1</dokumentVersioon>
+			<dokumentVersioonKuupaev>2024-12-20</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>118032026017</globaalID>
+		<metaandmedVersioon>22</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-07-11</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>1060185</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Rahvatervishoiu seadus</pealkiri>
+		</nimi>
+	</aktinimi>
+	<muutmismarge>
+		<aktikuupaev>2026-02-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>117032026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-04-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-02-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-03-18</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>118032026002</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-05-01</joustumine>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Üldsätted</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seadusega reguleeritakse riigi ja kohaliku omavalitsuse üksuse ülesandeid rahvatervishoiu korraldamisel, ülesandeid, piiranguid ja nõudeid inimeste tervise kaitse tagamiseks, rahvastiku tervise riiklike andmekogude loomist ja pidamist, rahvatervishoiu meetmete rahastamist, riikliku ja haldusjärelevalve tegemist seaduses sätestatud nõuete täitmise üle ning nõuete rikkumisega kaasnevat vastutust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117032026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seaduse sätteid, arvestades käesoleva seaduse erisusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2.]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse eesmärk</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Seaduse eesmärk on tagada inimeste tervise kaitse, luua tingimused elanike oodatava eluea ja tervena elada jäänud aastate pikendamiseks, ennetada ja vähendada ebasoovitavat tervisemõju ja suurendada elanike tervisealast võrdsust ning seeläbi parandada rahvastiku tervist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3.]]></kuvatavNr>
+				<paragrahvPealkiri>Tervis, rahvastiku tervis ja avalikkus</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervis on inimese füüsilise, vaimse ja sotsiaalse heaolu seisund.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Rahvastiku tervis on kindla territooriumi elanike või eri rahvastikurühmade tervise seisund.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Avalikkus on enne kindlaks määramata füüsiliste ja juriidiliste isikute ring. Avalikkuse all mõistetakse ka sotsiaalmeedias loodud suhtlusgruppe, veebilehti, foorumeid ja muud taolist.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4.]]></kuvatavNr>
+				<paragrahvPealkiri>Elukeskkond, tervisemõjur ja tervisemõju</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Elukeskkond käesoleva seaduse tähenduses on inimest ümbritsevate sotsiaal-majanduslike, psühhosotsiaalsete ning loodusliku ja tehisliku keskkonna tegurite kogum, mis mõjutab või võib mõjutada inimese tervist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervisemõjur on riski- või kaitsetegur, mis võib avaldada inimese või rahvastiku tervisekäitumisele, tervisealastele hoiakutele ja tervisele ebasoovitavat või soovitavat mõju. Riskiteguri mõju sõltub selle realiseerumise tõenäosusest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervisemõju on tervisemõjuri põhjustatud ning inimese tervist soodustav või kahjustav muutus tema organismis, sealhulgas elundites, kudedes ja rakkudes või nende talitluses, käitumises, hoiakutes ning psühhosotsiaalses toimimises.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5.]]></kuvatavNr>
+				<paragrahvPealkiri>Rahvatervishoid ning selle põhimõtted ja meetmed</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Rahvatervishoid on sektoritevaheline valdkond, mis hõlmab kõiki rahvastiku tervist parandavaid ning ebasoovitavat tervisemõju ennetavaid ja vähendavaid organiseeritud tegevusi eesmärgiga pikendada elanike eluiga, parandada nende elukvaliteeti ja vähendada tervisealast ebavõrdsust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Rahvatervishoiu poliitika ja meetmete kavandamisel ning nende rakendamisel lähtutakse järgmistest põhimõtetest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ühise vastutuse põhimõte, mis eeldab kõigilt inimestelt, organisatsioonidelt, kogukondadelt ja sektoritelt rahvastiku tervise eest vastutuse võtmist;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tervise kõrgetasemelise kaitse põhimõte, mis eeldab iga otsuse puhul selle rahvastiku tervisele avaldatava mõjuga arvestamist ning inimese tervise kõrgelt väärtustamist.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para5lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Rahvatervishoiu meetmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para5lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvastiku tervise jälgimine ja analüüsimine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>elanike, organisatsioonide ja kogukondade tervisealane võimestamine, sealhulgas tõenduspõhise terviseteabe kättesaadavaks tegemine ja elanike terviseharituse parandamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>elanike tervist, heaolu ja turvalisust toetava elukeskkonna kujundamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para5lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tervisedenduse ja keskkonnatervishoiu meetmete ning muude rahvastiku tervist toetavate meetmete rakendamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr>6</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 6.]]></kuvatavNr>
+				<paragrahvPealkiri>Tervisedendus ja selle meetmed</paragrahvPealkiri>
+				<loige id="para6lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervisedendus on rahvatervishoiu haru, mille meetmete eesmärk on vähendada riskitegureid, ennetada ja ohjata nende toimet ning suurendada kaitsetegureid, et võimaldada elanikel saada suurem kontroll oma tervise üle ja seda seeläbi tugevdada.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervisedenduse meetmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para6lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vigastuste ennetamine ja vähendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>nakkushaiguste leviku ennetamine ja vähendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>uimastavate ja sõltuvust tekitavate ainete tarvitamise ennetamine ja vähendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tasakaalustatud toitumise ja kehalise aktiivsuse edendamine ning istuva eluviisi vähendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vaimse tervise edendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para6lg2p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>seksuaaltervise edendamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Nakkushaiguste ennetamine ja nendest rahvastiku tervisele tulenevate mõjude ohjamine on sätestatud nakkushaiguste ennetamise ja tõrje seaduses.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7.]]></kuvatavNr>
+				<paragrahvPealkiri>Keskkonnatervishoid, ohutegur ja terviserisk ning keskkonnatervishoiu meetmed</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Keskkonnatervishoid on rahvatervishoiu haru, mille meetmete eesmärk on hinnata inimese tervist otseselt või kaudselt mõjutavate keskkonnast tulenevate tervisemõjurite, sealhulgas keskkonnast tulenevate ohutegurite (edaspidi <i>ohutegur</i>) toimet ja ohjata neist tingitud terviseriske ning ennetada ebasoovitavat tervisemõju.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohutegur käesoleva seaduse tähenduses on füüsikaline, keemiline või bioloogiline looduslikust või tehislikust keskkonnast tulenev tegur, mis oma olemuslike omadustega võib otseselt või kaudselt avaldada inimesele ebasoovitavat tervisemõju.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviserisk käesoleva seaduse tähenduses on inimorganismi kokkupuutel ohuteguriga ebasoovitava toime ilmnemise tõenäosus ja selle toime ulatus oleneb ohuteguri olemuslikest omadustest ning sellega kokkupuute kestusest ja määrast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Keskkonnatervishoiu meetmed on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para7lg4p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohutegurite ja nende olemuslike omaduste väljaselgitamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohutegurist tulenevate terviseriskide hindamine ja ohjamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ohuteguri tervisemõju hindamine ja ebasoovitava tervisemõju vähendamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para7lg4p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>teadlikkuse suurendamine ohuteguritest, nendest tulenevast ebasoovitavast tervisemõjust ning ohutegurite ennetamise võimalustest.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr>8</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 8.]]></kuvatavNr>
+				<paragrahvPealkiri>Tervise- ja heaoluprofiil, selles esitatav teave ja selle uuendamine</paragrahvPealkiri>
+				<loige id="para8lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervise- ja heaoluprofiil on strateegilise planeerimise alusdokument, milles kohaliku omavalitsuse üksused esitavad käesoleva seaduse § 13 lõike 1 punktis 2 sätestatud ülesande täitmiseks vähemalt järgmise teabe:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para8lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>maakonna või piirkonna rahvastiku tervise üldandmed ning sellel territooriumil esinevate riski- ja kaitsetegurite elukaareülene kirjeldus ja analüüs;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>maakonna või piirkonna rahvatervishoiu strateegilised eesmärgid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kokkuvõte maakonna või piirkonna peamistest tervise- ja heaolunäitajatest ning riski- ja kaitseteguritest;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para8lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tegevuskava eesmärkide saavutamiseks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para8lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervise- ja heaoluprofiili koostamisel ning rakendamisel lähtutakse Sotsiaalministeeriumi valitsemisala asutuse koostatud juhenditest, mis on avaldatud Sotsiaalministeeriumi valitsemisala asutuse veebilehel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalministeeriumi valitsemisala asutus nõustab käesoleva paragrahvi lõikes 2 nimetatud juhenditest lähtudes kohalikke omavalitsusi tervise- ja heaoluprofiili koostamisel, avaldab vähemalt üks kord nelja aasta jooksul maakondade tervise ja heaolu lühiülevaated ning koordineerib riigiülest koostööd tervise- ja heaoluprofiilide koostamisel ning seatud eesmärkide saavutamisel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para8lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervise- ja heaoluprofiili koostaja hindab tervise- ja heaoluprofiili uuendamise vajadust vähemalt üks kord nelja aasta jooksul.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Riigi ja kohaliku omavalitsuse üksuse ülesanded rahvatervishoiu korraldamisel</peatykkPealkiri>
+			<paragrahv id="para9">
+				<paragrahvNr>9</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 9.]]></kuvatavNr>
+				<paragrahvPealkiri>Vabariigi Valitsuse ülesanded</paragrahvPealkiri>
+				<loige id="para9lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Vabariigi Valitsuse ülesanne rahvatervishoiu korraldamisel lisaks riigieelarve seaduses sätestatud strateegiliste arengudokumentide koostamisele, elluviimisele ja muutmisele on välja töötada ja kinnitada muid rahvatervishoiuga seotud arengudokumente ning tagada valdkonna jätkusuutlik rahastamine.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10.]]></kuvatavNr>
+				<paragrahvPealkiri>Ministeeriumide ülesanded</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ministeeriumid tagavad oma valitsemisalas ja pädevuse piires rahvatervishoiu meetmete rakendamise.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ministeeriumid tagavad oma valitsemisalas iga asjaomase otsustuse ja tegevuse kavandamisel ja rakendamisel selle rahvastiku tervisele avaldatava mõju hindamise ning sellega arvestamise.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11.]]></kuvatavNr>
+				<paragrahvPealkiri>Sotsiaalministeeriumi ja selle valitsemisala ülesanded</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Sotsiaalministeeriumi ja selle valitsemisala ülesanded rahvatervishoiu korraldamisel on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvatervishoiu poliitika kujundamine, õigusaktide eelnõude ja strateegiate koostamine, rahvastiku tervise ja tervisemõjurite analüüsimine ning sellel eesmärgil teadus- ja arendustegevuse korraldamine, andmekogude asutamine ja nende pidamise võimaldamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvatervishoiuga tihedalt seotud valdkondade õigusaktide eelnõude, poliitikadokumentide ja strateegiate ettevalmistamises osalemine eesmärgiga tagada tervisemõju hindamine ja sellega arvestamine kõigis asjaomastes valdkondades;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvatervishoiu poliitika kujundamiseks vajaliku riigisisese ja rahvusvahelise koostöö juhtimine või selles osalemine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>oma valitsemisalas tervisedenduse ja keskkonnatervishoiu meetmete ning muude rahvastiku tervist toetavate meetmete kujundamine ja rakendamise korraldamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>rahvatervishoiu ja sellega tihedalt seotud valdkondade arendamiseks ja juhtimiseks ning elanike terviseharituse parandamiseks vajalike juhendite ja e-lahenduste loomine ning täienduskoolituste korraldamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riigiasutuste ja kohaliku omavalitsuse asutuste ning isikute nõustamine riskitegurite vähendamiseks ja ohjamiseks, nende toime ennetamiseks ning kaitsetegurite suurendamiseks ning tervist, heaolu ja turvalisust toetava elukeskkonna kujundamiseks vastavalt oma pädevusele ja põhiülesannetele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11lg1p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>muude seadustest ja nende alusel antud õigusaktidest tulenevate selliste ülesannete täitmine, mis on vajalikud rahvatervishoiu korraldamiseks.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12.]]></kuvatavNr>
+				<paragrahvPealkiri>Terviseameti Euroopa ja rahvusvahelise tasandi ülesanded ning Terviseameti õigused tasuliste teenuste osutamisel</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviseamet täidab:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para12lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>pädeva asutuse ülesandeid vastavalt Euroopa Parlamendi ja nõukogu määrusele (EÜ) nr 1223/2009 kosmeetikatoodete kohta (ELT L 342, 22.12.2009, lk 59–209);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>pädeva asutuse ülesandeid vastavalt Euroopa Parlamendi ja nõukogu määrusele (EL) 2022/2371, milles käsitletakse tõsiseid piiriüleseid terviseohtusid ja millega tunnistatakse kehtetuks otsus nr 1082/2013/EL (ELT L 314, 06.12.2022, lk 26–63);</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para12lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>riikliku kontaktpunkti ülesandeid vastavalt Maailma Terviseorganisatsiooni rahvusvahelistele tervise-eeskirjadele.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para12lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviseamet võib osutada oma põhitegevusega seotud tasulisi teenuseid keemiliste, bioloogiliste ja füüsikaliste ohutegurite määramiseks ning riskihindamiseks, kui see ei takista tema põhimäärusest tulenevate ülesannete täitmist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviseameti tasu ühe keemilise, bioloogilise või füüsikalise ohuteguri määramiseks ja riskihindamiseks ei ole suurem kui 3000 eurot.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviseameti tasuliste teenuste osutamise korra ja hinnakirja kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=126082025009]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega, võttes aluseks teenuse osutamiseks vajalikud tööjõu-, materjali-, seadmete ja üldkulud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Terviseametil on õigus arvutada käesoleva paragrahvi lõike 4 alusel kehtestatud hinnakirjas nimetamata uuringu maksumus analoogilise uuringu hinna alusel.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13.]]></kuvatavNr>
+				<paragrahvPealkiri>Kohaliku omavalitsuse üksuse ülesanded</paragrahvPealkiri>
+				<loige id="para13lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuste ühised ülesanded on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para13lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>elanike tervist, heaolu ja turvalisust toetava elukeskkonna kujundamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>maakonna või piirkonna tervise- ja heaoluprofiili koostamine ning selles sisalduva teabega arvestamine maakonna või piirkonna arengustrateegia koostamisel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tervisedenduse ja keskkonnatervishoiu meetmete elluviimine maakonnas või piirkonnas vähemalt tervise- ja heaoluprofiilis kajastatud riskitegurite leevendamiseks ja kaitsetegurite tugevdamiseks, kui keskkonnatervishoiu meetmete rakendamine ei ole eriseadusega reguleeritud teisiti;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>maakonnas või piirkonnas riiklike rahvatervishoiu meetmete rakendamise toetamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>maakonnas või piirkonnas rahvatervishoiu ja sellega tihedalt seotud valdkondade juhtimiseks vajalike võrgustike loomine ning nende töö korraldamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para13lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksuse ülesanded on:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para13lg2p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>elanike tervist, heaolu ja turvalisust toetava elukeskkonna kujundamine, sealhulgas asjaomaste otsustuste ja tegevuste kavandamine ning rakendamine, hinnates ja arvestades nende mõju rahvastiku tervisele;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>oma haldusterritooriumil rahvatervishoiu meetmete planeerimiseks rahvastiku tervise olukorra, suundumuste ja vajaduste kohta vajaliku teabe väljaselgitamine;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>oma haldusterritooriumil tervisedenduse ja keskkonnatervishoiu meetmete rakendamine vähemalt peamiste riskitegurite leevendamiseks ja kaitsetegurite tugevdamiseks, kui keskkonnatervishoiu meetmete rakendamine ei ole eriseadusega reguleeritud teisiti;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para13lg2p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kohaliku omavalitsuse üksuses rahvatervishoiu ja sellega tihedalt seotud valdkondade juhtimiseks vajalike võrgustike loomine ning nende töö korraldamine.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Ülesanded, piirangud ja nõuded inimeste tervise kaitseks</peatykkPealkiri>
+			<paragrahv id="para14">
+				<paragrahvNr>14</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 14.]]></kuvatavNr>
+				<paragrahvPealkiri>Terviseohust teavitamise nõue</paragrahvPealkiri>
+				<loige id="para14lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutaja teavitab viivitamata Terviseametit haigestumisest, mis on asjaomase koha ja aja kohta ebaharilik või ootamatu või põhjustab või võib põhjustada inimeste suurt haigestumust või suremust või mille ulatus laieneb või võib laieneda kiiresti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para14lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud haigestumise jaotumise, leviku, raskusastme muutuste ja muude asjaolude jälgimiseks vajaliku teabe valdaja on kohustatud Terviseameti nõudmisel esitama asjakohased andmed, sealhulgas vajaduse korral isikuandmed.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr>15</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 15.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded ja piirangud inimese tervise hoidmise, kaitsmise, edendamise või parandamise eesmärgil pakutavatele toodetele, teenustele ja tegevustele</paragrahvPealkiri>
+				<loige id="para15lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Juriidiline ega füüsiline isik ei tohi inimese tervise hoidmise, kaitsmise, edendamise või parandamise eesmärgil kutsuda avalikkust üles kasutama taimi ja loomi ega mistahes aineid ja segusid kehale kandmise või kehasse viimise teel, kui nende kasutamisega kaasneb oht inimese elule, tervisele või elukeskkonnale, välja arvatud juhul, kui see on eriseadusega reguleeritud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud eesmärgil avalikkusele teenust ja tegevust tasuta või tasu eest kättesaadavaks tehes peab teenuseosutaja, kes sellises tegevuses kasutab taime või looma, veenduma teadusandmetele tuginedes või kui selline asjaolu on üldteada, et tegemist on kasutamise hetkel tervisele ohutu taime või looma või nende osa, eritise või muu taolisega, välja arvatud juhul, kui see on eriseadusega reguleeritud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses taime kasutamisele kehtestatud nõudeid kohaldatakse ka seene, vetika, sambliku ja muu taolise kasutamisele, samuti selle eritise või osa kasutamisele värskena või säilitatuna mistahes säilitusviisil, sealhulgas tükeldatuna, pulbristatuna või jahvatatuna.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses looma, sealhulgas mistahes selgroogse või selgrootu looma kasutamisele kehtestatud nõudeid kohaldatakse ka mikroorganismi kasutamisele, samuti nendest eraldatud organi, osa või sekreedi kasutamisele värskena, kuivatatuna või säilitatuna mistahes säilitusviisil, sealhulgas tükeldatuna, pulbristatuna või jahvatatuna.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud eesmärgil avalikkusele teenuse, tegevuse, taime ja looma tasuta või tasu eest kättesaadavaks tegemise korral on mürgise taime või looma kasutamine lubatud üksnes tervishoiuteenuse osutaja kirjalikku taasesitamist võimaldavas vormis antud soovitusel, tervishoiuteenuse osutaja juuresolekul või eriseaduse kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud eesmärgil toodet, teenust ja tegevust tasuta või tasu eest kättesaadavaks tehes on keelatud müüa ja kasutada Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 1272/2008, mis käsitleb ainete ja segude klassifitseerimist, märgistamist ja pakendamist ning millega muudetakse direktiive 67/548/EMÜ ja 1999/45/EÜ ja tunnistatakse need kehtetuks ning muudetakse määrust (EÜ) nr 1907/2006 (ELT L 353, 31.12.2008, lk 1–1355), põhjal ohtlikuks klassifitseeritud aineid ja segusid, välja arvatud juhul, kui see on eriseadusega reguleeritud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 6 sätestatud piirang kehtib ka lõikes 1 nimetatud eesmärgil valmistatavate segude lähteaineteks olevate Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 1272/2008 tähenduses ohtlikuks klassifitseeritud kemikaalide kohta, isegi kui saadud segu ennast ei klassifitseerita ohtlikuks Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 1272/2008 tähenduses, välja arvatud juhul, kui see on eriseadusega reguleeritud teisiti.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para16">
+				<paragrahvNr>16</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 16.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded elukeskkonna füüsikalistele ohuteguritele</paragrahvPealkiri>
+				<loige id="para16lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Füüsikalised ohutegurid käesoleva seaduse tähenduses on vibratsioon, mitteioniseeriv kiirgus ja müra, sealhulgas ultra- ja infraheli.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Füüsikaliste ohutegurite tase elukeskkonnas peab olema inimese tervisele ohutu ning neid iseloomustavad füüsikalised näitajad peavad vastama kehtestatud piirväärtustele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Füüsikalise ohuteguri allika valdaja tagab allika vastavuse kehtestatud nõuetele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded mitteioniseeriva kiirguse ohutusele elu- ja puhkealal, elamutes ja muudes kohtades, kus on vajalik füüsikaliste ohutegurite mõistes rangemate nõuete kehtestamine, ning selle taseme mõõtmise meetodid kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=103092025001]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para16lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded siseruumis leviva vibratsiooni ja müra, sealhulgas ultra- ja infraheli ohutusele elamutes ja muudes hoonetes, kus on vajalik füüsikaliste ohutegurite mõistes rangemate nõuete kehtestamine, ning nende tasemete mõõtmise meetodid kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=103102025022;114112025014]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para17">
+				<paragrahvNr>17</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 17.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded balneoloogilistes protseduurides kasutatavale mudale ja turbale ning nende käitlemisele</paragrahvPealkiri>
+				<loige id="para17lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Balneoloogilistes protseduurides tohib kasutada sellist looduslikku muda ja turvast, mis on inimese tervisele ohutu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para17lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded balneoloogilistes protseduurides kasutatavale looduslikule mudale ja turbale ning nende käitlemisele ja märgistamisele kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=117062025016]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr>18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded ja piirangud kosmeetikatoote tootmisele, turule laskmisele, kättesaadavaks tegemisele ja kasutamisele</paragrahvPealkiri>
+				<loige id="para18lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ettevõtja majandustegevuse seadustiku üldosa seaduse tähenduses (edaspidi <i>ettevõtja</i>), kes vastutab kosmeetikatoote tootmise, turule laskmise või kättesaadavaks tegemise eest, tagab Euroopa Parlamendi ja nõukogu määruses (EÜ) nr 1223/2009 ja komisjoni määruses (EL) nr 655/2013, millega kehtestatakse ühtsed nõuded kosmeetikatoodete kohta esitatavate väidete põhjendamiseks (ELT L 190, 11.07.2013, lk 31–34), sätestatud asjakohaste nõuete täitmise.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ettevõtja, kes toodab, impordib või levitab kosmeetikatoodet või kasutab seda kutsetegevuses, ja tervishoiuteenuse osutaja teavitavad Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 1223/2009 artikli 23 kohaselt viivitamata Terviseametit kosmeetikatoote kasutamisel ilmnenud tõsisest soovimatust mõjust.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik, kes vastutab Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 1223/2009 artikli 19 lõikes 4 nimetatud kosmeetikatoote kättesaadavaks tegemise eest, esitab toote kohta sama määruse artikli 19 lõikes 1 nõutud teabe tootemahutil või -pakendil või tootega kaasa antaval teabelehel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ettevõtja, kes soovib müüa Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 1223/2009 III lisa kandes 12e nimetatud hambavalgendustooteid, esitab majandustegevusteate hulgikaubanduse tegevusalal. Nimetatud hambavalgendustooteid on lubatud müüa üksnes hambaarstidele hulgikaubanduse korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 4 nimetatud majandustegevusteates esitatakse lisaks majandustegevuse seadustiku üldosa seaduses sätestatule järgmised andmed:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para18lg5p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tegevuskoht või tegevuskohad;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para18lg5p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>e-kaubanduse korral veebilehe aadress;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para18lg5p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>käesoleva paragrahvi lõikes 4 nimetatud kauba nimetus.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr>19</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 19.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded ning piirangud ilu- ja isikuteenuse osutamisele</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ilu- ja isikuteenus (edaspidi <i>iluteenus</i>) käesoleva seaduse tähenduses on juuksuri-, kosmeetiku-, solaariumi-, tätoveerimis-, püsimeigi- ja keha augustamise teenus ning küüne-, ripsme- ja kulmutehniku teenus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Iluteenust vahetult osutaval isikul peavad olema tõendatud teadmised ja oskused teenuse ohutuks osutamiseks ning tõsise soovimatu mõju ennetamiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Solaariumi- ja tätoveerimisteenuse osutajal on keelatud osutada solaariumi- ja tätoveerimisteenust alaealisele.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Keelatud on osutada tätoveerimisteenust, mille puhul tätoveerimistint süstitakse või sisestatakse silmamuna sisse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 3 sätestatud keelu järgimiseks võib solaariumi- ja tätoveerimisteenuse osutaja nõuda isikut tõendava dokumendi esitamist ning eelnimetatud dokumendi esitamata jätmise korral keelduda teenuse osutamisest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded iluteenuse osutajale, tema teadmistele ja oskustele ning iluteenuse osutamisele, sealhulgas teenuse osutamise ruumidele ja vahenditele, kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=126082025010]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para20">
+				<paragrahvNr>20</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 20.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded ujumis- ja suplemisteenuse osutamisele</paragrahvPealkiri>
+				<loige id="para20lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Isik või asutus, kes osutab ujulas, basseinis või veekeskuses ujumis- ja suplemisteenuseid tasu eest või tasuta:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para20lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tagab ohutud kasutamistingimused, kasutatava vee nõuetekohasuse ning vee kontrolli ja uuringud akrediteeritud laboris;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para20lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>avaldab teabe ujulas, basseinis või veekeskuses kasutatava vee kvaliteedinäitajate kohta.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para20lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded ujulatele, basseinidele ja veekeskustele ning nende ruumidele, ohutusele, basseiniveele ja teenuse osutamisele kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=126082025006]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para21">
+				<paragrahvNr>21</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 21.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded elukeskkonnale, kus osutatakse sotsiaalteenust</paragrahvPealkiri>
+				<loige id="para21lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sotsiaalteenust saama õigustatud isiku kasutusse antud ruumides ja maa-alal, kus osutatakse sotsiaalteenust ja mille puhul on sotsiaalhoolekande seaduses või selle alusel kehtestatud määruses viidatud käesolevale seadusele, peab elukeskkond olema neis viibivate inimeste tervisele ohutu ja tervist toetav.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ohutu ja tervist toetava elukeskkonna kujundamiseks tuleb sotsiaalteenuse osutamisel hinnata ja ohjata elukeskkonnast tulenevaid terviseriske, vähendada riskitegureid ning ennetada nende toimet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para21lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded elukeskkonnale, kus osutatakse sotsiaalteenust, ning terviseriskide ohjamisele ja riskitegurite vähendamisele selles elukeskkonnas kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=114112025017]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para22">
+				<paragrahvNr>22</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 22.]]></kuvatavNr>
+				<paragrahvPealkiri>Nõuded toitlustamisele ja müügiks pakutavale toidule tervishoiu- ja haridusasutuses, kinnipidamisasutuses ning sotsiaalteenuse osutamisel</paragrahvPealkiri>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-03-18</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>118032026002</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-05-01</joustumine>
+					</muutmismarge>
+				<loige id="para22lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Toitlustamine sellise sotsiaalteenuse osutamise käigus, mille puhul on sotsiaalhoolekande seaduses või selle alusel kehtestatud määruses viidatud käesolevale seadusele, ning toitlustamine haiglas, lastehoius ja lasteaias, statsionaarse õppega üldhariduskoolis ja kutseõppeasutuses ning kinnipidamisasutuses peab olema eakohane, regulaarne ja toitlustatava inimese terviseseisundile vastav ning katma tema asutuses viibimise ajale vastava osa tema ööpäevasest toiduenergia- ja toitainevajadusest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-03-18</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>118032026002</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-05-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para22lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 1 nimetatud asutuses ja sotsiaalteenuse osutamise korral peab olema nähtavas kohas ja tasuta kättesaadav veeseaduse alusel kehtestatud nõuetele vastav joogivesi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded toitlustamisele ja selle dokumenteerimisele haiglas ja kinnipidamisasutuses ning täiskasvanutele sotsiaalteenuse osutamisel kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=111072025022;111072025023]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Täpsemad nõuded toitlustamisele ja selle dokumenteerimisele lastehoius ja lasteaias, statsionaarse õppega üldhariduskoolis ja kutseõppeasutuses ning lastele sotsiaalteenuse osutamisel kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[Vabariigi Valitsus]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=105082025010]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-03-18</avaldamineKuupaev>
+								<RTartikkel>2</RTartikkel>
+								<aktViide>118032026002</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-05-01</joustumine>
+						</muutmismarge>
+					</sisuTekst>
+				</loige>
+				<loige id="para22lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Üldhariduskooli ja kutseõppeasutuse direktor kehtestab koolis müügiks pakutavale toidule nõuded ja piirangud, arvestades Sotsiaalministeeriumi valitsemisala asutuse koostatud juhendit, mis on avaldatud Sotsiaalministeeriumi valitsemisala asutuse veebilehel. Nõuded ja piirangud esitatakse enne nende kehtestamist arvamuse avaldamiseks hoolekogule või nõukogule.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr>4</peatykkNr>
+			<kuvatavNr><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Rahvastiku tervise riiklikud andmekogud</peatykkPealkiri>
+			<paragrahv id="para23">
+				<paragrahvNr>23</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 23.]]></kuvatavNr>
+				<paragrahvPealkiri>Rahvastiku tervise riiklikud andmekogud</paragrahvPealkiri>
+				<loige id="para23lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 24–29 nimetatud andmekogu või infosüsteemi põhimääruses sätestatakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para23lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>volitatud töötleja, kui volitatud töötleja on määratud, ja töötlejate ülesanded;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para23lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>kogutavate andmete täpsem koosseis ja andmekogusse kandmise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para23lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmeandjad, nendelt saadavad andmed ja andmete esitamise viis;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para23lg1p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmetele juurdepääsu ja andmete väljastamise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para23lg1p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vajaduse korral andmete täpsem säilitamise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para23lg1p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>muud korraldusküsimused.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para23lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 24–28 nimetatud statistiliste andmetega andmekogu või infosüsteemi isikuandmeid ei väljastata kolmandatele isikutele, välja arvatud isiku tahteavalduse korral, isikuandmete kaitse seaduse §-s 6 nimetatud juhul ja korras ning järelevalvemenetluse läbiviimiseks isikuandmete kaitse tagamisel. Isikustatud andmeid väljastatakse ka riigi infosüsteemi kuuluvatesse tervisevaldkonna andmekogudesse nende eesmärkide täitmiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117032026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para23lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 24–28 nimetatud andmekogu või infosüsteemi pidamise eesmärgi täitmiseks võib andmekogus või infosüsteemis töödelda selliseid isiku varasemaid üldandmeid nagu ees- ja perekonnanimi, isikukood ja sugu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para23lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 24–28 nimetatud andmekogu või infosüsteemi isikuandmetele juurdepääsu piirang kehtib tähtajatult.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para23lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui käesoleva seaduse §-des 24–28 nimetatud andmekogusse või infosüsteemi edastatakse asjakohased terviseandmed tervise infosüsteemist, sätestatakse edastatavate andmete täpne koosseis konkreetse andmekogu või infosüsteemi põhimääruses.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para24">
+				<paragrahvNr>24</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 24.]]></kuvatavNr>
+				<paragrahvPealkiri>Vähiregister</paragrahvPealkiri>
+				<loige id="para24lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähiregister on andmekogu, mida peetakse vähihaigestumuse, vähi levimuse ja vähihaigete elumuse analüüsimiseks, tervishoiuteenuste ja vähitõrje korraldamiseks, tervisepoliitika väljatöötamiseks, diagnostika ja ravi käsitluse hindamiseks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähijuhte nii enne kui ka pärast surma diagnoosival ja vähihaiget ravival tervishoiuteenuse osutajal ja riikliku ekspertiisiasutuse kohtuarstlikul eksperdil on kohustus esitada andmed vähiregistrile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähiregistris töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para24lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku üldandmed, Eestis viibitud aeg, rahvus ja vanema nimi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para24lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>vähihaige terviseandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para24lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku surma aeg ja põhjus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para24lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmete esitaja andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para24lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähiregistris säilitatakse andmeid tähtajatult. Logisid ja alusandmeid säilitatakse põhimääruse kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähiregistri vastutav töötleja on Tervise Arengu Instituut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para24lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähiregistri asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=122082025010]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para25">
+				<paragrahvNr>25</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 25.]]></kuvatavNr>
+				<paragrahvPealkiri>Vähi sõeluuringute register</paragrahvPealkiri>
+				<loige id="para25lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähi sõeluuringute register on andmekogu, mida peetakse vähi sõeluuringute korraldamiseks, sõeluuringutega seotud uuringute ja sõeluuringujärgse ravi andmete analüüsimiseks, vähi varajaseks avastamiseks, sõeluuringute kvaliteedi ja tõhususe hindamiseks, tervisepoliitika väljatöötamiseks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kõigil vähi sõeluuringuid tegevatel tervishoiuteenuse osutajatel ning sõeluuringus osalejatele uuringuid teinud ja neid ravinud tervishoiuteenuse osutajatel on kohustus esitada tervise infosüsteemi vahendusel andmed vähi sõeluuringute registrile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähi sõeluuringute registris töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para25lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku üldandmed, Eestis viibitud aeg ja ravikindlustuse olemasolu;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para25lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>saadetud sõeluuringu kutse ja korduskutse;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para25lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>sõeluuringu sihtrühma kuuluva isiku terviseandmed ning sõeluuringu sihtrühma kuuluvale isikule sõeluuringuväliselt tehtud uuringu, analüüsi või protseduuri andmed;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+								<aktViide>117032026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-04-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para25lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku surma aeg ja põhjus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para25lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmete esitaja andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para25lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähi sõeluuringute registris säilitatakse andmeid tähtajatult. Logisid ja alusandmeid säilitatakse vähi sõeluuringute registri põhimääruse kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähi sõeluuringute registri vastutav töötleja on Tervise Arengu Instituut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para25lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vähi sõeluuringute registri asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=122082025008]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para26">
+				<paragrahvNr>26</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 26.]]></kuvatavNr>
+				<paragrahvPealkiri>Raseduse infosüsteem</paragrahvPealkiri>
+				<loige id="para26lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Raseduse infosüsteemi peetakse raseduse kulgemise, katkemise ja katkestamise ning ema ja vastsündinu haigestumuse ja suremuse analüüsimiseks, tervishoiuteenuste korraldamiseks, tervisepoliitika väljatöötamiseks, diagnostika ja ravi käsitluse hindamiseks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tervishoiuteenuse osutajal, kes osutab eriarstiabi tegevusloa alusel sünnitusabi ja günekoloogia- või pediaatriateenust ning iseseisvalt osutatava ämmaemandusabi tegevusloa alusel kodusünnitusabi, on kohustus esitada andmed raseduse infosüsteemi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Raseduse infosüsteemis töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para26lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>raseda ja bioloogilise ema üldandmed, isiku rahvus, perekonnaseis, abielu sõlmimise või kooselu registreerimise aeg või vabaabielu algusaeg, tegevusala ja haridus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>lapse üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isa üldandmed ja haridus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>bioloogilise ema raseduse ja sünnituse kulgemise, sealhulgas raseduse katkemise või katkestamise ja rasestumisvastaste meetodite andmed ning riskitegurid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg3p5">
+						<alampunktNr>5</alampunktNr>
+						<kuvatavNr><![CDATA[5)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>muud raseda, bioloogilise ema ja lapse terviseandmed ning ravimid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg3p6">
+						<alampunktNr>6</alampunktNr>
+						<kuvatavNr><![CDATA[6)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>bioloogilise ema ja lapse surma aeg ja põhjus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para26lg3p7">
+						<alampunktNr>7</alampunktNr>
+						<kuvatavNr><![CDATA[7)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmete esitaja andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para26lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Raseduse infosüsteemis säilitatakse andmeid tähtajatult. Logisid ja alusandmeid säilitatakse raseduse infosüsteemi põhimääruse kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Raseduse infosüsteemi vastutav töötleja on Tervise Arengu Instituut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para26lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Raseduse infosüsteemi asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=122082025007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para27">
+				<paragrahvNr>27</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 27.]]></kuvatavNr>
+				<paragrahvPealkiri>Müokardiinfarktiregister</paragrahvPealkiri>
+				<loige id="para27lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Müokardiinfarktiregister on andmekogu, mida peetakse müokardiinfarkti haigestumuse ja müokardiinfarktihaigete elumuse analüüsimiseks, tervishoiuteenuse korraldamiseks, tervisepoliitika väljatöötamiseks, diagnostika ja ravi käsitluse hindamiseks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Müokardiinfarktijuhte nii enne kui ka pärast surma diagnoosival ja müokardiinfarktihaiget ravival tervishoiuteenuse osutajal on kohustus esitada andmed müokardiinfarktiregistrile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Müokardiinfarktiregistris töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para27lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku üldandmed ja Eestis viibitud aeg;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>müokardiinfarktihaige terviseandmed, sealhulgas nii haiglaravieelne, -aegne kui ka -järgne uuring ja selle tulemus ning ravimid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku surma aeg ja põhjus ning suremispaik;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para27lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmete esitaja andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para27lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Müokardiinfarktiregistris säilitatakse andmeid tähtajatult. Logisid ja alusandmeid säilitatakse müokardiinfarktiregistri põhimääruse kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Müokardiinfarktiregistri vastutav töötleja on Sotsiaalministeerium.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para27lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Müokardiinfarktiregistri asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=122082025011]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para28">
+				<paragrahvNr>28</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 28.]]></kuvatavNr>
+				<paragrahvPealkiri>Tuberkuloosiregister</paragrahvPealkiri>
+				<loige id="para28lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tuberkuloosiregister on andmekogu, mida peetakse tuberkuloosijuhtude registreerimiseks, tuberkuloosi ennetamiseks, tuberkuloosihaigestumuse, tuberkuloosi levimuse ja tuberkuloosihaigete elumuse analüüsimiseks, tervishoiuteenuste ja tuberkuloositõrje korraldamiseks, tervisepoliitika väljatöötamiseks, diagnostika ja ravi käsitluse hindamiseks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tuberkuloosijuhte nii enne kui ka pärast surma diagnoosival ja tuberkuloosihaiget ravival tervishoiuteenuse osutajal ja riikliku ekspertiisiasutuse kohtuarstlikul eksperdil on kohustus esitada andmed tuberkuloosiregistrile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tuberkuloosiregistris töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para28lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku üldandmed, rahvus, perekonnaseis, haridus, tegevusala ja -koht, Eestis viibitud aeg, ravikindlustuse olemasolu ning vanema nimi;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>tuberkuloosihaige terviseandmed, sealhulgas tema ravieelne seisund, ravi ning selle tulemus ja lõpetamise põhjused, samuti kasutatud ravimid;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>isiku surma aeg ja põhjus;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para28lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>andmete esitaja andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para28lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tuberkuloosiregistris säilitatakse andmeid tähtajatult. Logisid ja alusandmeid säilitatakse tuberkuloosiregistri põhimääruse kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tuberkuloosiregistri vastutav töötleja on Tervise Arengu Instituut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para28lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Tuberkuloosiregistri asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=122082025009]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para29">
+				<paragrahvNr>29</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 29.]]></kuvatavNr>
+				<paragrahvPealkiri>Vee terviseohutuse infosüsteem</paragrahvPealkiri>
+				<loige id="para29lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vee terviseohutuse infosüsteemi peetakse joogi-, suplus- ja basseinivee, loodusliku mineraalvee ja allikavee kvaliteedi kohta andmete kogumiseks, terviseohutuse analüüsiks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Joogivee käitlejal, loodusliku mineraalvee või allikavee käitlejal ning supluskoha ja ujula valdajal on kohustus esitada andmed vee terviseohutuse infosüsteemi või edastada andmed Terviseameti kaudu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vee terviseohutuse infosüsteemis töödeldakse järgmisi andmeid:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para29lg3p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>joogivee käitleja andmed ning veevärgi ja joogivee kvaliteet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29lg3p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>ujula valdaja andmed ja basseinivee kvaliteet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29lg3p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>supluskoha valdaja andmed ja suplusvee kvaliteet;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para29lg3p4">
+						<alampunktNr>4</alampunktNr>
+						<kuvatavNr><![CDATA[4)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>loodusliku mineraalvee või allikavee käitleja andmed ning loodusliku mineraalvee ja allikavee kvaliteet.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para29lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vee terviseohutuse infosüsteemi vastutav töötleja on Terviseamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para29lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vee terviseohutuse infosüsteemi asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=118032026017&id=128082025013]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para30">
+				<paragrahvNr>30</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 30.]]></kuvatavNr>
+				<paragrahvPealkiri>Teaduseetika komitee</paragrahvPealkiri>
+				<loige id="para30lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 24–28 nimetatud andmekogust või infosüsteemist teadusuuringu või statistika vajadusteks isikuandmete väljastamise eetilisust ja põhjendatust hindab sõltumatu teadlastest ja eri elualade esindajatest koosnev teadus- ja arendustegevuse ning innovatsiooni korralduse seaduse §-s 26 nimetatud teaduseetika komitee.</tavatekst>
+					</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+								<aktViide>117032026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-04-01</joustumine>
+						</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr>5</peatykkNr>
+			<kuvatavNr><![CDATA[5. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Rahvatervishoiu meetmete rahastamine</peatykkPealkiri>
+			<paragrahv id="para31">
+				<paragrahvNr>31</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 31.]]></kuvatavNr>
+				<paragrahvPealkiri>Rahvatervishoiu meetmete rahastamine</paragrahvPealkiri>
+				<loige id="para31lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses sätestatud riiklikke rahvatervishoiu meetmeid rahastatakse riigieelarvest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para31lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 13 lõikes 1 sätestatud kohaliku omavalitsuse üksuste ühiste ülesannete täitmist rahastatakse riigieelarvest.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para31lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse § 13 lõikes 2 sätestatud kohaliku omavalitsuse üksuse ülesannete täitmist võib osaliselt rahastada riigieelarvest.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk6">
+			<peatykkNr>6</peatykkNr>
+			<kuvatavNr><![CDATA[6. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Riiklik ja haldusjärelevalve</peatykkPealkiri>
+			<paragrahv id="para32">
+				<paragrahvNr>32</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 32.]]></kuvatavNr>
+				<paragrahvPealkiri>Riikliku ja haldusjärelevalve tegija</paragrahvPealkiri>
+				<loige id="para32lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riiklikku ja haldusjärelevalvet käesoleva seaduse §-des 14–22 sätestatud nõuete ja käesoleva seaduse alusel antud õigusaktide nõuete ning Euroopa Liidu asjakohaste õigusaktide nõuete täitmise üle teeb Terviseamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para32lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Avaliku teabe haldamise ja isikuandmete töötlemise nõuete üle tehakse järelevalvet avaliku teabe seaduses ja isikuandmete kaitse seaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para33">
+				<paragrahvNr>33</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 33.]]></kuvatavNr>
+				<paragrahvPealkiri>Riikliku järelevalve erimeetmed</paragrahvPealkiri>
+				<loige id="para33lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Korrakaitseorgan võib käesolevas seaduses sätestatud riikliku järelevalve tegemiseks kohaldada korrakaitseseaduse §-des 30–32, 44 ja 49–53 sätestatud riikliku järelevalve erimeetmeid korrakaitseseaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk7">
+			<peatykkNr>7</peatykkNr>
+			<kuvatavNr><![CDATA[7. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Vastutus</peatykkPealkiri>
+			<paragrahv id="para34">
+				<paragrahvNr>34</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 34.]]></kuvatavNr>
+				<paragrahvPealkiri>Terviseohust teavitamise nõude rikkumine</paragrahvPealkiri>
+				<loige id="para34lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-s 14 nimetatud terviseohust teavitamise nõude rikkumise eest –<reavahetus/>karistatakse rahatrahviga kuni 300 trahviühikut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para34lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sama teo eest, kui selle on toime pannud juriidiline isik, –<reavahetus/>karistatakse rahatrahviga kuni 100 000 eurot.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para35">
+				<paragrahvNr>35</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 35.]]></kuvatavNr>
+				<paragrahvPealkiri>Tervise hoidmise, kaitsmise, edendamise ja parandamise eesmärgil pakutavatele toodetele, teenustele ning tegevustele kehtestatud nõuete ja piirangute rikkumine</paragrahvPealkiri>
+				<loige id="para35lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-s 15 sätestatud nõude või piirangu rikkumise eest –<reavahetus/>karistatakse rahatrahviga kuni 250 trahviühikut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para35lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sama teo eest, kui selle on toime pannud juriidiline isik, –<reavahetus/>karistatakse rahatrahviga kuni 80 000 eurot.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para36">
+				<paragrahvNr>36</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 36.]]></kuvatavNr>
+				<paragrahvPealkiri>Kosmeetikatootele ning selle tootmisele, turule laskmisele ja kättesaadavaks tegemisele kehtestatud nõuete ja piirangute rikkumine</paragrahvPealkiri>
+				<loige id="para36lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-s 18, Euroopa Parlamendi ja nõukogu määruses (EÜ) nr 1223/2009 või komisjoni määruses (EL) nr 655/2013 loetletud nõuete või piirangute rikkumise eest –<reavahetus/>karistatakse rahatrahviga kuni 200 trahviühikut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para36lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sama teo eest, kui selle on toime pannud juriidiline isik, –<reavahetus/>karistatakse rahatrahviga kuni 50 000 eurot.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para37">
+				<paragrahvNr>37</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 37.]]></kuvatavNr>
+				<paragrahvPealkiri>Ilu- ja isikuteenustele kehtestatud nõuete ja piirangute rikkumine</paragrahvPealkiri>
+				<loige id="para37lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-s 19 sätestatud alaealisele solaariumi- või tätoveerimisteenuse osutamise ja sellise tätoveerimisteenuse osutamise keelu rikkumise eest, mille puhul tätoveerimistint süstitakse või sisestatakse silmamuna sisse, –<reavahetus/>karistatakse rahatrahviga kuni 250 trahviühikut.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para37lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sama teo eest, kui selle on toime pannud juriidiline isik, –<reavahetus/>karistatakse rahatrahviga kuni 80 000 eurot.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para38">
+				<paragrahvNr>38</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 38.]]></kuvatavNr>
+				<paragrahvPealkiri>Menetlus</paragrahvPealkiri>
+				<loige id="para38lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-des 34–37 sätestatud väärtegude kohtuväline menetleja on Terviseamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para38lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohus võib kohaldada käesoleva seaduse §-s 36 sätestatud väärteo toimepanemise vahetuks objektiks olnud aine või eseme konfiskeerimist vastavalt karistusseadustiku §-le 83.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk8">
+			<peatykkNr>8</peatykkNr>
+			<kuvatavNr><![CDATA[8. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>Rakendussätted</peatykkPealkiri>
+			<jagu id="jg1">
+				<jaguNr>1</jaguNr>
+				<kuvatavNr><![CDATA[1. jagu]]></kuvatavNr>
+				<jaguPealkiri>Üleminekusätted</jaguPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+						<RTartikkel>1</RTartikkel>
+						<aktViide>117032026001</aktViide>
+					</avaldamismarge>
+					<joustumine>2026-04-01</joustumine>
+				</muutmismarge>
+				<paragrahv id="para38b1">
+					<paragrahvNr ylaIndeks="1">38</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 38<sup>1</sup>.]]></kuvatavNr>
+					<paragrahvPealkiri>Eetikakomitee menetlused</paragrahvPealkiri>
+					<loige id="para38b1lg1">
+						<loigeNr/>
+						<kuvatavNr/>
+						<sisuTekst>
+							<tavatekst>Kui uuringueetika komitee ei ole 2026. aasta 1. aprilliks teinud otsust teadusuuringu eesmärgil andmete kasutamiseks või väljastamiseks esitatud taotluse kohta, tagastatakse taotlus ja makstud menetlustasu taotlejale.</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+								<aktViide>117032026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-04-01</joustumine>
+						</muutmismarge>
+					</loige>
+				</paragrahv>
+			</jagu>
+			<jagu id="jg2">
+				<jaguNr>2</jaguNr>
+				<kuvatavNr><![CDATA[2. jagu]]></kuvatavNr>
+				<jaguPealkiri>Seaduste muutmine ja kehtetuks tunnistamine</jaguPealkiri>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+								<RTartikkel>1</RTartikkel>
+								<aktViide>117032026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-04-01</joustumine>
+						</muutmismarge>
+				<paragrahv id="para39">
+			<paragrahvNr id="17dd8a58-a166-4108-a690-effa28d6f0d3" kehtiv="0">39</paragrahvNr>
+			<kuvatavNr id="ce4449b1-9744-4d78-82ee-475a949adbe3">§ 39.</kuvatavNr>
+			<sisuTekst id="260259ff-b071-44a4-8cad-42254013e61f">
+				<tavatekst id="0298d8e9-391c-49ee-b481-48a438300e4e"> – </tavatekst>
+			</sisuTekst>
+		</paragrahv>
+		<paragrahv id="para67">
+			<paragrahvNr id="a5da9cf0-b05d-44e0-ba11-9c14ca5e6df0" kehtiv="0">67</paragrahvNr>
+			<kuvatavNr id="e8475173-4f61-4bc8-983c-f9db7feaa258">§ 67.</kuvatavNr>
+			<sisuTekst id="70b9fe4e-aa35-4ca7-928a-6d71244832be">
+				<tavatekst id="26271a02-31a9-4c12-a380-403e180ed1b5"> [Käesolevast tekstist välja jäetud.]</tavatekst>
+			</sisuTekst>
+		</paragrahv>
+			</jagu>
+			<jagu id="jg2">
+				<jaguNr>2</jaguNr>
+				<kuvatavNr><![CDATA[3. jagu]]></kuvatavNr>
+				<jaguPealkiri>Seaduse jõustumine</jaguPealkiri>
+				<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+									<RTartikkel>1</RTartikkel>
+								<aktViide>117032026001</aktViide>
+							</avaldamismarge>
+							<joustumine>2026-04-01</joustumine>
+						</muutmismarge>
+				<paragrahv id="para68">
+					<paragrahvNr>68</paragrahvNr>
+					<kuvatavNr><![CDATA[§ 68.]]></kuvatavNr>
+					<paragrahvPealkiri>Seaduse jõustumine</paragrahvPealkiri>
+					<loige id="para68lg1">
+						<loigeNr>1</loigeNr>
+						<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesolev seadus jõustub 2025. aasta 1. septembril.</tavatekst>
+						</sisuTekst>
+					</loige>
+					<loige id="para68lg2">
+						<loigeNr>2</loigeNr>
+						<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>Käesoleva seaduse § 51 punktid 1–4 ja 6–8 jõustuvad üldises korras.</tavatekst>
+						</sisuTekst>
+					</loige>
+				</paragrahv>
+			</jagu>
+		</peatykk>
+	</sisu>
+</oigusakt>

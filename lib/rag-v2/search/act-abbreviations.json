@@ -3,6 +3,7 @@
   "source": "Riigi Teataja XML: /oigusakt/metaandmed/lyhend",
   "abbreviations": {
     "2026. aasta riigieelarve seadus": null,
+    "Alkoholiseadus": "AS",
     "Avaliku teabe seadus": "AvTS",
     "Füüsilise isiku maksejõuetuse seadus": "FIMS",
     "Halduskohtumenetluse seadustik": "HKMS",
@@ -14,6 +15,7 @@
     "Kriminaalhooldusseadus": "KrHS",
     "Kriminaalmenetluse seadustik": "KrMS",
     "Lastekaitseseadus": "LasteKS",
+    "Narkootiliste ja psühhotroopsete ainete ning nende lähteainete seadus": "NPALS",
     "Ohvriabi seadus": "OAS",
     "Perehüvitiste seadus": "PHS",
     "Perekonnaseadus": "PKS",
@@ -21,6 +23,7 @@
     "Puuetega inimeste sotsiaaltoetuste seadus": "PISTS",
     "Pärimisseadus": "PärS",
     "Põhikooli- ja gümnaasiumiseadus": "PGS",
+    "Rahvatervishoiu seadus": "RTHS",
     "Ravikindlustuse seadus": "RaKS",
     "Riigi õigusabi seadus": "RÕS",
     "Riigihangete seadus": "RHS",

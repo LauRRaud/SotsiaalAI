@@ -9,16 +9,16 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
-| oigusaktid | 640 | 654 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
+| oigusaktid | 644 | 658 | XML-aktid, sh eri redaktsioonid ja omavalitsuste teised kehtivad sotsiaalaktid (ADR-058); kehtivus tuleb vastuvõtul kontrollida. Aktide lisadest tuletatud allikad (`lisad/`): kaks tabelit (ADR-050) ja kaksteist omavalitsuse lisa teksti (ADR-053); iga tuletatud allikas nimetab oma akti redaktsiooni. Üks akt on allikas ainult nimetatud paragrahvide ulatuses (registrikirje väli `xml_sections`, ADR-076): `103072026024.xml`, 2026. aasta riigieelarve seaduse § 2; fail ise on Riigi Teataja algfail. |
 | teadmised | 0 | 7 | Allikapõhised teadmiskaardid (tingimused, erandid, mõisted ja nende seosed) valitud allikatele; iga fail on seotud oma allika räsiga (ADR-054). |
 | register | 0 | 9 | Kavandatud allikate register ja korjatavate veebilehtede nimekirjad (`web_pages.json` ametlikud juhislehed, `web_pages_state_help.json` riigi tasandi abi juhislehed (pension, perehüvitised, elatisabi, perelepitus; ADR-111), `web_pages_state_help_2.json` riigi tasandi abi teine partii (ravikindlustus, kohtusse pöördumine, võlad, pärimine, ohvriabi, puue ja hoolekanne, politsei juhised; ADR-112), `web_pages_state_help_3.json` kolmas partii (riigi õigusabi, täitemenetlus, perekonna- ja pärimisõigus, kuriteoohvri õigused, toe vajadusega õpilane; ADR-115), `web_pages_vendors.json` abivahendite müüjate lehed, `web_pages_organisations.json` puuetega inimeste organisatsioonide lehed koos mustriga, mis pealkirja järgi välja jääb; ADR-095), mitte teadmistekst. Mis müüjate ja organisatsioonide lehtedest RAG-is on, näitab „RAG-i seis“. `newsletter_documents.json` on ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentide loend (ADR-099): pealkiri, väljaandja ametlik aadress ja seis, sh need, mida RAG-is ei ole (ingliskeelsed, tekstikihita, liiga suured, vastuvõtu kinni peetud, arvutabelid). |
 | veebilehed | 361 | 722 | Ametlikud juhislehed, korjatud skriptiga `scripts/rag-v2-web-pages.mjs` (ADR-095): lehe sisuosa ilma saidi menüüde ja isikute kontaktideta, metaandmetes aadress, kontrolli kuupäev ja viidatud dokumendid. |
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v89)
+## RAG-i seis: mis on serveris (korpus v92)
 
-Seis 20.10.2026: serveris töötav RAG (korpus **v89**, indeks `1fe64adb`) sisaldab **10 931 dokumenti** (103 464 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 20.10.2026: serveris töötav RAG (korpus **v92**, indeks `48dbc850`) sisaldab **11 023 dokumenti** (107 727 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -26,15 +26,15 @@ Seis 20.10.2026: serveris töötav RAG (korpus **v89**, indeks `1fe64adb`) sisal
 | Taotlusvormid (vastuses antakse lingina) | 872 | jaotis „Sisufailid“ |
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
-| Õigusaktid | 594 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 526 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
-| Ametlikud juhislehed (ametite veebilehed) | 1824 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Õigusaktid | 598 | jaotis „Sisufailid“ |
+| Juhendid, infomaterjalid ja uuringud | 582 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Ametlikud juhislehed (ametite veebilehed) | 1856 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Eetikaruumi eetikamaterjalid | 35 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **10931** | |
+| **Kokku** | **11023** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -44,11 +44,11 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 |---|---:|---|
 | `KOV` | 4498 | kov_service_info 3195, application_form 845, official_contact 431, web_form 17, pdf_form 6, official_form 4 |
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
-| `oigusaktid` | 594 | legal_act 594 |
+| `oigusaktid` | 598 | legal_act 598 |
 | `veebilehed` | 361 | web_page 360, research_report 1 |
 | `juhendid_ja_uuringud` | 171 | information_material 81, research_report 46, official_guideline 38, policy_analysis 6 |
 
-Koodihoidlas (GitHub) ei ole 4415 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
+Koodihoidlas (GitHub) ei ole 4503 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
 | Allikas | Dokumente | Millest tehakse | Miks ei ole koodihoidlas |
 |---|---:|---|---|
@@ -57,8 +57,8 @@ Koodihoidlas (GitHub) ei ole 4415 dokumendi allikafaile; need on korpuse hoidlas
 | Abivahendite müügi- ja üüripunktide lehed | 93 | Sotsiaalkindlustusameti kaarditabelist skriptiga `scripts/rag-v2-assistive-points.mjs`, iga omavalitsuse kohta üks leht (ADR-096) | punktide telefoninumbrid; leht tehakse tabelist uuesti |
 | Abivahendite müüjate lehed | 51 (18 väljaandjat) | nimekiri `register/web_pages_vendors.json`, korjaja `scripts/rag-v2-web-pages.mjs` (ADR-095) | ettevõtete enda tekstid ja telefoninumbrid |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 (68 väljaandjat) | nimekirjad `register/web_pages_organisations.json`, `register/web_pages_associations.json` ja `register/web_pages_associations_2.json` ning nimekirjade `register/web_pages_coverage_1.json` ja `_2.json` organisatsioonid, korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-095, ADR-137, ADR-140) | organisatsioonide enda tekstid |
-| Asutuste juhislehed, valitud reegliga | 1464 (14 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) ning `register/web_pages_coverage_4.json` ja `register/web_pages_coverage_4_by_hand.json` (vanemluse infokeskkond tarkvanem.ee, ADR-148) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
-| Uuringud ja juhendid väljaandja ametlikult aadressilt | 354 (45 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
+| Asutuste juhislehed, valitud reegliga | 1496 (17 väljaandjat) | nimekirjad `register/web_pages_coverage_1.json`, `register/web_pages_coverage_2.json` ja `register/web_pages_coverage_3.json` (õigusabi lehe toimetatud artiklid), korjaja `scripts/rag-v2-web-pages.mjs` ja valik `scripts/rag-v2-web-select.mjs` (ADR-137, ADR-143), ning `register/web_pages_tootukassa.json` (Töötukassa lehed 11.10.2026 brauserikorjest, ADR-146) ning `register/web_pages_coverage_4.json` ja `register/web_pages_coverage_4_by_hand.json` (vanemluse infokeskkond tarkvanem.ee, ADR-148) | valik võtab lehest välja isikut nimetavad lõigud; repos olevate lehtede igakuine uuendus asendaks sellise koopia lugeja omaga |
+| Uuringud ja juhendid väljaandja ametlikult aadressilt | 410 (51 väljaandjat) | asutuste veebilehtede uuringute ja juhendite loenditest ning ajakirja Sotsiaaltöö uudiskirjas viidatud dokumentidest (`register/newsletter_documents.json`); iga fail on alla laaditud väljaandja ametlikult aadressilt | suured failid; allikas on ametlik aadress |
 | Eetikaruumi eetikamaterjalid | 35 (17 väljaandjat) | eetikadokumentide ja -peatükkide pakist, mille loetleb `config/ethics-sources.json` (sh keelevariandid); ette valmistatud ja lisatud 11.10.2026 (korpus v87) | pakifail nimetab iga dokumendi, selle versiooni ja aadressi |
 
 Koodihoidla allikafailid, mida RAG-is ei ole (61):
@@ -1948,6 +1948,10 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | 408102026010.xml | [oigusaktid/408102026010.xml](<oigusaktid/408102026010.xml>) |
 | 111072026158.xml | [oigusaktid/111072026158.xml](<oigusaktid/111072026158.xml>) |
 | 120062026018.xml | [oigusaktid/120062026018.xml](<oigusaktid/120062026018.xml>) |
+| 103072026032.xml | [oigusaktid/103072026032.xml](<oigusaktid/103072026032.xml>) |
+| 103072026033.xml | [oigusaktid/103072026033.xml](<oigusaktid/103072026033.xml>) |
+| 117032026007.xml | [oigusaktid/117032026007.xml](<oigusaktid/117032026007.xml>) |
+| 118032026017.xml | [oigusaktid/118032026017.xml](<oigusaktid/118032026017.xml>) |
 | 403072026003.xml | [oigusaktid/403072026003.xml](<oigusaktid/403072026003.xml>) |
 | 130062026065.xml | [oigusaktid/130062026065.xml](<oigusaktid/130062026065.xml>) |
 | 106072023031.xml | [oigusaktid/106072023031.xml](<oigusaktid/106072023031.xml>) |
@@ -2359,7 +2363,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v92, 20.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
@@ -3736,7 +3740,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Võrumaa Puuetega Inimeste Koda | PIK ringid | <https://www.vorukoda.ee/tegevused/pik-ringid> |
 | Võrumaa Puuetega Inimeste Koda | TASUTA ÕIGUSABI ERIVAJADUSTEGA INIMESTELE | <https://www.vorukoda.ee/tasuta-oigusabi-erivajadustega-inimestele> |
 
-### Asutuste juhislehed, valitud reegliga (1464)
+### Asutuste juhislehed, valitud reegliga (1496)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -3768,6 +3772,37 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Andmekaitse Inspektsioon | Töötlemise õiguslikud alused | <https://www.aki.ee/isikuandmed/andmetootlejale/tootlemise-oiguslikud-alused> |
 | Andmekaitse Inspektsioon | Vastuväidete esitamine | <https://www.aki.ee/isikuandmed/inimese-oigused/vastuvaidete-esitamine> |
 | Andmekaitse Inspektsioon | Ühisjuhend: Abivajavast lapsest teatamine ja andmekaitse | <https://www.aki.ee/juhendid/isikuandmed/uhisjuhend-abivajavast-lapsest-teatamine-ja-andmekaitse> |
+| Centar | Alushariduse ja lapsehoiu uuring: 1. Laste arv ja laste arvu prognoos | <https://centar.ee/failid/alushariduse_raport/laste-arv-ja-laste-arvu-prognoos.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: 2. Lasteaia- ja lapsehoiuasutused ja nende kasutamine | <https://centar.ee/failid/alushariduse_raport/lasteaia-ja-lapsehoiuasutused-ja-nende-kasutamine.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: 3. Finantseerimine ja kulud | <https://centar.ee/failid/alushariduse_raport/finantseerimine-ja-kulud.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: 4. Lasteaedade personal ja tugiteenused | <https://centar.ee/failid/alushariduse_raport/lasteaedade-personal-ja-tugiteenused.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: 5. Lasteaedade ja lapsehoidude eriilmelisus | <https://centar.ee/failid/alushariduse_raport/lasteaedade-ja-lapsehoidude-eriilmelisus.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: 6. Lapsevanemate rahulolu ja KOV-ide ettepanekud | <https://centar.ee/failid/alushariduse_raport/lapsevanemate-rahulolu-ja-kovide-ettepanekud.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: Lühikokkuvõte | <https://centar.ee/failid/alushariduse_raport/lühikokkuvõte.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: Metoodika | <https://centar.ee/failid/alushariduse_raport/metoodika-1.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: Sissejuhatus | <https://centar.ee/failid/alushariduse_raport/sissejuhatus.html> |
+| Centar | Alushariduse ja lapsehoiu uuring: Soovitused | <https://centar.ee/failid/alushariduse_raport/soovitused-1.html> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Diskrimineerimise keeld | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/diskrimineerimise-keeld/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Eessõna | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/hea-lugeja/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Kokkuvõte lihtsas keeles | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/lihtsas-keeles-kokkuvote/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: LGBT+ inimeste olukord | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/lgbt-inimeste-olukord/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Pagulaste ja varjupaigataotlejate õigused | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/pagulaste-ja-varjupaigataotlejate-oigused/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Puuetega inimeste olukord | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/puuetega-inimeste-olukord/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Rahvusvähemused ja lõimumispoliitika | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/rahvusvahemused-ja-loimumispoliitika/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Sooline võrdsus | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/sooline-vordsus/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Sõnavabadus | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/sonavabadus/> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: Õigus perekonna- ja eraelu puutumatusele | <https://humanrights.ee/materjalid/inimoigused-eestis-2026/oigus-perekonna-ja-eraelu-puutumatusele/> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 1.1 Maakasutuse muutused – linna ja maa tähenduse moondumine | <https://2020.inimareng.ee/maakasutuse-muutused-linna-ja-maa-tähenduse-moondumine.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 1.3 Planeerimisvabaduse võidukäik eeslinna-Eestis | <https://2020.inimareng.ee/planeerimisvabaduse-võidukäik-eeslinna-eestis.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 1.4 Nüüdisaegsed elamistingimused – kelle privileeg? | <https://2020.inimareng.ee/nüüdisaegsed-elamistingimused-kelle-privileeg.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 2.1 Avalik ruum kui elukeskkonda siduv võrgustik | <https://2020.inimareng.ee/avalik-ruum-kui-elukeskkonda-siduv-võrgustik.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 2.3 Aktivism avaliku ruumi koosloomes | <https://2020.inimareng.ee/aktivism-avaliku-ruumi-koosloomes.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 3.2 Loodusalade mõju inimeste heaolule | <https://2020.inimareng.ee/loodusalade-mõju-inimeste-heaolule.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 3.3 Loodusalade kujundamine avalikuks kasutuseks | <https://2020.inimareng.ee/loodusalade-kujundamine-avalikuks-kasutuseks.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 4. Eesti aruteluruum: sissejuhatus | <https://2020.inimareng.ee/sissejuhatus-4.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 4.2 Eesti noored virtuaalses arvamusruumis | <https://2020.inimareng.ee/eesti-noored-virtuaalses-arvamusruumis.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 4.3 Ajakirjanduse kujundatav arvamusruum | <https://2020.inimareng.ee/ajakirjanduse-kujundatav-arvamusruum.html> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 5. Eesti 2050 stsenaariumid | <https://2020.inimareng.ee/eesti-2050-stsenaariumid.html> |
 | Eesti Töötukassa | Abi ja nõustamine koondamisel | <https://www.tootukassa.ee/et/teenused/tooandjatele/abi-ja-noustamine-koondamisel> |
 | Eesti Töötukassa | Abiks kandideerijale | <https://www.tootukassa.ee/et/teenused/toootsingud/abiks-kandideerijale> |
 | Eesti Töötukassa | Ajutine töötamine arveloleku ajal | <https://www.tootukassa.ee/et/teenused/toootsingud/ajutine-tootamine-arveloleku-ajal> |
@@ -4625,6 +4660,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Vaimse tervise hoidmine | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-hoidmine> |
 | Sotsiaalministeerium | Vaimse tervise ja psühhosotsiaalne tugi kriisides | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaimse-tervise-ja-psuhhosotsiaalne-tugi-kriisides> |
 | Sotsiaalministeerium | Vanemlus ja elu lastega | <https://www.sm.ee/lapsed-ja-hoolekanne/lapsed-ja-pered/vanemlus-ja-elu-lastega> |
+| Sotsiaalministeerium | Väheintensiivsete psühholoogiliste sekkumiste pakkujad | <https://www.sm.ee/tervise-edendamine-ravi-ja-ravimid/vaimne-tervis/vaheintensiivsete-psuhholoogiliste-sekkumiste> |
 | Sotsiaalministeerium | Üldhooldusteenust pakkuvad hoolekandeasutused | <https://www.sm.ee/uldhooldusteenust-pakkuvad-hoolekandeasutused> |
 | Tarkvanem (Sotsiaalkindlustusamet) | „Aga mul ei ole blenderit!“ – kasuperede müüdid ja hirmud | <https://tarkvanem.ee/kasupere-artiklid/aga-mul-ei-ole-blenderit-kasuperede-muudid-ja-hirmud/> |
 | Tarkvanem (Sotsiaalkindlustusamet) | “Ei, aitäh, ma ei joo!” | <https://tarkvanem.ee/alkohol-artiklid/ei-aitah-ma-ei-joo/> |
@@ -5205,7 +5241,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Vanglateenistus | Üldkasulik töö | <https://vanglateenistus.ee/vabanemine-ja-kriminaalhooldus/kriminaalhooldus/uldkasulik-too> |
 | Vanglateenistus | Üldkasuliku töö partnerile | <https://vanglateenistus.ee/koostoopartnerile-ja-vabatahtlikule/uldkasulik-too-ja-vabatahtlik-too/uldkasuliku-too-partnerile> |
 
-### Uuringud ja juhendid väljaandja ametlikult aadressilt (354)
+### Uuringud ja juhendid väljaandja ametlikult aadressilt (410)
 
 | Väljaandja | Pealkiri | Aadress |
 |---|---|---|
@@ -5236,13 +5272,23 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Eesti Arst | Empaatia, emotsioonide regulatsiooni ja kaastunde seosed tervishoiutöötajate kaastundeväsimusega | <https://ojs.utlib.ee/index.php/EA/article/download/29713/22958/46846> |
 | Eesti Inimõiguste Keskus | Inimõigused Eestis 2020. Areng aastatel 2018–2019 | <https://humanrights.ee/app/uploads/2019/12/Inimoigused-Eestis-2020.-veebi.pdf> |
 | Eesti Inimõiguste Keskus | Inimõigused Eestis 2022. Areng aastatel 2020–2021 | <https://humanrights.ee/app/uploads/2021/12/Inimoiguste-aruanne-2022.pdf> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2024. Areng aastatel 2022–2023 | <https://humanrights.ee/app/uploads/2023/12/EIK2024_web_final.pdf> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: infovoldik | <https://humanrights.ee/app/uploads/2025/10/Inimoigused-Eestis-2026-infovoldik.pdf> |
+| Eesti Inimõiguste Keskus | Inimõigused Eestis 2026: infovoldik lihtsas keeles | <https://humanrights.ee/app/uploads/2025/12/EIK-voldik_lihtsas-keeles_parandustega_outlined-1.pdf> |
 | Eesti Inimõiguste Keskus | Ühisaruanne Eesti kolmanda üldise korralise ülevaatuse (UPR) jaoks | <https://humanrights.ee/app/uploads/2020/12/UPR-EST-uus.pdf> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 1.2 Keskuse ja ääremaa lõhe Eestis | <https://2020.inimareng.ee/print/EIA-2019-1.2.pdf> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2019/2020: 1.5 Ligipääsetavuse muutused autostunud Eestis | <https://2020.inimareng.ee/print/EIA-2019-1.5.pdf> |
+| Eesti Koostöö Kogu | Eesti inimarengu aruanne 2023. Vaimne tervis ja heaolu | <https://inimareng.ee/wp-content/uploads/2023/07/EIA-2023-OK.pdf> |
 | Eesti Koostöö Kogu | Eesti inimarengu aruanne 2026 | <https://2026.inimareng.ee/wp-content/uploads/2026/02/EIA-2026.pdf> |
+| Eesti Külaliikumine Kodukant | Vabatahtlike kaasamismudelist hoolekandesüsteemis: mida saime teada mudeli testimisel? (Kodukandi ettekanne seminaril 15.09.2020) | <https://www.tai.ee/sites/default/files/images/EhaPaas_seminar_vabatahtlike_kaasamine_hoolekandesse_esitlus_15.09.20.pdf> |
+| Eesti Külaliikumine Kodukant | Vabatahtliku seltsilise käsiraamat | <https://vabatahtlikud.ee/wp-content/uploads/2021/03/Vabatahtliku-Seltsilise-KRMT-EKRAAN-FIN.pdf> |
+| Eesti Noorsootöö Keskus | Digiareng ja noorsootöö | <https://www.digar.ee/arhiiv/et/download/358788> |
 | Eesti Pimedate Liit | Minu enda elu. Nägemispuudega iseseisvasse ellu. Juhendmaterjal nägemispuudega noortele ja hiljuti nägemise kaotanutele | <https://pimedateliit.ee/wp-content/uploads/2022/05/Juhendmaterjal-2022_A45.pdf> |
 | Eesti Puuetega Inimeste Koda | Elu erilise lapsega – toimetulek ja vajadused. Uuringu raport | <https://www.epikoda.ee/wp-content/uploads/2018/09/Elu_erilise_lapsega_toimetulek_ja_vajadused_uuringu_kokkuvote.pdf> |
 | Eesti Puuetega Inimeste Koda | Puuetega inimeste eluolu Eestis. ÜRO puuetega inimeste õiguste konventsiooni täitmise variraport | <https://epikoda.ee/wp-content/uploads/2025/09/EPIK_variraport_webi.pdf> |
 | Eesti Rakendusuuringute Keskus Centar | Tööga seotud sotsiaalkaitsemudelid ja nende sobivus alternatiivsete tööturuarengute korral | <https://centar.ee/pdf/ee/2018_Tooga_seotud_sotsiaalkaitse_mudelid_ja_nende_sobivus_alternatiivsete_tooturuarengute_korral_Eestis.pdf> |
 | Eesti Sotsiaaltöö Assotsiatsioon | Sotsiaalvaldkonna töötaja eetikakoodeks | <https://www.eswa.ee/wp-content/uploads/2026/05/sotsiaalvaldkonna-tootaja-koodeks.pdf> |
+| Eesti Sotsiaaltöö Assotsiatsioon | Vananev Eesti vajab uut kokkulepet inimese turvalisuse eest (ESTA pressiteade 04.09.2026) |  |
 | Eesti Vaimse Tervise ja Heaolu Koalitsioon | VATEKi huvikaitseplaan – inimkesksed vaimse tervise teenused | <https://88474753-62df-4666-a7b7-7f305bd053d4.filesusr.com/ugd/e25260_9dbf58b6b3554cbd89778b83b4fc63ca.pdf> |
 | Haridus- ja Noorteamet | Noorteinfo käsiraamat | <https://www.teeviit.ee/wp-content/uploads/2025/10/noorteinfo-kasiraamat-2025-1.pdf> |
 | Haridus- ja Teadusministeerium | 19–26aastaste noorte noorsootöös osalemise motivatsioon | <https://www.hm.ee/sites/default/files/documents/2022-10/19-26_osalemine_noorsootoos.pdf> |
@@ -5252,28 +5298,43 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Juridica | Lapse osalemine teda puudutava küsimuse otsustamisel. Kuidas hinnata lapse küpsust ning anda tema arvamusele kohane kaal | <https://www.juridica.ee/article_full.php?uri=2021_9_lapse_osalemine_teda_puudutava_k_simuse_otsustamisel_kuidas_hinnata_lapse_k_psust_ning_anda_t&pdf=1> |
 | Juridica | Piiratud arusaamisvõimega täisealise isiku eneseteostusvabadus ja kaitse – kas piiratud teovõime ja eestkoste regulatsioon vajab ümberhindamist | <https://www.juridica.ee/article_full.php?uri=2020_6_piiratud_arusaamisv_imega_t_isealise_isiku_eneseteostusvabadus_ja_kaitse_kas_piiratud_teov_im&pdf=1> |
 | Justiits- ja Digiministeerium | Alaealise õigusrikkuja kasutajateekonna ja kogemuse analüüs | <https://www.justdigi.ee/sites/default/files/documents/2021-08/Alaealise%20%C3%B5igusrikkuja%20kasutajateekonna%20ja%20kogemuse%20anal%C3%BC%C3%BCs.pdf> |
+| Justiits- ja Digiministeerium | Alaealisele lapsele elatise arvutamise korra muutmine. Rakendamispraktika analüüs | <https://www.justdigi.ee/sites/default/files/documents/2024-05/Elatise%20rakendamispraktika%20raport.pdf> |
+| Justiits- ja Digiministeerium | Alaealiste menetlus- ja karistuspraktika 2024 | <https://www.justdigi.ee/sites/default/files/documents/2024-09/Alaealiste%20menetlus-%20ja%20karistuspraktika%202024.pdf> |
+| Justiits- ja Digiministeerium | Alaealiste rasked vägivallateod: põhjused, riskitegurid ja ennetus | <https://www.justdigi.ee/sites/default/files/documents/2026-10/Alaealiste%20rasked%20v%C3%A4givallateod%20p%C3%B5hjused%2C%20riskitegurid%20ja%20ennetus.pdf> |
+| Justiits- ja Digiministeerium | Alkoholitarvitamise häire ravi (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/alkoholitarvitamise_haire_ravi_a.sammel.pdf> |
+| Justiits- ja Digiministeerium | Antisotsiaalsuse ja diagnooside ühisosa töös keeruliste lastega (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/antisotsiaalsuse_ja_diagnooside_uhisosa_toos_keeruliste_lastega_m.velstrom_0.pdf> |
 | Justiits- ja Digiministeerium | Eesti riiklik suunamismehhanism inimkaubanduse ohvri abistamiseks | <https://www.justdigi.ee/sites/default/files/documents/2026-04/RSM_EST_0.pdf> |
 | Justiits- ja Digiministeerium | Eestkoste kohtupsühhiaatriliste ekspertiiside õiguslik analüüs | <https://www.justdigi.ee/sites/default/files/documents/2026-01/Eestkoste%20kohtups%C3%BChhiaatriliste%20ekspertiiside%20%C3%B5iguslik%20anal%C3%BC%C3%BCs.pdf> |
 | Justiits- ja Digiministeerium | Ennast või teisi kahjustava seksuaalkäitumisega noorte mõjutamine kriminaaljustiitssüsteemis | <https://www.justdigi.ee/sites/default/files/documents/2022-10/Ennast%20v%c3%b5i%20teisi%20kahjustava%20seksuaalk%c3%a4itumisega%20noorte%20m%c3%b5jutamine%20kriminaaljustiitss%c3%bcsteemis_l%c3%b5pparuanne%202022.pdf> |
+| Justiits- ja Digiministeerium | Ida piirkonna prokuratuuri ülevaade laste ja noorte teenustele suunamise võimalustest (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/ida_piirkonna_prokuratuuri_ulevaade_laste_ja_noorte_teenustele_suunamise_voimalustest.pdf> |
 | Justiits- ja Digiministeerium | Karistuse mõju. Õigusrikkuja vaade | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/karistuse_moju_loppraport_05.07.pdf> |
 | Justiits- ja Digiministeerium | Kehaline väärkohtlemine lähisuhtes – menetlus- ja karistuspraktika 2019 | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/menetlus-_ja_karistuspraktika_lahisuhtes_kehalise_vaarkohtlemise_juhtumites_veebi_0.pdf> |
 | Justiits- ja Digiministeerium | Kohus lahendab minu pere muresid. Juhendmaterjal lapsele, keda kohtunik soovib ära kuulata | <https://lapsesobralikmenetlus.just.ee/sites/default/files/2023-05/KohusLahendab_A5_EST_preview%2520%25281%2529.pdf> |
 | Justiits- ja Digiministeerium | Kuriteoohvrite kaitse ja kohtlemise uuring | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/kuriteoohvrite_kaitse_ja_kohtlemine_pikk_aruanne_0.pdf> |
+| Justiits- ja Digiministeerium | Kuriteoohvrite kaitse võimalused Eestis (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/kuriteoohvrite_kaitse_eestis_b._tammiste_k.marfeldt.pdf> |
 | Justiits- ja Digiministeerium | Laps perevägivalla pealtnägijana | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/laps_perevagivalla_pealtnagijana_lopparuanne_isbn.pdf> |
 | Justiits- ja Digiministeerium | Laps süüdistatavana kohtus. Juhendmaterjal lapsele | <https://lapsesobralikmenetlus.just.ee/sites/default/files/2023-05/LapsSuudistatavana_A5_EST_preview.pdf> |
 | Justiits- ja Digiministeerium | Laps tunnistaja või kannatanuna kohtus. Juhendmaterjal lapsele | <https://lapsesobralikmenetlus.just.ee/sites/default/files/2023-05/LapsTunnistajana_A5_EST_preview.pdf> |
 | Justiits- ja Digiministeerium | Lapse vajaduspõhine miinimumelatis. Uuringu lõpparuanne | <https://www.justdigi.ee/sites/default/files/documents/2021-07/Lapse%20vajadusp%C3%B5hine%20miinimumelatis%2C%20uuringu%20l%C3%B5pparuanne.pdf> |
 | Justiits- ja Digiministeerium | Lapsesõbralik keskkond õiguskaitses. Kriminaalpoliitika lühianalüüs 2-2021 | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/soovitused_lapsesobraliku_keskkonna_loomiseks_oiguskaitses_2021_0.pdf> |
 | Justiits- ja Digiministeerium | Laste ja noorte seksuaalse väärkohtlemise hoiakute ja kogemuste uuring | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/laste_ja_noorte_seksuaalse_vaarkohtlemise_uuring_2020_euk.pdf> |
+| Justiits- ja Digiministeerium | Lõuna piirkonna prokuratuuri ülevaade laste ja noorte teenustele suunamise võimalustest (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/louna_piirkonna_prokuratuuri_ulevaade_laste_ja_noorte_teenustele_suunamise_voimalustest_g._tahe.pdf> |
+| Justiits- ja Digiministeerium | Lääne piirkonna prokuratuuri ülevaade laste ja noorte teenustele suunamise võimalustest (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/laane_piirkonna_prokuratuuri_ulevaade_laste_ja_noorte_teenustele_suunamise_voimalustest_l.rohi_.pdf> |
 | Justiits- ja Digiministeerium | Noorte õigusrikkujate uuring. Lõpparuanne | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/rake_2021._noorte_oigusrikkujate_uuring.pdf> |
 | Justiits- ja Digiministeerium | Noorte õigusrikkujate uuringute kokkuvõte | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/jum_2021._noorte_oigusrikkujate_uuringute_kokkuvote.pdf> |
+| Justiits- ja Digiministeerium | Pere lahendusring (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/pere_lahendusring_e._lattemagi_jt.pdf> |
+| Justiits- ja Digiministeerium | Põhja piirkonna ülevaade laste ja noorte teenustele suunamise võimalustest ja kohalikest abivõimalustest (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/pohja_piirkonna_prokuratuuri_ulevaade_laste_ja_noorte_teenustele_suunamise_voimalustest_j._laht_0.pdf> |
 | Justiits- ja Digiministeerium | Radikaliseerumise varajane märkamine ja võrgustikutöö. Käsiraamat kohalikele omavalitsustele | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/radikaliseerumine_kov_.pdf> |
+| Justiits- ja Digiministeerium | Sekkumised joobes juhtidele (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/sekkumised_joobes_juhtidele_k.tullinen.pdf> |
+| Justiits- ja Digiministeerium | Taastava õiguse kasutamise võimalused õigussüsteemis (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/taastava_oiguse_kasutamise_voimalused_oigussusteemis_a._johanson_jt.pdf> |
 | Justiits- ja Digiministeerium | Taasühiskonnastamise tõhustamine | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/taasyhisk_analyys_2022vormil.pdf> |
+| Justiits- ja Digiministeerium | Teenused narkootikume tarvitavatele inimestele (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/teenused_narkootikume_tarvitavatele_inimestele_a.kurbatova.pdf> |
 | Justiits- ja Digiministeerium | Tsiviilõiguslik lähenemiskeeld. Kohtupraktika analüüs | <https://www.justdigi.ee/sites/default/files/documents/2021-07/Tsiviil%C3%B5iguslik%20l%C3%A4henemiskeeld.pdf> |
 | Justiits- ja Digiministeerium | Tugiteenus vanglast vabanejatele toetuse andmise tingimuste 2017. aasta vahehindamise aruanne | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/tat_tugiteenus_vanglast_vabanejatele_2017_aasta_vahehindamise_aruanne_1.pdf> |
 | Justiits- ja Digiministeerium | Vanemaealiste kuriteoohvrite analüüs | <https://www.justdigi.ee/sites/default/files/documents/2023-09/Vanemaealiste%20kuriteoohvrite%20anal%c3%bc%c3%bcs_l%c3%b5plik.pdf> |
 | Justiits- ja Digiministeerium | Vanglast vabanenute tugiteenuse tulemuslikkuse hindamine | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/vanglast_vabanenute_tugiteenuse_tulemuslikkuse_hindamine.pdf> |
 | Justiits- ja Digiministeerium | Vanglate sisekliima uuring | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/vanglate_sisekliima_uuring_sugis_2018.pdf> |
+| Justiits- ja Digiministeerium | Vägivallast loobumise tugiliini tutvustus (Justiitsministeeriumi seminar „Õigusrikkujatele teenused justiitsasutuste kaudu“, 2021) | <https://www.kriminaalpoliitika.ee/sites/krimipoliitika/files/elfinder/dokumendid/vagivallast_loobumise_toetamise_teenus_h.mccaskill_jt.pdf> |
 | Kantar Emor | Laste internetikasutus ning võimalused internetis toimuva laste seksuaalse väärkohtlemise ennetamiseks | <https://www.emor.ee/wp-content/uploads/2024/04/lopparuanne-ppa-laste-ja-noorte-uuring.pdf> |
 | Kuldne Liiga | Vanusesõbralikkuse hindamisvahend ja juhend | <https://liiga.ee/wp-content/uploads/2024/06/Vanusesobralikkuse-hindamisvahend-ja-juhendmaterjal_loplik.pdf> |
 | Kuldne Liiga | Vanusesõbraliku ühiskonna põhimõtted Euroopa Liidus, Eestis, Soomes ja Jaapanis | <https://liiga.ee/wp-content/uploads/2022/12/RAKE-_-Vanusesobralik-uhiskond_aruanne_20221124.pdf> |
@@ -5289,6 +5350,9 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | MTÜ Lastekaitse Liit | Asendushooldusel kasvavate laste osalemiskogemused nende elu puudutavates otsustes | <https://arhiiv.lastekaitseliit.ee/wp-content/uploads/2021/11/Asendushooldusel-kasvavate-laste-osalemiskogemused-2021.pdf> |
 | MTÜ Lastekaitse Liit | Lapse õigused 2020–2021 | <https://arhiiv.lastekaitseliit.ee/wp-content/uploads/2021/11/Peatukk-2020-2021.pdf> |
 | MTÜ Lastekaitse Liit | Meediasuhtluse ABC lastekaitsetöötajale | <https://arhiiv.lastekaitseliit.ee/wp-content/uploads/2021/05/Meediasuhtluse-ABC-lastekaitsetootajale.pdf> |
+| MTÜ Peaasjad | Enesevigastamisest loobumise töövihik noorele ja lähedasele | <https://peaasi.ee/wp-content/uploads/2021/10/Enesevigastamisest_loobumise_toovihik_noorele_ja_lahedasele_TAIDETAV.pdf> |
+| MTÜ Peaasjad | Kuidas saan oma lapsi aidata? Abiks lapsevanematele, kellel on vaimse tervise probleeme | <https://peaasi.ee/wp-content/uploads/2020/01/PARENTS_Eesti_net.pdf> |
+| MTÜ Peaasjad | Kuidas saan oma laste eest hoolt kanda? Abiks lapsevanematele, kellel on probleeme alkoholi või uimastitega | <https://peaasi.ee/wp-content/uploads/2020/01/INTOXICANT_Eesti_net.pdf> |
 | Mõttekoda Praxis | 8–12-aastaste käitumishäiretega laste vanematele suunatud ennetustegevuste võrdlev analüüs | <https://www.praxis.ee/uploads/2025/02/Ennetustegevuste_v%C3%B5rdlev_anal%C3%BC%C3%BCs-L%C3%B5ppraport.pdf> |
 | Mõttekoda Praxis | Abisaaja ja tema lähedaste kaasamine meditsiini- ja hoolduse integreeritud teenuse pakkumisel | <https://www.praxis.ee/uploads/2015/08/Kokkuvo%cc%83te-abisaaja-ja-tema-la%cc%88hedaste-kaasamisest.pdf> |
 | Mõttekoda Praxis | Ajutise töötamise mõju töötuna arvelolijate tööturukäitumisele ja majanduslikule toimetulekule | <https://www.praxis.ee/uploads/2025/01/L%C3%B5pparuanne_Praxis_ajutise_t%C3%B6%C3%B6tamise_m%C3%B5ju.pdf> |
@@ -5313,6 +5377,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Mõttekoda Praxis | Ukraina sõja tõttu Eestisse asunud naiste kogemused – lühikokkuvõte | <https://www.praxis.ee/uploads/2025/01/Barriers%20to%20a%20fulfilling%20life%20raport%20-%20est.pdf> |
 | Mõttekoda Praxis | Võru linna vanemaealiste rahulolu-uuring | <https://praxis.ee/uploads/2025/12/V%C3%B5ru%20linna%20vanemaealiste%20rahuoluuuring.pdf> |
 | Päästeamet | Kodukeskkonna vigastusriskide hindamismetoodika ja -ankeedi väljatöötamine. Lõppraport | <https://www.rescue.ee/files/2022-10/kodukeskkonna-vigastusriskide-hindamismetoodika-ja-ankeedi-vaeljatoeoetamine-loppraport.pdf> |
+| Rahandusministeerium | Kohalike omavalitsuste kompetentside põhise koolitusvajaduse hindamise metoodika ja analüüs | <https://omavalitsus.fin.ee/static/sites/5/2021/05/L%C3%B5pparuanne_KOV_koolitusvajadus.pdf> |
 | Riigikantselei | Ligipääsetavuse rakkerühma lõpparuanne | <https://riigikantselei.ee/media/1169/download> |
 | Riigikogu Toimetised | Eestlaste ettekujutused ühiskonna kihistumisest | <https://rito.riigikogu.ee/wordpress/wp-content/uploads/2026/05/109-120_Uuring-Ra%CC%88mmer.pdf> |
 | Riigikogu Toimetised | Kohanemine rahvastiku vananemisega kui rahvastikupoliitika keskne väljakutse | <https://rito.riigikogu.ee/wordpress/wp-content/uploads/2018/12/Kohanemine-rahvastiku-vananemisega-kui-rahvastikupoliitika-keskne-v%C3%A4ljakutse.-Leppik-Abuldaze-Sakkeus-Tambaum.pdf> |
@@ -5320,15 +5385,27 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Riigikogu Toimetised | Noored ja ühiskond – osalus, rahulolu ja toimevõime | <https://rito.riigikogu.ee/wordpress/wp-content/uploads/2019/12/K6outs-Klemm-et-al.pdf> |
 | Riigikogu Toimetised | Tööga seotud sotsiaalse kaitse riskid Eesti tööturu muutuste taustal | <https://rito.riigikogu.ee/wordpress/wp-content/uploads/2018/12/T%C3%B6%C3%B6ga-seotud-sotsiaalse-kaitse-riskid-Eesti-t%C3%B6%C3%B6turu-muutuste-taustal.-Masso-Laurim%C3%A4e-J%C3%A4rve-Piirits.pdf> |
 | Riigikohus | Kinnisesse lasteasutusse paigutamine. Kohtupraktika analüüs | <https://www.riigikohus.ee/sites/default/files/analyys/Kinnine_lasteasutus.pdf> |
+| Riigikontroll | Asutuste võrk ja kinnisvara kohalikes omavalitsustes pärast haldusterritoriaalset reformi | <https://www.riigikontroll.ee/sites/default/files/documents/2026-05/UV_80170_Asutuste%20vork%20ja%20kinnisvara%20kohalikes%20omavalitsustes%20parast%20haldusterritoriaalset%20reformi%20_2026_0.pdf> |
 | Riigikontroll | Eakate sotsiaalsete probleemide märkamine omavalitsustes | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2536/RKTR_2536_2-1.4_2279_003-1.pdf> |
 | Riigikontroll | Eesti tervishoiu suundumused | <https://www.riigikontroll.ee/sites/default/files/documents/2026-03/RVKS_Eesti%20tervishoiu%20suundumused_2022.pdf> |
 | Riigikontroll | Esmatähtsate avalike teenuste tulevik. Riigikontrolli aastaaruanne Riigikogule 2020 | <https://www.riigikontroll.ee/sites/default/files/documents/2026-03/RVKS_80054_Esmatahtsate%20avalike%20teenuste%20tulevik_2020.pdf> |
 | Riigikontroll | Hariduse tugiteenuste kättesaadavus | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2516/RKTR_2516_2-1.4_2261_003-2.pdf> |
 | Riigikontroll | Hooldereform. Riigikontrolli aruanne Riigikogule | <https://www.riigikontroll.ee/sites/default/files/documents/2025-12/19680_RKTR_6596_2-1.4_2342_003-2.pdf> |
+| Riigikontroll | Järelaudit: Omavalitsuse eestkostel olevate laste elatisraha sissenõudmine | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2445/RKTR_2445_2-1.4_2196_001-2.pdf> |
+| Riigikontroll | Kriminaalhoolduse tulemuslikkus: kriminaalhooldajate küsitluse tulemused (märgukirja lisa) | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2483/RKTR_2483_2-1.4_2231_001-1.bdoc> |
+| Riigikontroll | Kriminaalhoolduse tulemuslikkus: kriminaalhoolduse 2014.–2015. aastal lõpetanud isikute analüüs (märgukirja lisa) | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2483/RKTR_2483_2-1.4_2231_001-1.bdoc> |
+| Riigikontroll | Märgukiri auditi „Kriminaalhoolduse tulemuslikkus“ kohta | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2483/RKTR_2483_2-1.4_2231_001-1.bdoc> |
 | Riigikontroll | Omavalitsuse teenuste korraldus endistes keskustes ja nende lähiümbruses pärast haldusreformi | <https://www.riigikontroll.ee/sites/default/files/documents/2026-01/14891_RKTR_2532_2-1.4_2275_003-1.pdf> |
 | Riigikontroll | Omavalitsuste kogutud hoolekandeteabe kasutamine | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2492/RKTR_2492_2-1.4_2239_003-2.pdf> |
+| Riigikontroll | Omavalitsuste tegevus nende eestkostel olevate laste elatisraha sissenõudmisel | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2388/RKTR_2388_2-1.4_2144_001-2.pdf> |
+| Riigikontroll | Pikaajaline vaade vanglasüsteemile | <https://www.riigikontroll.ee/sites/default/files/documents/2025-11/18294_RKTR_5565_2-1.4_2309_004-2.pdf> |
+| Riigikontroll | Riigi tegevus erivajadustega inimeste toetamisel (keskvalitsuse tegevuse osa) | <https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19391_RKTR_6570_2-1.4_2318_001-3.pdf> |
+| Riigikontroll | Riigi tegevus laste tervise hoidmisel ja ravimisel | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2414/RKTR_2414_2-1.4_2169_001-2.pdf> |
+| Riigikontroll | Riigi tegevus töötute aitamisel tööle | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2385/RKTR_2385_2-1.4_2143_001-2.pdf> |
+| Riigikontroll | Riigi tegevus töövõimereformi ettevalmistamisel | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2422/RKTR_2422_2-1.4_2174_001-3.pdf> |
 | Riigikontroll | Täiskasvanute hambaravihüvitis | <https://www.riigikontroll.ee/sites/default/files/arhivaalid/2537/RKTR_2537_2-1.4_2280_002-2.pdf> |
 | Riigikontroll | Vastutustundlik ja teadlik laenamine ning tarbijakaitse pangaväliste krediidiandjate tarbimislaenude puhul | <https://www.riigikontroll.ee/sites/default/files/documents/2025-11/17243_RKTR_4562_2-1.4_2305_002-1.pdf> |
+| Riigikontroll | Üürimajade programmi tulemuslikkus | <https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19527_RKTR_6580_2-1.4_2327_002-2.pdf> |
 | Sisekaitseakadeemia | Kriisikommunikatsiooni käsiraamat | <https://digiriiul.sisekaitse.ee/bitstream/handle/123456789/3776/2026%2004%20SKA%20kriisikommunikatsioon%20WEB%20%281%29.pdf?isAllowed=y&sequence=3&utm> |
 | Siseministeerium | Juhtumianalüüs: ametiasutuste tegevus surmaga lõppenud perevägivalla juhtumite lahendamisel | <https://siseministeerium.ee/sites/default/files/documents/2025-06/Ametiasutuste%20tegevus%20surmaga%20lo%CC%83ppenud%20pereva%CC%88givalla%20juhtumite%20lahendamisel%20lo%CC%83pparuanne2%20aprill%202025.pdf> |
 | Siseministeerium | Lähisuhtevägivallaga seotud teadmised ja hoiakud päästekorraldajate ja politseinike seas | <https://www.siseministeerium.ee/sites/default/files/documents/2023-09/LO%CC%83PPRAPORT%20%28LSV%29%20RAK.pdf> |
@@ -5345,6 +5422,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Asendushooldusteenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/asendushooldusteenuse_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Eesti sotsiaalteenuste kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-11/Lisa%201.%20Eesti%20sotsiaalteenuste%20kvaliteedijuhis_12.11.2024.pdf> |
 | Sotsiaalkindlustusamet | Elanike teadlikkus ja hoiakud seoses laste vastu suunatud seksuaalvägivalla ennetuse ning abivõimalustega | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-02/Uuring%20elanike%20teadlikkus%20ja%20hoiakud%20seoses%20laste%20seksuaalv%C3%A4givalla%20ennetuse%20ning%20abiv%C3%B5imalustega%202025.pdf> |
+| Sotsiaalkindlustusamet | Elanikkonna hoiakud ja teadlikkus seksuaalvägivallast | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-04/Elanikkonna%20hoiakud%20ja%20teadlikkus%20seksuaalv%C3%A4givallast.pdf> |
 | Sotsiaalkindlustusamet | Eluasemekulude piirmäärade kehtestamise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-08/Eluasemekulude%20piirm%C3%A4%C3%A4rade%20kehtestamise%20juhend%2027.08.26.pdf> |
 | Sotsiaalkindlustusamet | Eluruumi tagamise teenuse juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-04/Eluruumi%20tagamise%20teenuse%20juhend%2015.04.2024.pdf> |
 | Sotsiaalkindlustusamet | Eluruumi tagamise teenuse kvaliteedijuhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2026-01/Eluruumi%20tagamise%20teenuse%20kvaliteedijuhis_07.01.2026_0.pdf> |
@@ -5383,6 +5461,8 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalkindlustusamet | Lapsehoiuteenuse kvaliteedijuhis | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/lapsehoiuteenuse_kvaliteedijuhis.pdf> |
 | Sotsiaalkindlustusamet | Lasteabi tulemuslikkuse uuring | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Lasteabi-tulemuslikkuse-uuring-lopparuanne-16.10.2024.pdf> |
 | Sotsiaalkindlustusamet | Lastevastase vägivalla ennetamine ja vähendamine asenduskodudes. Juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-09/Lastevastase%20v%C3%A4givalla%20ennetamine%20ja%20v%C3%A4hendamine%20asenduskodudes.%20Juhend.pdf> |
+| Sotsiaalkindlustusamet | Lootuselaegas (Safe box). Noore juhis | <https://s3-web-1a.tehik.ee/lasteabi-live-web-prd/s3fs-public/2026-03/ska_box_sisu_noore-juhis.pdf> |
+| Sotsiaalkindlustusamet | Lootuselaegas (Safe box). Spetsialisti juhis | <https://s3-web-1a.tehik.ee/lasteabi-live-web-prd/s3fs-public/2026-03/ska_box_sisu_spetsialisti-juhis.pdf> |
 | Sotsiaalkindlustusamet | Meeleoluhäiretega täiskasvanute rehabilitatsioonijuhise koondaruanne | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/Meeleoluh%C3%A4iretega%20t%C3%A4iskasvanute%20rehabilitatsioonijuhise%20koondaruanne.pdf> |
 | Sotsiaalkindlustusamet | Minijuhis omavalitsustele olukordadeks, kui sünnib laps, kelle suhtes vanemad soovivad anda nõusoleku lapsendamiseks | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/minijuhis_kov-dele_olukordadeks_kui_sunnib_laps_kelle_suhtes_vanemad_soovivad_anda_nousoleku_lapsendamiseks.pdf> |
 | Sotsiaalkindlustusamet | PACT-i riskihindamise täitmise juhend | <https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-09/pact_riskihindamise_taitmise_juhend%20%281%29.pdf> |
@@ -5444,12 +5524,14 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Analüüs varase töökogemuse soodustamiseks kooliealiste noorte seas | <https://www.sm.ee/sites/default/files/documents/2022-06/Anal%C3%BC%C3%BCs%20varase%20t%C3%B6%C3%B6kogemuse%20soodustamiseks%20kooliealiste%20noorte%20seas.pdf> |
 | Sotsiaalministeerium | Asendushoolduse uuring: TATi tegevuste ja sotsiaalhoolekande seaduse muudatuste mõjude hindamine 2014–2020 | <https://www.sm.ee/media/2610/download> |
 | Sotsiaalministeerium | Asendushoolduselt iseseisvasse ellu astuvate noorte uuring. Lõpparuanne | <https://www.sm.ee/media/2234/download> |
+| Sotsiaalministeerium | Dementsus: riskitegurid ja ennetamine | <https://www.sm.ee/sites/default/files/documents/2024-06/dementsuse_riskitegurid_ja_ennetus_.pdf> |
 | Sotsiaalministeerium | Eesti perepoliitiliste meetmete süsteem 2025 | <https://sm.ee/sites/default/files/documents/2025-12/Eesti%20perepoliitiliste%20meetmete%20s%C3%BCsteem_sotsiaalministeerium2025.pdf> |
 | Sotsiaalministeerium | Eestis kasutatavate väheintensiivsete psühholoogiliste sekkumiste ülevaade | <https://www.sm.ee/media/3569/download> |
 | Sotsiaalministeerium | Elanikkonna hoolduskoormuse uuring | <https://www.sm.ee/media/2686/download> |
 | Sotsiaalministeerium | Elanikkonna tegevuspiirangute ja hooldusvajaduse uuring 2025. Raport | <https://sm.ee/sites/default/files/documents/2026-04/HOV%20uuringu%20raport%202025.pdf> |
 | Sotsiaalministeerium | Elatusmiinimum – teel parema toeni puudustkannatavatele inimestele | <https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/elatusmiinimum_loppraport.pdf> |
 | Sotsiaalministeerium | Ettepanekud valdkondade ülese laste heaolu näidikulaua väljatöötamiseks Eestis Islandi kogemuse näitel | <https://sm.ee/sites/default/files/documents/2024-11/Islandi%20projekti%20anal%C3%BC%C3%BCtiline%20dokument_Nahkur_24.10.2024_OliverNahkur.pdf> |
+| Sotsiaalministeerium | Infoleht: vaimse tervise probleemidega patsient esmatasandil | <https://www.sm.ee/sites/default/files/documents/2026-07/Infoleht%20vaimse%20tervise%20probleemidega%20patsient%20esmatasandil.pdf> |
 | Sotsiaalministeerium | Inimese elukaart hõlmav valdkondadeülene üldine heaolu kontseptuaalne mudel Eestis | <https://sm.ee/sites/default/files/documents/2026-05/Inimese%20elukaart%20h%C3%B5lmav%20valdkondade%C3%BClene%20%C3%BCldine%20heaolu%20kontseptuaalne%20mudel%20Eestis.pdf> |
 | Sotsiaalministeerium | Isapuhkus ja emaduslõiv | <https://sm.ee/sites/default/files/documents/2025-05/Isapuhkus%20ja%20emadusl%C3%B5iv_Unt%20Aavik%20Taht%202024.pdf> |
 | Sotsiaalministeerium | Kas Eesti elanikud saavad endale tervishoiuteenuseid lubada, arvestades nende sissetulekut ja omaosaluskoormust? | <https://www.sm.ee/sites/default/files/documents/2022-06/Kas%20Eesti%20elanikud%20saavad%20endale%20tervishoiuteenuseid%20lubada%2C%20arvestades%20nende%20sissetulekut%20ja%20omaosaluskoormust.pdf> |
@@ -5479,6 +5561,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Puudega laste tugiteenuste projekti hindamine. Lisa 1 – metoodikaraport | <https://www.sm.ee/sites/default/files/documents/2022-06/Puudega%20laste%20tugiteenuste%20arendamine%20ja%20pakkumine%20ning%20t%C3%B6%C3%B6-%20ja%20pereelu%20%C3%BChildamise%20soodustamine%20-%20metoodikaraport.pdf> |
 | Sotsiaalministeerium | Puudega laste tugiteenuste projekti hindamine. Lõpparuanne | <https://www.sm.ee/sites/default/files/documents/2022-06/Puudega%20laste%20tugiteenuste%20arendamine%20ja%20pakkumine%20ning%20t%C3%B6%C3%B6-%20ja%20pereelu%20%C3%BChildamise%20soodustamine%20-%20l%C3%B5pparuanne.pdf> |
 | Sotsiaalministeerium | Riskihindamise instrumendi väljatöötamine sotsiaalhoolekandelise abivajadusega inimeste tuvastamiseks | <https://www.sm.ee/media/3462/download> |
+| Sotsiaalministeerium | Soolise võrdõiguslikkuse monitooring 2021. Lõpparuanne | <https://www.sm.ee/sites/default/files/documents/2022-12/Soolise%20v%C3%B5rd%C3%B5iguslikkuse%20monitooring.%20L%C3%B5pparuanne.pdf> |
 | Sotsiaalministeerium | Suitsiidse patsiendi käsitlus esmatasandi tervishoius (sh kooli- ja töötervishoid), kiirabis ja erakorralise meditsiini osakondades (SUIPA). Lõppraport | <https://www.sm.ee/media/3070/download> |
 | Sotsiaalministeerium | Suundumused sündimuses ja nende seos perehüvitistega | <https://sm.ee/sites/default/files/documents/2025-04/Suundumused%20s%C3%BCndimuses%20ja%20nende%20seos%20pereh%C3%BCvitistega_1.pdf> |
 | Sotsiaalministeerium | Sündimuse ja perepoliitika tervikanalüüsi teoreetilise osa kokkuvõte | <https://sm.ee/sites/default/files/documents/2025-08/Tervikanal%C3%BC%C3%BCsi%20teoreetilise%20osa%20kokkuv%C3%B5te.pdf> |
@@ -5492,10 +5575,12 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Töökeskkonna vaimse tervise analüüs | <https://www.sm.ee/sites/default/files/documents/2022-06/T%C3%B6%C3%B6keskkonna%20vaimse%20tervise%20anal%C3%BC%C3%BCs.pdf> |
 | Sotsiaalministeerium | Ulatusliku psühhosotsiaalse kriisiabi pakkumise analüüs | <https://www.sm.ee/sites/default/files/documents/2025-06/Ulatusliku%20ps%C3%BChhosotsiaalse%20kriisiabi%20pakkumise%20anal%C3%BC%C3%BCs_05.06.2025.pdf> |
 | Sotsiaalministeerium | Uuring leibkondliku elatusmiinimumi määramise metoodika väljatöötamiseks | <https://sm.ee/sites/default/files/documents/2026-06/Uuring%20leibkondliku%20elatusmiinimumi%20m%C3%A4%C3%A4ramise%20metoodika%20v%C3%A4ljat%C3%B6%C3%B6tamiseks.pdf> |
+| Sotsiaalministeerium | Uuringud suhtumisest psüühilise erivajadusega inimestesse 2021 ja 2022 – tulemused | <https://www.sm.ee/media/2712/download> |
 | Sotsiaalministeerium | Vabatahtlikud ja vabatahtlikkus Eestis. Hetkeolukord ja tulevikuväljavaated | <https://sm.ee/sites/default/files/documents/2026-04/Vabatahtlikud%20ja%20vabatahtlikkus%20Eestis.%20Hetkeolukord%20ja%20tulevikuv%C3%A4ljavaated.pdf_0.pdf> |
 | Sotsiaalministeerium | Vaimse tervise astmelise abi tegevuskava 2024–2027 | <https://sm.ee/sites/default/files/documents/2023-12/Vaimse%20tervise%20astmelise%20abi%20tegevuskava.pdf> |
 | Sotsiaalministeerium | Vaimse tervise parandamise kogukonna juhend | <https://www.sm.ee/sites/default/files/documents/2023-08/WHO%20vaimse%20tervise%20parandamise%20tegevuskava%20%28mhGAP%29.pdf> |
 | Sotsiaalministeerium | Vaimse tervise roheline raamat | <https://www.sm.ee/sites/default/files/documents/2022-06/Vaimse%20tervise%20roheline%20raamat%20%282021%29.pdf> |
+| Sotsiaalministeerium | Vaimse tervise tegevuskava 2023–2026 | <https://www.sm.ee/sites/default/files/documents/2023-03/Vaimse%20tervise%20tegevuskava%202023-2026.pdf> |
 | Sotsiaalministeerium | Vaimse tervise toetamine KOV tasandil. Küsitlustulemuste ülevaade (mai 2021) | <https://www.sm.ee/sites/default/files/documents/2022-06/Vaimse%20tervise%20toetamine%20KOV%20tasandil.%20K%C3%BCsitlustulemuste%20%C3%BClevaade%20-%20Mai%202021.pdf> |
 | Sotsiaalministeerium | Vaimse tervise valdkonna kvalifikatsiooninõuete hindamine – I aruanne, metoodika | <https://www.sm.ee/sites/default/files/documents/2025-04/I%20aruanne_MetoKval%20(Metoodika)%2027.03%20(1).pdf> |
 | Sotsiaalministeerium | Vaimse tervise valdkonna kvalifikatsiooninõuete hindamine – II aruanne, metoodika rakendamine | <https://www.sm.ee/sites/default/files/documents/2025-04/II%20aruanne_MetoKval%20(Metoodika%20rakendamine)%2027.03.pdf> |
@@ -5505,6 +5590,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Sotsiaalministeerium | Välisriikide madala intensiivsusega psühholoogiliste sekkumiste rakendusmudelite analüüs ja soovitused Eestile | <https://www.sm.ee/media/2846/download> |
 | Sotsiaalministeerium | Ühtekuuluvuspoliitika hoolekandeteenuste tulemuslikkuse ja mõju hindamine Sotsiaalministeeriumile. Lõpparuanne | <https://www.sm.ee/media/2313/download> |
 | Statistikaamet | Mis mõjutab noorte NEET-staatusesse langemist? Analüüsi aruanne | <https://www.stat.ee/sites/default/files/2023-10/Mis%20m%C3%B5jutab%20noorte%20NEET-staatusesse%20langemist_Statistikaameti%20anal%C3%BC%C3%BCs_k%C3%BCljendus%202509.pdf> |
+| Tallinna Ülikooli Eesti demograafia keskus | Pilk hallile alale II. Vananemine elukaare vaates. SHARE Eesti uuringu teine ülevaade | <https://www.tlu.ee/public/pilkhallilealaleteinepdf> |
 | Targalt Internetis | Võta jutuks. Internet ja laste seksuaalne väärkohtlemine | <https://www.targaltinternetis.ee/wp-content/uploads/2015/12/Vota_jutuks.pdf> |
 | Tarkvanem (Sotsiaalkindlustusamet) | Infomaterjal väikelaste (1–4 a) ohutuse tagamiseks lapsevanematele | <https://tarkvanem.ee/wp-content/uploads/2023/10/infomaterjal-vaikelaste-1-4-ohutuse-tagamiseks-lapsevanematele.pdf> |
 | Tarkvanem (Sotsiaalkindlustusamet) | Kogu tõde hooldusperest (voldik) | <https://tarkvanem.ee/wp-content/uploads/2021/05/Hoolduspere_voldik_est_WEB.pdf> |
@@ -5520,6 +5606,7 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Tartu Ülikool | Sissejuhatus hariduslike erivajaduste käsitlusse (3. väljaanne) | <https://dspace.ut.ee/server/api/core/bitstreams/98aa6372-2c1c-46e9-872c-bf7a928d8973/content> |
 | Tartu Ülikool | Suitsiidimõtete esinemine ja sellega seotud tegurid Eesti 15-aastastel kooliõpilastel aastatel 2006–2022 | <https://dspace.ut.ee/server/api/core/bitstreams/c2947b03-24e3-432d-9d86-d2e653cdb5e6/content> |
 | Tartu Ülikool | Tartu linna vanemaealiste uuring | <https://skytte.ut.ee/sites/default/files/2025-01/Tartu_linna_vanemaealiste_uuring_l%C3%B5pparuanne.pdf> |
+| Tartu Ülikool, ühiskonnateaduste instituut | Skaudid Eestis 2020. Skautluse tajutud mõju isiklikule arengule, oskustele ja edasistele eluperspektiividele | <https://skaut.ee/wp-content/uploads/2020/09/TU_skautluse_mojuuuring_raport_EE.pdf> |
 | Tartu Ülikooli Kliinikum | Insuldipatsiendi infomaterjal: Elu pärast insulti | <https://www.kliinikum.ee/wp-content/uploads/2021/02/kliinikum_insult_web.pdf> |
 | Tervise Arengu Instituut | Alkoholi liigtarvitamise varajane avastamine ja lühisekkumine. Abimaterjal perearstile ja pereõele | <https://www.tai.ee/sites/default/files/2021-11/Alkoholi_liigtarvitamise_varajane_avastamine_EST.pdf> |
 | Tervise Arengu Instituut | Avaliku sektori esindajate hinnangud vanemluse valdkonnale | <https://tai.ee/sites/default/files/2022-02/Avaliku%20sektori%20esindajate%20hinnangud%20vanelmuse%20valdkonnale_01.2022.pdf> |
@@ -5544,6 +5631,8 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Nutiseadmete kasutamine: soovitused haridusasutustele, lapsevanematele ja noortele | <https://www.tai.ee/sites/default/files/2025-10/TAI%20Soovitused%20nutiseadmete%20kasutamise%20piiramiseks4.pdf> |
 | Tervise Arengu Instituut | Prostitutsiooni kaasatud naiste terviseuuring | <https://www.tai.ee/sites/default/files/2023-09/Prostitutsiooni_kaasatud_naiste_terviseuuring.pdf> |
 | Tervise Arengu Instituut | Sissetulekuga seotud ebavõrdsus tervishoiuteenuste kasutamisel ja omaosaluse mõju vaesusriskile | <https://www.tai.ee/sites/default/files/2025-01/ebavordsus_tervisehoiuteenuste_kasutamisel_2024.pdf> |
+| Tervise Arengu Instituut | Suitsiidide statistika Eestis: 2025. aasta ülevaade | <https://www.tai.ee/sites/default/files/2026-10/suitsiidide_statistika_2025_1.pdf> |
+| Tervise Arengu Instituut | Suitsiidide statistika: epidemioloogiline ülevaade Eestis 2000–2023 | <https://www.tai.ee/sites/default/files/2025-06/suitsiidide_statistika1.pdf> |
 | Tervise Arengu Instituut | Sõltuvuse juhtimine. Juhend narkomaania ravi ja rehabilitatsiooni teenuse kliendile ja spetsialistile | <https://www.tai.ee/sites/default/files/2021-03/151601031517_Soltuvuse_juhtimine%20EST.pdf> |
 | Tervise Arengu Instituut | Teiste riikide praktikate kaardistus ja analüüs kodukeskkonnas toimuvate vigastuste ennetamiseks Eestis | <https://www.tai.ee/sites/default/files/2022-06/Teiste%20riikide%20praktikate%20kaardistus%20ja%20anal%C3%BC%C3%BCs%20kodukeskkonnas%20toimuvate%20vigastuste%20ennetamiseks%20Eestis.pdf> |
 | Tervise Arengu Instituut | Töö alkoholi liigtarvitava kliendiga. Abiks spetsialistile | <https://www.tai.ee/sites/default/files/2021-03/156526502566_Too_alkoholiliigtarvitava_kliendiga%202019aasta_web_.pdf> |
@@ -5551,11 +5640,14 @@ Serveris töötav RAG, korpus v89, 20.10.2026. Siin on loend sellest, mida jaoti
 | Tervise Arengu Instituut | Uimasteid tarvitavatele inimestele suunatud tõenduspõhiste väheintensiivsete psühholoogiliste sekkumiste ülevaade | <https://www.tai.ee/sites/default/files/2025-04/vipsid_lopparuanne.pdf> |
 | Tervise Arengu Instituut | Uimastite tarvitamine koolinoorte seas: tubakatoodete, alkoholi ja narkootiliste ainete tarvitamine Eesti 15–16-aastaste õpilaste seas | <https://www.tai.ee/sites/default/files/2025-04/espad_raport_2024_25.04.2025.pdf> |
 | Tervise Arengu Instituut | Vanemaealiste vigastused 2016─2020 | <https://www.tai.ee/sites/default/files/2022-01/Vanemaealiste%20vigastused%202016-2020.pdf> |
+| Tervise Arengu Instituut | Vanemlusprogrammi „Imelised aastad“ 2023. aasta tulemused | <https://www.tai.ee/sites/default/files/2024-05/Imelised_Aastad_raport_2023.pdf> |
 | Tervise Arengu Instituut | VEPA Käitumisoskuste Mängu rakendamine Eestis aastatel 2014–2021 | <https://tai.ee/sites/default/files/2021-11/VEPA%20rakendamine%202014-2021_10.2021.pdf> |
 | Tervise Arengu Instituut | VEPA Käitumisoskuste Mängu rakendamise vahehindamine | <https://www.tai.ee/sites/default/files/2021-03/151721412645_VEPA_vahehindamine_lopparuanne.pdf> |
+| Tervise Arengu Instituut | VEPA metoodika 2025/2026. õppeaasta tulemused | <https://www.tai.ee/sites/default/files/2026-06/vepa_metoodika_tulemused_2025-2026_raport.pdf> |
 | Tervise Arengu Instituut | Väheintensiivse psühholoogilise sekkumise „Problem Management Plus“ teostatavusuuring | <https://www.tai.ee/sites/default/files/2026-01/pm_teostatavusuuringu_lopparuanne.pdf> |
 | Tervisekassa | Alkoholi liigtarvitamine – mis see on ja kust saab abi | <https://tervisekassa.ee/media/337/download?inline> |
 | Tervisekassa | Kliiniline audit: akuutpsühhiaatria tahtest olenematu ravi korral viibivate patsientide ravi | <https://tervisekassa.ee/sites/default/files/Psy_auditi_aruande_loplik_1.pdf> |
+| Tervisekassa | Minu vaimse tervise esmaabi. Töövihik noortele ja täiskasvanutele | <https://tervisekassa.ee/media/3/download> |
 | Tervisekassa | Vaevuste leevendamine palliatiivses ravis | <https://tervisekassa.ee/media/388/download?inline> |
 | Tervisekassa | Vähem alkoholi. Kas ja kuidas? | <https://tervisekassa.ee/media/321/download?inline> |
 | Tervisekassa | Ärevuse töövihik | <https://tervisekassa.ee/media/712/download?inline> |

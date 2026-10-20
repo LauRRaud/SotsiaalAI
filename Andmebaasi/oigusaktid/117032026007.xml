@@ -1,0 +1,2316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oigusakt id="b60bc22b-11ea-43f9-af5b-97614bf37694" xsi:schemaLocation="tyviseadus_1_10.02.2010 http://xmlr.eesti.ee/xml/schemas/oigusakt/tyviseadus_1_10.02.2010.xsd" xmlns="tyviseadus_1_10.02.2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<metaandmed>
+		<valjaandja>Riigikogu</valjaandja>
+		<dokumentLiik>seadus</dokumentLiik>
+		<tekstiliik>terviktekst</tekstiliik>
+		
+		<lyhend>NPALS</lyhend><dokumentEtapp>avaldamine</dokumentEtapp>
+		<dokumentStaatus>avaldatud</dokumentStaatus>
+		<vastuvoetud>
+			<aktikuupaev>1997-06-11</aktikuupaev>
+			<avaldamismarge>
+				<RTosa>RT I</RTosa>
+				<RTaasta>1997</RTaasta>
+				<RTnr>52</RTnr>
+				<RTartikkel>834</RTartikkel>
+				<aktViide>73726</aktViide>
+			</avaldamismarge>
+			<joustumine>1997-11-01</joustumine>
+		</vastuvoetud>
+		
+		<avaldamismarge><RTosa>RT I</RTosa><avaldamineKuupaev>2026-03-17+02:00</avaldamineKuupaev><RTaasta>2026</RTaasta><RTartikkel>7</RTartikkel><aktViide>117032026007</aktViide></avaldamismarge><kehtivus>
+			<kehtivuseAlgus>2026-04-01</kehtivuseAlgus>
+		</kehtivus>
+		<versioon>
+			<dokumentVersioonKuupaev>2022-08-02</dokumentVersioonKuupaev>
+		</versioon>
+		<skeemiNimi>tyviseadus_1_10.02.2010.xsd</skeemiNimi>
+		<globaalID>117032026007</globaalID>
+		<metaandmedVersioon>65</metaandmedVersioon>
+		<metaandmedVersioonKuupaev>2026-03-16</metaandmedVersioonKuupaev>
+		<metaandmedVersioonPohjustaja>Maret Mauer</metaandmedVersioonPohjustaja>
+		<terviktekstiGrupiID>162298</terviktekstiGrupiID>
+		<eesmark>Tüviseaduse raamskeem XML struktuuri koostamiseks</eesmark>
+	</metaandmed>
+	<aktinimi>
+		<nimi>
+			<pealkiri>Narkootiliste ja psühhotroopsete ainete ning nende lähteainete seadus</pealkiri>
+			<normtehnmarkus>
+				<normtehnmarkusNr>1</normtehnmarkusNr>
+			</normtehnmarkus>
+			<muutmismarge>
+				<aktikuupaev>2005-04-13</aktikuupaev>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<RTaasta>2005</RTaasta>
+					<RTnr>24</RTnr>
+					<RTartikkel>180</RTartikkel>
+					<aktViide>895473</aktViide>
+				</avaldamismarge>
+				<joustumine>2005-05-20</joustumine>
+			</muutmismarge>
+		</nimi>
+	</aktinimi>
+	<muutmismarge id="0029effc-351c-4d3b-bc53-ed1dd20d69a9">
+		<aktikuupaev id="58b03704-f53d-4e2b-97d4-58e41a544aa4">2001-10-17</aktikuupaev>
+		<avaldamismarge id="11ab7205-e96e-4a27-8486-a78607ebfe0b">
+			<RTosa id="4597fc84-1524-4771-adb5-de1be5217705">RT I</RTosa>
+			<RTaasta id="9cf9ab6f-5df3-4475-9e01-eea464e7535c">2001</RTaasta>
+			<RTnr id="14f23fdb-0afa-478d-be7d-097c722f8819">88</RTnr>
+			<RTartikkel id="210d26c3-1d22-4e12-96b8-5ed8988effd7">531</RTartikkel>
+			<aktViide id="61d07a4f-76de-49ee-b91e-e30c9646102d">27311</aktViide>
+		</avaldamismarge>
+		<joustumine id="75aac61d-4747-4046-9fde-5d891b13d7ee">2002-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="934e8f80-4946-46f7-9bda-8f05fe4fd6ff">
+		<aktikuupaev id="76b88ef0-b63a-4219-94c2-a158a7ca430e">2002-06-19</aktikuupaev>
+		<avaldamismarge id="4f9f795f-9576-45f2-9f2f-dcde7ebcfece">
+			<RTosa id="3efad73f-5e78-45d0-9c0e-da7772a49e22">RT I</RTosa>
+			<RTaasta id="e628e03a-f4b1-43c4-8762-aaeaf39084b5">2002</RTaasta>
+			<RTnr id="ef7ef202-20fe-4d8c-8020-74a6c8538bbd">61</RTnr>
+			<RTartikkel id="5ef9b2bc-cb41-4a88-a56d-54fae24c9da6">375</RTartikkel>
+			<aktViide id="b0d54453-d840-49af-9c4f-c33554f27ebb">184811</aktViide>
+		</avaldamismarge>
+		<joustumine id="3bad2413-21d7-437b-8aeb-0b6bfa75b7f5">2002-08-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="c64ad2b8-c712-4e25-86e3-e9abb297c756">
+		<aktikuupaev id="8ac9151d-29e9-4e15-9c07-06659cc7679b">2002-06-19</aktikuupaev>
+		<avaldamismarge id="4a31b153-fb5f-42dd-a9d2-6dae6dc050d7">
+			<RTosa id="0154ae06-c659-4761-ba1d-29e500417601">RT I</RTosa>
+			<RTaasta id="2d142f55-8042-405b-8688-31e2c7d64f2f">2002</RTaasta>
+			<RTnr id="58c3db99-1c93-4ec2-afe5-2b472d4ba9db">63</RTnr>
+			<RTartikkel id="d5ca9d4d-e02c-4859-8e2e-84e8a2af5392">387</RTartikkel>
+			<aktViide id="8ddcc2c3-11af-4aa9-91df-105c49e3a73d">212735</aktViide>
+		</avaldamismarge>
+		<joustumine id="8992bb16-d086-46d2-a0ea-5c3adae51ea1">2002-09-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="3042b709-dab9-4744-85ea-496ae8608592">
+		<aktikuupaev id="2aab0c0b-825d-44ff-aa09-e78fdad77aa4">2003-12-17</aktikuupaev>
+		<avaldamismarge id="e09b55fb-6bd0-437e-aa50-eb207c629648">
+			<RTosa id="0b66740f-6849-4ebe-afa7-b44973f3f6ed">RT I</RTosa>
+			<RTaasta id="62e0d560-e670-46e1-ae60-aba6be845e79">2003</RTaasta>
+			<RTnr id="fddce426-9a43-43b8-bcd4-6c681f2b2f5a">88</RTnr>
+			<RTartikkel id="c4851224-2d61-4c49-9bbb-c25f2554217d">591</RTartikkel>
+			<aktViide id="a5cd57cb-3823-4e4a-bd10-f0f39cd67c93">690845</aktViide>
+		</avaldamismarge>
+		<joustumine id="40f075c5-b5e7-4b26-aa9e-41fba48853a9">2004-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="863f5276-e74b-44f6-a269-e18f89f9c661">
+		<aktikuupaev id="5bb224b9-6086-4992-a08d-f5f914f5b570">2004-12-16</aktikuupaev>
+		<avaldamismarge id="ed5c2436-a3e4-46e7-842e-0e9da766549e">
+			<RTosa id="e5488717-7e78-45b2-a5ff-5498fb9b5133">RT I</RTosa>
+			<RTaasta id="4f265539-9314-485a-87c4-9b2ceb526a76">2005</RTaasta>
+			<RTnr id="3f8260c2-1ced-469a-a753-7a7462fd7ddc">2</RTnr>
+			<RTartikkel id="f9b766cd-821b-4f9b-b353-a46fce1651c5">4</RTartikkel>
+			<aktViide id="38878394-1fb1-45a8-ae76-9e3416ff266c">833016</aktViide>
+		</avaldamismarge>
+		<joustumine id="42b891ba-d66e-4272-9e15-fb8b67a80b09">2005-03-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="23d8da37-df09-492e-adda-38172b9c61c9">
+		<aktikuupaev id="e49d50ce-a064-474b-aed4-cc3fdf01382e">2005-04-13</aktikuupaev>
+		<avaldamismarge id="cfc96d1a-d106-4a77-a703-c47ef2dab128">
+			<RTosa id="fa07ef75-8100-4a61-aeea-9af60d8c796c">RT I</RTosa>
+			<RTaasta id="9eb9dba8-081a-4251-81fe-c41bc046599d">2005</RTaasta>
+			<RTnr id="38a924cc-5693-4f5b-8ab1-c64845b88c43">24</RTnr>
+			<RTartikkel id="0a4daef0-4733-414b-a0b4-4b5c6f44d018">180</RTartikkel>
+			<aktViide id="ece87770-8bd2-41c9-8be1-6a28cf24384a">895473</aktViide>
+		</avaldamismarge>
+		<joustumine id="2eedfb10-555d-452e-88d4-a84c634448c0">2005-05-20</joustumine>
+		<tavatekst id="570012b0-b913-4216-a9e6-bd01291e9fa7">, osaliselt 18.08.2005</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="e2ed59b2-2957-4dd2-a270-6a18f4343166">
+		<aktikuupaev id="2d4bde1c-1e91-4900-b9ce-3c932c14c85c">2005-06-15</aktikuupaev>
+		<avaldamismarge id="8d69e5b7-272a-49a5-9e07-a06c5200e3f7">
+			<RTosa id="937fced6-ac4b-413d-9ee1-e2aaaab8ff97">RT I</RTosa>
+			<RTaasta id="8621d602-62c6-47cb-8b0e-29efa2138626">2005</RTaasta>
+			<RTnr id="2da6a702-14ac-483d-82d7-7b5f5953d3e0">37</RTnr>
+			<RTartikkel id="c32343be-7e9b-49f7-a18d-46d4a2db35fb">284</RTartikkel>
+			<aktViide id="f588e975-b745-43a4-98e9-9a974312d22b">914853</aktViide>
+		</avaldamismarge>
+		<joustumine id="016d5b49-86b3-45bb-bac9-e78640982aae">2005-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="257560d1-ab3a-432c-abea-0c04ef544daf">
+		<aktikuupaev id="8666e528-87ee-49cc-99c6-88df26304a23">2006-06-15</aktikuupaev>
+		<avaldamismarge id="d5c4681b-0c7d-49e2-976b-a0339721916d">
+			<RTosa id="f26742e5-66a5-42bb-b1d0-1a7c20ba5cc6">RT I</RTosa>
+			<RTaasta id="3856c185-b800-4c99-9410-566cb9babcd8">2006</RTaasta>
+			<RTnr id="e28b4c7e-0af7-4811-9026-6b51c7d4e2ad">32</RTnr>
+			<RTartikkel id="99f41f0e-faeb-432a-a97d-9050d9061134">247</RTartikkel>
+			<aktViide id="28ac6c40-bde6-4099-aaae-30d70404f2ae">1044402</aktViide>
+		</avaldamismarge>
+		<joustumine id="bd8b3045-8c56-4b85-8733-aa1da597742c">2006-07-17</joustumine>
+	</muutmismarge>
+	<muutmismarge id="a0834e18-b1e9-4f7d-b8f8-6dc7d2abbbd0">
+		<aktikuupaev id="34ba6c62-0934-4554-9803-27aec6a187e4">2007-06-07</aktikuupaev>
+		<avaldamismarge id="aac61029-e47c-45c8-98c2-d3f5abc7b5bc">
+			<RTosa id="cbacf364-de95-4655-ad1a-2db7b29959d2">RT I</RTosa>
+			<RTaasta id="0c246e55-1c7a-40f0-a0d5-61313145209c">2007</RTaasta>
+			<RTnr id="6d35fbf9-caee-411d-aab1-93be0a361d36">44</RTnr>
+			<RTartikkel id="2e3a430d-07d6-4206-bd55-a5a27ea5afb1">314</RTartikkel>
+			<aktViide id="dc0093d8-6073-48f5-be1e-ac711e8a543f">12846033</aktViide>
+		</avaldamismarge>
+		<joustumine id="e8fa50c9-b088-457d-a46d-e785db99d53e">2008-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="8c9adcd5-7b7e-44f0-beb8-abccf779b7f3">
+		<aktikuupaev id="8e8cee3c-4439-49b3-8e51-d5897cf057c8">2008-03-12</aktikuupaev>
+		<avaldamismarge id="e52c65a4-079e-4814-b844-8a7ff2836e86">
+			<RTosa id="9fb252d4-9e95-43f6-bc28-d5cd372c6676">RT I</RTosa>
+			<RTaasta id="15241a66-c2ce-41e9-a435-8b4b773bddc2">2008</RTaasta>
+			<RTnr id="00575aa1-7891-448c-b6a3-1c3da91faaac">15</RTnr>
+			<RTartikkel id="a019207d-9b54-4ab3-b65c-28426c822b3e">108</RTartikkel>
+			<aktViide id="9686364e-b2e2-49eb-bd50-1620fdbdd5ec">12945067</aktViide>
+		</avaldamismarge>
+		<joustumine id="f45f6351-aef5-4eab-9038-072a8de9493c">2008-11-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="afe45a99-13f6-4049-8ea6-0b4c0647a69d">
+		<aktikuupaev id="5035d297-c30f-4c93-ba2c-c48d0c9c695b">2009-11-26</aktikuupaev>
+		<avaldamismarge id="977c14e7-f6be-4f5f-ba92-676c2fe4ad10">
+			<RTosa id="dcc00a77-bcd3-407f-aebd-ad8addd463ec">RT I</RTosa>
+			<RTaasta id="9cf1264f-7b48-4404-8e7b-bec01c337313">2009</RTaasta>
+			<RTnr id="5bc5fe95-316b-40c2-a1ab-4267ff0b3400">62</RTnr>
+			<RTartikkel id="513fd20b-b049-4aba-972e-aa3524bb75c4">405</RTartikkel>
+			<aktViide id="28933f35-71b3-4264-ae17-e15c1afa8739">13244294</aktViide>
+		</avaldamismarge>
+		<joustumine id="cc3b642e-85f6-4c2f-8166-7e702b7d228f">2010-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="59f9e8e0-6483-4b6c-b6f1-5204b2c1d2d5">
+		<aktikuupaev id="0b6958b6-3628-4817-a54e-fa3421a65607">2010-01-28</aktikuupaev>
+		<avaldamismarge id="0b65da5a-184c-4581-a7ef-27d1e01a54d7">
+			<RTosa id="15e7befe-abec-4c00-a27b-00ea96b71266">RT I</RTosa>
+			<RTaasta id="352de57b-05d9-4bbf-bdbe-d101233f2463">2010</RTaasta>
+			<RTnr id="11bd3550-1900-4971-b777-f3f1d307e9ac">7</RTnr>
+			<RTartikkel id="2b6c7bd5-6ab0-4623-ba03-1e0bce20ea95">31</RTartikkel>
+			<aktViide id="2f4801df-f9b1-4a0c-b0ff-b2e0608cc4be">13275341</aktViide>
+		</avaldamismarge>
+		<joustumine id="822aaaa1-9041-4b9c-8260-946c18f7b576">2010-02-26</joustumine>
+	</muutmismarge>
+	<muutmismarge id="5679dc17-2305-44f8-899c-4a041d8fe8eb">
+		<aktikuupaev id="fdc5f55c-4f12-4d06-9c5b-d8b22c41b786">2010-04-22</aktikuupaev>
+		<avaldamismarge id="7aeab2cc-3ce9-4572-b672-4ffcceb7af3c">
+			<RTosa id="11f3d549-067f-4814-8f46-30fbd85cec3d">RT I</RTosa>
+			<RTaasta id="de62bc8e-b3e6-4fd7-a331-66074d6edaab">2010</RTaasta>
+			<RTnr id="a0c4c041-415d-467e-8cb0-a14511f1a92f">22</RTnr>
+			<RTartikkel id="e679b2fa-a384-4e0e-b28c-cfe74619cfdf">108</RTartikkel>
+			<aktViide id="43604653-1884-40c0-ae4b-b9a31d037c14">13310847</aktViide>
+		</avaldamismarge>
+		<joustumine>2011-01-01</joustumine>
+		<tavatekst> jõustub päeval, mis on kindlaks määratud Euroopa Liidu Nõukogu otsuses Eesti Vabariigi suhtes kehtestatud erandi kehtetuks tunnistamise kohta Euroopa Liidu toimimise lepingu artikli 140 lõikes 2 sätestatud alusel, Euroopa Liidu Nõukogu 13.07.2010. a otsus Nr 2010/416/EL (ELT L 196, 28.07.2010, lk 24–26).</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="b3d48cf5-f082-40c6-b347-bae27585d81e">
+		<aktikuupaev id="018530bc-49ed-46f2-9a82-fbe0d9267ae0">2011-01-27</aktikuupaev>
+		<avaldamismarge id="f0bd7010-62bd-48bc-979a-004457d9a3bb">
+			<RTosa id="7360f9a1-342e-46cc-9370-3965558c65be">RT I</RTosa>
+			<avaldamineKuupaev id="2b842a7d-fe4f-458d-b2f4-c78aaee9d90b">2011-02-17</avaldamineKuupaev>
+			<RTartikkel id="50b36fa4-d984-40fb-8b48-021621eac94a">3</RTartikkel>
+			<aktViide id="e2d53d42-d884-42c8-9e8e-ea9248c8689a">117022011003</aktViide>
+		</avaldamismarge>
+		<joustumine id="3f3a85b9-2e41-4a0c-9074-d0d42cea6f07">2011-02-27</joustumine>
+	</muutmismarge>
+	<muutmismarge id="c3f00222-b081-472a-8e24-43e1c13243c8">
+		<aktikuupaev id="b428b18c-45ef-40a3-bff1-78991aab6ab1">2011-12-08</aktikuupaev>
+		<avaldamismarge id="fd044332-7295-401b-9505-8c25a7975cea">
+			<RTosa id="c6d829e0-a8c1-435b-9147-5e33669cf1fe">RT I</RTosa>
+			<avaldamineKuupaev id="5e50aa77-1fba-4db2-a5cd-15a30c435ab8">2011-12-29</avaldamineKuupaev>
+			<RTartikkel id="832e66a9-6873-443b-80de-7d7454ccf4b2">1</RTartikkel>
+			<aktViide id="a419e7a3-6486-4f20-b1a6-d3a909e45db8">129122011001</aktViide>
+		</avaldamismarge>
+		<joustumine id="3c8e313d-d00d-4d10-af41-4b1cde0bd644">2012-01-01</joustumine>
+		<tavatekst id="d7f2dc40-3292-4e2a-af22-c6def9ed92b3">, osaliselt 01.01.2014 ja 01.11.2014</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="fd889ded-5ca0-419b-b1bb-59c23e5adda6">
+		<aktikuupaev id="9c8c7f98-07f5-4229-999a-2f03b6ec99c8">2013-02-20</aktikuupaev>
+		<avaldamismarge id="1072d58c-dbf8-4f5c-863e-ae6e6398b8ff">
+			<RTosa id="cd4b2faf-783c-4026-b97b-dedad21d792d">RT I</RTosa>
+			<avaldamineKuupaev id="caf55655-8a21-4db4-92d1-6581fd0bc0a4">2013-03-05</avaldamineKuupaev>
+			<RTartikkel id="059a2445-692f-4af1-8829-a9a51592c9f9">1</RTartikkel>
+			<aktViide id="d1d0829a-f62e-47f3-b8dd-3d8becbccfd8">105032013001</aktViide>
+		</avaldamismarge>
+		<joustumine id="8263afaa-721d-4fb6-8efa-008f5e2ef800">2013-03-15</joustumine>
+	</muutmismarge>
+	<muutmismarge id="83cb45aa-6dc2-4fea-95dc-19682eb1225d">
+		<aktikuupaev id="29131e93-19d7-4ca7-a9a4-bc7d924c38df">2013-03-27</aktikuupaev>
+		<avaldamismarge id="4febdd6c-0b26-4c20-a231-9324c816d708">
+			<RTosa id="e7f14e30-8779-4691-8e9c-2383e4d692c1">RT I</RTosa>
+			<avaldamineKuupaev id="a86cb02e-14dc-4448-a417-8541a9caffc9">2013-04-17</avaldamineKuupaev>
+			<RTartikkel id="4285f9ec-337b-45cd-a8d9-e5b1f9ca2024">2</RTartikkel>
+			<aktViide id="188c0b26-099c-4851-8fe1-25f44fa28855">117042013002</aktViide>
+		</avaldamismarge>
+		<joustumine id="29a08de0-2f9e-4802-a1d8-729548cb5916">2013-04-27</joustumine>
+		<tavatekst id="dd34aad4-54ab-4a8e-a3ab-f730b849c4bd">, osaliselt 01.07.2013 ja 02.07.2013</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="8bd1c38a-f692-4e0f-bf2d-58c7c79d9e8d">
+		<aktikuupaev id="2abcef85-f71c-4015-b8ea-5e8929606b94">2014-02-19</aktikuupaev>
+		<avaldamismarge id="d6466764-45d1-492a-b72b-bf3364e1400c">
+			<RTosa id="a52d7cd3-37f3-4866-bd4a-2cfb911c1a92">RT I</RTosa>
+			<avaldamineKuupaev id="c200dfca-52d3-4102-862e-162f299d374f">2014-03-13</avaldamineKuupaev>
+			<RTartikkel id="8f172255-c271-43d8-9497-2043c85bf587">4</RTartikkel>
+			<aktViide id="b8266db5-296e-4632-9db8-5db86f181c45">113032014004</aktViide>
+		</avaldamismarge>
+		<joustumine id="e9a7c0e6-9614-4cd9-9f7b-1204a93ab0e2">2014-07-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="ea27c16a-346a-41fa-866f-995b3cedcff7">
+		<aktikuupaev id="fd195f3f-ad80-4b09-b7a5-2da9d0ba2b0a">2014-04-17</aktikuupaev>
+		<avaldamismarge id="51533fa0-5a5d-4754-91b3-08b8067de311">
+			<RTosa id="7e350544-ed6a-4189-93c5-0e62cbd710e9">RT I</RTosa>
+			<avaldamineKuupaev id="d4dc0cea-c4e3-4b82-9450-53d75548d4f3">2014-05-09</avaldamineKuupaev>
+			<RTartikkel id="e84958fa-6c80-4ca2-9fe9-726c57e51d5b">1</RTartikkel>
+			<aktViide id="2f7329bd-7b40-4fc5-91f0-a33f0d72b4d5">109052014001</aktViide>
+		</avaldamismarge>
+		<joustumine id="7eb3994d-914d-4837-abf7-f10cdb803121">2014-05-19</joustumine>
+	</muutmismarge>
+	<muutmismarge id="33dadb3b-0951-4225-bea1-be332b5011a8">
+		<aktikuupaev id="ba797749-f2e4-4a3b-abe7-8fe82a0b2667">2014-06-19</aktikuupaev>
+		<avaldamismarge id="273a3520-10b9-4264-ab20-7428c68abc3a">
+			<RTosa id="a43e1d4d-946f-407a-9157-a508c03c5808">RT I</RTosa>
+			<avaldamineKuupaev id="82ae43f8-5152-4dc4-9903-6a603778f64c">2014-07-12</avaldamineKuupaev>
+			<RTartikkel id="6b30a50c-0ce3-4ab6-a5b6-0d0442f4386d">1</RTartikkel>
+			<aktViide id="ba1c150e-ccdc-48c8-948f-acc391f1a2d5">112072014001</aktViide>
+		</avaldamismarge>
+		<joustumine id="11f6371d-48cb-4f43-964f-7fd21c705019">2015-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="aaf524d7-739e-4b7b-9c72-5f61708dd4b7">
+		<aktikuupaev id="54bf904d-22f0-4c74-8e9c-6496e1415b79">2014-06-19</aktikuupaev>
+		<avaldamismarge id="534e3037-ab93-4e32-b95e-866748ee38a0">
+			<RTosa id="c1280724-38e4-4540-8c0f-e90ed1e142d6">RT I</RTosa>
+			<avaldamineKuupaev id="75503ecd-16b3-4dcf-8810-d04770d4e657">2014-06-29</avaldamineKuupaev>
+			<RTartikkel id="4a138fab-c04a-431a-92f1-4c878ab624e0">109</RTartikkel>
+			<aktViide id="804fb82d-be30-44ca-a106-32f5d5854181">129062014109</aktViide>
+		</avaldamismarge>
+		<joustumine>2014-07-01</joustumine>
+		<tavatekst>, Vabariigi Valitsuse seaduse § 107³ lõike 4 alusel asendatud ministrite ametinimetused.</tavatekst>
+	</muutmismarge>
+	<muutmismarge id="658d6e41-ff35-4446-bc4e-5d32c6d5e7ad">
+		<aktikuupaev id="570af4ea-17ac-4292-a6a4-b19f1ece5e8b">2015-11-18</aktikuupaev>
+		<avaldamismarge id="1c71a9d7-8527-46a5-9afb-e8dac41afca1">
+			<RTosa id="5a91de59-8e36-4f7b-a7b2-2efa492ce279">RT I</RTosa>
+			<avaldamineKuupaev id="dbd7954f-0557-4b51-b77f-ac50a5c4b865">2015-12-01</avaldamineKuupaev>
+			<RTartikkel id="6846804a-3578-4c0e-b5ca-8be354e3a704">1</RTartikkel>
+			<aktViide id="141a0e04-31c3-4c90-bfac-4040552a0e7a">101122015001</aktViide>
+		</avaldamismarge>
+		<joustumine id="b87f8697-f643-42ca-8702-cc714df63006">2015-12-11</joustumine>
+	</muutmismarge>
+	<muutmismarge id="fd54df3c-b825-445d-8ea2-1b7ed8569d32">
+		<aktikuupaev id="e0e745e6-4c1e-4021-bc60-7f521317503e">2016-04-13</aktikuupaev>
+		<avaldamismarge id="b652a635-965b-4d18-af00-1030b40fcbeb">
+			<RTosa id="b9f81e62-4227-4167-afce-5fab39815d5d">RT I</RTosa>
+			<avaldamineKuupaev id="3dd317d2-b723-461c-91b6-4f515d331072">2016-05-03</avaldamineKuupaev>
+			<RTartikkel id="744a4851-369d-4145-a195-ebefd82295c4">3</RTartikkel>
+			<aktViide id="0ad3d42c-028e-45f5-ae90-5d1f713cdb72">103052016003</aktViide>
+		</avaldamismarge>
+		<joustumine id="b6771567-2d89-4aff-9d9f-32c14d77b58c">2016-05-13</joustumine>
+	</muutmismarge>
+	<muutmismarge id="9ded3e9a-ec21-46d4-bf93-00e10bddf781">
+		<aktikuupaev id="4a7c1b01-f799-44e1-b186-49189a0285a6">2018-11-07</aktikuupaev>
+		<avaldamismarge id="d1fbc662-2fc6-4e8a-83ca-1c16bc68e177">
+			<RTosa id="5810ad48-29a4-44dd-96ae-e240a6e19556">RT I</RTosa>
+			<avaldamineKuupaev id="7d3f6989-6754-4a7b-885f-a1a5d0acfc77">2018-11-14</avaldamineKuupaev>
+			<RTartikkel id="c65329ea-20fc-47f0-bc86-ab84069caab6">3</RTartikkel>
+			<aktViide id="6d533b05-2911-4a28-a9a7-652e6f53ca6c">114112018003</aktViide>
+		</avaldamismarge>
+		<joustumine id="048b4ebb-42f0-49b7-8e30-dcbeb4fad666">2018-11-23</joustumine>
+	</muutmismarge>
+	<muutmismarge id="5f79acf5-46c7-4821-aecd-efe2cf07e463">
+		<aktikuupaev id="d17f1cf8-3593-426a-863d-88eb422bb38d">2019-02-20</aktikuupaev>
+		<avaldamismarge id="204cbe76-554a-42bd-9ebd-850499585592">
+			<RTosa id="67eb608c-9b2f-475e-9504-3c37f078ec7e">RT I</RTosa>
+			<avaldamineKuupaev id="8bfccac5-20d2-486f-89f9-741e815e6360">2019-03-13</avaldamineKuupaev>
+			<RTartikkel id="c86b8843-802c-4026-8e6e-418d67bb8df4">2</RTartikkel>
+			<aktViide id="7d0913f9-8c32-47d7-b047-a793212fde9b">113032019002</aktViide>
+		</avaldamismarge>
+		<joustumine id="6f430c02-70f5-4e64-bf33-1f7c50816074">2019-03-15</joustumine>
+	</muutmismarge>
+	<muutmismarge id="4d105356-3864-4ed6-84f8-9b906a499381">
+		<aktikuupaev id="f3ba1fbb-2535-4706-a0df-d3541146f39a">2019-12-19</aktikuupaev>
+		<avaldamismarge id="8f8bb97f-7762-4e52-a7a6-e09f6a85868f">
+			<RTosa id="9a71b316-20d6-4265-a87d-705be50efccd">RT I</RTosa>
+			<avaldamineKuupaev id="3f5c09c5-251e-406c-9305-56e25ce3427a">2020-01-08</avaldamineKuupaev>
+			<RTartikkel id="4e7c74cf-7eab-4018-b940-ae5ef87e5f7f">2</RTartikkel>
+			<aktViide id="2bd8c6cd-fd23-4a6a-a017-bae69c0b0eb7">108012020002</aktViide>
+		</avaldamismarge>
+		<joustumine id="9e2fe024-36cd-4061-aea2-f7c25f378d35">2020-02-01</joustumine>
+	</muutmismarge>
+	<muutmismarge id="b6790b45-9cbb-41e2-a119-91cc0f237abc">
+		<aktikuupaev id="07254087-5883-4914-a8a2-0f65de9cf5ab">2022-07-19</aktikuupaev>
+		<avaldamismarge id="d94629c2-128b-4e2a-a2f6-ffc2597fcb00">
+			<RTosa id="b309c135-ba87-4ef6-a21c-cb371e1f2fef">RT I</RTosa>
+			<avaldamineKuupaev id="5b3a4c54-378a-4c51-b8f3-f23fefb8bbba">2022-08-06</avaldamineKuupaev>
+			<RTartikkel id="b6039dcd-5f85-4ae2-ae12-21ba277b4841">6</RTartikkel>
+			<aktViide id="7c792d45-8550-4926-884b-d5b7f8eb9ded">106082022006</aktViide>
+		</avaldamismarge>
+		<joustumine>2022-08-16</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2023-01-18</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2023-02-03</avaldamineKuupaev>
+			<RTartikkel>2</RTartikkel>
+			<aktViide>103022023002</aktViide>
+		</avaldamismarge>
+		<joustumine>2023-06-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-04</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2024-12-20</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>120122024001</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-01-01</joustumine>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2024-12-11</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+			<RTartikkel>3</RTartikkel>
+			<aktViide>102012025003</aktViide>
+		</avaldamismarge>
+		<joustumine>2025-09-01</joustumine>
+		<tavatekst>, osaliselt 12.01.2025</tavatekst>
+	</muutmismarge>
+	<muutmismarge>
+		<aktikuupaev>2026-02-25</aktikuupaev>
+		<avaldamismarge>
+			<RTosa>RT I</RTosa>
+			<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+			<RTartikkel>1</RTartikkel>
+			<aktViide>117032026001</aktViide>
+		</avaldamismarge>
+		<joustumine>2026-04-01</joustumine>
+	</muutmismarge>
+	<sisu>
+		<peatykk id="ptk1">
+			<peatykkNr>1</peatykkNr>
+			<kuvatavNr><![CDATA[1. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>ÜLDSÄTTED</peatykkPealkiri>
+			<paragrahv id="para1">
+				<paragrahvNr>1</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 1. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduse reguleerimisala</paragrahvPealkiri>
+				<loige id="para1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva seadusega reguleeritakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para1lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>narkootiliste ja psühhotroopsete ainete nimekirjade koostamise ja kinnitamise korda;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p2">
+						<alampunktNr>2</alampunktNr>
+						<kuvatavNr><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>narkootiliste ja psühhotroopsete ainete ning nende lähteainete (edaspidi <i>lähteained</i>) käitlemise korda;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p3">
+						<alampunktNr>3</alampunktNr>
+						<kuvatavNr><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>narkootiliste, psühhotroopsete ja lähteainete kontrolli ning identifitseerimise korda, samuti narkootiliste, psühhotroopsete ja lähteainete käitlemiseks vajalike lubade väljastamise ja registreeringute tegemise korda ning kontrolli selle täitmise üle;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="dd32637c-5ecf-45cb-a1b4-a11c94fd3c3f">
+							<avaldamismarge id="cff67233-fea8-47dd-bef2-49b858b201fa">
+								<RTosa id="cb9f14e1-cd3e-4cba-8dfb-fd769262fd52">RT I</RTosa>
+								<avaldamineKuupaev id="75fdbfa9-0c20-4135-ac0c-cdb4548de63d">2015-12-01</avaldamineKuupaev>
+								<RTartikkel id="2ed18c0c-6051-4644-aa37-b23c999de05b">1</RTartikkel>
+								<aktViide id="3e0ee7ef-414a-4644-ad00-71445d60593b">101122015001</aktViide>
+							</avaldamismarge>
+							<joustumine id="27754950-0441-4ba1-8e82-024f7a2f98c6">2015-12-11</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para1lg1p4">
+						<alampunktNr id="e976f6ff-3cca-443a-bd71-a80607731ba2">4</alampunktNr>
+						<kuvatavNr id="eb742d71-7c3e-40cd-80d1-963d3d9a23b5"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="3429cdc1-e3ed-4e3c-bd72-27d37ad3a95d">
+							<tavatekst id="d9bcd49e-afe5-43da-bf37-c964377218c5">narkootiliste, psühhotroopsete ja lähteainetega seotud informatsiooni ning aruandluse korda;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para1lg1p5">
+						<alampunktNr id="3e042a85-24c5-4a27-b9f2-dc128858d42f">5</alampunktNr>
+						<kuvatavNr id="64f76dcb-7def-43c4-b187-f60dd5e02bec"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="adf2fcf1-712c-42a9-a5d5-e53a2ca5c300">
+							<tavatekst id="172daed3-fb86-4110-8c91-33a2f6793163">narkomaania leviku tõkestamise, narkomaanide ravi ja rehabilitatsiooni korda.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para1lg2">
+					<loigeNr id="5b94b0e4-0731-4957-88ef-8e65fec820ee">2</loigeNr>
+					<kuvatavNr id="7bd18d9e-692a-4eb8-aa18-39643871ba8e"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="993b4635-3ab1-4057-adcb-dd6f20124ebf">
+						<tavatekst id="7e16f122-0082-44ea-841c-5e0798fe9d59">Käesolevas seaduses ettenähtud haldusmenetlusele kohaldatakse haldusmenetluse seaduse sätteid, arvestades käesoleva seaduse erisusi.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="475a83e5-708b-40d5-9bcc-a9b46e75fa55">
+						<avaldamismarge id="141aa516-008a-4617-b165-773252b4772e">
+							<RTosa id="86686400-18f8-48fe-9cf4-c927d92a7e76">RT I</RTosa>
+							<RTaasta id="1a58438c-9783-44dc-a01b-fbebee3e663a">2005</RTaasta>
+							<RTnr id="008ce36c-9769-4770-9c9d-533af4b37841">24</RTnr>
+							<RTartikkel id="531d37b9-1b1e-42f4-87c6-7807fd14c7e4">180</RTartikkel>
+							<aktViide id="7fe04b8c-b507-44e5-8a23-35930680f911">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="a885e697-ff2b-4da5-aa53-ee5ed2609767">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para2">
+				<paragrahvNr>2</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 2. ]]></kuvatavNr>
+				<paragrahvPealkiri>Seaduses kasutatavad mõisted</paragrahvPealkiri>
+				<loige id="para2lg1">
+					<sisuTekst>
+						<tavatekst>Käesolevas seaduses kasutatakse mõisteid järgmises tähenduses:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para2lg1p1">
+						<alampunktNr>1</alampunktNr>
+						<kuvatavNr><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>narkootilised ja psühhotroopsed ained – käesoleva seaduse § 3<sup>1</sup> lõike 1 alusel kehtestatud nimekirjades loetletud ained ja ainete rühmadesse kuuluvad ained ning nende ainete isomeerid, estrid, eetrid ja soolad ning nimetatud aineid sisaldavad ravimid;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ae1e5a81-2b5b-4ab9-8488-4a6c5e5ff574">
+							<avaldamismarge id="b86c03c9-3287-472c-85f9-3c106b67cadf">
+								<RTosa id="7d12da45-5ae8-4d0d-8d53-f374f593c97f">RT I</RTosa>
+								<avaldamineKuupaev id="3445babb-2964-4511-a3ae-db13c8313c10">2016-05-03</avaldamineKuupaev>
+								<RTartikkel id="a074f5cd-f634-4d46-99a6-c408c0fe4727">3</RTartikkel>
+								<aktViide id="b3539f61-e70e-47b2-8d28-a3a7410ad25b">103052016003</aktViide>
+							</avaldamismarge>
+							<joustumine id="fb084e20-06d2-49ea-80ac-043086468ce1">2016-05-13</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p1b1">
+						<alampunktNr ylaIndeks="1">1</alampunktNr>
+						<kuvatavNr><![CDATA[1<sup>1</sup>)]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>uus psühhoaktiivne aine – psühhoaktiivset toimet avaldav aine, mis ei ole kantud käesoleva seaduse § 3<sup>1</sup> lõike 1 alusel kehtestatud nimekirja või ei kuulu nimekirjas loetletud ainete rühma, kuid millega võivad kaasneda sotsiaalsed või terviseriskid, sealhulgas on eelkõige sellise aine kuritarvitamise ja sõltuvuse tekitamise risk;</tavatekst>
+						</sisuTekst>
+						<muutmismarge>
+							<avaldamismarge>
+								<RTosa>RT I</RTosa>
+								<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+								<RTartikkel>3</RTartikkel>
+								<aktViide>102012025003</aktViide>
+							</avaldamismarge>
+							<joustumine>2025-01-12</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p1b2">
+						<alampunktNr ylaIndeks="2">1</alampunktNr>
+						<kuvatavNr><![CDATA[1<sup>2</sup>) ]]></kuvatavNr>
+						<sisuTekst>
+							<tavatekst>narkootiliste ja psühhotroopsete ainete rühm – käesoleva seaduse § 3<sup>1</sup> lõike 1 alusel kehtestatud VI nimekirjas loetletud ainete rühma kuuluvad ühesuguse üldise struktuurivalemiga ained;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="ac3420e1-fbfd-464c-9869-584aaeba9e5c">
+							<avaldamismarge id="db897ff1-faa2-4edb-a0d4-cf84481a3a41">
+								<RTosa id="68f07ac3-c408-4584-a0d9-7158c5b46762">RT I</RTosa>
+								<avaldamineKuupaev id="f38f5dc6-1c92-41dd-93f7-2b3aca710bf3">2016-05-03</avaldamineKuupaev>
+								<RTartikkel id="cbfcbf95-0b98-452a-804f-c65eb04cd0cc">3</RTartikkel>
+								<aktViide id="d11eb948-7a2e-43d9-814a-1c9a61cd6df4">103052016003</aktViide>
+							</avaldamismarge>
+							<joustumine id="17f2ce7b-0ee6-4707-882d-687bf88e9f10">2016-05-13</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p2">
+						<alampunktNr id="dac19e48-9367-4bcd-8867-3c3d8e593bc8">2</alampunktNr>
+						<kuvatavNr id="eb0275a5-4c10-4def-b482-394f29ba85bd"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="6c3c65cb-e883-43ac-a644-0dfdf8d82bfc">
+							<tavatekst>lähteained – Euroopa Parlamendi ja nõukogu määruse (EÜ) nr 273/2004 narkootikumide lähteainete kohta (ELT L 047, 18.02.2004, lk 1–10) artikli 2 alapunktis a ja nõukogu määruse (EÜ) nr 111/2005, millega kehtestatakse ühenduse ja kolmandate riikide vahelise narkootikumide lähteainetega kauplemise järelevalve eeskirjad (ELT L 022, 26.01.2005, lk 1–10), artikli 2 alapunktis a nimetatud ained;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p2b1">
+						<alampunktNr id="f4e90aac-5a36-486e-ab59-0de993b70247" ylaIndeks="1">2</alampunktNr>
+						<kuvatavNr id="2b606fc1-e94c-4298-aef3-63dd64ea90ee"><![CDATA[2<sup>1</sup>) ]]></kuvatavNr>
+						<sisuTekst id="1845f377-f35d-4994-8547-eeb19177757c">
+							<tavatekst>sisse- ja väljavedu – narkootilistele või psühhotroopsetele ainetele või lähteainetele tolliprotseduuri vabasse ringlusse lubamine (edaspidi <i>import</i>) või tolliprotseduuri eksport (edaspidi <i>eksport</i>) rakendamine või nimetatud ainete toimetamine Euroopa Liidu liikmesriigist või Euroopa Majanduspiirkonna liikmesriigist Eestisse või vastupidi;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="4ac2a817-b107-4e80-80de-93cc5a25b653">
+							<avaldamismarge id="bfce5ce9-5f11-4008-8c84-0013632d2603">
+								<RTosa id="37f45666-f43c-4d0e-9026-912775dc3223">RT I</RTosa>
+								<avaldamineKuupaev id="8c1e39f6-bf1f-4bdc-961b-b1a4385c8c75">2014-07-12</avaldamineKuupaev>
+								<RTartikkel id="8c60197e-0037-4aa4-b6f8-008d1d5cad41">1</RTartikkel>
+								<aktViide id="b810bd50-99e9-461b-a0f7-034c68b06326">112072014001</aktViide>
+							</avaldamismarge>
+							<joustumine id="dc73c73f-89b8-470e-92e5-d4fa0fbf87ac">2015-01-01</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p3">
+						<alampunktNr id="bc5ea3a6-192f-4fa9-982d-acabfe533b42">3</alampunktNr>
+						<kuvatavNr id="fac3a84b-ec89-4cc2-80db-c34bc750e1d3"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="3c08b7ac-f1f5-44da-b038-4f03a8638471">
+							<tavatekst>käitlemine – narkootiliste või psühhotroopsete ainete või lähteainete omamine, valdamine, vahendamine, tarbimine, kasvatamine, korjamine, valmistamine, tootmine, töötlemine, pakkimine, säilitamine, hoidmine, laadimine, vedu, sisse- ja väljavedu, tolliprotseduuri transiit rakendamine (edaspidi <i>transiit</i>), tasu eest või tasuta tarnimine kolmandale isikule;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p4">
+						<alampunktNr id="8edacec6-29aa-43d1-b47d-61f83f3fd6e4">4</alampunktNr>
+						<kuvatavNr id="14d71d60-acb6-46d8-a3f6-25810d80a39c"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="e01e4e02-39c2-4613-9595-1986e407a132">
+							<tavatekst>käitleja – füüsiline või juriidiline isik, kes on seotud narkootiliste, psühhotroopsete ja lähteainete käitlemisega;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p5">
+						<alampunktNr id="64f78551-cb0a-4979-b723-e9351fdc6e10">5</alampunktNr>
+						<kuvatavNr id="3af19a3f-fe64-4a51-95dc-1b8eeb0ae574"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="7694973b-c024-441d-b268-0ace759b1452">
+							<tavatekst>käitlemiseks vajalikud load ja registreeringud – Ravimiameti antavad ühekordsed kindlaks määratud kehtivusajaga tegevusload või tehtavad registreeringud tootjatele, hulgimüüjatele, teadusasutustele ja muudele asutustele, lähteainete käitlejatele, sisse- ja väljaveoload ning impordi- ja ekspordiload, samuti jälitusasutuse antavad load käesoleva seaduse §-s 5 viidatud juhtudel;</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="64021349-86f8-49b7-babc-89ed3a7886ac">
+							<avaldamismarge id="0a9848f2-2f75-4971-9efc-714b9952905a">
+								<RTosa id="efa8701c-3b41-4d35-a9b6-7e6bef9b46f9">RT I</RTosa>
+								<avaldamineKuupaev id="5e5ac25a-87c3-44a5-8945-cc11914e7ccf">2015-12-01</avaldamineKuupaev>
+								<RTartikkel id="63f7b4d6-6e9a-429a-80c4-3c9d9086d2f6">1</RTartikkel>
+								<aktViide id="5c99674b-f368-4c73-9a93-909278fc2d2a">101122015001</aktViide>
+							</avaldamismarge>
+							<joustumine id="88c8d0c8-58d5-4dc1-a0c1-139c490bc2ca">2015-12-11</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para2lg1p6">
+						<alampunktNr id="ad5cdf7b-a6d8-4364-8a96-523b6615cb8b">6</alampunktNr>
+						<kuvatavNr id="ed1a4c34-1a3d-4124-bf4f-e9f471ea71e5"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="56fa781a-6d5c-4ae4-ad4b-db205a98ca4a">
+							<tavatekst>narkomaania – psüühiline või füüsiline sõltuvus, mis on tekkinud narkootiliste või psühhotroopsete ainete tarvitamise tagajärjel;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para2lg1p7">
+						<alampunktNr id="9fc00476-0f15-4269-a833-4046de003858">7</alampunktNr>
+						<kuvatavNr id="14eb1729-759c-4cc6-be90-f42c1ec93c2c"><![CDATA[7) ]]></kuvatavNr>
+						<sisuTekst id="ce1503db-11f2-4b93-9b91-81ef79d8d9ea">
+							<tavatekst id="6bed97c5-5f36-4eb9-a652-9267c1e911fb">narkomaan – isik, kellel narkootiliste või psühhotroopsete ainete tarvitamise tagajärjel esineb psüühiline või füüsiline sõltuvus nendest ainetest.</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="61490f57-bf6b-4755-a0c2-e02a90584678">
+							<avaldamismarge id="e418990b-f2e6-4577-907c-83a2e79f3ae7">
+								<RTosa id="23ca236a-5f14-4950-b88b-b6bf78e31efc">RT I</RTosa>
+								<RTaasta id="5d2abe60-3f8e-43d5-b3ff-b96f61ecc6e1">2006</RTaasta>
+								<RTnr id="bea869c0-c453-4a4e-b191-e036106eadd0">32</RTnr>
+								<RTartikkel id="edf5d4bb-b9af-445f-92f7-00d34023fce5">247</RTartikkel>
+								<aktViide id="5f0444b8-6238-46fc-a299-debae1a316bb">1044402</aktViide>
+							</avaldamismarge>
+							<joustumine id="bc8fe69e-a493-488e-91ec-a745c5852132">2006-07-17</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk2">
+			<peatykkNr>2</peatykkNr>
+			<kuvatavNr><![CDATA[2. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>KÄITLEMISE KORD</peatykkPealkiri>
+			<paragrahv id="para3">
+				<paragrahvNr>3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete käitlemise piiramine</paragrahvPealkiri>
+				<loige id="para3lg1">
+					<loigeNr id="fb8f0361-ddf9-4e66-8dce-38e4de8c1794">1</loigeNr>
+					<kuvatavNr id="69b59915-f98f-40db-928f-ab1131aa7626"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="37a5cad5-8ef7-4d1e-9a07-155a748ccec2">
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete käitlemine on keelatud, välja arvatud meditsiinilisel või teaduslikul eesmärgil, narkootiliste ja psühhotroopsete ainetega seotud kuritegude ennetamiseks, avastamiseks ning tõkestamiseks või käesolevas seaduses ettenähtud õppeotstarbel kasutamise eesmärgil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg1b1">
+					<loigeNr id="b72d49cc-5301-46e7-9c31-38c1b06fba3f" ylaIndeks="1">1</loigeNr>
+					<kuvatavNr id="bf708ca5-9eb7-4cd6-b6f3-c25e87e3759a"><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="469b3535-7b8c-4704-ba73-f9a409a73f31">
+						<tavatekst>Käesoleva seaduse § 3<sup>1</sup> lõike 1 alusel kehtestatud määruse V nimekirjas loetletud ainete käitlemine on keelatud üksnes siis, kui selle eesmärk on isikule narkojoobe tekitamine.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="dfcb4629-2a05-491f-98ea-2c4be173e571">
+						<avaldamismarge id="d0d49e67-1006-4358-9802-50f8e54bd483">
+							<RTosa id="8de522b7-3d66-498a-8eb2-2954131bffcc">RT I</RTosa>
+							<avaldamineKuupaev id="0f54a0b9-53a2-40f9-8b22-f086d9d5d89e">2013-03-05</avaldamineKuupaev>
+							<RTartikkel id="40965c2c-7cb3-483b-9efa-5f7d154dba35">1</RTartikkel>
+							<aktViide id="8a56e783-c3eb-4b25-b6a2-59ce66c65e43">105032013001</aktViide>
+						</avaldamismarge>
+						<joustumine id="dd29cb65-303a-4d5d-9c0d-52556b6b729e">2013-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Unimaguna ja kanepi kasvatamine narkootilise aine valmistamise eesmärgil on keelatud.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2023-02-03</avaldamineKuupaev>
+							<RTartikkel>2</RTartikkel>
+							<aktViide>103022023002</aktViide>
+						</avaldamismarge>
+						<joustumine>2023-06-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg2b1">
+					<loigeNr ylaIndeks="1">2</loigeNr>
+					<kuvatavNr><![CDATA[(2<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psilotsiini või psilotsübiini sisaldavate seente kasvatamine on keelatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para3lg3">
+					<loigeNr id="d1a13722-b29e-4230-b861-c5a4366da8dc">3</loigeNr>
+					<kuvatavNr id="f048a369-b63a-4f38-af77-42b6037dc942"><![CDATA[(3)]]></kuvatavNr>
+					<muutmismarge id="88797b6e-c1a5-4565-84df-3681b35dfefa">
+						<tavatekst id="a396f2fe-c356-42b9-9358-b67903da528a">Kehtetu - </tavatekst>
+						<avaldamismarge id="a0f11771-f1f0-4a07-9c83-74cc4ebff809">
+							<RTosa id="541182c1-86fe-4a46-bf2b-22b4c4bff366">RT I</RTosa>
+							<RTaasta id="6e023cf4-dbd3-4acc-9e2b-0a80439a8853">2008</RTaasta>
+							<RTnr id="882c4835-9a33-4435-a32b-eedd10889869">15</RTnr>
+							<RTartikkel id="799322eb-6dee-42d7-bd33-b54976de8bbd">108</RTartikkel>
+							<aktViide id="d4d961f0-aa90-43c3-9372-70c7b3fdb082">12945067</aktViide>
+						</avaldamismarge>
+						<joustumine id="ea40b146-fbae-46be-afac-431908fe917e">2008-11-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesolevast seadusest tulenevatest sisse- ja väljaveopiirangutest on vabastatud kiirabi, riigi päästeasutuste ning rahvusvahelises transpordis osalevate laevade ja õhusõidukite ravimitagavaradesse kuuluvad narkootilist või psühhotroopset ainet sisaldavad ravimpreparaadid. Ravimitagavarade käitlemine peab toimuma käesoleva seaduse § 4 lõike 15 alusel kehtestatud tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="e7cec21d-4fd4-4426-9fda-e5b63b646783">
+						<avaldamismarge id="756eb48d-2897-4b9f-a875-001525ad4a73">
+							<RTosa id="9648ede2-b630-4f5d-a7b1-457311b5fc8b">RT I</RTosa>
+							<RTaasta id="68207bfc-ec0f-442d-8806-65e81c06fbb6">2005</RTaasta>
+							<RTnr id="0f616486-12c2-41a2-83cf-45be0fdf25f6">37</RTnr>
+							<RTartikkel id="81ece740-284c-4e95-95af-e284d98a0138">284</RTartikkel>
+							<aktViide id="5bcea7d4-577a-4ded-bfb4-3c1f671d5494">914853</aktViide>
+						</avaldamismarge>
+						<joustumine id="671a4abd-d33d-4ba0-9b8e-1d4f304710f1">2005-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para3b1">
+				<paragrahvNr ylaIndeks="1">3</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 3<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete nimekirjad</paragrahvPealkiri>
+				<loige id="para3b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete nimekirjad kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=117032026007&id=126112010007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega. Narkootiliste ja psühhotroopsete ainete nimekirja tehakse muudatused ja täiendused Ravimiameti ettepanekul. Narkootiliste ja psühhotroopsete ainete nimekirjade koostamisel lähtutakse ÜRO 1961. aasta narkootiliste ainete ühtsest konventsioonist ja ÜRO 1971. aasta psühhotroopsete ainete konventsioonist või arvestatakse narkootiliste ja psühhotroopsete ainete kuritarvitamise ja sõltuvuse tekitamise riski suurust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="ceefb37a-b9ef-4da7-9ef9-283164f12fb4">
+						<avaldamismarge id="c8926eb2-31f9-4563-ad98-6cd2940ffe6c">
+							<RTosa id="616183e2-1faa-4d3e-b7fc-c8fa198edd27">RT I</RTosa>
+							<avaldamineKuupaev id="b4634385-38e0-45a6-9b64-c5bfa6c26d96">2011-02-17</avaldamineKuupaev>
+							<RTartikkel id="05965010-ee89-4042-9615-0b48cffaa04c">3</RTartikkel>
+							<aktViide id="eed501ef-2f15-4d05-8707-e96f5438608f">117022011003</aktViide>
+						</avaldamismarge>
+						<joustumine id="19dbb12b-04f8-44de-9cb4-e09f2835482f">2011-02-27</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3b1lg2">
+					<loigeNr id="c0067b24-44db-4f16-aae7-5d9716856394">2</loigeNr>
+					<kuvatavNr id="21e49e47-073f-4a5e-b3f7-60248fda5f15"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="572c9b20-7049-4063-a1da-3700d5b045c8">
+						<tavatekst>Käesoleva seaduse § 4 lõike 15 alusel kehtestatud korras võib ette näha tingimused, millal teatud ravimpreparaate ei loeta tulenevalt nende kasutamise eesmärgist ja narkootilise või psühhotroopse aine sisaldusest narkootiliseks või psühhotroopseks ravimiks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="63eb55ab-8d24-4e37-af02-c40eb903310b">
+						<avaldamismarge id="89c7a47e-7168-462a-8e96-26ff3e8c4038">
+							<RTosa id="594da7b2-9e43-4ea6-8202-615dfc70a9d7">RT I</RTosa>
+							<RTaasta id="48880cba-1e95-44ca-8a4c-f6fe02379e94">2005</RTaasta>
+							<RTnr id="e282de00-114f-4eb9-b9f7-f972ebd3972a">24</RTnr>
+							<RTartikkel id="d46ef904-4d30-4ea5-8b58-e63b8c905c40">180</RTartikkel>
+							<aktViide id="af3c2cc2-76fc-459a-ad32-10fdaf1f2231">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="b336c93e-ff6f-4a34-ba6f-044a6bbd20fe">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para3b1lg3">
+					<loigeNr id="9a02f930-1df6-48df-92a3-00162045940b">3</loigeNr>
+					<kuvatavNr id="eb6415cb-3509-40ef-aee0-64a984f45b5d"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="0100d2e5-cbc3-4120-9469-63605e15d221">
+						<tavatekst>Suur on narkootilise või psühhotroopse aine, taime või seene kogus, millest piisab narkojoobe tekitamiseks vähemalt kümnele inimesele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="ef97f1fe-5ce2-483d-875d-928c63d0a2e7">
+						<avaldamismarge id="2f08614a-a9ac-4de5-aa28-101d1ce981ee">
+							<RTosa id="26d4ab1a-47d2-45b1-ad48-33947f34f097">RT I</RTosa>
+							<avaldamineKuupaev id="38538965-44b2-4fc8-a06d-b10cabadff1f">2016-05-03</avaldamineKuupaev>
+							<RTartikkel id="0a60cc71-8a7f-489b-8823-81188345ad66">3</RTartikkel>
+							<aktViide id="1f85979a-3a71-4609-aaad-e08b1b491b57">103052016003</aktViide>
+						</avaldamismarge>
+						<joustumine id="ad75819e-004b-4145-8869-e7c70df926ef">2016-05-13</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4">
+				<paragrahvNr>4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete käitlemine</paragrahvPealkiri>
+				<loige id="para4lg1">
+					<loigeNr id="818935e7-3e13-4b00-92cb-0620357f0cdd">1</loigeNr>
+					<kuvatavNr id="bbd00bf2-325b-4234-913c-a9c1f3732623"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="95978cef-80f7-41fa-b9da-e33ac4235125">
+						<tavatekst id="1ce5ef70-530c-44e2-91a1-06c6d4e8254f">I nimekirjas loetletud ainete ja neid sisaldavate ravimite sisse- ja väljavedu käesoleva seaduse § 3 lõikes 1 nimetatud eesmärkidel kasutamiseks toimub Ravimiameti sisse- või väljaveoloa alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="8bcdb331-2f50-48da-94fe-963b19806363">
+						<avaldamismarge id="542fde2e-8b6a-4d0f-8e2d-af4e33b4c40a">
+							<RTosa id="2b66182b-9e64-4f20-81ec-859a4799b4af">RT I</RTosa>
+							<RTaasta id="667d53b2-652a-4510-b550-5da0a954f6c1">2005</RTaasta>
+							<RTnr id="3c469771-0a24-4606-92dd-726c0f336122">24</RTnr>
+							<RTartikkel id="79122cc6-c549-41d0-baeb-62c2a91e979a">180</RTartikkel>
+							<aktViide id="4c45afec-90e7-4f17-aa11-4bcb40a7ba82">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="7c9aa443-1a81-45fd-b573-ea4e6d2156c6">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg2">
+					<loigeNr id="7a70730e-e75c-4f32-8746-2ba46d192a1d">2</loigeNr>
+					<kuvatavNr id="df86404a-b597-478a-8d5b-fa28be507bac"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="c0b8cc1a-f40c-41d5-9414-98a45e048b83">
+						<tavatekst>I nimekirjas loetletud ainete ja neid sisaldavate ravimite käitlemine peab vastama II nimekirja ainete ja neid sisaldavate ravimite käitlemise nõuetele.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="f894f8a5-8a31-4c5b-8305-afc1066cf923">
+						<avaldamismarge id="551e1a76-93e9-497b-9716-a8d24883429e">
+							<RTosa id="59e4e355-2055-4e92-9363-dd60ac313287">RT I</RTosa>
+							<RTaasta id="64d3afad-f2e8-4522-ac84-45645d1bdcdc">2005</RTaasta>
+							<RTnr id="7519025b-d991-4140-85de-6ac178eb6a4e">24</RTnr>
+							<RTartikkel id="d1bf73f0-a41c-4ed8-9333-3a28b12db1b2">180</RTartikkel>
+							<aktViide id="40d0b087-e38b-4239-b524-69291fcfaba3">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="267ffdf6-f8a8-43f2-9b22-a68a9ef079e3">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg3">
+					<loigeNr id="2e24c6cf-5812-49a8-b034-cbd14da13093">3</loigeNr>
+					<kuvatavNr id="117a6c1c-f5ce-4c2a-b94c-2a0935dd61b0"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="0ce5e065-9b2d-4dc3-814d-c93ef4734e50">
+						<tavatekst>I nimekirjas nimetatud ainete ja ravimite meditsiinilisel eesmärgil kasutamiseks sisseveoloa saamise täiendavad tingimused sätestatakse käesoleva paragrahvi lõike 15 alusel kehtestatud õigusaktis.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="e0e33a66-bb0f-4db1-884e-e2c9048eb569">
+						<avaldamismarge id="ab5a06c2-dcf7-423d-bebe-ada433437314">
+							<RTosa id="618ed555-614c-436e-a8be-0842a2834427">RT I</RTosa>
+							<RTaasta id="d4814f3f-0696-4a21-9349-d3d60191d6e3">2005</RTaasta>
+							<RTnr id="13408f93-79cb-40fc-93c5-c42c3133d067">24</RTnr>
+							<RTartikkel id="9c558cda-1734-4b87-9830-6929c35f90d1">180</RTartikkel>
+							<aktViide id="25af4666-d60a-4515-aa11-ee50e80d85ce">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="1fe4ca82-c840-423f-a20e-b9a1a8401ff6">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg4">
+					<loigeNr id="40b75877-b5a2-4ddd-937c-5db532c091a1">4</loigeNr>
+					<kuvatavNr id="c1d5b782-eccd-4a7e-930a-3583cc17339e"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="50d46dee-49f7-433d-949c-c86b6fb170cf">
+						<tavatekst>II ja III nimekirjas loetletud aineid ja neid sisaldavaid ravimeid võib toota, sisse või välja vedada või hulgimüügi korras turustada ainult narkootiliste ainete käitlemise õigust omav isik. II ja III nimekirjas loetletud ainete ja neid sisaldavate ravimite tootmiseks väljastab Ravimiamet tähtajalise loa, milles määratakse kindlaks toodetava ravimi kogus ning tootmiseks ettenähtud ajavahemik.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="f116e8e8-5dbf-4a20-b38a-288910debf71">
+						<avaldamismarge id="b18f3523-ba1c-415d-ba16-f3ff394eb92b">
+							<RTosa id="790afc79-69b3-45c6-b203-2a4ff53da026">RT I</RTosa>
+							<RTaasta id="f2346691-01c8-4a4e-b365-b70dfcec565b">2005</RTaasta>
+							<RTnr id="0c92e8c2-2427-432b-9484-d492b7c60572">24</RTnr>
+							<RTartikkel id="c21737d6-ef98-4743-b034-44bc35040d3c">180</RTartikkel>
+							<aktViide id="67d64f31-4335-4064-8b1f-1c0520f6f20f">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="9b2a276f-19eb-460c-bb53-5995c70d8688">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg5">
+					<loigeNr id="daa02e45-34c8-4c71-ad49-8100459e88d9">5</loigeNr>
+					<kuvatavNr id="cbe0570c-7681-40a7-bf9a-307e1ef753a7"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="46b101fe-66ba-4695-b21c-fe413166071f">
+						<tavatekst>IV nimekirjas loetletud aineid ja neid sisaldavaid ravimeid võib toota, sisse või välja vedada või hulgimüügi korras turustada ainult psühhotroopsete ainete käitlemise õigust omav isik. Psühhotroopsete ainete käitlemise õigust ei pea taotlema narkootiliste ainete käitlemise õiguse olemasolul ja juhul, kui on tagatud psühhotroopsete ainete käitlemiseks nõutavad tingimused.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="28217911-4e3c-4def-8abf-87968ead21d5">
+						<avaldamismarge id="1efcb1d8-97a0-4a54-aa8a-825214f0b1b2">
+							<RTosa id="34c1e4d8-d04e-4340-a352-012828503796">RT I</RTosa>
+							<RTaasta id="971c2c9a-2967-4f8b-ab9c-5e3364dc4bc9">2005</RTaasta>
+							<RTnr id="6b02bc3b-c2c4-4514-8053-e7b0f3ac497b">24</RTnr>
+							<RTartikkel id="175ef898-8c58-4e5a-b061-0f46b548a223">180</RTartikkel>
+							<aktViide id="54a15f3b-5e6e-4593-9180-782fe91c7fc6">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="235c82d2-afdb-4177-af0f-855c17f29a0d">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg5b1">
+					<loigeNr id="de8996db-be7b-4d9a-81d9-087820f61c51" ylaIndeks="1">5</loigeNr>
+					<kuvatavNr id="4022d005-36fa-4738-bde2-2e1edb2317a4"><![CDATA[(5<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="b3fd87dd-1bf1-4d3e-a24f-501764f36882">
+						<tavatekst>V nimekirjas loetletud ainete käitlemisele kohaldatakse üksnes käesoleva seaduse § 3 lõikes 1<sup>1</sup> sätestatud piirangut.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="e41d5d51-17b1-4848-b3ee-56a21b999c99">
+						<avaldamismarge id="3e94ad6f-0173-4767-99d5-592c6dfff34d">
+							<RTosa id="38aa15a9-1d73-45db-af4b-0c95256f6fed">RT I</RTosa>
+							<avaldamineKuupaev id="ac145485-8667-42eb-a6cb-988c9f4a54e3">2013-03-05</avaldamineKuupaev>
+							<RTartikkel id="473e1ebc-f3c9-404c-af5d-fab4b8280b30">1</RTartikkel>
+							<aktViide id="15340ad7-2064-4d25-b9c8-c57a403724ce">105032013001</aktViide>
+						</avaldamismarge>
+						<joustumine id="05eabf90-e00a-4ee0-924e-74e28e916777">2013-03-15</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg5b2">
+					<loigeNr id="e9fd1044-9e11-47b1-a885-f271ac4cdd42" ylaIndeks="2">5</loigeNr>
+					<kuvatavNr id="581f6459-062a-4a19-901f-ebe23463a33c"><![CDATA[(5<sup>2</sup>)]]></kuvatavNr>
+					<sisuTekst id="296cbee7-4d17-4d5e-887e-fbaff6d92284">
+						<tavatekst>VI nimekirjas loetletud ainete rühmadele kohaldatakse I nimekirjas loetletud ainetele kehtestatud piiranguid.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="c64be3cb-c6c4-4f5f-85ad-9a7f91bcdb0d">
+						<avaldamismarge id="1368576c-66ec-410e-afc9-68112c2a38bc">
+							<RTosa id="b183d8b2-87d2-4f4d-832d-d0bd9634888e">RT I</RTosa>
+							<avaldamineKuupaev id="f346690b-77a0-46ba-b2cf-9e40a54f4bc8">2016-05-03</avaldamineKuupaev>
+							<RTartikkel id="5415691f-80b0-4d33-9ea8-32b4da24b9cc">3</RTartikkel>
+							<aktViide id="e57fe124-09ee-40e7-be08-51004725bd4f">103052016003</aktViide>
+						</avaldamismarge>
+						<joustumine id="e150b649-3251-4e35-a5a7-63382d4b7745">2016-05-13</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg6">
+					<loigeNr id="623c922e-823b-400d-9a3a-282809a9ff06">6</loigeNr>
+					<kuvatavNr id="c3e4a4da-c0e2-4b96-aaf5-47bb890a8934"><![CDATA[(6)]]></kuvatavNr>
+					<muutmismarge id="dc8cbb60-0539-42e6-affb-aa913d31907b">
+						<tavatekst id="443679ab-7dbe-4382-8635-cbfaf45d0461">Kehtetu - </tavatekst>
+						<avaldamismarge id="ea043089-5d0f-43de-a440-692d5a6d9f0c">
+							<RTosa id="93766695-ce25-4cae-82d0-28209f1aaa80">RT I</RTosa>
+							<avaldamineKuupaev id="f3daac67-c34b-491a-863e-d92237d12a24">2013-04-17</avaldamineKuupaev>
+							<RTartikkel id="1e0f11de-72dc-4f37-8624-5120427db258">2</RTartikkel>
+							<aktViide id="8c51b2aa-162b-45b3-9ad5-1cdeb5800e80">117042013002</aktViide>
+						</avaldamismarge>
+						<joustumine id="ac594971-ed16-451b-9035-657ee0b592bf">2013-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg7">
+					<loigeNr id="7ee9f5de-7a5a-44bf-9a6a-741b6c26daf7">7</loigeNr>
+					<kuvatavNr id="b8f15aba-08f5-4487-89b2-f7eefcec0e59"><![CDATA[(7)]]></kuvatavNr>
+					<muutmismarge id="90664873-92cc-40c0-ae4a-af0b1d316121">
+						<tavatekst id="9407e635-4d56-4052-ac94-5cf0462f2716">Kehtetu - </tavatekst>
+						<avaldamismarge id="b1188917-1988-4e81-a97a-3c0eb4482971">
+							<RTosa id="cd26a658-c9ae-4f40-92fc-10c227bf6f91">RT I</RTosa>
+							<avaldamineKuupaev id="42471017-5ac5-4b09-9279-f8683275ed75">2013-04-17</avaldamineKuupaev>
+							<RTartikkel id="90f07cd3-e5d6-468a-9094-d2a859009363">2</RTartikkel>
+							<aktViide id="27584fc5-66bd-4e57-bef8-eb885a90293e">117042013002</aktViide>
+						</avaldamismarge>
+						<joustumine id="6395f4ca-3986-43fb-bcf3-a7e1f6542ac9">2013-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg8">
+					<loigeNr id="d17328e1-a342-4930-ae55-3dc7e7efb1ff">8</loigeNr>
+					<kuvatavNr id="ff59f50e-8358-4687-8909-a7d73a0ae7fe"><![CDATA[(8)]]></kuvatavNr>
+					<muutmismarge id="d0df39d5-730a-459c-98a1-16c0acba7040">
+						<tavatekst id="1a150fdd-f26e-40ed-be6b-bcb7643b72ae">Kehtetu - </tavatekst>
+						<avaldamismarge id="f2f9e23c-3b9a-4d4f-8812-e9732f77dc48">
+							<RTosa id="9703439b-cc30-4b77-a9e8-997bb97e8114">RT I</RTosa>
+							<avaldamineKuupaev id="ef816ada-20f2-4b4b-8832-7442f01655c8">2013-04-17</avaldamineKuupaev>
+							<RTartikkel id="20f6f9ad-adef-4a93-8e66-4055c12b3705">2</RTartikkel>
+							<aktViide id="b19664ed-7d2e-4011-9532-acb6c4872715">117042013002</aktViide>
+						</avaldamismarge>
+						<joustumine id="b3d8d050-b607-443f-bbba-11010bedc56c">2013-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg9">
+					<loigeNr id="a46e5517-44dd-48fd-a8a6-276c7ac9a61a">9</loigeNr>
+					<kuvatavNr id="3ceb3c1c-ff6b-4fde-b6ac-f973d87d66c5"><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst id="3f31b6db-8308-41f6-bd22-9b9bf6d1ca1b">
+						<tavatekst>Apteegist võib elanikele II nimekirjas loetletud aineid ja neid sisaldavaid ravimeid väljastada ainult narkootilise ravimi retsepti või narkootilise ravimi veterinaarretsepti alusel, III ja IV nimekirjas loetletud aineid ja neid sisaldavaid ravimeid ainult retsepti või veterinaarretsepti alusel. Teistele isikutele võib väljastada II, III ja IV nimekirjas loetletud aineid ja neid sisaldavaid ravimeid tellimislehe alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="63df06dc-6c15-48d9-9729-2ad3b8a07e8b">
+						<avaldamismarge id="9dea152d-b696-4c7a-8f83-3e0c8196b82b">
+							<RTosa id="13a92182-f1c2-4a20-9a6b-5cf09df7a3a7">RT I</RTosa>
+							<RTaasta id="9163dae9-91a7-4b42-81bd-a92fd776b135">2005</RTaasta>
+							<RTnr id="c7f5c886-9a9f-4f6b-9c8d-e170a9aea4c1">24</RTnr>
+							<RTartikkel id="850d096e-f327-4f19-a62b-f9dfe6bdc080">180</RTartikkel>
+							<aktViide id="76c35bf6-75f8-4a46-97df-b8e6c3772721">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="c10c31ce-5089-4a98-b714-bc7a1cc2e078">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg9b1">
+					<loigeNr id="53fd3dba-e73f-4587-b2c1-58476e4f2780" ylaIndeks="1">9</loigeNr>
+					<kuvatavNr id="b97410f5-d23e-4a82-84fb-32eff9199e5d"><![CDATA[(9<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="c8d0b54f-ed65-494b-b224-2b2ca0e67c33">
+						<tavatekst>Ravimiseaduse § 33 lõikes 1<sup>1</sup> nimetatud Euroopa Liidu retsepti alusel narkootilisi ja psühhotroopseid aineid ja neid sisaldavaid ravimeid ei väljastata.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="92c5d0c3-a041-4a6c-abce-d8edd94a6b79">
+						<avaldamismarge id="d02b2d79-09fe-48a7-ab76-e55f9f418536">
+							<RTosa id="24361f0e-a7a2-46df-95a7-b172deb3862b">RT I</RTosa>
+							<RTaasta id="083affd7-4ca2-4fee-adb6-e8ddbd62e0e1">2010</RTaasta>
+							<RTnr id="93f6d6d7-0a35-48fb-b027-3d13120db869">7</RTnr>
+							<RTartikkel id="7f033bd7-0590-462f-981e-ae52fa0c55f4">31</RTartikkel>
+							<aktViide id="a6811a49-1697-466e-8337-e2c469ba052a">13275341</aktViide>
+						</avaldamismarge>
+						<joustumine id="33908dd8-1572-4efc-a582-3c6360a42916">2010-02-26</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg10">
+					<loigeNr id="25c66581-39f4-46d5-b7f1-c20ebb7d9f03">10</loigeNr>
+					<kuvatavNr id="18dbc1af-516f-444e-bdc8-fe0694feccdc"><![CDATA[(10)]]></kuvatavNr>
+					<sisuTekst id="f7f46577-b6ba-4912-87f1-b76758ba7fc7">
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete teadusuuringul või muul teaduslikul eesmärgil kasutamiseks peab taotlema loa Ravimiametilt.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="901a25e2-352c-4404-9023-c26a5376c3b1">
+						<avaldamismarge id="b2898176-fb3f-4e61-9d7d-708a7beca1f9">
+							<RTosa id="2d020d03-8ca9-4ea4-887a-993b2db359ea">RT I</RTosa>
+							<avaldamineKuupaev id="daf1f70e-bf42-46d9-8b47-8002def479a7">2015-12-01</avaldamineKuupaev>
+							<RTartikkel id="ee58cc93-0e20-4808-ad4e-4f55259a5540">1</RTartikkel>
+							<aktViide id="54f0abaf-5b94-4fb2-a0e5-e200fc610f2a">101122015001</aktViide>
+						</avaldamismarge>
+						<joustumine id="2360198c-d85e-4d4b-aa9d-84d3a6bb680b">2015-12-11</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg11">
+					<loigeNr id="e3dd1e72-5765-4f8b-8ae0-4a881957c370">11</loigeNr>
+					<kuvatavNr id="ce1b8939-0f76-4249-8ed7-ac6867c6a332"><![CDATA[(11)]]></kuvatavNr>
+					<sisuTekst id="e44ad17f-84b1-4053-8674-ced306d3197a">
+						<tavatekst>Loa narkootiliste ja psühhotroopsete ainete meditsiinilisel eesmärgil tootmiseks või hulgimüügiks annab Ravimiamet ravimiseaduses ettenähtud tingimustel ja korras koos ravimite käitlemise tegevusloa andmisega. Narkootiliste ja psühhotroopsete ainete käitlemise õigus kantakse eritingimusena ravimite tootmise või hulgimüügi tegevusloale.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="3d3e34e0-d0f9-4a23-9444-bd18cba40f11">
+						<avaldamismarge id="009d0edf-ea08-40dc-a979-1456441fca8b">
+							<RTosa id="10bfe7fa-1066-460b-9515-711ecfe6757f">RT I</RTosa>
+							<RTaasta id="aafb0c08-01bc-44cf-8836-1c12398b4dd3">2005</RTaasta>
+							<RTnr id="39f266b1-e371-4f9d-8d12-506793e2d811">24</RTnr>
+							<RTartikkel id="a27b96a0-210b-4004-b700-373a12fac4d7">180</RTartikkel>
+							<aktViide id="1735f293-0a3b-451c-adb7-31165d9dcb66">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="610f76fd-81db-403e-92f2-d50f19f5ee8d">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg12">
+					<loigeNr id="432a974f-9942-4ea3-abff-81aea51c3624">12</loigeNr>
+					<kuvatavNr id="63a1e103-1b87-4723-944f-d77c7b812345"><![CDATA[(12)]]></kuvatavNr>
+					<muutmismarge id="cb29f294-f931-43a1-be6a-25cdc8535007">
+						<tavatekst id="bdb9d0a6-f50f-4b2b-9f3d-3f21d19f6d90">Kehtetu - </tavatekst>
+						<avaldamismarge id="823aac85-3d54-49d2-ae73-8021307413c4">
+							<RTosa id="c9aa3687-2646-4e9a-9988-5f435511e972">RT I</RTosa>
+							<avaldamineKuupaev id="6c61881a-1e80-4b99-bb59-7d06cb151f84">2013-04-17</avaldamineKuupaev>
+							<RTartikkel id="c36e17d6-38c7-4665-af59-eebd30688a1c">2</RTartikkel>
+							<aktViide id="2843f296-9c7e-4a79-99fc-e0fb75df0e23">117042013002</aktViide>
+						</avaldamismarge>
+						<joustumine id="ed802388-7039-402b-8dd2-f0b10d524f4e">2013-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg13">
+					<loigeNr id="ddd18406-10d2-4ded-be68-3e210cfdc46a">13</loigeNr>
+					<kuvatavNr id="b645dc22-7955-4993-b4dd-888c7fd6fab3"><![CDATA[(13)]]></kuvatavNr>
+					<sisuTekst id="300b31d4-809f-4611-8ac9-602fcc088d1c">
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete sisse- või väljaveoloa annab Ravimiamet ravimiseaduses ja selle alusel kehtestatud tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="2bbd39ad-724e-4c0c-85d0-8bdc5f654a8c">
+						<avaldamismarge id="3cb9d7b5-38c2-4d35-9a51-6ffd9111094c">
+							<RTosa id="d185d7ce-b63f-4896-8c28-20a273afc73b">RT I</RTosa>
+							<RTaasta id="419b207a-3fd5-4d86-a538-b66b78f3e319">2005</RTaasta>
+							<RTnr id="be444ece-2064-40c8-8551-e8eac812aeab">24</RTnr>
+							<RTartikkel id="cd19812e-cfbc-4575-9b7e-7bd376e7ee24">180</RTartikkel>
+							<aktViide id="49725ebe-a5aa-4d25-8248-41694e41f734">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="d6b085cd-7282-49be-8fae-22f8a9692c39">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg14">
+					<loigeNr id="42c6b486-aea1-4f5b-8c15-1608f9c0b460">14</loigeNr>
+					<kuvatavNr id="286db1bc-6fe2-4674-898a-e04d41211571"><![CDATA[(14)]]></kuvatavNr>
+					<sisuTekst id="f2996d2d-2612-4b05-938a-7b46f94dce95">
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete sisse- või väljaveoloa taotlemisel tasub taotleja riigilõivu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="ae61b74a-1809-4fd8-b414-811e79334692">
+						<avaldamismarge id="170c60bf-d9e8-4c7b-99db-1cdf00da7800">
+							<RTosa id="7eba0fcc-a544-42f4-8cf0-2dca517e73ec">RT I</RTosa>
+							<RTaasta id="ee803664-c4f6-42c5-a0e2-717157d39aa4">2005</RTaasta>
+							<RTnr id="1efeacdf-9353-4e1c-a4e5-51bd52c578c0">24</RTnr>
+							<RTartikkel id="c9afb80a-ab31-47f4-8d06-d891398e7756">180</RTartikkel>
+							<aktViide id="641a3cf8-e8b6-4011-8703-04667203a03f">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="c1695b29-f088-42c4-b082-26474b1e5d58">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4lg15">
+					<loigeNr>15</loigeNr>
+					<kuvatavNr><![CDATA[(15)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete meditsiinilisel ja teaduslikul eesmärgil käitlemise ning sellealase arvestuse ja aruandluse tingimused ja korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=117032026007&id=126112010007]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst>.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="481195b5-cb6e-4ed4-a320-34eaea0701eb">
+						<avaldamismarge id="09e3116b-0da9-4728-85c0-417758c7aeff">
+							<RTosa id="df25c0e9-3b0e-462a-b8b7-2b18b1b18227">RT I</RTosa>
+							<RTaasta id="82b5cdb7-dcc0-446e-9338-02764e4987db">2005</RTaasta>
+							<RTnr id="94cb1c49-85bd-42a5-86cc-9b25d8aa1efc">24</RTnr>
+							<RTartikkel id="1186fff2-cb8a-431e-81aa-bbc21e6c89c6">180</RTartikkel>
+							<aktViide id="01a4210b-a90e-4f6d-8c1d-36b4587cd371">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="4e1fe658-00d5-4d8d-a494-155bba5f6e6f">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4b1">
+				<paragrahvNr ylaIndeks="1">4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Lähteainete käitlemine</paragrahvPealkiri>
+				<loige id="para4b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Lähteainete käitlemisel lähtutakse lisaks käesolevas seaduses reguleeritule järgmistest Euroopa Liidus lähteainete kaubandust reguleerivatest vahetult kohalduvatest õigusaktidest:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para4b1lg1p1">
+						<alampunktNr id="56f0555f-e5c9-486f-be3d-521da988f1ac">1</alampunktNr>
+						<kuvatavNr id="2166feb0-84b0-4b6e-bb38-17f8d32fc956"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="3e1c0536-6caf-4d3e-872b-63487999e4a0">
+							<tavatekst id="58961cdb-28de-490e-a650-e150926b0f92">Euroopa Parlamendi ja nõukogu määrusest (EÜ) nr 273/2004 narkootikumide lähteainete kohta;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4b1lg1p2">
+						<alampunktNr id="e7c2eea8-76aa-46bf-91a8-543cbd11012c">2</alampunktNr>
+						<kuvatavNr id="d8abd4ea-9780-4322-b633-39d049bb4263"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="d2fac6ce-52c1-4f6a-a401-68bfce3195a2">
+							<tavatekst>nõukogu määrusest (EÜ) nr 111/2005, millega kehtestatakse ühenduse ja kolmandate riikide vahelise narkootikumide lähteainetega kauplemise järelevalve eeskirjad;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para4b1lg1p3">
+						<alampunktNr id="1ca9ca3a-5376-4b86-9f07-51f4c2df38ae">3</alampunktNr>
+						<kuvatavNr id="6f80dbee-3544-43ba-a420-00b867671dbe"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="1d401407-b19c-402d-9ba4-6acb0d1e40a8">
+							<tavatekst>komisjoni delegeeritud määrusest (EL) 2015/1011, millega täiendatakse Euroopa Parlamendi ja nõukogu määrust (EÜ) nr 273/2004 narkootikumide lähteainete kohta ja nõukogu määrust (EÜ) nr 111/2005, millega kehtestatakse liidu ja kolmandate riikide vahelise narkootikumide lähteainetega kauplemise järelevalve eeskirjad, ning millega tunnistatakse kehtetuks komisjoni määrus (EÜ) nr 1277/2005 (ELT L 162, 27.06.2015, lk 12–25);</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="fb38e5d5-97bb-4aa8-b7fc-83d0d3c90d02">
+							<avaldamismarge id="8630eebd-cb27-4f80-b291-3f58bd8789e9">
+								<RTosa id="b03444b1-7188-4b03-8cec-47bda6d374e2">RT I</RTosa>
+								<avaldamineKuupaev id="fec6172f-a86c-4417-ba1d-964c22c24c25">2018-11-14</avaldamineKuupaev>
+								<RTartikkel id="fdd441fb-77a0-4c3b-88a1-9f01ab097181">3</RTartikkel>
+								<aktViide id="151e51c7-f097-41ce-8390-a53133d8a569">114112018003</aktViide>
+							</avaldamismarge>
+							<joustumine id="6ceae1a8-69ad-41e6-909f-54e09b6c5e49">2018-11-23</joustumine>
+						</muutmismarge>
+					</alampunkt>
+					<alampunkt id="para4b1lg1p4">
+						<alampunktNr id="72d84975-c3ce-40fa-9f61-0c060076e528">4</alampunktNr>
+						<kuvatavNr id="f8cc7c18-2438-47ba-b629-6d3bafc84db0"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="aeaff73c-524c-4984-8195-f9d879319b7a">
+							<tavatekst>komisjoni rakendusmäärusest (EL) 2015/1013, millega kehtestatakse eeskirjad seoses Euroopa Parlamendi ja nõukogu määrusega (EÜ) nr 273/2004 narkootikumide lähteainete kohta ning nõukogu määrusega (EÜ) nr 111/2005, millega kehtestatakse liidu ja kolmandate riikide vahelise narkootikumide lähteainetega kauplemise järelevalve eeskirjad (ELT L 162, 27.06.2015, lk 33–64).</tavatekst>
+						</sisuTekst>
+						<muutmismarge id="5149ce32-5c17-49ec-98c5-81082cd4ca81">
+							<avaldamismarge id="73c9e2f5-4d31-47f8-ac47-1789eb38167c">
+								<RTosa id="ca7bfafb-3073-4513-91f6-bf7aaa7a3ee2">RT I</RTosa>
+								<avaldamineKuupaev id="a0fca028-6248-4e2b-b9e5-12db2e9f375f">2018-11-14</avaldamineKuupaev>
+								<RTartikkel id="5ebc16ba-f1ce-4529-abda-bbd986a8ba58">3</RTartikkel>
+								<aktViide id="80912861-ea44-4663-99c7-19f340768b8b">114112018003</aktViide>
+							</avaldamismarge>
+							<joustumine id="070ce2f6-0fe2-4214-827b-7b159f49dee6">2018-11-23</joustumine>
+						</muutmismarge>
+					</alampunkt>
+				</loige>
+				<loige id="para4b1lg2">
+					<loigeNr id="a7804c65-8d88-4c14-9948-eba54ce70e79">2</loigeNr>
+					<kuvatavNr id="fef87a27-7819-433c-b428-9177b5c11618"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="1d3e210f-41ce-4e41-9521-e5fbca07fa9b">
+						<tavatekst>Esimesse kategooriasse kuuluvate lähteainete omamiseks, turuleviimiseks, impordiks, ekspordiks või vahendustegevuseks nõutava tegevusloa väljaandjaks on Ravimiamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b1lg3">
+					<loigeNr id="961fae93-815a-495c-89d7-27554cf1008e">3</loigeNr>
+					<kuvatavNr id="ca445813-fa6c-4fff-98c8-16988555ac6d"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="f59399b8-ede0-42b7-886e-82cec19b1262">
+						<tavatekst>Tegevusloa saamiseks ja uuendamiseks peab tegevusloa taotleja esitama Ravimiametile komisjoni delegeeritud määruse (EL) 2015/1011 artikli 3 lõike 2 punktis b nimetatud dokumendid ning tasuma riigilõivu.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="16a9918a-49fc-43bc-a50d-9cb0dc0ce2f8">
+						<avaldamismarge id="e51f6c2a-9b9b-48b3-b5d6-da90d8176cbd">
+							<RTosa id="9ed25fe9-8d48-4f84-a114-3684ef25aefd">RT I</RTosa>
+							<avaldamineKuupaev id="60616b7d-7cd7-4550-924b-7567705b0067">2018-11-14</avaldamineKuupaev>
+							<RTartikkel id="fa8fc42d-8daa-4960-98d0-d89c5469b3c9">3</RTartikkel>
+							<aktViide id="23a2a70f-1435-4e0b-a98f-026918d41093">114112018003</aktViide>
+						</avaldamismarge>
+						<joustumine id="9a93fdc5-a4f6-42d3-9752-97a46fcf02c6">2018-11-23</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4b1lg4">
+					<loigeNr id="8e10418a-861a-4260-be26-48c2eb962fb3">4</loigeNr>
+					<kuvatavNr id="28d662a8-96dc-40a3-a205-5e855776cb7e"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="555d1186-54ba-4667-8626-1cef427e4be2">
+						<tavatekst>Teise kategooria lähteaine turuleviimiseks, impordiks, ekspordiks ja vahendustegevuseks ning kolmanda kategooria lähteaine ekspordiks peab ettevõte registreerima oma tootmis- ja kauplemiskohtade (tegevuskohaks olevate ruumide) aadressid Ravimiametis ning tasuma riigilõivu riigilõivuseaduses sätestatud määras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-20</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>120122024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4b1lg4b1">
+					<loigeNr id="3ed7361d-358e-4ea7-89cb-aa4af55b4dc9" ylaIndeks="1">4</loigeNr>
+					<kuvatavNr id="ad1d796a-6a9e-4fc8-b270-b5e8aaabdd1a"><![CDATA[(4<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="38d72667-d1c7-459b-ab6f-4883899525ec">
+						<tavatekst>Eestis püsivat tegevuskohta omav ettevõtja peab enne teise kategooria alamkategooriasse 2A kuuluva lähteaine omandamist registreerima nimetatud aine käitlemise Ravimiametis ja tasuma riigilõivu riigilõivuseaduses sätestatud määras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2024-12-20</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>120122024001</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4b1lg5">
+					<loigeNr id="07cbf860-c44a-400d-b0ca-fcbd219a7252">5</loigeNr>
+					<kuvatavNr id="739e6094-aea8-4822-ab1a-63a747333005"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="876b7046-0043-4f08-903c-46ddd7d05130">
+						<tavatekst>Apteegiteenuse tegevusloa omaja ei pea taotlema käesoleva paragrahvi lõigetes 2, 4 ja 4<sup>1</sup> ettenähtud tegevusluba või registreeringut lähteainete omandamiseks, omamiseks ja kasutamiseks, kui lähteaineid kasutatakse lähteainete käitlemise nõudeid järgides ainult ravimite valmistamiseks.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="60f1c0da-2950-4c8f-92a1-bec361929c7a">
+						<avaldamismarge id="83e316d0-c50b-4890-8b7f-b2af2a26badc">
+							<RTosa id="54c0e327-93c6-42c8-a827-b7e7f9b4ca31">RT I</RTosa>
+							<avaldamineKuupaev id="b200e684-4994-4894-984a-2e4a6cf9bbec">2015-12-01</avaldamineKuupaev>
+							<RTartikkel id="baed30c6-bebb-40ce-92ca-50f1578ed36d">1</RTartikkel>
+							<aktViide id="78c49753-2a78-4b4e-9350-74b405355fee">101122015001</aktViide>
+						</avaldamismarge>
+						<joustumine id="44f64941-55d5-4925-b042-6f1cbb2abefd">2015-12-11</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4b1lg6">
+					<loigeNr id="2bfdb52e-3d4f-45cc-a57f-10e2eb938380">6</loigeNr>
+					<kuvatavNr id="a14e7bfa-9eb0-49c3-a97c-89d6acb20629"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="651fc0ed-9990-41cd-8fe6-3a69003e57e6">
+						<tavatekst>Lähteainete impordi- ja ekspordiloa väljaandjaks on Ravimiamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b1lg7">
+					<loigeNr id="1fcaef9b-adc4-4fee-b460-fe03ed887e00">7</loigeNr>
+					<kuvatavNr id="71dd921a-a215-4839-b179-19e780806a79"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="2a39049e-9eb4-4dff-9608-82d8801aeb4e">
+						<tavatekst>Lähteainete impordi- ja ekspordiloa taotlemisel tasub taotluse esitaja riigilõivu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b1lg7b1">
+					<loigeNr id="ea4c4194-883d-45aa-9561-b6c8ccbd3e46" ylaIndeks="1">7</loigeNr>
+					<kuvatavNr id="d6e45f4f-8523-4b7f-b1ad-746c264f0fea"><![CDATA[(7<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst id="28b5d960-b899-4a5e-b6ee-1ac64e7f281b">
+						<tavatekst>Sihtriigi pädevale asutusele narkootikumide lähteainete ekspordi eelse teate saatjaks on Ravimiamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="de539da2-3f02-46ad-bce0-9017896c820d">
+						<avaldamismarge id="2d75a888-2026-4f2c-9ba7-2ba10cd16457">
+							<RTosa id="d8e6fb18-c2a8-41ec-9b9c-eac3ef889f10">RT I</RTosa>
+							<avaldamineKuupaev id="05da622e-e203-4e2e-b60a-e0fab91a93d4">2015-12-01</avaldamineKuupaev>
+							<RTartikkel id="0f81b55f-587d-4616-b925-1bf2ffecceb7">1</RTartikkel>
+							<aktViide id="bdb46cba-521c-40cb-9e45-f37ce8026142">101122015001</aktViide>
+						</avaldamismarge>
+						<joustumine id="445665be-c771-4b08-aed9-b82bfa8ec42d">2015-12-11</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para4b1lg8">
+					<loigeNr id="f5d27309-be0b-4535-bbe5-00e50e2c13d6">8</loigeNr>
+					<kuvatavNr id="b8dbd4c1-4a2a-4cf9-bd61-8a0aa3fda499"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="623a94b6-5fdd-4547-ad7a-0b007a17b05a">
+						<tavatekst>Lähteainete käitlemise aruanne tuleb komisjoni delegeeritud määruse (EL) 2015/1011 artikli 9 ja komisjoni rakendusmääruse (EL) 2015/1013 artikli 10 kohaselt esitada Ravimiametile.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="26a67d39-82e1-4388-ae2b-079688022c55">
+						<avaldamismarge id="f6e936b6-de2e-4102-ab70-13fea2622664">
+							<RTosa id="1e68bbc9-2e8b-4a8f-8ab7-8e7dce17585f">RT I</RTosa>
+							<avaldamineKuupaev id="648fe455-99dc-44db-962b-b1e2da27f516">2018-11-14</avaldamineKuupaev>
+							<RTartikkel id="b8bf0150-cb12-4bb0-91e1-b8f4ffe1bd1f">3</RTartikkel>
+							<aktViide id="a1b88e97-23f7-4534-bda6-f401b60e23c3">114112018003</aktViide>
+						</avaldamismarge>
+						<joustumine id="d2e01dfa-098b-4181-95ba-8714ead83aeb">2018-11-23</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para4b2">
+				<paragrahvNr ylaIndeks="2">4</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 4<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Uue psühhoaktiivse aine käitlemise tingimused</paragrahvPealkiri>
+				<loige id="para4b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Uueks psühhoaktiivseks aineks loetakse käesoleva seaduse § 2 punkti 1<sup>1</sup> tähenduses aine alates hetkest, kui riiklik ekspertiisiasutus on selle aine lõplikult identifitseerinud narkootilise ja psühhotroopse ainega sarnaneva ainega.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Alates käesoleva paragrahvi lõikes 1 sätestatud hetkest kohalduvad uuele psühhoaktiivsele ainele käesolevas seaduses narkootilistele ja psühhotroopsetele ainetele kehtestatud käitlemise tingimused, arvestades narkootiliste ja psühhotroopsete ainete nimekirjale kohaldatavaid käitlemise erinõudeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riiklik ekspertiisiasutus edastab teabe uue psühhoaktiivse aine identifitseerimise kohta Politsei- ja Piirivalveametile, kes teavitab sellest avalikkust oma veebilehel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 2 sätestatud tingimusi kohaldatakse uuele psühhoaktiivsele ainele kuni selle narkootiliste ja psühhotroopsete ainete nimekirja kandmiseni, kuid mitte kauem kui üks aasta alates uue psühhoaktiivse aine identifitseerimise kuupäevast.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg5">
+					<loigeNr>5</loigeNr>
+					<kuvatavNr><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kui uut psühhoaktiivset ainet ei ole ühe aasta jooksul narkootiliste ja psühhotroopsete ainete nimekirja kantud, lõpeb sellele ainele käesoleva paragrahvi lõikes 2 sätestatud narkootilistele ja psühhotroopsetele ainetele kehtestatud käitlemise tingimuste kohaldamine ning aine tagastatakse selleks õigustatud isikule. Aine tagastamiseks võib õigustatud isik esitada kirjaliku taotluse aine hoiule võtnud korrakaitseorganile.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg6">
+					<loigeNr>6</loigeNr>
+					<kuvatavNr><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Riiklik ekspertiisiasutus hoiab uut psühhoaktiivset ainet selle säilimist tagaval viisil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg7">
+					<loigeNr>7</loigeNr>
+					<kuvatavNr><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Uus psühhoaktiivne aine hävitatakse, kui see lisatakse narkootiliste ja psühhotroopsete ainete nimekirja. Uus psühhoaktiivne aine hävitatakse ka juhul, kui ühe aasta möödumisel alates aine identifitseerimise kuupäevast ei ole aine narkootiliste ja psühhotroopsete ainete nimekirja kantud ning õigustatud isik ei ole selle aja jooksul taotlenud aine tagastamist või õigustatud isikut ei ole tuvastatud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg8">
+					<loigeNr>8</loigeNr>
+					<kuvatavNr><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käesoleva paragrahvi lõikes 2 sätestatut ei kohaldata, kui uut psühhoaktiivset ainet käideldakse meditsiinilisel, tööstuslikul või teaduslikul eesmärgil ja õigustatud isik esitab selle kohta tõendi. Uue psühhoaktiivse aine omanik või valdaja võib igal ajal taotleda aine hoiule võtnud korrakaitseorganilt aine tagastamist, näidates taotluses ära ainest lähtuva ohu puudumise, eelkõige juhul, kui ainet kasutatakse käesolevas lõikes sätestatud eesmärkidel.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para4b2lg9">
+					<loigeNr>9</loigeNr>
+					<kuvatavNr><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Uuest psühhoaktiivsest ainest teavitamise ning aine üleandmise, tagastamise, säilitamise ja hävitamise täpsema korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=117032026007&id=101042025008;116042025002]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para5">
+				<paragrahvNr>5</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 5. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete käitlemine süütegude ennetamise, avastamise ja tõkestamise eesmärgil ning õppeotstarbel käitlemiseks</paragrahvPealkiri>
+				<loige id="para5lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Jälitusasutusesiseselt annab loa narkootiliste ja psühhotroopsete ainete käitlemiseks süütegude ennetamise, avastamise ja tõkestamise eesmärgil ning õppeotstarbel käitlemiseks jälitusasutuse juht.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para5lg1b1">
+					<loigeNr ylaIndeks="1">1</loigeNr>
+					<kuvatavNr><![CDATA[(1<sup>1</sup>)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Sisekaitselises rakenduskõrgkoolis käideldakse narkootilisi ja psühhotroopseid aineid õppeotstarbel teenistuskoerte väljaõppe raames sisekaitselise rakenduskõrgkooli rektori loal.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="000bdc09-f8fd-4c48-b23b-dcb0f88ab0bd">
+						<avaldamismarge id="7db13941-c6da-4a1d-baff-0403c6c4a054">
+							<RTosa id="09b09d1a-4598-44f0-9f0b-5789d82c61f4">RT I</RTosa>
+							<avaldamineKuupaev id="87b1a5ce-add0-4569-bfd8-be189634274e">2011-02-17</avaldamineKuupaev>
+							<RTartikkel id="3261e077-266a-4416-b7e5-b8995f80b641">3</RTartikkel>
+							<aktViide id="23debf5b-4efc-43ca-9c56-07ea4d2efb31">117022011003</aktViide>
+						</avaldamismarge>
+						<joustumine id="4a56c570-a3f1-4d20-a94d-52edbe742644">2011-02-27</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para5lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Jälitusasutus ja sisekaitseline rakenduskõrgkool peab narkootiliste ja psühhotroopsete ainete koguselist arvestust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para6">
+				<paragrahvNr id="75378b96-7b11-4013-8018-038d58a0d1f3">6</paragrahvNr>
+				<kuvatavNr id="0aec5006-886d-4001-8d52-1656a3b46e1a"><![CDATA[§ 6. ]]></kuvatavNr>
+				<paragrahvPealkiri id="717326e5-8f39-4159-a79b-2085d7c1cda1">Narkootiliste, psühhotroopsete ja lähteainete arvestus</paragrahvPealkiri>
+				<muutmismarge id="f8ac57af-e7ee-4d39-9226-58dc50f85a98">
+					<avaldamismarge id="0ab5270c-8a08-4d93-b080-dd02cd79aec7">
+						<RTosa id="553501d4-c852-4b33-981c-623ac08fbf1a">RT I</RTosa>
+						<RTaasta id="a1e7f599-8933-473a-affe-311e099b4a2a">2006</RTaasta>
+						<RTnr id="4729df14-4c08-4dd5-a75a-46c2133b54ce">32</RTnr>
+						<RTartikkel id="e0b9293b-cfda-4b74-9a9c-79eed6c05374">247</RTartikkel>
+						<aktViide id="39bd83fa-7a43-4fca-889d-25996cf177c4">1044402</aktViide>
+					</avaldamismarge>
+					<joustumine id="55fc67a7-cf65-428b-8d43-be100728399c">2006-07-17</joustumine>
+				</muutmismarge>
+				<loige id="para6lg1">
+					<loigeNr id="6d75215f-095e-425a-a30f-23877d19dc0c">1</loigeNr>
+					<kuvatavNr id="69e804d1-7c94-489d-9550-453f0789085e"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="582ecf16-dc63-497e-9b65-0d7bae071c76">
+						<tavatekst id="92e0a5a2-d3c3-4a30-8424-86c8c6297f71">Juriidilisest isikust käitleja peab kirjalikult määrama vastutava füüsilise isiku ja tema äraolekul teda asendava isiku, kes peab narkootiliste ja psühhotroopsete ainete arvestust ning edastab sellega seonduvat informatsiooni Ravimiametile käesoleva seaduse § 4 lõike 15 alusel kehtestatud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg2">
+					<loigeNr id="f5c88687-9d78-4c58-b8f1-ff62e3abbe4d">2</loigeNr>
+					<kuvatavNr id="623b7a39-bf51-4270-ab9b-32727c32d97c"><![CDATA[(2)]]></kuvatavNr>
+					<muutmismarge id="9ada4cbf-5ba3-4b3c-8d37-e618ea9079c7">
+						<tavatekst id="6cd2c9a1-0f9f-4a91-b70e-0a82152307a8">Kehtetu - </tavatekst>
+						<avaldamismarge id="603797ce-bdb7-49d9-813a-704d79676d43">
+							<RTosa id="53708965-079d-40cd-b107-84bd4abf4eb7">RT I</RTosa>
+							<RTaasta id="d8ac8afe-9545-4bd2-bee5-ca992d204089">2006</RTaasta>
+							<RTnr id="d51be712-cfda-4468-8c47-71abc32b0d9a">32</RTnr>
+							<RTartikkel id="0d55ba7b-0935-4851-ac90-6f7ff2bda7f6">247</RTartikkel>
+							<aktViide id="ffdd532f-0a1d-4831-885d-480ecbfb0c06">1044402</aktViide>
+						</avaldamismarge>
+						<joustumine id="71535d77-c10c-4d8e-9d71-85a16155bd0a">2006-07-17</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg3">
+					<loigeNr id="b06cb44d-0d94-4dae-a288-919331c8dcd2">3</loigeNr>
+					<kuvatavNr id="40e035a2-7985-4ca3-aa2a-938e457a4433"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="e2b69bf0-8b34-4663-b402-1deb405a2598">
+						<tavatekst id="ac23c0de-365c-45d4-a820-05c729ff2886">Ravimiametil on õigus kontrollida käesoleva paragrahvi lõikes 1 nimetatud arvestust ning teha ettekirjutusi.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg4">
+					<loigeNr id="34dd16a3-df8b-4714-a67c-500c3ff12306">4</loigeNr>
+					<kuvatavNr id="5b9912c8-4fd8-4ba5-9493-3e5589323c48"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="a22efea4-39c0-4b28-be8d-f495cdbb3f3d">
+						<tavatekst id="183cfc5f-9c3b-49bc-973c-92f3dbaa8f1d">Käesoleva paragrahvi lõikes 1 ettenähtud korras ning komisjoni delegeeritud määruse (EL) 2015/1011 artikli 9 ja komisjoni rakendusmääruse (EL) 2015/1013 artikli 10 alusel kogutud informatsioon narkootiliste ja psühhotroopsete ainete ning nende lähteainete kohta edastatakse Euroopa Komisjonile.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="f653b95b-4e9a-4103-aab8-a8dcb3fdd980">
+						<avaldamismarge id="e2f069b9-7e27-45df-8081-1f511757a5e7">
+							<RTosa id="a62951c8-aa24-4a26-9e69-7a119739a9af">RT I</RTosa>
+							<avaldamineKuupaev id="05727036-5420-4a81-9755-9080e940b9c1">2018-11-14</avaldamineKuupaev>
+							<RTartikkel id="cd97878e-1fe0-412d-904f-8ccb1d9aef84">3</RTartikkel>
+							<aktViide id="0194b8ff-a275-4bc2-88fd-49752cad31bb">114112018003</aktViide>
+						</avaldamismarge>
+						<joustumine id="8d5a73fc-ce18-4cad-8002-a0c6571c9548">2018-11-23</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg5">
+					<loigeNr id="7174cc73-1f77-48a3-bd0e-8820f84872f2">5</loigeNr>
+					<kuvatavNr id="12e09e72-b2ee-4e4f-af5d-a4e0a0c2bb53"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="65b403e2-d508-4f79-86a2-d6b546e136bd">
+						<tavatekst>Statistilised andmed narkootiliste, psühhotroopsete ja lähteainete kogukäibe kohta riigis on avalikud.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para6lg6">
+					<loigeNr id="a96f0035-2450-4115-abe7-b6147bdaf4a6">6</loigeNr>
+					<kuvatavNr id="369f6aaa-3d45-40df-8423-13eb9ce5d784"><![CDATA[(6)]]></kuvatavNr>
+					<muutmismarge id="0bddcfbe-3732-464b-99ed-69164bf645b0">
+						<tavatekst id="d2a758b0-e7bd-43fc-905e-af6cc8d2a80c">Kehtetu - </tavatekst>
+						<avaldamismarge id="6611f584-f766-4781-89a2-df84beb2d0b6">
+							<RTosa id="bd0dda70-ea49-41c6-84f8-dd3a6eb80891">RT I</RTosa>
+							<RTaasta id="d08a4a7a-cf62-4e09-a76c-6d194352d494">2005</RTaasta>
+							<RTnr id="5e299a68-7073-43b5-9d9f-15c72baf1cc7">24</RTnr>
+							<RTartikkel id="3343eafb-a6c4-4248-bf6e-88e1bad7c092">180</RTartikkel>
+							<aktViide id="058334ea-6627-4336-aa9c-f8856c142c21">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="8bb9f823-255a-49c8-b134-8502cb2baa63">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para6lg7">
+					<loigeNr id="d94cf3dc-09ca-46c3-8109-74d624f939c6">7</loigeNr>
+					<kuvatavNr id="49696eb2-78d6-4fde-98a5-51ae50f9bf16"><![CDATA[(7)]]></kuvatavNr>
+					<muutmismarge id="36e6e4f4-5ab5-4497-a3df-695d686ba057">
+						<tavatekst id="eb4ec686-448b-4864-b83a-4b7928e05174">Kehtetu - </tavatekst>
+						<avaldamismarge id="ff551d42-a2e1-4a18-a5e9-e98fec302e78">
+							<RTosa id="29d7a810-b8f5-450c-b0d0-65af25d37678">RT I</RTosa>
+							<RTaasta id="17f1060a-9c5b-4062-8fb0-859b81ecaef5">2005</RTaasta>
+							<RTnr id="64c7b019-9677-47ee-821a-3718a623d750">24</RTnr>
+							<RTartikkel id="8520b28b-bd99-4ab8-be32-34bb3213e3b0">180</RTartikkel>
+							<aktViide id="0388cf89-c495-478b-bd0d-d0a36294f4a5">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="92572226-96bf-4630-b127-a59729616342">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para7">
+				<paragrahvNr>7</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 7. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete ning lähteainete üleandmine, konfiskeerimine ja hävitamine</paragrahvPealkiri>
+				<loige id="para7lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Käitleja, kellel puudub õigus käidelda narkootilist või psühhotroopset ainet või lähteainet, kuid kes hoiab seda enda valduses, on kohustatud selle viivitamata Politsei- ja Piirivalveametile üle andma. Aine üleandmise vormistamise ja säilitamise korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=117032026007&id=13256127]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="c443c3c5-de84-4b29-9322-998c32a812f9">
+						<avaldamismarge id="3159aad9-aab0-4c43-81ec-c5b41fbf6373">
+							<RTosa id="b76d65fe-7cdb-4853-91f3-fe65e1f7ed5d">RT I</RTosa>
+							<avaldamineKuupaev id="49cb4c47-ca79-4023-b62f-71ad796e8aaa">2015-12-01</avaldamineKuupaev>
+							<RTartikkel id="8805323b-7463-40fb-b89b-059c41b094b7">1</RTartikkel>
+							<aktViide id="d8fd030d-a54e-452c-972e-63480fee8619">101122015001</aktViide>
+						</avaldamismarge>
+						<joustumine id="194ecc77-c6f1-4e4e-b03c-3134be684235">2015-12-11</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para7lg2">
+					<loigeNr id="0ed59d55-3e97-4759-9c7f-dddb9e399226">2</loigeNr>
+					<kuvatavNr id="e69f8b97-009e-42d0-9087-a6c40bc85cbb"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="0493fd35-2e44-4fa2-b207-f12b9c7cb72d">
+						<tavatekst>Ravimite tootmise, hulgimüügi või jaemüügi tegevusloa omaja võib narkootilised ja psühhotroopsed ained tasu eest või tasuta üle anda teisele nimetatud ainete käitlemise õigust omavale ravimite tootmise, hulgimüügi või jaemüügi tegevusloa omajale. Lähteainete üleandmine peab toimuma käesoleva seaduse § 4<sup>1</sup> lõike 15 alusel kehtestatud tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para7lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kuriteo- või väärteoasjas asitõendiks olev või konfiskeerimisele kuuluv narkootiline või psühhotroopne aine või selle lähteaine antakse üle riiklikule ekspertiisiasutusele. Riiklikul ekspertiisiasutusel on õigus anda nimetatud aineid asutusele teadus- ja arendustegevuseks, kui asutusel on nimetatud ainete käitlemiseks käesoleva seaduse § 4 lõike 10 alusel väljastatud kehtiv luba, ning § 5 lõigetes 1 ja 1<sup>1</sup> nimetatud õppeotstarbel kasutamiseks. Aine säilitamise, teaduslikul eesmärgil ja õppeotstarbel kasutamiseks üleandmise ning hävitamise korra kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=117032026007&id=13255730;101042025008]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="f44f77e6-f17b-4603-bc02-5592c9b642e5">
+						<avaldamismarge id="0608de87-d1b5-45fd-be04-241eab5a74df">
+							<RTosa id="84a29ce9-973a-460a-baa2-7836d23ac51c">RT I</RTosa>
+							<avaldamineKuupaev id="8cf76953-1662-4d3d-b995-c9cbf12a2e6f">2015-12-01</avaldamineKuupaev>
+							<RTartikkel id="2c638060-503f-477f-961d-cd249d0de882">1</RTartikkel>
+							<aktViide id="7d0cf94f-63e7-41ae-8dce-95e8de2f6b9c">101122015001</aktViide>
+						</avaldamismarge>
+						<joustumine id="21f2901c-6269-44bf-b789-5023d736f9b0">2015-12-11</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para8">
+				<paragrahvNr id="0021c004-66ea-4de6-bcc7-791d6e2b6f45">8</paragrahvNr>
+				<kuvatavNr id="750ea5f6-0a23-4406-aed0-0a10a1afa739"><![CDATA[§ 8. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste, psühhotroopsete ja lähteainete nimekirjad</paragrahvPealkiri>
+				<muutmismarge id="c6e138b2-becf-4632-b545-dc004313c7eb">
+					<tavatekst id="44efb163-b94f-4a47-95c7-04d16219aa26">Kehtetu - </tavatekst>
+					<avaldamismarge id="a2fa4ca3-f3db-454a-bfd0-d762ee68c05f">
+						<RTosa id="c684f83a-29fb-4f3c-8318-e1408cada204">RT I</RTosa>
+						<RTaasta id="be19c5bf-c11c-40e6-b763-a2c0240e4eb6">2005</RTaasta>
+						<RTnr id="fa5529ca-f406-4ba4-a9a2-1dbff20bd5a5">24</RTnr>
+						<RTartikkel id="1d05cb5f-fa0d-4ff7-a767-a38ee4e495db">180</RTartikkel>
+						<aktViide id="d5d81ada-6f08-45b2-85b1-377678f1cd8d">895473</aktViide>
+					</avaldamismarge>
+					<joustumine id="772e878a-6fad-4198-98d4-5a65b16ed6fe">2005-07-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para9">
+				<paragrahvNr id="bbb51680-00d3-4b6d-a582-630a946d31f0">9</paragrahvNr>
+				<kuvatavNr id="2e0b9dfd-066c-4003-8ddd-edecac251a29"><![CDATA[§ 9. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete ning nende lähteainete ja uute psühhoaktiivsete ainete lõplik identifitseerimine</paragrahvPealkiri>
+				<muutmismarge id="4cc711c8-03ef-4dd7-9e72-be15bcd39ba6">
+					<avaldamismarge id="0a620fb6-3f9c-443d-9bbe-d9edab901e77">
+						<RTosa id="657239c9-4b9f-4a89-ad96-7aff8d16db2b">RT I</RTosa>
+						<avaldamineKuupaev id="084b63fd-9af6-446f-b055-90187f588958">2016-05-03</avaldamineKuupaev>
+						<RTartikkel id="4ddfb1eb-b506-4a57-8fc0-f23598faacf9">3</RTartikkel>
+						<aktViide id="5e451f12-6e1d-43ec-9cb2-5e92f3541035">103052016003</aktViide>
+					</avaldamismarge>
+					<joustumine id="c36fde57-dc22-48f6-8343-282f0b491509">2016-05-13</joustumine>
+				</muutmismarge>
+				<loige id="para9lg1">
+					<loigeNr id="d4f354f4-e7e0-444e-b76f-2a4b1f72603d">1</loigeNr>
+					<kuvatavNr id="8a9eb90b-ac93-4649-ba13-abbd17172c6a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="3bfcd61d-83af-4203-82f4-bafe6d3af592">
+						<tavatekst id="5737436c-8d1b-4320-a8ce-1fdd7249a6b3">Narkootiliste ja psühhotroopsete ainete ning nende lähteainete ja uute psühhoaktiivsete ainete lõpliku identifitseerimise tagab riiklik ekspertiisiasutus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="a8858a8f-50fe-4847-8668-34ff8b32d0b6">
+						<avaldamismarge id="7b4e74e3-2528-4453-909b-3b4daade0ddb">
+							<RTosa id="a1bf4046-0691-4940-97fb-7d9cdd743728">RT I</RTosa>
+							<avaldamineKuupaev id="0b6aae71-14d9-4ce4-a247-b259340b9756">2016-05-03</avaldamineKuupaev>
+							<RTartikkel id="751f0df6-a131-47f4-b44e-abb7ac8eb1ae">3</RTartikkel>
+							<aktViide id="eccdd620-e441-4f67-8cb4-7e57b2794298">103052016003</aktViide>
+						</avaldamismarge>
+						<joustumine id="27d22c6c-fe54-4b39-a573-125d14b86ad3">2016-05-13</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg2">
+					<loigeNr id="e541f039-2fc0-4a8b-a968-24b2bc274ea8">2</loigeNr>
+					<kuvatavNr id="86c231b2-30a3-42f2-be64-03c204231658"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="3f5affe7-28a7-4435-801a-6c2874235fa9">
+						<tavatekst>Narkootilisi ja psühhotroopseid aineid ning nende lähteaineid sisaldavate ravimite ja nende kõlblikkuse määramise tagab Ravimiamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="d3ca9b05-469e-444e-842d-93a2a0400a4f">
+						<avaldamismarge id="94483ada-0b9d-44e6-9396-b455d0dedb7f">
+							<RTosa id="3850b1f6-9a9c-4a74-bf4d-746bebf722cd">RT I</RTosa>
+							<avaldamineKuupaev id="bdb051e0-bcce-473a-8182-4d22d0140242">2016-05-03</avaldamineKuupaev>
+							<RTartikkel id="34c9b3bf-a440-41b3-82d5-7bdb242bb74c">3</RTartikkel>
+							<aktViide id="c7ff6a05-410b-4b52-9b4d-7bd6d1410bb3">103052016003</aktViide>
+						</avaldamismarge>
+						<joustumine id="0b955431-7ced-4909-809f-8ffb8d2bfb00">2016-05-13</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg3">
+					<loigeNr id="e0d6e579-8733-4b39-b3ea-5a9a8a28ee5d">3</loigeNr>
+					<kuvatavNr id="6468bbd7-3979-453c-9dfc-cee74875ab26"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="459d186a-1b96-4f25-a873-3896b4ede1cd">
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete lõpliku identifitseerimise inimpäritoluga bioloogilistest materjalidest tagab riiklik ekspertiisiasutus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="5da94ca3-506a-4ce7-955f-8eae474922d6">
+						<avaldamismarge id="8b656b68-7b5a-43b2-8192-2a0f6fe1b317">
+							<RTosa id="aed8871f-36bd-4bfe-aa6f-f836b78aa838">RT I</RTosa>
+							<RTaasta id="1c00ce94-7eaa-40f7-988f-52ff29efbc3b">2007</RTaasta>
+							<RTnr id="83bbdb4a-5559-490f-aa40-594f2ea787d3">44</RTnr>
+							<RTartikkel id="edad603e-0856-48e7-8dbb-693f916e4b3c">314</RTartikkel>
+							<aktViide id="51e1ce6a-b10b-40ef-a6ba-11a21c93454d">12846033</aktViide>
+						</avaldamismarge>
+						<joustumine id="0a0bbb7b-e293-44bd-88c1-7a325d9bc453">2008-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para9lg4">
+					<loigeNr id="f51f98a9-a134-40cc-b3ae-4f74128c0154">4</loigeNr>
+					<kuvatavNr id="979f16db-e6ff-4292-8ab3-7d51bb99d6fd"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="dd6d8df3-4457-4570-8a71-4710e6ede730">
+						<tavatekst>Riiklik ekspertiisiasutus ja Ravimiamet võivad tellida analüüse kodu- ja välismaistest laboratooriumidest.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="b63447e6-1a10-4b60-8e81-fed85cfefd61">
+						<avaldamismarge id="2fca4053-b43f-4a05-8d05-a3bddbb3a003">
+							<RTosa id="6b5cd76e-0a5f-41cf-af3c-cf4ef7feaec3">RT I</RTosa>
+							<RTaasta id="5f48e95b-ae79-4f42-b173-d6bfeed5dc51">2007</RTaasta>
+							<RTnr id="78106f58-9aa6-4992-8f5a-26c20a93caed">44</RTnr>
+							<RTartikkel id="42692f6e-45ea-4e1f-88c1-8fe4b3f5d285">314</RTartikkel>
+							<aktViide id="9748c257-4d41-48ac-9502-6d783d87fabb">12846033</aktViide>
+						</avaldamismarge>
+						<joustumine id="cd530cb7-0538-425d-89c9-4a4263fb3ee6">2008-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10">
+				<paragrahvNr>10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkomaania leviku tõkestamine</paragrahvPealkiri>
+				<loige id="para10lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete ebaseadusliku tarvitamise tõkestamist ning narkomaania leviku vähendamist korraldatakse korrakaitseseaduse §-s 20 nimetatud ennetusnõukogu koordineerimisel ning käesoleva seaduse ja Vabariigi Valitsuse kinnitatava vastavat valdkonda hõlmava strateegilise arengukava alusel.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="bf57baf3-b7b6-4bb5-bf91-bd34ad99e08f">
+						<avaldamismarge id="adcdd825-c869-46dd-aa83-eb1014823c2e">
+							<RTosa id="3aec6caa-d3e9-43a9-bb9b-4b38271597c5">RT I</RTosa>
+							<avaldamineKuupaev id="b3efc687-91c6-4e5e-8b49-3d5e26e50583">2022-08-06</avaldamineKuupaev>
+							<RTartikkel id="e74c171c-e941-4610-9118-e5de31b37b83">6</RTartikkel>
+							<aktViide id="433bd241-ff72-4804-8bd4-0fe409fe54e4">106082022006</aktViide>
+						</avaldamismarge>
+						<joustumine id="a3fb85cf-5065-4108-9eac-d37a5cfbfbbc">2022-08-16</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vabariigi Valitsus ja kohaliku omavalitsuse üksused soodustavad igati narkomaania leviku tõkestamist taotlevate mittetulundusühingute ja sihtasutuste tegevust.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+				<loige id="para10lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Uimastiolukorra kohta olemasolevate epidemioloogiliste ja statistiliste andmete kogumise ja analüüsimise ning narkomaania leviku hindamisega tegeleb Sotsiaalministeerium või Sotsiaalministeeriumi hallatav riigi teadus- ja arendusasutus.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="0871f147-8696-45f6-8940-d6d27ab46953">
+						<avaldamismarge id="7a02d2f3-6077-48f3-b5b4-e13fb927e1c3">
+							<RTosa id="eb83d64e-51b8-4ca0-aec8-e4be3bb3e365">RT I</RTosa>
+							<avaldamineKuupaev id="884324fc-91da-4841-839a-bb29b616cddc">2014-05-09</avaldamineKuupaev>
+							<RTartikkel id="3c8ab5c9-fddf-47b1-a5f3-737fa08dec83">1</RTartikkel>
+							<aktViide id="794bdf9e-11b1-4788-a4ae-9f8da4fbc346">109052014001</aktViide>
+						</avaldamismarge>
+						<joustumine id="1f720e6c-750e-4955-9c66-81a71b0b8dfa">2014-05-19</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para10b1">
+				<paragrahvNr ylaIndeks="1">10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Uute psühhoaktiivsete ainete varajase hoiatuse infosüsteem</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2023-02-03</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>103022023002</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-06-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para10b2">
+				<paragrahvNr ylaIndeks="2">10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Varajase hoiatuse infosüsteemile juurdepääs, andmete esitajad ja andmete esitamise kord</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2023-02-03</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>103022023002</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-06-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para10b3">
+				<paragrahvNr ylaIndeks="3">10</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 10<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Varajase hoiatuse infosüsteemi kantavad andmed</paragrahvPealkiri>
+				<muutmismarge>
+					<tavatekst>Kehtetu - </tavatekst>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2023-02-03</avaldamineKuupaev>
+						<RTartikkel>2</RTartikkel>
+						<aktViide>103022023002</aktViide>
+					</avaldamismarge>
+					<joustumine>2023-06-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para11">
+				<paragrahvNr>11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkomaania ravi</paragrahvPealkiri>
+				<loige id="para11lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkomaaniat ravitakse isiku vaba tahte alusel psühhiaatrilise abi seaduses ettenähtud korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Vaimsete häirete tõttu endale või teistele ohtliku narkomaani haiglasse paigutamine tema tahtest olenemata toimub psühhiaatrilist abi reguleerivate õigusaktide kohaselt.</tavatekst>
+					</sisuTekst>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11b1">
+				<paragrahvNr ylaIndeks="1">11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkomaaniaravi andmekogu</paragrahvPealkiri>
+				<loige id="para11b1lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkomaaniaraviregister on andmekogu, mida peetakse narkomaania esinemise analüüsimiseks, narkomaania leviku ennetamiseks ja ravi tõhususe hindamiseks, tervishoiuteenuste korraldamiseks, diagnostika ja ravi käsitluse hindamiseks, tervisepoliitika väljatöötamiseks ning statistika ja teadusliku uurimistöö, sealhulgas epidemioloogiliste uuringute tegemiseks.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b1lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Psühhiaatria tervishoiuteenuseid osutades on narkomaaniaravi pakkuval teenuseosutajal kohustus esitada andmed narkomaaniaraviregistrisse.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b1lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkomaaniaraviregistrisse kantakse järgmised andmed:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11b1lg3p1">
+						<alampunktNr id="40e4a394-6d7a-4354-a444-f69b1fdcbe80">1</alampunktNr>
+						<kuvatavNr id="e9ce04b9-d58b-498f-b019-854b36db9ff6"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="ad950a3a-2f06-4e88-b8db-eac32e653c6a">
+							<tavatekst id="da0fded2-c54c-441c-bd5d-d060aae13d80">tervishoiuteenuse osutaja ja patsiendi üldandmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg3p2">
+						<alampunktNr id="22d38894-a851-4ed6-a023-bed9724420b7">2</alampunktNr>
+						<kuvatavNr id="ea35232d-5e07-4b2e-8ff0-5febff1a0735"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="0b19ed76-1e79-4ec9-9723-ab8ae8033c6c">
+							<tavatekst id="ec44d378-9cf5-456e-98c2-ab01d80afadf">patsiendi narkomaaniaravi ja seotud nakkushaiguste andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg3p3">
+						<alampunktNr id="ea45140c-5f7f-4043-8329-316c110b767d">3</alampunktNr>
+						<kuvatavNr id="6491762a-f221-4ad4-ada3-227708e4ecbb"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="78cf1f3f-e713-43f3-a33f-90b7c2cf70dc">
+							<tavatekst id="04d4ca35-d8a0-41c9-91b2-498d61f1af7e">patsiendi riskikäitumise andmed.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para11b1lg4">
+					<loigeNr>4</loigeNr>
+					<kuvatavNr><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkomaaniaraviregistri asutab ja selle põhimääruse kehtestab </tavatekst>
+						<viide>
+							<kuvatavTekst><![CDATA[valdkonna eest vastutav minister]]></kuvatavTekst>
+							<viideURID>
+								<viideURI><![CDATA[./dyn=117032026007&id=112032019025]]></viideURI>
+							</viideURID>
+						</viide>
+						<tavatekst> määrusega, milles sätestatakse:</tavatekst>
+					</sisuTekst>
+					<alampunkt id="para11b1lg4p1">
+						<alampunktNr id="c5d393af-d299-4f9e-95e7-345a406dc628">1</alampunktNr>
+						<kuvatavNr id="b72d16e5-28dd-486e-aae2-81a009b91305"><![CDATA[1) ]]></kuvatavNr>
+						<sisuTekst id="e762bdc3-cc79-45b3-8bf7-95e0f71b649d">
+							<tavatekst>volitatud töötleja, kui volitatud töötleja on määratud, ja töötlejate ülesanded;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg4p2">
+						<alampunktNr id="01570dc7-4a22-4f1f-ae98-34b43ad1830d">2</alampunktNr>
+						<kuvatavNr id="a8502e3d-9ff1-4795-82a2-b3963fa79aa5"><![CDATA[2) ]]></kuvatavNr>
+						<sisuTekst id="b94a8c71-77ad-45b2-97db-0d3700d9b79f">
+							<tavatekst id="c8452414-9f99-4074-9790-330acec67623">andmeandjad ja nendelt saadavad andmed;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg4p3">
+						<alampunktNr id="c6404ff7-4b41-4861-bd3f-5a05c2c7b004">3</alampunktNr>
+						<kuvatavNr id="252fdc9e-c201-489b-8db5-7ff05f869dc6"><![CDATA[3) ]]></kuvatavNr>
+						<sisuTekst id="1d4ccdbd-6d28-4896-9268-36334b83d6ed">
+							<tavatekst id="a312da44-5ea5-48c9-b33a-3a304473ac59">kogutavate andmete täpsem koosseis ja narkomaaniaraviregistrisse kandmise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg4p4">
+						<alampunktNr id="e1c03ae8-102a-4b82-92a6-cbeaef1f3380">4</alampunktNr>
+						<kuvatavNr id="a40ae43b-db96-4e9d-9813-fec9b5a5fd1e"><![CDATA[4) ]]></kuvatavNr>
+						<sisuTekst id="7de25f2a-25a2-43ef-bae3-617e880d5313">
+							<tavatekst>andmetele juurdepääsu ja andmete väljastamise ulatus, tingimused ja kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg4p5">
+						<alampunktNr id="ecba6a0c-443d-41f9-a2fb-17622ba640c6">5</alampunktNr>
+						<kuvatavNr id="96f73b9f-4d1a-48c6-b2c4-73512aefabd8"><![CDATA[5) ]]></kuvatavNr>
+						<sisuTekst id="1f7676c2-fb2c-485e-ab71-fe9bc9f8580d">
+							<tavatekst id="8cd6354b-f111-4484-8670-1c5324409522">logi- ja alusandmete säilitamise kord;</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+					<alampunkt id="para11b1lg4p6">
+						<alampunktNr id="5a808a65-7e6e-4d68-909e-00b89052bf8b">6</alampunktNr>
+						<kuvatavNr id="ca0f1bc8-529b-4d1a-b4bb-f83900b7f5b2"><![CDATA[6) ]]></kuvatavNr>
+						<sisuTekst id="512c1fe1-a8ac-4bed-aac4-f4f07f738910">
+							<tavatekst id="fe46c04d-ff19-4211-a008-9fc44974e235">muud korraldusküsimused.</tavatekst>
+						</sisuTekst>
+					</alampunkt>
+				</loige>
+				<loige id="para11b1lg5">
+					<loigeNr id="3a3903f2-b917-48ca-b862-a9765245decd">5</loigeNr>
+					<kuvatavNr id="5b407ad7-3375-4e1f-8b95-ee07fe60c29c"><![CDATA[(5)]]></kuvatavNr>
+					<sisuTekst id="73622b94-6dfa-4df2-b66a-6f94795e81c2">
+						<tavatekst>Juurdepääsupiirang narkomaaniaraviregistri isikuandmetele kehtib tähtajatult.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b1lg6">
+					<loigeNr id="165e2036-bb3b-4349-a02f-3a31cc54d7f2">6</loigeNr>
+					<kuvatavNr id="fb2ea637-8320-4d18-b0e9-da12042319f4"><![CDATA[(6)]]></kuvatavNr>
+					<sisuTekst id="8858fc89-ab80-496e-8f22-ecac3333a67f">
+						<tavatekst>Käesoleva paragrahvi lõikes 2 nimetatud tervishoiuteenuse osutajal, kellel on seadusest tulenev saladuse hoidmise kohustus, on tervishoiuteenuse osutamiseks õigus andmesubjekti nõusolekuta töödelda narkomaaniaraviregistris olevaid isikuandmeid.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b1lg7">
+					<loigeNr id="bd99a956-2f66-46c1-8b35-6bcbdf45948f">7</loigeNr>
+					<kuvatavNr id="c02bdaf3-229e-40e1-a396-38554ac59a2d"><![CDATA[(7)]]></kuvatavNr>
+					<sisuTekst id="4ebd4043-a04a-4565-bdc4-b5ac916eebe4">
+						<tavatekst>Õigustatud huvi eesmärgil isikuandmeid ei väljastata, välja arvatud isikuandmete kaitse seaduse §-s 6 nimetatud tingimustel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b1lg8">
+					<loigeNr id="d287b8b2-59af-4129-bcf1-4265eae4f2ec">8</loigeNr>
+					<kuvatavNr id="c7ea7aa1-ade3-4359-8664-621a5556d09b"><![CDATA[(8)]]></kuvatavNr>
+					<sisuTekst id="e1cfda56-37e6-4698-822a-24667b505aac">
+						<tavatekst>Narkomaaniaraviregistri andmeid säilitatakse tähtajatult. Logisid ja alusandmeid säilitatakse vastavalt narkomaaniaraviregistri põhimääruses sätestatule.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b1lg9">
+					<loigeNr id="ff73de35-58a7-4703-98b0-35698396de6d">9</loigeNr>
+					<kuvatavNr id="f2f681c2-76c7-4451-9c4e-2d7ee1ae1e9d"><![CDATA[(9)]]></kuvatavNr>
+					<sisuTekst id="374ff17d-a6b4-4ad2-bfe5-24599e4c12ce">
+						<tavatekst>Narkomaaniaraviregistri vastutav töötleja on Tervise Arengu Instituut.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="b75da450-5cec-4bdc-8b5c-d2b6a180f186">
+						<avaldamismarge id="a2816391-b234-4cc3-a49c-021cfe26b41c">
+							<RTosa id="4c73a39a-0746-476b-8291-8cf1eedad494">RT I</RTosa>
+							<avaldamineKuupaev id="62d53c6e-2389-49b1-828c-7a38e9588b90">2020-01-08</avaldamineKuupaev>
+							<RTartikkel id="f062d167-5c14-4dd4-93d7-ecfcdaff2431">2</RTartikkel>
+							<aktViide id="550aa52a-197c-4254-843e-88aee1dc7624">108012020002</aktViide>
+						</avaldamismarge>
+						<joustumine id="0a32fa1e-c7d8-48bb-932c-b624360fc753">2020-02-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11b2">
+				<paragrahvNr ylaIndeks="2">11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11<sup>2</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Teaduseetika komitee</paragrahvPealkiri>
+				<loige id="para11b2lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Käesoleva seaduse §-s 11<sup>1</sup> nimetatud andmekogust teadusuuringu või statistika vajadusteks isikuandmete väljastamise eetilisust ja põhjendatust hindab sõltumatu teadlastest ja eri elualade esindajatest koosnev teadus- ja arendustegevuse ning innovatsiooni korralduse seaduse §-s 26 nimetatud teaduseetika komitee.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117032026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para11b3">
+				<paragrahvNr ylaIndeks="3">11</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 11<sup>3</sup>.]]></kuvatavNr>
+				<paragrahvPealkiri>Narkootiliste ja psühhotroopsete ainete tarvitamisest tingitud kahju vähendamise teenuse osutamine</paragrahvPealkiri>
+				<loige id="para11b3lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete tarvitamisest tingitud kahju vähendamise teenuse eesmärk on minimeerida ühiskonnale, aine tarvitajale ning tema lähedastele narkootiliste ja psühhotroopsete ainete tarvitamisega tekkinud kahju ja kulutusi ning vähendada narkootikumide üleannustamisest tingitud surmajuhtude arvu.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b3lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Narkootiliste ja psühhotroopsete ainete tarvitamisest tingitud kahju vähendamise teenuse arendamist ning osutamist korraldab Sotsiaalministeerium või Sotsiaalministeeriumi hallatav riigi teadus- ja arendusasutus.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para11b3lg3">
+					<loigeNr>3</loigeNr>
+					<kuvatavNr><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Kohaliku omavalitsuse üksused aitavad kaasa narkootiliste ja psühhotroopsete ainete tarvitamisest tingitud kahju vähendamise teenuse osutamisele oma haldusterritooriumil.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12">
+				<paragrahvNr>12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12. ]]></kuvatavNr>
+				<paragrahvPealkiri>Narkomaani rehabilitatsioon</paragrahvPealkiri>
+				<loige id="para12lg1">
+					<sisuTekst>
+						<tavatekst>Narkomaaniat põdevate isikute rehabiliteerimist ja sotsiaalabi korraldavad Vabariigi Valitsus ja kohaliku omavalitsuse üksused.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk3">
+			<peatykkNr ylaIndeks="1">2</peatykkNr>
+			<kuvatavNr><![CDATA[2<sup>1</sup>. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>RIIKLIK JA HALDUSJÄRELEVALVE</peatykkPealkiri>
+			<muutmismarge>
+				<avaldamismarge>
+					<RTosa>RT I</RTosa>
+					<avaldamineKuupaev>2014-03-13</avaldamineKuupaev>
+					<RTartikkel>4</RTartikkel>
+					<aktViide>113032014004</aktViide>
+				</avaldamismarge>
+				<joustumine>2014-07-01</joustumine>
+			</muutmismarge>
+			<paragrahv id="para12b1">
+				<paragrahvNr ylaIndeks="1">12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Riiklik ja haldusjärelevalve</paragrahvPealkiri>
+				<muutmismarge>
+					<avaldamismarge>
+						<RTosa>RT I</RTosa>
+						<avaldamineKuupaev>2014-03-13</avaldamineKuupaev>
+						<RTartikkel>4</RTartikkel>
+						<aktViide>113032014004</aktViide>
+					</avaldamismarge>
+					<joustumine>2014-07-01</joustumine>
+				</muutmismarge>
+				<loige id="para12b1lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Riiklikku ja haldusjärelevalvet Euroopa Liidus lähteainete kaubandust reguleerivate vahetult kohalduvate õigusaktide ning käesoleva seaduse ja selle alusel kehtestatud õigusaktide täitmise üle teostavad vastavalt oma pädevusele Ravimiamet, Politsei- ja Piirivalveamet ning Maksu- ja Tolliamet.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12b2">
+				<paragrahvNr ylaIndeks="2">12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Riikliku järelevalve erimeetmed</paragrahvPealkiri>
+				<loige id="para12b2lg1">
+					<loigeNr>1</loigeNr>
+					<kuvatavNr><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Ravimiamet võib käesolevas seaduses sätestatud riikliku järelevalve teostamiseks kohaldada korrakaitseseaduse §-des 30–32 ja 50–52 sätestatud riikliku järelevalve erimeetmeid korrakaitseseaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para12b2lg2">
+					<loigeNr>2</loigeNr>
+					<kuvatavNr><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst>
+						<tavatekst>Politsei- ja Piirivalveamet ning Maksu- ja Tolliamet võivad käesolevas seaduses sätestatud riikliku järelevalve teostamiseks kohaldada korrakaitseseaduse §-des 30–32 ja 45–52 sätestatud riikliku järelevalve erimeetmeid korrakaitseseaduses sätestatud alusel ja korras.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2025-01-02</avaldamineKuupaev>
+							<RTartikkel>3</RTartikkel>
+							<aktViide>102012025003</aktViide>
+						</avaldamismarge>
+						<joustumine>2025-01-12</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para12b3">
+				<paragrahvNr ylaIndeks="3">12</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 12<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Sunniraha määr</paragrahvPealkiri>
+				<loige id="para12b3lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Ettekirjutuse täitmata jätmise korral on asendustäitmise ja sunniraha seaduses sätestatud korras rakendatava sunniraha ülemmäär 1600 eurot.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2014-03-13</avaldamineKuupaev>
+							<RTartikkel>4</RTartikkel>
+							<aktViide>113032014004</aktViide>
+						</avaldamismarge>
+						<joustumine>2014-07-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk4">
+			<peatykkNr>3</peatykkNr>
+			<kuvatavNr><![CDATA[3. peatükk]]></kuvatavNr>
+			<peatykkPealkiri>VASTUTUS</peatykkPealkiri>
+			<paragrahv id="para13">
+				<paragrahvNr>13</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 13. ]]></kuvatavNr>
+				<paragrahvPealkiri>Füüsilise isiku vastutus</paragrahvPealkiri>
+				<muutmismarge id="197105df-6c3e-419d-9846-feb54398e11d">
+					<tavatekst id="2e63a2e5-2071-4d9c-822b-eebaf7054ef9">Kehtetu - </tavatekst>
+					<avaldamismarge id="86836ac7-a5ab-47e3-8ec9-9089c20c294b">
+						<RTosa id="c88fa840-6978-496c-a97a-d516f62b7d22">RT I</RTosa>
+						<RTaasta id="37ea977a-d589-4e79-80ca-3ce5aecd6daa">2002</RTaasta>
+						<RTnr id="c907656f-a38d-45f3-8471-aee3c7fc81ac">63</RTnr>
+						<RTartikkel id="1767e1e5-2fae-4114-9b39-5869b3e7efe4">387</RTartikkel>
+						<aktViide id="5720cd5e-ed63-4bf9-a83b-1f16beae55dc">212735</aktViide>
+					</avaldamismarge>
+					<joustumine id="5646514b-d372-4e37-9e6b-d431ec844514">2002-09-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para13b1">
+				<paragrahvNr id="04527967-f046-4c15-a5a1-b043fdd00b83" ylaIndeks="1">13</paragrahvNr>
+				<kuvatavNr id="f0659aa4-7c8c-4f28-ad63-f736919bb2b0"><![CDATA[§ 13<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="f02b5476-0b80-4050-95cb-0612e4d9b55f">Vaide esitamine</paragrahvPealkiri>
+				<muutmismarge id="3c9f4f68-379d-451b-8abd-8a6e8b20ee00">
+					<tavatekst id="20979eff-3b29-48ca-bb5e-ae616b942ce7">Kehtetu - </tavatekst>
+					<avaldamismarge id="0fc0cbbd-d41d-46d0-ad4a-93ac51046056">
+						<RTosa id="fc31a70d-9898-4e0d-8935-f9e5cce638e1">RT I</RTosa>
+						<RTaasta id="124afdea-9f11-4104-add9-9c13955b4ac7">2005</RTaasta>
+						<RTnr id="ccbc986d-0dc9-44be-91cd-72b1334d467e">24</RTnr>
+						<RTartikkel id="f9cb6cec-74b0-47bc-b72a-b9c2bc1c5883">180</RTartikkel>
+						<aktViide id="370a7cc7-ea2f-4746-9425-3607322865e2">895473</aktViide>
+					</avaldamismarge>
+					<joustumine id="008f5fb3-4a50-4a24-b075-ed9e61859aa5">2005-05-20</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para14">
+				<paragrahvNr id="05a54fbd-314f-45c7-9b74-bb86cac6fe23">14</paragrahvNr>
+				<kuvatavNr id="b1e03817-bf68-4882-aad8-d7394cf0fca2"><![CDATA[§ 14. ]]></kuvatavNr>
+				<paragrahvPealkiri id="e15e761f-a95b-4866-b2f0-cd0f04662ba1">Juriidilise isiku haldusvastutus</paragrahvPealkiri>
+				<muutmismarge id="09e2f2f2-0317-43c1-a11b-c9e3270447e2">
+					<tavatekst id="51ce8d28-53af-40bf-a5c7-685aa8dd019c">Kehtetu - </tavatekst>
+					<avaldamismarge id="7c7504db-4139-4058-8814-6152de207ed5">
+						<RTosa id="83b842a1-4cc9-41c2-9eca-332b4cbf81a6">RT I</RTosa>
+						<RTaasta id="1f97ca94-57bb-403c-be43-4720387028d0">2002</RTaasta>
+						<RTnr id="6abadd26-4a25-4c4b-a9e9-5984ef785f95">63</RTnr>
+						<RTartikkel id="bb5e3661-9c9a-4d68-92ec-f0ec7aa29769">387</RTartikkel>
+						<aktViide id="66e95a28-384e-4654-b88d-4fd57d582eed">212735</aktViide>
+					</avaldamismarge>
+					<joustumine id="18a911ec-c2c5-4cb7-866d-120ea5725239">2002-09-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para15">
+				<paragrahvNr id="e8e46dfd-620b-4d94-90b8-15a6290a692c">15</paragrahvNr>
+				<kuvatavNr id="8ade6e55-ea38-4c88-9c01-3f553ec2a4ea"><![CDATA[§ 15. ]]></kuvatavNr>
+				<paragrahvPealkiri id="c88705b7-3d2b-4bee-a485-e6b1a45b63be">Käesoleva seaduse §-s 14 nimetatud õiguserikkumise asja menetlus</paragrahvPealkiri>
+				<muutmismarge id="1591340c-7671-4ef2-b063-a9b21b79a6e7">
+					<tavatekst id="e78c16ba-26f0-4be2-b5a2-c659c4c1844f">Kehtetu - </tavatekst>
+					<avaldamismarge id="2bb2aaaf-fd96-4c53-8884-128be83aacf7">
+						<RTosa id="65a47407-a361-4b31-9c67-718a389c849c">RT I</RTosa>
+						<RTaasta id="54665044-f9e7-45b8-87e6-c58681ca0a5f">2002</RTaasta>
+						<RTnr id="c85bd2af-2cc7-4013-8950-5115b3eb3342">63</RTnr>
+						<RTartikkel id="79f7c39a-f304-44c9-b243-1e2ce4c0997a">387</RTartikkel>
+						<aktViide id="985a5327-b92b-4a8a-88e3-b667ebbc18dc">212735</aktViide>
+					</avaldamismarge>
+					<joustumine id="9af6755b-b918-457c-8916-926a34bd1606">2002-09-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para15b1">
+				<paragrahvNr id="362e6968-0ec5-499d-9fc4-7df4e5c638e6" ylaIndeks="1">15</paragrahvNr>
+				<kuvatavNr id="95f3320f-7bc5-4eae-93d6-ecccf0b45898"><![CDATA[§ 15<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="8d91f305-62d7-4a41-badb-ca38fa315e43">Narkootilise või psühhotroopse aine ebaseaduslik käitlemine väikeses koguses</paragrahvPealkiri>
+				<loige id="para15b1lg1">
+					<loigeNr id="6f8d0e8a-e5e1-4093-9451-320af9a2d7b7">1</loigeNr>
+					<kuvatavNr id="32419730-4f0e-4be4-8cfc-506e38b18a03"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="2b2b4709-59ab-4607-a89b-0ccc356f0281">
+						<tavatekst id="ae8d7e8f-822c-456f-81cc-4f4f5800ed96">Narkootilise või psühhotroopse aine arsti ettekirjutuseta tarvitamise või väikeses koguses ebaseadusliku valmistamise, omandamise või valdamise eest –<reavahetus/>karistatakse rahatrahviga kuni 300 trahviühikut või arestiga.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15b1lg2">
+					<loigeNr id="c2691edc-6f57-492b-840a-98e555df6bca">2</loigeNr>
+					<kuvatavNr id="66611207-32f5-42db-9c9c-c9e0d80a0440"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="2beee2d3-cb6f-456d-b766-3587c02186b7">
+						<tavatekst id="b5f06039-8f03-4ca5-93aa-2d8bba77e226">Sama teo eest, kui selle on toime pannud juriidiline isik, –<reavahetus/>karistatakse rahatrahviga kuni 3200 eurot.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="106b665e-b8f8-4db9-a282-035421dfdfd0">
+						<avaldamismarge id="0dd34fbd-0dfa-44e6-857a-6bc5c854d239">
+							<RTosa id="a1ee942b-a8a4-4c76-bc2f-f5b9c8bea164">RT I</RTosa>
+							<avaldamineKuupaev id="91e8e256-67cd-416d-b3fb-5db3aefa145d">2014-07-12</avaldamineKuupaev>
+							<RTartikkel id="32686f24-0faa-4445-bf9a-d66aac7da215">1</RTartikkel>
+							<aktViide id="459b2f44-8d62-4644-a800-0e91314b387a">112072014001</aktViide>
+						</avaldamismarge>
+						<joustumine id="10a589a7-be3c-4644-b1ac-031382c146e4">2015-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para15b2">
+				<paragrahvNr id="4018fd50-a2d3-40cb-93e1-394b5e2da9ba" ylaIndeks="2">15</paragrahvNr>
+				<kuvatavNr id="b8336767-4915-4600-ade8-9cc33078c0f1"><![CDATA[§ 15<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="2e662a0d-2908-42cf-855b-15dd5a4d3d05">Narkootilise või psühhotroopse aine või nende lähteaine käitlemise, arvestuse või aruandluse nõuete rikkumine</paragrahvPealkiri>
+				<muutmismarge id="f808edf2-10fa-4266-9845-4a7b940dc38e">
+					<tavatekst id="ff75ae5c-08ba-4986-bc85-3270ec538d72">Kehtetu - </tavatekst>
+					<avaldamismarge id="3256b683-6e81-426c-92f6-d3a299329eb7">
+						<RTosa id="87e49814-625c-45a5-9af2-1c5147d54f67">RT I</RTosa>
+						<avaldamineKuupaev id="d956f623-0b1d-41b8-9721-86e7b2ac90fd">2014-07-12</avaldamineKuupaev>
+						<RTartikkel id="0d1efd8a-2aff-4700-9482-d57b5d758f4e">1</RTartikkel>
+						<aktViide id="1709bcad-cbff-4abe-bdbc-f41ebded0717">112072014001</aktViide>
+					</avaldamismarge>
+					<joustumine id="af586852-a6c5-4f86-9b4e-8c8fe71d6fc4">2015-01-01</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para15b3">
+				<paragrahvNr id="bc3cada5-7e53-4d79-b5b9-c5792ffc95b9" ylaIndeks="3">15</paragrahvNr>
+				<kuvatavNr id="40cc5070-5121-4736-8b25-00af2642ed0f"><![CDATA[§ 15<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="0f999e2a-19dd-4a97-b164-a5d0d2920c77">Menetlus</paragrahvPealkiri>
+				<loige id="para15b3lg1">
+					<loigeNr id="4e15819d-ff12-4c37-9045-1fd019215ad9">1</loigeNr>
+					<kuvatavNr id="9ed17f8d-1e4d-489a-8fcc-ce984fe04a5a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="56ef1765-8d21-4dc6-b28a-64c0b5d6c995">
+						<tavatekst id="e24169df-a047-4407-b117-838ce6aec0c1">Käesoleva seaduse §-s 15<sup>1</sup> sätestatud väärteo kohtuvälised menetlejad on Politsei- ja Piirivalveamet ning Maksu- ja Tolliamet.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para15b3lg2">
+					<loigeNr id="230dec11-6860-4014-8302-38963c5c0577">2</loigeNr>
+					<kuvatavNr id="a82aee9f-db3f-4a00-851c-b38694bc29a1"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="4149c658-4542-4832-9902-05ae6d156e62">
+						<tavatekst id="4cb76307-b190-4250-98f7-e057b74ab1b8">Politsei- ja Piirivalveamet, Maksu- ja Tolliamet või kohus konfiskeerib §-s 15<sup>1</sup> sätestatud väärteo toimepanemise vahetuks objektiks olnud aine.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="806cf426-b50f-43b3-96e6-5dbab2c41b8f">
+						<avaldamismarge id="4dbebb4f-b262-40f4-a645-4dba97cf2da6">
+							<RTosa id="7146ae7b-0163-45f8-9307-b18d3f053700">RT I</RTosa>
+							<avaldamineKuupaev id="a25ac3ed-743b-491d-a102-88ba632001f8">2014-07-12</avaldamineKuupaev>
+							<RTartikkel id="a7e2de0f-2399-44d8-86d5-ae3cce730867">1</RTartikkel>
+							<aktViide id="23877a74-cc8e-44a4-b881-b0c97e96bcdd">112072014001</aktViide>
+						</avaldamismarge>
+						<joustumine id="cb48644b-b54b-4170-acc1-f74d18bc5911">2015-01-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+		<peatykk id="ptk5">
+			<peatykkNr id="a22a6376-bcac-49e6-89ad-ad74b9dc8392">4</peatykkNr>
+			<kuvatavNr id="f4e0f43a-ceed-4fc2-93ee-36f8ba34d2d0"><![CDATA[4. peatükk]]></kuvatavNr>
+			<peatykkPealkiri id="c8f1f3bd-ac1d-444e-adf8-c3311ba6e3bb">RAKENDUSSÄTTED</peatykkPealkiri>
+			<paragrahv id="para16">
+				<paragrahvNr id="3b91a6a0-b8cd-4e1c-9830-bbbd69a1c818" kehtiv="0">16</paragrahvNr>
+				<kuvatavNr id="bc87cb1d-d1ff-4bc8-bc2b-d7051e1bcf1e">§ 16. </kuvatavNr>
+				<sisuTekst id="4453a2ac-5a1d-43cd-8870-39e15975b4c8">
+					<tavatekst id="2eecc277-10cc-4de0-b229-0ae58801bd09"> – </tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para18">
+				<paragrahvNr id="dbdb268b-2675-460d-b58c-02209a15a16f" kehtiv="0">18</paragrahvNr>
+				<kuvatavNr id="b28a5f7e-87d0-4426-a965-991e59b482d1">§ 18. </kuvatavNr>
+				<sisuTekst id="457481c3-842c-4f34-8fa7-28b1b494717f">
+					<tavatekst id="8bedaa94-d986-4028-bf25-efc3201faefb">[Käesolevast tekstist välja jäetud.]</tavatekst>
+				</sisuTekst>
+			</paragrahv>
+			<paragrahv id="para18b1">
+				<paragrahvNr id="1b219f3c-8437-4261-bea3-b811cd764249" ylaIndeks="1">18</paragrahvNr>
+				<kuvatavNr id="59782a34-f3bf-4c21-834f-dd252b69228d"><![CDATA[§ 18<sup>1</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="abd04cbf-07e5-4b5d-b98e-40c75aec6502">Seaduse rakendamine</paragrahvPealkiri>
+				<muutmismarge id="7c9e1624-ee41-4f5d-9d18-394f2ebee1d7">
+					<tavatekst id="1194ff62-cddb-4967-8620-f63c32be4f72">Kehtetu - </tavatekst>
+					<avaldamismarge id="24e0e2a4-2f7e-4675-9d3c-fb1c93af6c9b">
+						<RTosa id="b6289e6b-b9a1-40d3-801b-c12b7ac27230">RT I</RTosa>
+						<avaldamineKuupaev id="bd5bc301-effd-4478-b30a-ff4d1001b27c">2015-12-01</avaldamineKuupaev>
+						<RTartikkel id="9aff6c48-6e79-475c-b2ff-96f58253076c">1</RTartikkel>
+						<aktViide id="3d71dc64-ebe0-4d91-b949-eb43e969aac9">101122015001</aktViide>
+					</avaldamismarge>
+					<joustumine id="9da58f70-057e-4bdf-bdbe-b06663b619d3">2015-12-11</joustumine>
+				</muutmismarge>
+			</paragrahv>
+			<paragrahv id="para18b2">
+				<paragrahvNr id="f5060d20-a708-43e2-aaa0-6e93a2d9342e" ylaIndeks="2">18</paragrahvNr>
+				<kuvatavNr id="7f4ebee3-d10a-4ba4-9952-882ae44a4b15"><![CDATA[§ 18<sup>2</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri id="cf51f3dc-3d86-4844-b69b-0a7503409393">Käesoleva seaduse § 11<sup>1</sup> rakendamise erisus</paragrahvPealkiri>
+				<loige id="para18b2lg1">
+					<loigeNr id="31881de8-b53a-413b-9f05-093e344d3e78">1</loigeNr>
+					<kuvatavNr id="b818076c-e6bf-47a4-b844-7e7e19e1c20c"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="bbc44eb9-3395-4d61-97c6-2662afe4b883">
+						<tavatekst id="a4f3cb37-9ef0-4f8f-9636-c131f5b2b73c">Isikustatud narkomaania ravijuhud kantakse narkomaaniaraviregistrisse alates 2020. aasta 1. veebruarist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para18b2lg2">
+					<loigeNr id="d1bdff65-3d17-4e23-ae70-b09816c7c0e8">2</loigeNr>
+					<kuvatavNr id="60c8c9e3-e78d-4e69-b494-0c01719c737b"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="45b01723-fff7-4f56-a170-2576e04941c6">
+						<tavatekst id="116fa2ba-039a-46e1-a26a-e3d35a7545b6">Narkomaania ravijuhtude andmed, mis on kantud narkomaaniaraviregistrisse enne 2020. aasta 1. veebruari, arhiveeritakse isikustamata kujul vastavalt narkomaaniaraviregistri põhimääruses sätestatule.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="66500a74-c399-4ac5-8893-3eb79272da70">
+						<avaldamismarge id="5389d75c-a5b0-426c-834f-62d9574ca14a">
+							<RTosa id="668bc538-746b-4fa3-ae8a-c958aeb581e4">RT I</RTosa>
+							<avaldamineKuupaev id="adf21b74-574e-47e2-8669-691eec74870f">2020-01-08</avaldamineKuupaev>
+							<RTartikkel id="2bb61c27-df31-4c22-9ad5-d879bcb62d92">2</RTartikkel>
+							<aktViide id="acca7e1c-dda0-4f89-9421-3fb17cd62257">108012020002</aktViide>
+						</avaldamismarge>
+						<joustumine id="259cd7f1-0ca2-45f3-a8da-011d5acd0e16">2020-02-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para18b3">
+				<paragrahvNr ylaIndeks="3">18</paragrahvNr>
+				<kuvatavNr><![CDATA[§ 18<sup>3</sup>. ]]></kuvatavNr>
+				<paragrahvPealkiri>Eetikakomitee menetluse erisus</paragrahvPealkiri>
+				<loige id="para18b3lg1">
+					<loigeNr/>
+					<kuvatavNr/>
+					<sisuTekst>
+						<tavatekst>Kui uuringueetika komitee ei ole 2026. aasta 1. aprilliks teinud otsust teadusuuringu eesmärgil andmete kasutamiseks või väljastamiseks esitatud taotluse kohta, tagastatakse taotlus ja makstud menetlustasu taotlejale.</tavatekst>
+					</sisuTekst>
+					<muutmismarge>
+						<avaldamismarge>
+							<RTosa>RT I</RTosa>
+							<avaldamineKuupaev>2026-03-17</avaldamineKuupaev>
+							<RTartikkel>1</RTartikkel>
+							<aktViide>117032026001</aktViide>
+						</avaldamismarge>
+						<joustumine>2026-04-01</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+			<paragrahv id="para19">
+				<paragrahvNr id="5fb4695f-a1ba-4281-b5b5-4e6cdc56ac3f">19</paragrahvNr>
+				<kuvatavNr id="355ae1cc-e2e4-47a1-9770-dcc733aac7d2"><![CDATA[§ 19. ]]></kuvatavNr>
+				<paragrahvPealkiri id="cbdefc45-6765-431e-8c39-10b624d303a9">Seaduse jõustumine</paragrahvPealkiri>
+				<loige id="para19lg1">
+					<loigeNr id="c43b1837-300d-49a8-9804-59a3363d3aab">1</loigeNr>
+					<kuvatavNr id="12e0663e-df7d-495d-afd7-740ffd0c6f5a"><![CDATA[(1)]]></kuvatavNr>
+					<sisuTekst id="76342884-1df7-46ae-b2e0-fafc229011ae">
+						<tavatekst id="d84060d2-f7ea-4a4f-9ce0-a804db2522ae">Seadus jõustub 1997. aasta 1. novembril.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg2">
+					<loigeNr id="a95ac755-ed43-4611-ba10-68fddafd2027">2</loigeNr>
+					<kuvatavNr id="e5ba7345-4a5f-486b-b9b6-b856b1ea8929"><![CDATA[(2)]]></kuvatavNr>
+					<sisuTekst id="e33f5445-3225-440b-9679-83f4cfb04ef1">
+						<tavatekst id="f03d288e-8561-439b-929a-c63ddce6c4bd">Käesoleva seaduse § 3<sup>1</sup> lõige 3 jõustub 2005. aasta 1. juulil.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg3">
+					<loigeNr id="f26e4236-815f-410f-b786-58ab66a77046">3</loigeNr>
+					<kuvatavNr id="e3f1aa1a-b3db-43c4-9b93-e33b62c2a815"><![CDATA[(3)]]></kuvatavNr>
+					<sisuTekst id="c19b63a5-a060-4bc8-a1fb-120460a65f57">
+						<tavatekst id="326e474d-282f-4ffa-b873-edf92bebb49c">Käesoleva seaduse § 8 tunnistatakse kehtetuks alates 2005. aasta 1. juulist.</tavatekst>
+					</sisuTekst>
+				</loige>
+				<loige id="para19lg4">
+					<loigeNr id="30e9871b-0a64-4f21-8fae-3c429a71b25b">4</loigeNr>
+					<kuvatavNr id="d25529b5-6de7-4e6f-9a3c-a2ca551f4d17"><![CDATA[(4)]]></kuvatavNr>
+					<sisuTekst id="81fa86f0-5366-4df2-8de6-eea2e40df43f">
+						<tavatekst id="54f3ddbd-60d5-455e-aa41-b819f1187599">Käesoleva seaduse § 11<sup>1</sup> jõustub 2006. aasta 1. jaanuaril.</tavatekst>
+					</sisuTekst>
+					<muutmismarge id="6e309738-41e4-411f-80d0-cc44a71bc2b1">
+						<avaldamismarge id="8e281895-ebaf-43c1-b527-ec109d9e7cf1">
+							<RTosa id="d847cdbc-b8a3-4284-9665-1bee41ef734b">RT I</RTosa>
+							<RTaasta id="ecc7399a-d1a4-4089-8bcd-fe0e845fbd5d">2005</RTaasta>
+							<RTnr id="ee5daf26-efef-4819-b9bd-d46317f2bd54">24</RTnr>
+							<RTartikkel id="191acca2-c1aa-465f-beeb-8611193d1cfe">180</RTartikkel>
+							<aktViide id="8129bd78-244c-440d-8054-ebed6461e6f8">895473</aktViide>
+						</avaldamismarge>
+						<joustumine id="7f2f12fd-f468-4e3e-844b-cb677601fd77">2005-05-20</joustumine>
+					</muutmismarge>
+				</loige>
+			</paragrahv>
+		</peatykk>
+	</sisu>
+	<normtehnmarkus id="23203b59-edb8-42d8-9f61-106740d9032b">
+		<normtehnmarkusNr id="4e5535a1-ee40-4035-b43c-8b075d6dd304">1</normtehnmarkusNr>
+		<normtehnmarkusTekst id="00c9cef9-290d-4adc-a01b-85dc5b33dee6"> Euroopa Parlamendi ja nõukogu direktiiv (EL) 2017/2103, millega muudetakse nõukogu raamotsust 2004/757/JSK uute psühhoaktiivsete ainete lisamiseks uimasti määratlusse ja tunnistatakse kehtetuks nõukogu otsus 2005/387/JSK (ELT L 305, 21.11.2017, lk 12–18).</normtehnmarkusTekst>
+		<muutmismarge id="ff209720-87fb-4634-86db-e24abaedd6ec">
+			<avaldamismarge id="ec3b5c83-ad05-465f-bb40-eaf7ccb3e88a">
+				<RTosa id="e6a482d4-e03e-42ac-aa93-b1ca7978c494">RT I</RTosa>
+				<avaldamineKuupaev id="b5acb354-40ab-4fe2-87d9-9baa57172199">2018-11-14</avaldamineKuupaev>
+				<RTartikkel id="3ab427c2-eaa6-4868-9be5-ebf507790d16">3</RTartikkel>
+				<aktViide id="ab4e80f7-dbd3-4796-8bd6-7194ae18da9c">114112018003</aktViide>
+			</avaldamismarge>
+			<joustumine id="e9dff8ed-8626-4e13-a94b-e425de45af5e">2018-11-23</joustumine>
+		</muutmismarge>
+	</normtehnmarkus>
+</oigusakt>

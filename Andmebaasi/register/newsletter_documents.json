@@ -1,20 +1,21 @@
 {
   "version": "newsletter-documents-1",
-  "note": "Ajakirja Sotsiaaltöö uudiskirjas viidatud dokumendid (PDF), mida 07.10.2026 või 20.10.2026 RAG-is ei olnud: pealkiri, väljaandja ametlik aadress ja seis. Failid ise ei ole koodihoidlas (ADR-099). Seisud: in_corpus_v<N> on RAG-is alates sellest korpuse versioonist; waiting_room on vastu võtmata ja ootab serveri kettaruumi (umbes 380 KB lõigu kohta); held_partial_text on vastuvõtu kinni peetud, sest liiga paljudel lehekülgedel puudub tekstikiht; waiting_english on ingliskeelne (omanik 07.10.2026: praegu ei lisata, kirjas hilisemaks); needs_text_recognition on tekstikihita (lehed on pildid); too_large ületab vastuvõtu 32 MB piiri; left_out_tables on arvutabelite kogumik (omanik: jääb välja).",
+  "note": "Ajakirja Sotsiaaltöö uudiskirjas viidatud dokumendid (PDF), mida 07.10.2026 või 20.10.2026 RAG-is ei olnud: pealkiri, väljaandja ametlik aadress ja seis. Failid ise ei ole koodihoidlas (ADR-099). Seisud: in_corpus_v<N> on RAG-is alates sellest korpuse versioonist (v91: tekstikihiga koopiad ja 20.10 korje teise otsingu leiud); waiting_room on vastu võtmata ja ootab serveri kettaruumi (umbes 380 KB lõigu kohta); held_partial_text on vastuvõtu kinni peetud, sest liiga paljudel lehekülgedel puudub tekstikiht; waiting_english on ingliskeelne (omanik 07.10.2026: praegu ei lisata, kirjas hilisemaks); needs_text_recognition on tekstikihita (lehed on pildid); too_large ületab vastuvõtu 32 MB piiri; left_out_tables on arvutabelite kogumik (omanik: jääb välja).",
   "collected": "2026-10-07, 2026-10-20",
   "counts": {
-    "held_partial_text": 3,
+    "held_partial_text": 1,
     "in_corpus_v66": 74,
     "in_corpus_v67": 30,
     "in_corpus_v68": 49,
     "in_corpus_v89": 62,
+    "in_corpus_v91": 14,
     "left_out_tables": 3,
-    "needs_text_recognition": 6,
+    "needs_text_recognition": 1,
     "waiting_english": 9
   },
   "documents": [
     {
-      "state": "held_partial_text",
+      "state": "in_corpus_v91",
       "newsletter_issue": "3/2019",
       "title": "Digiareng ja noorsootöö",
       "publisher": "Eesti Noorsootöö Keskus",
@@ -24,7 +25,8 @@
       "language": "et",
       "pages": 148,
       "words": 32660,
-      "megabytes": 0.8
+      "megabytes": 0.8,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis"
     },
     {
       "state": "held_partial_text",
@@ -37,7 +39,8 @@
       "language": "et",
       "pages": 77,
       "words": 9986,
-      "megabytes": 2.9
+      "megabytes": 2.9,
+      "note": "jääb välja: kõik tekstikihita leheküljed on joonised (omanik 20.10.2026: „selliseid jooniseid kindlasti ei ole mul andmebaasi vaja“)"
     },
     {
       "state": "in_corpus_v66",
@@ -2062,7 +2065,7 @@
       "megabytes": 4.3
     },
     {
-      "state": "needs_text_recognition",
+      "state": "in_corpus_v91",
       "newsletter_issue": "6/2024",
       "title": "Dementsus: riskitegurid ja ennetamine",
       "address": "https://www.sm.ee/sites/default/files/documents/2024-06/dementsuse_riskitegurid_ja_ennetus_.pdf",
@@ -2070,7 +2073,8 @@
       "language": "et",
       "pages": 20,
       "words": 0,
-      "megabytes": 14.3
+      "megabytes": 14.3,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis"
     },
     {
       "state": "needs_text_recognition",
@@ -2084,7 +2088,7 @@
       "megabytes": 21.8
     },
     {
-      "state": "needs_text_recognition",
+      "state": "in_corpus_v91",
       "newsletter_issue": "12/2024",
       "title": "Enesevigastamisest loobumise töövihik",
       "address": "https://peaasi.ee/wp-content/uploads/2021/10/Enesevigastamisest_loobumise_toovihik_noorele_ja_lahedasele_TAIDETAV.pdf",
@@ -2092,10 +2096,11 @@
       "language": "et",
       "pages": 31,
       "words": 340,
-      "megabytes": 6.7
+      "megabytes": 6.7,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis; RAG-is pealkirjaga „Enesevigastamisest loobumise töövihik noorele ja lähedasele“ (MTÜ Peaasjad, 2024)"
     },
     {
-      "state": "needs_text_recognition",
+      "state": "in_corpus_v91",
       "newsletter_issue": "8-9/2026",
       "title": "Lootuselaegas (Safe box). Noore juhis",
       "address": "https://s3-web-1a.tehik.ee/lasteabi-live-web-prd/s3fs-public/2026-03/ska_box_sisu_noore-juhis.pdf",
@@ -2103,10 +2108,11 @@
       "language": "et",
       "pages": 2,
       "words": 0,
-      "megabytes": 1.4
+      "megabytes": 1.4,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis"
     },
     {
-      "state": "needs_text_recognition",
+      "state": "in_corpus_v91",
       "newsletter_issue": "8-9/2026",
       "title": "Lootuselaegas (Safe box). Spetsialisti juhis",
       "address": "https://s3-web-1a.tehik.ee/lasteabi-live-web-prd/s3fs-public/2026-03/ska_box_sisu_spetsialisti-juhis.pdf",
@@ -2114,10 +2120,11 @@
       "language": "et",
       "pages": 2,
       "words": 0,
-      "megabytes": 3.3
+      "megabytes": 3.3,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis"
     },
     {
-      "state": "needs_text_recognition",
+      "state": "in_corpus_v91",
       "newsletter_issue": "1/2023",
       "title": "Uuringud suhtumisest psüühilise erivajadusega inimestesse 2021 ja 2022 – tulemused",
       "address": "https://www.sm.ee/media/2712/download",
@@ -2125,7 +2132,8 @@
       "language": "et",
       "pages": 22,
       "words": 736,
-      "megabytes": 3.3
+      "megabytes": 3.3,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis"
     },
     {
       "state": "in_corpus_v89",
@@ -3037,7 +3045,7 @@
       "megabytes": 0.9
     },
     {
-      "state": "held_partial_text",
+      "state": "in_corpus_v91",
       "newsletter_issue": "2/2021",
       "title": "Minu vaimse tervise esmaabi. Töövihik noortele ja täiskasvanutele",
       "publisher": "Tervisekassa",
@@ -3047,7 +3055,106 @@
       "language": "et",
       "pages": 20,
       "words": 1333,
-      "megabytes": 6.5
+      "megabytes": 6.5,
+      "note": "tekstikihiga koopia (20.10.2026): pildina olnud lehekülgede tekst on loetud lehekülje pildilt käsitsi ja lisatud nähtamatu kihina; jooniseid ei kirjeldata; nähtav lehekülg on sama mis väljaandja failis"
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "1/2020",
+      "title": "Pilk hallile alale II. Vananemine elukaare vaates. SHARE Eesti uuringu teine ülevaade",
+      "publisher": "Tallinna Ülikooli Eesti demograafia keskus",
+      "source_type": "research_report",
+      "address": "https://www.tlu.ee/public/pilkhallilealaleteinepdf",
+      "year": 2019,
+      "language": "et",
+      "pages": 86,
+      "words": 25704,
+      "megabytes": 4.1,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). Leitud väljaandja lehelt (SHARE kogumikud); uudiskirja link ei töötanud."
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "2/2020",
+      "title": "Kuidas saan oma lapsi aidata? Abiks lapsevanematele, kellel on vaimse tervise probleeme",
+      "publisher": "MTÜ Peaasjad",
+      "source_type": "information_material",
+      "address": "https://peaasi.ee/wp-content/uploads/2020/01/PARENTS_Eesti_net.pdf",
+      "year": 2020,
+      "language": "et",
+      "pages": 21,
+      "words": 3339,
+      "megabytes": 1.3,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). Leitud väljaandja saidilt (peaasi.ee); tõlge eesti keelde MTÜ Peaasjad, autor Tytti Solantaus; pealkiri on kaanepildilt."
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "2/2020",
+      "title": "Kuidas saan oma laste eest hoolt kanda? Abiks lapsevanematele, kellel on probleeme alkoholi või uimastitega",
+      "publisher": "MTÜ Peaasjad",
+      "source_type": "information_material",
+      "address": "https://peaasi.ee/wp-content/uploads/2020/01/INTOXICANT_Eesti_net.pdf",
+      "year": 2020,
+      "language": "et",
+      "pages": 34,
+      "words": 6496,
+      "megabytes": 2.3,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). Leitud väljaandja saidilt (peaasi.ee); tõlge eesti keelde MTÜ Peaasjad, autor Tytti Solantaus; pealkiri on kaanepildilt."
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "7/2020",
+      "title": "Vabatahtlike kaasamismudelist hoolekandesüsteemis: mida saime teada mudeli testimisel? (Kodukandi ettekanne seminaril 15.09.2020)",
+      "publisher": "Eesti Külaliikumine Kodukant",
+      "source_type": "information_material",
+      "address": "https://www.tai.ee/sites/default/files/images/EhaPaas_seminar_vabatahtlike_kaasamine_hoolekandesse_esitlus_15.09.20.pdf",
+      "year": 2020,
+      "language": "et",
+      "pages": 15,
+      "words": 702,
+      "megabytes": 0.9,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). Uudiskirjas viidatud lõpparuannet „Vabatahtlike rakendamise koostöömudeli testimine hoolekandesüsteemis“ ei leitud; see on sama projekti tulemuste ettekanne (TAI sait)."
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "10/2020",
+      "title": "Skaudid Eestis 2020. Skautluse tajutud mõju isiklikule arengule, oskustele ja edasistele eluperspektiividele",
+      "publisher": "Tartu Ülikool, ühiskonnateaduste instituut",
+      "source_type": "research_report",
+      "address": "https://skaut.ee/wp-content/uploads/2020/09/TU_skautluse_mojuuuring_raport_EE.pdf",
+      "year": 2020,
+      "language": "et",
+      "pages": 71,
+      "words": 24535,
+      "megabytes": 3.5,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). yti.ut.ee ei vasta; raport leitud Eesti Skautide Ühingu saidilt (uuringu tellija ja partner)."
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "4/2021",
+      "title": "Vabatahtliku seltsilise käsiraamat",
+      "publisher": "Eesti Külaliikumine Kodukant",
+      "source_type": "information_material",
+      "address": "https://vabatahtlikud.ee/wp-content/uploads/2021/03/Vabatahtliku-Seltsilise-KRMT-EKRAAN-FIN.pdf",
+      "year": 2021,
+      "language": "et",
+      "pages": 33,
+      "words": 11649,
+      "megabytes": 1.4,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). Aadress leitud Kodukandi 2021. a tegevusaruandest (riigieelarvelise toetuse aruanne); fail väljaandja saidilt vabatahtlikud.ee."
+    },
+    {
+      "state": "in_corpus_v91",
+      "newsletter_issue": "6/2021",
+      "title": "Kohalike omavalitsuste kompetentside põhise koolitusvajaduse hindamise metoodika ja analüüs",
+      "publisher": "Rahandusministeerium",
+      "source_type": "research_report",
+      "address": "https://omavalitsus.fin.ee/static/sites/5/2021/05/L%C3%B5pparuanne_KOV_koolitusvajadus.pdf",
+      "year": 2021,
+      "language": "et",
+      "pages": 107,
+      "words": 34464,
+      "megabytes": 1.9,
+      "note": "Teine otsing 20.10.2026 (esimeses korjes „PDF jäi kättesaamatuks“). omavalitsus.fin.ee ei lahendu enam (DNS); fail on Internet Archive'i koopia sellest aadressist (20.05.2024): https://web.archive.org/web/20240520165051id_/https://omavalitsus.fin.ee/static/sites/5/2021/05/L%C3%B5pparuanne_KOV_koolitusvajadus.pdf. Teostajad OÜ LevelLab, OÜ Geomedia ja MTÜ Balti Uuringute Instituut, tellijad Rahandusministeerium ja Riigi Tugiteenuste Keskus."
     }
   ]
 }
