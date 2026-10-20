@@ -127,7 +127,9 @@ turvakontakte liidesest; kinnitatud abipalve saab „Saada asutuse kaudu“ olem
 määratud. Ülevaade näitab „Mis toimib“ (tugevused töötaja enda positiivsetest vastustest, ka memos) ja „Minu
 tugivõimalused“ sai sammu „Mida tahaksin õppida“ (skeem 1.1; suunab Lunasse, Meetodipeeglisse, Eetikaruumi ja
 materjalidesse, koondisse ei lähe). Asutuse piloodi aruanne eristab tugimeetmete puudujäägis „asutus pakub, aga
-vajajad ei tea“ ja „asutus ei paku“ (asutuse kirjelduse järgi, ainult avaldatud lahtrid).
+vajajad ei tea“ ja „asutus ei paku“ (asutuse kirjelduse järgi, ainult avaldatud lahtrid). O-WB-2: piloodi ja admini
+koondi iga vaatamine ja eksport on auditis enne vastust (tegija, skoop, filtrid; arve mitte), logi tõrke korral
+koondit ei anta.
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 355

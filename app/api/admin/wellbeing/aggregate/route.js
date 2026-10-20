@@ -15,6 +15,7 @@ import {
   buildWellbeingExportDataset,
   exportWellbeingCsv
 } from "@/lib/wellbeing/aggregateExport";
+import { recordWellbeingPilotAggregateView } from "@/lib/wellbeing/pilotScopes";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -80,7 +81,17 @@ export async function GET(request) {
      korrelatsiooni-ID-ga, sisemine tekst jääb logisse. */
   let dataset;
   try {
-    dataset = await buildWellbeingExportDataset(filtersFromRequest(request));
+    const filters = filtersFromRequest(request);
+    dataset = await buildWellbeingExportDataset(filters);
+    /* O-WB-2: admini piiranguta vaade on auditis enne vastust (püsiruumi
+       analüüsi nähtavusmaatriks: „vajab auditilogi"). Logi tõrke korral
+       koondit välja ei anta. */
+    await recordWellbeingPilotAggregateView({
+      actorUserId: session?.user?.id,
+      filters,
+      format: format === "csv" ? "csv" : "json",
+      isAdmin: true
+    });
   } catch (error) {
     /* Perioodivalik ja muud tuntud domeenivead tohivad oma võtme välja anda —
        muidu paistaks „vale periood" serveriveana ja klient ei saaks teada, mida

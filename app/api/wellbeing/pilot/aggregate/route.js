@@ -14,6 +14,7 @@ import {
   resolveWellbeingPilotAggregateFilters
 } from "@/lib/wellbeing/pilotAccess";
 import { buildWellbeingPilotReport } from "@/lib/wellbeing/pilotReport";
+import { recordWellbeingPilotAggregateView } from "@/lib/wellbeing/pilotScopes";
 import {
   exportWellbeingPilotReportHtml,
   exportWellbeingPilotReportXlsx
@@ -111,6 +112,15 @@ export async function GET(request) {
       ? (await listOrganizationSupportMeasures(filters.organizationId)).map((measure) => measure.measureKey)
       : null;
     report = buildWellbeingPilotReport(dataset, { offeredMeasures });
+    /* O-WB-2: vaatamine ja eksport on auditis ENNE vastust. Kui rida ei
+       kirjutu, koondit välja ei anta — jälgimatu ligipääs on halvem kui vastus,
+       mida ei tule. */
+    await recordWellbeingPilotAggregateView({
+      actorUserId: session?.user?.id,
+      filters,
+      format: ["csv", "report-html", "xlsx"].includes(format) ? format : "json",
+      isAdmin: Boolean(access.isAdmin)
+    });
   } catch (error) {
     return accessErrorJson(error);
   }
