@@ -86,7 +86,7 @@ Pärast v92 töötab plaan `m4-corpus-chat-20261020d.json`, indeks `48dbc850`. K
   - vanglas viibija toimetulekutoetus: 3. kohalt (v89 järel) 18. kohale, v77 alusjoones 5. kohal;
   - eestkostja ja eestkostetava pere: 2. kohalt 7. kohale.
 
-  Tõenäoliselt on konkurentideks uued Riigikontrolli auditid vanglasüsteemist ja kriminaalhooldusest ning eestkostel olevate laste elatisrahast. Värav pealkirju ei näita, seega pole see kontrollitud.
+  Kummagi põhjus on üks v90 dokument ja otsustav lõik jõuab endiselt mudelini. Vaata jaotist „Kahe uue halvenemise põhjus“.
 - Mediaanaeg oli esimesel jooksul 9,0 s ja teisel 6,0 s (v89 järel 5,9 s). Esimene jooks oli aeglane soojenemise pärast.
 
 **Tasuline kontroll:** 10 pööret laega 0,06 USD, **0,0348 USD**. Kõik lõppesid ja valideerusid, 9 vastust 10-st viitas v91 või v92 uuele dokumendile:
@@ -102,7 +102,36 @@ Pärast v92 töötab plaan `m4-corpus-chat-20261020d.json`, indeks `48dbc850`. K
 
 Taastava õiguse küsimus viitas olemasolevale lehele „Taastav õigus“, mitte seminari slaididele. Neli vastust olid osalised („partial“).
 
+## Kahe uue halvenemise põhjus (20.10.2026 õhtul, tasuta)
+
+Mõõdetud serveris töötaval väljalaskel (12cdf6cc, indeks 48dbc850, 20.10). Mudelit ja embedding'ut ei kutsutud. Otsing on sama mis väraval: salvestatud vektorid ja valikumudeli asemel konks. Lisaks trükiti kandidaatide pealkirjad ja korrati otsingut nii, et osa dokumente oli plaanist välja jäetud. Kõigepealt jäeti välja rühmad v90, v91 ja v92, seejärel iga v90 dokument eraldi. Väljajäetud dokument on otsingule sama, mis lisamata dokument. Otsingukoodi v89 ja v92 jooksu vahel ei muudetud (8b084e2e..8f0dc519 on ainult Tööheaolu).
+
+| Küsimus | Praegu | v90 22 dokumendita | Ainult ühe dokumendita |
+|---|---:|---:|---|
+| vanglas viibija toimetulekutoetus (SHS § 132 lg 7) | 18. | 3. | 3.: Riigikontroll, „Pikaajaline vaade vanglasüsteemile“ |
+| eestkostja ja eestkostetava pere (SHS § 131 lg 12) | 7. | 2. | 2.: JDM, „Alaealisele lapsele elatise arvutamise korra muutmine. Rakendamispraktika analüüs“ |
+
+v91 ja v92 väljajätmine ei muutnud kumbagi kohta. Kriminaalhoolduse märgukiri ja elatisraha auditid ei mõjutanud kumbagi küsimust.
+
+**Mehhanism.** Mõlemas küsimuses oli otsustav lõik ühes vektorikanalis 40 kandidaadi piiri peal. Vanglaküsimuses oli see küsimuse enda vektoriga 40. kohal, eestkoste küsimuses esimese otsingupäringu vektoriga 36. kohal. Uus dokument sobib küsimuse teemaga ja tõrjus lõigu sellest kanalist välja. Liitjärjestuses (RRF, k = 60, vektorikanali kaal 2) annab vektorikanali 40. koht 2/100 = 0,020 punkti, 41. koht aga 0 punkti. See on rohkem, kui annab sõnaotsingu 1. koht (1/61 = 0,016). Kandidaatide 5.–20. koha skoorid on 0,05–0,07, seega lükkab ühe kanali kadu lõigu 5–15 kohta tahapoole:
+
+- vangla: skoor oli 0,069 ja on nüüd 0,049. Teistes kanalites on lõik endiselt samal kohal (vektor 21. ja 22.). Sõnaotsingus ei olnud lõiku ka v89 järel 40 parima seas.
+- eestkoste: skoor oli 0,097 ja on nüüd 0,076. Otsustav esimene lõik on toimetulekutoetuse juhend, mitte seadus: sõnaotsingus on see 1. kohal, vektorikanalites 6. ja 8. kohal. SHS § 131 lg 12 lõik on seaduste reservis endiselt 31. kohal.
+
+Vanglaauditi ükski lõik ei ole 36 kandidaadi seas. See võtab ainult küsimuse vektorikanali kohti. Elatisanalüüsi üks lõik on 29. kohal. Otsustava lõigu ees on mõlemas küsimuses ainult varasemad dokumendid: toimetulekutoetuse lehed, SHS, palga- ja töövõimetoetuse lehed.
+
+**Kas otsustav lõik jõuab mudelini?** Jah, mõlemas küsimuses:
+
+- See on 36 kandidaadi seas, mille valikumudel loeb tervikuna läbi (30 liitjärjestusest ja 6 seaduste reservist). Valikumudel järjestab kandidaate sisu järgi, mitte koha järgi. 10.10 tasulises kontrollis (korpus v74, 72 pööret samadel 30 küsimusel) oli otsustav säte tõendite hulgas 71 pöördel. Värava 10.10 alusjoone (v75) järgi oli see neist küsimustest neljas 16.–32. kohal. Päris pöörde päringud koostab plaan, seega ei ole kohad päris pöördes täpselt samad. Ainus eksimus oli küsimus, kus säte kandidaatide seast üldse puudus.
+- Ka siis, kui valik ebaõnnestub (jääb liitjärjestus), on otsustav lõik kontekstis. Vanglaküsimuses toob selle SHS-i semantiline sõltuvus. Eestkoste küsimuses on juhendilõik 7. seemne kohal (seemneid on 9) ja seaduse lõike toob semantiline sõltuvus. Kontekstis on vastavalt 11 936 ja 11 221 tokenit.
+
+**Otsus: midagi ei muudeta.** Mõlemad dokumendid on küsimuse teemaga seotud ja käituvad nii, nagu lisatud dokument käituma peab. Mõlemas küsimuses jõuab otsustav lõik mudelini. Seadusesätte eelistus ei aitaks eestkoste küsimust, sest selle otsustav esimene lõik on juhend, mitte seadus. Sätete eelistuseks on juba seaduste reserv (ADR-032), kuid see toob ainult kandidaatide hulgast väljas olevaid lõike, ja vanglaküsimuse lõik on niigi sees. Järsu ääre pehmendamine (näiteks 60 kandidaati kanali kohta) nihutaks ainult piiri ja muudaks järjestust igas küsimuses. See vajab oma väravakontrolli ja tasulist kontrolli, ning praegu ei ole kahju, mida see parandaks.
+
+**Väravale (ettepanek, tegemata):** praegu on iga kohanihe „deciding_worse“. Väravarida võiks lisaks öelda, kas otsustav lõik on liitjärjestuse kontekstis (`deciding_in_fallback`). Siis eristuks nihe, mis jätab lõigu mudeli lugemisse, nihkest, mis viib selle välja. Teiseks tasub pärast v92 salvestada uus alusjoon (tasuta). Siis võrdleb järgmine korpusekontroll v92-ga, mitte v77-ga, ja vanad nihked (Harku, Narva) ei ilmu igas aruandes uuesti.
+
+Uuesti: `sh /home/ubuntu/rag-v2-work/diag-v92/start.sh` (pealkirjad ja rühmade väljajätmine) ning `start-single.sh` (iga v90 dokument eraldi). Skript on `diag-v92/ov/scripts/rag-v2-gate-diag.mjs` ja väljund `diag-v92/diag.out` ning `single.out`. Väljundis on avalike dokumentide pealkirjad, kohad ja järgud, isikuandmeid ei ole.
+
 ## Lahtine
 
-- Kahe uue halvenemise põhjus (vanglas viibija toimetulek, eestkostja pere) on kontrollimata.
-- Seaduste lühendite tabelisse tulid alkoholiseadus („AS“), rahvatervishoiu seadus („RTHS“) ja narkootiliste ja psühhotroopsete ainete seadus („NPALS“) (`lib/rag-v2/search/act-abbreviations.json`). Tabel jõuab serverisse järgmise väljalaskega. „AS“ on ka aktsiaseltsi lühend, kuid tabel loeb lühendit ainult paragrahviviite ees ja seadusekaardi märkena.
+- Kahe uue halvenemise põhjus on leitud (vt eelmist jaotist). Harku ja Narva halvenemise põhjust (juba v89 järel) ei ole samal viisil uuritud.
+- Seaduste lühendite tabelisse tulid alkoholiseadus („AS“), rahvatervishoiu seadus („RTHS“) ja narkootiliste ja psühhotroopsete ainete seadus („NPALS“) (`lib/rag-v2/search/act-abbreviations.json`). Tabel on serveris alates väljalaskest 12cdf6cc (20.10.2026 kell 15.53 UTC), mis uuendas kinnitatud plaani indeksile 48dbc850. „AS“ on ka aktsiaseltsi lühend, kuid tabel loeb lühendit ainult paragrahviviite ees ja seadusekaardi märkena.
