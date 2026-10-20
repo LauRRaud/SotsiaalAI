@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–3 teostatud 20.10 (ptk 8.6–8.7), sammud 4–8 tegemata
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–4 teostatud 20.10 (ptk 8.6–8.8; sammu 4 abiteede sisu ootab asjatundja ülevaatust), sammud 5–8 tegemata
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -294,7 +294,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 1 | Koondis osalemine nähtavaks ja valitavaks — **tehtud 20.10** (ptk 8.6) | eeldus kõigele, mis lisab tundlikke märke; aken on lahti avamiseni | väike |
 | 2 | Kiirkontroll: juhi ja kolleegi tugi lahku, tähenduslikkus, kaks märkeruutu — **tehtud 20.10** (ptk 8.6) | odav, lahendab TO-9; koondi järjepidevus ei kannata, sest päriskirjeid ei ole | väike |
 | 3 | Taastumise ümberehitus — **tehtud 20.10** (ptk 8.7) | suurim metoodiline puudus (I8), katab küsimuse 27 | keskmine |
-| 4 | Töövägivald: allikas, kolleegi ja juhi abitee, märkmik | 61% töökius; sisu vajab asjatundja ülevaatust | keskmine |
+| 4 | Töövägivald: allikas, kolleegi ja juhi abitee, märkmik — **tehtud 20.10, sisu ootab ülevaatust** (ptk 8.8) | 61% töökius; sisu vajab asjatundja ülevaatust | keskmine |
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ | sõltub meeldetuletuse otsusest | keskmine |
@@ -369,3 +369,39 @@ mustandist ja koondist. Kohalikus baasis sünteetilise kasutajaga brauseris: une
 mahub 1536 × 640 vaates (teade 362–497 px, paneel lõpeb 547 px) ning 390 × 844 vaates dokist kõrgemale; tulemuse
 samm koos teatega mahub; salvestus andis `schemaVersion` 1.1, eemaldumise teguri ja ainult privaatse une märgi.
 Testkasutaja kustutati. **Kontrollimata:** EN/RU kuva brauseris ja tootmine.
+
+### 8.8. Teostus 20.10: samm 4, Töövägivalla allikas ja abitee
+
+**Töövägivald 1.1** (`workplace-violence-v2`). Ohu küsimus jääb teiseks sammuks; selle järel uus samm „Kellelt see
+tuli“ (klient või tema lähedane / kolleeg / juht / koostööpartner / muu) ja lõpus „Minu märkmik“.
+
+- **Kolleeg või juht:** sammu all teade abiteedega; kirje märk `risk.colleague_mistreatment` jääb ainult töötajale ja
+  **kogu kirje ei osale koondis** (`aggregationEligible: false` builderist, seega ka parandusel). Kovisiooni ja
+  turvalisuse kokkuleppe soovitus jäävad ära. Valmis tekstidest jäävad alles neutraalne kirjeldus ja uus „Pöördumise
+  mustand“ (adressaadi valib töötaja); kolleegi puhul ka juhiga arutelu memo, juhi puhul mitte. Kliendikesksed tekstid
+  (turvalisuse kokkulepe, töökorralduse muutmine, kovisiooni sisend) jäävad ära.
+- **Klient, koostööpartner, muu:** käitumine nagu enne, lisaks rida „Kellelt“ neutraalses kirjelduses.
+- **Märkmik** (`privateLog`): kuupäev, mis juhtus, kus, kes nägi; juhis kirjutada rolli, mitte nime. Ükski valmis
+  tekst, jagatav mustand ega koond seda ei loe. „Minu kirjed“ näitab seda kirje juures („Sinu märkmik“) ja see on
+  kasutaja andmekoopias. Kirje kustutamine kustutab ka märkmiku.
+- Sammuvorm toetab nüüd mitut teadet (`safetyNotices`); tulemuse sammu privaatsuslause ütleb, kui kirje ise koondis
+  ei osale. Tööriista kirjeldus ja ⓘ-info uuendatud; lisatud puuduv silt „töövägivalla olukord“.
+
+**Ootab asjatundja ülevaatust (tööõigus või ESTA) enne platvormi avamist:**
+
+1. teate tekst `wellbeing.workplace_violence.internal_notice.text` (abiteed: kõrgem juht, personalitöötaja,
+   töökeskkonnavolinik, töötervishoiuarst, Tööinspektsiooni nõustamine) ja sama loetelu ⓘ-infos;
+2. „Pöördumise mustandi“ sõnastus (`lib/wellbeing/workplaceViolence.js`, `internalReport`);
+3. kas abiteede hulka kuulub ka ametiühing, töövaidluskomisjon või organisatsiooni enda kiusamisvastane kord.
+
+**Lahti:** Tugi-paneelist saab töötaja endiselt teadlikult koostada kovisiooni sisendi ka kolleegi või juhi kirje
+põhjal (privaatne märk on sealt välja jäetud, mustand vajab tema ülevaatust ja kinnitust); kas see valik peita, on
+tooteotsus.
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`; funktsioonide kutsega vorm = skeem = arvutus, sammude kaal (kõrgeim
+7,0 / 7,6), kliendi/kolleegi/juhi tekstide komplektid, märkmiku puudumine kõigist tekstidest ja mustanditest, teadete
+tingimused; kõik varasemad kontrollid (kiirkontroll, taastumine, koond) uuesti läbi. Kohalikus baasis sünteetilise
+kasutajaga brauseris (1536 × 640): teade mahub „Kellelt“ sammu (279–440 px, paneel lõpeb 529 px), valmis tekste on
+juhi puhul kaks, tulemuse lause ütleb „See kirje ei osale anonüümses koondis“, salvestus andis `schemaVersion` 1.1 ja
+`aggregationEligible: false`, märkmik on „Minu kirjetes“ loetav. Testkasutaja kustutati. **Kontrollimata:** telefoni
+vaade selles sammus, EN/RU kuva ja tootmine.

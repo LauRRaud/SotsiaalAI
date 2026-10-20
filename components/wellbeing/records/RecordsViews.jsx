@@ -105,8 +105,9 @@ export function RecordsListView({ t, workflow, period, status, rows, more, notic
   );
 }
 
-/** Avatud kirje: mis see on, mis signaali andis ja mis tegurid sellest välja tulid. */
-export function RecordView({ t, loading, failed, heading, signal, links, groups, actions, note }) {
+/** Avatud kirje: mis see on, mis signaali andis ja mis tegurid sellest välja tulid.
+ *  `privateLog`: töövägivalla märkmik, mis on ainult töötajale. */
+export function RecordView({ t, loading, failed, heading, signal, links, groups, actions, note, privateLog }) {
   if (loading || failed) {
     return (
       <StepPanel title={t("wellbeing.my_records.views.record.title", "Kirje")}>
@@ -144,6 +145,12 @@ export function RecordView({ t, loading, failed, heading, signal, links, groups,
             </section>
           ))}
         </div>
+        {privateLog ? (
+          <section className={styles.section}>
+            <h4 className={styles.groupTitle}>{t("wellbeing.my_records.private_log", "Sinu märkmik")}</h4>
+            <p className={styles.draftText}>{privateLog}</p>
+          </section>
+        ) : null}
       </div>
     </StepPanel>
   );
@@ -303,7 +310,8 @@ export function AggregateView({ t, status, enabled, chosen, onToggle }) {
       ["answers", "Sinu vastused ja tekstid"],
       ["plans", "Plaanid, kontrollpunktid ja mustandid"],
       ["history", "Täpne ajalugu"],
-      ["mistreatment", "Kolleegi või juhi ebaväärika kohtlemise märk"],
+      ["mistreatment", "Kolleegilt või juhilt tulnud kohtlemise kirjed ja märgid"],
+      ["log", "Töövägivalla märkmik"],
       ["sleep", "Une ja ärevuse vastused"]
     ]],
     ["shared", "Võib osaleda koondis", [

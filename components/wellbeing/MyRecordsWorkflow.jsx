@@ -431,6 +431,7 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
             }}
             links={links}
             groups={groups}
+            privateLog={String(record?.standardizedFields?.privateLog || "").trim()}
             note={deleteNotice?.tone === "risk" ? deleteNotice.text : ""}
             actions={
               record ? (

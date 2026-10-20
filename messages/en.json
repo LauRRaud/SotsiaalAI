@@ -9899,7 +9899,8 @@
           "title": "Anonymous summary",
           "short": "Summary"
         }
-      }
+      },
+      "private_log": "Your notebook"
     },
     "overview": {
       "title": "Overview",
@@ -10054,7 +10055,18 @@
       "saving": "Saving...",
       "save": "Save workplace-violence follow-up",
       "saved": "The workplace-violence follow-up was saved privately.",
-      "save_failed": "Saving failed. Try again."
+      "save_failed": "Saving failed. Try again.",
+      "source_heading": "Who it came from",
+      "source_short": "Source",
+      "source_lead": "This helps choose suitable next steps and texts.",
+      "internal_notice": {
+        "title": "If it came from a colleague or manager",
+        "text": "The first step does not have to be your manager: you can turn to a more senior manager, HR, the working environment representative or the occupational health doctor; the Labour Inspectorate also gives advice. Write down what happened, with dates (the notebook is in the last step). This record is not included in the summary or in Covision."
+      },
+      "private_log_heading": "My notebook",
+      "private_log_short": "Notebook",
+      "private_log_lead": "Only for you: the date, what happened, where and who saw it. Write the role, not the name. The notebook is not included in any shared text or in the summary.",
+      "private_log": "Notes"
     },
     "work_boundaries": {
       "title": "Work boundaries",
@@ -10313,7 +10325,8 @@
         "none": "There are no separate suggestions right now."
       },
       "aggregate_on": "Categories derived from your answers are included in the anonymous summary; your texts are not. Change this under My records → Anonymous summary.",
-      "aggregate_off": "Your records are not included in the anonymous summary."
+      "aggregate_off": "Your records are not included in the anonymous summary.",
+      "aggregate_record_excluded": "This record is not included in the anonymous summary."
     },
     "pilot": {
       "forbidden": "You do not have access to this pilot overview.",
@@ -10350,8 +10363,9 @@
         "answers": "Your answers and texts",
         "plans": "Plans, checkpoints and drafts",
         "history": "Exact history",
-        "mistreatment": "The marker for mistreatment by a colleague or manager",
-        "sleep": "Your answers about sleep and anxiety"
+        "mistreatment": "Records and markers about treatment by a colleague or manager",
+        "sleep": "Your answers about sleep and anxiety",
+        "log": "Workplace violence notebook"
       },
       "shared_items": {
         "signal": "Work organisation signal (green, yellow, red)",

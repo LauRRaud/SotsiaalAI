@@ -46,6 +46,17 @@ export const selectFields = [
     ]
   },
   {
+    key: "sourceOfHarm",
+    label: "Kellelt see tuli?",
+    options: [
+      ["client_or_family", "Klient või tema lähedane"],
+      ["colleague", "Kolleeg"],
+      ["manager", "Juht"],
+      ["partner", "Koostööpartner"],
+      ["other", "Muu"]
+    ]
+  },
+  {
     key: "locationOrChannel",
     label: "Koht või kanal",
     options: [

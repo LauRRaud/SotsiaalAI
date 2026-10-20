@@ -9899,7 +9899,8 @@
           "title": "Anonüümne koond",
           "short": "Koond"
         }
-      }
+      },
+      "private_log": "Sinu märkmik"
     },
     "overview": {
       "title": "Ülevaade",
@@ -10054,7 +10055,18 @@
       "saving": "Salvestan...",
       "save": "Salvesta töövägivalla järeltegevus",
       "saved": "Töövägivalla järeltegevus salvestati privaatselt.",
-      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti."
+      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
+      "source_heading": "Kellelt see tuli",
+      "source_short": "Kellelt",
+      "source_lead": "See aitab valida sobivad järgmised sammud ja tekstid.",
+      "internal_notice": {
+        "title": "Kui see tuli kolleegilt või juhilt",
+        "text": "Esimene samm ei pea olema sinu juht: saad pöörduda kõrgema juhi, personalitöötaja, töökeskkonnavoliniku või töötervishoiuarsti poole; nõu annab ka Tööinspektsioon. Pane toimunu kuupäevaga kirja (märkmik on viimases sammus). See kirje ei lähe koondisse ega kovisiooni."
+      },
+      "private_log_heading": "Minu märkmik",
+      "private_log_short": "Märkmik",
+      "private_log_lead": "Ainult sinule: kuupäev, mis juhtus, kus ja kes nägi. Kirjuta rolli, mitte nime. Märkmik ei lähe ühtegi jagatavasse teksti ega koondisse.",
+      "private_log": "Märkmed"
     },
     "work_boundaries": {
       "title": "Tööpiirid",
@@ -10313,7 +10325,8 @@
         "none": "Praegu eraldi soovitusi ei ole."
       },
       "aggregate_on": "Vastustest tuletatud kategooriad osalevad anonüümses koondis; tekstid ei osale. Valikut muudad: Minu kirjed → Anonüümne koond.",
-      "aggregate_off": "Sinu kirjed ei osale anonüümses koondis."
+      "aggregate_off": "Sinu kirjed ei osale anonüümses koondis.",
+      "aggregate_record_excluded": "See kirje ei osale anonüümses koondis."
     },
     "pilot": {
       "forbidden": "Sul ei ole selle piloodi koondvaate õigust.",
@@ -10350,8 +10363,9 @@
         "answers": "Sinu vastused ja tekstid",
         "plans": "Plaanid, kontrollpunktid ja mustandid",
         "history": "Täpne ajalugu",
-        "mistreatment": "Kolleegi või juhi ebaväärika kohtlemise märk",
-        "sleep": "Une ja ärevuse vastused"
+        "mistreatment": "Kolleegilt või juhilt tulnud kohtlemise kirjed ja märgid",
+        "sleep": "Une ja ärevuse vastused",
+        "log": "Töövägivalla märkmik"
       },
       "shared_items": {
         "signal": "Töökorralduslik signaal (roheline, kollane, punane)",

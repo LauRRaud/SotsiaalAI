@@ -13,7 +13,7 @@
  *
  * KIRJELDUS
  *   { workflowType, endpoint, buildRecord, text, steps, signals, factors?,
- *     outputs?, links?, actionRoute?, safetyNotice? }
+ *     outputs?, links?, actionRoute?, safetyNotice?, safetyNotices? }
  *   steps: [{ key, title, short?, lead?, columns?, fields: [{ key, kind, label, hint?, options?, rows? }] }]
  *   `columns`: sammu väljad kõrvuti (nt kolm loendit, mille vahel inimene jagab).
  *   kind: "enum" (üks valik) | "boolean" | "enum_list" (mitu valikut) | "text" | "text_list"
@@ -23,10 +23,11 @@
  *  - Üks valik (`enum`) on alguses vastamata. Signaal ja väljundid ilmuvad
  *    alles siis, kui kõik sellised küsimused on vastatud; enne seda vorm midagi
  *    ei oleta ega salvesta.
- *  - Ohutusteade (`safetyNotice`) ilmub KOHE selle küsimuse all, mille vastus
- *    selle tingib, mitte alles tulemuse sammul. Tulemuse sammul kordub ta siis,
- *    kui `repeatOnResult` ei ole `false` (pikk teade, mis ei ole kiireloomuline
- *    ohuteade, lükkaks muidu salvestusnupu paneelist välja).
+ *  - Ohutusteade (`safetyNotice`, lisaks vajadusel loend `safetyNotices`) ilmub
+ *    KOHE selle küsimuse all, mille vastus selle tingib, mitte alles tulemuse
+ *    sammul. Tulemuse sammul kordub ta siis, kui `repeatOnResult` ei ole `false`
+ *    (pikk teade, mis ei ole kiireloomuline ohuteade, lükkaks muidu
+ *    salvestusnupu paneelist välja).
  *  - Paneelis ei ole „Edasi" nuppu: edasi liigutakse kiirmenüü noolest või
  *    kerides, ja ainult valikutega vaade liigub pärast viimast vastust ise.
  *  - Üks samm = üks asi ja see mahub paneeli ära: kerimine vahetab sammu
@@ -100,7 +101,9 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     [complete, definition, fields]
   );
   const signal = record ? definition.signals[record.computedSignal.signalLevel] || null : null;
-  const safetyActive = Boolean(definition.safetyNotice?.when(fields));
+  /* Teateid võib olla mitu (`safetyNotice` ja `safetyNotices`), igaüks oma välja juures. */
+  const notices = [definition.safetyNotice, ...(definition.safetyNotices || [])].filter(Boolean);
+  const activeNotices = notices.filter((notice) => notice.when(fields));
   const hasOutputs = Boolean(definition.outputs?.length);
   const outputs = record
     ? (definition.outputs || [])
@@ -149,7 +152,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     const step = inputSteps.find((item) => item.fields.some((field) => field.key === key));
     if (!step || !step.fields.every((field) => field.kind === "enum")) return;
     if (missingInStep(step, fields) === 0 || missingInStep(step, next) !== 0) return;
-    if (definition.safetyNotice?.fieldKey === key && definition.safetyNotice.when(next)) return;
+    if (notices.some((notice) => notice.fieldKey === key && notice.when(next))) return;
     advanceRef.current = window.setTimeout(() => flightRef.current?.next(), AUTO_ADVANCE_MS);
   }
   function toggleInList(key, value) {
@@ -267,12 +270,13 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     }
   ];
 
-  const safetyNotice = () => (
-    <div className={styles.safety} role="alert">
-      <strong className={styles.safetyTitle}>{tx(definition.safetyNotice.title)}</strong>
-      <p className={styles.safetyText}>{tx(definition.safetyNotice.text)}</p>
+  const safetyNotice = (notice) => (
+    <div key={notice.fieldKey} className={styles.safety} role="alert">
+      <strong className={styles.safetyTitle}>{tx(notice.title)}</strong>
+      <p className={styles.safetyText}>{tx(notice.text)}</p>
     </div>
   );
+  const noticesFor = (keys) => activeNotices.filter((notice) => keys.includes(notice.fieldKey));
 
   /* Kui küsimusi on vastamata: ütle seda ja vii puuduva sammu juurde. */
   const waitingForAnswers = (flight) => (
@@ -342,11 +346,12 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     }
     /* Märkeruudu teade tuleb ruudustiku alla täislaiuses (vt `renderFields`): kitsas
        veerg tegi temast kõrge torni, mis lükkas sammu paneelist välja. */
-    if (safetyActive && definition.safetyNotice.fieldKey === field.key && field.kind !== "boolean") {
+    const fieldNotices = field.kind === "boolean" ? [] : noticesFor([field.key]);
+    if (fieldNotices.length) {
       return (
         <div key={field.key}>
           {control}
-          {safetyNotice()}
+          {fieldNotices.map(safetyNotice)}
         </div>
       );
     }
@@ -368,7 +373,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
       group.checks ? (
         <div key={group.fields[0].key}>
           <div className={styles.checks}>{group.fields.map((field) => renderField(field, table))}</div>
-          {safetyActive && group.fields.some((field) => field.key === definition.safetyNotice.fieldKey) ? safetyNotice() : null}
+          {noticesFor(group.fields.map((field) => field.key)).map(safetyNotice)}
         </div>
       ) : (
         renderField(group.fields[0], table)
@@ -415,12 +420,16 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
           </StepPanel>
         );
       }
+      /* Kirje võib koondist väljas olla ka oma sisu tõttu (kolleegilt või juhilt
+         tulnud töövägivald), sõltumata inimese valikust. */
       const aggregateNote =
-        aggregate.enabled === true
-          ? t("wellbeing.flow.aggregate_on")
-          : aggregate.enabled === false
-            ? t("wellbeing.flow.aggregate_off")
-            : "";
+        record.aggregationEligible === false
+          ? t("wellbeing.flow.aggregate_record_excluded")
+          : aggregate.enabled === true
+            ? t("wellbeing.flow.aggregate_on")
+            : aggregate.enabled === false
+              ? t("wellbeing.flow.aggregate_off")
+              : "";
       const note =
         saveState === "saved"
           ? tx(definition.text.saved)
@@ -443,7 +452,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         >
           <div className={styles.block}>
             {signalBlock()}
-            {safetyActive && definition.safetyNotice.repeatOnResult !== false ? safetyNotice() : null}
+            {activeNotices.filter((notice) => notice.repeatOnResult !== false).map(safetyNotice)}
             {factorLists.length ? (
               <div className={styles.factors}>
                 {factorLists.map((list) => (
