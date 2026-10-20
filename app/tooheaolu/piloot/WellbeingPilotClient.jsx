@@ -50,6 +50,8 @@ const copy = {
   xlsx: "XLSX",
   signalLoad: "Signaalikoormus",
   priorities: "Töökorralduslikud prioriteedid",
+  /* Ideed 21.2: aruanne näitab ka toimivaid ressursse (`work_strength.*`). */
+  strengths: "Mis toimib",
   agreements: "Soovitatavad kokkulepped",
   noPriorities: "Prioriteete ei kuvata enne, kui miinimumgrupi lävi on täidetud.",
   noAgreements: "Soovitatavad kokkulepped tekivad korduvate koormusmustrite põhjal.",
@@ -366,6 +368,24 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
                 <span key={item}>{item}</span>
               ))}
             </div>
+          </div>
+        ) : null}
+        {report?.strengthsNotice ? (
+          <div>
+            <h3>{copy.strengths}</h3>
+            <p>{report.strengthsNotice}</p>
+            {(report.strengths || []).length > 0 ? (
+              <div>
+                {report.strengths.map((item) => (
+                  <ReportItem
+                    key={item.metricKey}
+                    eyebrow={item.sourceLabel}
+                    title={item.label}
+                    meta={item.sourceTotal ? `${item.count}/${item.sourceTotal}` : String(item.count)}
+                  />
+                ))}
+              </div>
+            ) : null}
           </div>
         ) : null}
         <div>

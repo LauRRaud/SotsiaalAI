@@ -10381,6 +10381,7 @@
       "shared_items": {
         "signal": "Work organisation signal (green, yellow, red)",
         "categories": "Workload and resource categories",
+        "strengths": "What works, such as colleague support being available",
         "risks": "Risk markers, such as a difficult case or workplace violence"
       },
       "effect": "Your choice applies immediately to earlier records too. It does not change how you use your private Work wellbeing space."

@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); arenguvajadus ja kutse jäävad S6-le
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); arenguvajadus ja kutse jäävad S6-le
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -652,3 +652,87 @@ piloodi skoop (k = 5) ja asutus pakub ainult supervisiooni. Koondi API admini ka
 „asutus pakub, aga vajajad ei tea“ (5), psühholoogiline nõustamine „asutus ei paku“ (5) ja mõlemad soovitused.
 Piloodi lehel ja HTML-aruandes oli teade näha. Sünteetilised kasutajad, asutus, skoop ja auditiread kustutati.
 **Kontrollimata:** tootmine; päris piloodi skoopi veel ei ole.
+
+### 8.19. Tugevused koondis ja piloodi aruandes (ideed 21.2, ptk 8.2 p 2)
+
+Ideed 21.2 ütleb, et raport peab näitama ka toimivaid ressursse. Ptk 8.16 jättis tugevused ainult töötaja
+Ülevaatesse, sest koond loeb ainult kirje salvestatud tegureid. See peatükk on otsus ja teostus.
+
+**Kas see vajab enne O-WB-3 omaniku otsust? Ei.** O-WB-3 (heaoluandmete õiguslik klassifikatsioon) blokeerib
+organisatsiooni poole avatud ja välise koondi. Sisepiloot (k ≥ 5, piloodi ligipääs, O-WB-2 audit) jääb sisemiseks
+ja selles on juba praegu sama küsimuse negatiivne ots: puudujäägid ja riskimärgid. Tugevus on sama küsimuse positiivne
+ots, uut andmeliiki see ei lisa. Tugevused lähevad ainult sellesse sisepiloodi koondisse. Avalik koond jääb O-WB-3 ja
+O-WB-4 otsuseni kinni. Töötaja näeb vaates „Anonüümne koond“ (TO-3) uut rida „Mis toimib“ ja saab enda kirjed koondist
+välja lülitada nagu seni.
+
+**Andmed: uus nullitav veerg `WellbeingRecord.strengthFactors` (JSONB, ilma vaikeväärtuseta).**
+
+- Salvestamisel arvutab tugevused `strengthsOfRecord` (`lib/wellbeing/strengths.js`), sama funktsioon, mis
+  Ülevaatel. Arvutus on kahes kirje loomise kohas (`records.js`: tavaline salvestus ja TO-1 parandus), mitte
+  üheteistkümnes builderis.
+- **Miks mitte lugeda koondis vastuseid (`standardizedFields`)?** Koond loeb teadlikult ainult tuletatud kategooriaid
+  ega puutu vastuseid ega vabateksti; TO-3 vaade lubab töötajale, et vastused ja tekstid jäävad ainult talle. Teiseks
+  külmub salvestamise hetke reegel kirjega nagu teistel teguritel: kui `strengths.js` hiljem muutub, ei kirjutata
+  möödunud perioodide koondit vaikselt ümber.
+- **Miks mitte `resourceFactors`?** See on puudujääkide väli: selle järgi tehakse aruande prioriteedid, soovitused,
+  juhimemo ja mustandid. Positiivne märk seal loeks ennast puudujäägiks.
+- **Miks mitte eraldi tabel?** Kirjel on kuni üheksa võtit ja sama elutsükkel (kustutus, parandus, konto kustutamise
+  kaskaad). Veerg kustub kirjega ja uut kustutusrada ei teki.
+- **NULL ja `[]` on eri asjad.** NULL tähendab, et tugevusi ei ole arvutatud (vana kirje või eelmise rakenduse
+  versiooni kirjutatud kirje). `[]` tähendab, et tugevused on arvutatud, aga neid ei ole. Vaikeväärtust `[]` ei panda,
+  sest paigalduse ajal kirjutaks eelmine versioon muidu kirjeid, mis ütlevad valesti „tugevusi ei ole“.
+- **Migratsioon** `20261020170000_wellbeing_strength_factors`: `ADD COLUMN "strengthFactors" JSONB`,
+  `lock_timeout = '5s'`, `statement_timeout = '30s'`. Nullitav ja vaikeväärtuseta veerg on PostgreSQL-is ainult
+  kataloogi muudatus ja tabelit ümber ei kirjutata. Eelmine versioon ei loe ega kirjuta seda veergu (Prisma kirjutab
+  puuduvale väljale NULL-i). Tagasipööramine on kommentaarina.
+- **Vanad kirjed:** tugevusi tagantjärele ei arvutata, ei SQL-is ega skriptiga. SQL-i koopia reeglist lahkneks
+  `strengths.js`-ist ja tagantjärele arvutamine oleks just see ümberkirjutus, mida eelmine punkt väldib. Platvorm ei
+  ole avatud, seega puudutab see ainult testkirjeid. Koond jätab NULL-iga kirjed tugevuste perest välja (neid ei
+  loeta „ilma tugevuseta“) ja aruanne ütleb, kui perioodis on selliseid kirjeid. Parandus (TO-1) on uus kirje ja saab
+  tugevused. Kui päris piloodil peaks olema vanu kirjeid, saab need täita ühekordse skriptiga sama
+  `strengthsOfRecord`-iga; see on eraldi otsus.
+- Ülevaade tuletab tugevused edasi töötaja enda vastustest, ka vanadest kirjetest; see ei muutu.
+
+**Koond: mõõdikupere `work_strength.<tugevus>.count`** (nt `work_strength.manager_support.count`).
+
+- Sama valim mis teistel peredel: `aggregationEligible`, privaatne kirje, TO-3 valik ja osalus. Analüüsiühik ja
+  nimetaja on samad (`countedRecordCount`). Privaatsete märkide filter (`privateMarkers.js`) rakendub ka siin. Praegu
+  ei ole ükski tugevus privaatne, aga värav on üks.
+- k-lävi: lahter, mille arv on 0 < n < k, jääb avaldamata.
+- **Uus kaitse: täiend.** Kui tugevuse arv n ja töövoo arv T on avaldatud, saab lugeja ise arvutada T − n ehk need,
+  kes ei vastanud selgelt positiivselt. Kahe vastusega küsimuses on see täpselt puudujäägi lahter, ka siis, kui see
+  lahter on summutatud. Näide: Tööpiirides on 7 kirjet, paindlik tööaeg 5 „jah“ ja 2 „ei“. Puudujääk 2 jääb kinni,
+  aga 7 − 5 annaks selle tagasi. Seepärast avaldatakse tugevus ainult siis, kui ka täiend (tugevuse lähtetöövoogude
+  ühikud − n) on 0 või vähemalt k. Täiendit kontrollitakse kahe aluse vastu: kõik lähtetöövoogude ühikud (selle saab
+  lugeja avaldatud töövoo arvudest kokku liita) ja ainult need, mille tugevused on arvutatud (tegelik täiend).
+- Pere on mitmikvalik ega liitu üldsummaks, seega teist kihti (lahutamine üldsummast) siin ei ole. Lahtrisummutuse
+  kokkuvõttes on uus pere `work_strength`.
+- **Teadlik jääkrisk:** kolme astmega küsimuses (nt juhi tugi: kättesaadav / osaline / ebaselge või puudub) saab
+  avaldatud töövoo arvust, tugevusest ja puudujäägist lahutada keskmise vastuse („osaline“) arvu. Keskmine vastus ei
+  ole puudujääk ega tugevus, ei nimeta kedagi ja jääb enne avalikku koondit O-WB-3 analüüsi sisendiks.
+
+**Piloodi aruanne:** plokk „Mis toimib“ on otsustaja kokkuvõtte järel. Iga avaldatud tugevus on kolmandas isikus
+(„Kolleegide tugi on kättesaadav“) koos arvuga. Lähtetöövoogude ühikute arv on juures ainult siis, kui see tuleb juba
+avaldatud töövoo arvudest ja kõigil ühikutel on tugevused arvutatud. Tugevused ei lähe prioriteetidesse ega muuda
+soovitusi. Sama plokk on piloodi lehel, HTML-aruandes ja XLSX-is (uus leht „Mis toimib“). CSV-s on uued read
+`work_strength.*` nagu teistel peredel. Teade ütleb, et puuduv rida ei tähenda, et see ei toimi.
+
+**Kontroll.** `npx prisma validate`; migratsioon kohalikus baasis (`migrate deploy`): veerg on `jsonb`, nullitav, ilma
+vaikeväärtuseta. Sihitud eslint, `npm run i18n:check`, `npm test` (78: 75 läbi, 3 vahele jäetud, 0 kukkus). Funktsiooni kutsega võltsandmebaasiga: täiend 2
+paneb tugevuse kinni (Tööpiiride näide), täiend 0 ja 5 avaldavad, NULL-kirjed annavad katvuse „partial“, võõra
+töövoo ja tundmatu võtmega tugevus ei loe, `record` ja `latest_per_person`, summutatud valim, HTML, XLSX ja CSV.
+Kohalikus baasis otsast lõpuni: sünteetiline asutus, viis liiget (sama istmeroll), asutuse tüüpi piloodi skoop (k = 5).
+Iga liige salvestas päris API kaudu kiirkontrolli, nädala peegelduse ja Tööpiirid; kõigil 15 kirjel oli
+`strengthFactors`. Koond andis valimi 5 ning avaldas: tööl on mõte 10/10, tööpiirid on selged 10/10, juhi tugi
+kättesaadav 5/5, otsustusruum 5/5, paindlik tööaeg 5/5. Kinni jäid kolleegide tugi (4 < k) ja taastumine
+(9 ühikut 10-st, täiend 1). Prioriteetidesse tugevusi ei läinud, otsustaja kokkuvõttes oli „Mis toimib: tööl on mõte“.
+HTML-is, XLSX-is (leht „Mis toimib“) ja CSV-s (5 rida) olid samad arvud. TO-3: kui üks liige end välja lülitas, oli valim 4
+ja aruanne summutatud; tagasi sisse lülitades taastus see. Vana kirje (veerg NULL) andis katvuse „partial“ ja teate;
+„tööl on mõte“ läks kinni ja lähtearvud kadusid. TO-1 parandus sellele kirjele sai tugevused ja katvus oli jälle
+täielik. Iga vaatamine jõudis auditisse (O-WB-2). Brauseris piloodi lehel (1536 × 640 ja 390 × 844) oli „Mis toimib“
+plokk viie kaardiga ja horisontaalset kerimist ei olnud. Töötaja vaates „Anonüümne koond“ oli uus rida ja vaade mahtus
+(paneel 542/548 px; telefonis 724/731 px). Sünteetilised kasutajad, asutus, skoop, kirjed ja auditiread kustutati.
+Avamisvärav laseb enne avamist läbi ainult admini, seega olid sünteetilistel kontodel `isAdmin` ja roll
+SOCIAL_WORKER. Piloodi vaataja tegi päringud admini rajal valitud piloodiga (sama skoobi piir ja k). **Kontrollimata:**
+tavavaataja (mitte-admin) rada avatud platvormil, EN/RU (piloodi leht on ainult eesti keeles; töötaja vaate uus rida
+on kolmes keeles kataloogis), tootmine.

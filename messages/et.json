@@ -10381,6 +10381,7 @@
       "shared_items": {
         "signal": "Töökorralduslik signaal (roheline, kollane, punane)",
         "categories": "Koormuse ja ressursside kategooriad",
+        "strengths": "Mis toimib, näiteks kolleegide tugi on kättesaadav",
         "risks": "Riskimärgid, näiteks raske juhtum või töövägivald"
       },
       "effect": "Valik kehtib kohe ka varasematele kirjetele. Privaatse Tööheaolu kasutamist see ei muuda."

@@ -130,6 +130,10 @@ materjalidesse, koondisse ei lähe). Asutuse piloodi aruanne eristab tugimeetmet
 vajajad ei tea“ ja „asutus ei paku“ (asutuse kirjelduse järgi, ainult avaldatud lahtrid). O-WB-2: piloodi ja admini
 koondi iga vaatamine ja eksport on auditis enne vastust (tegija, skoop, filtrid; arve mitte), logi tõrke korral
 koondit ei anta.
+Tugevused („Mis toimib“) on ka sisepiloodi koondis: kirje salvestab need uude nullitavasse veergu
+`WellbeingRecord.strengthFactors` (aditiivne migratsioon, vanad kirjed jäävad arvutamata ja aruanne ütleb seda),
+koondis on pere `work_strength.*` k-läve ja täiendi kaitsega ning piloodi aruandes, lehel ja ekspordis plokk „Mis
+toimib“; töötaja koondivaade nimetab seda. Avalik koond jääb O-WB-3/4 otsuseni kinni (ptk 8.19).
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 355

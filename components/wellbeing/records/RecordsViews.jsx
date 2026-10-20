@@ -317,6 +317,7 @@ export function AggregateView({ t, status, enabled, chosen, onToggle }) {
     ["shared", "Võib osaleda koondis", [
       ["signal", "Töökorralduslik signaal (roheline, kollane, punane)"],
       ["categories", "Koormuse ja ressursside kategooriad"],
+      ["strengths", "Mis toimib, näiteks kolleegide tugi on kättesaadav"],
       ["risks", "Riskimärgid, näiteks raske juhtum või töövägivald"]
     ]]
   ];

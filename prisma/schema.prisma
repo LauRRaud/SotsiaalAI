@@ -1810,6 +1810,13 @@ model WellbeingRecord {
   loadFactors          Json
   resourceFactors      Json
   riskMarkers          Json
+  /**
+   * Tugevused („Mis toimib", `lib/wellbeing/strengths.js`) arvutatakse
+   * salvestamisel, sest koond ei loe vastuseid. NULL = ei ole arvutatud (vana
+   * kirje või eelmise rakenduse versiooni kirjutatud), `[]` = arvutatud, tugevusi
+   * ei ole. Seepärast ilma vaikeväärtuseta.
+   */
+  strengthFactors      Json?
   recommendedActions   Json
   visibility           String    @default("private")
   aggregationEligible  Boolean   @default(true)
