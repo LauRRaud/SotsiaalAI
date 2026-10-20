@@ -643,6 +643,15 @@ export const WellbeingRoleIcon = (props) => (
   </Svg>
 );
 
+/* Minu tugivõimalused — päästerõngas (millist tuge saab kasutada) */
+export const WellbeingSupportIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="12" cy="12" r="8.5" />
+    <circle {...P} cx="12" cy="12" r="3.5" />
+    <path {...P} d="m6 6 3.5 3.5M18 6l-3.5 3.5M6 18l3.5-3.5M18 18l-3.5-3.5" />
+  </Svg>
+);
+
 /* Alustaja tugi — avatud raamat linnukesega (esimesed 100 päeva) */
 export const WellbeingStarterIcon = (props) => (
   <Svg {...props}>

@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–5 teostatud 20.10 (ptk 8.6–8.9; sammu 4 abiteede sisu ootab asjatundja ülevaatust), sammud 6–8 tegemata
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–6 teostatud 20.10 (ptk 8.6–8.10; sammu 4 abiteede sisu ootab asjatundja ülevaatust), sammud 7–8 tegemata
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -296,7 +296,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 3 | Taastumise ümberehitus — **tehtud 20.10** (ptk 8.7) | suurim metoodiline puudus (I8), katab küsimuse 27 | keskmine |
 | 4 | Töövägivald: allikas, kolleegi ja juhi abitee, märkmik — **tehtud 20.10, sisu ootab ülevaatust** (ptk 8.8) | 61% töökius; sisu vajab asjatundja ülevaatust | keskmine |
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
-| 6 | „Minu tugivõimalused“, privaatne osa | katab küsimused 20–21 töötaja poolelt | keskmine |
+| 6 | „Minu tugivõimalused“, privaatne osa — **tehtud 20.10** (ptk 8.10) | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ | sõltub meeldetuletuse otsusest | keskmine |
 | 8 | Asutuse meetmete kirjeldus, meetmete koond, arenguvajadus | vajab partner-KOV-i ja S6 otsust | suur |
 
@@ -427,3 +427,32 @@ ajakulu loendi kehtivus, sammude kaal (kõrgeim 7,4 / 7,6), tegurid, juhimemo, h
 aruande soovitust. Kohalikus baasis sünteetilise kasutajaga brauseris (1536 × 640): ületundide samm on tabel ja
 mahub, salvestus andis `schemaVersion` 1.1 ja oodatud tegurid; Tööprotsesside „Ajaröövlid“ ja „Lihtsustamine“
 mahuvad. Testkasutaja kustutati. **Kontrollimata:** telefoni vaade, EN/RU kuva ja tootmine.
+
+### 8.10. Teostus 20.10: samm 6, „Minu tugivõimalused“ (privaatne osa)
+
+Uus tööriist `/tooheaolu/tugivoimalused` (töövoog `support-measures`, skeem 1.0), Tööheaolu laual tsoonis
+„korraldus“ päästerõnga ikooniga.
+
+- **Kataloog** `lib/wellbeing/supportMeasureCatalog.js`: küsitluse 20. küsimuse 19 meedet (töötasu väljas) kolmes
+  rühmas — tugi ja areng, tervis ja turvalisus, töökorraldus ja tunnustus. Vorm, skeem, arvutus, kuvasildid ja
+  piloodi aruanne loevad meetmed sealt.
+- **Vorm:** iga rühma kohta kaks vaadet — „mis on olemas“ (mida tööandja sinu teada võimaldab; kui ei tea, jäta
+  märkimata) ja „mida vajan“.
+- **Tulemus:** kolm loetelu (olemas ja vajan / olemas, praegu ei vaja / vajan, aga pole); kui midagi puudub, siis
+  „Arenguvestluse sisend“. Kovisiooni ja supervisiooni puudumisel soovitab tööriist need platvormil endal avada
+  (mentorluse puhul samuti). Kui vajadusi ei märgitud, on signaal neutraalne („Vajadusi ei märkinud“), mitte
+  „tugi on olemas“.
+- **Koond:** ainult „vajan, aga pole“ (`measures.gap.<meede>`); see, mida töötaja teab olemas olevat, jääb talle.
+  Piloodi aruanne nimetab iga puudujäägi ja soovitab „Teha tugimeetmed nähtavaks ja kättesaadavaks“.
+- Kõrvalt: serveri mustandikoostaja (`supportDrafts.js`) jätab nüüd samuti välja ainult töötajale jäävad märgid —
+  liidese koostaja tegi seda juba, serveri varukoostaja mitte.
+
+**Lahti (samm 8):** asutuse enda meetmete kirjeldus (eeltäidetud loend ja abipalve päris adressaat, TO-6).
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`, `server-message-keys`; funktsioonide kutsega vorm = skeem =
+arvutus, teise rühma meetme tagasilükkamine, rühmitus, tegurid, soovitused, tekstid, neutraalne signaal, koond ja
+aruande soovitus, sildid ning registreerimine (slug, tsoon); kõik varasemad kontrollid uuesti läbi. Kohalikus baasis
+sünteetilise kasutajaga brauseris (1536 × 640): suurim vaade mahub (viimane valik 344 px, paneel lõpeb 498 px),
+tavanavigeerimisega on salvestusnupp paneelis, salvestus andis neli `measures.gap.*` tegurit, „Minu kirjed“ näitab
+kirjet ja silte, tööriist on Tööheaolu laual, neutraalne signaal kuvatakse. Testkasutaja kustutati.
+**Kontrollimata:** telefoni vaade, EN/RU kuva ja tootmine.

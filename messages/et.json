@@ -9857,7 +9857,8 @@
         "interruptions": "Katkestused",
         "work_processes": "Tööprotsessid",
         "role_boundaries": "Rollipiirid",
-        "starter_support": "Alustaja tugi"
+        "starter_support": "Alustaja tugi",
+        "support_measures": "Minu tugivõimalused"
       },
       "signal_level": {
         "green": "Roheline",
@@ -10376,6 +10377,49 @@
         "risks": "Riskimärgid, näiteks raske juhtum või töövägivald"
       },
       "effect": "Valik kehtib kohe ka varasematele kirjetele. Privaatse Tööheaolu kasutamist see ei muuda."
+    },
+    "support_measures": {
+      "title": "Minu tugivõimalused",
+      "save": "Salvesta tugivõimalused",
+      "saving": "Salvestan...",
+      "saved": "Tugivõimalused salvestati privaatselt.",
+      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
+      "offered_lead": "Mida tööandja sinu teada võimaldab? Kui ei tea, jäta märkimata.",
+      "needed_lead": "Mida neist vajad või vajaksid rohkem?",
+      "offered_label": "Võimaldab",
+      "needed_label": "Vajan",
+      "steps": {
+        "development": {
+          "offered_title": "Tugi ja areng: mis on olemas",
+          "needed_title": "Tugi ja areng: mida vajan",
+          "offered_short": "Areng: on",
+          "needed_short": "Areng: vajan"
+        },
+        "health": {
+          "offered_title": "Tervis ja turvalisus: mis on olemas",
+          "needed_title": "Tervis ja turvalisus: mida vajan",
+          "offered_short": "Tervis: on",
+          "needed_short": "Tervis: vajan"
+        },
+        "organisation": {
+          "offered_title": "Töökorraldus ja tunnustus: mis on olemas",
+          "needed_title": "Töökorraldus ja tunnustus: mida vajan",
+          "offered_short": "Korraldus: on",
+          "needed_short": "Korraldus: vajan"
+        }
+      },
+      "signals": {
+        "available_title": "Vajatud tugi on olemas",
+        "available_text": "Kõik, mida märkisid vajavat, on sinu teada olemas. Kasuta seda julgelt.",
+        "gap_title": "Osa vajatud toest puudub",
+        "gap_text": "Mõnda tuge, mida vajad, sinu teada ei ole. Valmis tekstidest leiad sisendi arenguvestluseks või juhiga arutelu jaoks.",
+        "none_title": "Vajadusi ei märkinud",
+        "none_text": "Märgi, mida vajad, et näha, mis on olemas ja mis puudub."
+      },
+      "outputs": {
+        "overview": "Minu tugivõimalused",
+        "discussion": "Arenguvestluse sisend"
+      }
     }
   },
   "voimalused": {

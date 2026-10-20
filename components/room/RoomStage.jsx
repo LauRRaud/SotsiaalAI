@@ -96,6 +96,7 @@ import {
   WellbeingProcessIcon,
   WellbeingRoleIcon,
   WellbeingStarterIcon,
+  WellbeingSupportIcon,
 } from "@/components/brand/icons/CardIcons";
 import {
   CLIENT_ZONE,
@@ -159,6 +160,7 @@ const WELLBEING_TOOL_ICONS = Object.freeze({
   "work-processes": <WellbeingProcessIcon />,
   "role-boundaries": <WellbeingRoleIcon />,
   "starter-support": <WellbeingStarterIcon />,
+  "support-measures": <WellbeingSupportIcon />,
 });
 
 /* Kerimisruumi pikkus tuleb CSS-ist (--walk-vh, room.css spacer). */

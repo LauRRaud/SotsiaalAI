@@ -9857,7 +9857,8 @@
         "interruptions": "Interruptions",
         "work_processes": "Work processes",
         "role_boundaries": "Role boundaries",
-        "starter_support": "Starter support"
+        "starter_support": "Starter support",
+        "support_measures": "My support options"
       },
       "signal_level": {
         "green": "Green",
@@ -10376,6 +10377,49 @@
         "risks": "Risk markers, such as a difficult case or workplace violence"
       },
       "effect": "Your choice applies immediately to earlier records too. It does not change how you use your private Work wellbeing space."
+    },
+    "support_measures": {
+      "title": "My support options",
+      "save": "Save support options",
+      "saving": "Saving...",
+      "saved": "Support options were saved privately.",
+      "save_failed": "Saving failed. Please try again.",
+      "offered_lead": "What does your employer offer, as far as you know? If you don't know, leave it unmarked.",
+      "needed_lead": "Which of these do you need, or need more of?",
+      "offered_label": "Offered",
+      "needed_label": "I need",
+      "steps": {
+        "development": {
+          "offered_title": "Support and development: what exists",
+          "needed_title": "Support and development: what I need",
+          "offered_short": "Development: offered",
+          "needed_short": "Development: needed"
+        },
+        "health": {
+          "offered_title": "Health and safety: what exists",
+          "needed_title": "Health and safety: what I need",
+          "offered_short": "Health: offered",
+          "needed_short": "Health: needed"
+        },
+        "organisation": {
+          "offered_title": "Work organisation and recognition: what exists",
+          "needed_title": "Work organisation and recognition: what I need",
+          "offered_short": "Organisation: offered",
+          "needed_short": "Organisation: needed"
+        }
+      },
+      "signals": {
+        "available_title": "The support you need is available",
+        "available_text": "Everything you marked as needed is available as far as you know. Make use of it.",
+        "gap_title": "Some of the support you need is missing",
+        "gap_text": "Some support you need is not available as far as you know. The ready texts include input for a development conversation or a discussion with your manager.",
+        "none_title": "No needs marked",
+        "none_text": "Mark what you need to see what exists and what is missing."
+      },
+      "outputs": {
+        "overview": "My support options",
+        "discussion": "Development conversation input"
+      }
     }
   },
   "voimalused": {

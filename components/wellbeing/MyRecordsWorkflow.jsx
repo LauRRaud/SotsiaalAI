@@ -36,7 +36,8 @@ const WORKFLOW_LABELS = {
   interruptions: ["wellbeing.my_records.workflow.interruptions", "Katkestused"],
   "work-processes": ["wellbeing.my_records.workflow.work_processes", "Tööprotsessid"],
   "role-boundaries": ["wellbeing.my_records.workflow.role_boundaries", "Rollipiirid"],
-  "starter-support": ["wellbeing.my_records.workflow.starter_support", "Alustaja tugi"]
+  "starter-support": ["wellbeing.my_records.workflow.starter_support", "Alustaja tugi"],
+  "support-measures": ["wellbeing.my_records.workflow.support_measures", "Minu tugivõimalused"]
 };
 
 const SIGNAL_LABELS = {
