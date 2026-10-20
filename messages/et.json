@@ -9858,7 +9858,8 @@
         "work_processes": "Tööprotsessid",
         "role_boundaries": "Rollipiirid",
         "starter_support": "Alustaja tugi",
-        "support_measures": "Minu tugivõimalused"
+        "support_measures": "Minu tugivõimalused",
+        "weekly_reflection": "Nädala peegeldus"
       },
       "signal_level": {
         "green": "Roheline",
@@ -10419,6 +10420,38 @@
       "outputs": {
         "overview": "Minu tugivõimalused",
         "discussion": "Arenguvestluse sisend"
+      }
+    },
+    "weekly_reflection": {
+      "title": "Nädala peegeldus",
+      "save": "Salvesta nädala peegeldus",
+      "saving": "Salvestan...",
+      "saved": "Nädala peegeldus salvestati privaatselt.",
+      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
+      "badge": "Uus nädal",
+      "meaning_note": "Mis andis sel nädalal tööle mõtte?",
+      "steps": {
+        "week": {
+          "title": "Minu nädal",
+          "short": "Nädal",
+          "lead": "Mõtle möödunud nädalale. Vali igal real üks."
+        },
+        "meaning": {
+          "title": "Mis andis tööle mõtte",
+          "short": "Mõte",
+          "lead": "Üks rida on piisav. Võid ka vahele jätta; see jääb ainult sulle."
+        }
+      },
+      "signals": {
+        "green_title": "Nädal oli kandev",
+        "green_text": "Koormus ja taastumine olid tasakaalus. Hoia seda, mis toimis.",
+        "yellow_title": "Nädal oli pingeline",
+        "yellow_text": "Koormus või taastumine vajab tähelepanu. Vali järgmiseks nädalaks üks väike muutus.",
+        "red_title": "Nädal oli väga raske",
+        "red_text": "Koormus oli kõrge ja taastumist vähe. Tasub teha põhjalikum kiirkontroll või rääkida juhiga."
+      },
+      "outputs": {
+        "summary": "Minu nädal"
       }
     }
   },

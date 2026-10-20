@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–6 teostatud 20.10 (ptk 8.6–8.10; sammu 4 abiteede sisu ootab asjatundja ülevaatust), sammud 7–8 tegemata
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8 (asutuse pool) ootab partner-KOV-i
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -297,7 +297,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 4 | Töövägivald: allikas, kolleegi ja juhi abitee, märkmik — **tehtud 20.10, sisu ootab ülevaatust** (ptk 8.8) | 61% töökius; sisu vajab asjatundja ülevaatust | keskmine |
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa — **tehtud 20.10** (ptk 8.10) | katab küsimused 20–21 töötaja poolelt | keskmine |
-| 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ | sõltub meeldetuletuse otsusest | keskmine |
+| 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ — **tehtud 20.10 ilma teavituseta** (ptk 8.12) | sõltub meeldetuletuse otsusest | keskmine |
 | 8 | Asutuse meetmete kirjeldus, meetmete koond, arenguvajadus | vajab partner-KOV-i ja S6 otsust | suur |
 
 Sammud 1–7 katavad küsitluse 35 puuduvast punktist umbes 20. Ülejäänud jäävad teadlikult välja (ptk 8.3) või S6-le.
@@ -387,16 +387,15 @@ tuli“ (klient või tema lähedane / kolleeg / juht / koostööpartner / muu) j
 - Sammuvorm toetab nüüd mitut teadet (`safetyNotices`); tulemuse sammu privaatsuslause ütleb, kui kirje ise koondis
   ei osale. Tööriista kirjeldus ja ⓘ-info uuendatud; lisatud puuduv silt „töövägivalla olukord“.
 
-**Ootab asjatundja ülevaatust (tööõigus või ESTA) enne platvormi avamist:**
+**Ootas asjatundja ülevaatust (tööõigus või ESTA) — 20.10 lahendatud faktikontrolliga, vt ptk 8.11:**
 
 1. teate tekst `wellbeing.workplace_violence.internal_notice.text` (abiteed: kõrgem juht, personalitöötaja,
    töökeskkonnavolinik, töötervishoiuarst, Tööinspektsiooni nõustamine) ja sama loetelu ⓘ-infos;
 2. „Pöördumise mustandi“ sõnastus (`lib/wellbeing/workplaceViolence.js`, `internalReport`);
 3. kas abiteede hulka kuulub ka ametiühing, töövaidluskomisjon või organisatsiooni enda kiusamisvastane kord.
 
-**Lahti:** Tugi-paneelist saab töötaja endiselt teadlikult koostada kovisiooni sisendi ka kolleegi või juhi kirje
-põhjal (privaatne märk on sealt välja jäetud, mustand vajab tema ülevaatust ja kinnitust); kas see valik peita, on
-tooteotsus.
+**Otsustatud 20.10 (ptk 8.11):** Tugi-paneelis on kolleegi või juhi kirjel kovisiooni sisend peidetud, juhi puhul
+ka juhimemo.
 
 **Kontroll.** Sihitud eslint, `npm run i18n:check`; funktsioonide kutsega vorm = skeem = arvutus, sammude kaal (kõrgeim
 7,0 / 7,6), kliendi/kolleegi/juhi tekstide komplektid, märkmiku puudumine kõigist tekstidest ja mustanditest, teadete
@@ -456,3 +455,37 @@ sünteetilise kasutajaga brauseris (1536 × 640): suurim vaade mahub (viimane va
 tavanavigeerimisega on salvestusnupp paneelis, salvestus andis neli `measures.gap.*` tegurit, „Minu kirjed“ näitab
 kirjet ja silte, tööriist on Tööheaolu laual, neutraalne signaal kuvatakse. Testkasutaja kustutati.
 **Kontrollimata:** telefoni vaade, EN/RU kuva ja tootmine.
+
+### 8.11. Otsused 20.10 (omaniku volitusel: „jätka ja tee minu otsused ise“)
+
+| Otsus | Valik | Põhjus | Kus |
+|---|---|---|---|
+| **TO-3 koondis osalemise vaikeseis** | Piloodi ajal vaikimisi **sees**, nähtav seis ja ühe vajutusega väljalülitus | Koond avaneb alles viie inimesega; vaikimisi väljas jätaks väikese KOV-i koondi tühjaks. Töötaja näeb seisu iga vormi lõpus. Enne laiemat avamist vaadatakse üle koos O-WB-3 õigusanalüüsiga. | `lib/wellbeing/aggregatePreference.js` |
+| **Töövägivalla abiteed** | Teate sõnastus jääb; ⓘ-infosse kaks rida juurde | Kontrollitud ametlike allikatega: kiusamine ja ahistamine on TTOS § 9¹ psühhosotsiaalsed ohutegurid (tööandja peab hindama ja ennetama); Tööinspektsiooni infotelefon nõustab; töölepinguga töötaja vaidlus läheb töövaidluskomisjoni, **KOV-i ametniku oma halduskohtusse** (RaM eetikanõukogu 25.02.2025). Ametiühing ja asutuse kiusamisvastane kord on ⓘ-infos „kui on“. See on faktikontroll, mitte õigusnõustamine. | `lib/dashboardInfoContent.js` |
+| **Kovisiooni sisend kolleegi/juhi kirjelt** | **Peidetud** Tugi-paneelis; juhi puhul ka juhimemo | Sama piir mis töövoo valmis tekstides: kolleegi või juhi tehtut ei viida vaikimisi kolleegide rühma ega osapoolele. Supervisioon, abipalve ja mentor jäävad. | `components/wellbeing/supportOptions.js` |
+| **Nädalarütmi meeldetuletus** | Ainult vaikne märk „Uus nädal“ Tööheaolu laual, teavitust ei saadeta | Taustatööd on suletud avamisvärava taga; märk ei kasva ega korda ennast, seega eraldi peatamist ei ole vaja. Teavitus (kasutaja valitud päev, peatamine) tuleb siis, kui taustatööd on lubatud. | `components/room/RoomStage.jsx` |
+| **Samm 8 (asutuse meetmete kirjeldus)** | Ei teostatud | Vajab otsust, kes asutuses meetmeid haldab, ja päris partner-KOV-i; ilma selleta oleks see tühi haldusvaade. Arenguvajadus ja kutse jäävad S6-le. | — |
+
+Allikad: [RaM eetikanõukogu, KOV ametniku pöördumine (sh väidetav töökius), 25.02.2025](https://fin.ee/sites/default/files/documents/2025-03/KOV%20ametniku%20p%C3%B6%C3%B6rdumine%20oma%20%C3%B5iguste%20kaitsmise%20osas%20KOV%20ametiasutuses%20tekkinud%20t%C3%B6%C3%B6vaidluses%20%28sh%20v%C3%A4idetav%20t%C3%B6%C3%B6kius%29.%2025.02.%202025_0.pdf);
+[TTOS muutmise eelnõu (psühhosotsiaalsed ohutegurid, § 9¹)](https://www.koda.ee/sites/default/files/content-type/content/2017-07/T%C3%B6%C3%B6tervishoiu%20ja%20t%C3%B6%C3%B6ohutuse%20seaduse%20ning%20teiste%20seaduste%20muutmise%20seaduse%20eeln%C3%B5u%20SK_07072017.pdf);
+[Tööinspektsiooni sihtkontroll 2019, psühhosotsiaalsed ohutegurid](https://ti.ee/sites/default/files/documents/2022-08/2019%20sihtkontroll%20ps%C3%BChhosotsiaalsed%20ohutegurid.pdf).
+
+### 8.12. Teostus 20.10: samm 7, nädala peegeldus
+
+Uus tööriist `/tooheaolu/nadala-peegeldus` (töövoog `weekly-reflection`, skeem 1.0), Tööheaolu laual tsoonis
+„vaade“ kalendrilehe ikooniga.
+
+- Kolm küsimust (töökoormus, kas jõudsin taastuda, kas tööl oli mõte) ja üks valikuline rida „Mis andis sel nädalal
+  tööle mõtte?“. Kiirkontroll jääb põhjalikuks vaateks.
+- Signaal roheline / kollane / punane koormuse ja taastumise järgi; tähenduslikkus signaali ei muuda. Koondisse lähevad
+  samad tegurid mis kiirkontrollis (`workload.high`, `recovery.low_or_none`, `meaning.low`); vaba rida jääb töötajale.
+  Kõrge koormuse korral soovitab põhjalikumat kiirkontrolli, vähese taastumise korral Taastumist.
+- Valmis tekst „Minu nädal (2026-W43)“ vormiga samade sõnadega.
+- Kutse: vaikne märk „Uus nädal“ Tööheaolu laua kaardil, kui sel ISO-nädalal kirjet ei ole; kaob salvestamisel.
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`, `server-message-keys`; funktsioonide kutsega vorm = skeem =
+arvutus, tabelisamm, signaalid, tegurid, vaba rea puudumine koondi väljadest, ISO-nädal (sh aastavahetus), Tugi-paneeli
+filter kolme allika puhul; kõik varasemad kontrollid uuesti läbi. Kohalikus baasis sünteetilise kasutajaga brauseris:
+laual märk „Uus nädal“, vorm automaatse edasiliikumisega, tulemus „Nädal oli pingeline“, salvestusnupp paneelis,
+salvestuse järel märk kadus; töövägivalla juhi kirjel puuduvad Tugi-paneelis juhimemo ja kovisiooni sisend.
+Testkasutaja kustutati. **Kontrollimata:** telefoni vaade, EN/RU kuva ja tootmine.

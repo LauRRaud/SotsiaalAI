@@ -6,6 +6,8 @@
  * (mentori valik, tests/wellbeing-display-labels.test.mjs).
  */
 
+import { isInternalViolenceSource } from "@/lib/wellbeing/workplaceViolence";
+
 /* SOL-WB-17: neljast valikust oli teostatud AINULT kovisiooni üleandmine.
    Ülejäänud kolm lubasid „jagatav versioon kinnitatud", aga juht, pilooditugi
    ega mentor ei saanud midagi — üleandmisrada ei olnud olemas ja lõputekst ei
@@ -62,3 +64,19 @@ export const supportOptions = [
     descriptionFallback: "Privaatne mustand, mille sa ise mentoriga jagad — platvorm seda ei saada"
   }
 ];
+
+/**
+ * Valikud selle kirje jaoks. Kolleegilt või juhilt tulnud töövägivald ei lähe
+ * kolleegide rühma (kovisioon) ja juhi puhul ei ole juhimemo vaiketee — sama
+ * piir mis töövoo enda valmis tekstides (omaniku volitusel otsustatud 20.10,
+ * arendusettepanek ptk 8.11).
+ */
+export function supportOptionsFor({ sourceWorkflowType, context } = {}) {
+  const fields = context?.standardizedFields || {};
+  if (sourceWorkflowType !== "workplace-violence" || !isInternalViolenceSource(fields)) return supportOptions;
+  return supportOptions.filter((option) => {
+    if (option.recipientType === "covision") return false;
+    if (option.recipientType === "manager" && fields.sourceOfHarm === "manager") return false;
+    return true;
+  });
+}

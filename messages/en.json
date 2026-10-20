@@ -9858,7 +9858,8 @@
         "work_processes": "Work processes",
         "role_boundaries": "Role boundaries",
         "starter_support": "Starter support",
-        "support_measures": "My support options"
+        "support_measures": "My support options",
+        "weekly_reflection": "Weekly reflection"
       },
       "signal_level": {
         "green": "Green",
@@ -10419,6 +10420,38 @@
       "outputs": {
         "overview": "My support options",
         "discussion": "Development conversation input"
+      }
+    },
+    "weekly_reflection": {
+      "title": "Weekly reflection",
+      "save": "Save weekly reflection",
+      "saving": "Saving...",
+      "saved": "Weekly reflection was saved privately.",
+      "save_failed": "Saving failed. Please try again.",
+      "badge": "New week",
+      "meaning_note": "What gave your work meaning this week?",
+      "steps": {
+        "week": {
+          "title": "My week",
+          "short": "Week",
+          "lead": "Think about the past week. Choose one on each row."
+        },
+        "meaning": {
+          "title": "What gave work meaning",
+          "short": "Meaning",
+          "lead": "One line is enough. You can also skip it; it stays only with you."
+        }
+      },
+      "signals": {
+        "green_title": "The week was sustainable",
+        "green_text": "Workload and recovery were in balance. Keep what worked.",
+        "yellow_title": "The week was tense",
+        "yellow_text": "Workload or recovery needs attention. Choose one small change for next week.",
+        "red_title": "The week was very hard",
+        "red_text": "Workload was high and there was little recovery. Consider a fuller quick check or a talk with your manager."
+      },
+      "outputs": {
+        "summary": "My week"
       }
     }
   },

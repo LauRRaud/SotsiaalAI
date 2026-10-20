@@ -17,6 +17,7 @@ import RecoveryWorkflow from "./RecoveryWorkflow";
 import RoleBoundariesWorkflow from "./RoleBoundariesWorkflow";
 import StarterSupportWorkflow from "./StarterSupportWorkflow";
 import SupportMeasuresWorkflow from "./SupportMeasuresWorkflow";
+import WeeklyReflectionWorkflow from "./WeeklyReflectionWorkflow";
 import WorkplaceViolenceWorkflow from "./WorkplaceViolenceWorkflow";
 import WorkBoundariesWorkflow from "./WorkBoundariesWorkflow";
 import WorkProcessesWorkflow from "./WorkProcessesWorkflow";
@@ -34,7 +35,8 @@ const STAGED_TOOLS = new Set([
   "work-processes",
   "role-boundaries",
   "starter-support",
-  "support-measures"
+  "support-measures",
+  "weekly-reflection"
 ]);
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAAL.PRO_CHAT_WORKSPACE_RESTORE__";
@@ -163,6 +165,8 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
             <StarterSupportWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "support-measures" ? (
             <SupportMeasuresWorkflow onNavigate={navigate} />
+          ) : activeTool?.id === "weekly-reflection" ? (
+            <WeeklyReflectionWorkflow onNavigate={navigate} />
           ) : activeTool ? (
             <div className="wellbeing-workflow__placeholder">
               <section className="feature-section">

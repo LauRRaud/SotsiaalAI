@@ -643,6 +643,15 @@ export const WellbeingRoleIcon = (props) => (
   </Svg>
 );
 
+/* Nädala peegeldus — kalendrileht südamega (kuidas nädal läks) */
+export const WellbeingWeeklyIcon = (props) => (
+  <Svg {...props}>
+    <rect {...P} x="4" y="5.5" width="16" height="15" rx="2.5" />
+    <path {...P} d="M4 10h16M8.5 3.5v4M15.5 3.5v4" />
+    <path {...P} d="M12 17.6s-3-1.8-3-3.6a1.5 1.5 0 0 1 3-.4 1.5 1.5 0 0 1 3 .4c0 1.8-3 3.6-3 3.6Z" />
+  </Svg>
+);
+
 /* Minu tugivõimalused — päästerõngas (millist tuge saab kasutada) */
 export const WellbeingSupportIcon = (props) => (
   <Svg {...props}>

@@ -37,7 +37,8 @@ const WORKFLOW_LABELS = {
   "work-processes": ["wellbeing.my_records.workflow.work_processes", "Tööprotsessid"],
   "role-boundaries": ["wellbeing.my_records.workflow.role_boundaries", "Rollipiirid"],
   "starter-support": ["wellbeing.my_records.workflow.starter_support", "Alustaja tugi"],
-  "support-measures": ["wellbeing.my_records.workflow.support_measures", "Minu tugivõimalused"]
+  "support-measures": ["wellbeing.my_records.workflow.support_measures", "Minu tugivõimalused"],
+  "weekly-reflection": ["wellbeing.my_records.workflow.weekly_reflection", "Nädala peegeldus"]
 };
 
 const SIGNAL_LABELS = {

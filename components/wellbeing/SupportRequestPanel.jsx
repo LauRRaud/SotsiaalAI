@@ -10,7 +10,7 @@ import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 import { buildWellbeingShareableDraft } from "@/lib/wellbeing/supportDraftText";
 
-import { supportOptions } from "./supportOptions";
+import { supportOptionsFor } from "./supportOptions";
 
 export default function SupportRequestPanel({
   sourceWorkflowType = "quick-check",
@@ -310,7 +310,7 @@ export default function SupportRequestPanel({
           pillnupu järjestikused tekstiosad ja jooksid kokku (kujundusaudit K03);
           paneel on ühine kõigile tööheaolu töövormidele. */}
       <ActionCardGrid label={t("wellbeing.support.options_label", "Toe küsimise valikud")}>
-        {supportOptions.map((option) => (
+        {supportOptionsFor({ sourceWorkflowType, context }).map((option) => (
           <ActionCard
             key={`${option.outputType}:${option.recipientType}`}
             title={t(option.labelKey, option.labelFallback)}

@@ -114,7 +114,12 @@ Samm 5: Tööprotsessides on ajakulu allikatena töövahendid ja ruum, Tööpiir
 TLÜ 2024 soovitustele vastavad organisatsiooni soovitused. Samm 6: uus tööriist
 „Minu tugivõimalused“ (`/tooheaolu/tugivoimalused`) — 19 tööandja meedet, mis on
 olemas ja mida vajan; puudujäägist arenguvestluse sisend, koondisse ainult „vajan,
-aga pole“. Järgmine: nädalarütm (sõltub meeldetuletuse ja taustatööde otsusest).
+aga pole“. Samm 7: „Nädala peegeldus“ (3 küsimust + üks rida); kutse on vaikne
+märk „Uus nädal“ Tööheaolu laual, teavitust ei saadeta. **Omaniku volitusel
+otsustatud:** koond piloodi ajal vaikimisi sees (TO-3, üle vaadata enne laiemat
+avamist); töövägivalla abiteed faktikontrollitud (TTOS § 9¹, Tööinspektsioon;
+KOV-i ametniku vaidlus halduskohtusse); kolleegi/juhi kirjelt kovisiooni sisend
+peidetud. Lahti: samm 8 (asutuse meetmete kirjeldus) vajab partner-KOV-i.
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 304
@@ -4960,7 +4965,7 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 | Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
 | Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
 | Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
-| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1, Töövägivalla allikas ja märkmik, ületunnid, töövahendid ja ruum, „Minu tugivõimalused“ (20.10) | P3–P5; nädalarütm ja naasmispunkt; abiteede sõnastuse asjatundja ülevaatus; asutuse meetmete kirjeldus (TO-6) ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
+| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1, Töövägivalla allikas ja märkmik, ületunnid, töövahendid ja ruum, „Minu tugivõimalused“, nädala peegeldus (20.10) | P3–P5; nädalarütmi teavitus (taustatööde järel); asutuse meetmete kirjeldus (TO-6) ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
 | Ühistegevus | osaleja- ja jagamiskiht, kokkuvõtte kinnitusring | võrgustiku vertikaal, kohtumise ühisvaade (S4.1) |
 | Materjalid | esitamise ja ülevaatuse rada | esimesed päris esitused puuduvad — kasutajad, mitte kood |
 

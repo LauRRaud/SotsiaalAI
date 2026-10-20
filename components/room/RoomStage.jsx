@@ -97,6 +97,7 @@ import {
   WellbeingRoleIcon,
   WellbeingStarterIcon,
   WellbeingSupportIcon,
+  WellbeingWeeklyIcon,
 } from "@/components/brand/icons/CardIcons";
 import {
   CLIENT_ZONE,
@@ -105,6 +106,7 @@ import {
   workspaceZonesForRole,
 } from "@/lib/deskZones";
 import { wellbeingTools } from "@/lib/wellbeingTools";
+import { isoWeekKey } from "@/lib/wellbeing/weeklyReflection";
 import { isCaseWorkUiEnabled } from "@/lib/casework/flags";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import { isOrgWorkspaceUiEnabled } from "@/lib/org/flags";
@@ -161,6 +163,7 @@ const WELLBEING_TOOL_ICONS = Object.freeze({
   "role-boundaries": <WellbeingRoleIcon />,
   "starter-support": <WellbeingStarterIcon />,
   "support-measures": <WellbeingSupportIcon />,
+  "weekly-reflection": <WellbeingWeeklyIcon />,
 });
 
 /* Kerimisruumi pikkus tuleb CSS-ist (--walk-vh, room.css spacer). */
@@ -357,6 +360,34 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
     // pathname deps: värskenda navigeerimisel (nt pärast liitumist kaob teade).
   }, [isAuthed, pathname]);
   const hasPendingInvite = Boolean(pendingInvite) || pendingNeedsVerify;
+
+  /* Nädala peegeldus: vaikne märk Tööheaolu laua kaardil, kui sel nädalal
+     kirjet veel ei ole. Kutse, mitte kohustus — midagi ei saadeta ja
+     vahelejäänud nädal ei jäta jälge (lib/wellbeing/weeklyReflection.js).
+     Pärime ainult Tööheaolu laual. */
+  const [weeklyReflectionOpen, setWeeklyReflectionOpen] = useState(false);
+  useEffect(() => {
+    if (!isAuthed || !isWellbeingRoute) return undefined;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/wellbeing/records?workflowType=weekly-reflection&take=1", {
+          headers: { Accept: "application/json" },
+          cache: "no-store"
+        });
+        if (!res.ok) return;
+        const data = await res.json().catch(() => ({}));
+        if (cancelled || !data?.ok) return;
+        const latest = Array.isArray(data.records) ? data.records[0] : null;
+        setWeeklyReflectionOpen(!latest || isoWeekKey(new Date(latest.createdAt)) !== isoWeekKey(new Date()));
+      } catch {
+        // vaikne — märk on abistav lisa
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [isAuthed, isWellbeingRoute]);
   /* Töölaua kaardikomplekt sõltub vaate-rollist: tavakasutaja näeb oma
      rolli kaarte, admin saab S/P/T-lülitiga vaadet vahetada (effectiveRole).
      refreshEffectiveRole juhtmestatakse doki lülitile, et vahetus muudaks
@@ -1313,10 +1344,12 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
         label: tool.title,
         href: tool.route,
         icon: WELLBEING_TOOL_ICONS[tool.id] || <WellbeingIcon />,
+        /* Vaikne toon (mitte "notice"): kutse, mitte hoiatus. */
+        badge: tool.id === "weekly-reflection" && weeklyReflectionOpen ? t("wellbeing.weekly_reflection.badge", "Uus nädal") : null,
       })),
       { key: "tagasi", label: t("room.back_card"), action: "tooheaolu-tagasi", icon: <BackArrowIcon /> },
     ],
-    [t]
+    [t, weeklyReflectionOpen]
   );
 
   /* Kovisiooni komplekt — töövoo päris põhilehed + tagasi. */
