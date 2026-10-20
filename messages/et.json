@@ -10259,7 +10259,16 @@
       "steps": {
         "situation": "Kus sa praegu oled? Vali igale küsimusele üks vastus.",
         "load": "Märgi kõik, mis sind praegu kõige rohkem koormab.",
-        "tasks": "Jaga lähipäevade töö kolmeks. Üks rida on üks ülesanne."
+        "tasks": "Kui lähipäevad on liiga täis, jaga töö kolmeks. Üks rida on üks ülesanne; võid ka vahele jätta.",
+        "detachment": "Mõtle viimasele kahele nädalale. Kui sageli?",
+        "experiences": "Märgi, mis sul praegu puudu jääb, ja vali üks kokkulepe iseendaga."
+      },
+      "detachment_heading": "Eemaldumine",
+      "experiences_heading": "Mis sind taastab",
+      "experiences_short": "Taastumine",
+      "sleep_notice": {
+        "title": "Seda tasub tõsiselt võtta",
+        "text": "Sage unehäire või ärevus ei ole diagnoos. Kui see kestab, räägi perearsti, töötervishoiuarsti või psühholoogiga. Kui olukord vajab kiiret abi, helista 112 või pöördu kriisiabi poole."
       }
     },
     "flow": {
@@ -10341,7 +10350,8 @@
         "answers": "Sinu vastused ja tekstid",
         "plans": "Plaanid, kontrollpunktid ja mustandid",
         "history": "Täpne ajalugu",
-        "mistreatment": "Kolleegi või juhi ebaväärika kohtlemise märk"
+        "mistreatment": "Kolleegi või juhi ebaväärika kohtlemise märk",
+        "sleep": "Une ja ärevuse vastused"
       },
       "shared_items": {
         "signal": "Töökorralduslik signaal (roheline, kollane, punane)",

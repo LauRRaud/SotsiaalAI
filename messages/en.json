@@ -10259,7 +10259,16 @@
       "steps": {
         "situation": "Where are you right now? Choose one answer for each question.",
         "load": "Mark everything that weighs on you most right now.",
-        "tasks": "Split the coming days' work into three. One line is one task."
+        "tasks": "If the coming days are too full, split the work into three. One line is one task; you can also skip this.",
+        "detachment": "Think about the last two weeks. How often?",
+        "experiences": "Mark what you are missing right now and choose one agreement with yourself."
+      },
+      "detachment_heading": "Switching off",
+      "experiences_heading": "What restores you",
+      "experiences_short": "Recovery",
+      "sleep_notice": {
+        "title": "This is worth taking seriously",
+        "text": "Frequent sleep problems or anxiety are not a diagnosis. If this continues, talk to your family doctor, occupational health doctor or a psychologist. If you need urgent help, call 112 or contact crisis support."
       }
     },
     "flow": {
@@ -10341,7 +10350,8 @@
         "answers": "Your answers and texts",
         "plans": "Plans, checkpoints and drafts",
         "history": "Exact history",
-        "mistreatment": "The marker for mistreatment by a colleague or manager"
+        "mistreatment": "The marker for mistreatment by a colleague or manager",
+        "sleep": "Your answers about sleep and anxiety"
       },
       "shared_items": {
         "signal": "Work organisation signal (green, yellow, red)",

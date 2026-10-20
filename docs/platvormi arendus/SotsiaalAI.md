@@ -102,7 +102,11 @@ eraldi, töö tähenduslikkus ning turvalisuse samm (kliendi vägivald; kolleegi
 ebaväärikas kohtlemine). Kolleegi või juhi märk jääb ainult töötajale: see ei lähe
 koondisse, juhimemosse ega kovisiooni sisendisse. Kohalikus baasis sünteetilise
 kasutajaga kontrolliti salvestust, paigutust (1536 × 640, 390 × 844), lülitit ja
-päris koondi valimit. Järgmine: Taastumise ümberehitus.
+päris koondi valimit. Samm 3 samal päeval: Taastumine 1.1 küsib enne 24–72 h
+tööplaani eemaldumist (neli sagedusküsimust), puuduvaid taastumiskogemusi ja ühte
+kokkulepet iseendaga; sage uni või ärevus annab teate („ei ole diagnoos“) ja ainult
+töötajale jääva märgi, mis ei muuda koondisse minevat signaali. Järgmine: Töövägivalla
+allikas ja kolleegi või juhi abitee (sisu vajab asjatundja ülevaatust).
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 264
@@ -4946,7 +4950,7 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 | Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
 | Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
 | Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
-| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 (20.10) | P3–P5; nädalarütm ja naasmispunkt; Taastumise ümberehitus ja Töövägivalla allikas ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
+| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1 (20.10) | P3–P5; nädalarütm ja naasmispunkt; Töövägivalla allikas ja abitee ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
 | Ühistegevus | osaleja- ja jagamiskiht, kokkuvõtte kinnitusring | võrgustiku vertikaal, kohtumise ühisvaade (S4.1) |
 | Materjalid | esitamise ja ülevaatuse rada | esimesed päris esitused puuduvad — kasutajad, mitte kood |
 

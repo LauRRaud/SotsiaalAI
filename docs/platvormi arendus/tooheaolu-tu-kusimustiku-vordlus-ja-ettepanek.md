@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–2 teostatud 20.10 (ptk 8.6), sammud 3–8 tegemata
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–3 teostatud 20.10 (ptk 8.6–8.7), sammud 4–8 tegemata
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -293,7 +293,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 |---|---|---|---|
 | 1 | Koondis osalemine nähtavaks ja valitavaks — **tehtud 20.10** (ptk 8.6) | eeldus kõigele, mis lisab tundlikke märke; aken on lahti avamiseni | väike |
 | 2 | Kiirkontroll: juhi ja kolleegi tugi lahku, tähenduslikkus, kaks märkeruutu — **tehtud 20.10** (ptk 8.6) | odav, lahendab TO-9; koondi järjepidevus ei kannata, sest päriskirjeid ei ole | väike |
-| 3 | Taastumise ümberehitus | suurim metoodiline puudus (I8), katab küsimuse 27 | keskmine |
+| 3 | Taastumise ümberehitus — **tehtud 20.10** (ptk 8.7) | suurim metoodiline puudus (I8), katab küsimuse 27 | keskmine |
 | 4 | Töövägivald: allikas, kolleegi ja juhi abitee, märkmik | 61% töökius; sisu vajab asjatundja ülevaatust | keskmine |
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa | katab küsimused 20–21 töötaja poolelt | keskmine |
@@ -340,3 +340,32 @@ salvestus (`schemaVersion` 1.1, märk kirjes), turvalisuse ja tulemuse samm mahu
 vaates, „Anonüümne koond“ lüliti salvestab valiku ning päris koondi API valim langes väljalülitusel 1 → 0 ja tuli
 sisselülitusel tagasi. Testkasutaja kustutati. **Kontrollimata:** inglise ja vene tekstide kuva brauseris (ainult
 kataloogi kontroll), tootmises käitumine ja vaikeväärtuse lõplik tooteotsus.
+
+### 8.7. Teostus 20.10: samm 3, Taastumise ümberehitus (TO-5, I8)
+
+**Taastumine 1.1** (`recovery-v2`). Kuus sisendsammu: eemaldumine, mis sind taastab, olukord, seis ja kontrollpunkt,
+koormus, 24–72 h tööplaan (viimane on valikuline).
+
+- *Eemaldumine*: neli sagedusküsimust viimase kahe nädala kohta (harva / mõnikord / sageli / peaaegu alati): tööle
+  mõtlemine vabal ajal, vaimne kurnatus tööpäeva lõpuks, töö segab und, tööle mõtlemine tekitab ärevust. Sõnastus on
+  oma, mitte CBI ega küsitluse tekst.
+- *Mis sind taastab*: mis neljast taastumiskogemusest (Sonnentag ja Fritz 2007) praegu puudu jääb, ja üks kokkulepe
+  iseendaga (pooleli asjad kirja, töökanalid kinni, väike üleminek, üks tööst vaba õhtu või „praegu ei vali“).
+- Sage uni või ärevus → teade küsimuste all ja tulemuse juures („ei ole diagnoos“; perearst, töötervishoiuarst,
+  psühholoog; kiire abi korral 112 või kriisiabi, sama sõnastus mis platvormi teistes kriisitekstides). Skoori ei ole.
+- Koondisse lähevad `recovery.detachment_low` (töö tuleb sageli vabasse aega kaasa) ja
+  `recovery.end_of_day_exhaustion`. Une ja ärevuse märk `recovery.sleep_or_anxiety_frequent` jääb ainult töötajale
+  (`privateMarkers.js`) ega muuda signaali, sest signaal läheb koondisse ja kannaks tervisele lähedase vastuse sinna
+  kaudselt kaasa. Eemaldumine ja kurnatus tõstavad signaali kumbki ühe punkti võrra.
+- Valmis tekst „Taastumisplaan“ sisaldab eemaldumist, puuduvaid kogemusi ja kokkulepet, aga mitte une ega ärevuse
+  vastust. Juhimemo lisab eemaldumise korral palve töövälise kättesaadavuse kokkuleppeks. Piloodi aruande
+  tööpiiride kokkuleppe soovitus käivitub ka eemaldumise märgist.
+- Tööriista kirjeldus ja ⓘ-info on uue sisu järgi ümber kirjutatud; „Anonüümne koond“ vaade loetleb une ja ärevuse
+  vastused töötajale jäävate andmete hulgas.
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`; funktsioonide kutsega vormi, skeemi ja arvutuse vastavus, sammude
+kaal (kõrgeim 7,0 / 7,6), signaal, privaatne märk ja selle puudumine plaanist, juhimemost, kolmest jagatavast
+mustandist ja koondist. Kohalikus baasis sünteetilise kasutajaga brauseris: une teade ilmub küsimuste alla ja samm
+mahub 1536 × 640 vaates (teade 362–497 px, paneel lõpeb 547 px) ning 390 × 844 vaates dokist kõrgemale; tulemuse
+samm koos teatega mahub; salvestus andis `schemaVersion` 1.1, eemaldumise teguri ja ainult privaatse une märgi.
+Testkasutaja kustutati. **Kontrollimata:** EN/RU kuva brauseris ja tootmine.

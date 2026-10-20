@@ -1,15 +1,30 @@
 /**
- * Taastumise (24-72h taastumisplaan) kirjeldus sammuvormile.
+ * Taastumise kirjeldus sammuvormile.
+ *
+ * 1.1: kõigepealt eemaldumine ja taastumiskogemused (mis puudu jääb, üks
+ * kokkulepe iseendaga), siis olukord ja 24–72 h tööplaan neile, kellel on vaja
+ * koormust jagada.
  *
  * Väljade võtmed ja väärtused on serveri lepingu osa
  * (`lib/wellbeing/fieldSchemas.js`, töövoog `recovery`). Arvutus ja valmis
  * tekstid: `lib/wellbeing/recovery.js`.
  */
 
-import { buildRecoveryRecord } from "@/lib/wellbeing/recovery";
+import { buildRecoveryRecord, recoverySleepOrAnxietyFrequent } from "@/lib/wellbeing/recovery";
 
 const options = (pairs) => pairs.map(([value, label]) => ({ value, label }));
 const lead = (key, fallback) => [`wellbeing.recovery.steps.${key}`, fallback];
+const frequency = (key, label) => ({
+  key,
+  kind: "enum",
+  label,
+  options: options([
+    ["rarely", "Harva"],
+    ["sometimes", "Mõnikord"],
+    ["often", "Sageli"],
+    ["almost_always", "Peaaegu alati"]
+  ])
+});
 
 export const recoveryForm = {
   workflowType: "recovery",
@@ -23,6 +38,48 @@ export const recoveryForm = {
     failed: ["wellbeing.recovery.save_failed", "Salvestamine ebaõnnestus. Proovi uuesti."]
   },
   steps: [
+    {
+      key: "detachment",
+      title: ["wellbeing.recovery.detachment_heading", "Eemaldumine"],
+      lead: lead("detachment", "Mõtle viimasele kahele nädalale. Kui sageli?"),
+      fields: [
+        frequency("workThoughtsOffHours", "Mõtlen tööle ka vabal ajal"),
+        frequency("endOfDayExhaustion", "Olen tööpäeva lõpuks vaimselt kurnatud"),
+        frequency("sleepAffected", "Töö segab mu und"),
+        frequency("workAnxiety", "Tööle mõtlemine tekitab ärevust")
+      ]
+    },
+    {
+      key: "experiences",
+      title: ["wellbeing.recovery.experiences_heading", "Mis sind taastab"],
+      short: ["wellbeing.recovery.experiences_short", "Taastumine"],
+      lead: lead("experiences", "Märgi, mis sul praegu puudu jääb, ja vali üks kokkulepe iseendaga."),
+      fields: [
+        {
+          key: "missingRecoveryExperiences",
+          kind: "enum_list",
+          label: "Mis praegu puudu jääb?",
+          options: options([
+            ["detachment", "Tööst mõtetes eemaldumine"],
+            ["relaxation", "Lõõgastus ja puhkus"],
+            ["mastery", "Midagi uut ja jõukohast väljaspool tööd"],
+            ["control", "Kontroll oma vaba aja üle"]
+          ])
+        },
+        {
+          key: "selfAgreement",
+          kind: "enum",
+          label: "Üks kokkulepe iseendaga",
+          options: options([
+            ["write_unfinished", "Kirjutan päeva lõpus pooleli asjad üles"],
+            ["close_channels", "Panen vabal ajal töökanalid kinni"],
+            ["transition", "Teen pärast tööd väikese ülemineku"],
+            ["free_evening", "Hoian ühe õhtu nädalas tööst vaba"],
+            ["none_now", "Praegu ei vali"]
+          ])
+        }
+      ]
+    },
     {
       key: "situation",
       title: ["wellbeing.recovery.situation", "Olukord"],
@@ -122,7 +179,7 @@ export const recoveryForm = {
       key: "tasks",
       title: ["wellbeing.recovery.tasks_heading", "24-72h tööplaan"],
       short: "Tööplaan",
-      lead: lead("tasks", "Jaga lähipäevade töö kolmeks. Üks rida on üks ülesanne."),
+      lead: lead("tasks", "Kui lähipäevad on liiga täis, jaga töö kolmeks. Üks rida on üks ülesanne; võid ka vahele jätta."),
       /* Kolm loendit kõrvuti: jagamine kolmeks on näha ühe pilguga. */
       columns: 3,
       fields: [
@@ -132,6 +189,17 @@ export const recoveryForm = {
       ]
     }
   ],
+  /* Sage unehäire või ärevus: teade kohe küsimuste all ja uuesti tulemuse
+     juures. Diagnoosi ega skoori ei ole; vastused jäävad ainult töötajale. */
+  safetyNotice: {
+    fieldKey: "workAnxiety",
+    when: recoverySleepOrAnxietyFrequent,
+    title: ["wellbeing.recovery.sleep_notice.title", "Seda tasub tõsiselt võtta"],
+    text: [
+      "wellbeing.recovery.sleep_notice.text",
+      "Sage unehäire või ärevus ei ole diagnoos. Kui see kestab, räägi perearsti, töötervishoiuarsti või psühholoogiga. Kui olukord vajab kiiret abi, helista 112 või pöördu kriisiabi poole."
+    ]
+  },
   signals: {
     manageable: {
       tone: "ok",
@@ -150,7 +218,7 @@ export const recoveryForm = {
     }
   },
   outputs: [
-    { title: "24-72h taastumisplaan", value: (record) => record.outputSummary.recoveryPlan72h },
+    { title: "Taastumisplaan", value: (record) => record.outputSummary.recoveryPlan72h },
     { title: "Juhiga arutelu memo", value: (record) => record.outputSummary.managerMemo }
   ],
   links: [{ title: ["wellbeing.recovery.open_boundaries", "Ava tööpiirid"], href: "/tooheaolu/toopiirid" }]

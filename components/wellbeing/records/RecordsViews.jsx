@@ -303,7 +303,8 @@ export function AggregateView({ t, status, enabled, chosen, onToggle }) {
       ["answers", "Sinu vastused ja tekstid"],
       ["plans", "Plaanid, kontrollpunktid ja mustandid"],
       ["history", "Täpne ajalugu"],
-      ["mistreatment", "Kolleegi või juhi ebaväärika kohtlemise märk"]
+      ["mistreatment", "Kolleegi või juhi ebaväärika kohtlemise märk"],
+      ["sleep", "Une ja ärevuse vastused"]
     ]],
     ["shared", "Võib osaleda koondis", [
       ["signal", "Töökorralduslik signaal (roheline, kollane, punane)"],
