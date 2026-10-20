@@ -1,0 +1,403 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser; supervisor = synthetic specialist with a fixture SupervisorGrant",
+  "history": [
+    {
+      "step": "Uus protsess: Individuaalne, title, 3 planned meetings, purpose, Loo protsess",
+      "result": "POST /api/supervision/processes 201; draft visible only to the supervisor"
+    },
+    {
+      "step": "Kontrakt: Uus versioon, Salvesta versioon, Versioonid > Aktiveeri versioon > Vajuta uuesti, et aktiveerida",
+      "result": "contract-versions 201, activate 200; version 1 in force; activation warned that it cannot be undone"
+    },
+    {
+      "step": "Osalejad: Kutsu osaleja by the invitee user ID",
+      "result": "invitation pending; the form asks for an internal user ID, not a name or e-mail"
+    },
+    {
+      "step": "Provider: Minu supervisioon > Kutsed",
+      "result": "invitation listed in the app with title, supervisor and role; before answering only the contract is shown"
+    },
+    {
+      "step": "Provider: Kinnitan kontrakti ja liitun",
+      "result": "participations/.../respond 200; role Osaleja, Aktiivne"
+    }
+  ],
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "participant_private_note_hidden_from_supervisor",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "privateInShared": false,
+        "privateInSupervisorRoom": false
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "participant_shared_topic_visible_to_supervisor",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "listShowsTitle": true,
+        "openedTopicShowsContent": true,
+        "privateNoteStillHidden": true,
+        "shareNeededSecondPress": true,
+        "sharedTo": "Ainult superviisorile (default)"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "summary_draft_hidden_until_sent",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "participantSawDraftBeforeSend": false
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "summary_sent_and_confirmed_by_participant",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "participantSeesAfterSend": true,
+        "sendPresses": [
+          "Saada kinnitamisele",
+          "Vajuta uuesti, et saata"
+        ],
+        "confirmPresses": [
+          "Kinnitan",
+          "Vajuta uuesti, et kinnitada"
+        ],
+        "stateAfter": "Kohtumise 1 kokkuvõte Kinnitatud Püsiv: jääb alles ka pärast sulgemist Ava › Uus kokkuvõte"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "closing_removes_shared_topics_keeps_confirmed_summary",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "closePresses": [
+          "Ava sulgemise eelvaade",
+          "Sulgen protsessi lõplikult",
+          "Vajuta uuesti, et sulgeda"
+        ],
+        "participantOverviewShowsSharedTopic": true,
+        "participantSeesConfirmedSummary": true,
+        "sharedTopicRows": 0,
+        "processState": "Suletud Minu protsessid Kogu protsess Suletud p",
+        "database": {
+          "process": "CLOSED",
+          "title": "Supervisioon: töörolli piirid (sünteetiline)",
+          "sharedTopics": 0,
+          "summaries": "1 APPROVED",
+          "privateItems": 2,
+          "personalOutcomes": 2,
+          "closure": 1
+        }
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The harness tested the participant overview for the title \"SOL jagatav\", but the participant private draft with that title is meant to stay (\"Alles jääb: sinu privaatne eeskamber\"). Measured after closing: SupervisionProcess CLOSED with the generalised title, SupervisionSharedTopic 0 rows, SupervisionSummary 1 APPROVED, SupervisionPrivateItem 2, SupervisionPersonalOutcome 2, SupervisionClosure 1 — exactly the kept/removed lists of the close preview."
+      }
+    }
+  ],
+  "network": [
+    {
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/supervision/processes/cmvgoi8ag0005d0tssdz9jl3i/private-items",
+      "status": 201,
+      "message": null
+    },
+    {
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/supervision/processes/cmvgoi8ag0005d0tssdz9jl3i/private-items",
+      "status": 201,
+      "message": null
+    },
+    {
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/supervision/processes/cmvgoi8ag0005d0tssdz9jl3i/topics",
+      "status": 201,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/supervision/processes/cmvgoi8ag0005d0tssdz9jl3i/meetings",
+      "status": 201,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "PATCH",
+      "path": "/api/supervision/meetings/cmvgoy2l80018d0tsfcgs22sd",
+      "status": 200,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/supervision/processes/cmvgoi8ag0005d0tssdz9jl3i/summaries",
+      "status": 201,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/supervision/summaries/cmvgozis2001dd0tskzsngzru/submit",
+      "status": 200,
+      "message": null
+    },
+    {
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/supervision/summaries/cmvgozis2001dd0tskzsngzru/approve",
+      "status": 200,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/supervision/processes/cmvgoi8ag0005d0tssdz9jl3i/close",
+      "status": 200,
+      "message": null
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "markers": {
+    "privateNote": "SOL PRIVATE NOTE e39909",
+    "sharedTopic": "SOL SHARED TOPIC e39909"
+  },
+  "editorPrivate": "- main:\n  - region \"Avatud paneel\":\n    - heading \"SOL TEST individuaalne supervisioon\" [level=1]\n    - text: \"Sinu roll: Osaleja Aktiivne\"\n    - button \"Minu protsessid\"\n    - paragraph\n    - paragraph: \"Osa 4/9: Privaatne eeskamber\"\n    - region \"Privaatne eeskamber\":\n      - heading \"Privaatne eeskamber\" [level=3]\n      - paragraph: Ainult sina näed Privaatne märge\n      - text: Pealkiri (valikuline)\n      - textbox \"Pealkiri (valikuline)\"\n      - text: Sisu\n      - textbox \"Sisu\"\n      - button \"Loobu\"\n      - button \"Muuda liiki\"\n      - button \"Salvesta\" [disabled]",
+  "roomAfterDrafts": "- main:\n  - region \"Avatud paneel\":\n    - heading \"SOL TEST individuaalne supervisioon\" [level=1]\n    - text: \"Sinu roll: Osaleja Aktiivne\"\n    - button \"Minu protsessid\"\n    - paragraph\n    - paragraph: \"Osa 4/9: Privaatne eeskamber\"\n    - region \"Privaatne eeskamber\":\n      - heading \"Privaatne eeskamber\" [level=3]\n      - paragraph: Siin valmistad ette teemasid ja märkmeid. Ainult sina näed neid, kuni need teadlikult jagad.\n      - paragraph: Ainult sina näed\n      - list:\n        - listitem:\n          - button \"SOL jagatav Teema ettevalmistus Ainult sina näed\"\n        - listitem:\n          - button \"SOL privaatne Privaatne märge Ainult sina näed\"\n      - button \"Uus mustand\"",
+  "afterShare": "- main:\n  - region \"Avatud paneel\":\n    - heading \"SOL TEST individuaalne supervisioon\" [level=1]\n    - text: \"Sinu roll: Osaleja Aktiivne\"\n    - button \"Minu protsessid\"\n    - paragraph\n    - paragraph: \"Osa 4/9: Privaatne eeskamber\"\n    - region \"Privaatne eeskamber\":\n      - heading \"Privaatne eeskamber\" [level=3]\n      - paragraph: Siin valmistad ette teemasid ja märkmeid. Ainult sina näed neid, kuni need teadlikult jagad.\n      - paragraph: Ainult sina näed\n      - list:\n        - listitem:\n          - button \"SOL jagatav Teema ettevalmistus Ainult sina näed\"\n        - listitem:\n          - button \"SOL privaatne Privaatne märge Ainult sina näed\"\n      - button \"Uus mustand\"",
+  "shareRunNote": "The share stage first looked for the share button in the draft list; it is inside the opened draft. This stage shares the same topic.",
+  "shareDialog": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Jagamise eelvaade\" [level=1]\n    - paragraph: \"Samm 3/3: Jagamine\"\n    - region \"Jagamine\":\n      - heading \"Jagamine\" [level=3]\n      - paragraph: Jagamise saad hiljem tagasi võtta jagatud teemade osas. Sama kirjet ei saa siis uuesti jagada.\n      - term: Pealkiri\n      - definition: SOL jagatav\n      - term: Kellele\n      - definition: Ainult superviisorile\n      - paragraph: \"Näeb: superviisor\"\n      - paragraph: Pärast jagamist näevad SOL TEST Spetsialist\n      - button \"Tagasi eeskambrisse\"\n      - button \"Jagan teadlikult\"",
+  "error": "locator.click: Timeout 30000ms exceeded. | Call log: | \u001b[2m  - waiting for getByRole('button', { name: /^Privaatne eeskamber/ }).first()\u001b[22m",
+  "sharePreview": [
+    "- main:\n  - region \"Avatud paneel\":\n    - heading \"Jagamise eelvaade\" [level=1]\n    - paragraph: \"Samm 1/3: Mis läheb\"\n    - region \"Mis läheb\":\n      - heading \"Mis läheb\" [level=3]\n      - paragraph: \"Jagatakse täpselt see pealkiri ja sisu. Jagatud teema on koopia: hilisem muudatus eeskambris seda ei muuda.\"\n      - term: Pealkiri\n      - definition: SOL jagatav\n      - term: Sisu\n      - definition: SOL SHARED TOPIC e39909",
+    "- main:\n  - region \"Avatud paneel\":\n    - heading \"Jagamise eelvaade\" [level=1]\n    - paragraph: \"Samm 2/3: Kes näevad\"\n    - region \"Kes näevad\":\n      - heading \"Kes näevad\" [level=3]\n      - paragraph: Kes seda teemat näevad?\n      - radiogroup \"Kes seda teemat näevad?\":\n        - text: Kes seda teemat näevad?\n        - radio \"Ainult superviisorile\" [checked]\n        - radio \"Kõigile osalejatele\"\n      - paragraph: \"Näeb: superviisor\"\n      - paragraph: Pärast jagamist näevad SOL TEST Spetsialist"
+  ],
+  "shareConfirm": {
+    "present": 1,
+    "enabled": true,
+    "secondPress": 1
+  },
+  "shareAfterConfirm": "- main:\n  - region \"Avatud paneel\":\n    - heading \"SOL TEST individuaalne supervisioon\" [level=1]\n    - text: \"Sinu roll: Osaleja Aktiivne\"\n    - button \"Minu protsessid\"\n    - paragraph\n    - paragraph: \"Osa 5/9: Jagatud teemad\"\n    - region \"Jagatud teemad\":\n      - heading \"Jagatud teemad\" [level=3]\n      - paragraph: Eeskambrist teadlikult jagatud teemad. Jagatud teema on koopia jagamise hetkest. Protsessi sulgemisel jagatud teemad kustuvad.\n      - list:\n        - listitem:\n          - 'button \"SOL jagatav Sinu jagatud · Jagatud 20. okt 2026 Näeb: superviisor\"'\n      - button \"Ava eeskamber\"",
+  "meetingScreens": [
+    {
+      "label": "meetings_after_plan",
+      "aria": "paragraph: \"Osa 6/9: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: \"Kavandatud kohtumiste arv: 3\"\n      - list:\n        - listitem:\n          - button \"Kohtumine 1 Aeg määramata Planeeritud\"\n      - button \"Plaani kohtumine\""
+    },
+    {
+      "label": "meetings_after_held",
+      "aria": "paragraph: \"Osa 6/9: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: \"Kavandatud kohtumiste arv: 3\"\n      - list:\n        - listitem:\n          - button \"Kohtumine 1 Aeg määramata Planeeritud\"\n      - button \"Plaani kohtumine\""
+    },
+    {
+      "label": "summaries",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Mustandit näed ainult sina. Kinnitamisele saadetud kokkuvõtet näevad liitunud osalejad.\n      - paragraph: Kokkuvõtteid pole veel.\n      - button \"Uus kokkuvõte\""
+    },
+    {
+      "label": "meeting_detail",
+      "aria": "paragraph: \"Osa 6/9: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: Kohtumine 1 Planeeritud\n      - term: Aeg\n      - definition: Määramata\n      - paragraph: Töömärget ei ole.\n      - button \"Tagasi loendisse\"\n      - button \"Lisa töömärge\"\n      - button \"Muuda või tühista\"\n      - button \"Märgi toimunuks\""
+    },
+    {
+      "label": "summary_editor",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte salvestatakse mustandina, mida näed ainult sina.\n      - radiogroup \"Mille kohta kokkuvõte on?\":\n        - text: Mille kohta kokkuvõte on?\n        - radio \"Lõpukokkuvõte\" [checked]\n        - radio \"Kohtumise kokkuvõte\"\n      - button \"Loobu\"\n      - button \"Kirjuta kokkuvõte\""
+    }
+  ],
+  "summaryScreens": [
+    {
+      "label": "meeting_after_held",
+      "aria": "paragraph: \"Osa 6/9: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: Kohtumine 1 Toimunud\n      - term: Aeg\n      - definition: Määramata\n      - term: Toimunud\n      - definition: 20. okt 2026, 16:01\n      - paragraph: Töömärget ei ole.\n      - button \"Tagasi loendisse\"\n      - button \"Lisa töömärge\""
+    },
+    {
+      "label": "summary_type_meeting",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte salvestatakse mustandina, mida näed ainult sina.\n      - radiogroup \"Mille kohta kokkuvõte on?\":\n        - text: Mille kohta kokkuvõte on?\n        - radio \"Lõpukokkuvõte\"\n        - radio \"Kohtumise kokkuvõte\" [checked]\n      - radiogroup \"Millise kohtumise kohta?\":\n        - text: Millise kohtumise kohta?\n        - radio \"Kohtumine 1\"\n      - button \"Loobu\"\n      - button \"Kirjuta kokkuvõte\" [disabled]"
+    },
+    {
+      "label": "summary_form",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kohtumise 1 kokkuvõte\n      - paragraph: Näed ainult sina (superviisor)\n      - text: Kokkuvõtte tekst\n      - textbox \"Kokkuvõtte tekst\"\n      - button \"Loobu\"\n      - button \"Muuda valikut\"\n      - button \"Salvesta\" [disabled]"
+    },
+    {
+      "label": "summary_saved",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Mustandit näed ainult sina. Kinnitamisele saadetud kokkuvõtet näevad liitunud osalejad.\n      - list:\n        - listitem:\n          - button \"Kohtumise 1 kokkuvõte Mustand Näed ainult sina (superviisor)\"\n      - button \"Uus kokkuvõte\""
+    },
+    {
+      "label": "summary_sent",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Mustandit näed ainult sina. Kinnitamisele saadetud kokkuvõtet näevad liitunud osalejad.\n      - list:\n        - listitem:\n          - button \"Kohtumise 1 kokkuvõte Mustand Näed ainult sina (superviisor)\"\n      - button \"Uus kokkuvõte\""
+    },
+    {
+      "label": "participant_summaries",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte on kinnitatud siis, kui kõik liitunud osalejad on selle kinnitanud.\n      - paragraph: Kokkuvõtteid pole veel."
+    },
+    {
+      "label": "participant_summary_detail",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte on kinnitatud siis, kui kõik liitunud osalejad on selle kinnitanud.\n      - paragraph: Kokkuvõtteid pole veel."
+    },
+    {
+      "label": "participant_after_confirm",
+      "aria": "paragraph: \"Osa 7/9: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte on kinnitatud siis, kui kõik liitunud osalejad on selle kinnitanud.\n      - paragraph: Kokkuvõtteid pole veel."
+    },
+    {
+      "label": "draft_detail",
+      "aria": "region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Mustand Näed ainult sina (superviisor)\n      - paragraph: Kohtumise 1 kokkuvõte\n      - paragraph: \"SOL TEST kokkuvõte: arutati töörolli piire; järgmine samm on kokkulepitud.\"\n      - button \"Tagasi loendisse\"\n      - button \"Muuda\"\n      - button \"Jäta mustand kõrvale\"\n      - button \"Saada kinnitamisele\""
+    },
+    {
+      "label": "after_send",
+      "aria": "region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Ootab 0/1 kinnitust\n      - paragraph: Kohtumise 1 kokkuvõte\n      - paragraph: \"SOL TEST kokkuvõte: arutati töörolli piire; järgmine samm on kokkulepitud.\"\n      - button \"Tagasi loendisse\"\n      - button \"Võta tagasi ja jäta kõrvale\""
+    },
+    {
+      "label": "participant_list_after_send",
+      "aria": "region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte on kinnitatud siis, kui kõik liitunud osalejad on selle kinnitanud.\n      - list:\n        - listitem:\n          - button \"Kohtumise 1 kokkuvõte Ootab 0/1 kinnitust\""
+    },
+    {
+      "label": "participant_detail",
+      "aria": "region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Ootab 0/1 kinnitust\n      - paragraph: Kohtumise 1 kokkuvõte\n      - paragraph: \"SOL TEST kokkuvõte: arutati töörolli piire; järgmine samm on kokkulepitud.\"\n      - button \"Tagasi loendisse\"\n      - button \"Kinnitan\""
+    },
+    {
+      "label": "participant_after_confirm",
+      "aria": "region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: \"Kinnitatud Püsiv: jääb alles ka pärast sulgemist Kinnitatud 20. okt 2026\"\n      - paragraph: Kohtumise 1 kokkuvõte\n      - paragraph: \"SOL TEST kokkuvõte: arutati töörolli piire; järgmine samm on kokkulepitud.\"\n      - button \"Tagasi loendisse\""
+    }
+  ],
+  "sendPress": [
+    "Saada kinnitamisele",
+    "Vajuta uuesti, et saata"
+  ],
+  "confirmPress": [
+    "Kinnitan",
+    "Vajuta uuesti, et kinnitada"
+  ],
+  "closeScreens": [
+    {
+      "label": "close_preview",
+      "aria": "paragraph: \"Osa 9/9: Sulgemine\"\n    - region \"Sulgemine\":\n      - heading \"Sulgemine\" [level=3]\n      - paragraph: Sulgemisel kustub jagatud toorsisu. Alles jäävad kinnitatud väljundid, faktid ja sinu privaatne eeskamber.\n      - paragraph: \"Püsiv: jääb alles ka pärast sulgemist\"\n      - paragraph: Eelvaade näitab, mis kustub ja mis jääb. Sulgemise kinnitad seal.\n      - button \"Ava sulgemise eelvaade\""
+    },
+    {
+      "label": "close_wizard_0",
+      "aria": "paragraph: \"Samm 1/3: Kustub ja jääb\"\n    - region \"Kustub ja jääb\":\n      - heading \"Kustub ja jääb\" [level=3]\n      - paragraph: Sulgemisel kustub jagatud toorsisu. Alles jäävad kinnitatud väljundid, faktid ja sinu privaatne eeskamber.\n      - heading \"Kustub\" [level=2]\n      - list:\n        - listitem: \"Jagatud teemad: 1\"\n        - listitem: \"Kokkuvõtete mustandid: 0\"\n        - listitem: \"Kohtumiste töömärkmed: 0\"\n      - heading \"Jääb\" [level=2]\n      - list:\n        - listitem: \"Kinnitatud kokkuvõtted: 1\"\n        - listitem: \"Kohtumiste faktid: 1\"\n        - listitem: \"Kontraktiversioonid: 1\"\n        - listitem: \"Kontraktikinnitused: 1\"\n        - listitem: \"Sisuvaba auditijälg: 11 sündmust\"\n        - listitem: Sulgemiskirje ja koondfaktid\n        - listitem: Sinu privaatne eeskamber\n        - listitem: \"Isiklikud püsiväljundid: 2\""
+    },
+    {
+      "label": "close_wizard_1",
+      "aria": "paragraph: \"Samm 2/3: Üldistatud pealkiri\"\n    - region \"Üldistatud pealkiri\":\n      - heading \"Üldistatud pealkiri\" [level=3]\n      - paragraph: Mis pealkirja all protsess alles jääb?\n      - text: Üldistatud pealkiri Asendab praeguse pealkirja ja jääb ka isiklikele pakkidele. Ära kirjuta siia nimesid ega muud, mille järgi inimese ära tunneb.\n      - textbox \"Üldistatud pealkiri\"\n      - paragraph: \"Praegune pealkiri: SOL TEST individuaalne supervisioon\""
+    },
+    {
+      "label": "close_wizard_2",
+      "aria": "paragraph: \"Samm 3/3: Sulgemine\"\n    - region \"Sulgemine\":\n      - heading \"Sulgemine\" [level=3]\n      - paragraph: Sulgemist ei saa tagasi võtta. Jagatud teemad, kokkuvõtete mustandid ja kohtumiste töömärkmed kustuvad kohe.\n      - term: Uus pealkiri\n      - definition: \"Supervisioon: töörolli piirid (sünteetiline)\"\n      - button \"Tagasi protsessi juurde\"\n      - button \"Sulgen protsessi lõplikult\""
+    },
+    {
+      "label": "after_close",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - paragraph: Laen…"
+    }
+  ],
+  "closePress": [
+    "Ava sulgemise eelvaade",
+    "Sulgen protsessi lõplikult",
+    "Vajuta uuesti, et sulgeda"
+  ],
+  "closeRawRuns": [
+    {
+      "checks": [
+        {
+          "case_id": "TOOLS-03",
+          "variant_id": "closing_removes_shared_topics_keeps_confirmed_summary",
+          "status": "FAIL",
+          "evidence_mode": "CURRENT_RUNTIME",
+          "entrypoint": "real supervision UI in the isolated local copy",
+          "actual": {
+            "closePresses": [
+              null,
+              null
+            ],
+            "participantOverviewShowsSharedTopic": true,
+            "participantSeesConfirmedSummary": true,
+            "sharedTopicRows": 1,
+            "processState": "Aktiivne Minu protsessid Kogu protsess Protsess "
+          }
+        }
+      ],
+      "note": "first close run pressed nothing: closing needs Ava sulgemise eelvaade (harness)"
+    },
+    {
+      "checks": [
+        {
+          "case_id": "TOOLS-03",
+          "variant_id": "closing_removes_shared_topics_keeps_confirmed_summary",
+          "status": "FAIL",
+          "evidence_mode": "CURRENT_RUNTIME",
+          "entrypoint": "real supervision UI in the isolated local copy",
+          "actual": {
+            "closePresses": [
+              "Ava sulgemise eelvaade",
+              "Sulgen protsessi lõplikult",
+              "Vajuta uuesti, et sulgeda"
+            ],
+            "participantOverviewShowsSharedTopic": true,
+            "participantSeesConfirmedSummary": true,
+            "sharedTopicRows": 1,
+            "processState": "Aktiivne Minu protsessid Kogu protsess Protsess "
+          }
+        }
+      ],
+      "screens": [
+        {
+          "label": "close_preview",
+          "aria": "paragraph: \"Osa 9/9: Sulgemine\"\n    - region \"Sulgemine\":\n      - heading \"Sulgemine\" [level=3]\n      - paragraph: Sulgemisel kustub jagatud toorsisu. Alles jäävad kinnitatud väljundid, faktid ja sinu privaatne eeskamber.\n      - paragraph: \"Püsiv: jääb alles ka pärast sulgemist\"\n      - paragraph: Eelvaade näitab, mis kustub ja mis jääb. Sulgemise kinnitad seal.\n      - button \"Ava sulgemise eelvaade\""
+        },
+        {
+          "label": "close_wizard_0",
+          "aria": "paragraph: \"Samm 1/3: Kustub ja jääb\"\n    - region \"Kustub ja jääb\":\n      - heading \"Kustub ja jääb\" [level=3]\n      - paragraph: Sulgemisel kustub jagatud toorsisu. Alles jäävad kinnitatud väljundid, faktid ja sinu privaatne eeskamber.\n      - heading \"Kustub\" [level=2]\n      - list:\n        - listitem: \"Jagatud teemad: 1\"\n        - listitem: \"Kokkuvõtete mustandid: 0\"\n        - listitem: \"Kohtumiste töömärkmed: 0\"\n      - heading \"Jääb\" [level=2]\n      - list:\n        - listitem: \"Kinnitatud kokkuvõtted: 1\"\n        - listitem: \"Kohtumiste faktid: 1\"\n        - listitem: \"Kontraktiversioonid: 1\"\n        - listitem: \"Kontraktikinnitused: 1\"\n        - listitem: \"Sisuvaba auditijälg: 11 sündmust\"\n        - listitem: Sulgemiskirje ja koondfaktid\n        - listitem: Sinu privaatne eeskamber\n        - listitem: \"Isiklikud püsiväljundid: 2\""
+        },
+        {
+          "label": "close_wizard_1",
+          "aria": "paragraph: \"Samm 2/3: Üldistatud pealkiri\"\n    - region \"Üldistatud pealkiri\":\n      - heading \"Üldistatud pealkiri\" [level=3]\n      - paragraph: Mis pealkirja all protsess alles jääb?\n      - text: Üldistatud pealkiri Asendab praeguse pealkirja ja jääb ka isiklikele pakkidele. Ära kirjuta siia nimesid ega muud, mille järgi inimese ära tunneb.\n      - textbox \"Üldistatud pealkiri\"\n      - paragraph: \"Praegune pealkiri: SOL TEST individuaalne supervisioon\""
+        },
+        {
+          "label": "close_wizard_2",
+          "aria": "paragraph: \"Samm 3/3: Sulgemine\"\n    - region \"Sulgemine\":\n      - heading \"Sulgemine\" [level=3]\n      - paragraph: Sulgemist ei saa tagasi võtta. Jagatud teemad, kokkuvõtete mustandid ja kohtumiste töömärkmed kustuvad kohe.\n      - term: Uus pealkiri\n      - definition: Puudub\n      - button \"Tagasi protsessi juurde\"\n      - button \"Sulgen protsessi lõplikult\""
+        },
+        {
+          "label": "after_close",
+          "aria": "paragraph: \"Samm 2/3: Üldistatud pealkiri\"\n    - region \"Üldistatud pealkiri\":\n      - heading \"Üldistatud pealkiri\" [level=3]\n      - paragraph: Mis pealkirja all protsess alles jääb?\n      - text: Üldistatud pealkiri Asendab praeguse pealkirja ja jääb ka isiklikele pakkidele. Ära kirjuta siia nimesid ega muud, mille järgi inimese ära tunneb.\n      - textbox \"Üldistatud pealkiri\" [invalid]\n      - text: Üldistatud pealkiri on puudu.\n      - paragraph: \"Praegune pealkiri: SOL TEST individuaalne supervisioon\""
+        }
+      ],
+      "note": "second close run: the generalised title was left empty; the wizard still allowed step 3 and both final presses, then returned to step 2 with Üldistatud pealkiri on puudu"
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "The invitation form asks for the invitee internal user ID (\"Kutsutava kasutaja ID\"), not a name or e-mail; how a supervisor learns that ID was not found in the UI."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "The close wizard let the supervisor reach step 3 and press \"Sulgen protsessi lõplikult\" twice with the mandatory generalised title empty; only then it returned to step 2 with \"Üldistatud pealkiri on puudu\" (closeRawRuns[1])."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "Irreversible steps ask for a second press (contract activation, sharing, sending a summary, confirming it, closing). Deliberate safeguard; recorded for the UI description."
+    }
+  ],
+  "limits": [
+    "The supervisor right is a labelled synthetic fixture, not a real qualification or the admin approval path.",
+    "Meeting time, rescheduling, group supervision and leaving a process were not tested."
+  ]
+}

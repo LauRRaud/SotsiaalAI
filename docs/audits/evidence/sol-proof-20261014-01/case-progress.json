@@ -1,11 +1,11 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T12:34:25.080Z",
+  "updated_at": "2026-10-20T13:04:47.481Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 292,
-  "passed_variants": 281,
+  "observed_variants": 297,
+  "passed_variants": 286,
   "failed_variants": 9,
   "blocked_variants": 2,
   "server_fixture_variants": 64,
@@ -404,8 +404,8 @@
       "case_id": "TOOLS-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 32,
-      "passed_variants": 32,
+      "observed_variants": 37,
+      "passed_variants": 37,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -5192,6 +5192,101 @@
         "reason": "The text test looked for \"Lugu\" but the page renders stage names in upper case (\"LUGU\"); the accessibility tree of the same screen shows \"Etapp 2: Lugu — Praegune etapp\" (stage2Current true) after the leader moved the work phase twice and opened the story."
       },
       "evidence_file": "local-ui-covision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "participant_private_note_hidden_from_supervisor",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "privateInShared": false,
+        "privateInSupervisorRoom": false
+      },
+      "evidence_file": "local-ui-supervision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "participant_shared_topic_visible_to_supervisor",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "listShowsTitle": true,
+        "openedTopicShowsContent": true,
+        "privateNoteStillHidden": true,
+        "shareNeededSecondPress": true,
+        "sharedTo": "Ainult superviisorile (default)"
+      },
+      "evidence_file": "local-ui-supervision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "summary_draft_hidden_until_sent",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "participantSawDraftBeforeSend": false
+      },
+      "evidence_file": "local-ui-supervision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "summary_sent_and_confirmed_by_participant",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "participantSeesAfterSend": true,
+        "sendPresses": [
+          "Saada kinnitamisele",
+          "Vajuta uuesti, et saata"
+        ],
+        "confirmPresses": [
+          "Kinnitan",
+          "Vajuta uuesti, et kinnitada"
+        ],
+        "stateAfter": "Kohtumise 1 kokkuvõte Kinnitatud Püsiv: jääb alles ka pärast sulgemist Ava › Uus kokkuvõte"
+      },
+      "evidence_file": "local-ui-supervision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "closing_removes_shared_topics_keeps_confirmed_summary",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision UI in the isolated local copy",
+      "actual": {
+        "closePresses": [
+          "Ava sulgemise eelvaade",
+          "Sulgen protsessi lõplikult",
+          "Vajuta uuesti, et sulgeda"
+        ],
+        "participantOverviewShowsSharedTopic": true,
+        "participantSeesConfirmedSummary": true,
+        "sharedTopicRows": 0,
+        "processState": "Suletud Minu protsessid Kogu protsess Suletud p",
+        "database": {
+          "process": "CLOSED",
+          "title": "Supervisioon: töörolli piirid (sünteetiline)",
+          "sharedTopics": 0,
+          "summaries": "1 APPROVED",
+          "privateItems": 2,
+          "personalOutcomes": 2,
+          "closure": 1
+        }
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The harness tested the participant overview for the title \"SOL jagatav\", but the participant private draft with that title is meant to stay (\"Alles jääb: sinu privaatne eeskamber\"). Measured after closing: SupervisionProcess CLOSED with the generalised title, SupervisionSharedTopic 0 rows, SupervisionSummary 1 APPROVED, SupervisionPrivateItem 2, SupervisionPersonalOutcome 2, SupervisionClosure 1 — exactly the kept/removed lists of the close preview."
+      },
+      "evidence_file": "local-ui-supervision.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]
