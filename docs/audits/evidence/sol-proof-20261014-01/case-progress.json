@@ -1,11 +1,11 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T11:00:47.467Z",
+  "updated_at": "2026-10-20T11:31:23.860Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 264,
-  "passed_variants": 259,
+  "observed_variants": 268,
+  "passed_variants": 263,
   "failed_variants": 3,
   "blocked_variants": 2,
   "server_fixture_variants": 53,
@@ -34,8 +34,8 @@
       "case_id": "ENV-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 16,
-      "passed_variants": 16,
+      "observed_variants": 20,
+      "passed_variants": 20,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4698,6 +4698,66 @@
         "tap": "local-deletion-risk-tests.tap"
       },
       "evidence_file": "local-data04-deletion.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_client_view_all_pages_load",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, view role CLIENT",
+      "actual": {
+        "pages": 41,
+        "navigationStatus": "all 200",
+        "crashOrErrorPage": 0,
+        "redirects": [
+          "/rooms -> /ruum",
+          "/tooheaolu -> /toolaud/tooheaolu"
+        ]
+      },
+      "evidence_file": "server-browser-role-walkthrough.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_social_worker_view_pages_load",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, view role SOCIAL_WORKER",
+      "actual": {
+        "pages": 12,
+        "navigationStatus": "all 200",
+        "crashOrErrorPage": 0
+      },
+      "evidence_file": "server-browser-role-walkthrough.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_service_provider_view_pages_load",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, view role SERVICE_PROVIDER",
+      "actual": {
+        "pages": 12,
+        "navigationStatus": "all 200",
+        "crashOrErrorPage": 0
+      },
+      "evidence_file": "server-browser-role-walkthrough.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "client_view_cannot_load_casework_data",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "the same session in CLIENT view opening /juhtumid and /toolaud/juhtumitoo",
+      "actual": {
+        "/api/casework/cases": 403,
+        "/api/casework/workbench": 403,
+        "inSocialWorkerAndProviderViews": "no denial"
+      },
+      "evidence_file": "server-browser-role-walkthrough.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]

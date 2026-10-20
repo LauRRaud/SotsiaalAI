@@ -1,0 +1,64 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "actual sotsiaal.pro in the built-in browser; the owner's own ADMIN session with the dashboard view-role switch; pages only opened and read, nothing saved or sent",
+  "method": "Top-level navigation of every static page route (frames are denied by X-Frame-Options DENY and frame-ancestors 'none'). For each page: navigation status, final path, error text in the page, and every resource with responseStatus >= 400.",
+  "checks": [
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_client_view_all_pages_load",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, view role CLIENT",
+      "actual": { "pages": 41, "navigationStatus": "all 200", "crashOrErrorPage": 0, "redirects": ["/rooms -> /ruum", "/tooheaolu -> /toolaud/tooheaolu"] }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_social_worker_view_pages_load",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, view role SOCIAL_WORKER",
+      "actual": { "pages": 12, "navigationStatus": "all 200", "crashOrErrorPage": 0 }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_service_provider_view_pages_load",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "actual browser HTTPS, owner ADMIN session, view role SERVICE_PROVIDER",
+      "actual": { "pages": 12, "navigationStatus": "all 200", "crashOrErrorPage": 0 }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "client_view_cannot_load_casework_data",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "the same session in CLIENT view opening /juhtumid and /toolaud/juhtumitoo",
+      "actual": { "/api/casework/cases": 403, "/api/casework/workbench": 403, "inSocialWorkerAndProviderViews": "no denial" }
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "ENV-03",
+      "note": "Mentoring (/api/mentoring/overview, /catalog: 403) and supervision (/api/supervision/processes: 403, /outcomes: 404) refuse the ADMIN account in every view role. This follows the code (lib/supervision/shared.js: 'CLIENT ja ADMIN -> 403'), so these professional paths cannot be tested through the admin view preview; they were tested on 14.10 with the synthetic professional accounts."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "ENV-03",
+      "note": "Admin preview wording: /mentorlus says 'Mentorlus on sotsiaalvaldkonna spetsialistide tööriist. Proovi uuesti' (a retry for a lasting role refusal). /supervisioon shows 'mõeldud sotsiaaltöötajatele ja teenuseosutajatele' for two blocks but 'Ei leitud või sul pole ligipääsu' for the packages block, because processes answer 403 and outcomes 404, and it still shows the 'Uus protsess' button. A CLIENT opening the URL directly would see the same texts. Usability observations, not confirmed defects."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "ENV-03",
+      "note": "The words 'ei ole lubatud' on /tooalase-kasutuse-raamistik are a checkbox label of the framework form, not an error (false positive of the text check)."
+    }
+  ],
+  "limits": [
+    "View-role preview is not the real role: API rules that read the real role or refuse admins are not exercised as a real CLIENT, SOCIAL_WORKER or SERVICE_PROVIDER would.",
+    "Pages were opened and read only; no form was submitted and no interaction inside a page was tested.",
+    "Console messages were not collected; failed resources were read from responseStatus of the page's own requests."
+  ],
+  "cleanup": { "viewRole": "restored to default (null)", "serverDataWritten": false, "messagesSent": false, "paidModelCalls": false }
+}
