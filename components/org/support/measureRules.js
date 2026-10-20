@@ -19,6 +19,9 @@ export const MEASURE_STEPS = Object.freeze([...MEASURE_GROUPS, "details"]);
 
 export const measureLabel = (measureKey) => SUPPORT_MEASURE_LABELS[measureKey] || measureKey;
 
+/** Meetme nimi lehe keeles (sama võti mis töötaja vormil); `measureLabel` on varutekst. */
+export const measureText = (t, measureKey) => t(`wellbeing.support_measures.measures.${measureKey}`, measureLabel(measureKey));
+
 const groupOf = (measureKey) => MEASURE_GROUPS.find((group) => SUPPORT_MEASURE_GROUPS[group].some(([value]) => value === measureKey));
 
 /** Serveri loend mustandiks: `{ [measureKey]: details }`. */

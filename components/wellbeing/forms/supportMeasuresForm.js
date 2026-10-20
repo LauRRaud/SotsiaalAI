@@ -26,9 +26,13 @@ const groupTitles = {
   organisation: ["Töökorraldus ja tunnustus", "Korraldus"]
 };
 
+/* Meetme ja õpivaldkonna nimi tõlkekataloogist; kataloogi eestikeelne nimi on varutekst. */
+const measureText = (value, label) => msg(`measures.${value}`, label);
+const learningPairs = LEARNING_AREAS.map(([value, label]) => [value, msg(`learning_areas.${value}`, label)]);
+
 const steps = Object.entries(SUPPORT_MEASURES_FIELDS).flatMap(([group, [offeredKey, neededKey]]) => {
   const [title, short] = groupTitles[group];
-  const pairs = SUPPORT_MEASURE_GROUPS[group];
+  const pairs = SUPPORT_MEASURE_GROUPS[group].map(([value, label]) => [value, measureText(value, label)]);
   return [
     {
       key: offeredKey,
@@ -54,7 +58,7 @@ steps.push({
   title: msg("steps.learning.title", "Mida tahaksin õppida"),
   short: msg("steps.learning.short", "Õppimine"),
   lead: msg("learning_lead", "Milles tahaksid end täiendada? Märgi kõik, mis sobib. See on arenguvestluse sisendis ja jääb sulle."),
-  fields: [listField(SUPPORT_MEASURES_LEARNING_FIELD, msg("learning_label", "Tahaksin õppida"), LEARNING_AREAS)]
+  fields: [listField(SUPPORT_MEASURES_LEARNING_FIELD, msg("learning_label", "Tahaksin õppida"), learningPairs)]
 });
 
 /* Platvormil endal olevad tugivormid ja õppimise kohad viivad nende lehele. */
@@ -137,7 +141,7 @@ export function supportMeasuresFormWithOrganizations(organizations) {
       const { usedNeeded } = classifySupportMeasures(record.standardizedFields);
       const items = usedNeeded
         .filter((value) => offered.has(value))
-        .map((value) => [SUPPORT_MEASURE_LABELS[value], ...offered.get(value)].join(" — "));
+        .map((value) => [tx(measureText(value, SUPPORT_MEASURE_LABELS[value])), ...offered.get(value)].join(" — "));
       return items.length ? [{ title: tx(msg("org_offers_title", "Asutus pakub ja sa vajad")), items, empty: "" }] : [];
     }
   };

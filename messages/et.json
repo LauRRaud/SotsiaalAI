@@ -10434,7 +10434,42 @@
       "offered_lead_org": "Märgitud on see, mida asutus enda kirjelduse järgi pakub. Muuda, kui sinu teada on teisiti.",
       "org_offers_title": "Asutus pakub ja sa vajad",
       "learning_lead": "Milles tahaksid end täiendada? Märgi kõik, mis sobib. See on arenguvestluse sisendis ja jääb sulle.",
-      "learning_label": "Tahaksin õppida"
+      "learning_label": "Tahaksin õppida",
+      "measures": {
+        "mentoring": "Mentorlus",
+        "covision": "Kovisioon",
+        "supervision": "Supervisioon",
+        "development_talks": "Arenguvestlused",
+        "training": "Täiendkoolitused",
+        "degree_study": "Kraadi- või mikrokraadiõpe",
+        "study_visits": "Õppereisid ja töövarjutamine",
+        "inter_municipal_exchange": "Omavalitsustevaheline kogemuste vahetus",
+        "rotation": "Ajutine töö teises organisatsioonis",
+        "psychological_counselling": "Psühholoogiline nõustamine",
+        "mental_health_training": "Vaimse tervise koolitused",
+        "health_days": "Tervisepäevad",
+        "health_promoting_network": "Tervist edendavate töökohtade (TET) võrgustik",
+        "safety_measures": "Turvalisuse ja vägivalla ennetamise meetmed",
+        "flexible_hours": "Paindlik tööaeg",
+        "workload_review": "Töökoormuse regulaarne hindamine",
+        "overtime_compensation": "Ületundide hüvitamine",
+        "substitution_rules": "Selge asendamise kord",
+        "recognition": "Töötajate tunnustamine"
+      },
+      "learning_areas": {
+        "legislation": "Õigusaktid ja menetlus",
+        "case_management": "Juhtumikorraldus",
+        "needs_assessment": "Abivajaduse hindamine",
+        "impact_assessment": "Mõju hindamine",
+        "complex_clients": "Töö keeruliste klientidega",
+        "crisis_trauma": "Kriisi- ja traumateadlik töö",
+        "ethics": "Eetika ja eetilised dilemmad",
+        "mental_health": "Vaimse tervise küsimused",
+        "digital_skills": "STAR ja digioskused",
+        "self_care": "Enesehoid",
+        "time_management": "Töökorraldus ja ajajuhtimine",
+        "teamwork_network": "Meeskonna- ja võrgustikutöö"
+      }
     },
     "weekly_reflection": {
       "title": "Nädala peegeldus",

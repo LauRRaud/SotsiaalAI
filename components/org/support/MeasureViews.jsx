@@ -20,7 +20,7 @@ import Button from "@/components/ui/Button";
 
 import { ArmedButton, PickOne, footNote, ignoreKeyRepeat } from "../OrgBits";
 import shared from "../org.module.css";
-import { MEASURE_DETAILS_LIMIT, draftKeys, groupOptions, measureLabel } from "./measureRules";
+import { MEASURE_DETAILS_LIMIT, draftKeys, groupOptions, measureText } from "./measureRules";
 
 /** Mida asutus pakub. `groups`: vt `measureGroupsOf`. */
 export function MeasuresList({ t, groups }) {
@@ -33,7 +33,7 @@ export function MeasuresList({ t, groups }) {
           <ul className={shared.lines}>
             {entry.rows.map((row) => (
               <li key={row.key} className={shared.lineItem} data-measure={row.key}>
-                {row.title}
+                {measureText(t, row.key)}
                 {row.sub ? <span className={shared.measureNote}>{row.sub}</span> : null}
               </li>
             ))}
@@ -67,7 +67,7 @@ export function MeasureGroupView({ t, group, draft, onToggle, notice, decline, s
       note={editNote(t, decline, notice, t("org.support.measures.edit_note"))}
       actions={<EditActions t={t} decline={decline} save={save} glow={glow} />}
     >
-      <ChoiceChips label={t(`org.support.measures.groups.${group}`)} labelHidden options={groupOptions(group)} values={draftKeys(draft)} onToggle={onToggle} />
+      <ChoiceChips label={t(`org.support.measures.groups.${group}`)} labelHidden options={groupOptions(group).map((option) => ({ ...option, label: measureText(t, option.value) }))} values={draftKeys(draft)} onToggle={onToggle} />
     </StepPanel>
   );
 }
@@ -87,14 +87,14 @@ export function MeasureDetailsView({ t, draft, editing, onEdit, onDetails, notic
         <div className={shared.stack}>
           <PickOne
             label={t("org.support.measures.details_pick")}
-            options={keys.map((key) => ({ value: key, label: measureLabel(key) }))}
+            options={keys.map((key) => ({ value: key, label: measureText(t, key) }))}
             value={current}
             onChange={onEdit}
             columns={2}
           />
           <TextAreaField
             key={current}
-            label={t("org.support.measures.details_label", { measure: measureLabel(current) })}
+            label={t("org.support.measures.details_label", { measure: measureText(t, current) })}
             hint={t("org.support.measures.details_hint", { limit: MEASURE_DETAILS_LIMIT })}
             value={draft[current] || ""}
             onChange={(value) => onDetails(current, value)}

@@ -608,3 +608,20 @@ kasutajaga (1536 × 640): õppimise samm mahub (12 valikut neljas reas), viie so
 andis skeemi 1.1 ja ainult `measures.gap.covision` teguri, vigane valdkond 400. Ülevaate Mustrites oli „Mis toimib“
 esimene ja memos enne koormustegureid. Testkasutaja kustutati. **Kontrollimata:** telefoni vaade, EN/RU kuva ja
 tootmine. Serveris käis sel ajal teine test, seega on kommit ainult kohalik (lükkamata).
+
+### 8.17. Keele- ja telefonikontroll 20.10
+
+Kohalikus baasis sünteetilise kasutaja ja asutusega (meetmed, tugikontakt, otsene juht), keel küpsisest `NEXT_LOCALE`.
+
+- **Leitud ja parandatud:** tugimeetmete ja õpivaldkondade nimed olid inglise ja vene keeles eestikeelsed (kataloogis
+  on ainult eesti nimed). Nüüd tulevad need tõlkekataloogist (`wellbeing.support_measures.measures.*` ja
+  `learning_areas.*`, eesti nimi on varutekst) töötaja vormis, tulemuses „Asutus pakub ja sa vajad“ ning asutuse
+  vaates (loend, muutmine, juhised). Juhiseoste kokkuvõte oli inglise ja vene keeles vale käändega („1 members“, „у 1
+  членов“); nüüd on see kujul „määratud: N; määramata: M“.
+- **Kontrollitud:** EN ja RU kiirkontrolli turvalisuse samm koos kolleegi/juhi teatega mahub 1536 × 640 vaates (RU
+  paneel lõpeb 499 px, lava 506 px); „Minu tugivõimalused“, asutuse „Поддержка учреждения“ ja „Пути поддержки“
+  koos juhi sammuga. Toorvõtmeid ei olnud, horisontaalset kerimist ei olnud. Telefonis (390 × 844, RU) mahub kõige
+  kõrgem samm „Чему я хотел бы научиться“ alumisest menüüst kõrgemale (631 / 766 px). Eeltäide töötab ka vene keeles.
+- **Teadaolev piirang (ei ole selle töö oma):** Tööheaolu tegurite ja tugevuste sildid Ülevaates ning valmis
+  tekstid tulevad eestikeelsest sõnastikust (`displayLabels.js`) kõigis keeltes. Asutuse kirjutatud juhis on asutuse
+  keeles.

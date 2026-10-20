@@ -10434,7 +10434,42 @@
       "offered_lead_org": "Marked is what the organisation offers according to its own description. Change it if you know otherwise.",
       "org_offers_title": "Offered by the organisation and needed by you",
       "learning_lead": "Where would you like to develop? Mark everything that applies. It goes into the development talk input and stays with you.",
-      "learning_label": "I would like to learn"
+      "learning_label": "I would like to learn",
+      "measures": {
+        "mentoring": "Mentoring",
+        "covision": "Co-vision",
+        "supervision": "Supervision",
+        "development_talks": "Development talks",
+        "training": "Continuing training",
+        "degree_study": "Degree or micro-degree studies",
+        "study_visits": "Study visits and job shadowing",
+        "inter_municipal_exchange": "Experience exchange between municipalities",
+        "rotation": "Temporary work in another organisation",
+        "psychological_counselling": "Psychological counselling",
+        "mental_health_training": "Mental health training",
+        "health_days": "Health days",
+        "health_promoting_network": "Health-promoting workplaces network",
+        "safety_measures": "Safety and violence prevention measures",
+        "flexible_hours": "Flexible working hours",
+        "workload_review": "Regular workload assessment",
+        "overtime_compensation": "Overtime compensation",
+        "substitution_rules": "Clear substitution rules",
+        "recognition": "Employee recognition"
+      },
+      "learning_areas": {
+        "legislation": "Legislation and procedure",
+        "case_management": "Case management",
+        "needs_assessment": "Needs assessment",
+        "impact_assessment": "Impact assessment",
+        "complex_clients": "Working with complex clients",
+        "crisis_trauma": "Crisis and trauma-informed work",
+        "ethics": "Ethics and ethical dilemmas",
+        "mental_health": "Mental health issues",
+        "digital_skills": "STAR and digital skills",
+        "self_care": "Self-care",
+        "time_management": "Work organisation and time management",
+        "teamwork_network": "Teamwork and network cooperation"
+      }
     },
     "weekly_reflection": {
       "title": "Weekly reflection",
@@ -13123,7 +13158,7 @@
         "manager_current": "Current direct manager",
         "manager_none": "not set",
         "manager_new": "New direct manager",
-        "manager_summary": "A direct manager is set for {assigned} members and not set for {missing}.",
+        "manager_summary": "Direct manager set: {assigned}; not set: {missing}.",
         "manager_need": "Choose the member and their direct manager.",
         "manager_saved": "The direct manager has been set.",
         "manager_ended": "The reporting line has been ended."
