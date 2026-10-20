@@ -37,6 +37,8 @@ const copy = {
   /* SOL-WB-06 saba: valim võib lävendi ületada ja ÜKSIK lahter olla ikka liiga
      väike. Ilma selle lauseta loeks juht puuduva rea „ei ole" vastuseks. */
   cellSuppressedNotice: "Osa lahtreid on avaldamata",
+  /* „Võimaldab × vajan": kas tugimeetmete puudujääk on võrreldud asutuse kirjeldusega. */
+  supportMeasuresNotice: "Tugimeetmed",
   metrics: "Mõõdikud",
   rows: "rida",
   metric: "Metric",
@@ -325,6 +327,11 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
         {report?.cellSuppressionNotice ? (
           <p>
             <strong>{copy.cellSuppressedNotice}</strong> {report.cellSuppressionNotice}
+          </p>
+        ) : null}
+        {report?.supportMeasuresNotice ? (
+          <p>
+            <strong>{copy.supportMeasuresNotice}</strong> {report.supportMeasuresNotice}
           </p>
         ) : null}
       </section>

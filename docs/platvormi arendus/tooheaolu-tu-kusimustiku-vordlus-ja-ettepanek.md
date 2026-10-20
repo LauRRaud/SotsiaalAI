@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ koond lahti
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); arenguvajadus ja kutse jäävad S6-le
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -298,7 +298,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa — **tehtud 20.10** (ptk 8.10) | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ — **tehtud 20.10 ilma teavituseta** (ptk 8.12) | sõltub meeldetuletuse otsusest | keskmine |
-| 8 | Asutuse meetmete kirjeldus, abipalve ja juhimemo päris adressaat (TO-6) — **tehtud 20.10** (ptk 8.13–8.15); meetmete koond, arenguvajadus | koond ootab esimest KOV-i koondit, arenguvajadus S6 otsust | suur |
+| 8 | Asutuse meetmete kirjeldus, abipalve ja juhimemo päris adressaat (TO-6), meetmete koond — **tehtud 20.10** (ptk 8.13–8.15, 8.18); arenguvajadus | arenguvajadus ja kutse vajavad S6 otsust | suur |
 
 Sammud 1–7 katavad küsitluse 35 puuduvast punktist umbes 20. Ülejäänud jäävad teadlikult välja (ptk 8.3) või S6-le.
 
@@ -625,3 +625,25 @@ Kohalikus baasis sünteetilise kasutaja ja asutusega (meetmed, tugikontakt, otse
 - **Teadaolev piirang (ei ole selle töö oma):** Tööheaolu tegurite ja tugevuste sildid Ülevaates ning valmis
   tekstid tulevad eestikeelsest sõnastikust (`displayLabels.js`) kõigis keeltes. Asutuse kirjutatud juhis on asutuse
   keeles.
+
+### 8.18. Teostus 20.10: koond „võimaldab × vajan“ piloodi aruandes
+
+Koondi tegur `measures.gap.<meede>` tähendab „vajan, aga minu teada ei ole“. Kui piloodi skoop on asutuse oma
+(`scopeType: organization`) ja asutus on oma meetmed kirjeldanud (ptk 8.13), võrdleb piloodi aruanne avaldatud
+(k-läve ületanud) puudujääke asutuse kirjeldusega:
+
+- **asutus pakub, aga vajajad ei tea sellest** → soovitus „Teavitada töötajaid olemasolevatest tugimeetmetest“;
+- **asutus ei paku** → soovitus „Kaaluda puuduvate tugimeetmete pakkumist“.
+
+Prioriteetide sildid ütlevad sama. Aruandes, piloodi lehel, HTML- ja XLSX-ekspordis on teade „Tugimeetmed“, mis ütleb,
+mille põhjal on hinnatud. KOV-i, rollirühma ja admini platvormivaates ning asutuses, mis pole meetmeid kirjeldanud, jääb
+aruanne endiseks, ja teade ütleb, et teadmatust ja puuduvat meedet siit eristada ei saa. Uut andmeallikat ega
+skeemimuutust ei ole: asutuse kirjeldus on asutuse andmestik ja ristatakse ainult juba avaldatud lahtreid.
+
+**Kontroll.** Sihitud eslint, `npm test` (65 läbi, 0 kukkus). Aruande funktsiooni kutsega: asutuse kirjeldusega,
+ainult teadmatus, ilma kirjelduseta (ka tühja loendiga), puudujäägita ja summutatud valim, HTML ja XLSX. Kohalikus
+baasis otsast lõpuni: viis sünteetilist liiget ühes asutuses, igaühel „Minu tugivõimaluste“ kirje, asutuse tüüpi
+piloodi skoop (k = 5) ja asutus pakub ainult supervisiooni. Koondi API admini kasutajaga andis valimi 5: supervisioon
+„asutus pakub, aga vajajad ei tea“ (5), psühholoogiline nõustamine „asutus ei paku“ (5) ja mõlemad soovitused.
+Piloodi lehel ja HTML-aruandes oli teade näha. Sünteetilised kasutajad, asutus, skoop ja auditiread kustutati.
+**Kontrollimata:** tootmine; päris piloodi skoopi veel ei ole.

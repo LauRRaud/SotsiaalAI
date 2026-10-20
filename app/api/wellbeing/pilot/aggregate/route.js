@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 import { authConfig } from "@/auth";
+import { listOrganizationSupportMeasures } from "@/lib/org/supportMeasures";
 import { safeError } from "@/lib/privacy/safeError";
 import { isWellbeingDomainError, newWellbeingCorrelationId, WELLBEING_UNEXPECTED_ERROR } from "@/lib/wellbeing/apiErrors";
 import {
@@ -103,7 +104,13 @@ export async function GET(request) {
   let report;
   try {
     dataset = await buildWellbeingExportDataset(filters, datasetOptions);
-    report = buildWellbeingPilotReport(dataset);
+    /* „Võimaldab × vajan": asutuse skoobiga piloodis võrreldakse tugimeetmete
+       puudujääki asutuse enda kirjeldusega. Muul skoobil (KOV, rollirühm, admini
+       platvormivaade) asutust ei ole ja aruanne jääb endiseks. */
+    const offeredMeasures = filters.organizationId
+      ? (await listOrganizationSupportMeasures(filters.organizationId)).map((measure) => measure.measureKey)
+      : null;
+    report = buildWellbeingPilotReport(dataset, { offeredMeasures });
   } catch (error) {
     return accessErrorJson(error);
   }
