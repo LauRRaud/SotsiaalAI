@@ -1,0 +1,49 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "continuation": "sol-proof-20261020-local",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "manifest": {
+    "gitHead": "7f8c24758fa35970bf2672744fb347909591eb8c",
+    "codeVsDeployed": "app, lib, components, scripts, proxy.js and prisma identical to the deployed commit f15b4866 (later commits change docs only)",
+    "worktreeDiffSha256": "fcdbbc32f95e86c661e85dbc2f5c27aaf112370bb692405e8d5392692a69667d",
+    "worktreeDiffNote": "Uncommitted documentation changes of other sessions; no application code.",
+    "schema": { "migrations": 263, "latest": "20261015100000_ethics_reflection", "pending": 0 },
+    "database": { "name": "sol_proof_20261020_local", "host": "local Docker container sotsiaalai-postgres-1 (port 5432 on this computer, not a tunnel)", "createdFrom": "TEMPLATE sol_proof_20261014_migrated, the migrated synthetic test database of the 14.10 run" },
+    "featureFlagsSetForLocalRuns": ["ORG_WORKSPACE_ENABLED", "ORG_CREATION_ENABLED", "ORG_SEATS_ENABLED", "ORG_INBOX_ENABLED", "CASEWORK_V1_ENABLED", "SERVICE_LOG_ENABLED", "MTR_DISABLED", "LOGIN_DISABLE_AUTOSEND"],
+    "temporaryFiles": ".env.local was created only for each local run and removed afterwards; the local job key existed only in the scratchpad and was deleted"
+  },
+  "checks": [
+    {
+      "case_id": "ENV-01",
+      "variant_id": "manifest_recorded_without_secrets",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "git, prisma migrate deploy and Docker database measurements on this computer",
+      "actual": { "secretValuesInManifest": false, "gitHeadRecorded": true, "diffHashRecorded": true, "schemaRecorded": true }
+    },
+    {
+      "case_id": "ENV-01",
+      "variant_id": "local_database_synthetic_only",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "SQL count in sol_proof_20261020_local",
+      "actual": { "users": 9, "usersWithExampleInvalidEmail": 9, "otherUsers": 0, "preInquiries": 0 }
+    },
+    {
+      "case_id": "ENV-01",
+      "variant_id": "mail_registry_and_model_channels_bounded",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "local run configuration",
+      "actual": { "smtp": "127.0.0.1:2525 with no listener (connection refused, nothing leaves the computer)", "businessRegistry": "MTR_DISABLED=true", "modelProviderKeyInEnvironment": false, "smsProviderKeyInEnvironment": false }
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "ENV-01",
+      "note": "The main local .env holds payment provider key names (MAKSEKESKUS_*), and the local dev server loaded them because .env.local did not blank them. No payment flow was opened in these runs. Later local runs should blank them in .env.local."
+    }
+  ]
+}

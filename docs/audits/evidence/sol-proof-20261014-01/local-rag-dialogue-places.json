@@ -1,0 +1,163 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "local Node run of lib/rag-v2/pilot/person-places.js; code identical to the deployed commit; synthetic region ids",
+  "checks": [
+    {
+      "case_id": "RAG-03",
+      "variant_id": "user_region_from_own_statement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "person_mentioned_region",
+          "region": "sol-kov-a",
+          "person": "user",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        }
+      }
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "second_person_gets_own_region_without_mixing",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "target": "ema",
+        "motherScope": {
+          "state": "person_mentioned_region",
+          "region": "sol-kov-b",
+          "person": "ema",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        },
+        "userRegion": "sol-kov-a"
+      }
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "correction_replaces_region",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "mother": {
+          "id": "sol-kov-c",
+          "status": "reported",
+          "candidates": [],
+          "excluded": [],
+          "support": [
+            {
+              "turn": 3,
+              "quote": "Vabandust, ema elab hoopis C vallas."
+            }
+          ]
+        },
+        "userRegion": "sol-kov-a"
+      }
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "correction_reaches_next_turn_scope",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "person_region",
+          "region": "sol-kov-c",
+          "person": "ema",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        }
+      }
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "user_turn_keeps_user_region",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "person_region",
+          "region": "sol-kov-a",
+          "person": "user",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        }
+      }
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "negation_requires_new_region_without_reviving_old",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "region_required_after_negation",
+          "region": null,
+          "person": "ema"
+        },
+        "mother": {
+          "id": null,
+          "status": "negated",
+          "candidates": [],
+          "excluded": [
+            "sol-kov-c"
+          ],
+          "support": [
+            {
+              "turn": 6,
+              "quote": "Ema ei ela enam C vallas."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "two_places_in_one_turn_stay_ambiguous",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "ambiguous_region",
+          "region": null,
+          "candidates": [
+            "sol-kov-c",
+            "sol-kov-d"
+          ],
+          "person": "isa"
+        }
+      }
+    }
+  ],
+  "observations": [
+    {
+      "case_id": "RAG-03",
+      "variant_id": "unclear_plan_first_person_question_after_focus_on_other",
+      "status": "NOT_PROVEN",
+      "target": "ema",
+      "scope": {
+        "state": "person_region",
+        "region": "sol-kov-c",
+        "person": "ema",
+        "interpretation": "source_scope_only_not_confirmed_residence"
+      },
+      "note": "With an unclear plan, a first person singular question is scoped to the previous focus person (the mother) and her municipality, not the user. The first person check only stops choosing a named person. How often the live plan returns unclear was not measured, so this is not counted as a confirmed defect. Both callers pass the plan person straight into regionTarget; no earlier step turns a first person singular message back to the user.",
+      "callers": [
+        "lib/rag-v2/pilot/dialogue-state.js:246 (saved focus)",
+        "lib/rag-v2/pilot/retrieval.js:239 (target of unattributed municipalities)"
+      ]
+    }
+  ],
+  "newPaidCalls": false,
+  "limits": [
+    "The model search plan that attributes a place to a person was not run; its output is replaced by checked synthetic places.",
+    "Estonian morphology (EstNLTK) and the real municipality directory were not used."
+  ],
+  "finishedAt": "2026-10-20T10:53:00.564Z"
+}

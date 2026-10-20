@@ -1,21 +1,21 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T10:47:25.460Z",
+  "updated_at": "2026-10-20T10:55:36.773Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 239,
-  "passed_variants": 234,
+  "observed_variants": 260,
+  "passed_variants": 255,
   "failed_variants": 3,
   "blocked_variants": 2,
-  "server_fixture_variants": 32,
+  "server_fixture_variants": 52,
   "case_progress": [
     {
       "case_id": "ENV-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 3,
+      "passed_variants": 3,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -284,8 +284,8 @@
       "case_id": "RAG-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 7,
+      "passed_variants": 7,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -354,8 +354,8 @@
       "case_id": "RAG-10",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 11,
+      "passed_variants": 11,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4084,13 +4084,14 @@
       "case_id": "OPS-06",
       "variant_id": "missing_or_wrong_key_rejected_by_route",
       "status": "PASS",
-      "evidence_mode": "LOCAL_ISOLATED",
+      "evidence_mode": "CURRENT_FIXTURE",
       "entrypoint": "POST handler of app/api/jobs/notifications/route.js called directly (proxy bypassed)",
       "actual": {
         "noKey": 401,
         "wrongKey": 401,
         "message": "unauthorized"
       },
+      "environment_note": "local isolated database sol_proof_20261020_local, code identical to deployed f15b4866",
       "evidence_file": "server-jobs-and-deadline.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     },
@@ -4098,7 +4099,7 @@
       "case_id": "OPS-06",
       "variant_id": "correct_key_route_runs_all_stages_dry_run",
       "status": "PASS",
-      "evidence_mode": "LOCAL_ISOLATED",
+      "evidence_mode": "CURRENT_FIXTURE",
       "entrypoint": "POST handler called directly with the local job key and dryRun=1",
       "actual": {
         "status": 200,
@@ -4120,6 +4121,7 @@
         ]
       },
       "limit": "Dry run on an isolated database; no delivery was attempted and no real recipient existed.",
+      "environment_note": "local isolated database sol_proof_20261020_local, code identical to deployed f15b4866",
       "evidence_file": "server-jobs-and-deadline.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     },
@@ -4127,7 +4129,7 @@
       "case_id": "OPS-06",
       "variant_id": "proxy_denial_distinguished_from_key_check",
       "status": "PASS",
-      "evidence_mode": "LOCAL_ISOLATED",
+      "evidence_mode": "CURRENT_RUNTIME",
       "entrypoint": "local dev server through proxy.js, POST /api/jobs/notifications?dryRun=1",
       "actual": {
         "noKey": {
@@ -4144,6 +4146,7 @@
         }
       },
       "reading": "The closed prelaunch gate answers before the route's key check. /api/jobs/notifications and /api/jobs/practice-reviews are not in SERVICE_ENDPOINTS of lib/publicPlatform.js; /api/internal/retention/cleanup is.",
+      "environment_note": "local isolated database sol_proof_20261020_local, code identical to deployed f15b4866",
       "evidence_file": "server-jobs-and-deadline.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     },
@@ -4152,7 +4155,7 @@
       "variant_id": "due_date_settable_via_product_path",
       "status": "FAIL",
       "gap_kind": "MISSING_FEATURE",
-      "evidence_mode": "SOURCE_AT_DEPLOYED_SHA",
+      "evidence_mode": "SOURCE_ONLY",
       "entrypoint": "git grep over app, lib, components and scripts at the deployed commit",
       "actual": {
         "column": "OrganizationInboxItem.dueAt (migration 20260801120000_org_funding_inbox_v1)",
@@ -4166,7 +4169,356 @@
       },
       "reading": "No UI or API path can set a work deadline, so the overdue filter can never match. Following the catalog rule, recorded as FAIL/MISSING_FEATURE; no deadline was written to the database to imitate the feature.",
       "limit": "The legal deadline is a GOV-01 question; this result does not decide which deadline rule should apply.",
+      "environment_note": "source of the deployed commit f15b4866; runtime support from 14.10 server-intake-flow.json (dueAt null)",
       "evidence_file": "server-jobs-and-deadline.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-01",
+      "variant_id": "manifest_recorded_without_secrets",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "git, prisma migrate deploy and Docker database measurements on this computer",
+      "actual": {
+        "secretValuesInManifest": false,
+        "gitHeadRecorded": true,
+        "diffHashRecorded": true,
+        "schemaRecorded": true
+      },
+      "evidence_file": "local-run-manifest-20261020.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-01",
+      "variant_id": "local_database_synthetic_only",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "SQL count in sol_proof_20261020_local",
+      "actual": {
+        "users": 9,
+        "usersWithExampleInvalidEmail": 9,
+        "otherUsers": 0,
+        "preInquiries": 0
+      },
+      "evidence_file": "local-run-manifest-20261020.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "ENV-01",
+      "variant_id": "mail_registry_and_model_channels_bounded",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "local run configuration",
+      "actual": {
+        "smtp": "127.0.0.1:2525 with no listener (connection refused, nothing leaves the computer)",
+        "businessRegistry": "MTR_DISABLED=true",
+        "modelProviderKeyInEnvironment": false,
+        "smsProviderKeyInEnvironment": false
+      },
+      "evidence_file": "local-run-manifest-20261020.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "user_region_from_own_statement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "person_mentioned_region",
+          "region": "sol-kov-a",
+          "person": "user",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        }
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "second_person_gets_own_region_without_mixing",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "target": "ema",
+        "motherScope": {
+          "state": "person_mentioned_region",
+          "region": "sol-kov-b",
+          "person": "ema",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        },
+        "userRegion": "sol-kov-a"
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "correction_replaces_region",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "mother": {
+          "id": "sol-kov-c",
+          "status": "reported",
+          "candidates": [],
+          "excluded": [],
+          "support": [
+            {
+              "turn": 3,
+              "quote": "Vabandust, ema elab hoopis C vallas."
+            }
+          ]
+        },
+        "userRegion": "sol-kov-a"
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "correction_reaches_next_turn_scope",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "person_region",
+          "region": "sol-kov-c",
+          "person": "ema",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        }
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "user_turn_keeps_user_region",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "person_region",
+          "region": "sol-kov-a",
+          "person": "user",
+          "interpretation": "source_scope_only_not_confirmed_residence"
+        }
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "negation_requires_new_region_without_reviving_old",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "region_required_after_negation",
+          "region": null,
+          "person": "ema"
+        },
+        "mother": {
+          "id": null,
+          "status": "negated",
+          "candidates": [],
+          "excluded": [
+            "sol-kov-c"
+          ],
+          "support": [
+            {
+              "turn": 6,
+              "quote": "Ema ei ela enam C vallas."
+            }
+          ]
+        }
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-03",
+      "variant_id": "two_places_in_one_turn_stay_ambiguous",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "deterministic person-region functions of the current code",
+      "actual": {
+        "scope": {
+          "state": "ambiguous_region",
+          "region": null,
+          "candidates": [
+            "sol-kov-c",
+            "sol-kov-d"
+          ],
+          "person": "isa"
+        }
+      },
+      "evidence_file": "local-rag-dialogue-places.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "help_seeker_injected_source_stays_in_user_data",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "injectionInUserJsonEvidence": true,
+        "injectionInInstructions": false,
+        "injectionInOtherRoles": false,
+        "roles": [
+          "user",
+          "developer"
+        ]
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "help_seeker_instructions_unchanged_by_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "identicalInstructions": true,
+        "instructionLength": 28060
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "help_seeker_refs_bounded_to_packet",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "allowedRefs": [
+          "S1"
+        ],
+        "strict": true
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "help_seeker_no_tools_and_no_private_content",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "toolsField": false,
+        "privateWellbeingAbsent": true,
+        "privateJourneyOccurrences": 1,
+        "meaning": "The only occurrence of the private journey marker is the injected source text itself; the builder adds no private module content."
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "help_seeker_role_restated_after_untrusted_evidence",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "lastMessageRole": "developer"
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "untrusted_data_rule_present_in_instructions",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "inputSafetyRule": true,
+        "dialogueRule": true
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "specialist_injected_source_stays_in_user_data",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "injectionInUserJsonEvidence": true,
+        "injectionInInstructions": false,
+        "injectionInOtherRoles": false,
+        "roles": [
+          "user",
+          "developer"
+        ]
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "specialist_instructions_unchanged_by_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "identicalInstructions": true,
+        "instructionLength": 28060
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "specialist_refs_bounded_to_packet",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "allowedRefs": [
+          "S1"
+        ],
+        "strict": true
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "specialist_no_tools_and_no_private_content",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "toolsField": false,
+        "privateWellbeingAbsent": true,
+        "privateJourneyOccurrences": 1,
+        "meaning": "The only occurrence of the private journey marker is the injected source text itself; the builder adds no private module content."
+      },
+      "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "specialist_role_restated_after_untrusted_evidence",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "dialogueRequest of lib/rag-v2/pilot/dialogue.js",
+      "actual": {
+        "lastMessageRole": "developer"
+      },
+      "evidence_file": "local-rag-source-injection.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]
