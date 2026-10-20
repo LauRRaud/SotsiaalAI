@@ -622,9 +622,14 @@ Kohalikus baasis sünteetilise kasutaja ja asutusega (meetmed, tugikontakt, otse
   paneel lõpeb 499 px, lava 506 px); „Minu tugivõimalused“, asutuse „Поддержка учреждения“ ja „Пути поддержки“
   koos juhi sammuga. Toorvõtmeid ei olnud, horisontaalset kerimist ei olnud. Telefonis (390 × 844, RU) mahub kõige
   kõrgem samm „Чему я хотел бы научиться“ alumisest menüüst kõrgemale (631 / 766 px). Eeltäide töötab ka vene keeles.
-- **Teadaolev piirang (ei ole selle töö oma):** Tööheaolu tegurite ja tugevuste sildid Ülevaates ning valmis
-  tekstid tulevad eestikeelsest sõnastikust (`displayLabels.js`) kõigis keeltes. Asutuse kirjutatud juhis on asutuse
-  keeles.
+- **Teadaolev piirang — lahendatud 20.10 hiljem:** Tööheaolu tegurite ja tugevuste sildid ning kõigi Tööheaolu
+  vormide sammud, väljad, valikud, signaalid, tulemused ja teated olid inglise ja vene keeles eestikeelsed. Nüüd
+  tulevad need tõlkekataloogist (`wellbeing.forms.<töövoog>.*` ja `wellbeing.labels.values|factors.*`, kokku 1100
+  võtit; eesti tekst on varutekst). Vormimääratlused jäid samaks: `localizeDefinition` (`forms/localize.js`) teeb
+  tekstist kuval võtme, väärtused ja serveri leping ei muutu. Kontroll: `i18n:check`, `npm test` (65 läbi); kõigis
+  vormides ei jäänud tõlkimata teksti ega puuduvat võtit ja ükski samm ei ületa kõigis kolmes keeles paigutuse kaalu
+  piiri; brauseris EN Ülevaade ja RU kiirkontrolli raske juhtumi samm. **Jääb eesti keelde:** valmis tekstid
+  (soovitused, mustandid, memo) ja asutuse kirjutatud juhis (asutuse keeles).
 
 ### 8.18. Teostus 20.10: koond „võimaldab × vajan“ piloodi aruandes
 

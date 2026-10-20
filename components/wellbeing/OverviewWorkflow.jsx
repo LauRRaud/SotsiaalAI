@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
-import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
+import { wellbeingFactorText } from "@/lib/wellbeing/factorLabels";
 import { wellbeingTools } from "@/lib/wellbeingTools";
 
 import { wellbeingActionRoute } from "./forms/routes";
@@ -89,8 +89,9 @@ export default function OverviewWorkflow({ onNavigate }) {
     type === "covision"
       ? t("chat.workspace.cards.kovision.title", "Kovisioon")
       : t(`wellbeing.my_records.workflow.${String(type || "").replaceAll("-", "_")}`, wellbeingTools.find((tool) => tool.id === type)?.title || "");
+  /* Silt lehe keeles (`factorLabels.js`); serveri eestikeelne silt jääb memo tekstile. */
   const factorItems = (items) =>
-    (Array.isArray(items) ? items : []).map((item) => ({ key: item.key, label: item.label || wellbeingLabel(item.key), count: item.count }));
+    (Array.isArray(items) ? items : []).map((item) => ({ key: item.key, label: wellbeingFactorText(t, item.key), count: item.count }));
 
   async function saveManagerMemoDraft() {
     const textToSave = String(memoText || "").trim();

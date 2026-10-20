@@ -17,15 +17,15 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 import Button from "@/components/ui/Button";
-import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
+import { wellbeingFactorText } from "@/lib/wellbeing/factorLabels";
 import { CHECKPOINT_FOLLOW_UP_STATES, describeWellbeingCheckpoint } from "@/lib/wellbeing/checkpointState";
 
 import { AggregateView, NextStepView, RecordDraftsView, RecordsListView, RecordView, UnfinishedView } from "./records/RecordsViews";
 import { useWellbeingAggregatePreference } from "./useAggregatePreference";
 
 /* Töövoo-tüüpide sildivõtmed. Kuvasõna tuleb i18n-st (t), fallback on ET.
-   Sisu (tegurid, signaalid) läbib olemasoleva `wellbeingLabel`-i (ET-only
-   sõnastik — sama piir mis Ülevaates; EN/RU sõnastik on väljaspool T14-t). */
+   Tegurite sildid tulevad samuti kataloogist (`lib/wellbeing/factorLabels.js`,
+   sama mis Ülevaates); valmis tekstid jäävad eesti keelde. */
 const WORKFLOW_LABELS = {
   "quick-check": ["wellbeing.my_records.workflow.quick_check", "Kiirkontroll"],
   overview: ["wellbeing.my_records.workflow.overview", "Ülevaade"],
@@ -397,7 +397,7 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
               key,
               title: t(`wellbeing.my_records.${titleKey}`, title),
               empty: t(`wellbeing.my_records.${emptyKey}`, empty),
-              items: factorList(values).map((value) => ({ key: value, label: wellbeingLabel(value) }))
+              items: factorList(values).map((value) => ({ key: value, label: wellbeingFactorText(t, value) }))
             }))
           : [];
         const links = record

@@ -56,6 +56,7 @@ import Button from "@/components/ui/Button";
 
 import { cleanFields, emptyFields, hasValue, missingInStep } from "./forms/formState";
 import { isTableStep, stackColumns } from "./forms/layout";
+import { localizeDefinition } from "./forms/localize";
 import { wellbeingActionRoute } from "./forms/routes";
 import SupportRequestPanel from "./SupportRequestPanel";
 import { useWellbeingAggregatePreference } from "./useAggregatePreference";
@@ -72,8 +73,10 @@ const TEXT_PREVIEW_LINES = 7;
 const TEXT_PREVIEW_CHARS = 420;
 const isLongText = (text) => text.split("\n").length > TEXT_PREVIEW_LINES || text.length > TEXT_PREVIEW_CHARS;
 
-export default function WellbeingStepForm({ definition, onNavigate }) {
+export default function WellbeingStepForm({ definition: sourceDefinition, onNavigate }) {
   const { t } = useI18n();
+  /* Eestikeelsed sõned saavad struktuursed tõlkevõtmed (`forms/localize.js`). */
+  const definition = useMemo(() => localizeDefinition(sourceDefinition), [sourceDefinition]);
   const tx = (entry, vars) => (Array.isArray(entry) ? t(entry[0], vars || entry[1], vars ? entry[1] : undefined) : entry);
 
   /* `initialFields`: eeltäide (nt asutuse kirjeldatud tugimeetmed); inimene saab kõike muuta. */

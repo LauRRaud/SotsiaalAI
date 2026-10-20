@@ -41,4 +41,5 @@ export const formText = (namespace) => ({
   failed: [`wellbeing.${namespace}.save_failed`, ""]
 });
 
-export const output = (title, key) => ({ title, value: (record) => record.outputSummary[key] });
+/* `key` jääb kaasa, et pealkiri saaks stabiilse tõlkevõtme (`localize.js`). */
+export const output = (title, key) => ({ title, key, value: (record) => record.outputSummary[key] });

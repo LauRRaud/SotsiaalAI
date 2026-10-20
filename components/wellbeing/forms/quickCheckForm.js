@@ -5,7 +5,8 @@
  * väärtused on serveri lepingu osa. Arvutus: `lib/wellbeing/quickCheck.js`.
  */
 
-import { buildQuickCheckRecord, formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
+import { wellbeingFactorEntry } from "@/lib/wellbeing/factorLabels";
+import { buildQuickCheckRecord } from "@/lib/wellbeing/quickCheck";
 
 import { QUICK_CHECK_GROUPS, QUICK_CHECK_RISKS, QUICK_CHECK_SAFETY } from "../quickCheckFields.js";
 
@@ -79,17 +80,17 @@ export const quickCheckForm = {
   factors: (record, tx) => [
     {
       title: tx(["wellbeing.quick_check.load_factors", "Koormustegurid"]),
-      items: record.loadFactors.map(formatQuickCheckFactor),
+      items: record.loadFactors.map((value) => tx(wellbeingFactorEntry(value))),
       empty: tx(["wellbeing.quick_check.no_load_factors", "Kõrgeid koormustegureid ei ilmnenud."])
     },
     {
       title: tx(["wellbeing.quick_check.resource_factors", "Puuduvad ressursid"]),
-      items: record.resourceFactors.map(formatQuickCheckFactor),
+      items: record.resourceFactors.map((value) => tx(wellbeingFactorEntry(value))),
       empty: tx(["wellbeing.quick_check.no_resource_factors", "Põhiressursid paistavad olemas."])
     },
     {
       title: tx(["wellbeing.quick_check.risk_markers", "Riskimärgid"]),
-      items: record.riskMarkers.map(formatQuickCheckFactor),
+      items: record.riskMarkers.map((value) => tx(wellbeingFactorEntry(value))),
       empty: tx(["wellbeing.quick_check.no_risk_markers", "Eraldi riskimärki ei märgitud."])
     }
   ]

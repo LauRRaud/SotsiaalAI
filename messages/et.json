@@ -10502,6 +10502,1734 @@
       "outputs": {
         "summary": "Minu nädal"
       }
+    },
+    "forms": {
+      "quick_check": {
+        "fields": {
+          "workloadLevel": {
+            "label": "Töömaht",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge",
+              "critical": "Kriitiline"
+            }
+          },
+          "caseComplexityLevel": {
+            "label": "Juhtumite keerukus",
+            "options": {
+              "routine": "Rutiinne",
+              "moderate": "Mõõdukas",
+              "complex": "Keerukas",
+              "very_complex": "Väga keerukas"
+            }
+          },
+          "emotionalLoad": {
+            "label": "Emotsionaalne koormus",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge",
+              "very_high": "Väga kõrge"
+            }
+          },
+          "documentationLoad": {
+            "label": "Dokumenteerimise koormus",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge",
+              "very_high": "Väga kõrge"
+            }
+          },
+          "interruptionsLevel": {
+            "label": "Katkestused",
+            "options": {
+              "low": "Madalad",
+              "moderate": "Mõõdukad",
+              "high": "Kõrged",
+              "very_high": "Väga kõrged"
+            }
+          },
+          "afterHoursImpact": {
+            "label": "Töövälise kättesaadavuse mõju",
+            "options": {
+              "none": "Puudub",
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "recoveryLevel": {
+            "label": "Taastumisvõimalus",
+            "options": {
+              "sufficient": "Piisav",
+              "partial": "Osaline",
+              "low": "Vähene",
+              "none": "Puudub"
+            }
+          },
+          "decisionControl": {
+            "label": "Otsustusruum töö üle",
+            "options": {
+              "high": "Kõrge",
+              "moderate": "Mõõdukas",
+              "low": "Madal",
+              "none": "Puudub"
+            }
+          },
+          "priorityClarity": {
+            "label": "Prioriteetide selgus",
+            "options": {
+              "clear": "Selge",
+              "partly_clear": "Osaliselt selge",
+              "unclear": "Ebaselge"
+            }
+          },
+          "workBoundaryClarity": {
+            "label": "Tööpiiride selgus",
+            "options": {
+              "clear": "Selge",
+              "partly_clear": "Osaliselt selge",
+              "unclear": "Ebaselge"
+            }
+          },
+          "managerSupport": {
+            "label": "Juhi tugi",
+            "options": {
+              "available": "Kättesaadav",
+              "partial": "Osaline",
+              "unclear": "Ebaselge",
+              "not_available": "Pole kättesaadav"
+            }
+          },
+          "colleagueSupport": {
+            "label": "Kolleegide tugi",
+            "options": {
+              "available": "Kättesaadav",
+              "partial": "Osaline",
+              "unclear": "Ebaselge",
+              "not_available": "Pole kättesaadav"
+            }
+          },
+          "workMeaning": {
+            "label": "Tunnen, et mu tööl on mõte",
+            "options": {
+              "yes": "Jah",
+              "partly": "Osaliselt",
+              "no": "Praegu mitte"
+            }
+          }
+        },
+        "signals": {
+          "green": {
+            "title": "Roheline",
+            "text": "Töökoormus paistab praegu juhitav. Hoia tähelepanu taastumisel ja kokkulepetel."
+          },
+          "yellow": {
+            "title": "Kollane",
+            "text": "Mitmes töötegur vajab tähelepanu. Vali üks konkreetne järgmine samm."
+          },
+          "red": {
+            "title": "Punane",
+            "text": "Koormus vajab töökorralduslikku arutelu või kiiremat toe kokkulepet."
+          }
+        }
+      },
+      "hard_case": {
+        "steps": {
+          "situation": {
+            "title": "Juhtum ja roll",
+            "short": "Juhtum"
+          },
+          "safety": {
+            "title": "Ohutus"
+          },
+          "load": {
+            "title": "Koormus ja taastumine",
+            "short": "Koormus"
+          },
+          "tension": {
+            "title": "Pinge ja tugi",
+            "short": "Pinge"
+          },
+          "description": {
+            "short": "Kirjeldus"
+          },
+          "next24h": {
+            "short": "24 tundi"
+          }
+        },
+        "fields": {
+          "caseType": {
+            "label": "Juhtumi tüüp",
+            "options": {
+              "emotionally_heavy": "Emotsionaalselt raske",
+              "ethical_dilemma": "Eetiline dilemma",
+              "complex_case": "Töökorralduslikult keeruline",
+              "trauma_related": "Traumaga kokkupuude",
+              "role_conflict": "Rolli või vastutuse konflikt"
+            }
+          },
+          "professionalRole": {
+            "label": "Minu tööalane roll",
+            "options": {
+              "case_worker": "Juhtumikorraldaja",
+              "child_protection": "Lastekaitse spetsialist",
+              "social_worker": "Sotsiaaltöötaja",
+              "advisor": "Nõustaja",
+              "coordinator": "Koordinaator"
+            }
+          },
+          "immediateDanger": {
+            "label": "Vahetu oht",
+            "options": {
+              "no": "Vahetut ohtu ei ole",
+              "uncertain": "Pole kindel",
+              "yes": "Oht võib jätkuda"
+            }
+          },
+          "mainLoad": {
+            "label": "Mis jäi koormama",
+            "options": {
+              "emotional_load": "Emotsionaalne koormus",
+              "ethical_tension": "Eetiline pinge",
+              "moral_distress": "Moraalne stress",
+              "trauma_exposure": "Traumaga kokkupuude",
+              "role_conflict": "Rollikonflikt",
+              "workload_followup": "Järeltegevuste töömaht"
+            }
+          },
+          "recoveryNeed": {
+            "label": "Taastumise vajadus",
+            "options": {
+              "none": "Ei vaja eraldi plaani",
+              "partial": "Vajab lühikest plaani",
+              "high": "Vajab töökorralduslikku tuge"
+            }
+          },
+          "ethicalTension": {
+            "label": "Eetiline pinge",
+            "options": {
+              "none": "Puudub",
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "moralDistress": {
+            "label": "Moraalse stressi tunne",
+            "options": {
+              "none": "Puudub",
+              "some": "Mõningane",
+              "strong": "Tugev"
+            }
+          },
+          "traumaExposure": {
+            "label": "Traumaga kokkupuude",
+            "options": {
+              "none": "Ei märgi",
+              "indirect": "Kaudne",
+              "direct": "Otsene"
+            }
+          },
+          "roleClarity": {
+            "label": "Rolli või vastutuse selgus",
+            "options": {
+              "clear": "Selge",
+              "partly_clear": "Osaliselt selge",
+              "unclear": "Ebaselge"
+            }
+          },
+          "next24hNeeds": {
+            "options": {
+              "manager_check_in": "Juhiga lühike järelkontakt",
+              "document_key_facts": "Tööks vajalikud faktid kirja",
+              "reduce_next_day_load": "Järgmise päeva koormuse vähendamine",
+              "colleague_debrief": "Kolleegiga tööalane järelarutelu",
+              "safety_followup": "Ohutuse järelkontroll",
+              "covision_input": "Kovisiooni sisendi ettevalmistus"
+            }
+          }
+        },
+        "signals": {
+          "no_immediate_danger": {
+            "title": "Vahetut ohtu ei ole",
+            "text": "Olukord vajab tööalast korrastamist, kuid kiire ohutegevus ei ole praegu märgitud."
+          },
+          "needs_attention": {
+            "title": "Vajab tähelepanu",
+            "text": "Juhtum vajab 24h järelplaani, et koormus, roll ja järgmised sammud ei jääks üksi kanda."
+          },
+          "urgent_attention": {
+            "title": "Kiire tähelepanu vajalik",
+            "text": "Vahetu oht või tugev risk vajab esmalt turvalisuse ja vastutava osapoolega seotud tegevust."
+          }
+        },
+        "outputs": {
+          "aftercarePlan24h": "24h järelplaan",
+          "neutralSummary": "Neutraalne kokkuvõte",
+          "managerMemo": "Juhiga arutelu memo",
+          "covisionInput": "Kovisiooni sisend"
+        }
+      },
+      "interruptions": {
+        "steps": {
+          "class": {
+            "title": "Katkestuse liik",
+            "short": "Liik"
+          },
+          "pattern": {
+            "short": "Muster"
+          },
+          "agreement": {
+            "short": "Raam"
+          },
+          "effect": {
+            "title": "Kanal ja taastumine",
+            "short": "Mõju"
+          },
+          "sources": {
+            "short": "Allikad"
+          }
+        },
+        "fields": {
+          "interruptionClass": {
+            "label": "Katkestuse liik",
+            "options": {
+              "unavoidable": "Vältimatu kiire sekkumine",
+              "negotiable": "Kokkulepitav katkestus",
+              "deferrable": "Edasilükatav küsimus",
+              "wrong_channel": "Vale suhtluskanal",
+              "role_boundary": "Rollipiiri ületav katkestus",
+              "documentation_system": "Dokumenteerimise või süsteemi katkestus",
+              "partner_process": "Koostööpartneri protsessi katkestus"
+            }
+          },
+          "frequency": {
+            "label": "Sagedus",
+            "options": {
+              "rare": "Harva",
+              "sometimes": "Mõnikord",
+              "often": "Sageli",
+              "very_often": "Väga sageli"
+            }
+          },
+          "workImpact": {
+            "label": "Mõju tööle",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "immediateResponseNeed": {
+            "label": "Kohe reageerimise vajaduse selgus",
+            "options": {
+              "clear": "Selge",
+              "partial": "Osaliselt selge",
+              "unclear": "Ebaselge"
+            }
+          },
+          "canWait": {
+            "label": "Kui palju saaks oodata?",
+            "options": {
+              "few": "Vähesed",
+              "some": "Osa",
+              "many": "Paljud"
+            }
+          },
+          "neededAgreement": {
+            "label": "Vajalik kokkulepe",
+            "options": {
+              "focus_time": "Fookusaeg",
+              "channel_rules": "Suhtluskanalite reeglid",
+              "role_boundary": "Rollipiir",
+              "process_change": "Tööprotsessi muutus",
+              "team_agreement": "Tiimi kokkulepe"
+            }
+          },
+          "counterpart": {
+            "label": "Kokkuleppe osapool",
+            "options": {
+              "manager": "Juht",
+              "team": "Tiim",
+              "colleague": "Kolleeg",
+              "partner": "Koostööpartner"
+            }
+          },
+          "wrongChannelShare": {
+            "label": "Valest kanalist tulev osa",
+            "options": {
+              "none": "Puudub",
+              "some": "Osa",
+              "many": "Palju"
+            }
+          },
+          "recoveryImpact": {
+            "label": "Mõju taastumisele",
+            "options": {
+              "none": "Puudub",
+              "some": "Mõningane",
+              "high": "Kõrge"
+            }
+          },
+          "sources": {
+            "label": "Kust katkestused tulevad",
+            "options": {
+              "phone": "Telefon",
+              "email": "E-kiri",
+              "message": "Sõnum",
+              "colleague_questions": "Kolleegi küsimused",
+              "manager_requests": "Juhi päringud",
+              "client_contact": "Kliendikontakt",
+              "partner_contact": "Koostööpartner",
+              "documentation_system": "Dokumenteerimissüsteem",
+              "meetings": "Koosolekud",
+              "urgent_cases": "Kiired juhtumid"
+            }
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Juhitav",
+            "text": "Katkestusi on, kuid need on pigem selged ja vajavad peamiselt kokkuleppe hoidmist."
+          },
+          "needs_workflow_clarification": {
+            "title": "Vajab töövoo täpsustamist",
+            "text": "Katkestuste sagedus, kanal või kiireloomulisus vajab selgemat töökorralduslikku kokkulepet."
+          },
+          "needs_reorganization": {
+            "title": "Vajab ümberkorraldust",
+            "text": "Katkestused killustavad tööpäeva ja taastumist. Vajalik on fookusaja, kanalite või tööprotsessi kokkulepe."
+          }
+        },
+        "outputs": {
+          "interruptionMap": "Katkestuste kaart",
+          "focusTimeAgreement": "Fookusaja kokkulepe",
+          "channelAgreement": "Suhtluskanalite kokkulepe",
+          "managerMemo": "Juhiga arutelu memo"
+        }
+      },
+      "recovery": {
+        "fields": {
+          "workThoughtsOffHours": {
+            "label": "Mõtlen tööle ka vabal ajal",
+            "options": {
+              "rarely": "Harva",
+              "sometimes": "Mõnikord",
+              "often": "Sageli",
+              "almost_always": "Peaaegu alati"
+            }
+          },
+          "endOfDayExhaustion": {
+            "label": "Olen tööpäeva lõpuks vaimselt kurnatud",
+            "options": {
+              "rarely": "Harva",
+              "sometimes": "Mõnikord",
+              "often": "Sageli",
+              "almost_always": "Peaaegu alati"
+            }
+          },
+          "sleepAffected": {
+            "label": "Töö segab mu und",
+            "options": {
+              "rarely": "Harva",
+              "sometimes": "Mõnikord",
+              "often": "Sageli",
+              "almost_always": "Peaaegu alati"
+            }
+          },
+          "workAnxiety": {
+            "label": "Tööle mõtlemine tekitab ärevust",
+            "options": {
+              "rarely": "Harva",
+              "sometimes": "Mõnikord",
+              "often": "Sageli",
+              "almost_always": "Peaaegu alati"
+            }
+          },
+          "missingRecoveryExperiences": {
+            "label": "Mis praegu puudu jääb?",
+            "options": {
+              "detachment": "Tööst mõtetes eemaldumine",
+              "relaxation": "Lõõgastus ja puhkus",
+              "mastery": "Midagi uut ja jõukohast väljaspool tööd",
+              "control": "Kontroll oma vaba aja üle"
+            }
+          },
+          "selfAgreement": {
+            "label": "Üks kokkulepe iseendaga",
+            "options": {
+              "write_unfinished": "Kirjutan päeva lõpus pooleli asjad üles",
+              "close_channels": "Panen vabal ajal töökanalid kinni",
+              "transition": "Teen pärast tööd väikese ülemineku",
+              "free_evening": "Hoian ühe õhtu nädalas tööst vaba",
+              "none_now": "Praegu ei vali"
+            }
+          },
+          "recoveryReason": {
+            "label": "Taastumise põhjus",
+            "options": {
+              "heavy_week": "Raske nädal",
+              "difficult_case": "Raske juhtum",
+              "workplace_violence": "Töövägivalla kogemus",
+              "long_overload": "Pikaajaline ülekoormus"
+            }
+          },
+          "supportNeed": {
+            "label": "Vajalik tugi",
+            "options": {
+              "none": "Ei vaja eraldi tuge",
+              "manager": "Juhi kokkulepe",
+              "colleague": "Kolleegitugi",
+              "supervisor": "Supervisioon või muu kokkulepitud tugi"
+            }
+          },
+          "recoveryLevel": {
+            "label": "Taastumisvõimalus",
+            "options": {
+              "sufficient": "Piisav",
+              "partial": "Osaline",
+              "low": "Vähene",
+              "none": "Puudub"
+            }
+          },
+          "workCapacityNext72h": {
+            "label": "Töövõime järgmise 24-72h vaates",
+            "options": {
+              "stable": "Stabiilne",
+              "reduced": "Vähenenud",
+              "low": "Madal",
+              "not_sustainable": "Ei ole kestlik"
+            }
+          },
+          "nextCheckpoint": {
+            "label": "Järgmine kontrollpunkt",
+            "options": {
+              "today": "Täna",
+              "tomorrow": "Homme",
+              "in_72h": "72 tunni pärast",
+              "next_week": "Järgmisel nädalal"
+            }
+          },
+          "primaryLoadFactors": {
+            "label": "Vali kõik, mis kehtivad",
+            "options": {
+              "documentation": "Dokumenteerimine",
+              "interruptions": "Katkestused",
+              "difficult_case": "Raske juhtum",
+              "workplace_violence": "Töövägivald",
+              "after_hours": "Tööväline kättesaadavus",
+              "role_conflict": "Rollikonflikt"
+            }
+          },
+          "unavoidableTasks": {
+            "label": "Vältimatud ülesanded"
+          },
+          "deferrableTasks": {
+            "label": "Edasilükatavad ülesanded"
+          },
+          "redistributableTasks": {
+            "label": "Ümberjagatavad ülesanded"
+          }
+        },
+        "steps": {
+          "state": {
+            "title": "Seis ja kontrollpunkt",
+            "short": "Seis"
+          },
+          "load": {
+            "short": "Koormus"
+          },
+          "tasks": {
+            "short": "Tööplaan"
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Juhitav",
+            "text": "Taastumine vajab hoidmist, aga plaan püsib praegu töökorralduslikult juhitav."
+          },
+          "prioritize": {
+            "title": "Vajab prioriseerimist",
+            "text": "Järgmise 24-72 tunni töö tuleb kitsendada vältimatule ja osa tegevusi edasi lükata."
+          },
+          "organizational_support": {
+            "title": "Vajab töökorralduslikku tuge",
+            "text": "Taastumisruum või töövõime on madal. Vaja on kokkulepet toe, ümberjagamise või piiride kohta."
+          }
+        },
+        "outputs": {
+          "0": "Taastumisplaan",
+          "1": "Juhiga arutelu memo"
+        }
+      },
+      "role_boundaries": {
+        "steps": {
+          "expectation": {
+            "short": "Ootus"
+          },
+          "role": {
+            "title": "Minu roll ja selle piir",
+            "short": "Roll"
+          },
+          "parties": {
+            "title": "Panus ja osapool",
+            "short": "Osapooled"
+          },
+          "clarification": {
+            "short": "Selgitus"
+          }
+        },
+        "fields": {
+          "expectationSource": {
+            "label": "Kes esitab ootuse?",
+            "options": {
+              "client": "Klient",
+              "client_family": "Kliendi lähedane",
+              "manager": "Juht",
+              "colleague": "Kolleeg",
+              "partner": "Koostööpartner",
+              "network": "Võrgustik"
+            }
+          },
+          "expectedAction": {
+            "label": "Mida oodatakse?",
+            "options": {
+              "explain_service": "Teenuse või otsuse selgitus",
+              "solve_partner_delay": "Partneri viivituse lahendamine",
+              "be_always_available": "Pidev kättesaadavus",
+              "make_decision": "Otsuse tegemine",
+              "coordinate_network": "Võrgustiku koordineerimine",
+              "emotional_support": "Emotsionaalne tugi"
+            }
+          },
+          "myRole": {
+            "label": "Mis on minu roll?",
+            "options": {
+              "case_worker": "Juhtumitöö koordineerimine",
+              "advisor": "Nõustamine ja selgitamine",
+              "service_link": "Teenuse või kontakti vahendamine",
+              "assessment_input": "Hindamise sisendi kogumine",
+              "support_planning": "Toe planeerimine"
+            }
+          },
+          "outsideRole": {
+            "label": "Mis ei ole minu roll?",
+            "options": {
+              "none": "Piir on selge",
+              "make_other_agency_decision": "Teise asutuse otsuse tegemine",
+              "replace_service_provider": "Teenuseosutaja rolli asendamine",
+              "be_crisis_contact": "Kriisikontakti roll",
+              "guarantee_outcome": "Tulemuse garanteerimine",
+              "carry_partner_responsibility": "Partneri vastutuse kandmine"
+            }
+          },
+          "neededResponsibility": {
+            "label": "Kelle panus on vajalik?",
+            "options": {
+              "self": "Minu rolli piires lahendatav",
+              "manager": "Juhi panus",
+              "partner_agency": "Koostööpartneri panus",
+              "service_provider": "Teenuseosutaja panus",
+              "network": "Võrgustiku ühine panus",
+              "client_family": "Kliendi või lähedase panus"
+            }
+          },
+          "counterpart": {
+            "label": "Selgituse osapool",
+            "options": {
+              "client": "Klient",
+              "client_family": "Kliendi lähedane",
+              "manager": "Juht",
+              "partner": "Koostööpartner",
+              "team": "Tiim"
+            }
+          },
+          "roleConflict": {
+            "label": "Rollikonflikti tase",
+            "options": {
+              "none": "Puudub",
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "availabilityPressure": {
+            "label": "Kättesaadavuse surve",
+            "options": {
+              "none": "Puudub",
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "ethicalComplexity": {
+            "label": "Eetiline keerukus",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          }
+        },
+        "signals": {
+          "clear": {
+            "title": "Roll on pigem selge",
+            "text": "Ootus, roll ja vastutus on piisavalt eristatavad. Vajadusel vormista lühike selgitus."
+          },
+          "needs_clarification": {
+            "title": "Vajab selgitamist",
+            "text": "Mõni ootus, vastutus või osapoole panus vajab selgemat sõnastust."
+          },
+          "needs_network_discussion": {
+            "title": "Vajab töökorralduslikku või võrgustiku arutelu",
+            "text": "Rollikonflikt või vastutuse nihkumine vajab juhiga, partneriga või kovisioonis läbi rääkimist."
+          }
+        },
+        "outputs": {
+          "roleBoundaryAnalysis": "Rollipiiride analüüs",
+          "clientExplanation": "Kliendile selgitus",
+          "partnerClarification": "Partnerile rolliselgitus",
+          "canCannotDoText": "Mida saan / mida ei saa teha",
+          "managerMemo": "Juhiga memo"
+        }
+      },
+      "starter_support": {
+        "steps": {
+          "stage": {
+            "short": "Etapp"
+          },
+          "talks": {
+            "title": "Toe kiireloomulisus ja arutelud",
+            "short": "Arutelud"
+          },
+          "unclear": {
+            "short": "Ebaselge"
+          },
+          "support": {
+            "short": "Tugi praegu"
+          },
+          "shared": {
+            "title": "Mida ei tohiks üksi kanda",
+            "short": "Jagamine"
+          }
+        },
+        "fields": {
+          "experienceStage": {
+            "label": "Töökogemuse etapp",
+            "options": {
+              "first_week": "Esimene nädal",
+              "first_month": "Esimene kuu",
+              "first_100_days": "Esimesed 100 päeva",
+              "new_role": "Uus roll samas valdkonnas"
+            }
+          },
+          "roleArea": {
+            "label": "Rollivaldkond",
+            "options": {
+              "child_protection": "Lastekaitse",
+              "adult_support": "Täiskasvanute tugi",
+              "elderly_support": "Eakate tugi",
+              "disability_support": "Puuetega inimeste tugi",
+              "service_coordination": "Teenuste koordineerimine",
+              "general_social_work": "Üldine sotsiaaltöö"
+            }
+          },
+          "supportUrgency": {
+            "label": "Toe kokkuleppe kiireloomulisus",
+            "options": {
+              "stable": "Stabiilne",
+              "plan_needed": "Plaan vajab täpsustamist",
+              "soon": "Vaja lähiajal kokku leppida",
+              "urgent": "Vaja kiiret kokkulepet"
+            }
+          },
+          "unclearTopics": {
+            "label": "Ebaselged teemad",
+            "options": {
+              "role_boundaries": "Roll ja vastutus",
+              "documentation": "Dokumenteerimine",
+              "network_work": "Võrgustikutöö",
+              "service_rules": "Teenuste reeglid",
+              "risk_escalation": "Riskide eskaleerimine",
+              "work_boundaries": "Tööpiirid"
+            }
+          },
+          "existingSupport": {
+            "label": "Olemasolev tugi",
+            "options": {
+              "manager_check_in": "Juhi kontrollpunkt",
+              "team_channel": "Tiimi kanal",
+              "onboarding_material": "Sisseelamismaterjal",
+              "shadowing": "Kogenuma kolleegi jälgimine",
+              "case_discussion": "Juhtumiarutelu"
+            }
+          },
+          "missingSupport": {
+            "label": "Puuduv tugi",
+            "options": {
+              "mentor": "Mentor",
+              "covision": "Kovisioon",
+              "clear_documentation_routine": "Selge dokumenteerimisrutiin",
+              "role_expectations": "Rolliootuste selgitus",
+              "boundary_agreement": "Tööpiiride kokkulepe",
+              "case_escalation_rule": "Juhtumi eskaleerimise reegel"
+            }
+          },
+          "casesNotCarryAlone": {
+            "label": "Juhtumid, mida ei tohiks üksi kanda",
+            "options": {
+              "complex_family_case": "Keeruline perejuhtum",
+              "workplace_violence": "Töövägivalla olukord",
+              "ethical_tension_case": "Eetilise pingega juhtum",
+              "high_risk_case": "Kõrge riskiga juhtum",
+              "unclear_mandate": "Ebaselge mandaadiga juhtum"
+            }
+          },
+          "covisionNeedSigns": {
+            "label": "Kovisiooni vajaduse märgid",
+            "options": {
+              "ethical_tension": "Eetiline pinge",
+              "role_uncertainty": "Rolli ebaselgus",
+              "emotional_load": "Emotsionaalne koormus",
+              "repeating_case_pattern": "Korduv juhtumimuster",
+              "not_to_carry_alone": "Ei peaks üksi kandma"
+            }
+          }
+        },
+        "signals": {
+          "support_available": {
+            "title": "Tugi on pigem olemas",
+            "text": "Alustamise tugi on olemas ja vajab peamiselt nähtaval hoidmist."
+          },
+          "needs_clearer_support_plan": {
+            "title": "Vajab selgemat töötoe plaani",
+            "text": "Mõni tugi, rolliootus või dokumenteerimise rutiin vajab selgemat kokkulepet."
+          },
+          "needs_urgent_support_agreement": {
+            "title": "Vajab kiiremat toe kokkulepet",
+            "text": "Puuduv tugi või keerulised juhtumid vajavad juhiga, mentoriga või kovisioonis kiiremat kokkulepet."
+          }
+        },
+        "outputs": {
+          "firstWeekPlan": "Esimese nädala plaan",
+          "firstMonthFocus": "Esimese kuu fookused",
+          "hundredDaySupportPlan": "100 päeva töötoe plaan",
+          "managerMentorQuestions": "Küsimused juhile või mentorile",
+          "covisionNeedCheck": "Kovisiooni vajaduse kontroll",
+          "boundaryDraft": "Alustaja tööpiiride mustand"
+        }
+      },
+      "weekly_reflection": {
+        "fields": {
+          "weeklyLoad": {
+            "label": "Töökoormus",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge",
+              "critical": "Kriitiline"
+            }
+          },
+          "weeklyRecovery": {
+            "label": "Jõudsin taastuda",
+            "options": {
+              "sufficient": "Piisavalt",
+              "partial": "Osaliselt",
+              "low": "Vähe",
+              "none": "Üldse mitte"
+            }
+          },
+          "weeklyMeaning": {
+            "label": "Tööl oli mõte",
+            "options": {
+              "yes": "Jah",
+              "partly": "Osaliselt",
+              "no": "Praegu mitte"
+            }
+          }
+        }
+      },
+      "work_boundaries": {
+        "steps": {
+          "focus": {
+            "title": "Kokkuleppe fookus",
+            "short": "Fookus"
+          },
+          "agreement": {
+            "short": "Raam"
+          },
+          "wording": {
+            "short": "Sõnastus"
+          },
+          "exceptions": {
+            "title": "Kriisiolukorra erandid",
+            "short": "Erandid"
+          }
+        },
+        "fields": {
+          "agreementType": {
+            "label": "Kokkuleppe fookus",
+            "options": {
+              "after_hours_availability": "Töövälise kättesaadavuse piir",
+              "work_time_boundary": "Tööaja piir",
+              "evening_messages": "Õhtuste sõnumite kokkulepe",
+              "pause_agreement": "Pauside kaitsmine",
+              "replacement_agreement": "Asenduse kokkulepe",
+              "crisis_exception": "Kriisiolukorra erandid",
+              "focus_time": "Keskendumisaja kaitsmine",
+              "urgent_requests": "Kiirete päringute piir"
+            }
+          },
+          "boundaryClarity": {
+            "label": "Piiri selgus",
+            "options": {
+              "clear": "Selge",
+              "partly_clear": "Osaliselt selge",
+              "unclear": "Ebaselge"
+            }
+          },
+          "afterHoursPressure": {
+            "label": "Töövälise kättesaadavuse surve",
+            "options": {
+              "none": "Puudub",
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "pauseProtection": {
+            "label": "Pauside kaitstus",
+            "options": {
+              "protected": "Kaitstud",
+              "partial": "Osaline",
+              "unclear": "Ebaselge",
+              "none": "Puudub"
+            }
+          },
+          "replacementCoverage": {
+            "label": "Asenduse või info liikumise selgus",
+            "options": {
+              "clear": "Selge",
+              "partial": "Osaline",
+              "unclear": "Ebaselge",
+              "missing": "Puudub"
+            }
+          },
+          "urgentExceptionClarity": {
+            "label": "Kiireloomuliste erandite selgus",
+            "options": {
+              "clear": "Selge",
+              "partly_clear": "Osaliselt selge",
+              "unclear": "Ebaselge"
+            }
+          },
+          "overtimeLastMonth": {
+            "label": "Ületunnid viimasel kuul",
+            "options": {
+              "none": "Ei olnud",
+              "occasional": "Aeg-ajalt",
+              "regular": "Regulaarselt"
+            }
+          },
+          "overtimeCompensation": {
+            "label": "Kui oli, kas need hüvitatakse?",
+            "options": {
+              "yes": "Jah",
+              "partly": "Osaliselt",
+              "no": "Ei",
+              "unknown": "Ei tea"
+            }
+          },
+          "flexibleHours": {
+            "label": "Paindlik tööaeg on võimalik",
+            "options": {
+              "yes": "Jah",
+              "partly": "Osaliselt",
+              "no": "Ei",
+              "unknown": "Ei tea"
+            }
+          },
+          "counterpart": {
+            "label": "Kokkuleppe osapool",
+            "options": {
+              "manager": "Juht",
+              "colleague": "Kolleeg",
+              "team": "Tiim",
+              "partner": "Koostööpartner"
+            }
+          },
+          "reviewTime": {
+            "label": "Ülevaatamise aeg",
+            "options": {
+              "one_week": "Ühe nädala pärast",
+              "two_weeks": "Kahe nädala pärast",
+              "one_month": "Kuu aja pärast",
+              "next_meeting": "Järgmisel kohtumisel"
+            }
+          },
+          "supportNeed": {
+            "label": "Vajalik tugi",
+            "options": {
+              "none": "Ei vaja eraldi tuge",
+              "manager": "Juhi kokkulepe",
+              "colleague": "Kolleegitugi",
+              "team": "Tiimi kokkulepe"
+            }
+          },
+          "currentConcern": {
+            "label": "Praegune mure"
+          },
+          "desiredPrinciple": {
+            "label": "Soovitud põhimõte"
+          },
+          "exceptions": {
+            "label": "Kriisiolukorra erandid"
+          }
+        },
+        "signals": {
+          "clear": {
+            "title": "Piir on pigem selge",
+            "text": "Kokkulepe vajab hoidmist ja ülevaatamist, aga töökorralduslik risk on praegu madal."
+          },
+          "needs_clarification": {
+            "title": "Vajab täpsustamist",
+            "text": "Mõni piir, erand või asendus vajab selgemat sõnastust, et katkestused ei jääks korduma."
+          },
+          "needs_agreement": {
+            "title": "Vajab kokkulepet",
+            "text": "Tööväline surve või ebaselged erandid vajavad juhiga või tiimiga konkreetset töökorralduslikku kokkulepet."
+          }
+        },
+        "outputs": {
+          "boundaryAgreement": "Tööpiiride kokkuleppe mustand",
+          "managerMemo": "Juhiga arutelu memo",
+          "documentInput": "Dokumendi koostamise sisend"
+        }
+      },
+      "workplace_violence": {
+        "fields": {
+          "violenceType": {
+            "label": "Olukorra liik",
+            "options": {
+              "insult_or_humiliation": "Solvamine või alandamine",
+              "aggression": "Agressioon",
+              "threat": "Ähvardus",
+              "physical_danger": "Füüsiline oht",
+              "stalking_or_intimidation": "Jälitamine või hirmutamine",
+              "repeated_harassment": "Korduv ahistav suhtlus",
+              "threatening_message": "Ähvardav sõnum või e-kiri",
+              "lone_work_risk": "Kodukülastuse või üksi töötamise risk"
+            }
+          },
+          "dangerStatus": {
+            "label": "Kas oht kestab praegu?",
+            "options": {
+              "ended": "Ei kesta",
+              "uncertain": "Pole kindel",
+              "ongoing": "Võib jätkuda"
+            }
+          },
+          "sourceOfHarm": {
+            "label": "Kellelt see tuli?",
+            "options": {
+              "client_or_family": "Klient või tema lähedane",
+              "colleague": "Kolleeg",
+              "manager": "Juht",
+              "partner": "Koostööpartner",
+              "other": "Muu"
+            }
+          },
+          "locationOrChannel": {
+            "label": "Koht või kanal",
+            "options": {
+              "office": "Kontor või vastuvõtt",
+              "home_visit": "Kodukülastus",
+              "phone": "Telefon",
+              "email_or_message": "E-kiri või sõnum",
+              "public_space": "Avalik ruum",
+              "partner_channel": "Koostööpartneri kanal"
+            }
+          },
+          "workImpact": {
+            "label": "Mõju tööle",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "safetyImpact": {
+            "label": "Mõju turvatundele",
+            "options": {
+              "none": "Ei märgi",
+              "some": "Mõningane",
+              "high": "Kõrge"
+            }
+          },
+          "documentedStatus": {
+            "label": "Dokumenteerimise seis",
+            "options": {
+              "yes": "Tööks vajalik info kirjas",
+              "partial": "Osaliselt kirjas",
+              "not_yet": "Veel kirja panemata"
+            }
+          },
+          "nextStepNeed": {
+            "label": "Järgmine samm",
+            "options": {
+              "manager_followup": "Juhiga järelkontakt",
+              "safety_followup": "Ohutuse järelkontroll",
+              "document_neutral_facts": "Neutraalsed faktid kirja",
+              "change_channel": "Suhtluskanali muutmine",
+              "colleague_presence": "Kolleegi kaasamine",
+              "work_arrangement_change": "Töökorralduse muutmine"
+            }
+          },
+          "safetyAgreementNeed": {
+            "label": "Turvalisuse kokkuleppe vajadus",
+            "options": {
+              "no": "Ei vaja eraldi kokkulepet",
+              "unclear": "Vajab täpsustamist",
+              "yes": "Vajab kokkulepet"
+            }
+          },
+          "recoveryNeed": {
+            "label": "Taastumise vajadus",
+            "options": {
+              "none": "Ei vaja eraldi plaani",
+              "partial": "Vajab lühikest plaani",
+              "high": "Vajab töökorralduslikku tuge"
+            }
+          }
+        },
+        "steps": {
+          "safety": {
+            "title": "Ohutus"
+          },
+          "impact": {
+            "title": "Koht ja mõju",
+            "short": "Mõju"
+          },
+          "support": {
+            "title": "Taastumine ja tugi",
+            "short": "Taastumine"
+          },
+          "description": {
+            "short": "Kirjeldus"
+          }
+        },
+        "signals": {
+          "no_immediate_danger": {
+            "title": "Vahetut ohtu ei ole",
+            "text": "Olukord vajab neutraalset järelkirjeldust ja kokkulepete hoidmist."
+          },
+          "needs_attention": {
+            "title": "Vajab tähelepanu",
+            "text": "Olukord vajab töökorralduslikku järeltegevust, ohutuse täpsustamist või tuge."
+          },
+          "urgent_attention": {
+            "title": "Kiire tähelepanu vajalik",
+            "text": "Kui oht võib jätkuda, tuleb esmalt tegutseda ohutuse ja vastutava osapoole juhiste järgi."
+          }
+        },
+        "outputs": {
+          "neutralIncidentDescription": "Neutraalne juhtumikirjeldus",
+          "internalReport": "Pöördumise mustand",
+          "safetyAgreementInput": "Turvalisuse kokkuleppe sisend",
+          "managerMemo": "Juhiga arutelu memo",
+          "covisionInput": "Kovisiooni sisend",
+          "workArrangementRecommendation": "Töökorralduse muutmise soovitus"
+        }
+      },
+      "work_processes": {
+        "steps": {
+          "overview": {
+            "short": "Üldpilt"
+          },
+          "load": {
+            "title": "Koormus ja mõju",
+            "short": "Koormus"
+          },
+          "time": {
+            "title": "Ajaröövlid"
+          },
+          "blockers": {
+            "title": "Takistused"
+          },
+          "simplify": {
+            "title": "Lihtsustamine"
+          }
+        },
+        "fields": {
+          "analysisFocus": {
+            "label": "Analüüsi fookus",
+            "options": {
+              "documentation_flow": "Dokumenteerimise töövoog",
+              "case_flow": "Juhtumitöö töövoog",
+              "partner_coordination": "Partneritega kooskõlastamine",
+              "team_routine": "Tiimi korduv rutiin",
+              "information_flow": "Info liikumine"
+            }
+          },
+          "counterpart": {
+            "label": "Arutelu osapool",
+            "options": {
+              "manager": "Juht",
+              "team": "Tiim",
+              "colleague": "Kolleeg",
+              "partner": "Koostööpartner"
+            }
+          },
+          "documentationDuplication": {
+            "label": "Dubleeriva dokumenteerimise tase",
+            "options": {
+              "none": "Puudub",
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "switchingLoad": {
+            "label": "Ümberlülitumise koormus",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "processImpact": {
+            "label": "Tööprotsessi mõju",
+            "options": {
+              "low": "Madal",
+              "moderate": "Mõõdukas",
+              "high": "Kõrge"
+            }
+          },
+          "categories": {
+            "label": "Kategooriad",
+            "options": {
+              "client_value_work": "Väärtust loov klienditöö",
+              "necessary_burden": "Vajalik, kuid koormav töö",
+              "duplicate_entry": "Dubleeriv sisestamine",
+              "documentation": "Dokumenteerimine",
+              "information_search": "Info otsimine",
+              "partner_coordination": "Partneritega kooskõlastamine",
+              "waiting": "Ootamine",
+              "repetitive_tasks": "Korduvtegevused",
+              "low_value_work": "Vähese väärtusega tegevused"
+            }
+          },
+          "timeCostSources": {
+            "label": "Peamised ajakulu allikad",
+            "options": {
+              "same_data_multiple_places": "Sama info mitmesse kohta",
+              "searching_partner_info": "Partneri info otsimine",
+              "manual_status_updates": "Käsitsi staatuse uuendamine",
+              "waiting_for_answers": "Vastuste ootamine",
+              "copying_between_systems": "Süsteemide vahel kopeerimine",
+              "unclear_next_step": "Ebaselge järgmine samm",
+              "tools_not_working": "Töövahendid ei toimi (arvuti, telefon, auto)",
+              "workspace_unsuitable": "Ruum ei sobi (vestluse privaatsus, müra)"
+            }
+          },
+          "informationBlockers": {
+            "label": "Info liikumise takistused",
+            "options": {
+              "unclear_owner": "Ebaselge omanik",
+              "missing_shared_view": "Puudub ühine vaade",
+              "partner_delay": "Partneri viivitus",
+              "system_gap": "Süsteemide vahe",
+              "role_confusion": "Rollisegadus"
+            }
+          },
+          "unfinishedWork": {
+            "label": "Mis jääb pooleli",
+            "options": {
+              "client_followup": "Kliendi järeltegevus",
+              "case_notes": "Juhtumimärkmed",
+              "partner_reply": "Partnerile vastamine",
+              "planning": "Planeerimine",
+              "recovery_pause": "Paus või taastumine"
+            }
+          },
+          "lowValueActivities": {
+            "label": "Vähese väärtusega või dubleerivad tegevused",
+            "options": {
+              "same_data_multiple_places": "Sama andme korduv sisestus",
+              "manual_copying": "Käsitsi kopeerimine",
+              "status_chasing": "Seisu tagaajamine",
+              "duplicate_meetings": "Dubleerivad arutelud",
+              "unclear_templates": "Ebaselged mallid"
+            }
+          },
+          "simplificationNeeds": {
+            "label": "Mis võiks lihtsustada",
+            "options": {
+              "single_entry": "Ühekordne sisestus",
+              "shared_status_view": "Ühine seisuvaade",
+              "clear_owner": "Selge omanik",
+              "template_cleanup": "Malli korrastus",
+              "meeting_rule": "Koosolekureegel"
+            }
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Töövoog on pigem juhitav",
+            "text": "Ajaröövleid on vähe või mõju on madal. Hoia nähtaval üks lihtsustus ja jälgi mustrit."
+          },
+          "needs_simplification": {
+            "title": "Vajab lihtsustamist",
+            "text": "Mõni korduv samm, info liikumine või dokumenteerimine vajab väikest töökorralduslikku lihtsustust."
+          },
+          "needs_organizational_change": {
+            "title": "Vajab töökorralduslikku muutust",
+            "text": "Dubleerimine, ümberlülitumine või pooleli jäävad tegevused vajavad juhiga või tiimiga selget muudatust."
+          }
+        },
+        "outputs": {
+          "processMap": "Tööprotsessi kaart",
+          "topTimeThieves": "Kolm suurimat ajaröövlit",
+          "documentationSimplification": "Dokumenteerimise lihtsustamise ettepanek",
+          "informationFlowSummary": "Info liikumise kokkuvõte",
+          "managerMemo": "Töökorralduse arutelu memo"
+        }
+      }
+    },
+    "labels": {
+      "values": {
+        "mentoring": "mentorlus",
+        "measures__gap__mentoring": "vajan, aga pole: mentorlus",
+        "covision": "kovisioon",
+        "measures__gap__covision": "vajan, aga pole: kovisioon",
+        "supervision": "supervisioon",
+        "measures__gap__supervision": "vajan, aga pole: supervisioon",
+        "development_talks": "arenguvestlused",
+        "measures__gap__development_talks": "vajan, aga pole: arenguvestlused",
+        "training": "täiendkoolitused",
+        "measures__gap__training": "vajan, aga pole: täiendkoolitused",
+        "degree_study": "kraadi- või mikrokraadiõpe",
+        "measures__gap__degree_study": "vajan, aga pole: kraadi- või mikrokraadiõpe",
+        "study_visits": "õppereisid ja töövarjutamine",
+        "measures__gap__study_visits": "vajan, aga pole: õppereisid ja töövarjutamine",
+        "inter_municipal_exchange": "omavalitsustevaheline kogemuste vahetus",
+        "measures__gap__inter_municipal_exchange": "vajan, aga pole: omavalitsustevaheline kogemuste vahetus",
+        "rotation": "ajutine töö teises organisatsioonis",
+        "measures__gap__rotation": "vajan, aga pole: ajutine töö teises organisatsioonis",
+        "psychological_counselling": "psühholoogiline nõustamine",
+        "measures__gap__psychological_counselling": "vajan, aga pole: psühholoogiline nõustamine",
+        "mental_health_training": "vaimse tervise koolitused",
+        "measures__gap__mental_health_training": "vajan, aga pole: vaimse tervise koolitused",
+        "health_days": "tervisepäevad",
+        "measures__gap__health_days": "vajan, aga pole: tervisepäevad",
+        "health_promoting_network": "tervist edendavate töökohtade (TET) võrgustik",
+        "measures__gap__health_promoting_network": "vajan, aga pole: tervist edendavate töökohtade (TET) võrgustik",
+        "safety_measures": "turvalisuse ja vägivalla ennetamise meetmed",
+        "measures__gap__safety_measures": "vajan, aga pole: turvalisuse ja vägivalla ennetamise meetmed",
+        "flexible_hours": "paindlik tööaeg",
+        "measures__gap__flexible_hours": "vajan, aga pole: paindlik tööaeg",
+        "workload_review": "töökoormuse regulaarne hindamine",
+        "measures__gap__workload_review": "vajan, aga pole: töökoormuse regulaarne hindamine",
+        "overtime_compensation": "ületundide hüvitamine",
+        "measures__gap__overtime_compensation": "vajan, aga pole: ületundide hüvitamine",
+        "substitution_rules": "selge asendamise kord",
+        "measures__gap__substitution_rules": "vajan, aga pole: selge asendamise kord",
+        "recognition": "töötajate tunnustamine",
+        "measures__gap__recognition": "vajan, aga pole: töötajate tunnustamine",
+        "legislation": "õigusaktid ja menetlus",
+        "case_management": "juhtumikorraldus",
+        "needs_assessment": "abivajaduse hindamine",
+        "impact_assessment": "mõju hindamine",
+        "complex_clients": "töö keeruliste klientidega",
+        "crisis_trauma": "kriisi- ja traumateadlik töö",
+        "ethics": "eetika ja eetilised dilemmad",
+        "mental_health": "vaimse tervise küsimused",
+        "digital_skills": "STAR ja digioskused",
+        "self_care": "enesehoid",
+        "time_management": "töökorraldus ja ajajuhtimine",
+        "teamwork_network": "meeskonna- ja võrgustikutöö",
+        "after_hours_availability": "tööväline kättesaadavus",
+        "aggression": "agressioon",
+        "adult_support": "täiskasvanute tugi",
+        "after_hours": "tööväline kättesaadavus",
+        "case_notes": "juhtumi märkmed",
+        "case_discussion": "juhtumiarutelu",
+        "case_escalation_rule": "juhtumi eskaleerimise reegel",
+        "case_worker": "juhtumikorraldaja",
+        "channel_rules": "suhtluskanalite reeglid",
+        "change_channel": "suhtluskanali muutmine",
+        "child_protection": "lastekaitse",
+        "clear": "selge",
+        "clear_documentation_routine": "selge dokumenteerimisrutiin",
+        "client_family": "klient või pere",
+        "client_or_family": "klient või tema lähedane",
+        "client_followup": "kliendi järelkontakt",
+        "colleague_presence": "kolleegi kaasamine",
+        "colleague_questions": "kolleegide küsimused",
+        "complex_family_case": "keeruline perejuhtum",
+        "critical_incident": "kriitiline juhtum",
+        "deferrable": "edasilükatav küsimus",
+        "documentation": "dokumenteerimine",
+        "documentation_system": "dokumenteerimise või süsteemi katkestus",
+        "documentation_flow": "dokumenteerimise töövoog",
+        "document_neutral_facts": "neutraalsed faktid kirja",
+        "duplicate_entry": "dubleeriv sisestus",
+        "elderly_support": "eakate tugi",
+        "email_or_message": "e-kiri või sõnum",
+        "email": "e-kiri",
+        "emotional_load": "emotsionaalne koormus",
+        "emotionally_heavy": "emotsionaalselt raske",
+        "ended": "ei kesta",
+        "ethical_tension": "eetiline pinge",
+        "ethical_tension_case": "eetilise pingega juhtum",
+        "few": "vähesed",
+        "first_100_days": "esimesed 100 päeva",
+        "first_month": "esimene kuu",
+        "first_week": "esimene nädal",
+        "focus_time": "fookusaeg",
+        "general_social_work": "üldine sotsiaaltöö",
+        "heavy_week": "raske nädal",
+        "high": "kõrge",
+        "high_risk_case": "kõrge riskiga juhtum",
+        "home_visit": "kodukülastus",
+        "in_72h": "72 tunni pärast",
+        "information_search": "info otsimine",
+        "low": "madal",
+        "many": "palju",
+        "make_other_agency_decision": "teise asutuse otsuse tegemine",
+        "manager": "juht",
+        "manager_check_in": "juhi kontrollpunkt",
+        "manager_followup": "juhiga järelkontakt",
+        "manual_copying": "käsitsi ümber kopeerimine",
+        "manual_status_updates": "käsitsi staatuse uuendamine",
+        "mentor": "mentor",
+        "missing_shared_view": "ühise vaate puudumine",
+        "moderate": "mõõdukas",
+        "needs_attention": "vajab tähelepanu",
+        "needs_clarification": "vajab täpsustamist",
+        "needs_network_discussion": "vajab võrgustiku arutelu",
+        "negotiable": "kokkulepitav katkestus",
+        "network_work": "võrgustikutöö",
+        "new_role": "uus roll samas valdkonnas",
+        "next_week": "järgmisel nädalal",
+        "no": "ei",
+        "no_immediate_danger": "vahetut ohtu ei ole",
+        "none": "ei ole",
+        "not_sustainable": "ei ole kestlik",
+        "not_to_carry_alone": "ei peaks üksi kandma",
+        "not_yet": "veel kirja panemata",
+        "office": "kontor või vastuvõtt",
+        "onboarding_material": "sisseelamismaterjal",
+        "ongoing": "võib jätkuda",
+        "partner_agency": "partnerasutus",
+        "partner": "koostööpartner",
+        "partner_process": "koostööpartneri protsessi katkestus",
+        "partial": "osaline",
+        "partner_channel": "koostööpartneri kanal",
+        "phone": "telefon",
+        "prioritize": "vajab prioriseerimist",
+        "processes__duplicate_entry": "dubleeriv sisestus tööprotsessis",
+        "processes__high_value_loss": "oluline töö jääb madala väärtusega tegevuste taha",
+        "processes__single_entry_needed": "vaja üht sisestuskohta",
+        "processes__switching_load_high": "töövoogude vahel liikumise koormus on kõrge",
+        "plan_needed": "plaan vajab täpsustamist",
+        "process_change": "tööprotsessi muutus",
+        "public_space": "avalik ruum",
+        "rare": "harva",
+        "reduced": "vähenenud",
+        "repeated_harassment": "korduv ahistav suhtlus",
+        "repetitive_tasks": "korduvad tegevused",
+        "repeating_case_pattern": "korduv juhtumimuster",
+        "risk_escalation": "riskide eskaleerimine",
+        "role_boundaries": "roll ja vastutus",
+        "role_boundary": "rollipiir",
+        "role_expectations": "rolliootuste selgitus",
+        "role_uncertainty": "rolli ebaselgus",
+        "same_data_multiple_places": "sama info mitmes kohas",
+        "searching_partner_info": "partneri info otsimine",
+        "service_coordination": "teenuste koordineerimine",
+        "service_rules": "teenuste reeglid",
+        "shared_status_view": "ühine staatusevaade",
+        "shadowing": "kogenuma kolleegi jälgimine",
+        "single_entry": "üks sisestuskoht",
+        "solve_partner_delay": "partneri viivituse lahendamine",
+        "some": "mõningane",
+        "sometimes": "mõnikord",
+        "soon": "vaja lähiajal kokku leppida",
+        "stable": "stabiilne",
+        "starter_support__mentor_needed": "vaja mentori tuge",
+        "starter_support__missing_support": "puuduv tööalane tugi",
+        "starter_support__not_to_carry_alone": "olukorda ei peaks üksi kandma",
+        "supervisor": "supervisioon või muu kokkulepitud tugi",
+        "team": "tiim",
+        "team_agreement": "tiimi kokkulepe",
+        "team_channel": "tiimi kanal",
+        "today": "täna",
+        "tomorrow": "homme",
+        "threat": "ähvardus",
+        "threatening_message": "ähvardav sõnum või e-kiri",
+        "unclear": "ebaselge",
+        "unclear_mandate": "ebaselge mandaadiga juhtum",
+        "unclear_owner": "vastutaja ebaselge",
+        "unavoidable": "vältimatu kiire sekkumine",
+        "urgent_attention": "kiire tähelepanu vajalik",
+        "urgent": "vaja kiiret kokkulepet",
+        "very_often": "väga sageli",
+        "work_arrangement_change": "töökorralduse muutmine",
+        "work_boundaries": "tööpiirid",
+        "workplace_violence": "töövägivalla olukord",
+        "wrong_channel": "vale suhtluskanal",
+        "yes": "jah",
+        "green": "roheline",
+        "yellow": "kollane",
+        "red": "punane",
+        "insufficient_data": "andmeid ei ole veel piisavalt",
+        "manageable": "hallatav",
+        "support_available": "tugi on olemas",
+        "organizational_support": "vajab organisatsiooni tuge",
+        "needs_agreement": "vajab kokkulepet",
+        "needs_clearer_support_plan": "vajab selgemat toeplaani",
+        "needs_organizational_change": "vajab töökorralduslikku muutust",
+        "needs_reorganization": "vajab töö ümberkorraldamist",
+        "needs_simplification": "vajab lihtsustamist",
+        "needs_urgent_support_agreement": "vajab kiiret toe kokkulepet",
+        "needs_workflow_clarification": "vajab töövoo täpsustamist",
+        "critical": "kriitiline",
+        "routine": "rutiinne",
+        "complex": "keerukas",
+        "very_complex": "väga keerukas",
+        "very_high": "väga kõrge",
+        "sufficient": "piisav",
+        "partly_clear": "osaliselt selge",
+        "available": "kättesaadav",
+        "not_available": "pole kättesaadav",
+        "ethical_dilemma": "eetiline dilemma",
+        "complex_case": "töökorralduslikult keeruline",
+        "trauma_related": "traumaga kokkupuude",
+        "role_conflict": "rollikonflikt",
+        "uncertain": "pole kindel",
+        "social_worker": "sotsiaaltöötaja",
+        "advisor": "nõustaja",
+        "coordinator": "koordinaator",
+        "moral_distress": "moraalne stress",
+        "trauma_exposure": "traumaga kokkupuude",
+        "workload_followup": "järeltegevuste töömaht",
+        "strong": "tugev",
+        "indirect": "kaudne",
+        "direct": "otsene",
+        "document_key_facts": "tööks vajalikud faktid kirja",
+        "reduce_next_day_load": "järgmise päeva koormuse vähendamine",
+        "colleague_debrief": "kolleegiga tööalane järelarutelu",
+        "safety_followup": "ohutuse järelkontroll",
+        "covision_input": "kovisiooni sisendi ettevalmistus",
+        "insult_or_humiliation": "solvamine või alandamine",
+        "physical_danger": "füüsiline oht",
+        "stalking_or_intimidation": "jälitamine või hirmutamine",
+        "lone_work_risk": "kodukülastuse või üksi töötamise risk",
+        "difficult_case": "raske juhtum",
+        "long_overload": "pikaajaline ülekoormus",
+        "interruptions": "katkestused",
+        "colleague": "kolleeg",
+        "work_time_boundary": "tööaja piir",
+        "evening_messages": "õhtuste sõnumite kokkulepe",
+        "pause_agreement": "pauside kaitsmine",
+        "replacement_agreement": "asenduse kokkulepe",
+        "crisis_exception": "kriisiolukorra erandid",
+        "urgent_requests": "kiirete päringute piir",
+        "protected": "kaitstud",
+        "missing": "puudub",
+        "one_week": "ühe nädala pärast",
+        "two_weeks": "kahe nädala pärast",
+        "one_month": "kuu aja pärast",
+        "next_meeting": "järgmisel kohtumisel",
+        "message": "sõnum",
+        "manager_requests": "juhi päringud",
+        "client_contact": "kliendikontakt",
+        "partner_contact": "koostööpartner",
+        "meetings": "koosolekud",
+        "urgent_cases": "kiired juhtumid",
+        "often": "sageli",
+        "case_flow": "juhtumitöö töövoog",
+        "partner_coordination": "partneritega kooskõlastamine",
+        "team_routine": "tiimi korduv rutiin",
+        "information_flow": "info liikumine",
+        "client_value_work": "väärtust loov klienditöö",
+        "necessary_burden": "vajalik, kuid koormav töö",
+        "waiting": "ootamine",
+        "low_value_work": "vähese väärtusega tegevused",
+        "waiting_for_answers": "vastuste ootamine",
+        "copying_between_systems": "süsteemide vahel kopeerimine",
+        "unclear_next_step": "ebaselge järgmine samm",
+        "status_chasing": "seisu tagaajamine",
+        "duplicate_meetings": "dubleerivad arutelud",
+        "unclear_templates": "ebaselged mallid",
+        "partner_delay": "partneri viivitus",
+        "system_gap": "süsteemide vahe",
+        "role_confusion": "rollisegadus",
+        "partner_reply": "partnerile vastamine",
+        "planning": "planeerimine",
+        "recovery_pause": "paus või taastumine",
+        "clear_owner": "selge omanik",
+        "template_cleanup": "malli korrastus",
+        "meeting_rule": "koosolekureegel",
+        "client": "klient",
+        "network": "võrgustik",
+        "explain_service": "teenuse või otsuse selgitus",
+        "be_always_available": "pidev kättesaadavus",
+        "make_decision": "otsuse tegemine",
+        "coordinate_network": "võrgustiku koordineerimine",
+        "emotional_support": "emotsionaalne tugi",
+        "service_link": "teenuse või kontakti vahendamine",
+        "assessment_input": "hindamise sisendi kogumine",
+        "support_planning": "toe planeerimine",
+        "replace_service_provider": "teenuseosutaja rolli asendamine",
+        "be_crisis_contact": "kriisikontakti roll",
+        "guarantee_outcome": "tulemuse garanteerimine",
+        "carry_partner_responsibility": "partneri vastutuse kandmine",
+        "self": "minu rolli piires lahendatav",
+        "service_provider": "teenuseosutaja panus",
+        "disability_support": "puuetega inimeste tugi",
+        "boundary_agreement": "tööpiiride kokkulepe",
+        "ethical_tension__elevated": "kõrgenenud eetiline pinge",
+        "moral_distress__present": "moraalne stress",
+        "trauma__exposure": "kokkupuude traumaga",
+        "support__do_not_carry_alone": "juhtumit ei peaks üksi kandma",
+        "role__clarity_partial_or_unclear": "roll või vastutus ei ole päris selge",
+        "recovery__follow_up_needed": "taastumine vajab plaani või tuge",
+        "hard_case__immediate_danger": "vahetu oht võib jätkuda",
+        "hard_case__immediate_danger_uncertain": "vahetu ohu kohta ei ole kindlust",
+        "hard_case__should_not_carry_alone": "juhtumit ei peaks üksi kandma",
+        "hard_case__direct_trauma_exposure": "otsene kokkupuude traumaga",
+        "hard_case__high_ethical_tension": "kõrge eetiline pinge",
+        "interruptions__high_frequency": "katkestusi on sageli",
+        "interruptions__work_impact": "katkestused mõjutavad tööd",
+        "interruptions__wrong_channel": "katkestused tulevad valest kanalist",
+        "interruptions__documentation_system": "dokumenteerimine või süsteem katkestab töövoogu",
+        "interruptions__role_boundary": "katkestused ületavad rollipiiri",
+        "interruptions__partner_process": "katkestused tulevad koostööpartneri protsessist",
+        "focus_time__agreement_needed": "vaja on fookusaja kokkulepet",
+        "channels__agreement_needed": "vaja on suhtluskanalite kokkulepet",
+        "urgency__criteria_unclear": "ei ole selge, millal tuleb kohe reageerida",
+        "process__documentation_simplification_needed": "dokumenteerimine vajab lihtsustamist",
+        "interruptions__recovery_impact_high": "katkestused mõjutavad tugevalt taastumist",
+        "interruptions__very_frequent": "katkestusi on väga sageli",
+        "interruptions__many_can_wait": "paljud katkestused saaksid oodata",
+        "recovery__low_capacity_72h": "töövõime on järgmise 72 tunni vaates madal",
+        "recovery__no_recovery_with_low_capacity": "taastumisvõimalus puudub ja töövõime on madal",
+        "role_boundaries__role_conflict_high": "kõrge rollikonflikt",
+        "role_boundaries__role_conflict_moderate": "mõõdukas rollikonflikt",
+        "role_boundaries__partner_explanation_needed": "partner vajab rolliselgitust",
+        "role_boundaries__availability_pressure_high": "tugev surve olla pidevalt kättesaadav",
+        "role_boundaries__ethical_complexity_high": "kõrge eetiline keerukus",
+        "role_boundaries__manager_discussion_needed": "vaja on arutelu juhiga",
+        "role_boundaries__partner_clarification_needed": "vaja on selgitust koostööpartnerile",
+        "role_boundaries__shared_responsibility_needed": "vastutus vajab jagamist",
+        "role_boundaries__responsibility_shift": "oodatakse seda, mis ei ole minu roll",
+        "role_boundaries__partner_responsibility_gap": "vaja on koostööpartneri panust",
+        "role_boundaries__ethical_tension": "rollipiiriga seotud eetiline pinge",
+        "starter_support__cases_not_carry_alone": "juhtumid, mida ei peaks üksi kandma",
+        "starter_support__role_uncertainty": "roll ja vastutus on ebaselged",
+        "starter_support__documentation_uncertainty": "dokumenteerimine on ebaselge",
+        "starter_support__manager_check_needed": "vaja on arutelu juhiga",
+        "starter_support__boundary_plan_needed": "vaja on tööpiiride kokkulepet",
+        "starter_support__covision_needed": "vaja on kovisiooni",
+        "starter_support__early_role_uncertainty": "rolli ebaselgus töö alguses",
+        "starter_support__support_agreement_needed_soon": "toe kokkulepet on vaja peagi",
+        "support__replacement_unclear": "asendus või info liikumine on ebaselge",
+        "boundaries__after_hours_unclear": "töövälise kättesaadavuse piir on ebaselge",
+        "boundaries__no_pause_protection": "pausid ei ole kaitstud",
+        "work_impact__elevated": "mõju tööle on kõrgenenud",
+        "safety_impact__present": "mõju turvatundele",
+        "documentation__needs_neutral_record": "juhtum vajab neutraalset kirjapanekut",
+        "safety__agreement_needed": "vaja on turvalisuse kokkulepet",
+        "violence__workplace": "töövägivalla olukord",
+        "workplace_violence__danger_ongoing": "oht võib jätkuda",
+        "workplace_violence__danger_uncertain": "ohu kestmise kohta ei ole kindlust",
+        "workplace_violence__physical_danger": "füüsiline oht",
+        "workplace_violence__threat": "ähvardus",
+        "workplace_violence__safety_impact_high": "tugev mõju turvatundele",
+        "processes__documentation_load": "dokumenteerimise koormus",
+        "processes__information_search": "info otsimine",
+        "processes__waiting": "ootamine",
+        "processes__repetitive_tasks": "korduvad tegevused",
+        "processes__shared_status_view_needed": "vaja on ühist seisuvaadet",
+        "processes__owner_clarity_needed": "vaja on selget vastutajat",
+        "processes__information_flow_needed": "vaja on ühist vaadet infole",
+        "processes__duplicate_documentation_high": "dubleerivat dokumenteerimist on palju",
+        "processes__unfinished_work_accumulates": "lõpetamata töö kuhjub",
+        "risk__workplace_violence": "märgitud on töövägivalla kogemus",
+        "support__manager": "vaja on kokkulepet juhiga",
+        "support__colleague": "vaja on kolleegi tuge",
+        "support__supervisor": "vaja on supervisiooni või muud kokkulepitud tuge",
+        "workload__high": "töömaht on kõrge",
+        "case_complexity__high": "juhtumite keerukus on kõrge",
+        "emotional_load__high": "emotsionaalne koormus on kõrge",
+        "documentation__high": "dokumenteerimise koormus on kõrge",
+        "interruptions__high": "katkestuste tase on kõrge",
+        "after_hours__impact": "töövälise kättesaadavuse mõju on kõrge",
+        "recovery__low_or_none": "taastumisvõimalus on vähene või puudub",
+        "support__unclear_or_missing": "juhi või kolleegi tugi on ebaselge või puudub",
+        "support__manager_unclear_or_missing": "juhi tugi on ebaselge või puudub",
+        "support__colleague_unclear_or_missing": "kolleegide tugi on ebaselge või puudub",
+        "meaning__low": "töö tähenduslikkuse tunne on praegu madal",
+        "decision_control__low": "otsustusruum töö üle on vähene",
+        "clarity__unclear": "prioriteedid või tööpiirid on ebaselged",
+        "risk__difficult_case": "märgitud on raske juhtum",
+        "risk__colleague_mistreatment": "märgitud on kolleegi või juhi ebaväärikas kohtlemine",
+        "other": "muu",
+        "occasional": "aeg-ajalt",
+        "regular": "regulaarselt",
+        "partly": "osaliselt",
+        "unknown": "ei tea",
+        "tools_not_working": "töövahendid ei toimi (arvuti, telefon, auto)",
+        "workspace_unsuitable": "ruum ei sobi (vestluse privaatsus, müra)",
+        "processes__tools_not_working": "töövahendid takistavad tööd",
+        "processes__workspace_unsuitable": "füüsiline töökeskkond ei toeta tööd",
+        "boundaries__overtime_regular": "ületunnid on regulaarsed",
+        "boundaries__overtime_uncompensated": "ületunnid ei ole täielikult hüvitatud",
+        "boundaries__flexibility_missing": "paindlik tööaeg ei ole võimalik",
+        "rarely": "harva",
+        "almost_always": "peaaegu alati",
+        "detachment": "tööst mõtetes eemaldumine",
+        "relaxation": "lõõgastus ja puhkus",
+        "mastery": "midagi uut ja jõukohast väljaspool tööd",
+        "control": "kontroll oma vaba aja üle",
+        "recovery__detachment_low": "töö tuleb sageli vabasse aega kaasa",
+        "recovery__end_of_day_exhaustion": "tööpäeva lõpuks sageli vaimselt kurnatud",
+        "recovery__sleep_or_anxiety_frequent": "töö segab sageli und või tekitab ärevust",
+        "recovery__none_with_critical_workload": "kriitiline töömaht koos puuduva taastumisega",
+        "strength__recovery": "jõuan taastuda",
+        "strength__decision_control": "saan oma töö üle otsustada",
+        "strength__priorities_clear": "prioriteedid on selged",
+        "strength__boundaries_clear": "tööpiirid on selged",
+        "strength__manager_support": "juhi tugi on kättesaadav",
+        "strength__colleague_support": "kolleegide tugi on kättesaadav",
+        "strength__work_meaning": "tööl on mõte",
+        "strength__flexible_hours": "paindlik tööaeg on võimalik",
+        "strength__support_in_use": "vajatud tugi on olemas"
+      },
+      "factors": {
+        "workload__high": "Töömaht on kõrge",
+        "case_complexity__high": "Juhtumite keerukus on kõrge",
+        "emotional_load__high": "Emotsionaalne koormus on kõrge",
+        "documentation__high": "Dokumenteerimise koormus on kõrge",
+        "interruptions__high": "Katkestuste tase on kõrge",
+        "after_hours__impact": "Töövälise kättesaadavuse mõju on kõrge",
+        "recovery__low_or_none": "Taastumisvõimalus on vähene või puudub",
+        "support__unclear_or_missing": "Juhi või kolleegi tugi on ebaselge või puudub",
+        "support__manager_unclear_or_missing": "Juhi tugi on ebaselge või puudub",
+        "support__colleague_unclear_or_missing": "Kolleegide tugi on ebaselge või puudub",
+        "meaning__low": "Töö tähenduslikkuse tunne on praegu madal",
+        "decision_control__low": "Otsustusruum töö üle on vähene",
+        "clarity__unclear": "Prioriteedid või tööpiirid on ebaselged",
+        "risk__difficult_case": "Märgitud on raske juhtum",
+        "risk__workplace_violence": "Märgitud on töövägivalla kogemus",
+        "risk__colleague_mistreatment": "Märgitud on kolleegi või juhi ebaväärikas kohtlemine",
+        "recovery__none_with_critical_workload": "Kriitiline töömaht koos puuduva taastumisega"
+      }
     }
   },
   "voimalused": {

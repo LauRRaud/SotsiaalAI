@@ -10502,6 +10502,1734 @@
       "outputs": {
         "summary": "My week"
       }
+    },
+    "forms": {
+      "quick_check": {
+        "fields": {
+          "workloadLevel": {
+            "label": "Workload",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High",
+              "critical": "Critical"
+            }
+          },
+          "caseComplexityLevel": {
+            "label": "Case complexity",
+            "options": {
+              "routine": "Routine",
+              "moderate": "Moderate",
+              "complex": "Complex",
+              "very_complex": "Very complex"
+            }
+          },
+          "emotionalLoad": {
+            "label": "Emotional load",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High",
+              "very_high": "Very high"
+            }
+          },
+          "documentationLoad": {
+            "label": "Documentation load",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High",
+              "very_high": "Very high"
+            }
+          },
+          "interruptionsLevel": {
+            "label": "Interruptions",
+            "options": {
+              "low": "Few",
+              "moderate": "Moderate",
+              "high": "Frequent",
+              "very_high": "Very frequent"
+            }
+          },
+          "afterHoursImpact": {
+            "label": "Impact of after-hours availability",
+            "options": {
+              "none": "None",
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "recoveryLevel": {
+            "label": "Chance to recover",
+            "options": {
+              "sufficient": "Sufficient",
+              "partial": "Partial",
+              "low": "Low",
+              "none": "None"
+            }
+          },
+          "decisionControl": {
+            "label": "Control over my work",
+            "options": {
+              "high": "High",
+              "moderate": "Moderate",
+              "low": "Low",
+              "none": "None"
+            }
+          },
+          "priorityClarity": {
+            "label": "Clarity of priorities",
+            "options": {
+              "clear": "Clear",
+              "partly_clear": "Partly clear",
+              "unclear": "Unclear"
+            }
+          },
+          "workBoundaryClarity": {
+            "label": "Clarity of work boundaries",
+            "options": {
+              "clear": "Clear",
+              "partly_clear": "Partly clear",
+              "unclear": "Unclear"
+            }
+          },
+          "managerSupport": {
+            "label": "Support from my manager",
+            "options": {
+              "available": "Available",
+              "partial": "Partial",
+              "unclear": "Unclear",
+              "not_available": "Not available"
+            }
+          },
+          "colleagueSupport": {
+            "label": "Support from colleagues",
+            "options": {
+              "available": "Available",
+              "partial": "Partial",
+              "unclear": "Unclear",
+              "not_available": "Not available"
+            }
+          },
+          "workMeaning": {
+            "label": "I feel my work is meaningful",
+            "options": {
+              "yes": "Yes",
+              "partly": "Partly",
+              "no": "Not right now"
+            }
+          }
+        },
+        "signals": {
+          "green": {
+            "title": "Green",
+            "text": "Your workload seems manageable for now. Keep an eye on recovery and agreements."
+          },
+          "yellow": {
+            "title": "Yellow",
+            "text": "Several work factors need attention. Choose one concrete next step."
+          },
+          "red": {
+            "title": "Red",
+            "text": "The load calls for a discussion about work organisation or a quicker support agreement."
+          }
+        }
+      },
+      "hard_case": {
+        "steps": {
+          "situation": {
+            "title": "Case and role",
+            "short": "Case"
+          },
+          "safety": {
+            "title": "Safety"
+          },
+          "load": {
+            "title": "Load and recovery",
+            "short": "Load"
+          },
+          "tension": {
+            "title": "Tension and support",
+            "short": "Tension"
+          },
+          "description": {
+            "short": "Description"
+          },
+          "next24h": {
+            "short": "24 hours"
+          }
+        },
+        "fields": {
+          "caseType": {
+            "label": "Type of case",
+            "options": {
+              "emotionally_heavy": "Emotionally heavy",
+              "ethical_dilemma": "Ethical dilemma",
+              "complex_case": "Organisationally complex",
+              "trauma_related": "Exposure to trauma",
+              "role_conflict": "Conflict of role or responsibility"
+            }
+          },
+          "professionalRole": {
+            "label": "My professional role",
+            "options": {
+              "case_worker": "Case manager",
+              "child_protection": "Child protection specialist",
+              "social_worker": "Social worker",
+              "advisor": "Counsellor",
+              "coordinator": "Coordinator"
+            }
+          },
+          "immediateDanger": {
+            "label": "Immediate danger",
+            "options": {
+              "no": "No immediate danger",
+              "uncertain": "Not sure",
+              "yes": "Danger may continue"
+            }
+          },
+          "mainLoad": {
+            "label": "What weighed on me",
+            "options": {
+              "emotional_load": "Emotional load",
+              "ethical_tension": "Ethical tension",
+              "moral_distress": "Moral distress",
+              "trauma_exposure": "Exposure to trauma",
+              "role_conflict": "Role conflict",
+              "workload_followup": "Follow-up workload"
+            }
+          },
+          "recoveryNeed": {
+            "label": "Need for recovery",
+            "options": {
+              "none": "No separate plan needed",
+              "partial": "A short plan is needed",
+              "high": "Organisational support is needed"
+            }
+          },
+          "ethicalTension": {
+            "label": "Ethical tension",
+            "options": {
+              "none": "None",
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "moralDistress": {
+            "label": "Sense of moral distress",
+            "options": {
+              "none": "None",
+              "some": "Some",
+              "strong": "Strong"
+            }
+          },
+          "traumaExposure": {
+            "label": "Exposure to trauma",
+            "options": {
+              "none": "Not marked",
+              "indirect": "Indirect",
+              "direct": "Direct"
+            }
+          },
+          "roleClarity": {
+            "label": "Clarity of role or responsibility",
+            "options": {
+              "clear": "Clear",
+              "partly_clear": "Partly clear",
+              "unclear": "Unclear"
+            }
+          },
+          "next24hNeeds": {
+            "options": {
+              "manager_check_in": "Short follow-up with my manager",
+              "document_key_facts": "Write down the facts needed for work",
+              "reduce_next_day_load": "Reduce tomorrow's workload",
+              "colleague_debrief": "Work debrief with a colleague",
+              "safety_followup": "Safety follow-up",
+              "covision_input": "Prepare covision input"
+            }
+          }
+        },
+        "signals": {
+          "no_immediate_danger": {
+            "title": "No immediate danger",
+            "text": "The situation needs to be sorted out at work, but no urgent safety action is marked for now."
+          },
+          "needs_attention": {
+            "title": "Needs attention",
+            "text": "The case needs a 24-hour follow-up plan so that the load, role and next steps are not carried alone."
+          },
+          "urgent_attention": {
+            "title": "Urgent attention needed",
+            "text": "Immediate danger or a serious risk first needs action on safety and with the responsible party."
+          }
+        },
+        "outputs": {
+          "aftercarePlan24h": "24-hour follow-up plan",
+          "neutralSummary": "Neutral summary",
+          "managerMemo": "Memo for a manager discussion",
+          "covisionInput": "Covision input"
+        }
+      },
+      "interruptions": {
+        "steps": {
+          "class": {
+            "title": "Type of interruption",
+            "short": "Type"
+          },
+          "pattern": {
+            "short": "Pattern"
+          },
+          "agreement": {
+            "short": "Frame"
+          },
+          "effect": {
+            "title": "Channel and recovery",
+            "short": "Effect"
+          },
+          "sources": {
+            "short": "Sources"
+          }
+        },
+        "fields": {
+          "interruptionClass": {
+            "label": "Type of interruption",
+            "options": {
+              "unavoidable": "Unavoidable urgent intervention",
+              "negotiable": "Interruption that can be agreed on",
+              "deferrable": "Question that can wait",
+              "wrong_channel": "Wrong communication channel",
+              "role_boundary": "Interruption crossing role boundaries",
+              "documentation_system": "Documentation or system interruption",
+              "partner_process": "Partner process interruption"
+            }
+          },
+          "frequency": {
+            "label": "Frequency",
+            "options": {
+              "rare": "Rarely",
+              "sometimes": "Sometimes",
+              "often": "Often",
+              "very_often": "Very often"
+            }
+          },
+          "workImpact": {
+            "label": "Impact on work",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "immediateResponseNeed": {
+            "label": "Clarity of when to respond immediately",
+            "options": {
+              "clear": "Clear",
+              "partial": "Partly clear",
+              "unclear": "Unclear"
+            }
+          },
+          "canWait": {
+            "label": "How many could wait?",
+            "options": {
+              "few": "Few",
+              "some": "Some",
+              "many": "Many"
+            }
+          },
+          "neededAgreement": {
+            "label": "Agreement needed",
+            "options": {
+              "focus_time": "Focus time",
+              "channel_rules": "Rules for communication channels",
+              "role_boundary": "Role boundary",
+              "process_change": "Change in the work process",
+              "team_agreement": "Team agreement"
+            }
+          },
+          "counterpart": {
+            "label": "Party to the agreement",
+            "options": {
+              "manager": "Manager",
+              "team": "Team",
+              "colleague": "Colleague",
+              "partner": "Partner organisation"
+            }
+          },
+          "wrongChannelShare": {
+            "label": "Share coming through the wrong channel",
+            "options": {
+              "none": "None",
+              "some": "Some",
+              "many": "A lot"
+            }
+          },
+          "recoveryImpact": {
+            "label": "Impact on recovery",
+            "options": {
+              "none": "None",
+              "some": "Some",
+              "high": "High"
+            }
+          },
+          "sources": {
+            "label": "Where interruptions come from",
+            "options": {
+              "phone": "Phone",
+              "email": "Email",
+              "message": "Message",
+              "colleague_questions": "Colleagues' questions",
+              "manager_requests": "Manager's requests",
+              "client_contact": "Client contact",
+              "partner_contact": "Partner organisation",
+              "documentation_system": "Documentation system",
+              "meetings": "Meetings",
+              "urgent_cases": "Urgent cases"
+            }
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Manageable",
+            "text": "There are interruptions, but they are mostly clear and mainly need the agreement to be kept."
+          },
+          "needs_workflow_clarification": {
+            "title": "Workflow needs clarifying",
+            "text": "The frequency, channel or urgency of interruptions needs a clearer agreement on work organisation."
+          },
+          "needs_reorganization": {
+            "title": "Needs reorganisation",
+            "text": "Interruptions fragment the working day and recovery. An agreement on focus time, channels or the work process is needed."
+          }
+        },
+        "outputs": {
+          "interruptionMap": "Interruption map",
+          "focusTimeAgreement": "Focus time agreement",
+          "channelAgreement": "Communication channel agreement",
+          "managerMemo": "Memo for a manager discussion"
+        }
+      },
+      "recovery": {
+        "fields": {
+          "workThoughtsOffHours": {
+            "label": "I think about work in my free time too",
+            "options": {
+              "rarely": "Rarely",
+              "sometimes": "Sometimes",
+              "often": "Often",
+              "almost_always": "Almost always"
+            }
+          },
+          "endOfDayExhaustion": {
+            "label": "I am mentally exhausted by the end of the working day",
+            "options": {
+              "rarely": "Rarely",
+              "sometimes": "Sometimes",
+              "often": "Often",
+              "almost_always": "Almost always"
+            }
+          },
+          "sleepAffected": {
+            "label": "Work disturbs my sleep",
+            "options": {
+              "rarely": "Rarely",
+              "sometimes": "Sometimes",
+              "often": "Often",
+              "almost_always": "Almost always"
+            }
+          },
+          "workAnxiety": {
+            "label": "Thinking about work makes me anxious",
+            "options": {
+              "rarely": "Rarely",
+              "sometimes": "Sometimes",
+              "often": "Often",
+              "almost_always": "Almost always"
+            }
+          },
+          "missingRecoveryExperiences": {
+            "label": "What is missing right now?",
+            "options": {
+              "detachment": "Mentally detaching from work",
+              "relaxation": "Relaxation and rest",
+              "mastery": "Something new and manageable outside work",
+              "control": "Control over my free time"
+            }
+          },
+          "selfAgreement": {
+            "label": "One agreement with myself",
+            "options": {
+              "write_unfinished": "At the end of the day I write down unfinished things",
+              "close_channels": "I close work channels in my free time",
+              "transition": "I make a small transition after work",
+              "free_evening": "I keep one evening a week free from work",
+              "none_now": "Not choosing now"
+            }
+          },
+          "recoveryReason": {
+            "label": "Reason for recovery",
+            "options": {
+              "heavy_week": "A heavy week",
+              "difficult_case": "A hard case",
+              "workplace_violence": "Experience of workplace violence",
+              "long_overload": "Long-term overload"
+            }
+          },
+          "supportNeed": {
+            "label": "Support needed",
+            "options": {
+              "none": "No separate support needed",
+              "manager": "Agreement with my manager",
+              "colleague": "Colleague support",
+              "supervisor": "Supervision or other agreed support"
+            }
+          },
+          "recoveryLevel": {
+            "label": "Chance to recover",
+            "options": {
+              "sufficient": "Sufficient",
+              "partial": "Partial",
+              "low": "Low",
+              "none": "None"
+            }
+          },
+          "workCapacityNext72h": {
+            "label": "Work capacity over the next 24–72h",
+            "options": {
+              "stable": "Stable",
+              "reduced": "Reduced",
+              "low": "Low",
+              "not_sustainable": "Not sustainable"
+            }
+          },
+          "nextCheckpoint": {
+            "label": "Next checkpoint",
+            "options": {
+              "today": "Today",
+              "tomorrow": "Tomorrow",
+              "in_72h": "In 72 hours",
+              "next_week": "Next week"
+            }
+          },
+          "primaryLoadFactors": {
+            "label": "Choose all that apply",
+            "options": {
+              "documentation": "Documentation",
+              "interruptions": "Interruptions",
+              "difficult_case": "Hard case",
+              "workplace_violence": "Workplace violence",
+              "after_hours": "After-hours availability",
+              "role_conflict": "Role conflict"
+            }
+          },
+          "unavoidableTasks": {
+            "label": "Unavoidable tasks"
+          },
+          "deferrableTasks": {
+            "label": "Tasks that can be postponed"
+          },
+          "redistributableTasks": {
+            "label": "Tasks that can be redistributed"
+          }
+        },
+        "steps": {
+          "state": {
+            "title": "State and checkpoint",
+            "short": "State"
+          },
+          "load": {
+            "short": "Load"
+          },
+          "tasks": {
+            "short": "Work plan"
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Manageable",
+            "text": "Recovery needs attention, but the plan remains manageable in terms of work organisation for now."
+          },
+          "prioritize": {
+            "title": "Needs prioritising",
+            "text": "Work in the next 24–72 hours should be narrowed to the unavoidable and some activities postponed."
+          },
+          "organizational_support": {
+            "title": "Needs organisational support",
+            "text": "Room to recover or work capacity is low. An agreement on support, redistribution or boundaries is needed."
+          }
+        },
+        "outputs": {
+          "0": "Recovery plan",
+          "1": "Memo for a manager discussion"
+        }
+      },
+      "role_boundaries": {
+        "steps": {
+          "expectation": {
+            "short": "Expectation"
+          },
+          "role": {
+            "title": "My role and its boundary",
+            "short": "Role"
+          },
+          "parties": {
+            "title": "Contribution and parties",
+            "short": "Parties"
+          },
+          "clarification": {
+            "short": "Clarification"
+          }
+        },
+        "fields": {
+          "expectationSource": {
+            "label": "Who has the expectation?",
+            "options": {
+              "client": "Client",
+              "client_family": "Client's family member",
+              "manager": "Manager",
+              "colleague": "Colleague",
+              "partner": "Partner organisation",
+              "network": "Network"
+            }
+          },
+          "expectedAction": {
+            "label": "What is expected?",
+            "options": {
+              "explain_service": "Explaining a service or decision",
+              "solve_partner_delay": "Solving a partner's delay",
+              "be_always_available": "Being available all the time",
+              "make_decision": "Making a decision",
+              "coordinate_network": "Coordinating the network",
+              "emotional_support": "Emotional support"
+            }
+          },
+          "myRole": {
+            "label": "What is my role?",
+            "options": {
+              "case_worker": "Coordinating casework",
+              "advisor": "Advising and explaining",
+              "service_link": "Connecting to a service or contact",
+              "assessment_input": "Gathering input for assessment",
+              "support_planning": "Planning support"
+            }
+          },
+          "outsideRole": {
+            "label": "What is not my role?",
+            "options": {
+              "none": "The boundary is clear",
+              "make_other_agency_decision": "Making another agency's decision",
+              "replace_service_provider": "Replacing the service provider's role",
+              "be_crisis_contact": "Being the crisis contact",
+              "guarantee_outcome": "Guaranteeing the outcome",
+              "carry_partner_responsibility": "Carrying a partner's responsibility"
+            }
+          },
+          "neededResponsibility": {
+            "label": "Whose contribution is needed?",
+            "options": {
+              "self": "Solvable within my role",
+              "manager": "Manager's contribution",
+              "partner_agency": "Partner organisation's contribution",
+              "service_provider": "Service provider's contribution",
+              "network": "Joint contribution of the network",
+              "client_family": "Contribution of the client or family member"
+            }
+          },
+          "counterpart": {
+            "label": "Who the explanation is for",
+            "options": {
+              "client": "Client",
+              "client_family": "Client's family member",
+              "manager": "Manager",
+              "partner": "Partner organisation",
+              "team": "Team"
+            }
+          },
+          "roleConflict": {
+            "label": "Level of role conflict",
+            "options": {
+              "none": "None",
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "availabilityPressure": {
+            "label": "Pressure to be available",
+            "options": {
+              "none": "None",
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "ethicalComplexity": {
+            "label": "Ethical complexity",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          }
+        },
+        "signals": {
+          "clear": {
+            "title": "The role is fairly clear",
+            "text": "The expectation, role and responsibility can be told apart well enough. If needed, put a short explanation in writing."
+          },
+          "needs_clarification": {
+            "title": "Needs clarifying",
+            "text": "Some expectation, responsibility or party's contribution needs clearer wording."
+          },
+          "needs_network_discussion": {
+            "title": "Needs a discussion on work organisation or in the network",
+            "text": "The role conflict or shifting responsibility needs to be talked through with the manager, a partner or in covision."
+          }
+        },
+        "outputs": {
+          "roleBoundaryAnalysis": "Role boundary analysis",
+          "clientExplanation": "Explanation for the client",
+          "partnerClarification": "Role clarification for a partner",
+          "canCannotDoText": "What I can / cannot do",
+          "managerMemo": "Memo for my manager"
+        }
+      },
+      "starter_support": {
+        "steps": {
+          "stage": {
+            "short": "Stage"
+          },
+          "talks": {
+            "title": "Urgency of support and discussions",
+            "short": "Discussions"
+          },
+          "unclear": {
+            "short": "Unclear"
+          },
+          "support": {
+            "short": "Support now"
+          },
+          "shared": {
+            "title": "What should not be carried alone",
+            "short": "Sharing"
+          }
+        },
+        "fields": {
+          "experienceStage": {
+            "label": "Stage of work experience",
+            "options": {
+              "first_week": "First week",
+              "first_month": "First month",
+              "first_100_days": "First 100 days",
+              "new_role": "New role in the same field"
+            }
+          },
+          "roleArea": {
+            "label": "Area of the role",
+            "options": {
+              "child_protection": "Child protection",
+              "adult_support": "Support for adults",
+              "elderly_support": "Support for older people",
+              "disability_support": "Support for people with disabilities",
+              "service_coordination": "Coordinating services",
+              "general_social_work": "General social work"
+            }
+          },
+          "supportUrgency": {
+            "label": "Urgency of a support agreement",
+            "options": {
+              "stable": "Stable",
+              "plan_needed": "The plan needs clarifying",
+              "soon": "Needs to be agreed soon",
+              "urgent": "A quick agreement is needed"
+            }
+          },
+          "unclearTopics": {
+            "label": "Unclear topics",
+            "options": {
+              "role_boundaries": "Role and responsibility",
+              "documentation": "Documentation",
+              "network_work": "Network work",
+              "service_rules": "Service rules",
+              "risk_escalation": "Escalating risks",
+              "work_boundaries": "Work boundaries"
+            }
+          },
+          "existingSupport": {
+            "label": "Existing support",
+            "options": {
+              "manager_check_in": "Check-in with my manager",
+              "team_channel": "Team channel",
+              "onboarding_material": "Onboarding material",
+              "shadowing": "Shadowing a more experienced colleague",
+              "case_discussion": "Case discussion"
+            }
+          },
+          "missingSupport": {
+            "label": "Missing support",
+            "options": {
+              "mentor": "Mentor",
+              "covision": "Covision",
+              "clear_documentation_routine": "Clear documentation routine",
+              "role_expectations": "Clarification of role expectations",
+              "boundary_agreement": "Agreement on work boundaries",
+              "case_escalation_rule": "Rule for escalating cases"
+            }
+          },
+          "casesNotCarryAlone": {
+            "label": "Cases that should not be carried alone",
+            "options": {
+              "complex_family_case": "Complex family case",
+              "workplace_violence": "Workplace violence situation",
+              "ethical_tension_case": "Case with ethical tension",
+              "high_risk_case": "High-risk case",
+              "unclear_mandate": "Case with an unclear mandate"
+            }
+          },
+          "covisionNeedSigns": {
+            "label": "Signs that covision is needed",
+            "options": {
+              "ethical_tension": "Ethical tension",
+              "role_uncertainty": "Unclear role",
+              "emotional_load": "Emotional load",
+              "repeating_case_pattern": "Recurring case pattern",
+              "not_to_carry_alone": "Should not be carried alone"
+            }
+          }
+        },
+        "signals": {
+          "support_available": {
+            "title": "Support is mostly in place",
+            "text": "Support for starting out exists and mainly needs to be kept visible."
+          },
+          "needs_clearer_support_plan": {
+            "title": "Needs a clearer work support plan",
+            "text": "Some support, role expectation or documentation routine needs a clearer agreement."
+          },
+          "needs_urgent_support_agreement": {
+            "title": "Needs a quicker support agreement",
+            "text": "Missing support or complex cases need a quicker agreement with the manager, a mentor or in covision."
+          }
+        },
+        "outputs": {
+          "firstWeekPlan": "First week plan",
+          "firstMonthFocus": "First month focus",
+          "hundredDaySupportPlan": "100-day work support plan",
+          "managerMentorQuestions": "Questions for the manager or mentor",
+          "covisionNeedCheck": "Covision need check",
+          "boundaryDraft": "Starter's work boundaries draft"
+        }
+      },
+      "weekly_reflection": {
+        "fields": {
+          "weeklyLoad": {
+            "label": "Workload",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High",
+              "critical": "Critical"
+            }
+          },
+          "weeklyRecovery": {
+            "label": "I managed to recover",
+            "options": {
+              "sufficient": "Enough",
+              "partial": "Partly",
+              "low": "A little",
+              "none": "Not at all"
+            }
+          },
+          "weeklyMeaning": {
+            "label": "My work felt meaningful",
+            "options": {
+              "yes": "Yes",
+              "partly": "Partly",
+              "no": "Not right now"
+            }
+          }
+        }
+      },
+      "work_boundaries": {
+        "steps": {
+          "focus": {
+            "title": "Focus of the agreement",
+            "short": "Focus"
+          },
+          "agreement": {
+            "short": "Frame"
+          },
+          "wording": {
+            "short": "Wording"
+          },
+          "exceptions": {
+            "title": "Exceptions in a crisis",
+            "short": "Exceptions"
+          }
+        },
+        "fields": {
+          "agreementType": {
+            "label": "Focus of the agreement",
+            "options": {
+              "after_hours_availability": "Limit on after-hours availability",
+              "work_time_boundary": "Working time boundary",
+              "evening_messages": "Agreement on evening messages",
+              "pause_agreement": "Protecting breaks",
+              "replacement_agreement": "Substitution agreement",
+              "crisis_exception": "Exceptions in a crisis",
+              "focus_time": "Protecting focus time",
+              "urgent_requests": "Limit on urgent requests"
+            }
+          },
+          "boundaryClarity": {
+            "label": "Clarity of the boundary",
+            "options": {
+              "clear": "Clear",
+              "partly_clear": "Partly clear",
+              "unclear": "Unclear"
+            }
+          },
+          "afterHoursPressure": {
+            "label": "Pressure to be available after hours",
+            "options": {
+              "none": "None",
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "pauseProtection": {
+            "label": "Protection of breaks",
+            "options": {
+              "protected": "Protected",
+              "partial": "Partly",
+              "unclear": "Unclear",
+              "none": "Not protected"
+            }
+          },
+          "replacementCoverage": {
+            "label": "Clarity of substitution or information flow",
+            "options": {
+              "clear": "Clear",
+              "partial": "Partly",
+              "unclear": "Unclear",
+              "missing": "Missing"
+            }
+          },
+          "urgentExceptionClarity": {
+            "label": "Clarity of urgent exceptions",
+            "options": {
+              "clear": "Clear",
+              "partly_clear": "Partly clear",
+              "unclear": "Unclear"
+            }
+          },
+          "overtimeLastMonth": {
+            "label": "Overtime in the last month",
+            "options": {
+              "none": "None",
+              "occasional": "Occasionally",
+              "regular": "Regularly"
+            }
+          },
+          "overtimeCompensation": {
+            "label": "If there was any, is it compensated?",
+            "options": {
+              "yes": "Yes",
+              "partly": "Partly",
+              "no": "No",
+              "unknown": "I don't know"
+            }
+          },
+          "flexibleHours": {
+            "label": "Flexible working hours are possible",
+            "options": {
+              "yes": "Yes",
+              "partly": "Partly",
+              "no": "No",
+              "unknown": "I don't know"
+            }
+          },
+          "counterpart": {
+            "label": "Party to the agreement",
+            "options": {
+              "manager": "Manager",
+              "colleague": "Colleague",
+              "team": "Team",
+              "partner": "Partner organisation"
+            }
+          },
+          "reviewTime": {
+            "label": "Review time",
+            "options": {
+              "one_week": "In a week",
+              "two_weeks": "In two weeks",
+              "one_month": "In a month",
+              "next_meeting": "At the next meeting"
+            }
+          },
+          "supportNeed": {
+            "label": "Support needed",
+            "options": {
+              "none": "No separate support needed",
+              "manager": "Agreement with my manager",
+              "colleague": "Colleague support",
+              "team": "Team agreement"
+            }
+          },
+          "currentConcern": {
+            "label": "Current concern"
+          },
+          "desiredPrinciple": {
+            "label": "Desired principle"
+          },
+          "exceptions": {
+            "label": "Exceptions in a crisis"
+          }
+        },
+        "signals": {
+          "clear": {
+            "title": "The boundary is fairly clear",
+            "text": "The agreement needs to be kept and reviewed, but the organisational risk is low for now."
+          },
+          "needs_clarification": {
+            "title": "Needs clarifying",
+            "text": "Some boundary, exception or substitution needs clearer wording so that interruptions do not keep recurring."
+          },
+          "needs_agreement": {
+            "title": "Needs an agreement",
+            "text": "After-hours pressure or unclear exceptions need a concrete agreement on work organisation with the manager or team."
+          }
+        },
+        "outputs": {
+          "boundaryAgreement": "Draft work boundary agreement",
+          "managerMemo": "Memo for a manager discussion",
+          "documentInput": "Input for drafting a document"
+        }
+      },
+      "workplace_violence": {
+        "fields": {
+          "violenceType": {
+            "label": "Type of situation",
+            "options": {
+              "insult_or_humiliation": "Insult or humiliation",
+              "aggression": "Aggression",
+              "threat": "Threat",
+              "physical_danger": "Physical danger",
+              "stalking_or_intimidation": "Stalking or intimidation",
+              "repeated_harassment": "Repeated harassing communication",
+              "threatening_message": "Threatening message or email",
+              "lone_work_risk": "Risk on a home visit or when working alone"
+            }
+          },
+          "dangerStatus": {
+            "label": "Is the danger ongoing?",
+            "options": {
+              "ended": "No",
+              "uncertain": "Not sure",
+              "ongoing": "It may continue"
+            }
+          },
+          "sourceOfHarm": {
+            "label": "Who did it come from?",
+            "options": {
+              "client_or_family": "A client or someone close to them",
+              "colleague": "Colleague",
+              "manager": "Manager",
+              "partner": "Partner organisation",
+              "other": "Other"
+            }
+          },
+          "locationOrChannel": {
+            "label": "Place or channel",
+            "options": {
+              "office": "Office or reception",
+              "home_visit": "Home visit",
+              "phone": "Phone",
+              "email_or_message": "Email or message",
+              "public_space": "Public space",
+              "partner_channel": "Partner organisation's channel"
+            }
+          },
+          "workImpact": {
+            "label": "Impact on work",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "safetyImpact": {
+            "label": "Impact on my sense of safety",
+            "options": {
+              "none": "Not marked",
+              "some": "Some",
+              "high": "High"
+            }
+          },
+          "documentedStatus": {
+            "label": "Documentation status",
+            "options": {
+              "yes": "Information needed for work is written down",
+              "partial": "Partly written down",
+              "not_yet": "Not yet written down"
+            }
+          },
+          "nextStepNeed": {
+            "label": "Next step",
+            "options": {
+              "manager_followup": "Follow-up with my manager",
+              "safety_followup": "Safety follow-up",
+              "document_neutral_facts": "Write down neutral facts",
+              "change_channel": "Change the communication channel",
+              "colleague_presence": "Involve a colleague",
+              "work_arrangement_change": "Change work arrangements"
+            }
+          },
+          "safetyAgreementNeed": {
+            "label": "Need for a safety agreement",
+            "options": {
+              "no": "No separate agreement needed",
+              "unclear": "Needs clarifying",
+              "yes": "An agreement is needed"
+            }
+          },
+          "recoveryNeed": {
+            "label": "Need for recovery",
+            "options": {
+              "none": "No separate plan needed",
+              "partial": "A short plan is needed",
+              "high": "Organisational support is needed"
+            }
+          }
+        },
+        "steps": {
+          "safety": {
+            "title": "Safety"
+          },
+          "impact": {
+            "title": "Place and impact",
+            "short": "Impact"
+          },
+          "support": {
+            "title": "Recovery and support",
+            "short": "Recovery"
+          },
+          "description": {
+            "short": "Description"
+          }
+        },
+        "signals": {
+          "no_immediate_danger": {
+            "title": "No immediate danger",
+            "text": "The situation needs a neutral follow-up description and the agreements kept."
+          },
+          "needs_attention": {
+            "title": "Needs attention",
+            "text": "The situation needs organisational follow-up, clarification of safety or support."
+          },
+          "urgent_attention": {
+            "title": "Urgent attention needed",
+            "text": "If the danger may continue, first act on safety and follow the instructions of the responsible party."
+          }
+        },
+        "outputs": {
+          "neutralIncidentDescription": "Neutral incident description",
+          "internalReport": "Draft request",
+          "safetyAgreementInput": "Input for a safety agreement",
+          "managerMemo": "Memo for a manager discussion",
+          "covisionInput": "Covision input",
+          "workArrangementRecommendation": "Recommendation to change work arrangements"
+        }
+      },
+      "work_processes": {
+        "steps": {
+          "overview": {
+            "short": "Overview"
+          },
+          "load": {
+            "title": "Load and impact",
+            "short": "Load"
+          },
+          "time": {
+            "title": "Time thieves"
+          },
+          "blockers": {
+            "title": "Obstacles"
+          },
+          "simplify": {
+            "title": "Simplifying"
+          }
+        },
+        "fields": {
+          "analysisFocus": {
+            "label": "Focus of the analysis",
+            "options": {
+              "documentation_flow": "Documentation workflow",
+              "case_flow": "Casework workflow",
+              "partner_coordination": "Coordination with partners",
+              "team_routine": "Recurring team routine",
+              "information_flow": "Flow of information"
+            }
+          },
+          "counterpart": {
+            "label": "Party to the discussion",
+            "options": {
+              "manager": "Manager",
+              "team": "Team",
+              "colleague": "Colleague",
+              "partner": "Partner organisation"
+            }
+          },
+          "documentationDuplication": {
+            "label": "Level of duplicate documentation",
+            "options": {
+              "none": "None",
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "switchingLoad": {
+            "label": "Load from switching between tasks",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "processImpact": {
+            "label": "Impact of the work process",
+            "options": {
+              "low": "Low",
+              "moderate": "Moderate",
+              "high": "High"
+            }
+          },
+          "categories": {
+            "label": "Categories",
+            "options": {
+              "client_value_work": "Client work that creates value",
+              "necessary_burden": "Necessary but burdensome work",
+              "duplicate_entry": "Duplicate data entry",
+              "documentation": "Documentation",
+              "information_search": "Searching for information",
+              "partner_coordination": "Coordination with partners",
+              "waiting": "Waiting",
+              "repetitive_tasks": "Repetitive tasks",
+              "low_value_work": "Low-value activities"
+            }
+          },
+          "timeCostSources": {
+            "label": "Main sources of lost time",
+            "options": {
+              "same_data_multiple_places": "The same information in several places",
+              "searching_partner_info": "Searching for partner information",
+              "manual_status_updates": "Updating status by hand",
+              "waiting_for_answers": "Waiting for answers",
+              "copying_between_systems": "Copying between systems",
+              "unclear_next_step": "Unclear next step",
+              "tools_not_working": "Work tools do not work (computer, phone, car)",
+              "workspace_unsuitable": "The space is unsuitable (privacy of conversations, noise)"
+            }
+          },
+          "informationBlockers": {
+            "label": "Obstacles to the flow of information",
+            "options": {
+              "unclear_owner": "Unclear owner",
+              "missing_shared_view": "No shared view",
+              "partner_delay": "Partner's delay",
+              "system_gap": "Gap between systems",
+              "role_confusion": "Role confusion"
+            }
+          },
+          "unfinishedWork": {
+            "label": "What is left unfinished",
+            "options": {
+              "client_followup": "Client follow-up",
+              "case_notes": "Case notes",
+              "partner_reply": "Replying to a partner",
+              "planning": "Planning",
+              "recovery_pause": "Break or recovery"
+            }
+          },
+          "lowValueActivities": {
+            "label": "Low-value or duplicate activities",
+            "options": {
+              "same_data_multiple_places": "Entering the same data repeatedly",
+              "manual_copying": "Copying by hand",
+              "status_chasing": "Chasing the status",
+              "duplicate_meetings": "Duplicate discussions",
+              "unclear_templates": "Unclear templates"
+            }
+          },
+          "simplificationNeeds": {
+            "label": "What could simplify things",
+            "options": {
+              "single_entry": "One-time entry",
+              "shared_status_view": "Shared status view",
+              "clear_owner": "Clear owner",
+              "template_cleanup": "Tidying up templates",
+              "meeting_rule": "Meeting rule"
+            }
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "The workflow is fairly manageable",
+            "text": "There are few time thieves or their impact is low. Keep one simplification visible and watch the pattern."
+          },
+          "needs_simplification": {
+            "title": "Needs simplifying",
+            "text": "Some recurring step, information flow or documentation needs a small organisational simplification."
+          },
+          "needs_organizational_change": {
+            "title": "Needs an organisational change",
+            "text": "Duplication, switching or unfinished activities need a clear change agreed with the manager or team."
+          }
+        },
+        "outputs": {
+          "processMap": "Work process map",
+          "topTimeThieves": "Three biggest time thieves",
+          "documentationSimplification": "Proposal to simplify documentation",
+          "informationFlowSummary": "Information flow summary",
+          "managerMemo": "Memo for a work organisation discussion"
+        }
+      }
+    },
+    "labels": {
+      "values": {
+        "mentoring": "mentoring",
+        "measures__gap__mentoring": "needed but missing: mentoring",
+        "covision": "covision",
+        "measures__gap__covision": "needed but missing: covision",
+        "supervision": "supervision",
+        "measures__gap__supervision": "needed but missing: supervision",
+        "development_talks": "development talks",
+        "measures__gap__development_talks": "needed but missing: development talks",
+        "training": "continuing training",
+        "measures__gap__training": "needed but missing: continuing training",
+        "degree_study": "degree or micro-degree studies",
+        "measures__gap__degree_study": "needed but missing: degree or micro-degree studies",
+        "study_visits": "study visits and job shadowing",
+        "measures__gap__study_visits": "needed but missing: study visits and job shadowing",
+        "inter_municipal_exchange": "experience exchange between municipalities",
+        "measures__gap__inter_municipal_exchange": "needed but missing: experience exchange between municipalities",
+        "rotation": "temporary work in another organisation",
+        "measures__gap__rotation": "needed but missing: temporary work in another organisation",
+        "psychological_counselling": "psychological counselling",
+        "measures__gap__psychological_counselling": "needed but missing: psychological counselling",
+        "mental_health_training": "mental health training",
+        "measures__gap__mental_health_training": "needed but missing: mental health training",
+        "health_days": "health days",
+        "measures__gap__health_days": "needed but missing: health days",
+        "health_promoting_network": "health-promoting workplaces network",
+        "measures__gap__health_promoting_network": "needed but missing: health-promoting workplaces network",
+        "safety_measures": "safety and violence prevention measures",
+        "measures__gap__safety_measures": "needed but missing: safety and violence prevention measures",
+        "flexible_hours": "flexible working hours",
+        "measures__gap__flexible_hours": "needed but missing: flexible working hours",
+        "workload_review": "regular workload assessment",
+        "measures__gap__workload_review": "needed but missing: regular workload assessment",
+        "overtime_compensation": "overtime compensation",
+        "measures__gap__overtime_compensation": "needed but missing: overtime compensation",
+        "substitution_rules": "clear substitution rules",
+        "measures__gap__substitution_rules": "needed but missing: clear substitution rules",
+        "recognition": "employee recognition",
+        "measures__gap__recognition": "needed but missing: employee recognition",
+        "legislation": "legislation and procedure",
+        "case_management": "case management",
+        "needs_assessment": "needs assessment",
+        "impact_assessment": "impact assessment",
+        "complex_clients": "working with complex clients",
+        "crisis_trauma": "crisis and trauma-informed work",
+        "ethics": "ethics and ethical dilemmas",
+        "mental_health": "mental health issues",
+        "digital_skills": "STAR and digital skills",
+        "self_care": "self-care",
+        "time_management": "work organisation and time management",
+        "teamwork_network": "teamwork and network cooperation",
+        "after_hours_availability": "after-hours availability",
+        "aggression": "aggression",
+        "adult_support": "support for adults",
+        "after_hours": "after-hours availability",
+        "case_notes": "case notes",
+        "case_discussion": "case discussion",
+        "case_escalation_rule": "rule for escalating cases",
+        "case_worker": "case manager",
+        "channel_rules": "rules for communication channels",
+        "change_channel": "changing the communication channel",
+        "child_protection": "child protection",
+        "clear": "clear",
+        "clear_documentation_routine": "clear documentation routine",
+        "client_family": "client or family",
+        "client_or_family": "a client or someone close to them",
+        "client_followup": "client follow-up",
+        "colleague_presence": "involving a colleague",
+        "colleague_questions": "colleagues' questions",
+        "complex_family_case": "complex family case",
+        "critical_incident": "critical incident",
+        "deferrable": "question that can wait",
+        "documentation": "documentation",
+        "documentation_system": "documentation or system interruption",
+        "documentation_flow": "documentation workflow",
+        "document_neutral_facts": "writing down neutral facts",
+        "duplicate_entry": "duplicate data entry",
+        "elderly_support": "support for older people",
+        "email_or_message": "email or message",
+        "email": "email",
+        "emotional_load": "emotional load",
+        "emotionally_heavy": "emotionally heavy",
+        "ended": "not ongoing",
+        "ethical_tension": "ethical tension",
+        "ethical_tension_case": "case with ethical tension",
+        "few": "few",
+        "first_100_days": "first 100 days",
+        "first_month": "first month",
+        "first_week": "first week",
+        "focus_time": "focus time",
+        "general_social_work": "general social work",
+        "heavy_week": "a heavy week",
+        "high": "high",
+        "high_risk_case": "high-risk case",
+        "home_visit": "home visit",
+        "in_72h": "in 72 hours",
+        "information_search": "searching for information",
+        "low": "low",
+        "many": "many",
+        "make_other_agency_decision": "making another agency's decision",
+        "manager": "manager",
+        "manager_check_in": "check-in with the manager",
+        "manager_followup": "follow-up with the manager",
+        "manual_copying": "copying by hand",
+        "manual_status_updates": "updating status by hand",
+        "mentor": "mentor",
+        "missing_shared_view": "no shared view",
+        "moderate": "moderate",
+        "needs_attention": "needs attention",
+        "needs_clarification": "needs clarifying",
+        "needs_network_discussion": "needs a network discussion",
+        "negotiable": "interruption that can be agreed on",
+        "network_work": "network work",
+        "new_role": "new role in the same field",
+        "next_week": "next week",
+        "no": "no",
+        "no_immediate_danger": "no immediate danger",
+        "none": "none",
+        "not_sustainable": "not sustainable",
+        "not_to_carry_alone": "should not be carried alone",
+        "not_yet": "not yet written down",
+        "office": "office or reception",
+        "onboarding_material": "onboarding material",
+        "ongoing": "may continue",
+        "partner_agency": "partner organisation",
+        "partner": "partner organisation",
+        "partner_process": "partner process interruption",
+        "partial": "partial",
+        "partner_channel": "partner organisation's channel",
+        "phone": "phone",
+        "prioritize": "needs prioritising",
+        "processes__duplicate_entry": "duplicate entry in the work process",
+        "processes__high_value_loss": "important work is held back by low-value activities",
+        "processes__single_entry_needed": "a single place of entry is needed",
+        "processes__switching_load_high": "high load from switching between workflows",
+        "plan_needed": "the plan needs clarifying",
+        "process_change": "change in the work process",
+        "public_space": "public space",
+        "rare": "rarely",
+        "reduced": "reduced",
+        "repeated_harassment": "repeated harassing communication",
+        "repetitive_tasks": "repetitive tasks",
+        "repeating_case_pattern": "recurring case pattern",
+        "risk_escalation": "escalating risks",
+        "role_boundaries": "role and responsibility",
+        "role_boundary": "role boundary",
+        "role_expectations": "clarification of role expectations",
+        "role_uncertainty": "unclear role",
+        "same_data_multiple_places": "the same information in several places",
+        "searching_partner_info": "searching for partner information",
+        "service_coordination": "coordinating services",
+        "service_rules": "service rules",
+        "shared_status_view": "shared status view",
+        "shadowing": "shadowing a more experienced colleague",
+        "single_entry": "single place of entry",
+        "solve_partner_delay": "solving a partner's delay",
+        "some": "some",
+        "sometimes": "sometimes",
+        "soon": "needs to be agreed soon",
+        "stable": "stable",
+        "starter_support__mentor_needed": "mentor support needed",
+        "starter_support__missing_support": "missing work support",
+        "starter_support__not_to_carry_alone": "the situation should not be carried alone",
+        "supervisor": "supervision or other agreed support",
+        "team": "team",
+        "team_agreement": "team agreement",
+        "team_channel": "team channel",
+        "today": "today",
+        "tomorrow": "tomorrow",
+        "threat": "threat",
+        "threatening_message": "threatening message or email",
+        "unclear": "unclear",
+        "unclear_mandate": "case with an unclear mandate",
+        "unclear_owner": "unclear who is responsible",
+        "unavoidable": "unavoidable urgent intervention",
+        "urgent_attention": "urgent attention needed",
+        "urgent": "a quick agreement is needed",
+        "very_often": "very often",
+        "work_arrangement_change": "changing work arrangements",
+        "work_boundaries": "work boundaries",
+        "workplace_violence": "workplace violence situation",
+        "wrong_channel": "wrong communication channel",
+        "yes": "yes",
+        "green": "green",
+        "yellow": "yellow",
+        "red": "red",
+        "insufficient_data": "not enough data yet",
+        "manageable": "manageable",
+        "support_available": "support is available",
+        "organizational_support": "needs organisational support",
+        "needs_agreement": "needs an agreement",
+        "needs_clearer_support_plan": "needs a clearer support plan",
+        "needs_organizational_change": "needs an organisational change",
+        "needs_reorganization": "needs reorganising the work",
+        "needs_simplification": "needs simplifying",
+        "needs_urgent_support_agreement": "needs a quick support agreement",
+        "needs_workflow_clarification": "needs the workflow clarified",
+        "critical": "critical",
+        "routine": "routine",
+        "complex": "complex",
+        "very_complex": "very complex",
+        "very_high": "very high",
+        "sufficient": "sufficient",
+        "partly_clear": "partly clear",
+        "available": "available",
+        "not_available": "not available",
+        "ethical_dilemma": "ethical dilemma",
+        "complex_case": "organisationally complex",
+        "trauma_related": "exposure to trauma",
+        "role_conflict": "role conflict",
+        "uncertain": "not sure",
+        "social_worker": "social worker",
+        "advisor": "counsellor",
+        "coordinator": "coordinator",
+        "moral_distress": "moral distress",
+        "trauma_exposure": "exposure to trauma",
+        "workload_followup": "follow-up workload",
+        "strong": "strong",
+        "indirect": "indirect",
+        "direct": "direct",
+        "document_key_facts": "writing down the facts needed for work",
+        "reduce_next_day_load": "reducing tomorrow's workload",
+        "colleague_debrief": "work debrief with a colleague",
+        "safety_followup": "safety follow-up",
+        "covision_input": "preparing covision input",
+        "insult_or_humiliation": "insult or humiliation",
+        "physical_danger": "physical danger",
+        "stalking_or_intimidation": "stalking or intimidation",
+        "lone_work_risk": "risk on a home visit or when working alone",
+        "difficult_case": "hard case",
+        "long_overload": "long-term overload",
+        "interruptions": "interruptions",
+        "colleague": "colleague",
+        "work_time_boundary": "working time boundary",
+        "evening_messages": "agreement on evening messages",
+        "pause_agreement": "protecting breaks",
+        "replacement_agreement": "substitution agreement",
+        "crisis_exception": "exceptions in a crisis",
+        "urgent_requests": "limit on urgent requests",
+        "protected": "protected",
+        "missing": "missing",
+        "one_week": "in a week",
+        "two_weeks": "in two weeks",
+        "one_month": "in a month",
+        "next_meeting": "at the next meeting",
+        "message": "message",
+        "manager_requests": "manager's requests",
+        "client_contact": "client contact",
+        "partner_contact": "partner organisation",
+        "meetings": "meetings",
+        "urgent_cases": "urgent cases",
+        "often": "often",
+        "case_flow": "casework workflow",
+        "partner_coordination": "coordination with partners",
+        "team_routine": "recurring team routine",
+        "information_flow": "flow of information",
+        "client_value_work": "client work that creates value",
+        "necessary_burden": "necessary but burdensome work",
+        "waiting": "waiting",
+        "low_value_work": "low-value activities",
+        "waiting_for_answers": "waiting for answers",
+        "copying_between_systems": "copying between systems",
+        "unclear_next_step": "unclear next step",
+        "status_chasing": "chasing the status",
+        "duplicate_meetings": "duplicate discussions",
+        "unclear_templates": "unclear templates",
+        "partner_delay": "partner's delay",
+        "system_gap": "gap between systems",
+        "role_confusion": "role confusion",
+        "partner_reply": "replying to a partner",
+        "planning": "planning",
+        "recovery_pause": "break or recovery",
+        "clear_owner": "clear owner",
+        "template_cleanup": "tidying up templates",
+        "meeting_rule": "meeting rule",
+        "client": "client",
+        "network": "network",
+        "explain_service": "explaining a service or decision",
+        "be_always_available": "being available all the time",
+        "make_decision": "making a decision",
+        "coordinate_network": "coordinating the network",
+        "emotional_support": "emotional support",
+        "service_link": "connecting to a service or contact",
+        "assessment_input": "gathering input for assessment",
+        "support_planning": "planning support",
+        "replace_service_provider": "replacing the service provider's role",
+        "be_crisis_contact": "the role of crisis contact",
+        "guarantee_outcome": "guaranteeing the outcome",
+        "carry_partner_responsibility": "carrying a partner's responsibility",
+        "self": "solvable within my role",
+        "service_provider": "service provider's contribution",
+        "disability_support": "support for people with disabilities",
+        "boundary_agreement": "agreement on work boundaries",
+        "ethical_tension__elevated": "elevated ethical tension",
+        "moral_distress__present": "moral distress",
+        "trauma__exposure": "exposure to trauma",
+        "support__do_not_carry_alone": "the case should not be carried alone",
+        "role__clarity_partial_or_unclear": "role or responsibility is not quite clear",
+        "recovery__follow_up_needed": "recovery needs a plan or support",
+        "hard_case__immediate_danger": "immediate danger may continue",
+        "hard_case__immediate_danger_uncertain": "no certainty about immediate danger",
+        "hard_case__should_not_carry_alone": "the case should not be carried alone",
+        "hard_case__direct_trauma_exposure": "direct exposure to trauma",
+        "hard_case__high_ethical_tension": "high ethical tension",
+        "interruptions__high_frequency": "interruptions are frequent",
+        "interruptions__work_impact": "interruptions affect work",
+        "interruptions__wrong_channel": "interruptions come through the wrong channel",
+        "interruptions__documentation_system": "documentation or the system interrupts the workflow",
+        "interruptions__role_boundary": "interruptions cross role boundaries",
+        "interruptions__partner_process": "interruptions come from a partner's process",
+        "focus_time__agreement_needed": "an agreement on focus time is needed",
+        "channels__agreement_needed": "an agreement on communication channels is needed",
+        "urgency__criteria_unclear": "it is unclear when to respond immediately",
+        "process__documentation_simplification_needed": "documentation needs simplifying",
+        "interruptions__recovery_impact_high": "interruptions strongly affect recovery",
+        "interruptions__very_frequent": "interruptions are very frequent",
+        "interruptions__many_can_wait": "many interruptions could wait",
+        "recovery__low_capacity_72h": "work capacity is low over the next 72 hours",
+        "recovery__no_recovery_with_low_capacity": "no chance to recover and work capacity is low",
+        "role_boundaries__role_conflict_high": "high role conflict",
+        "role_boundaries__role_conflict_moderate": "moderate role conflict",
+        "role_boundaries__partner_explanation_needed": "the partner needs a role clarification",
+        "role_boundaries__availability_pressure_high": "strong pressure to be available all the time",
+        "role_boundaries__ethical_complexity_high": "high ethical complexity",
+        "role_boundaries__manager_discussion_needed": "a discussion with the manager is needed",
+        "role_boundaries__partner_clarification_needed": "a clarification for the partner is needed",
+        "role_boundaries__shared_responsibility_needed": "responsibility needs to be shared",
+        "role_boundaries__responsibility_shift": "what is expected is not my role",
+        "role_boundaries__partner_responsibility_gap": "a partner's contribution is needed",
+        "role_boundaries__ethical_tension": "ethical tension linked to the role boundary",
+        "starter_support__cases_not_carry_alone": "cases that should not be carried alone",
+        "starter_support__role_uncertainty": "role and responsibility are unclear",
+        "starter_support__documentation_uncertainty": "documentation is unclear",
+        "starter_support__manager_check_needed": "a discussion with the manager is needed",
+        "starter_support__boundary_plan_needed": "an agreement on work boundaries is needed",
+        "starter_support__covision_needed": "covision is needed",
+        "starter_support__early_role_uncertainty": "unclear role at the start of work",
+        "starter_support__support_agreement_needed_soon": "a support agreement is needed soon",
+        "support__replacement_unclear": "substitution or information flow is unclear",
+        "boundaries__after_hours_unclear": "the limit on after-hours availability is unclear",
+        "boundaries__no_pause_protection": "breaks are not protected",
+        "work_impact__elevated": "elevated impact on work",
+        "safety_impact__present": "impact on the sense of safety",
+        "documentation__needs_neutral_record": "the incident needs a neutral written record",
+        "safety__agreement_needed": "a safety agreement is needed",
+        "violence__workplace": "workplace violence situation",
+        "workplace_violence__danger_ongoing": "the danger may continue",
+        "workplace_violence__danger_uncertain": "no certainty whether the danger continues",
+        "workplace_violence__physical_danger": "physical danger",
+        "workplace_violence__threat": "threat",
+        "workplace_violence__safety_impact_high": "strong impact on the sense of safety",
+        "processes__documentation_load": "documentation load",
+        "processes__information_search": "searching for information",
+        "processes__waiting": "waiting",
+        "processes__repetitive_tasks": "repetitive tasks",
+        "processes__shared_status_view_needed": "a shared status view is needed",
+        "processes__owner_clarity_needed": "a clear owner is needed",
+        "processes__information_flow_needed": "a shared view of information is needed",
+        "processes__duplicate_documentation_high": "a lot of duplicate documentation",
+        "processes__unfinished_work_accumulates": "unfinished work piles up",
+        "risk__workplace_violence": "an experience of workplace violence is marked",
+        "support__manager": "an agreement with the manager is needed",
+        "support__colleague": "colleague support is needed",
+        "support__supervisor": "supervision or other agreed support is needed",
+        "workload__high": "workload is high",
+        "case_complexity__high": "case complexity is high",
+        "emotional_load__high": "emotional load is high",
+        "documentation__high": "documentation load is high",
+        "interruptions__high": "the level of interruptions is high",
+        "after_hours__impact": "the impact of after-hours availability is high",
+        "recovery__low_or_none": "the chance to recover is low or missing",
+        "support__unclear_or_missing": "support from the manager or colleagues is unclear or missing",
+        "support__manager_unclear_or_missing": "support from the manager is unclear or missing",
+        "support__colleague_unclear_or_missing": "support from colleagues is unclear or missing",
+        "meaning__low": "the sense of meaningful work is low right now",
+        "decision_control__low": "little control over my work",
+        "clarity__unclear": "priorities or work boundaries are unclear",
+        "risk__difficult_case": "a hard case is marked",
+        "risk__colleague_mistreatment": "mistreatment by a colleague or manager is marked",
+        "other": "other",
+        "occasional": "occasionally",
+        "regular": "regularly",
+        "partly": "partly",
+        "unknown": "I don't know",
+        "tools_not_working": "work tools do not work (computer, phone, car)",
+        "workspace_unsuitable": "the space is unsuitable (privacy of conversations, noise)",
+        "processes__tools_not_working": "work tools get in the way of work",
+        "processes__workspace_unsuitable": "the physical work environment does not support work",
+        "boundaries__overtime_regular": "overtime is regular",
+        "boundaries__overtime_uncompensated": "overtime is not fully compensated",
+        "boundaries__flexibility_missing": "flexible working hours are not possible",
+        "rarely": "rarely",
+        "almost_always": "almost always",
+        "detachment": "mentally detaching from work",
+        "relaxation": "relaxation and rest",
+        "mastery": "something new and manageable outside work",
+        "control": "control over my free time",
+        "recovery__detachment_low": "work often follows me into my free time",
+        "recovery__end_of_day_exhaustion": "often mentally exhausted by the end of the working day",
+        "recovery__sleep_or_anxiety_frequent": "work often disturbs sleep or causes anxiety",
+        "recovery__none_with_critical_workload": "critical workload with no chance to recover",
+        "strength__recovery": "I manage to recover",
+        "strength__decision_control": "I can make decisions about my work",
+        "strength__priorities_clear": "priorities are clear",
+        "strength__boundaries_clear": "work boundaries are clear",
+        "strength__manager_support": "support from the manager is available",
+        "strength__colleague_support": "support from colleagues is available",
+        "strength__work_meaning": "my work is meaningful",
+        "strength__flexible_hours": "flexible working hours are possible",
+        "strength__support_in_use": "the support I need is available"
+      },
+      "factors": {
+        "workload__high": "Workload is high",
+        "case_complexity__high": "Case complexity is high",
+        "emotional_load__high": "Emotional load is high",
+        "documentation__high": "Documentation load is high",
+        "interruptions__high": "The level of interruptions is high",
+        "after_hours__impact": "The impact of after-hours availability is high",
+        "recovery__low_or_none": "The chance to recover is low or missing",
+        "support__unclear_or_missing": "Support from the manager or colleagues is unclear or missing",
+        "support__manager_unclear_or_missing": "Support from the manager is unclear or missing",
+        "support__colleague_unclear_or_missing": "Support from colleagues is unclear or missing",
+        "meaning__low": "The sense of meaningful work is low right now",
+        "decision_control__low": "Little control over my work",
+        "clarity__unclear": "Priorities or work boundaries are unclear",
+        "risk__difficult_case": "A hard case is marked",
+        "risk__workplace_violence": "An experience of workplace violence is marked",
+        "risk__colleague_mistreatment": "Mistreatment by a colleague or manager is marked",
+        "recovery__none_with_critical_workload": "Critical workload with no chance to recover"
+      }
     }
   },
   "voimalused": {

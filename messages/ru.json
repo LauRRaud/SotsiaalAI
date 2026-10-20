@@ -10502,6 +10502,1734 @@
       "outputs": {
         "summary": "Моя неделя"
       }
+    },
+    "forms": {
+      "quick_check": {
+        "fields": {
+          "workloadLevel": {
+            "label": "Объём работы",
+            "options": {
+              "low": "Низкий",
+              "moderate": "Умеренный",
+              "high": "Высокий",
+              "critical": "Критический"
+            }
+          },
+          "caseComplexityLevel": {
+            "label": "Уровень сложности случаев",
+            "options": {
+              "routine": "Обычный",
+              "moderate": "Умеренный",
+              "complex": "Высокий",
+              "very_complex": "Очень высокий"
+            }
+          },
+          "emotionalLoad": {
+            "label": "Уровень эмоциональной нагрузки",
+            "options": {
+              "low": "Низкий",
+              "moderate": "Умеренный",
+              "high": "Высокий",
+              "very_high": "Очень высокий"
+            }
+          },
+          "documentationLoad": {
+            "label": "Нагрузка документированием",
+            "options": {
+              "low": "Низкая",
+              "moderate": "Умеренная",
+              "high": "Высокая",
+              "very_high": "Очень высокая"
+            }
+          },
+          "interruptionsLevel": {
+            "label": "Прерывания",
+            "options": {
+              "low": "Редкие",
+              "moderate": "Умеренные",
+              "high": "Частые",
+              "very_high": "Очень частые"
+            }
+          },
+          "afterHoursImpact": {
+            "label": "Влияние доступности в нерабочее время",
+            "options": {
+              "none": "Нет",
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "recoveryLevel": {
+            "label": "Возможность восстановиться",
+            "options": {
+              "sufficient": "Достаточная",
+              "partial": "Частичная",
+              "low": "Малая",
+              "none": "Отсутствует"
+            }
+          },
+          "decisionControl": {
+            "label": "Свобода решений в работе",
+            "options": {
+              "high": "Высокая",
+              "moderate": "Умеренная",
+              "low": "Низкая",
+              "none": "Отсутствует"
+            }
+          },
+          "priorityClarity": {
+            "label": "Ясность приоритетов",
+            "options": {
+              "clear": "Ясные",
+              "partly_clear": "Частично ясные",
+              "unclear": "Неясные"
+            }
+          },
+          "workBoundaryClarity": {
+            "label": "Ясность рабочих границ",
+            "options": {
+              "clear": "Ясные",
+              "partly_clear": "Частично ясные",
+              "unclear": "Неясные"
+            }
+          },
+          "managerSupport": {
+            "label": "Поддержка руководителя",
+            "options": {
+              "available": "Доступна",
+              "partial": "Частично",
+              "unclear": "Неясно",
+              "not_available": "Недоступна"
+            }
+          },
+          "colleagueSupport": {
+            "label": "Поддержка коллег",
+            "options": {
+              "available": "Доступна",
+              "partial": "Частично",
+              "unclear": "Неясно",
+              "not_available": "Недоступна"
+            }
+          },
+          "workMeaning": {
+            "label": "Я чувствую, что моя работа имеет смысл",
+            "options": {
+              "yes": "Да",
+              "partly": "Частично",
+              "no": "Сейчас нет"
+            }
+          }
+        },
+        "signals": {
+          "green": {
+            "title": "Зелёный",
+            "text": "Нагрузка сейчас выглядит управляемой. Следи за восстановлением и договорённостями."
+          },
+          "yellow": {
+            "title": "Жёлтый",
+            "text": "Несколько рабочих факторов требуют внимания. Выбери один конкретный следующий шаг."
+          },
+          "red": {
+            "title": "Красный",
+            "text": "Нагрузка требует обсуждения организации работы или более быстрой договорённости о поддержке."
+          }
+        }
+      },
+      "hard_case": {
+        "steps": {
+          "situation": {
+            "title": "Случай и роль",
+            "short": "Случай"
+          },
+          "safety": {
+            "title": "Безопасность"
+          },
+          "load": {
+            "title": "Нагрузка и восстановление",
+            "short": "Нагрузка"
+          },
+          "tension": {
+            "title": "Напряжение и поддержка",
+            "short": "Напряжение"
+          },
+          "description": {
+            "short": "Описание"
+          },
+          "next24h": {
+            "short": "24 часа"
+          }
+        },
+        "fields": {
+          "caseType": {
+            "label": "Тип случая",
+            "options": {
+              "emotionally_heavy": "Эмоционально тяжёлый",
+              "ethical_dilemma": "Этическая дилемма",
+              "complex_case": "Сложный с точки зрения организации работы",
+              "trauma_related": "Контакт с травмой",
+              "role_conflict": "Конфликт роли или ответственности"
+            }
+          },
+          "professionalRole": {
+            "label": "Моя профессиональная роль",
+            "options": {
+              "case_worker": "Координатор случая",
+              "child_protection": "Специалист по защите детей",
+              "social_worker": "Социальный работник",
+              "advisor": "Консультант",
+              "coordinator": "Координатор"
+            }
+          },
+          "immediateDanger": {
+            "label": "Непосредственная опасность",
+            "options": {
+              "no": "Непосредственной опасности нет",
+              "uncertain": "Не уверен(а)",
+              "yes": "Опасность может продолжаться"
+            }
+          },
+          "mainLoad": {
+            "label": "Что легло грузом",
+            "options": {
+              "emotional_load": "Эмоциональная нагрузка",
+              "ethical_tension": "Этическое напряжение",
+              "moral_distress": "Моральный стресс",
+              "trauma_exposure": "Контакт с травмой",
+              "role_conflict": "Ролевой конфликт",
+              "workload_followup": "Объём последующих действий"
+            }
+          },
+          "recoveryNeed": {
+            "label": "Потребность в восстановлении",
+            "options": {
+              "none": "Отдельный план не нужен",
+              "partial": "Нужен короткий план",
+              "high": "Нужна поддержка в организации работы"
+            }
+          },
+          "ethicalTension": {
+            "label": "Этическое напряжение",
+            "options": {
+              "none": "Нет",
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "moralDistress": {
+            "label": "Ощущение морального стресса",
+            "options": {
+              "none": "Нет",
+              "some": "Некоторое",
+              "strong": "Сильное"
+            }
+          },
+          "traumaExposure": {
+            "label": "Контакт с травмой",
+            "options": {
+              "none": "Не отмечаю",
+              "indirect": "Косвенный",
+              "direct": "Прямой"
+            }
+          },
+          "roleClarity": {
+            "label": "Ясность роли или ответственности",
+            "options": {
+              "clear": "Ясная",
+              "partly_clear": "Частично ясная",
+              "unclear": "Неясная"
+            }
+          },
+          "next24hNeeds": {
+            "options": {
+              "manager_check_in": "Короткая обратная связь с руководителем",
+              "document_key_facts": "Записать нужные для работы факты",
+              "reduce_next_day_load": "Уменьшить нагрузку на следующий день",
+              "colleague_debrief": "Рабочий разбор с коллегой",
+              "safety_followup": "Проверка безопасности",
+              "covision_input": "Подготовить материал для ковизии"
+            }
+          }
+        },
+        "signals": {
+          "no_immediate_danger": {
+            "title": "Непосредственной опасности нет",
+            "text": "Ситуацию нужно упорядочить в рабочем порядке, но срочные меры безопасности сейчас не отмечены."
+          },
+          "needs_attention": {
+            "title": "Требует внимания",
+            "text": "Случаю нужен план на 24 часа, чтобы нагрузку, роль и следующие шаги не пришлось нести в одиночку."
+          },
+          "urgent_attention": {
+            "title": "Нужно срочное внимание",
+            "text": "Непосредственная опасность или серьёзный риск прежде всего требуют мер безопасности и действий с ответственной стороной."
+          }
+        },
+        "outputs": {
+          "aftercarePlan24h": "План на 24 часа",
+          "neutralSummary": "Нейтральное резюме",
+          "managerMemo": "Памятка для обсуждения с руководителем",
+          "covisionInput": "Материал для ковизии"
+        }
+      },
+      "interruptions": {
+        "steps": {
+          "class": {
+            "title": "Вид прерывания",
+            "short": "Вид"
+          },
+          "pattern": {
+            "short": "Картина"
+          },
+          "agreement": {
+            "short": "Рамка"
+          },
+          "effect": {
+            "title": "Канал и восстановление",
+            "short": "Влияние"
+          },
+          "sources": {
+            "short": "Источники"
+          }
+        },
+        "fields": {
+          "interruptionClass": {
+            "label": "Вид прерывания",
+            "options": {
+              "unavoidable": "Неизбежное срочное вмешательство",
+              "negotiable": "Прерывание, о котором можно договориться",
+              "deferrable": "Вопрос, который может подождать",
+              "wrong_channel": "Неподходящий канал связи",
+              "role_boundary": "Прерывание, выходящее за границы роли",
+              "documentation_system": "Прерывание из-за документирования или системы",
+              "partner_process": "Прерывание из-за процесса партнёра"
+            }
+          },
+          "frequency": {
+            "label": "Частота",
+            "options": {
+              "rare": "Редко",
+              "sometimes": "Иногда",
+              "often": "Часто",
+              "very_often": "Очень часто"
+            }
+          },
+          "workImpact": {
+            "label": "Влияние на работу",
+            "options": {
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "immediateResponseNeed": {
+            "label": "Ясность, когда нужно реагировать сразу",
+            "options": {
+              "clear": "Ясно",
+              "partial": "Частично ясно",
+              "unclear": "Неясно"
+            }
+          },
+          "canWait": {
+            "label": "Сколько из них могло бы подождать?",
+            "options": {
+              "few": "Немногие",
+              "some": "Часть",
+              "many": "Многие"
+            }
+          },
+          "neededAgreement": {
+            "label": "Нужная договорённость",
+            "options": {
+              "focus_time": "Время для сосредоточенной работы",
+              "channel_rules": "Правила каналов связи",
+              "role_boundary": "Граница роли",
+              "process_change": "Изменение рабочего процесса",
+              "team_agreement": "Договорённость в команде"
+            }
+          },
+          "counterpart": {
+            "label": "Сторона договорённости",
+            "options": {
+              "manager": "Руководитель",
+              "team": "Команда",
+              "colleague": "Коллега",
+              "partner": "Партнёр"
+            }
+          },
+          "wrongChannelShare": {
+            "label": "Доля, поступающая по неподходящему каналу",
+            "options": {
+              "none": "Нет",
+              "some": "Часть",
+              "many": "Много"
+            }
+          },
+          "recoveryImpact": {
+            "label": "Влияние на восстановление",
+            "options": {
+              "none": "Нет",
+              "some": "Некоторое",
+              "high": "Высокое"
+            }
+          },
+          "sources": {
+            "label": "Откуда приходят прерывания",
+            "options": {
+              "phone": "Телефон",
+              "email": "Электронная почта",
+              "message": "Сообщение",
+              "colleague_questions": "Вопросы коллег",
+              "manager_requests": "Запросы руководителя",
+              "client_contact": "Контакт с клиентом",
+              "partner_contact": "Партнёр",
+              "documentation_system": "Система документирования",
+              "meetings": "Совещания",
+              "urgent_cases": "Срочные случаи"
+            }
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Управляемо",
+            "text": "Прерывания есть, но в основном они понятны, и главное — соблюдать договорённость."
+          },
+          "needs_workflow_clarification": {
+            "title": "Нужно уточнить рабочий процесс",
+            "text": "Частота, канал или срочность прерываний требуют более чёткой договорённости об организации работы."
+          },
+          "needs_reorganization": {
+            "title": "Нужна реорганизация",
+            "text": "Прерывания дробят рабочий день и мешают восстановлению. Нужна договорённость о времени для сосредоточенной работы, каналах или рабочем процессе."
+          }
+        },
+        "outputs": {
+          "interruptionMap": "Карта прерываний",
+          "focusTimeAgreement": "Договорённость о времени для сосредоточенной работы",
+          "channelAgreement": "Договорённость о каналах связи",
+          "managerMemo": "Памятка для обсуждения с руководителем"
+        }
+      },
+      "recovery": {
+        "fields": {
+          "workThoughtsOffHours": {
+            "label": "Я думаю о работе и в свободное время",
+            "options": {
+              "rarely": "Редко",
+              "sometimes": "Иногда",
+              "often": "Часто",
+              "almost_always": "Почти всегда"
+            }
+          },
+          "endOfDayExhaustion": {
+            "label": "К концу рабочего дня я морально истощён(а)",
+            "options": {
+              "rarely": "Редко",
+              "sometimes": "Иногда",
+              "often": "Часто",
+              "almost_always": "Почти всегда"
+            }
+          },
+          "sleepAffected": {
+            "label": "Работа мешает мне спать",
+            "options": {
+              "rarely": "Редко",
+              "sometimes": "Иногда",
+              "often": "Часто",
+              "almost_always": "Почти всегда"
+            }
+          },
+          "workAnxiety": {
+            "label": "Мысли о работе вызывают у меня тревогу",
+            "options": {
+              "rarely": "Редко",
+              "sometimes": "Иногда",
+              "often": "Часто",
+              "almost_always": "Почти всегда"
+            }
+          },
+          "missingRecoveryExperiences": {
+            "label": "Чего сейчас не хватает?",
+            "options": {
+              "detachment": "Мысленно отключаться от работы",
+              "relaxation": "Расслабление и отдых",
+              "mastery": "Что-то новое и посильное вне работы",
+              "control": "Контроль над своим свободным временем"
+            }
+          },
+          "selfAgreement": {
+            "label": "Одна договорённость с собой",
+            "options": {
+              "write_unfinished": "В конце дня записываю незаконченные дела",
+              "close_channels": "В свободное время закрываю рабочие каналы",
+              "transition": "После работы делаю небольшой переход",
+              "free_evening": "Оставляю один вечер в неделю свободным от работы",
+              "none_now": "Пока не выбираю"
+            }
+          },
+          "recoveryReason": {
+            "label": "Причина восстановления",
+            "options": {
+              "heavy_week": "Тяжёлая неделя",
+              "difficult_case": "Тяжёлый случай",
+              "workplace_violence": "Опыт насилия на работе",
+              "long_overload": "Длительная перегрузка"
+            }
+          },
+          "supportNeed": {
+            "label": "Нужная поддержка",
+            "options": {
+              "none": "Отдельная поддержка не нужна",
+              "manager": "Договорённость с руководителем",
+              "colleague": "Поддержка коллеги",
+              "supervisor": "Супервизия или другая согласованная поддержка"
+            }
+          },
+          "recoveryLevel": {
+            "label": "Возможность восстановиться",
+            "options": {
+              "sufficient": "Достаточная",
+              "partial": "Частичная",
+              "low": "Малая",
+              "none": "Отсутствует"
+            }
+          },
+          "workCapacityNext72h": {
+            "label": "Работоспособность в ближайшие 24–72 ч",
+            "options": {
+              "stable": "Стабильная",
+              "reduced": "Сниженная",
+              "low": "Низкая",
+              "not_sustainable": "Неустойчивая"
+            }
+          },
+          "nextCheckpoint": {
+            "label": "Следующая контрольная точка",
+            "options": {
+              "today": "Сегодня",
+              "tomorrow": "Завтра",
+              "in_72h": "Через 72 часа",
+              "next_week": "На следующей неделе"
+            }
+          },
+          "primaryLoadFactors": {
+            "label": "Выбери всё подходящее",
+            "options": {
+              "documentation": "Документирование",
+              "interruptions": "Прерывания",
+              "difficult_case": "Тяжёлый случай",
+              "workplace_violence": "Насилие на работе",
+              "after_hours": "Доступность в нерабочее время",
+              "role_conflict": "Ролевой конфликт"
+            }
+          },
+          "unavoidableTasks": {
+            "label": "Неотложные задачи"
+          },
+          "deferrableTasks": {
+            "label": "Задачи, которые можно отложить"
+          },
+          "redistributableTasks": {
+            "label": "Задачи, которые можно перераспределить"
+          }
+        },
+        "steps": {
+          "state": {
+            "title": "Состояние и контрольная точка",
+            "short": "Состояние"
+          },
+          "load": {
+            "short": "Нагрузка"
+          },
+          "tasks": {
+            "short": "План работы"
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Управляемо",
+            "text": "Восстановление требует внимания, но план пока остаётся управляемым с точки зрения организации работы."
+          },
+          "prioritize": {
+            "title": "Нужна расстановка приоритетов",
+            "text": "Работу на ближайшие 24–72 часа нужно сузить до неотложного, а часть дел отложить."
+          },
+          "organizational_support": {
+            "title": "Нужна поддержка в организации работы",
+            "text": "Возможность восстановиться или работоспособность низкие. Нужна договорённость о поддержке, перераспределении или границах."
+          }
+        },
+        "outputs": {
+          "0": "План восстановления",
+          "1": "Памятка для обсуждения с руководителем"
+        }
+      },
+      "role_boundaries": {
+        "steps": {
+          "expectation": {
+            "short": "Ожидание"
+          },
+          "role": {
+            "title": "Моя роль и её граница",
+            "short": "Роль"
+          },
+          "parties": {
+            "title": "Вклад и стороны",
+            "short": "Стороны"
+          },
+          "clarification": {
+            "short": "Разъяснение"
+          }
+        },
+        "fields": {
+          "expectationSource": {
+            "label": "Кто выдвигает ожидание?",
+            "options": {
+              "client": "Клиент",
+              "client_family": "Близкий клиента",
+              "manager": "Руководитель",
+              "colleague": "Коллега",
+              "partner": "Партнёр",
+              "network": "Сеть"
+            }
+          },
+          "expectedAction": {
+            "label": "Чего ожидают?",
+            "options": {
+              "explain_service": "Объяснить услугу или решение",
+              "solve_partner_delay": "Решить задержку партнёра",
+              "be_always_available": "Быть постоянно доступным",
+              "make_decision": "Принять решение",
+              "coordinate_network": "Координировать сеть",
+              "emotional_support": "Эмоциональная поддержка"
+            }
+          },
+          "myRole": {
+            "label": "Какова моя роль?",
+            "options": {
+              "case_worker": "Координация работы со случаем",
+              "advisor": "Консультирование и разъяснение",
+              "service_link": "Посредничество с услугой или контактом",
+              "assessment_input": "Сбор данных для оценки",
+              "support_planning": "Планирование поддержки"
+            }
+          },
+          "outsideRole": {
+            "label": "Что не входит в мою роль?",
+            "options": {
+              "none": "Граница ясна",
+              "make_other_agency_decision": "Принимать решение за другое учреждение",
+              "replace_service_provider": "Заменять поставщика услуги",
+              "be_crisis_contact": "Быть кризисным контактом",
+              "guarantee_outcome": "Гарантировать результат",
+              "carry_partner_responsibility": "Нести ответственность партнёра"
+            }
+          },
+          "neededResponsibility": {
+            "label": "Чей вклад нужен?",
+            "options": {
+              "self": "Решаемо в рамках моей роли",
+              "manager": "Вклад руководителя",
+              "partner_agency": "Вклад партнёра",
+              "service_provider": "Вклад поставщика услуги",
+              "network": "Совместный вклад сети",
+              "client_family": "Вклад клиента или близкого"
+            }
+          },
+          "counterpart": {
+            "label": "Кому адресовано разъяснение",
+            "options": {
+              "client": "Клиент",
+              "client_family": "Близкий клиента",
+              "manager": "Руководитель",
+              "partner": "Партнёр",
+              "team": "Команда"
+            }
+          },
+          "roleConflict": {
+            "label": "Уровень ролевого конфликта",
+            "options": {
+              "none": "Нет",
+              "low": "Низкий",
+              "moderate": "Умеренный",
+              "high": "Высокий"
+            }
+          },
+          "availabilityPressure": {
+            "label": "Давление быть доступным",
+            "options": {
+              "none": "Нет",
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "ethicalComplexity": {
+            "label": "Этическая сложность",
+            "options": {
+              "low": "Низкая",
+              "moderate": "Умеренная",
+              "high": "Высокая"
+            }
+          }
+        },
+        "signals": {
+          "clear": {
+            "title": "Роль в целом ясна",
+            "text": "Ожидание, роль и ответственность достаточно разграничены. При необходимости оформи короткое разъяснение."
+          },
+          "needs_clarification": {
+            "title": "Требует разъяснения",
+            "text": "Какое-то ожидание, ответственность или вклад стороны требуют более чёткой формулировки."
+          },
+          "needs_network_discussion": {
+            "title": "Нужно обсуждение организации работы или в сети",
+            "text": "Ролевой конфликт или смещение ответственности нужно обсудить с руководителем, партнёром или на ковизии."
+          }
+        },
+        "outputs": {
+          "roleBoundaryAnalysis": "Анализ границ роли",
+          "clientExplanation": "Разъяснение для клиента",
+          "partnerClarification": "Разъяснение роли для партнёра",
+          "canCannotDoText": "Что я могу / не могу сделать",
+          "managerMemo": "Памятка для руководителя"
+        }
+      },
+      "starter_support": {
+        "steps": {
+          "stage": {
+            "short": "Этап"
+          },
+          "talks": {
+            "title": "Срочность поддержки и обсуждения",
+            "short": "Обсуждения"
+          },
+          "unclear": {
+            "short": "Неясно"
+          },
+          "support": {
+            "short": "Поддержка сейчас"
+          },
+          "shared": {
+            "title": "Что не стоит нести в одиночку",
+            "short": "Разделение"
+          }
+        },
+        "fields": {
+          "experienceStage": {
+            "label": "Этап рабочего опыта",
+            "options": {
+              "first_week": "Первая неделя",
+              "first_month": "Первый месяц",
+              "first_100_days": "Первые 100 дней",
+              "new_role": "Новая роль в той же сфере"
+            }
+          },
+          "roleArea": {
+            "label": "Сфера роли",
+            "options": {
+              "child_protection": "Защита детей",
+              "adult_support": "Поддержка взрослых",
+              "elderly_support": "Поддержка пожилых",
+              "disability_support": "Поддержка людей с инвалидностью",
+              "service_coordination": "Координация услуг",
+              "general_social_work": "Общая социальная работа"
+            }
+          },
+          "supportUrgency": {
+            "label": "Срочность договорённости о поддержке",
+            "options": {
+              "stable": "Стабильно",
+              "plan_needed": "План нужно уточнить",
+              "soon": "Нужно договориться в ближайшее время",
+              "urgent": "Нужна срочная договорённость"
+            }
+          },
+          "unclearTopics": {
+            "label": "Неясные темы",
+            "options": {
+              "role_boundaries": "Роль и ответственность",
+              "documentation": "Документирование",
+              "network_work": "Работа в сети",
+              "service_rules": "Правила услуг",
+              "risk_escalation": "Эскалация рисков",
+              "work_boundaries": "Рабочие границы"
+            }
+          },
+          "existingSupport": {
+            "label": "Имеющаяся поддержка",
+            "options": {
+              "manager_check_in": "Контрольная встреча с руководителем",
+              "team_channel": "Канал команды",
+              "onboarding_material": "Материалы для введения в работу",
+              "shadowing": "Наблюдение за более опытным коллегой",
+              "case_discussion": "Обсуждение случая"
+            }
+          },
+          "missingSupport": {
+            "label": "Недостающая поддержка",
+            "options": {
+              "mentor": "Наставник",
+              "covision": "Ковизия",
+              "clear_documentation_routine": "Чёткий порядок документирования",
+              "role_expectations": "Разъяснение ожиданий от роли",
+              "boundary_agreement": "Договорённость о рабочих границах",
+              "case_escalation_rule": "Правило эскалации случаев"
+            }
+          },
+          "casesNotCarryAlone": {
+            "label": "Случаи, которые не стоит нести в одиночку",
+            "options": {
+              "complex_family_case": "Сложный семейный случай",
+              "workplace_violence": "Ситуация насилия на работе",
+              "ethical_tension_case": "Случай с этическим напряжением",
+              "high_risk_case": "Случай с высоким риском",
+              "unclear_mandate": "Случай с неясными полномочиями"
+            }
+          },
+          "covisionNeedSigns": {
+            "label": "Признаки потребности в ковизии",
+            "options": {
+              "ethical_tension": "Этическое напряжение",
+              "role_uncertainty": "Неясность роли",
+              "emotional_load": "Эмоциональная нагрузка",
+              "repeating_case_pattern": "Повторяющаяся картина случаев",
+              "not_to_carry_alone": "Не стоит нести в одиночку"
+            }
+          }
+        },
+        "signals": {
+          "support_available": {
+            "title": "Поддержка в целом есть",
+            "text": "Поддержка на старте есть, и её главное — держать на виду."
+          },
+          "needs_clearer_support_plan": {
+            "title": "Нужен более чёткий план рабочей поддержки",
+            "text": "Какая-то поддержка, ожидание от роли или порядок документирования требуют более чёткой договорённости."
+          },
+          "needs_urgent_support_agreement": {
+            "title": "Нужна более быстрая договорённость о поддержке",
+            "text": "Недостающая поддержка или сложные случаи требуют более быстрой договорённости с руководителем, наставником или на ковизии."
+          }
+        },
+        "outputs": {
+          "firstWeekPlan": "План первой недели",
+          "firstMonthFocus": "Фокус первого месяца",
+          "hundredDaySupportPlan": "План рабочей поддержки на 100 дней",
+          "managerMentorQuestions": "Вопросы руководителю или наставнику",
+          "covisionNeedCheck": "Проверка потребности в ковизии",
+          "boundaryDraft": "Черновик рабочих границ начинающего"
+        }
+      },
+      "weekly_reflection": {
+        "fields": {
+          "weeklyLoad": {
+            "label": "Нагрузка",
+            "options": {
+              "low": "Низкая",
+              "moderate": "Умеренная",
+              "high": "Высокая",
+              "critical": "Критическая"
+            }
+          },
+          "weeklyRecovery": {
+            "label": "Мне удалось восстановиться",
+            "options": {
+              "sufficient": "Достаточно",
+              "partial": "Частично",
+              "low": "Мало",
+              "none": "Совсем нет"
+            }
+          },
+          "weeklyMeaning": {
+            "label": "Работа имела смысл",
+            "options": {
+              "yes": "Да",
+              "partly": "Частично",
+              "no": "Сейчас нет"
+            }
+          }
+        }
+      },
+      "work_boundaries": {
+        "steps": {
+          "focus": {
+            "title": "Фокус договорённости",
+            "short": "Фокус"
+          },
+          "agreement": {
+            "short": "Рамка"
+          },
+          "wording": {
+            "short": "Формулировка"
+          },
+          "exceptions": {
+            "title": "Исключения в кризисной ситуации",
+            "short": "Исключения"
+          }
+        },
+        "fields": {
+          "agreementType": {
+            "label": "Фокус договорённости",
+            "options": {
+              "after_hours_availability": "Граница доступности в нерабочее время",
+              "work_time_boundary": "Граница рабочего времени",
+              "evening_messages": "Договорённость о вечерних сообщениях",
+              "pause_agreement": "Защита перерывов",
+              "replacement_agreement": "Договорённость о замещении",
+              "crisis_exception": "Исключения в кризисной ситуации",
+              "focus_time": "Защита времени для сосредоточенной работы",
+              "urgent_requests": "Граница срочных запросов"
+            }
+          },
+          "boundaryClarity": {
+            "label": "Ясность границы",
+            "options": {
+              "clear": "Ясная",
+              "partly_clear": "Частично ясная",
+              "unclear": "Неясная"
+            }
+          },
+          "afterHoursPressure": {
+            "label": "Давление быть доступным в нерабочее время",
+            "options": {
+              "none": "Нет",
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "pauseProtection": {
+            "label": "Защищённость перерывов",
+            "options": {
+              "protected": "Защищены",
+              "partial": "Частично",
+              "unclear": "Неясно",
+              "none": "Не защищены"
+            }
+          },
+          "replacementCoverage": {
+            "label": "Ясность замещения или передачи информации",
+            "options": {
+              "clear": "Ясно",
+              "partial": "Частично",
+              "unclear": "Неясно",
+              "missing": "Отсутствует"
+            }
+          },
+          "urgentExceptionClarity": {
+            "label": "Ясность срочных исключений",
+            "options": {
+              "clear": "Ясно",
+              "partly_clear": "Частично ясно",
+              "unclear": "Неясно"
+            }
+          },
+          "overtimeLastMonth": {
+            "label": "Сверхурочная работа за последний месяц",
+            "options": {
+              "none": "Не было",
+              "occasional": "Время от времени",
+              "regular": "Регулярно"
+            }
+          },
+          "overtimeCompensation": {
+            "label": "Если была, компенсируется ли она?",
+            "options": {
+              "yes": "Да",
+              "partly": "Частично",
+              "no": "Нет",
+              "unknown": "Не знаю"
+            }
+          },
+          "flexibleHours": {
+            "label": "Гибкое рабочее время возможно",
+            "options": {
+              "yes": "Да",
+              "partly": "Частично",
+              "no": "Нет",
+              "unknown": "Не знаю"
+            }
+          },
+          "counterpart": {
+            "label": "Сторона договорённости",
+            "options": {
+              "manager": "Руководитель",
+              "colleague": "Коллега",
+              "team": "Команда",
+              "partner": "Партнёр"
+            }
+          },
+          "reviewTime": {
+            "label": "Время пересмотра",
+            "options": {
+              "one_week": "Через неделю",
+              "two_weeks": "Через две недели",
+              "one_month": "Через месяц",
+              "next_meeting": "На следующей встрече"
+            }
+          },
+          "supportNeed": {
+            "label": "Нужная поддержка",
+            "options": {
+              "none": "Отдельная поддержка не нужна",
+              "manager": "Договорённость с руководителем",
+              "colleague": "Поддержка коллеги",
+              "team": "Договорённость в команде"
+            }
+          },
+          "currentConcern": {
+            "label": "Текущая проблема"
+          },
+          "desiredPrinciple": {
+            "label": "Желаемый принцип"
+          },
+          "exceptions": {
+            "label": "Исключения в кризисной ситуации"
+          }
+        },
+        "signals": {
+          "clear": {
+            "title": "Граница в целом ясна",
+            "text": "Договорённость нужно соблюдать и пересматривать, но риск для организации работы сейчас низкий."
+          },
+          "needs_clarification": {
+            "title": "Нужно уточнить",
+            "text": "Какая-то граница, исключение или замещение требуют более чёткой формулировки, чтобы прерывания не повторялись."
+          },
+          "needs_agreement": {
+            "title": "Нужна договорённость",
+            "text": "Давление в нерабочее время или неясные исключения требуют конкретной договорённости об организации работы с руководителем или командой."
+          }
+        },
+        "outputs": {
+          "boundaryAgreement": "Черновик договорённости о рабочих границах",
+          "managerMemo": "Памятка для обсуждения с руководителем",
+          "documentInput": "Материал для составления документа"
+        }
+      },
+      "workplace_violence": {
+        "fields": {
+          "violenceType": {
+            "label": "Вид ситуации",
+            "options": {
+              "insult_or_humiliation": "Оскорбление или унижение",
+              "aggression": "Агрессия",
+              "threat": "Угроза",
+              "physical_danger": "Физическая опасность",
+              "stalking_or_intimidation": "Преследование или запугивание",
+              "repeated_harassment": "Повторяющееся оскорбительное общение",
+              "threatening_message": "Угрожающее сообщение или письмо",
+              "lone_work_risk": "Риск при посещении на дому или работе в одиночку"
+            }
+          },
+          "dangerStatus": {
+            "label": "Сохраняется ли опасность сейчас?",
+            "options": {
+              "ended": "Нет",
+              "uncertain": "Не уверен(а)",
+              "ongoing": "Может продолжаться"
+            }
+          },
+          "sourceOfHarm": {
+            "label": "От кого это исходило?",
+            "options": {
+              "client_or_family": "Клиент или его близкий",
+              "colleague": "Коллега",
+              "manager": "Руководитель",
+              "partner": "Партнёр",
+              "other": "Другое"
+            }
+          },
+          "locationOrChannel": {
+            "label": "Место или канал",
+            "options": {
+              "office": "Офис или приёмная",
+              "home_visit": "Посещение на дому",
+              "phone": "Телефон",
+              "email_or_message": "Письмо или сообщение",
+              "public_space": "Общественное место",
+              "partner_channel": "Канал партнёра"
+            }
+          },
+          "workImpact": {
+            "label": "Влияние на работу",
+            "options": {
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "safetyImpact": {
+            "label": "Влияние на чувство безопасности",
+            "options": {
+              "none": "Не отмечаю",
+              "some": "Некоторое",
+              "high": "Высокое"
+            }
+          },
+          "documentedStatus": {
+            "label": "Состояние документирования",
+            "options": {
+              "yes": "Нужная для работы информация записана",
+              "partial": "Записано частично",
+              "not_yet": "Ещё не записано"
+            }
+          },
+          "nextStepNeed": {
+            "label": "Следующий шаг",
+            "options": {
+              "manager_followup": "Обратная связь с руководителем",
+              "safety_followup": "Проверка безопасности",
+              "document_neutral_facts": "Записать нейтральные факты",
+              "change_channel": "Сменить канал связи",
+              "colleague_presence": "Привлечь коллегу",
+              "work_arrangement_change": "Изменить организацию работы"
+            }
+          },
+          "safetyAgreementNeed": {
+            "label": "Потребность в договорённости о безопасности",
+            "options": {
+              "no": "Отдельная договорённость не нужна",
+              "unclear": "Нужно уточнить",
+              "yes": "Нужна договорённость"
+            }
+          },
+          "recoveryNeed": {
+            "label": "Потребность в восстановлении",
+            "options": {
+              "none": "Отдельный план не нужен",
+              "partial": "Нужен короткий план",
+              "high": "Нужна поддержка в организации работы"
+            }
+          }
+        },
+        "steps": {
+          "safety": {
+            "title": "Безопасность"
+          },
+          "impact": {
+            "title": "Место и последствия",
+            "short": "Последствия"
+          },
+          "support": {
+            "title": "Восстановление и поддержка",
+            "short": "Восстановление"
+          },
+          "description": {
+            "short": "Описание"
+          }
+        },
+        "signals": {
+          "no_immediate_danger": {
+            "title": "Непосредственной опасности нет",
+            "text": "Ситуации нужно нейтральное последующее описание и соблюдение договорённостей."
+          },
+          "needs_attention": {
+            "title": "Требует внимания",
+            "text": "Ситуация требует последующих действий в организации работы, уточнения безопасности или поддержки."
+          },
+          "urgent_attention": {
+            "title": "Нужно срочное внимание",
+            "text": "Если опасность может продолжаться, прежде всего действуй ради безопасности и по указаниям ответственной стороны."
+          }
+        },
+        "outputs": {
+          "neutralIncidentDescription": "Нейтральное описание случая",
+          "internalReport": "Черновик обращения",
+          "safetyAgreementInput": "Материал для договорённости о безопасности",
+          "managerMemo": "Памятка для обсуждения с руководителем",
+          "covisionInput": "Материал для ковизии",
+          "workArrangementRecommendation": "Рекомендация изменить организацию работы"
+        }
+      },
+      "work_processes": {
+        "steps": {
+          "overview": {
+            "short": "Общая картина"
+          },
+          "load": {
+            "title": "Нагрузка и влияние",
+            "short": "Нагрузка"
+          },
+          "time": {
+            "title": "Пожиратели времени"
+          },
+          "blockers": {
+            "title": "Препятствия"
+          },
+          "simplify": {
+            "title": "Упрощение"
+          }
+        },
+        "fields": {
+          "analysisFocus": {
+            "label": "Фокус анализа",
+            "options": {
+              "documentation_flow": "Процесс документирования",
+              "case_flow": "Процесс работы со случаем",
+              "partner_coordination": "Согласование с партнёрами",
+              "team_routine": "Повторяющаяся рутина команды",
+              "information_flow": "Движение информации"
+            }
+          },
+          "counterpart": {
+            "label": "Сторона обсуждения",
+            "options": {
+              "manager": "Руководитель",
+              "team": "Команда",
+              "colleague": "Коллега",
+              "partner": "Партнёр"
+            }
+          },
+          "documentationDuplication": {
+            "label": "Уровень дублирующего документирования",
+            "options": {
+              "none": "Нет",
+              "low": "Низкий",
+              "moderate": "Умеренный",
+              "high": "Высокий"
+            }
+          },
+          "switchingLoad": {
+            "label": "Нагрузка от переключения между задачами",
+            "options": {
+              "low": "Низкая",
+              "moderate": "Умеренная",
+              "high": "Высокая"
+            }
+          },
+          "processImpact": {
+            "label": "Влияние рабочего процесса",
+            "options": {
+              "low": "Низкое",
+              "moderate": "Умеренное",
+              "high": "Высокое"
+            }
+          },
+          "categories": {
+            "label": "Категории",
+            "options": {
+              "client_value_work": "Работа с клиентом, создающая ценность",
+              "necessary_burden": "Необходимая, но обременительная работа",
+              "duplicate_entry": "Дублирующий ввод данных",
+              "documentation": "Документирование",
+              "information_search": "Поиск информации",
+              "partner_coordination": "Согласование с партнёрами",
+              "waiting": "Ожидание",
+              "repetitive_tasks": "Повторяющиеся действия",
+              "low_value_work": "Малоценные действия"
+            }
+          },
+          "timeCostSources": {
+            "label": "Основные источники потерь времени",
+            "options": {
+              "same_data_multiple_places": "Одна и та же информация в нескольких местах",
+              "searching_partner_info": "Поиск информации у партнёра",
+              "manual_status_updates": "Ручное обновление статуса",
+              "waiting_for_answers": "Ожидание ответов",
+              "copying_between_systems": "Копирование между системами",
+              "unclear_next_step": "Неясный следующий шаг",
+              "tools_not_working": "Рабочие инструменты не работают (компьютер, телефон, машина)",
+              "workspace_unsuitable": "Помещение не подходит (конфиденциальность разговоров, шум)"
+            }
+          },
+          "informationBlockers": {
+            "label": "Препятствия для движения информации",
+            "options": {
+              "unclear_owner": "Неясный ответственный",
+              "missing_shared_view": "Нет общего обзора",
+              "partner_delay": "Задержка партнёра",
+              "system_gap": "Разрыв между системами",
+              "role_confusion": "Путаница ролей"
+            }
+          },
+          "unfinishedWork": {
+            "label": "Что остаётся незавершённым",
+            "options": {
+              "client_followup": "Последующие действия по клиенту",
+              "case_notes": "Записи по случаю",
+              "partner_reply": "Ответ партнёру",
+              "planning": "Планирование",
+              "recovery_pause": "Перерыв или восстановление"
+            }
+          },
+          "lowValueActivities": {
+            "label": "Малоценные или дублирующие действия",
+            "options": {
+              "same_data_multiple_places": "Повторный ввод одних и тех же данных",
+              "manual_copying": "Ручное копирование",
+              "status_chasing": "Выяснение статуса",
+              "duplicate_meetings": "Дублирующие обсуждения",
+              "unclear_templates": "Неясные шаблоны"
+            }
+          },
+          "simplificationNeeds": {
+            "label": "Что могло бы упростить",
+            "options": {
+              "single_entry": "Однократный ввод",
+              "shared_status_view": "Общий обзор статуса",
+              "clear_owner": "Ясный ответственный",
+              "template_cleanup": "Упорядочить шаблоны",
+              "meeting_rule": "Правило совещаний"
+            }
+          }
+        },
+        "signals": {
+          "manageable": {
+            "title": "Рабочий процесс в целом управляем",
+            "text": "Пожирателей времени мало или их влияние невелико. Держи на виду одно упрощение и следи за картиной."
+          },
+          "needs_simplification": {
+            "title": "Нужно упрощение",
+            "text": "Какой-то повторяющийся шаг, движение информации или документирование требуют небольшого упрощения в организации работы."
+          },
+          "needs_organizational_change": {
+            "title": "Нужно изменение в организации работы",
+            "text": "Дублирование, переключения или незавершённые дела требуют чёткого изменения вместе с руководителем или командой."
+          }
+        },
+        "outputs": {
+          "processMap": "Карта рабочего процесса",
+          "topTimeThieves": "Три главных пожирателя времени",
+          "documentationSimplification": "Предложение по упрощению документирования",
+          "informationFlowSummary": "Сводка о движении информации",
+          "managerMemo": "Памятка для обсуждения организации работы"
+        }
+      }
+    },
+    "labels": {
+      "values": {
+        "mentoring": "менторство",
+        "measures__gap__mentoring": "нужно, но нет: менторство",
+        "covision": "ковизия",
+        "measures__gap__covision": "нужно, но нет: ковизия",
+        "supervision": "супервизия",
+        "measures__gap__supervision": "нужно, но нет: супервизия",
+        "development_talks": "беседы о развитии",
+        "measures__gap__development_talks": "нужно, но нет: беседы о развитии",
+        "training": "курсы повышения квалификации",
+        "measures__gap__training": "нужно, но нет: курсы повышения квалификации",
+        "degree_study": "обучение на степень или микростепень",
+        "measures__gap__degree_study": "нужно, но нет: обучение на степень или микростепень",
+        "study_visits": "учебные поездки и наблюдение за работой коллег",
+        "measures__gap__study_visits": "нужно, но нет: учебные поездки и наблюдение за работой коллег",
+        "inter_municipal_exchange": "обмен опытом между самоуправлениями",
+        "measures__gap__inter_municipal_exchange": "нужно, но нет: обмен опытом между самоуправлениями",
+        "rotation": "временная работа в другой организации",
+        "measures__gap__rotation": "нужно, но нет: временная работа в другой организации",
+        "psychological_counselling": "психологическое консультирование",
+        "measures__gap__psychological_counselling": "нужно, но нет: психологическое консультирование",
+        "mental_health_training": "обучение по психическому здоровью",
+        "measures__gap__mental_health_training": "нужно, но нет: обучение по психическому здоровью",
+        "health_days": "дни здоровья",
+        "measures__gap__health_days": "нужно, но нет: дни здоровья",
+        "health_promoting_network": "сеть рабочих мест, укрепляющих здоровье",
+        "measures__gap__health_promoting_network": "нужно, но нет: сеть рабочих мест, укрепляющих здоровье",
+        "safety_measures": "меры безопасности и предотвращения насилия",
+        "measures__gap__safety_measures": "нужно, но нет: меры безопасности и предотвращения насилия",
+        "flexible_hours": "гибкое рабочее время",
+        "measures__gap__flexible_hours": "нужно, но нет: гибкое рабочее время",
+        "workload_review": "регулярная оценка нагрузки",
+        "measures__gap__workload_review": "нужно, но нет: регулярная оценка нагрузки",
+        "overtime_compensation": "компенсация сверхурочных",
+        "measures__gap__overtime_compensation": "нужно, но нет: компенсация сверхурочных",
+        "substitution_rules": "чёткий порядок замещения",
+        "measures__gap__substitution_rules": "нужно, но нет: чёткий порядок замещения",
+        "recognition": "признание работников",
+        "measures__gap__recognition": "нужно, но нет: признание работников",
+        "legislation": "правовые акты и процедуры",
+        "case_management": "ведение случая",
+        "needs_assessment": "оценка потребности в помощи",
+        "impact_assessment": "оценка воздействия",
+        "complex_clients": "работа со сложными клиентами",
+        "crisis_trauma": "кризисная и травма-информированная работа",
+        "ethics": "этика и этические дилеммы",
+        "mental_health": "вопросы психического здоровья",
+        "digital_skills": "STAR и цифровые навыки",
+        "self_care": "забота о себе",
+        "time_management": "организация работы и управление временем",
+        "teamwork_network": "работа в команде и сети",
+        "after_hours_availability": "доступность в нерабочее время",
+        "aggression": "агрессия",
+        "adult_support": "поддержка взрослых",
+        "after_hours": "доступность в нерабочее время",
+        "case_notes": "записи по случаю",
+        "case_discussion": "обсуждение случая",
+        "case_escalation_rule": "правило эскалации случаев",
+        "case_worker": "координатор случая",
+        "channel_rules": "правила каналов связи",
+        "change_channel": "смена канала связи",
+        "child_protection": "защита детей",
+        "clear": "ясно",
+        "clear_documentation_routine": "чёткий порядок документирования",
+        "client_family": "клиент или семья",
+        "client_or_family": "клиент или его близкий",
+        "client_followup": "последующий контакт с клиентом",
+        "colleague_presence": "привлечение коллеги",
+        "colleague_questions": "вопросы коллег",
+        "complex_family_case": "сложный семейный случай",
+        "critical_incident": "критический случай",
+        "deferrable": "вопрос, который может подождать",
+        "documentation": "документирование",
+        "documentation_system": "прерывание из-за документирования или системы",
+        "documentation_flow": "процесс документирования",
+        "document_neutral_facts": "записать нейтральные факты",
+        "duplicate_entry": "дублирующий ввод данных",
+        "elderly_support": "поддержка пожилых",
+        "email_or_message": "письмо или сообщение",
+        "email": "электронная почта",
+        "emotional_load": "эмоциональная нагрузка",
+        "emotionally_heavy": "эмоционально тяжело",
+        "ended": "не продолжается",
+        "ethical_tension": "этическое напряжение",
+        "ethical_tension_case": "случай с этическим напряжением",
+        "few": "немногие",
+        "first_100_days": "первые 100 дней",
+        "first_month": "первый месяц",
+        "first_week": "первая неделя",
+        "focus_time": "время для сосредоточенной работы",
+        "general_social_work": "общая социальная работа",
+        "heavy_week": "тяжёлая неделя",
+        "high": "высокий уровень",
+        "high_risk_case": "случай с высоким риском",
+        "home_visit": "посещение на дому",
+        "in_72h": "через 72 часа",
+        "information_search": "поиск информации",
+        "low": "низкий уровень",
+        "many": "много",
+        "make_other_agency_decision": "принятие решения за другое учреждение",
+        "manager": "руководитель",
+        "manager_check_in": "контрольная встреча с руководителем",
+        "manager_followup": "обратная связь с руководителем",
+        "manual_copying": "ручное копирование",
+        "manual_status_updates": "ручное обновление статуса",
+        "mentor": "наставник",
+        "missing_shared_view": "нет общего обзора",
+        "moderate": "умеренный уровень",
+        "needs_attention": "требует внимания",
+        "needs_clarification": "требует уточнения",
+        "needs_network_discussion": "нужно обсуждение в сети",
+        "negotiable": "прерывание, о котором можно договориться",
+        "network_work": "работа в сети",
+        "new_role": "новая роль в той же сфере",
+        "next_week": "на следующей неделе",
+        "no": "нет",
+        "no_immediate_danger": "непосредственной опасности нет",
+        "none": "нет",
+        "not_sustainable": "неустойчиво",
+        "not_to_carry_alone": "не стоит нести в одиночку",
+        "not_yet": "ещё не записано",
+        "office": "офис или приёмная",
+        "onboarding_material": "материалы для введения в работу",
+        "ongoing": "может продолжаться",
+        "partner_agency": "организация-партнёр",
+        "partner": "партнёр",
+        "partner_process": "прерывание из-за процесса партнёра",
+        "partial": "частично",
+        "partner_channel": "канал партнёра",
+        "phone": "телефон",
+        "prioritize": "нужна расстановка приоритетов",
+        "processes__duplicate_entry": "дублирующий ввод в рабочем процессе",
+        "processes__high_value_loss": "важная работа отходит на второй план из-за малоценных действий",
+        "processes__single_entry_needed": "нужно единое место ввода",
+        "processes__switching_load_high": "высокая нагрузка от переключения между процессами",
+        "plan_needed": "план нужно уточнить",
+        "process_change": "изменение рабочего процесса",
+        "public_space": "общественное место",
+        "rare": "редко",
+        "reduced": "снижена",
+        "repeated_harassment": "повторяющееся оскорбительное общение",
+        "repetitive_tasks": "повторяющиеся действия",
+        "repeating_case_pattern": "повторяющаяся картина случаев",
+        "risk_escalation": "эскалация рисков",
+        "role_boundaries": "роль и ответственность",
+        "role_boundary": "граница роли",
+        "role_expectations": "разъяснение ожиданий от роли",
+        "role_uncertainty": "неясность роли",
+        "same_data_multiple_places": "одна и та же информация в нескольких местах",
+        "searching_partner_info": "поиск информации у партнёра",
+        "service_coordination": "координация услуг",
+        "service_rules": "правила услуг",
+        "shared_status_view": "общий обзор статуса",
+        "shadowing": "наблюдение за более опытным коллегой",
+        "single_entry": "единое место ввода",
+        "solve_partner_delay": "решение задержки партнёра",
+        "some": "некоторое",
+        "sometimes": "иногда",
+        "soon": "нужно договориться в ближайшее время",
+        "stable": "стабильно",
+        "starter_support__mentor_needed": "нужна поддержка наставника",
+        "starter_support__missing_support": "недостаёт рабочей поддержки",
+        "starter_support__not_to_carry_alone": "ситуацию не стоит нести в одиночку",
+        "supervisor": "супервизия или другая согласованная поддержка",
+        "team": "команда",
+        "team_agreement": "договорённость в команде",
+        "team_channel": "канал команды",
+        "today": "сегодня",
+        "tomorrow": "завтра",
+        "threat": "угроза",
+        "threatening_message": "угрожающее сообщение или письмо",
+        "unclear": "неясно",
+        "unclear_mandate": "случай с неясными полномочиями",
+        "unclear_owner": "неясно, кто ответственный",
+        "unavoidable": "неизбежное срочное вмешательство",
+        "urgent_attention": "нужно срочное внимание",
+        "urgent": "нужна срочная договорённость",
+        "very_often": "очень часто",
+        "work_arrangement_change": "изменение организации работы",
+        "work_boundaries": "рабочие границы",
+        "workplace_violence": "ситуация насилия на работе",
+        "wrong_channel": "неподходящий канал связи",
+        "yes": "да",
+        "green": "зелёный",
+        "yellow": "жёлтый",
+        "red": "красный",
+        "insufficient_data": "данных пока недостаточно",
+        "manageable": "управляемо",
+        "support_available": "поддержка есть",
+        "organizational_support": "нужна поддержка организации",
+        "needs_agreement": "нужна договорённость",
+        "needs_clearer_support_plan": "нужен более чёткий план поддержки",
+        "needs_organizational_change": "нужно изменение в организации работы",
+        "needs_reorganization": "нужна реорганизация работы",
+        "needs_simplification": "нужно упрощение",
+        "needs_urgent_support_agreement": "нужна срочная договорённость о поддержке",
+        "needs_workflow_clarification": "нужно уточнить рабочий процесс",
+        "critical": "критический уровень",
+        "routine": "обычный уровень",
+        "complex": "высокая сложность",
+        "very_complex": "очень высокая сложность",
+        "very_high": "очень высокий уровень",
+        "sufficient": "достаточно",
+        "partly_clear": "частично ясно",
+        "available": "доступна",
+        "not_available": "недоступна",
+        "ethical_dilemma": "этическая дилемма",
+        "complex_case": "сложно с точки зрения организации работы",
+        "trauma_related": "контакт с травмой",
+        "role_conflict": "ролевой конфликт",
+        "uncertain": "нет уверенности",
+        "social_worker": "социальный работник",
+        "advisor": "консультант",
+        "coordinator": "координатор",
+        "moral_distress": "моральный стресс",
+        "trauma_exposure": "контакт с травмой",
+        "workload_followup": "объём последующих действий",
+        "strong": "сильное",
+        "indirect": "косвенный",
+        "direct": "прямой",
+        "document_key_facts": "записать нужные для работы факты",
+        "reduce_next_day_load": "уменьшение нагрузки на следующий день",
+        "colleague_debrief": "рабочий разбор с коллегой",
+        "safety_followup": "проверка безопасности",
+        "covision_input": "подготовка материала для ковизии",
+        "insult_or_humiliation": "оскорбление или унижение",
+        "physical_danger": "физическая опасность",
+        "stalking_or_intimidation": "преследование или запугивание",
+        "lone_work_risk": "риск при посещении на дому или работе в одиночку",
+        "difficult_case": "тяжёлый случай",
+        "long_overload": "длительная перегрузка",
+        "interruptions": "прерывания",
+        "colleague": "коллега",
+        "work_time_boundary": "граница рабочего времени",
+        "evening_messages": "договорённость о вечерних сообщениях",
+        "pause_agreement": "защита перерывов",
+        "replacement_agreement": "договорённость о замещении",
+        "crisis_exception": "исключения в кризисной ситуации",
+        "urgent_requests": "граница срочных запросов",
+        "protected": "защищено",
+        "missing": "отсутствует",
+        "one_week": "через неделю",
+        "two_weeks": "через две недели",
+        "one_month": "через месяц",
+        "next_meeting": "на следующей встрече",
+        "message": "сообщение",
+        "manager_requests": "запросы руководителя",
+        "client_contact": "контакт с клиентом",
+        "partner_contact": "партнёр",
+        "meetings": "совещания",
+        "urgent_cases": "срочные случаи",
+        "often": "часто",
+        "case_flow": "процесс работы со случаем",
+        "partner_coordination": "согласование с партнёрами",
+        "team_routine": "повторяющаяся рутина команды",
+        "information_flow": "движение информации",
+        "client_value_work": "работа с клиентом, создающая ценность",
+        "necessary_burden": "необходимая, но обременительная работа",
+        "waiting": "ожидание",
+        "low_value_work": "малоценные действия",
+        "waiting_for_answers": "ожидание ответов",
+        "copying_between_systems": "копирование между системами",
+        "unclear_next_step": "неясный следующий шаг",
+        "status_chasing": "выяснение статуса",
+        "duplicate_meetings": "дублирующие обсуждения",
+        "unclear_templates": "неясные шаблоны",
+        "partner_delay": "задержка партнёра",
+        "system_gap": "разрыв между системами",
+        "role_confusion": "путаница ролей",
+        "partner_reply": "ответ партнёру",
+        "planning": "планирование",
+        "recovery_pause": "перерыв или восстановление",
+        "clear_owner": "ясный ответственный",
+        "template_cleanup": "упорядочивание шаблонов",
+        "meeting_rule": "правило совещаний",
+        "client": "клиент",
+        "network": "сеть",
+        "explain_service": "объяснение услуги или решения",
+        "be_always_available": "постоянная доступность",
+        "make_decision": "принятие решения",
+        "coordinate_network": "координация сети",
+        "emotional_support": "эмоциональная поддержка",
+        "service_link": "посредничество с услугой или контактом",
+        "assessment_input": "сбор данных для оценки",
+        "support_planning": "планирование поддержки",
+        "replace_service_provider": "замена роли поставщика услуги",
+        "be_crisis_contact": "роль кризисного контакта",
+        "guarantee_outcome": "гарантия результата",
+        "carry_partner_responsibility": "несение ответственности партнёра",
+        "self": "решаемо в рамках моей роли",
+        "service_provider": "вклад поставщика услуги",
+        "disability_support": "поддержка людей с инвалидностью",
+        "boundary_agreement": "договорённость о рабочих границах",
+        "ethical_tension__elevated": "повышенное этическое напряжение",
+        "moral_distress__present": "моральный стресс",
+        "trauma__exposure": "контакт с травмой",
+        "support__do_not_carry_alone": "случай не стоит нести в одиночку",
+        "role__clarity_partial_or_unclear": "роль или ответственность не совсем ясны",
+        "recovery__follow_up_needed": "восстановлению нужен план или поддержка",
+        "hard_case__immediate_danger": "непосредственная опасность может продолжаться",
+        "hard_case__immediate_danger_uncertain": "нет уверенности насчёт непосредственной опасности",
+        "hard_case__should_not_carry_alone": "случай не стоит нести в одиночку",
+        "hard_case__direct_trauma_exposure": "прямой контакт с травмой",
+        "hard_case__high_ethical_tension": "высокое этическое напряжение",
+        "interruptions__high_frequency": "прерывания частые",
+        "interruptions__work_impact": "прерывания влияют на работу",
+        "interruptions__wrong_channel": "прерывания приходят по неподходящему каналу",
+        "interruptions__documentation_system": "документирование или система прерывают работу",
+        "interruptions__role_boundary": "прерывания выходят за границы роли",
+        "interruptions__partner_process": "прерывания приходят из процесса партнёра",
+        "focus_time__agreement_needed": "нужна договорённость о времени для сосредоточенной работы",
+        "channels__agreement_needed": "нужна договорённость о каналах связи",
+        "urgency__criteria_unclear": "неясно, когда нужно реагировать сразу",
+        "process__documentation_simplification_needed": "документирование нужно упростить",
+        "interruptions__recovery_impact_high": "прерывания сильно мешают восстановлению",
+        "interruptions__very_frequent": "прерывания очень частые",
+        "interruptions__many_can_wait": "многие прерывания могли бы подождать",
+        "recovery__low_capacity_72h": "работоспособность в ближайшие 72 часа низкая",
+        "recovery__no_recovery_with_low_capacity": "нет возможности восстановиться, и работоспособность низкая",
+        "role_boundaries__role_conflict_high": "высокий ролевой конфликт",
+        "role_boundaries__role_conflict_moderate": "умеренный ролевой конфликт",
+        "role_boundaries__partner_explanation_needed": "партнёру нужно разъяснение роли",
+        "role_boundaries__availability_pressure_high": "сильное давление быть постоянно доступным",
+        "role_boundaries__ethical_complexity_high": "высокая этическая сложность",
+        "role_boundaries__manager_discussion_needed": "нужно обсуждение с руководителем",
+        "role_boundaries__partner_clarification_needed": "нужно разъяснение для партнёра",
+        "role_boundaries__shared_responsibility_needed": "ответственность нужно разделить",
+        "role_boundaries__responsibility_shift": "ожидают того, что не входит в мою роль",
+        "role_boundaries__partner_responsibility_gap": "нужен вклад партнёра",
+        "role_boundaries__ethical_tension": "этическое напряжение, связанное с границей роли",
+        "starter_support__cases_not_carry_alone": "случаи, которые не стоит нести в одиночку",
+        "starter_support__role_uncertainty": "роль и ответственность неясны",
+        "starter_support__documentation_uncertainty": "документирование неясно",
+        "starter_support__manager_check_needed": "нужно обсуждение с руководителем",
+        "starter_support__boundary_plan_needed": "нужна договорённость о рабочих границах",
+        "starter_support__covision_needed": "нужна ковизия",
+        "starter_support__early_role_uncertainty": "неясность роли в начале работы",
+        "starter_support__support_agreement_needed_soon": "договорённость о поддержке нужна в ближайшее время",
+        "support__replacement_unclear": "замещение или передача информации неясны",
+        "boundaries__after_hours_unclear": "граница доступности в нерабочее время неясна",
+        "boundaries__no_pause_protection": "перерывы не защищены",
+        "work_impact__elevated": "повышенное влияние на работу",
+        "safety_impact__present": "влияние на чувство безопасности",
+        "documentation__needs_neutral_record": "случаю нужна нейтральная запись",
+        "safety__agreement_needed": "нужна договорённость о безопасности",
+        "violence__workplace": "ситуация насилия на работе",
+        "workplace_violence__danger_ongoing": "опасность может продолжаться",
+        "workplace_violence__danger_uncertain": "нет уверенности, продолжается ли опасность",
+        "workplace_violence__physical_danger": "физическая опасность",
+        "workplace_violence__threat": "угроза",
+        "workplace_violence__safety_impact_high": "сильное влияние на чувство безопасности",
+        "processes__documentation_load": "нагрузка документированием",
+        "processes__information_search": "поиск информации",
+        "processes__waiting": "ожидание",
+        "processes__repetitive_tasks": "повторяющиеся действия",
+        "processes__shared_status_view_needed": "нужен общий обзор статуса",
+        "processes__owner_clarity_needed": "нужен ясный ответственный",
+        "processes__information_flow_needed": "нужен общий обзор информации",
+        "processes__duplicate_documentation_high": "много дублирующего документирования",
+        "processes__unfinished_work_accumulates": "незавершённая работа накапливается",
+        "risk__workplace_violence": "отмечен опыт насилия на работе",
+        "support__manager": "нужна договорённость с руководителем",
+        "support__colleague": "нужна поддержка коллеги",
+        "support__supervisor": "нужна супервизия или другая согласованная поддержка",
+        "workload__high": "объём работы высокий",
+        "case_complexity__high": "сложность случаев высокая",
+        "emotional_load__high": "эмоциональная нагрузка высокая",
+        "documentation__high": "нагрузка документированием высокая",
+        "interruptions__high": "уровень прерываний высокий",
+        "after_hours__impact": "влияние доступности в нерабочее время высокое",
+        "recovery__low_or_none": "возможность восстановиться мала или отсутствует",
+        "support__unclear_or_missing": "поддержка руководителя или коллег неясна или отсутствует",
+        "support__manager_unclear_or_missing": "поддержка руководителя неясна или отсутствует",
+        "support__colleague_unclear_or_missing": "поддержка коллег неясна или отсутствует",
+        "meaning__low": "ощущение смысла работы сейчас слабое",
+        "decision_control__low": "мало свободы решений в работе",
+        "clarity__unclear": "приоритеты или рабочие границы неясны",
+        "risk__difficult_case": "отмечен тяжёлый случай",
+        "risk__colleague_mistreatment": "отмечено недостойное обращение со стороны коллеги или руководителя",
+        "other": "другое",
+        "occasional": "время от времени",
+        "regular": "регулярно",
+        "partly": "частично",
+        "unknown": "не знаю",
+        "tools_not_working": "рабочие инструменты не работают (компьютер, телефон, машина)",
+        "workspace_unsuitable": "помещение не подходит (конфиденциальность разговоров, шум)",
+        "processes__tools_not_working": "рабочие инструменты мешают работе",
+        "processes__workspace_unsuitable": "физическая рабочая среда не поддерживает работу",
+        "boundaries__overtime_regular": "сверхурочная работа регулярная",
+        "boundaries__overtime_uncompensated": "сверхурочная работа компенсируется не полностью",
+        "boundaries__flexibility_missing": "гибкое рабочее время невозможно",
+        "rarely": "редко",
+        "almost_always": "почти всегда",
+        "detachment": "мысленное отключение от работы",
+        "relaxation": "расслабление и отдых",
+        "mastery": "что-то новое и посильное вне работы",
+        "control": "контроль над своим свободным временем",
+        "recovery__detachment_low": "работа часто переходит в свободное время",
+        "recovery__end_of_day_exhaustion": "к концу рабочего дня часто морально истощён(а)",
+        "recovery__sleep_or_anxiety_frequent": "работа часто мешает спать или вызывает тревогу",
+        "recovery__none_with_critical_workload": "критический объём работы без возможности восстановиться",
+        "strength__recovery": "мне удаётся восстанавливаться",
+        "strength__decision_control": "я могу принимать решения о своей работе",
+        "strength__priorities_clear": "приоритеты ясны",
+        "strength__boundaries_clear": "рабочие границы ясны",
+        "strength__manager_support": "поддержка руководителя доступна",
+        "strength__colleague_support": "поддержка коллег доступна",
+        "strength__work_meaning": "в работе есть смысл",
+        "strength__flexible_hours": "гибкое рабочее время возможно",
+        "strength__support_in_use": "нужная поддержка есть"
+      },
+      "factors": {
+        "workload__high": "Объём работы высокий",
+        "case_complexity__high": "Сложность случаев высокая",
+        "emotional_load__high": "Эмоциональная нагрузка высокая",
+        "documentation__high": "Нагрузка документированием высокая",
+        "interruptions__high": "Уровень прерываний высокий",
+        "after_hours__impact": "Влияние доступности в нерабочее время высокое",
+        "recovery__low_or_none": "Возможность восстановиться мала или отсутствует",
+        "support__unclear_or_missing": "Поддержка руководителя или коллег неясна или отсутствует",
+        "support__manager_unclear_or_missing": "Поддержка руководителя неясна или отсутствует",
+        "support__colleague_unclear_or_missing": "Поддержка коллег неясна или отсутствует",
+        "meaning__low": "Ощущение смысла работы сейчас слабое",
+        "decision_control__low": "Мало свободы решений в работе",
+        "clarity__unclear": "Приоритеты или рабочие границы неясны",
+        "risk__difficult_case": "Отмечен тяжёлый случай",
+        "risk__workplace_violence": "Отмечен опыт насилия на работе",
+        "risk__colleague_mistreatment": "Отмечено недостойное обращение со стороны коллеги или руководителя",
+        "recovery__none_with_critical_workload": "Критический объём работы без возможности восстановиться"
+      }
     }
   },
   "voimalused": {
