@@ -9846,7 +9846,7 @@
       "deleting": "Deleting…",
       "deleted": "The record was deleted.",
       "delete_failed": "Deleting the record failed.",
-      "privacy": "Records are private by default. Only you can see them; deleting a record also removes it from the anonymous aggregate.",
+      "privacy": "Records are private by default. Only you can see them; deleting a record also removes it from future summaries.",
       "workflow": {
         "quick_check": "Quick check",
         "overview": "Overview",
@@ -9876,7 +9876,7 @@
         "list": {
           "title": "Records",
           "short": "Records",
-          "lead": "Only you see these records. Deleting a record also removes it from the anonymous summary."
+          "lead": "Only you see these records. Deleting a record also removes it from future summaries."
         },
         "record": {
           "title": "Record",
@@ -10354,6 +10354,7 @@
       "period_free_form_forbidden": "A free date range cannot be used. Choose a period from the list.",
       "workflow_filter_forbidden": "The pilot overview cannot be filtered by workflow, because a small workflow could be worked out by subtracting the others.",
       "analysis_unit_forbidden": "In the pilot, the overview can only be viewed per person (one record per person and workflow).",
+      "period_closed_quarter_only": "The pilot overview can only be viewed for a finished quarter. Choose a quarter from the list.",
       "viewer_email_required": "Enter the viewer's e-mail address.",
       "viewer_not_found": "No user was found with this e-mail address."
     },
@@ -10369,7 +10370,7 @@
       "state_off": "Your records are not included in the summary",
       "state_on_hint": "You can turn this off at any time.",
       "state_default_hint": "This is the default; you have not changed it yet.",
-      "state_off_hint": "Your earlier records are excluded as well.",
+      "state_off_hint": "Earlier records are no longer counted either.",
       "private_title": "Stays only with you",
       "shared_title": "May be included in the summary",
       "private_items": {
@@ -10386,7 +10387,7 @@
         "strengths": "What works, such as colleague support being available",
         "risks": "Risk markers, such as a difficult case or workplace violence"
       },
-      "effect": "Your choice applies immediately to earlier records too. It does not change how you use your private Work wellbeing space."
+      "effect": "Applies at once to earlier records too, but not to finished quarterly reports. It does not limit your private Work wellbeing."
     },
     "support_measures": {
       "title": "My support options",

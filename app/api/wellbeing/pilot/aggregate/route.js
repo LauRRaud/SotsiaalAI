@@ -15,6 +15,7 @@ import {
 } from "@/lib/wellbeing/pilotAccess";
 import { buildWellbeingPilotReport } from "@/lib/wellbeing/pilotReport";
 import { recordWellbeingPilotAggregateView } from "@/lib/wellbeing/pilotScopes";
+import { readOrCreateWellbeingPilotSnapshot } from "@/lib/wellbeing/pilotSnapshots";
 import {
   exportWellbeingPilotReportHtml,
   exportWellbeingPilotReportXlsx
@@ -103,15 +104,28 @@ export async function GET(request) {
      lendas käsitlemata välja. Sama värav kehtib ka temale. */
   let dataset;
   let report;
+  let snapshot = null;
   try {
-    dataset = await buildWellbeingExportDataset(filters, datasetOptions);
-    /* „Võimaldab × vajan": asutuse skoobiga piloodis võrreldakse tugimeetmete
-       puudujääki asutuse enda kirjeldusega. Muul skoobil (KOV, rollirühm, admini
-       platvormivaade) asutust ei ole ja aruanne jääb endiseks. */
-    const offeredMeasures = filters.organizationId
-      ? (await listOrganizationSupportMeasures(filters.organizationId)).map((measure) => measure.measureKey)
+    const compute = async () => ({
+      dataset: await buildWellbeingExportDataset(filters, datasetOptions),
+      /* „Võimaldab × vajan": asutuse skoobiga piloodis võrreldakse tugimeetmete
+         puudujääki asutuse enda kirjeldusega. Muul skoobil (KOV, rollirühm, admini
+         platvormivaade) asutust ei ole ja aruanne jääb endiseks. */
+      offeredMeasures: filters.organizationId
+        ? (await listOrganizationSupportMeasures(filters.organizationId)).map((measure) => measure.measureKey)
+        : null
+    });
+    /* Piloodi vaade (ptk 8.23): lõppenud kvartal arvutatakse üks kord ja
+       külmutatakse; admini platvormivaade on elav. Tugimeetmete kirjeldus
+       külmutatakse koos koondiga, et aruanne ei muutuks tagantjärele. */
+    const result = filters.snapshot
+      ? await readOrCreateWellbeingPilotSnapshot(filters.snapshot, compute)
+      : await compute();
+    dataset = result.dataset;
+    snapshot = filters.snapshot
+      ? { frozen: result.frozen, createdAt: result.createdAt, periodLabel: filters.periodLabel }
       : null;
-    report = buildWellbeingPilotReport(dataset, { offeredMeasures });
+    report = buildWellbeingPilotReport(dataset, { offeredMeasures: result.offeredMeasures });
     /* O-WB-2: vaatamine ja eksport on auditis ENNE vastust. Kui rida ei
        kirjutu, koondit välja ei anta — jälgimatu ligipääs on halvem kui vastus,
        mida ei tule. */
@@ -119,7 +133,8 @@ export async function GET(request) {
       actorUserId: session?.user?.id,
       filters,
       format: ["csv", "report-html", "xlsx"].includes(format) ? format : "json",
-      isAdmin: Boolean(access.isAdmin)
+      isAdmin: Boolean(access.isAdmin),
+      snapshot
     });
   } catch (error) {
     return accessErrorJson(error);
@@ -162,6 +177,7 @@ export async function GET(request) {
     ok: true,
     dataset,
     report,
+    snapshot,
     access: {
       allowedRoleGroups: access.allowedRoleGroups || [],
       pilotScopes: access.pilotScopes || []

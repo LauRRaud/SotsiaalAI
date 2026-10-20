@@ -46,7 +46,7 @@ export function RecordsListView({ t, workflow, period, status, rows, more, notic
   return (
     <StepPanel
       title={t("wellbeing.my_records.views.list.title", "Kirjed")}
-      lead={t("wellbeing.my_records.views.list.lead", "Ainult sina näed neid kirjeid. Kustutamine eemaldab kirje ka anonüümsest koondist.")}
+      lead={t("wellbeing.my_records.views.list.lead", "Ainult sina näed neid kirjeid. Kustutamine eemaldab kirje ka edasistest koonditest.")}
     >
       <div className={styles.stack}>
         <div className={styles.filters}>
@@ -347,7 +347,7 @@ export function AggregateView({ t, status, enabled, chosen, onToggle }) {
                 ? chosen
                   ? t("wellbeing.aggregate.state_on_hint", "Saad selle iga kell välja lülitada.")
                   : t("wellbeing.aggregate.state_default_hint", "See on vaikeseis; sa ei ole seda veel muutnud.")
-                : t("wellbeing.aggregate.state_off_hint", "Ka sinu varasemad kirjed on koondist väljas.")}
+                : t("wellbeing.aggregate.state_off_hint", "Ka varasemad kirjed on edaspidi väljas.")}
             </span>
           </p>
         )}
@@ -364,7 +364,7 @@ export function AggregateView({ t, status, enabled, chosen, onToggle }) {
           ))}
         </div>
         <p className={styles.quiet}>
-          {t("wellbeing.aggregate.effect", "Valik kehtib kohe ka varasematele kirjetele. Privaatse Tööheaolu kasutamist see ei muuda.")}
+          {t("wellbeing.aggregate.effect", "Valik kehtib kohe ka varasematele kirjetele, mitte valminud kvartaliaruannetele. Privaatset Tööheaolu see ei piira.")}
         </p>
       </div>
     </StepPanel>

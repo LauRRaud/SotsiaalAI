@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
+import { closedWellbeingQuarters } from "@/lib/wellbeing/periodGrid";
 import { pilotMetricLabel } from "@/lib/wellbeing/pilotFactorCatalog";
 
 const copy = {
@@ -17,6 +18,10 @@ const copy = {
   viewContext: "Mida vaatan",
   scope: "Skoop",
   period: "Periood",
+  /* Piloodi vaade (ptk 8.23): lõppenud kvartal, arvutatud üks kord. */
+  frozenAt: "Külmutatud",
+  frozenNotice:
+    "Piloodi aruanne on lõppenud kvartali kohta ja see arvutatakse üks kord. Hilisem kustutus ega koondist loobumine seda ei muuda, sest siis saaks kahe aruande vahest ühe inimese vastused.",
   decisionSummary: "Otsustaja kokkuvõte",
   primaryRecommendation: "Esimene kokkulepe",
   decisionFocus: "Arutelu fookus",
@@ -103,6 +108,21 @@ function periodOptions(now = new Date()) {
   return options;
 }
 
+/* Piloodi vaade: ainult lõppenud kvartalid (kahe kattuva perioodi vahe annaks
+   väikese rühma tagasi, `pilotAccess.js`). */
+function closedQuarterOptions(now = new Date()) {
+  return closedWellbeingQuarters(now, 8).map((quarter) => ({
+    value: `quarter:${quarter.periodYear}:${quarter.periodIndex}`,
+    label: `${quarter.periodYear} Q${quarter.periodIndex}`
+  }));
+}
+
+function formatFrozenAt(value) {
+  const date = value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleDateString("et-EE", { timeZone: "Europe/Tallinn" });
+}
+
 function periodParams(period) {
   const [periodKind, periodYear, periodIndex] = String(period || "all").split(":");
   if (periodKind === "all") return { periodKind: "all" };
@@ -139,10 +159,15 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
   const scopedRoleGroups = Array.isArray(selectedPilotScope?.roleGroups) ? selectedPilotScope.roleGroups : allowedRoleGroups;
   const [roleGroup, setRoleGroup] = useState(scopedRoleGroups[0] || "");
   const [workflowType, setWorkflowType] = useState("");
-  const [period, setPeriod] = useState("all");
+  /* Piloodi vaade kehtib vaatajale ja adminile, kes piloodi valis; admini
+     platvormivaade (piloote ei ole) on elav ja vaba. */
+  const pilotView = Boolean(selectedPilotScope) || !isAdmin;
+  const quarterOptions = useMemo(() => closedQuarterOptions(), []);
+  const [period, setPeriod] = useState(pilotView ? quarterOptions[0].value : "all");
   const [aggregationLevel, setAggregationLevel] = useState("role_group");
   const [dataset, setDataset] = useState(null);
   const [report, setReport] = useState(null);
+  const [snapshot, setSnapshot] = useState(null);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
   const hasPilotScopes = normalizedPilotScopes.length > 0;
@@ -162,13 +187,19 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
     }
   }, [hasFixedRoleGroups, roleGroup, scopedRoleGroups]);
 
+  useEffect(() => {
+    if (pilotView && !quarterOptions.some((option) => option.value === period)) {
+      setPeriod(quarterOptions[0].value);
+    }
+  }, [period, pilotView, quarterOptions]);
+
   const filters = useMemo(() => ({
     pilotId: pilotId.trim(),
     roleGroup: roleGroup.trim(),
-    workflowType: workflowType.trim(),
+    workflowType: pilotView ? "" : workflowType.trim(),
     period,
-    aggregationLevel
-  }), [aggregationLevel, period, pilotId, roleGroup, workflowType]);
+    aggregationLevel: pilotView ? "" : aggregationLevel
+  }), [aggregationLevel, period, pilotId, pilotView, roleGroup, workflowType]);
 
   /* SOL-WB-14: iga filtrimuudatus käivitas uue päringu, aga ükski vastus ei
      küsinud, kas ta on veel see, mida oodatakse. Aeglane esimene vastus jõudis
@@ -203,6 +234,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
       if (!isCurrent()) return;
       setDataset(payload.dataset);
       setReport(payload.report || null);
+      setSnapshot(payload.snapshot || null);
       setStatus("ready");
     } catch (loadError) {
       /* Katkestatud päring EI OLE viga: tema koha võttis juba uuem valik. */
@@ -250,7 +282,9 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
           <ContextCard label={copy.scope} value={currentScopeMeta} />
           <ContextCard label={copy.period} value={currentPeriodLabel} />
           <ContextCard label={copy.roleGroup} value={roleGroup || "Kõik lubatud rolligrupid"} />
+          {snapshot?.frozen ? <ContextCard label={copy.frozenAt} value={formatFrozenAt(snapshot.createdAt)} /> : null}
         </div>
+        {pilotView ? <p>{copy.frozenNotice}</p> : null}
       </section>
 
       <section className="feature-section wellbeing-pilot__filters">
@@ -279,9 +313,9 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
               <Input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder={isAdmin ? "nt child_protection" : "piloodi rolligrupp"} disabled={!isAdmin} />
             )}
           </label>
-          {/* Töövoo filter on ainult adminil: vaataja saaks väikese töövoo teistest
-              lahutades tagasi arvutada (`pilotAccess.js`, ptk 8.22). */}
-          {isAdmin ? (
+          {/* Töövoo filter ja tase on ainult admini platvormivaates: piloodi vaates saaks
+              väikese töövoo teistest lahutades tagasi arvutada (`pilotAccess.js`, ptk 8.22). */}
+          {!pilotView ? (
             <label>
               {copy.workflowType}
               <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
@@ -293,18 +327,20 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
               value={period}
               onChange={setPeriod}
               ariaLabel={copy.period}
-              options={periodOptions()}
+              options={pilotView ? quarterOptions : periodOptions()}
             />
           </label>
-          <label>
-            {copy.aggregationLevel}
-            <Dropdown
-              value={aggregationLevel}
-              onChange={setAggregationLevel}
-              ariaLabel={copy.aggregationLevel}
-              options={aggregationLevelOptions.map((option) => ({ value: option, label: option }))}
-            />
-          </label>
+          {!pilotView ? (
+            <label>
+              {copy.aggregationLevel}
+              <Dropdown
+                value={aggregationLevel}
+                onChange={setAggregationLevel}
+                ariaLabel={copy.aggregationLevel}
+                options={aggregationLevelOptions.map((option) => ({ value: option, label: option }))}
+              />
+            </label>
+          ) : null}
         </div>
         <div>
           <Button type="button" variant="primary" onClick={loadAggregate} disabled={status === "loading"}>

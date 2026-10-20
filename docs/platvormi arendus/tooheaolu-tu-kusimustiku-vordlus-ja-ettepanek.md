@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); kokkulepe iga teguri jaoks (ptk 8.21); koondi kaitse: kattuvad viilud ja harv valim (ptk 8.22, perioodide otsus lahti); arenguvajadus ja kutse jäävad S6-le
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); kokkulepe iga teguri jaoks (ptk 8.21); koondi kaitse: kattuvad viilud ja harv valim (ptk 8.22); piloodi kvartali hetktõmmis (ptk 8.23); arenguvajadus ja kutse jäävad S6-le
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -823,7 +823,7 @@ väikese rühma.
   ühikute arv `null` ja kuvatakse „< k“ (piloodi ja admini lehel, HTML-is ja XLSX-is). Null jääb täpseks, sest
   „kedagi ei ole“ ei kirjelda kedagi. Avaldatud koondi valim on täpne nagu enne.
 
-**Lahti, vajab omaniku otsust: kattuvad perioodid.** Kuu, kvartal, aasta ja „kõik“ on sisestikku. Inimese ühik ei
+**Kattuvad perioodid (omanik valis 20.10 valiku 1, teostus ptk 8.23).** Kuu, kvartal, aasta ja „kõik“ on sisestikku. Inimese ühik ei
 aita. Võltsandmetega näide: oktoobris kuus vastajat, viiel vähe taastumist; novembris vastas ainult üks, tema
 novembri päring on summutatud. Kvartal 6 miinus oktoober 5 on 1, nii et selgus novembri ainsa vastaja vastus. Sama
 kehtib sama perioodi kohta kahel eri päeval (vahepeal lisandunud kirje) ja koondist loobumise korral (TO-3 kehtib
@@ -848,3 +848,48 @@ võltsandmebaasiga: töövoo rünnak annab koondi tasemel 1 (värav peab olema p
 Vaataja ja pärandvaataja töövoo filter ning vaataja `record` ühik annavad 403. Admin saab mõlemat, vigane ühik annab
 endiselt 400. Kvartali ja kuu rünnak annab 1 ka pärast seda muudatust (otsus on lahti). Brauseris kontrollimata:
 avamisvärav laseb lehele ainult admini, seega vaataja vaadet (töövoo välja peitmist) sai kontrollida ainult koodist.
+
+### 8.23. Teostus 20.10: piloodi kvartali hetktõmmis (omaniku otsus ptk 8.22 põhjal)
+
+**Otsus (omanik 20.10):** piloodi vaade näitab ainult lõppenud kvartalit ja iga kvartal arvutatakse üks kord. See
+sulgeb kattuvate perioodide vahe ja ka ajas lahutamise: sama periood kahel päeval, vahepeal lisandunud kirje või
+koondist loobumine.
+
+**Teostus.**
+
+- **Tabel `WellbeingPilotSnapshot`** (migratsioon `20261020190000_wellbeing_pilot_snapshot`, aditiivne): võti on
+  piloot (või `legacy` pärandvaatajale), rollirühm, aasta ja kvartal. Hoitakse summutatud koondit ja asutuse
+  tugimeetmete loendit sel hetkel. Kasutajale ega kirjele tabel ei viita. Piloodi kustutamine kustutab ka tema
+  hetktõmmised.
+- **Millal see arvutatakse:** esimesel vaatamisel pärast kvartali lõppu (`lib/wellbeing/pilotSnapshots.js`), sest
+  taustatööd on avamisvärava taga. Lõppenud kvartalisse uusi kirjeid ei tule. Kaks samaaegset esimest vaatamist
+  annavad ühe rea ja sama aruande. Kärbitud koondit (kaitsepiir täis) ei külmutata.
+- **Kellele kehtib:** piloodi vaatajale, pärandvaatajale ja ka adminile, kes piloodi valis, sest piir tuleb skoobist.
+  Admini platvormivaade ilma piloodita ja `/admin/wellbeing` jäävad elavaks. Piloodi vaates annavad kuu, aasta,
+  „kõik“ ja käesolev kvartal 403 (`wellbeing.pilot.period_closed_quarter_only`, kolmes keeles). Perioodi puudumine
+  tähendab viimast lõppenud kvartalit. Mõõdiku tase tuleb skoobist, et aruanne ei sõltuks sellest, kes selle
+  esimesena avas. Auditis on uus väli `frozen`.
+- **Piloodi leht:** periood pakub ainult lõppenud kvartaleid (viimased kaheksa), töövoo ja taseme valikut ei ole.
+  Lehel on „Külmutatud <kuupäev>“ ja lause, miks aruanne ei muutu.
+
+**Töötaja lubadus muutus.** Varem oli töötajale öeldud: „kustutamine eemaldab kirje ka anonüümsest koondist“ ja
+„valik kehtib kohe ka varasematele kirjetele“. Külmutatud aruandega see enam ei kehti. Ümberarvutus kustutuse järel
+oleks halvem, sest vana ja uue aruande vahe paljastaks just selle inimese panuse. Anonüümne koond (k-lävi ja
+summutus) ei ole isikuandmed, seega GDPR-i kustutusõigus seda ei nõua. Uued tekstid (et/en/ru): kustutamine jätab
+kirje edasistest koonditest välja; loobumine kehtib varasematele kirjetele, „mitte valminud kvartaliaruannetele“.
+Täpsem selgitus on Tööheaolu ⓘ-infos („Kasutaja kontroll“). Platvorm ei ole avatud ja päriskasutajaid ei ole, seega
+lubadus muutub enne, kui keegi selle peale on tuginenud.
+
+**Kontroll.** `npx prisma validate`. Migratsioon kohalikus baasis (`migrate deploy`) ja `migrate diff` ilma
+erinevuseta. Sihitud eslint, `npm run i18n:check`, `tests/server-message-keys.test.mjs` (4 läbi). Kohalikus baasis
+päris tabeliga: viis sünteetilist liiget, kirjed kolmandas kvartalis ja üks neljandas. Vaikimisi periood oli 2026-Q3.
+Käesolev kvartal, kuu, aasta ja „kõik“ andsid vaatajale ja piloodi valinud adminile 403, admini platvormivaade jäi
+vabaks. Kaks samaaegset esimest vaatamist andsid ühe rea ja sama aruande. Pärast ühe kirje kustutamist ja ühe
+liikme loobumist jäi hetktõmmis samaks, kuigi elav arvutus oleks olnud summutatud (valim 4 < 5). Piloodi kustutamine
+kustutas hetktõmmise. Brauseris eraldi arendusserveriga (ajutine worktree, port 3001; port 3000 server hoidis mälus
+vana Prisma klienti): API andis külmutatud kvartali (valim 5, sama `generatedAt` igal päringul), kuu ja käesolev
+kvartal 403, HTML-aruandes oli teemade plokk. Piloodi lehel olid „Külmutatud 20.10.2026“ ja ainult piloodi,
+rollirühma ja perioodi valik. Töötaja vaate tekstid mõõtsin sama paneeli sees: uute ja vanade tekstide kõrgus on sama
+kõigis kolmes keeles 1536 × 640 ja 375 × 812 juures (eesti 475 px, inglise ja vene 501 px; esimene pikem sõnastus
+lisas 1–2 rida ja lühendati). Sünteetilised kasutajad, asutus, skoop, hetktõmmis ja auditiread kustutati.
+**Kontrollimata:** tootmine; vaataja (mitte-admin) leht brauseris, sest avamisvärav laseb lehele ainult admini.

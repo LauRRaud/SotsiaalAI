@@ -9846,7 +9846,7 @@
       "deleting": "Kustutan…",
       "deleted": "Kirje kustutati.",
       "delete_failed": "Kirje kustutamine ebaõnnestus.",
-      "privacy": "Kirjed on vaikimisi privaatsed. Ainult sina näed neid; kustutamine eemaldab kirje ka anonüümsest koondist.",
+      "privacy": "Kirjed on vaikimisi privaatsed. Ainult sina näed neid; kustutamine eemaldab kirje ka edasistest koonditest.",
       "workflow": {
         "quick_check": "Kiirkontroll",
         "overview": "Ülevaade",
@@ -9876,7 +9876,7 @@
         "list": {
           "title": "Kirjed",
           "short": "Kirjed",
-          "lead": "Ainult sina näed neid kirjeid. Kustutamine eemaldab kirje ka anonüümsest koondist."
+          "lead": "Ainult sina näed neid kirjeid. Kustutamine eemaldab kirje ka edasistest koonditest."
         },
         "record": {
           "title": "Kirje",
@@ -10354,6 +10354,7 @@
       "period_free_form_forbidden": "Vaba kuupäevavahemikku ei saa kasutada. Vali periood loendist.",
       "workflow_filter_forbidden": "Töövoo kaupa koondit piloodis vaadata ei saa, sest väikese töövoo saaks teistest lahutades tagasi arvutada.",
       "analysis_unit_forbidden": "Piloodis saab koondit vaadata ainult inimese kaupa (üks kirje inimese ja töövoo kohta).",
+      "period_closed_quarter_only": "Piloodi koondit saab vaadata ainult lõppenud kvartali kaupa. Vali kvartal loendist.",
       "viewer_email_required": "Sisesta vaataja e-posti aadress.",
       "viewer_not_found": "Selle e-posti aadressiga kasutajat ei leitud."
     },
@@ -10369,7 +10370,7 @@
       "state_off": "Sinu kirjed ei osale koondis",
       "state_on_hint": "Saad selle iga kell välja lülitada.",
       "state_default_hint": "See on vaikeseis; sa ei ole seda veel muutnud.",
-      "state_off_hint": "Ka sinu varasemad kirjed on koondist väljas.",
+      "state_off_hint": "Ka varasemad kirjed on edaspidi väljas.",
       "private_title": "Jääb ainult sulle",
       "shared_title": "Võib osaleda koondis",
       "private_items": {
@@ -10386,7 +10387,7 @@
         "strengths": "Mis toimib, näiteks kolleegide tugi on kättesaadav",
         "risks": "Riskimärgid, näiteks raske juhtum või töövägivald"
       },
-      "effect": "Valik kehtib kohe ka varasematele kirjetele. Privaatse Tööheaolu kasutamist see ei muuda."
+      "effect": "Valik kehtib kohe ka varasematele kirjetele, mitte valminud kvartaliaruannetele. Privaatset Tööheaolu see ei piira."
     },
     "support_measures": {
       "title": "Minu tugivõimalused",

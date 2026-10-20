@@ -2056,7 +2056,8 @@ model WellbeingPilotScope {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  viewers WellbeingPilotViewer[]
+  viewers   WellbeingPilotViewer[]
+  snapshots WellbeingPilotSnapshot[]
 
   @@index([active, scopeType])
   @@index([municipalityId])
@@ -2072,6 +2073,32 @@ model WellbeingPilotScope {
  * kontoga (`claimedAt`), pärast mida e-post enam ei sobitu, ja konto
  * kustutamine viib rea kaskaadiga kaasa.
  */
+/// Lõppenud kvartali külmutatud piloodi koond (tööheaolu arendusettepanek ptk 8.23).
+///
+/// Piloodi vaataja näeb ainult lõppenud kvartaleid ja iga kvartal arvutatakse ÜKS kord, esimesel
+/// vaatamisel pärast kvartali lõppu. Kahe kattuva või eri päeval tehtud päringu vahe andis muidu väikese
+/// rühma (ka ühe inimese) vastused tagasi; külmutatud aruandel sellist vahet ei ole. Hilisem kustutus või
+/// koondist loobumine seda ei muuda: ümberarvutus paljastaks vahena just selle inimese panuse.
+///
+/// Ainult anonüümne koond (k-lävi ja lahtrisummutus on juba rakendatud): kasutajale ega kirjele ei
+/// viidata. `scopeKey` on piloodi id või `legacy` (pärandvaataja ilma skoobita).
+model WellbeingPilotSnapshot {
+  id              String   @id @default(cuid())
+  scopeKey        String
+  pilotScopeId    String?
+  roleGroup       String
+  periodYear      Int
+  periodQuarter   Int
+  dataset         Json
+  offeredMeasures Json?
+  createdAt       DateTime @default(now())
+
+  pilotScope WellbeingPilotScope? @relation(fields: [pilotScopeId], references: [id], onDelete: Cascade)
+
+  @@unique([scopeKey, roleGroup, periodYear, periodQuarter])
+  @@index([pilotScopeId])
+}
+
 model WellbeingPilotViewer {
   id           String    @id @default(cuid())
   pilotScopeId String
