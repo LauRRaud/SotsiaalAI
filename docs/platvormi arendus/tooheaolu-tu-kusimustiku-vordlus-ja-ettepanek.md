@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); arenguvajadus ja kutse jäävad S6-le
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); arenguvajadus ja kutse jäävad S6-le
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -305,7 +305,7 @@ Sammud 1–7 katavad küsitluse 35 puuduvast punktist umbes 20. Ülejäänud jä
 **Partnerlus (omaniku otsus):** küsitluse eesmärk on pealkirja järgi „tugisüsteemi arendamine“. Kui Tööheaolu näitajad on
 rühmitatud samade teemade järgi (organisatsiooniline, sotsiaalne, psühholoogiline, professionaalne heaolu), saab
 piloot-KOV-i anonüümset koondit lugeda uuringu kõrval. Numbreid otse võrrelda ei saa, sest meie küsimused ei ole
-nende instrument. Kas ja kuidas see küsitluse koostajatele pakkuda, otsustab omanik.
+nende instrument. Kas ja kuidas see küsitluse koostajatele pakkuda, otsustab omanik. Tehniline eeltöö on tehtud (ptk 8.20): piloodi aruanne rühmitab tegurid samade teemade järgi, küsitlust nimetamata.
 
 ### 8.6. Teostus 20.10: sammud 1 ja 2
 
@@ -736,3 +736,39 @@ Avamisvärav laseb enne avamist läbi ainult admini, seega olid sünteetilistel 
 SOCIAL_WORKER. Piloodi vaataja tegi päringud admini rajal valitud piloodiga (sama skoobi piir ja k). **Kontrollimata:**
 tavavaataja (mitte-admin) rada avatud platvormil, EN/RU (piloodi leht on ainult eesti keeles; töötaja vaate uus rida
 on kolmes keeles kataloogis), tootmine.
+
+### 8.20. Teostus 20.10: piloodi aruande tegurite nimed ja teemad (ptk 8.5 „Partnerlus“)
+
+**Leitud viga.** Piloodi aruande sildiloend kattis 16 tegurit 136-st, mida töövood koondisse kirjutavad. Ülejäänud
+jõudsid prioriteetidesse, mõõdikutabelisse ja eksporti toorvõtmena, ka kõige sagedasem: „work demand / workload /
+high“. Kaks silti viitasid võtmetele, mida ükski töövoog ei tekita (`after_hours.high`, `priority_unclear`). Seepärast
+ei tekkinud soovitus „Täpsustada töövälise kättesaadavuse piirid“ kiirkontrolli ega Tööpiiride vastustest, vaid ainult
+Taastumise eemaldumise märgist. Lisaks näitas piloodi leht prioriteedi juures nimetajana inimeste arvu („10/5“), kuigi
+HTML ja XLSX kasutavad sama ühikut mis loendur (SOL-WB-04).
+
+**Lahendus.** `lib/wellbeing/pilotFactorCatalog.js` annab kõigile 136 tegurile (sh 19 tugimeetme puudujääki)
+kolmandas isikus nime ja teema. Teemad on TÜ küsitluse jaotus: organisatsiooniline (küsimus 24), sotsiaalne (25),
+psühholoogiline (26–27) ja professionaalne heaolu (28) ning tööandja tugimeetmed (20–21). Aruandes on uus plokk
+„Teemade kaupa“: iga teema all on kõik avaldatud lahtrid, mitte ainult kuus suurimat prioriteeti, ja sama teema
+tugevused (ptk 8.19). Sama plokk on HTML-aruandes ja XLSX-is (uus leht „Teemad“). Mõõdikutabelis ja XLSX-i lehel
+„Mõõdikud“ on nimetus. Kataloogist puuduv tegur läheb teema „Muu“ alla, et ta vaikselt ei kaoks. Uut arvu ega
+andmeallikat ei ole, rühmitatakse ainult avaldatud lahtreid.
+
+**Otsused (omaniku volitusel).** Küsitlust ega ülikooli aruandes ei nimetata: kas ja kuidas seda koostajatele
+pakkuda, otsustab omanik (ptk 8.5). Töö- ja eraelu piir, ületunnid ja paindlik tööaeg on organisatsiooniline teema
+(nagu küsimuses 24), pausid psühholoogiline (26), turvalisus ja töövägivald sotsiaalne (25), raske juhtum, eetiline
+pinge ja trauma psühholoogiline (26). Professionaalse heaolu all on praegu ainult töö mõte, sest küsimuse 28 muud
+teemad jäid teadlikult välja (ptk 8.3).
+
+**Kontroll.** Sihitud eslint. Tegurite loend tuli builderitest endist: iga töövoog 6000 juhusliku lubatud vastusega
+andis 136 võtit. Kõik on kataloogis ja kataloogis ei ole surnud võtmeid (v.a kiirkontroll 1.0 ühine tugi). Aruande
+funktsiooni kutsega: iga tegur on täpselt ühe teema all, toorvõtmeid ei ole, töövälise kättesaadavuse soovitus tuleb
+päris tegurist, asutuse kirjeldusega puudujäägi silt, tundmatu tegur „Muu“ all, summutatud valimil teemasid ei ole,
+HTML ja XLSX. Kohalikus baasis otsast lõpuni: sünteetiline asutus, viis liiget (üks admin avamisvärava tõttu),
+igaühel kiirkontroll, nädala peegeldus, Tööpiirid ja Tööprotsessid (20 kirjet päris salvestusfunktsioonide kaudu) ja
+asutuse tüüpi piloodi skoop (k = 5). Piloodi lehel oli neli teemat (organisatsiooniline: 14 tegurit ja 4 tugevust,
+sotsiaalne: 1 tugevus, psühholoogiline: 4 tegurit ja 1 tugevus, professionaalne: 1 tugevus), prioriteedi nimetaja
+10/20 ja mõõdikutabelis ainult nimed. Vaates 1536 × 640 ja 375 × 812 ei olnud horisontaalset kerimist ja ükski teema
+element ei ulatunud aruandest välja. HTML-is oli neli teemat ja toorvõtmeid ei olnud, XLSX-is leht „Teemad“ ja
+nimetused. Sünteetilised kasutajad, asutus, skoop ja auditiread kustutati. **Kontrollimata:** tootmine; EN/RU (piloodi
+leht on ainult eesti keeles).

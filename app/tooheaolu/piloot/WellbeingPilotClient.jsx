@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
+import { pilotMetricLabel } from "@/lib/wellbeing/pilotFactorCatalog";
 
 const copy = {
   title: "KOV piloodi koondvaade",
@@ -52,6 +53,8 @@ const copy = {
   priorities: "Töökorralduslikud prioriteedid",
   /* Ideed 21.2: aruanne näitab ka toimivaid ressursse (`work_strength.*`). */
   strengths: "Mis toimib",
+  /* Kõik avaldatud lahtrid heaolu teemade kaupa (`pilotFactorCatalog.js`). */
+  themes: "Teemade kaupa",
   agreements: "Soovitatavad kokkulepped",
   noPriorities: "Prioriteete ei kuvata enne, kui miinimumgrupi lävi on täidetud.",
   noAgreements: "Soovitatavad kokkulepped tekivad korduvate koormusmustrite põhjal.",
@@ -62,11 +65,6 @@ const copy = {
 
 const aggregationLevelOptions = ["role_group", "organization", "municipality"];
 
-function metricLabel(metricKey) {
-  return String(metricKey || "")
-    .replaceAll("_", " ")
-    .replaceAll(".", " / ");
-}
 
 function formatMetricValue(metric) {
   const value = Number(metric?.metricValue || 0);
@@ -217,6 +215,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
   const printUrl = buildPilotAggregateUrl({ ...filters, format: "report-html" });
   const xlsxUrl = buildPilotAggregateUrl({ ...filters, format: "xlsx" });
   const metrics = dataset?.metrics || [];
+  const strengthLabels = Object.fromEntries((report?.strengths || []).map((item) => [item.key, item.label]));
   const currentMunicipalityId = selectedPilotScope?.municipalityId || "";
   const currentPeriodLabel = dataset?.filters?.periodLabel || "kõik";
   const currentScopeMeta = currentMunicipalityId ? `KOV: ${currentMunicipalityId}` : scopeMeta(selectedPilotScope);
@@ -402,7 +401,8 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
             {(report?.priorities || []).length > 0 ? (
               <div>
                 {report.priorities.map((priority) => (
-                  <ReportItem key={priority.metricKey} eyebrow={priority.categoryLabel} title={priority.label} meta={`${priority.count}/${priority.sampleSize}`} />
+                  /* SOL-WB-04: nimetaja on sama ühik mis loenduril (nagu HTML- ja XLSX-is), mitte inimeste arv. */
+                  <ReportItem key={priority.metricKey} eyebrow={priority.categoryLabel} title={priority.label} meta={`${priority.count}/${priority.denominator || priority.sampleSize}`} />
                 ))}
               </div>
             ) : (
@@ -410,6 +410,29 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
             )}
           </div>
         </div>
+        {(report?.themes || []).length > 0 ? (
+          <div>
+            <h3>{copy.themes}</h3>
+            <p>{report.themesNotice}</p>
+            {report.themes.map((theme) => (
+              <div key={theme.key}>
+                <h4>{theme.label}</h4>
+                <span>{theme.scope}</span>
+                {theme.concerns.map((item) => (
+                  <ReportItem key={item.metricKey} eyebrow={item.categoryLabel} title={item.label} meta={`${item.count}/${item.denominator || item.sampleSize}`} />
+                ))}
+                {theme.strengths.map((item) => (
+                  <ReportItem
+                    key={item.metricKey}
+                    eyebrow={copy.strengths}
+                    title={item.label}
+                    meta={item.sourceTotal ? `${item.count}/${item.sourceTotal}` : String(item.count)}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : null}
         <div>
           <h3>{copy.agreements}</h3>
           {(report?.recommendedAgreements || []).length > 0 ? (
@@ -443,7 +466,7 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
               <tbody>
                 {metrics.map((metric) => (
                   <tr key={metric.metricKey}>
-                    <td>{metricLabel(metric.metricKey)}</td>
+                    <td>{pilotMetricLabel(metric.metricKey, { strengthLabels })}</td>
                     <td>{formatMetricValue(metric)}</td>
                     <td>{metric.sampleSize}</td>
                     <td>{metric.aggregationLevel}</td>

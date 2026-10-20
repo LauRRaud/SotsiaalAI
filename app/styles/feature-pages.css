@@ -990,6 +990,10 @@ html[data-reduce-transparency="1"] .feature-page__surface {
   background: color-mix(in srgb, var(--surface-deep, #141414) 38%, transparent);
 }
 
+.wellbeing-pilot__report h4 {
+  margin: 0;
+}
+
 .wellbeing-pilot__filters > div:first-child {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
