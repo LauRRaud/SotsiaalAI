@@ -383,6 +383,267 @@
       "contextMode": "correction",
       "question": "Vabandust, ema elab hoopis Tõrva vallas, mitte Tartus.",
       "expected_conclusion": "Ema piirkond parandatakse Tõrva vallaks; vastus kinnitab paranduse ega kasuta Tartu tingimusi."
+    },
+    {
+      "id": "G33-supported-living-alcohol",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mu täiskasvanud pojal on alkoholisõltuvus. Kas ta saab riigi rahastatud toetatud elamise teenust?",
+      "gold_evidence_text": [
+        "sõltuvus alkoholist või narkootilisest ainest põhihaigusena"
+      ],
+      "gold_note": "§ 95 excludes the persons of § 72(2).",
+      "expected_conclusion": "Riigi rahastatud toetatud elamise teenust ei osutata isikule, kelle põhihaigus on sõltuvus alkoholist või narkootilisest ainest (SHS § 95 viitega § 72 lg 2-le).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G34-community-living-dementia",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Kas 75-aastane dementsusega naine saab riigi kulul kogukonnas elamise teenust?",
+      "gold_evidence_text": [
+        "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule"
+      ],
+      "gold_note": "§ 98 excludes the persons of § 72(2).",
+      "expected_conclusion": "Kogukonnas elamise teenust riigi kulul ei osutata vanaduspensioniikka jõudnud dementsusega isikule (SHS § 98 viitega § 72 lg 2-le).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G35-own-share-shortfall",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mu õde saab ööpäevaringset erihooldusteenust ja tema pensionist ei jätku omaosaluse maksmiseks. Kas riik hüvitab puudujääva osa?",
+      "gold_evidence_text": [
+        "vähemalt 15 protsenti tema tuludest"
+      ],
+      "gold_note": "§ 74 on the state covering the shortfall refers to § 73(2) and (4) for what the person keeps.",
+      "expected_conclusion": "Riik katab omaosaluse puudujäägi; isikule peab jääma vähemalt 15 protsenti tema tuludest (SHS § 74 viitega § 73-le).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G36-rehabilitation-student",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mul on osaline töövõime ja ma õpin ülikoolis. Kas ma saan taotleda sotsiaalse rehabilitatsiooni teenuse tasu ülevõtmist?",
+      "gold_evidence_text": [
+        "ega omanda põhi-, üldkesk-, kutse- või kõrgharidust"
+      ],
+      "gold_note": "The condition is in § 59(3), a later part of the same section as the entitled persons of § 59(1).",
+      "expected_conclusion": "Osalise töövõimega isiku õigus sõltub § 59 lg 3 tingimusest (ei omanda põhi-, üldkesk-, kutse- ega kõrgharidust); ülikoolis õppijal see tingimus ei ole täidetud.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G37-day-care-retirement-age",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mu 68-aastasel emal on psüühikahäire. Kas riik maksab tema päeva- ja nädalahoiuteenuse eest?",
+      "gold_evidence_text": [
+        "vanaduspensioniikka jõudnud dementsuse diagnoosiga isikule"
+      ],
+      "gold_note": "§ 99² excludes the persons of § 72(2) and ties missing work ability to retirement age.",
+      "expected_conclusion": "Vastus seob õiguse SHS § 99² tingimustega (välistus § 72 lg 2, töövõime ja vanaduspensioniiga) ega luba kindlat riigi rahastust.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G38-reclaim-enforcement",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-2.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mulle tehti ettekirjutus liiga palju makstud toetuse tagasimaksmiseks. Kui kaua saab seda minult sundkorras sisse nõuda?",
+      "gold_evidence_text": [
+        "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat"
+      ],
+      "gold_note": "SÜS § 35(2), the enforcement period of a reclaim order.",
+      "expected_conclusion": "Tagasinõude ettekirjutuse sundtäitmise aegumistähtaeg on seitse aastat (SÜS § 35 lg 2).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G39-coach-reports-child",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-2.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Olen treener ja märkasin, et üks laps vajab abi. Milliseid andmeid ma tohin tema kohta vallale edastada?",
+      "gold_evidence_text": [
+        "edastades vähimas vajalikus ulatuses"
+      ],
+      "gold_note": "LasteKS § 27 is the duty to report; what a person working with children passes on is in § 27¹.",
+      "expected_conclusion": "Abivajavast lapsest teatamine on kohustus; lapsega töötav isik edastab andmeid vähimas vajalikus ulatuses (LasteKS § 27 ja § 27¹).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G40-subsistence-new-job",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-2.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Sain mitu kuud toimetulekutoetust ja nüüd hakkasin tööle. Kas mu palk vähendab kohe toetust?",
+      "gold_evidence_text": [
+        "kahel kuul 100 protsenti töisest sissetulekust"
+      ],
+      "gold_note": "SHS § 133(2¹), the work-income disregard, deep in the section on calculating the benefit.",
+      "expected_conclusion": "Töisest sissetulekust jäetakse kahel kuul 100 protsenti arvestamata (SHS § 133 lg 2¹); palk ei vähenda toetust kohe.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G41-subsistence-deadline",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-2.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mis ajaks pean ma toimetulekutoetuse taotluse esitama?",
+      "gold_evidence_text": [
+        "hiljemalt kuu viimaseks tööpäevaks"
+      ],
+      "gold_note": "SHS § 132(1): a control the base is expected to find.",
+      "expected_conclusion": "Taotlus tuleb esitada hiljemalt kuu viimaseks tööpäevaks (SHS § 132 lg 1).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G42-subsistence-home-loan",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Taotlen toimetulekutoetust ja maksan iga kuu oma korteri ostuks võetud laenu. Kas laenumakse läheb eluasemekuluna arvesse?",
+      "gold_evidence_text": [
+        "eluaseme soetamiseks võetud laenu tagasimakse, mis sisaldab ka laenu intressi"
+      ],
+      "gold_note": "SHS § 131(2) names § 133(5) and (6); the list of housing costs is § 133(5), deep in the section.",
+      "expected_conclusion": "Eluaseme soetamiseks võetud laenu tagasimakse koos intressiga arvestatakse eluasemekuluna (SHS § 133 lg 5).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G43-referral-deadline-emergency",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Riigis kehtib eriolukord. Sain suunamisotsuse kogukonnas elamise teenusele. Mitme päeva jooksul pean teenuseosutaja poole pöörduma ja mis juhtub, kui ma ei jõua?",
+      "gold_evidence_text": [
+        "ei ole tal enam õigust sama suunamisotsuse alusel teenust saada"
+      ],
+      "gold_note": "SHS § 13²(4) lengthens the periods of § 71(6) and (7); what the period is for is § 71(6), not in the section’s first passage.",
+      "expected_conclusion": "Eriolukorras on tähtaeg pikendatud (SHS § 13² lg 4 viitega § 71 lg 6-le); tähtaja möödumisel ei ole enam õigust sama suunamisotsuse alusel teenust saada. Päevade arvu kontrollitakse viidatud lõigu vastu.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G44-student-turns-25",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Meie poeg õpib teises linnas ülikoolis, on sisse kirjutatud meie juurde ja saab sel kuul 25. Kas ta loetakse toimetulekutoetuse taotlemisel veel meie pere liikmeks?",
+      "gold_evidence_text": [
+        "saab toimetulekutoetuse taotlemise kuul 25-aastaseks"
+      ],
+      "gold_note": "SHS § 131(8) counts a student up to 24 into the family; (10), in a later passage, lifts it in the month the student turns 25.",
+      "expected_conclusion": "Kuul, mil üliõpilane saab 25-aastaseks, ei loeta teda enam vanemate perekonnaliikmeks (SHS § 131 lg 10).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G45-pensioner-with-student-child",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Olen 66-aastane pensionär ja minu juurde on sisse kirjutatud mu 20-aastane tütar, kes õpib ülikoolis. Kas mul on ikkagi õigus üksi elava pensionäri toetusele?",
+      "gold_evidence_text": [
+        "kuid mitte kauem kui 21-aastaseks saamiseni"
+      ],
+      "gold_note": "SHS § 139¹(4) p 4 names the Family Law Act § 97 p 1 and 2; that the studying child counts until 21 is in the Family Law Act.",
+      "expected_conclusion": "Vastus kasutab SHS § 139¹ lg 4 p 4 ja perekonnaseaduse § 97 tingimust: õppiv laps arvestatakse kuni 21-aastaseks saamiseni.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G46-rent-debt-not-counted",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mul on kahe eelmise kuu kommunaalmaksed maksmata. Kas toimetulekutoetuse arvestamisel võetakse see võlg eluasemekuluna arvesse?",
+      "gold_evidence_text": [
+        "varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel"
+      ],
+      "gold_note": "SHS § 133(5) lists the housing costs; (7), which names nothing, leaves out earlier arrears.",
+      "expected_conclusion": "Varem tekkinud võlgnevust ei arvata toimetulekutoetuse arvestamisel eluasemekulude hulka (SHS § 133 lg 7).",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G47-special-care-decision-time",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Esitasin Sotsiaalkindlustusametile erihoolekandeteenuse taotluse. Kui kiiresti peab amet otsuse tegema?",
+      "gold_evidence_text": [
+        "tööpäeva jooksul taotluse ja kõikide nõutavate dokumentide saamisest arvates"
+      ],
+      "gold_note": "SHS § 70(4): a control the base is expected to find.",
+      "expected_conclusion": "Amet teeb otsuse SHS § 70 lg 4 tähtaja jooksul (tööpäevades taotluse ja kõikide nõutavate dokumentide saamisest); arvu kontrollitakse viidatud lõigu vastu.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G48-pensioner-day-centre",
+      "group": "gold",
+      "source": "tests/evaluation/graph/hard-conditions-3.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Olen 70-aastane, elan üksi oma kodus ja käin kaks korda nädalas päevakeskuses. Kas see võtab minult õiguse üksi elava pensionäri toetusele?",
+      "gold_evidence_text": [
+        "kellele osutatakse väljaspool kodu osutatavat ööpäevaringset üldhooldusteenust"
+      ],
+      "gold_note": "SHS § 139¹(5) p 3 excludes a person in round-the-clock care outside the home; a day centre is not that, so the exception exists and does not apply.",
+      "expected_conclusion": "Päevakeskus ei ole väljaspool kodu osutatav ööpäevaringne üldhooldus, seega § 139¹ lg 5 p 3 erand ei kohaldu ja õigus üksi elava pensionäri toetusele ei kao selle tõttu.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G49-adult-child-maintains-parent",
+      "group": "gold",
+      "source": "tests/evaluation/graph/maintenance-duty-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Kas täiskasvanud laps peab oma vanemat ülal pidama?",
+      "gold_evidence_text": [
+        "Ülalpidamist on kohustatud andma täisealised esimese astme ülenejad ja alanejad sugulased",
+        "muu abivajav alaneja või üleneja sugulane, kes ei ole võimeline ennast ise ülal pidama"
+      ],
+      "gold_note": "The question in a person's own words, without a plan query.",
+      "expected_conclusion": "Jah, täisealised esimese astme sugulased on kohustatud abivajavat vanemat ülal pidama (perekonnaseadus); kohustus ja selle ulatus sõltuvad abivajadusest.",
+      "flagged_by_corpus_session": false
+    },
+    {
+      "id": "G50-polva-support-person-relative",
+      "group": "gold",
+      "source": "tests/evaluation/graph/abbreviation-municipal-1.json",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Elame Põlva vallas ja mu lapsel on raske puue. Kas tema tugiisikuks võib olla lapse vanaema?",
+      "gold_evidence_text": [
+        "kes on teenuse saaja esimese või teise astme üleneja või alaneja sugulane"
+      ],
+      "gold_note": "Põlva's procedure lets the support person be \"a person who meets the requirements of SHS § 25\"; who may not provide the service (a first or second degree relative) is only in the Act. The Harku twin of hard-conditions-3 names the Act in full.",
+      "expected_conclusion": "Tugiisikuks ei või olla teenuse saaja esimese või teise astme üleneja ega alaneja sugulane; lapse vanaema ei sobi.",
+      "flagged_by_corpus_session": false
+    }
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-20",
+      "reason": "owner asked for 50 questions; 18 further gold items added before any answer was requested",
+      "previousSha256": "e44b828a2f48b1e3f438971f2d473c31ddd72f9d2dc1bb3001adb99c32868fc5",
+      "addedItems": 18
     }
   ]
 }
