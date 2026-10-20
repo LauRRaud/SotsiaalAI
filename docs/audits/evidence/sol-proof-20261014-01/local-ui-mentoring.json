@@ -1,0 +1,559 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser; mentor = synthetic provider, mentee = synthetic specialist",
+  "history": [
+    {
+      "step": "Mina mentorina > Hakka mentoriks: 7-step profile (name, fields/topics, languages/formats, short and long intro, experience)",
+      "result": "PUT /api/mentoring/profile 200 per step; draft visible only to the author"
+    },
+    {
+      "step": "Esita ülevaatusele",
+      "result": "POST /api/mentoring/profile 200; PENDING_REVIEW; page says moderation is not a qualification check"
+    },
+    {
+      "step": "admin moderation",
+      "result": "replaced by a labelled fixture: status ACTIVE, approvedSnapshotVisible true (isolated database)"
+    },
+    {
+      "step": "mentee: Leia mentor",
+      "result": "mentor listed; catalogue says data is self-reported, not a quality mark; neutral ordering; link to the independent ESTA mentor database"
+    }
+  ],
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentor_sees_request_with_goal",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "acceptPress": [
+          "Võta vastu",
+          null
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "relation_activates_after_both_accept_agreement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "relationStatus": "ACTIVE",
+        "menteePresses": [
+          "Kinnitan kokkuleppe",
+          null
+        ],
+        "mentorSubmittedVersion1": true
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "mentor_private_note_hidden_from_mentee",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "noteVisibleToMentee": false
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "meeting_visible_to_both",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "meetingAdded": "Lisa kohtumine",
+        "menteeSeesTopic": true,
+        "timeInput": {
+          "type": "datetime-local",
+          "placeholder": null
+        }
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "summary_needs_both_confirmations",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "sendingDidNotConfirm": true,
+        "afterMenteeOnly": {
+          "status": "PENDING_CONFIRM",
+          "_count": {
+            "confirmations": 1
+          }
+        },
+        "afterMentorToo": {
+          "status": "CONFIRMED",
+          "_count": {
+            "confirmations": 2
+          }
+        },
+        "mentorPresses": [
+          "Kinnitan kokkuvõtte",
+          null
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "ended_relation_refuses_new_meeting_and_keeps_records",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "relationStatus": "CLOSED",
+        "addMeetingButtons": 0,
+        "endPresses": [
+          "Lõpeta suhe",
+          "Vajuta uuesti, et lõpetada"
+        ],
+        "privateNotesKept": 1,
+        "confirmedSummariesKept": 1
+      }
+    }
+  ],
+  "screens": [
+    {
+      "stage": "request",
+      "label": "request_form_1",
+      "url": "/mentorlus/mentor/cmvgp5pee0020d0tsp2e1alrn",
+      "aria": "paragraph: \"Osa 3/3: Mentorluse taotlus\"\n    - region \"Mentorluse taotlus\":\n      - heading \"Mentorluse taotlus\" [level=3]\n      - paragraph: Kirjelda üldistatult oma eesmärki ja ootust. Mentor näeb seda teksti oma otsuse tegemiseks.\n      - text: Eesmärk ja ootus Ära lisa kliendiandmeid ega kolmandate isikute tuvastatavaid andmeid.\n      - textbox \"Eesmärk ja ootus\"\n      - button \"Esita taotlus\" [disabled]"
+    },
+    {
+      "stage": "request",
+      "label": "after_request",
+      "url": "/mentorlus/mentor/cmvgp5pee0020d0tsp2e1alrn",
+      "aria": "paragraph: \"Osa 3/3: Mentorluse taotlus\"\n    - region \"Mentorluse taotlus\":\n      - heading \"Mentorluse taotlus\" [level=3]\n      - paragraph: Taotlus esitatud. Mentor saab teate ja vastab platvormil.\n      - link \"Tagasi mentorlusse\":\n        - /url: /mentorlus"
+    },
+    {
+      "stage": "accept",
+      "label": "mentor_requests",
+      "url": "/mentorlus",
+      "aria": "paragraph: \"Osa 3/4: Taotlused\"\n    - region \"Taotlused\":\n      - heading \"Taotlused\" [level=3]\n      - paragraph: Sinu kui mentori otsustada. Keeldumise põhjendust taotlejale ei edastata.\n      - list:\n        - listitem:\n          - text: \"SOL TEST Spetsialist Aegub: 19. nov 2026\"\n          - paragraph: \"Sünteetiline taotlus: soovin tuge töörolli piiride ja juhtumite planeerimise teemal.\"\n          - button \"Võta vastu\"\n          - button \"Keeldu\""
+    },
+    {
+      "stage": "accept",
+      "label": "request_detail",
+      "url": "/mentorlus",
+      "aria": "paragraph: \"Osa 3/4: Taotlused\"\n    - region \"Taotlused\":\n      - heading \"Taotlused\" [level=3]\n      - paragraph: Sinu kui mentori otsustada. Keeldumise põhjendust taotlejale ei edastata.\n      - list:\n        - listitem:\n          - text: \"SOL TEST Spetsialist Aegub: 19. nov 2026\"\n          - paragraph: \"Sünteetiline taotlus: soovin tuge töörolli piiride ja juhtumite planeerimise teemal.\"\n          - button \"Võta vastu\"\n          - button \"Keeldu\""
+    },
+    {
+      "stage": "accept",
+      "label": "after_accept",
+      "url": "/mentorlus",
+      "aria": "paragraph: \"Osa 3/4: Taotlused\"\n    - region \"Taotlused\":\n      - heading \"Taotlused\" [level=3]\n      - paragraph: Sinu kui mentori otsustada. Keeldumise põhjendust taotlejale ei edastata.\n      - list:\n        - listitem:\n          - text: \"SOL TEST Spetsialist Aegub: 19. nov 2026\"\n          - paragraph: \"Sünteetiline taotlus: soovin tuge töörolli piiride ja juhtumite planeerimise teemal.\"\n          - button \"Võta vastu\" [disabled]\n          - button \"Keeldu\" [disabled]"
+    },
+    {
+      "stage": "relation",
+      "label": "relations_list",
+      "url": "/mentorlus",
+      "aria": "paragraph: \"Osa 2/4: Minu mentorlussuhted\"\n    - region \"Minu mentorlussuhted\":\n      - heading \"Minu mentorlussuhted\" [level=3]\n      - list:\n        - listitem:\n          - 'link \"Mentee: SOL TEST Spetsialist Kokkuleppe ootel Viimane tegevus: 20. okt 2026\"':\n            - /url: /mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1"
+    },
+    {
+      "stage": "relation",
+      "label": "relation_page",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: Laen…"
+    },
+    {
+      "stage": "relation",
+      "label": "relations_list",
+      "url": "/mentorlus",
+      "aria": "paragraph: \"Osa 2/4: Minu mentorlussuhted\"\n    - region \"Minu mentorlussuhted\":\n      - heading \"Minu mentorlussuhted\" [level=3]\n      - list:\n        - listitem:\n          - 'link \"Mentee: SOL TEST Spetsialist Kokkuleppe ootel Viimane tegevus: 20. okt 2026\"':\n            - /url: /mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1"
+    },
+    {
+      "stage": "relation",
+      "label": "relation_page",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentee: SOL TEST Spetsialist\"\n    - text: Kokkuleppe ootel\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: Suhe käivitub, kui mõlemad pooled on kinnitanud mentorluskokkuleppe.\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Kokkulepet ei ole veel esitatud.\"\n      - listitem:\n        - button \"Kohtumised Kohtumisi ei ole kirjas.\"\n      - listitem:\n        - button \"Kokkuvõtted Kokkuvõtteid pole veel.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Kokkuleppe ootel\""
+    },
+    {
+      "stage": "agreement",
+      "label": "mentor_relation",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentee: SOL TEST Spetsialist\"\n    - text: Kokkuleppe ootel\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: Suhe käivitub, kui mõlemad pooled on kinnitanud mentorluskokkuleppe.\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Kokkulepet ei ole veel esitatud.\"\n      - listitem:\n        - button \"Kohtumised Kohtumisi ei ole kirjas.\"\n      - listitem:\n        - button \"Kokkuvõtted Kokkuvõtteid pole veel.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Kokkuleppe ootel\""
+    },
+    {
+      "stage": "agreement",
+      "label": "mentor_agreement_part",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 2/6: Mentorluskokkulepe\"\n    - region \"Mentorluskokkulepe\":\n      - heading \"Mentorluskokkulepe\" [level=3]\n      - paragraph: \"Kokkulepet ei ole veel esitatud. Kumbki pool võib esitada esimese versiooni: kui tihti ja mis vormis kohtute ning mis jääb teie vahele.\"\n      - text: Kokkuleppe tekst (uus versioon) Uue versiooni esitamine kinnitab selle sinu poolt; teine pool peab sama versiooni eraldi kinnitama.\n      - textbox \"Kokkuleppe tekst (uus versioon)\"\n      - button \"Esita kokkuleppe versioon\" [disabled]"
+    },
+    {
+      "stage": "agreement",
+      "label": "mentor_after_agreement",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 2/6: Mentorluskokkulepe\"\n    - region \"Mentorluskokkulepe\":\n      - heading \"Mentorluskokkulepe\" [level=3]\n      - paragraph: Kokkulepe ütleb, kui tihti ja mis vormis kohtute ning mis jääb teie vahele. See jõustub, kui mõlemad pooled on sama versiooni kinnitanud.\n      - paragraph: Versioon 1 Sina oled kinnitanud Teise poole kinnitus puudub\n      - paragraph: \"Sünteetiline kokkulepe: kaks kohtumist kuus, konfidentsiaalsus, privaatsed märkmed jäävad kirjutajale.\"\n      - paragraph: Kokkuleppe uus versioon on esitatud ja ootab teise poole kinnitust.\n      - button \"Esita uus versioon\""
+    },
+    {
+      "stage": "agreement",
+      "label": "mentee_relation",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentor: SOL TEST Teenuseosutaja\"\n    - text: Kokkuleppe ootel\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: Suhe käivitub, kui mõlemad pooled on kinnitanud mentorluskokkuleppe.\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Ootab sinu kinnitust\"\n      - listitem:\n        - button \"Kohtumised Kohtumisi ei ole kirjas.\"\n      - listitem:\n        - button \"Kokkuvõtted Kokkuvõtteid pole veel.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Kokkuleppe ootel\""
+    },
+    {
+      "stage": "agreement",
+      "label": "mentee_agreement_part",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 2/6: Mentorluskokkulepe\"\n    - region \"Mentorluskokkulepe\":\n      - heading \"Mentorluskokkulepe\" [level=3]\n      - paragraph: Kokkulepe ütleb, kui tihti ja mis vormis kohtute ning mis jääb teie vahele. See jõustub, kui mõlemad pooled on sama versiooni kinnitanud.\n      - paragraph: Versioon 1 Sinu kinnitus puudub Teine pool on kinnitanud\n      - paragraph: \"Sünteetiline kokkulepe: kaks kohtumist kuus, konfidentsiaalsus, privaatsed märkmed jäävad kirjutajale.\"\n      - button \"Esita uus versioon\"\n      - button \"Kinnitan kokkuleppe\""
+    },
+    {
+      "stage": "agreement",
+      "label": "mentee_after_agreement",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 2/6: Mentorluskokkulepe\"\n    - region \"Mentorluskokkulepe\":\n      - heading \"Mentorluskokkulepe\" [level=3]\n      - paragraph: Kokkulepe ütleb, kui tihti ja mis vormis kohtute ning mis jääb teie vahele. See jõustub, kui mõlemad pooled on sama versiooni kinnitanud.\n      - text: Kokkuleppe tekst (uus versioon) Uue versiooni esitamine kinnitab selle sinu poolt; teine pool peab sama versiooni eraldi kinnitama.\n      - textbox \"Kokkuleppe tekst (uus versioon)\": \"Sünteetiline kokkulepe: kaks kohtumist kuus, konfidentsiaalsus, privaatsed märkmed jäävad kirjutajale.\"\n      - paragraph: Uus versioon peab kehtivast erinema.\n      - button \"Loobu\"\n      - button \"Esita kokkuleppe versioon\" [disabled]"
+    },
+    {
+      "stage": "confirm",
+      "label": "mentee_relation",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentor: SOL TEST Teenuseosutaja\"\n    - text: Kokkuleppe ootel\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: Suhe käivitub, kui mõlemad pooled on kinnitanud mentorluskokkuleppe.\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Ootab sinu kinnitust\"\n      - listitem:\n        - button \"Kohtumised Kohtumisi ei ole kirjas.\"\n      - listitem:\n        - button \"Kokkuvõtted Kokkuvõtteid pole veel.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Kokkuleppe ootel\""
+    },
+    {
+      "stage": "confirm",
+      "label": "mentee_after_confirm",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 2/7: Mentorluskokkulepe\"\n    - region \"Mentorluskokkulepe\":\n      - heading \"Mentorluskokkulepe\" [level=3]\n      - paragraph: Kokkulepe ütleb, kui tihti ja mis vormis kohtute ning mis jääb teie vahele. See jõustub, kui mõlemad pooled on sama versiooni kinnitanud.\n      - paragraph: Versioon 1 Sina oled kinnitanud Teine pool on kinnitanud\n      - paragraph: \"Sünteetiline kokkulepe: kaks kohtumist kuus, konfidentsiaalsus, privaatsed märkmed jäävad kirjutajale.\"\n      - paragraph: Kokkulepe kinnitatud.\n      - button \"Esita uus versioon\""
+    },
+    {
+      "stage": "work",
+      "label": "mentor_active_relation",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentee: SOL TEST Spetsialist\"\n    - text: Aktiivne\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: \"Toimunud kohtumisi: 0 · kinnitatud kokkuvõtteid: 0 · viimane tegevus 20. okt 2026, 16:10\"\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Mõlemad on kinnitanud\"\n      - listitem:\n        - button \"Kohtumised Kohtumisi ei ole kirjas.\"\n      - listitem:\n        - button \"Kokkuvõtted Kokkuvõtteid pole veel.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Aktiivne\""
+    },
+    {
+      "stage": "work",
+      "label": "mentor_part_Minu märkmed",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 5/6: Minu märkmed\"\n    - region \"Minu märkmed\":\n      - heading \"Minu märkmed\" [level=3]\n      - paragraph: Ainult sina näed neid märkmeid. Need jäävad sulle ka pärast suhte lõppu.\n      - paragraph: Märkmeid ei ole veel.\n      - button \"Lisa märge\""
+    },
+    {
+      "stage": "work",
+      "label": "mentor_form_Minu märkmed",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 5/6: Minu märkmed\"\n    - region \"Minu märkmed\":\n      - heading \"Minu märkmed\" [level=3]\n      - paragraph: Ainult sina näed neid märkmeid. Need jäävad sulle ka pärast suhte lõppu.\n      - text: Uus märge\n      - textbox \"Uus märge\"\n      - button \"Loobu\"\n      - button \"Lisa märge\" [disabled]"
+    },
+    {
+      "stage": "work",
+      "label": "mentor_part_Kohtumised",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 3/6: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: Siia pannakse kirja kohtumise aeg, vorm ja teema. Kohtumine ise võib toimuda ka väljaspool platvormi.\n      - paragraph: Kohtumisi ei ole veel kirjas. Lisa esimene.\n      - button \"Lisa kohtumine\""
+    },
+    {
+      "stage": "work",
+      "label": "mentor_form_Kohtumised",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 3/6: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: Uus kohtumine\n      - text: Aeg\n      - textbox \"Aeg\"\n      - text: Teema (näevad mõlemad)\n      - textbox \"Teema (näevad mõlemad)\"\n      - radiogroup \"Vorm\":\n        - text: Vorm\n        - radio \"Väljaspool platvormi\" [checked]\n        - radio \"Platvormi ruumis\"\n      - paragraph: Platvormi ruumi valik lisab viite olemasolevale vestlusruumile; eraldi kõnesüsteemi mentorlusel ei ole.\n      - button \"Loobu\"\n      - button \"Lisa kohtumine\" [disabled]"
+    },
+    {
+      "stage": "work",
+      "label": "mentor_part_Kokkuvõtted",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/6: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte hakkab kehtima, kui mõlemad pooled on sama teksti kinnitanud. Kinnitatud teksti muuta ei saa, saab teha paranduse.\n      - paragraph: Kokkuvõtteid pole veel.\n      - button \"Uus kokkuvõte\""
+    },
+    {
+      "stage": "work",
+      "label": "mentor_form_Kokkuvõtted",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/6: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Uus kokkuvõte\n      - paragraph: Mustandit näevad mõlemad pooled. See hakkab kehtima, kui mõlemad on sama teksti kinnitanud.\n      - text: \"Kokkuvõtte mustand Kliendiandmeid siia ei panda: see on mentorluse ja juhtumitöö teadlik piir.\"\n      - textbox \"Kokkuvõtte mustand\"\n      - button \"Loobu\"\n      - button \"Loo mustand\" [disabled]"
+    },
+    {
+      "stage": "work",
+      "label": "mentor_part_Suhte seis",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 6/6: Suhte seis\"\n    - region \"Suhte seis\":\n      - heading \"Suhte seis\" [level=3]\n      - paragraph: \"Toimunud kohtumisi: 0 · kinnitatud kokkuvõtteid: 0 · viimane tegevus 20. okt 2026, 16:10\"\n      - group \"Suhte tegevused\":\n        - button \"Pane pausile Meeldetuletused vaikivad ja uusi kohtumisi lisada ei saa. Pausi saab iga hetk lõpetada.\"\n        - button \"Suhe on käimas Vasta nii, kui platvorm küsis, kas suhe veel käib. Siis seda praegu tegevusetuse pärast ei suleta.\"\n        - button \"Lõpeta suhe Näed enne, mis säilib ja mis kustub.\""
+    },
+    {
+      "stage": "flow",
+      "label": "flow_start",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentee: SOL TEST Spetsialist\"\n    - text: Aktiivne\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: \"Toimunud kohtumisi: 0 · kinnitatud kokkuvõtteid: 0 · viimane tegevus 20. okt 2026, 16:10\"\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Mõlemad on kinnitanud\"\n      - listitem:\n        - button \"Kohtumised Kohtumisi ei ole kirjas.\"\n      - listitem:\n        - button \"Kokkuvõtted Kokkuvõtteid pole veel.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Aktiivne\""
+    },
+    {
+      "stage": "flow",
+      "label": "mentor_meetings_after_add",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 3/6: Kohtumised\"\n    - region \"Kohtumised\":\n      - heading \"Kohtumised\" [level=3]\n      - paragraph: Siia pannakse kirja kohtumise aeg, vorm ja teema. Kohtumine ise võib toimuda ka väljaspool platvormi.\n      - list:\n        - listitem:\n          - button \"21. okt 2026, 10:00 töörolli piirid (sünteetiline) Plaanitud Väljaspool platvormi\"\n      - paragraph: Kohtumine lisatud.\n      - button \"Lisa kohtumine\""
+    },
+    {
+      "stage": "flow",
+      "label": "mentor_summary_draft",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/6: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Mustand\n      - paragraph: \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"\n      - paragraph: Mustand loodud.\n      - button \"Tagasi loendisse\"\n      - button \"Jäta kõrvale\"\n      - button \"Saada kinnitamisele\""
+    },
+    {
+      "stage": "flow",
+      "label": "mentor_after_confirm",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/6: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Mustand\n      - paragraph: \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"\n      - paragraph: Mustand loodud.\n      - button \"Tagasi loendisse\"\n      - button \"Jäta kõrvale\"\n      - button \"Saada kinnitamisele\""
+    },
+    {
+      "stage": "flow",
+      "label": "mentee_relation",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Mentorlussuhe\" [level=1]\n    - paragraph: \"Mentor: SOL TEST Teenuseosutaja\"\n    - text: Aktiivne\n    - link \"Tagasi mentorlusse\":\n      - /url: /mentorlus\n    - paragraph: Kogu suhe\n    - paragraph: \"Toimunud kohtumisi: 0 · kinnitatud kokkuvõtteid: 0 · viimane tegevus 20. okt 2026, 16:12\"\n    - list \"Kogu suhe\":\n      - listitem:\n        - button \"Eesmärgid Eesmärke ei ole veel kirjas.\"\n      - listitem:\n        - button \"Mentorluskokkulepe Mõlemad on kinnitanud\"\n      - listitem:\n        - 'button \"Kohtumised Plaanis: 21. okt 2026, 10:00\"'\n      - listitem:\n        - 'button \"Kokkuvõtted Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"'\n      - listitem:\n        - button \"Ettevalmistus Ettevalmistust ei ole.\"\n      - listitem:\n        - button \"Minu märkmed Märkmeid ei ole veel.\"\n      - listitem:\n        - button \"Suhte seis Aktiivne\""
+    },
+    {
+      "stage": "flow",
+      "label": "mentee_summaries",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/7: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte hakkab kehtima, kui mõlemad pooled on sama teksti kinnitanud. Kinnitatud teksti muuta ei saa, saab teha paranduse.\n      - list:\n        - listitem:\n          - 'button \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast. Mustand\"'\n      - button \"Uus kokkuvõte\""
+    },
+    {
+      "stage": "flow",
+      "label": "mentee_after_confirm",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/7: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kokkuvõte hakkab kehtima, kui mõlemad pooled on sama teksti kinnitanud. Kinnitatud teksti muuta ei saa, saab teha paranduse.\n      - list:\n        - listitem:\n          - 'button \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast. Mustand\"'\n      - button \"Uus kokkuvõte\""
+    },
+    {
+      "stage": "summary",
+      "label": "mentor_after_send",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/6: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Ootab sinu kinnitust\n      - paragraph: \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"\n      - paragraph: Kokkuvõte saadetud teisele poolele kinnitamiseks.\n      - button \"Tagasi loendisse\"\n      - button \"Jäta kõrvale\"\n      - button \"Kinnitan kokkuvõtte\""
+    },
+    {
+      "stage": "summary",
+      "label": "mentee_summary_detail",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/7: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Ootab sinu kinnitust\n      - paragraph: \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"\n      - button \"Tagasi loendisse\"\n      - button \"Jäta kõrvale\"\n      - button \"Kinnitan kokkuvõtte\""
+    },
+    {
+      "stage": "summary",
+      "label": "mentee_after_confirm",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/7: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Ootab teise poole kinnitust\n      - paragraph: \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"\n      - paragraph: Kinnitus salvestatud.\n      - button \"Tagasi loendisse\"\n      - button \"Jäta kõrvale\""
+    },
+    {
+      "stage": "summary2",
+      "label": "mentor_after_confirm",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 4/6: Kokkuvõtted\"\n    - region \"Kokkuvõtted\":\n      - heading \"Kokkuvõtted\" [level=3]\n      - paragraph: Kinnitatud 20. okt 2026\n      - paragraph: \"Sünteetiline kokkuvõte: arutati töörolli piire, järgmine kohtumine kuu pärast.\"\n      - paragraph: Kinnitus salvestatud.\n      - button \"Tagasi loendisse\"\n      - button \"Paranda kokkuvõtet\""
+    },
+    {
+      "stage": "close",
+      "label": "end_preview",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 6/6: Suhte seis\"\n    - region \"Suhte seis\":\n      - heading \"Suhte seis\" [level=3]\n      - paragraph: Mis säilib ja mis kustub\n      - paragraph: Teine pool näeb, et sina lõpetasid suhte. Lõpetatud suhet uuesti avada ei saa.\n      - heading \"Säilib\" [level=4]\n      - list:\n        - listitem: Kinnitatud kokkuvõtted (1)\n        - listitem: \"Kohtumiste kirjed: aeg ja vorm (1)\"\n        - listitem: Kokkuleppe kinnituste ajalugu\n        - listitem: Sinu privaatmärkmed (1), need jäävad ainult sulle\n      - heading \"Kustub jäädavalt\" [level=4]\n      - list:\n        - listitem: Kinnitamata kokkuvõttemustandid (0)\n        - listitem: Kohtumiste teemad\n      - radiogroup \"Lõpetamise põhjus\":\n        - text: Lõpetamise põhjus\n        - radio \"Mentorlus sai läbi\" [checked]\n        - radio \"Mentori vahetus\"\n        - radio \"Muu põhjus\"\n      - button \"Ära lõpeta\"\n      - button \"Lõpeta suhe\""
+    },
+    {
+      "stage": "close",
+      "label": "end_preview",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 6/6: Suhte seis\"\n    - region \"Suhte seis\":\n      - heading \"Suhte seis\" [level=3]\n      - paragraph: Mis säilib ja mis kustub\n      - paragraph: Teine pool näeb, et sina lõpetasid suhte. Lõpetatud suhet uuesti avada ei saa.\n      - heading \"Säilib\" [level=4]\n      - list:\n        - listitem: Kinnitatud kokkuvõtted (1)\n        - listitem: \"Kohtumiste kirjed: aeg ja vorm (1)\"\n        - listitem: Kokkuleppe kinnituste ajalugu\n        - listitem: Sinu privaatmärkmed (1), need jäävad ainult sulle\n      - heading \"Kustub jäädavalt\" [level=4]\n      - list:\n        - listitem: Kinnitamata kokkuvõttemustandid (0)\n        - listitem: Kohtumiste teemad\n      - radiogroup \"Lõpetamise põhjus\":\n        - text: Lõpetamise põhjus\n        - radio \"Mentorlus sai läbi\" [checked]\n        - radio \"Mentori vahetus\"\n        - radio \"Muu põhjus\"\n      - button \"Ära lõpeta\"\n      - button \"Lõpeta suhe\""
+    },
+    {
+      "stage": "close",
+      "label": "after_end",
+      "url": "/mentorlus/suhe/cmvgp8xii002hd0ts3kgfmej1",
+      "aria": "paragraph: \"Osa 5/5: Suhte seis\"\n    - region \"Suhte seis\":\n      - heading \"Suhte seis\" [level=3]\n      - paragraph: Lõpetasid suhte 20. okt 2026, 16:14.\n      - paragraph: \"Toimunud kohtumisi: 0 · kinnitatud kokkuvõtteid: 1 · viimane tegevus 20. okt 2026, 16:14\"\n      - paragraph: Kinnitatud kokkuvõtted, viimane kokkulepe, kohtumiste kirjed ja sinu märkmed on siin loetavad.\n      - paragraph: Suhe on lõpetatud. Kinnitatud kokkuvõtted ja kohtumiste kirjed jäid alles."
+    }
+  ],
+  "network": [
+    {
+      "stage": "request",
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/mentoring/requests",
+      "status": 201,
+      "message": null
+    },
+    {
+      "stage": "agreement",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/agreement",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "confirm",
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/agreement",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "flow",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/notes",
+      "status": 201,
+      "message": null
+    },
+    {
+      "stage": "flow",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/meetings",
+      "status": 201,
+      "message": null
+    },
+    {
+      "stage": "flow",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/summaries",
+      "status": 201,
+      "message": null
+    },
+    {
+      "stage": "summary",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/summaries/cmvgpe1se0034d0tsgsejjafp",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "summary",
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/summaries/cmvgpe1se0034d0tsgsejjafp",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "summary2",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1/summaries/cmvgpe1se0034d0tsgsejjafp",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "close",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "close",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1",
+      "status": 200,
+      "message": null
+    },
+    {
+      "stage": "close",
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/mentoring/relations/cmvgp8xii002hd0ts3kgfmej1",
+      "status": 200,
+      "message": null
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "requestSentWith": "Esita taotlus",
+  "acceptPress": [
+    "Võta vastu",
+    null
+  ],
+  "agreementMentor": {
+    "start": null,
+    "presses": [
+      "Esita kokkuleppe versioon",
+      null,
+      null
+    ]
+  },
+  "agreementMentee": {
+    "start": null,
+    "presses": [
+      "Esita uus versioon",
+      null,
+      null
+    ]
+  },
+  "agreementRawNote": "agreement stage: mentor submitted version 1 (200); the mentee click hit Esita uus versioon, whose editor refused an identical text (Uus versioon peab kehtivast erinema). This stage confirms with Kinnitan kokkuleppe.",
+  "noteMarker": "SOL MENTOR PRIVATE NOTE mvgpdn6y",
+  "meetingTimeInput": {
+    "type": "datetime-local",
+    "placeholder": null
+  },
+  "meetingAdd": "Lisa kohtumine",
+  "summaryCreate": "Loo mustand",
+  "mentorConfirm": [
+    "Kinnitan kokkuvõtte",
+    null
+  ],
+  "menteeConfirm": [
+    "Kinnitan kokkuvõtte",
+    null
+  ],
+  "summaryRawNote": "flow stage: summary draft created (201) but not sent; the harness pattern did not match Saada kinnitamisele.",
+  "mentorSend": [
+    "Saada kinnitamisele",
+    null
+  ],
+  "endPress": [
+    "Lõpeta suhe",
+    "Vajuta uuesti, et lõpetada"
+  ],
+  "closeRawRun": {
+    "check": {
+      "case_id": "TOOLS-03",
+      "variant_id": "ended_relation_refuses_new_meeting_and_keeps_records",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real mentoring UI in the isolated local copy",
+      "actual": {
+        "relationStatus": "ACTIVE",
+        "addMeetingButtons": 1,
+        "endPresses": [],
+        "privateNotesKept": 1,
+        "confirmedSummariesKept": 1
+      }
+    },
+    "note": "first close run did not press the final button (pattern missed Lõpeta suhe)"
+  },
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "Sending a summary for confirmation does not count as the sender confirmation; both parties press Kinnitan kokkuvõtte. One confirmation left PENDING_CONFIRM, two gave CONFIRMED."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "Mentoring meetings are records only: the page states there is no separate call system for mentoring (a platform room can be linked)."
+    },
+    {
+      "status": "NOT_RUN",
+      "case_id": "TOOLS-03",
+      "note": "Pause/resume, the inactivity question, a refused request and the real admin moderation path were not tested; the moderation was a labelled fixture."
+    }
+  ],
+  "rawRuns": {
+    "agreement": "agreement stage: mentor submitted version 1 (200); the mentee click hit Esita uus versioon, whose editor refused an identical text (Uus versioon peab kehtivast erinema). This stage confirms with Kinnitan kokkuleppe.",
+    "summary": "flow stage: summary draft created (201) but not sent; the harness pattern did not match Saada kinnitamisele.",
+    "close": {
+      "check": {
+        "case_id": "TOOLS-03",
+        "variant_id": "ended_relation_refuses_new_meeting_and_keeps_records",
+        "status": "FAIL",
+        "evidence_mode": "CURRENT_RUNTIME",
+        "entrypoint": "real mentoring UI in the isolated local copy",
+        "actual": {
+          "relationStatus": "ACTIVE",
+          "addMeetingButtons": 1,
+          "endPresses": [],
+          "privateNotesKept": 1,
+          "confirmedSummariesKept": 1
+        }
+      },
+      "note": "first close run did not press the final button (pattern missed Lõpeta suhe)"
+    }
+  }
+}

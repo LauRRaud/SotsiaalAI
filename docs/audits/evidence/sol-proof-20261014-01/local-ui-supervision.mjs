@@ -25,7 +25,6 @@ const check = (variant_id, ok, actual) => { rec.checks = rec.checks.filter(c => 
 const watch = (p, who) => p.on('response', async r => { const u = new URL(r.url()); if (u.pathname.startsWith('/api/') && r.request().method() !== 'GET') { let body = null; try { body = await r.json(); } catch {} rec.network.push({who, method: r.request().method(), path: u.pathname, status: r.status(), message: body?.message ?? body?.error ?? null}); save(); } });
 const part = async (page, name) => { await page.getByRole('button', {name: 'Kogu protsess'}).first().click().catch(() => {}); await page.waitForTimeout(700); await page.getByRole('button', {name: new RegExp('^' + name)}).first().click(); await page.waitForTimeout(1200); };
 const text = async p => (await p.locator('#main').innerText()).replace(/\s+/g, ' ');
-const fillFirstTextbox = async (page, value) => { const boxes = page.locator('#main').getByRole('textbox'); const n = await boxes.count(); for (let i = 0; i < n; i++) { const b = boxes.nth(i); if (await b.isVisible() && await b.isEditable()) { await b.fill(value); return true; } } return false; };
 try {
   if (stage === 'share') {
     const marker = crypto.randomBytes(3).toString('hex');
