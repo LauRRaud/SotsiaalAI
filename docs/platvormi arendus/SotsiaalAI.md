@@ -109,22 +109,23 @@ töötajale jääva märgi, mis ei muuda koondisse minevat signaali. Järgmine: 
 allikas ja kolleegi või juhi abitee (sisu vajab asjatundja ülevaatust).
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
-**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 264
-salvestatud varianti: 259 PASS, 3 FAIL, 2 lahendatud rakisetakistust.
+**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 304
+salvestatud varianti: 292 PASS, 10 FAIL, 2 lahendatud rakisetakistust.
 Kinnitatud puudused: READY järel võrgustikujagamise `source_inactive`,
-saabumiskiri eirab e-postiteavituse eelistust ja töö tähtaeg `dueAt` puudub
-kasutusrajal (MISSING_FEATURE). Omaniku otsust vajab: suletud avamisvärav
-keelab võtmega taustatööd (teavitused koos välitöö turvakontrolli ja kiire abi
-aegumisega, praktikate ülevaated); need on serveris failed. Vaatlus: ebaselge
-plaani korral seob RAG esimeses isikus küsimuse fookusisiku omavalitsusega.
-Parandused jäävad Astra/Fable etapile. Kolm tavarolli testkontot
-(`sol-proof-20261014-01`, adminiõiguseta) ja OÜ Küberloome privaatsed mustandid
-säilivad; erand pikendati 27.10 kella 03.00-ni (`1e0205c2`). Claude ei logi
-sotsiaal.pro peal testkontodega sisse; omaniku admin-seansis kontrolliti
-rollivaateid. Kohalikus eraldatud baasis `sol_proof_20261020_local` läbisid
-ENV-01, RAG-03 ja RAG-10 komponendid ning DATA-04 kustutus. Jätkata 14.10
-mustandi `cmv89qu8k009ghikmdso679cl` saatmisest (vajab serveri sünteetilise
-asutuse ajutist aktiveerimist), RAG-02/05–07/12, FIELD- ja GOV-katsetest.
+saabumiskiri eirab e-postiteavituse eelistust, töö tähtaeg `dueAt` puudub
+(MISSING_FEATURE), teemaseemne privaatsuskontroll blokeerib asutuste nimesid ja
+„kliendi/juhtumi + sõna” ühendeid ning saaja tööjärg ja juhtumitöö laud lähevad
+pärast autori kustutamist lahku. Omaniku otsust vajab: suletud avamisvärav
+keelab võtmega taustatööd (teavitused, välitöö turvakontroll, kiire abi
+aegumine, kovisiooni kutsekirjad) ning pöörduja näeb „vastu võetud” juba
+koordinaatori avamisel. Kohalikus eraldatud koopias (`sol_proof_20261020_local`,
+kood = server) mängiti päris kasutajaliideses läbi eelpöördumise saatmine ja
+asutuse vastuvõtt, kovisioon etapini 2, supervisioon ja mentorlus algusest
+lõpuni; superviisori õigus ja mentori moderatsioon olid märgistatud fixture’id.
+Parandused jäävad Astra/Fable etapile. Testkontode erand kehtib 27.10 kella
+03.00-ni; Claude ei logi sotsiaal.pro peal testkontodega sisse. Järgmine:
+RAG-i vestlustestid pärast omaniku korpuse uuendust (kulupiir 3 €,
+hindajad omanik + spetsialist), FIELD ja GOV.
 [Vahetulemus ja tõendid](../audits/sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md).
 
 **13.10 logo kuvamine:** avalehe logo joonistatakse nüüd lehe Exo 2 fondist
