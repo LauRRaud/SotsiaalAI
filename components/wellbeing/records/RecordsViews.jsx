@@ -290,6 +290,77 @@ export function RecordDraftsView({ t, drafts, handoffs }) {
   );
 }
 
+/**
+ * Anonüümne koond (TO-3, ideed §20.6): mis jääb ainult töötajale, mis võib koondis
+ * osaleda, ja valik. Otsus jõustub serveris koondi päringus.
+ */
+export function AggregateView({ t, status, enabled, chosen, onToggle }) {
+  const loading = status === "loading";
+  const busy = loading || status === "saving";
+  const failed = status === "error" || status === "save_error";
+  const lists = [
+    ["private", "Jääb ainult sulle", [
+      ["answers", "Sinu vastused ja tekstid"],
+      ["plans", "Plaanid, kontrollpunktid ja mustandid"],
+      ["history", "Täpne ajalugu"],
+      ["mistreatment", "Kolleegi või juhi ebaväärika kohtlemise märk"]
+    ]],
+    ["shared", "Võib osaleda koondis", [
+      ["signal", "Töökorralduslik signaal (roheline, kollane, punane)"],
+      ["categories", "Koormuse ja ressursside kategooriad"],
+      ["risks", "Riskimärgid, näiteks raske juhtum või töövägivald"]
+    ]]
+  ];
+  return (
+    <StepPanel
+      title={t("wellbeing.my_records.views.aggregate.title", "Anonüümne koond")}
+      lead={t("wellbeing.aggregate.lead", "Kirjetest arvutatakse piloodi asutusele anonüümne koond. See ei näita kunagi ühe inimese vastuseid ja avaneb alles siis, kui inimesi on piisavalt.")}
+      note={failed ? (status === "save_error" ? t("wellbeing.aggregate.save_failed", "Valiku salvestamine ebaõnnestus. Proovi uuesti.") : t("wellbeing.aggregate.load_failed", "Valikut ei õnnestunud lugeda.")) : undefined}
+      actions={
+        enabled === null ? null : (
+          <Button type="button" variant="secondary" disabled={busy} onClick={() => onToggle(!enabled)}>
+            {enabled ? t("wellbeing.aggregate.turn_off", "Ära kaasa minu kirjeid") : t("wellbeing.aggregate.turn_on", "Kaasa minu kirjed")}
+          </Button>
+        )
+      }
+    >
+      <div className={styles.stack}>
+        {loading ? (
+          <p className={styles.quiet}>{t("wellbeing.my_records.loading", "Laadin…")}</p>
+        ) : enabled === null ? null : (
+          <p className={styles.line} aria-live="polite">
+            <Chip tone={enabled ? "ok" : "quiet"}>
+              {enabled ? t("wellbeing.aggregate.state_on", "Sinu kirjed osalevad koondis") : t("wellbeing.aggregate.state_off", "Sinu kirjed ei osale koondis")}
+            </Chip>
+            <span className={styles.adviceReason}>
+              {enabled
+                ? chosen
+                  ? t("wellbeing.aggregate.state_on_hint", "Saad selle iga kell välja lülitada.")
+                  : t("wellbeing.aggregate.state_default_hint", "See on vaikeseis; sa ei ole seda veel muutnud.")
+                : t("wellbeing.aggregate.state_off_hint", "Ka sinu varasemad kirjed on koondist väljas.")}
+            </span>
+          </p>
+        )}
+        <div className={styles.groups}>
+          {lists.map(([key, title, items]) => (
+            <section key={key} className={styles.group}>
+              <h4 className={styles.groupTitle}>{t(`wellbeing.aggregate.${key}_title`, title)}</h4>
+              <ul className={styles.tags}>
+                {items.map(([itemKey, fallback]) => (
+                  <li key={itemKey}>{t(`wellbeing.aggregate.${key}_items.${itemKey}`, fallback)}</li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+        <p className={styles.quiet}>
+          {t("wellbeing.aggregate.effect", "Valik kehtib kohe ka varasematele kirjetele. Privaatse Tööheaolu kasutamist see ei muuda.")}
+        </p>
+      </div>
+    </StepPanel>
+  );
+}
+
 /** Pooleli jäänud tekstid: kinnitamata mustandid, mida saab avada või kustutada. */
 export function UnfinishedView({ t, loading, rows, more, notice }) {
   return (

@@ -7,9 +7,10 @@
 
 import { buildQuickCheckRecord, formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
 
-import { QUICK_CHECK_GROUPS, QUICK_CHECK_RISKS } from "../quickCheckFields.js";
+import { QUICK_CHECK_GROUPS, QUICK_CHECK_RISKS, QUICK_CHECK_SAFETY } from "../quickCheckFields.js";
 
 const questions = (group) => group.map((field) => ({ key: field.key, kind: "enum", label: field.label, options: field.options }));
+const checks = (list) => list.map((item) => ({ key: item.key, kind: "boolean", label: [item.labelKey, ""], hint: [item.hintKey, ""] }));
 const step = (key) => ({
   title: [`wellbeing.quick_check.steps.${key}.title`, ""],
   short: [`wellbeing.quick_check.steps.${key}.short`, ""],
@@ -29,7 +30,8 @@ export const quickCheckForm = {
     noActions: ["wellbeing.quick_check.no_actions", "Jätka praeguste kokkulepete hoidmist ja tee uus kiirkontroll hiljem."]
   },
   steps: [
-    /* Kuus nõudmiste küsimust on kaks vaadet (3 + 3): üks vaade mahub paneeli ära. */
+    /* Kuus nõudmiste küsimust on kaks vaadet (3 + 3) ning ressursid ja tugi samuti
+       kaks (4 + 3): üks vaade mahub paneeli ära. */
     { key: "demands", ...step("demands"), fields: questions(QUICK_CHECK_GROUPS.demands.slice(0, 3)) },
     {
       key: "pressure",
@@ -38,17 +40,25 @@ export const quickCheckForm = {
       fields: questions(QUICK_CHECK_GROUPS.demands.slice(3))
     },
     { key: "resources", ...step("resources"), fields: questions(QUICK_CHECK_GROUPS.resources) },
-    {
-      key: "risks",
-      ...step("risks"),
-      fields: QUICK_CHECK_RISKS.map((risk) => ({
-        key: risk.key,
-        kind: "boolean",
-        label: [risk.labelKey, ""],
-        hint: [risk.hintKey, ""]
-      }))
-    }
+    { key: "support", ...step("support"), fields: questions(QUICK_CHECK_GROUPS.support) },
+    { key: "safety", ...step("safety"), fields: checks(QUICK_CHECK_SAFETY) },
+    { key: "risks", ...step("risks"), fields: checks(QUICK_CHECK_RISKS) }
   ],
+  /* Kolleegi või juhi ebaväärikas kohtlemine: Töövägivalla töövoog eeldab praegu
+     kliendist tegijat ja juhimemo võib minna osapoolele. Seepärast ütleb teade
+     märke all, kuhu saab pöörduda, ja et märk jääb ainult töötajale. */
+  safetyNotice: {
+    fieldKey: "colleagueMistreatmentMarker",
+    when: (fields) => fields.colleagueMistreatmentMarker === true,
+    /* Teade on juba märke all loetud; tulemuse sammul lükkaks ta salvestusnupu
+       paneelist välja (1536 × 640: sisu 672 px, paneel 522 px). */
+    repeatOnResult: false,
+    title: ["wellbeing.quick_check.mistreatment_notice.title", "Sa ei pea sellega üksi jääma"],
+    text: [
+      "wellbeing.quick_check.mistreatment_notice.text",
+      "Kui see puudutab sinu juhti, ei pea esimene samm olema tema: räägi kõrgema juhi, personalitöötaja, töökeskkonnavoliniku või töötervishoiuarstiga. Pane toimunu kuupäevaga kirja. See märk jääb ainult sulle."
+    ]
+  },
   signals: {
     green: {
       tone: "ok",

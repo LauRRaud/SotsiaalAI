@@ -24,7 +24,9 @@
  *    alles siis, kui kõik sellised küsimused on vastatud; enne seda vorm midagi
  *    ei oleta ega salvesta.
  *  - Ohutusteade (`safetyNotice`) ilmub KOHE selle küsimuse all, mille vastus
- *    selle tingib, mitte alles tulemuse sammul.
+ *    selle tingib, mitte alles tulemuse sammul. Tulemuse sammul kordub ta siis,
+ *    kui `repeatOnResult` ei ole `false` (pikk teade, mis ei ole kiireloomuline
+ *    ohuteade, lükkaks muidu salvestusnupu paneelist välja).
  *  - Paneelis ei ole „Edasi" nuppu: edasi liigutakse kiirmenüü noolest või
  *    kerides, ja ainult valikutega vaade liigub pärast viimast vastust ise.
  *  - Üks samm = üks asi ja see mahub paneeli ära: kerimine vahetab sammu
@@ -55,6 +57,7 @@ import { cleanFields, emptyFields, hasValue, missingInStep } from "./forms/formS
 import { isTableStep, stackColumns } from "./forms/layout";
 import { wellbeingActionRoute } from "./forms/routes";
 import SupportRequestPanel from "./SupportRequestPanel";
+import { useWellbeingAggregatePreference } from "./useAggregatePreference";
 import styles from "./WellbeingStepForm.module.css";
 
 /* Viivitus enne iseliikumist: inimene näeb, et tema valik märgiti. */
@@ -78,6 +81,8 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
   const [shownOutput, setShownOutput] = useState(0);
   const [copyState, setCopyState] = useState("idle");
   const [textOpen, setTextOpen] = useState(false);
+  /* Privaatsuslause ütleb ka, kas kirje osaleb anonüümses koondis (TO-3). */
+  const aggregate = useWellbeingAggregatePreference();
 
   const inputSteps = definition.steps;
   const missing = inputSteps.map((step) => missingInStep(step, fields));
@@ -335,7 +340,9 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         />
       );
     }
-    if (safetyActive && definition.safetyNotice.fieldKey === field.key) {
+    /* Märkeruudu teade tuleb ruudustiku alla täislaiuses (vt `renderFields`): kitsas
+       veerg tegi temast kõrge torni, mis lükkas sammu paneelist välja. */
+    if (safetyActive && definition.safetyNotice.fieldKey === field.key && field.kind !== "boolean") {
       return (
         <div key={field.key}>
           {control}
@@ -359,8 +366,9 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
     });
     return groups.map((group) =>
       group.checks ? (
-        <div key={group.fields[0].key} className={styles.checks}>
-          {group.fields.map((field) => renderField(field, table))}
+        <div key={group.fields[0].key}>
+          <div className={styles.checks}>{group.fields.map((field) => renderField(field, table))}</div>
+          {safetyActive && group.fields.some((field) => field.key === definition.safetyNotice.fieldKey) ? safetyNotice() : null}
         </div>
       ) : (
         renderField(group.fields[0], table)
@@ -407,12 +415,18 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
           </StepPanel>
         );
       }
+      const aggregateNote =
+        aggregate.enabled === true
+          ? t("wellbeing.flow.aggregate_on")
+          : aggregate.enabled === false
+            ? t("wellbeing.flow.aggregate_off")
+            : "";
       const note =
         saveState === "saved"
           ? tx(definition.text.saved)
           : saveState === "error"
             ? tx(definition.text.failed)
-            : t("wellbeing.flow.privacy");
+            : [t("wellbeing.flow.privacy"), aggregateNote].filter(Boolean).join(" ");
       const factorLists = definition.factors ? definition.factors(record, tx) : [];
       return (
         <StepPanel
@@ -429,7 +443,7 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
         >
           <div className={styles.block}>
             {signalBlock()}
-            {safetyActive ? safetyNotice() : null}
+            {safetyActive && definition.safetyNotice.repeatOnResult !== false ? safetyNotice() : null}
             {factorLists.length ? (
               <div className={styles.factors}>
                 {factorLists.map((list) => (

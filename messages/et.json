@@ -9894,7 +9894,11 @@
           "short": "Pooleli"
         },
         "open": "Ava",
-        "confirm_delete": "Vajuta uuesti, et kustutada"
+        "confirm_delete": "Vajuta uuesti, et kustutada",
+        "aggregate": {
+          "title": "Anonüümne koond",
+          "short": "Koond"
+        }
       }
     },
     "overview": {
@@ -9982,7 +9986,7 @@
         "resources": {
           "title": "Tööressursid",
           "short": "Ressursid",
-          "lead": "Mis sind selle koormuse juures toetab? Vali igal real üks."
+          "lead": "Kui palju on sul praegu ruumi ja selgust? Vali igal real üks."
         },
         "risks": {
           "title": "Riskimärgid",
@@ -9992,12 +9996,30 @@
         "pressure": {
           "title": "Katkestused ja kättesaadavus",
           "short": "Katkestused"
+        },
+        "support": {
+          "title": "Tugi ja tähendus",
+          "short": "Tugi",
+          "lead": "Kes sind toetab ja kas tunned, et su tööl on mõte? Vali igal real üks."
+        },
+        "safety": {
+          "title": "Turvalisus",
+          "short": "Turvalisus",
+          "lead": "Kas oled viimasel ajal kogenud ähvardust, vägivalda või ebaväärikat kohtlemist? Võid ka tühjaks jätta."
         }
       },
       "risk_hints": {
         "difficult_case": "Juhtum vajab jagamist kolleegi või juhiga.",
         "covision": "Rühma pilk aitaks edasi.",
-        "support": "Töökorralduses on vaja midagi kokku leppida."
+        "support": "Töökorralduses on vaja midagi kokku leppida.",
+        "client_violence": "Klient või tema lähedane on ähvardanud, solvanud või rünnanud.",
+        "colleague_mistreatment": "Kiusamine, alandamine või ahistamine töökaaslase või juhi poolt."
+      },
+      "client_violence_marker": "Kliendi ähvardus või vägivald",
+      "colleague_mistreatment_marker": "Kolleegi või juhi ebaväärikas kohtlemine",
+      "mistreatment_notice": {
+        "title": "Sa ei pea sellega üksi jääma",
+        "text": "Kui see puudutab sinu juhti, ei pea esimene samm olema tema: räägi kõrgema juhi, personalitöötaja, töökeskkonnavoliniku või töötervishoiuarstiga. Pane toimunu kuupäevaga kirja. See märk jääb ainult sulle."
       }
     },
     "hard_case": {
@@ -10280,7 +10302,9 @@
         "title": "Soovitused",
         "lead": "Sinu vastuste põhjal. Ükski samm ei ole kohustuslik.",
         "none": "Praegu eraldi soovitusi ei ole."
-      }
+      },
+      "aggregate_on": "Vastustest tuletatud kategooriad osalevad anonüümses koondis; tekstid ei osale. Valikut muudad: Minu kirjed → Anonüümne koond.",
+      "aggregate_off": "Sinu kirjed ei osale anonüümses koondis."
     },
     "pilot": {
       "forbidden": "Sul ei ole selle piloodi koondvaate õigust.",
@@ -10299,7 +10323,32 @@
       "viewer_not_found": "Selle e-posti aadressiga kasutajat ei leitud."
     },
     "aggregate": {
-      "analysis_unit_invalid": "Analüüsi ühik ei sobi."
+      "analysis_unit_invalid": "Analüüsi ühik ei sobi.",
+      "preference_failed": "Koondi valikut ei õnnestunud lugeda ega salvestada.",
+      "lead": "Kirjetest arvutatakse piloodi asutusele anonüümne koond. See ei näita kunagi ühe inimese vastuseid ja avaneb alles siis, kui inimesi on piisavalt.",
+      "save_failed": "Valiku salvestamine ebaõnnestus. Proovi uuesti.",
+      "load_failed": "Valikut ei õnnestunud lugeda.",
+      "turn_off": "Ära kaasa minu kirjeid",
+      "turn_on": "Kaasa minu kirjed",
+      "state_on": "Sinu kirjed osalevad koondis",
+      "state_off": "Sinu kirjed ei osale koondis",
+      "state_on_hint": "Saad selle iga kell välja lülitada.",
+      "state_default_hint": "See on vaikeseis; sa ei ole seda veel muutnud.",
+      "state_off_hint": "Ka sinu varasemad kirjed on koondist väljas.",
+      "private_title": "Jääb ainult sulle",
+      "shared_title": "Võib osaleda koondis",
+      "private_items": {
+        "answers": "Sinu vastused ja tekstid",
+        "plans": "Plaanid, kontrollpunktid ja mustandid",
+        "history": "Täpne ajalugu",
+        "mistreatment": "Kolleegi või juhi ebaväärika kohtlemise märk"
+      },
+      "shared_items": {
+        "signal": "Töökorralduslik signaal (roheline, kollane, punane)",
+        "categories": "Koormuse ja ressursside kategooriad",
+        "risks": "Riskimärgid, näiteks raske juhtum või töövägivald"
+      },
+      "effect": "Valik kehtib kohe ka varasematele kirjetele. Privaatse Tööheaolu kasutamist see ei muuda."
     }
   },
   "voimalused": {

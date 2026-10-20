@@ -9894,7 +9894,11 @@
           "short": "Unfinished"
         },
         "open": "Open",
-        "confirm_delete": "Press again to delete"
+        "confirm_delete": "Press again to delete",
+        "aggregate": {
+          "title": "Anonymous summary",
+          "short": "Summary"
+        }
       }
     },
     "overview": {
@@ -9982,7 +9986,7 @@
         "resources": {
           "title": "Work resources",
           "short": "Resources",
-          "lead": "What supports you under this load? Choose one on each row."
+          "lead": "How much room and clarity do you have right now? Choose one on each row."
         },
         "risks": {
           "title": "Risk markers",
@@ -9992,12 +9996,30 @@
         "pressure": {
           "title": "Interruptions and availability",
           "short": "Interruptions"
+        },
+        "support": {
+          "title": "Support and meaning",
+          "short": "Support",
+          "lead": "Who supports you, and do you feel your work has meaning? Choose one on each row."
+        },
+        "safety": {
+          "title": "Safety",
+          "short": "Safety",
+          "lead": "Have you recently experienced threats, violence or mistreatment? You can also leave this empty."
         }
       },
       "risk_hints": {
         "difficult_case": "The case needs to be shared with a colleague or manager.",
         "covision": "A group's view would help.",
-        "support": "Something in the work arrangement needs an agreement."
+        "support": "Something in the work arrangement needs an agreement.",
+        "client_violence": "A client or someone close to them has threatened, insulted or attacked you.",
+        "colleague_mistreatment": "Bullying, humiliation or harassment by a co-worker or manager."
+      },
+      "client_violence_marker": "Threat or violence from a client",
+      "colleague_mistreatment_marker": "Mistreatment by a colleague or manager",
+      "mistreatment_notice": {
+        "title": "You don't have to deal with this alone",
+        "text": "If it involves your manager, the first step does not have to be them: talk to a more senior manager, HR, the working environment representative or the occupational health doctor. Write down what happened, with dates. This marker stays with you only."
       }
     },
     "hard_case": {
@@ -10280,7 +10302,9 @@
         "title": "Suggestions",
         "lead": "Based on your answers. None of these steps is required.",
         "none": "There are no separate suggestions right now."
-      }
+      },
+      "aggregate_on": "Categories derived from your answers are included in the anonymous summary; your texts are not. Change this under My records → Anonymous summary.",
+      "aggregate_off": "Your records are not included in the anonymous summary."
     },
     "pilot": {
       "forbidden": "You do not have access to this pilot overview.",
@@ -10299,7 +10323,32 @@
       "viewer_not_found": "No user was found with this e-mail address."
     },
     "aggregate": {
-      "analysis_unit_invalid": "The analysis unit is not valid."
+      "analysis_unit_invalid": "The analysis unit is not valid.",
+      "preference_failed": "Your summary choice could not be read or saved.",
+      "lead": "An anonymous summary for the pilot organisation is calculated from records. It never shows one person's answers and opens only when enough people are included.",
+      "save_failed": "Saving your choice failed. Please try again.",
+      "load_failed": "Your choice could not be read.",
+      "turn_off": "Don't include my records",
+      "turn_on": "Include my records",
+      "state_on": "Your records are included in the summary",
+      "state_off": "Your records are not included in the summary",
+      "state_on_hint": "You can turn this off at any time.",
+      "state_default_hint": "This is the default; you have not changed it yet.",
+      "state_off_hint": "Your earlier records are excluded as well.",
+      "private_title": "Stays only with you",
+      "shared_title": "May be included in the summary",
+      "private_items": {
+        "answers": "Your answers and texts",
+        "plans": "Plans, checkpoints and drafts",
+        "history": "Exact history",
+        "mistreatment": "The marker for mistreatment by a colleague or manager"
+      },
+      "shared_items": {
+        "signal": "Work organisation signal (green, yellow, red)",
+        "categories": "Workload and resource categories",
+        "risks": "Risk markers, such as a difficult case or workplace violence"
+      },
+      "effect": "Your choice applies immediately to earlier records too. It does not change how you use your private Work wellbeing space."
     }
   },
   "voimalused": {

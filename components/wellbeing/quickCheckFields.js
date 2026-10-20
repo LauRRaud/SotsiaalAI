@@ -2,11 +2,14 @@
  * Kiirkontrolli küsimused ja vastusevariandid.
  *
  * Võtmed ja väärtused on serveri lepingu osa (`lib/wellbeing/quickCheck.js`,
- * `lib/wellbeing/fieldSchemas.js`): neid siin ei muudeta. Kaks rühma vastavad
- * kahele sammule (nõudmised ja ressursid); kolm märkeruutu on kolmas samm.
+ * `lib/wellbeing/fieldSchemas.js`): neid siin ei muudeta. Kolm rühma vastavad
+ * sammudele (nõudmised, ressursid, tugi ja tähendus); märkeruudud on kaks
+ * viimast sammu (turvalisus, riskid ja toe vajadus).
  */
 
 const options = (pairs) => pairs.map(([value, label]) => ({ value, label }));
+
+const SUPPORT_OPTIONS = options([["available", "Kättesaadav"], ["partial", "Osaline"], ["unclear", "Ebaselge"], ["not_available", "Pole kättesaadav"]]);
 
 export const QUICK_CHECK_GROUPS = Object.freeze({
   demands: [
@@ -21,8 +24,15 @@ export const QUICK_CHECK_GROUPS = Object.freeze({
     { key: "recoveryLevel", label: "Taastumisvõimalus", options: options([["sufficient", "Piisav"], ["partial", "Osaline"], ["low", "Vähene"], ["none", "Puudub"]]) },
     { key: "decisionControl", label: "Otsustusruum töö üle", options: options([["high", "Kõrge"], ["moderate", "Mõõdukas"], ["low", "Madal"], ["none", "Puudub"]]) },
     { key: "priorityClarity", label: "Prioriteetide selgus", options: options([["clear", "Selge"], ["partly_clear", "Osaliselt selge"], ["unclear", "Ebaselge"]]) },
-    { key: "supportAvailability", label: "Juhi või kolleegi tugi", options: options([["available", "Kättesaadav"], ["partial", "Osaline"], ["unclear", "Ebaselge"], ["not_available", "Pole kättesaadav"]]) },
     { key: "workBoundaryClarity", label: "Tööpiiride selgus", options: options([["clear", "Selge"], ["partly_clear", "Osaliselt selge"], ["unclear", "Ebaselge"]]) }
+  ],
+  /* Juhi ja kolleegide tugi on eraldi küsimused: organisatsioonis on need eri
+     meetmed ja TÜ küsitlus küsib neid eraldi. Tähenduslikkus on tugevus, mitte
+     koormus (signaali ei muuda). */
+  support: [
+    { key: "managerSupport", label: "Juhi tugi", options: SUPPORT_OPTIONS },
+    { key: "colleagueSupport", label: "Kolleegide tugi", options: SUPPORT_OPTIONS },
+    { key: "workMeaning", label: "Tunnen, et mu tööl on mõte", options: options([["yes", "Jah"], ["partly", "Osaliselt"], ["no", "Praegu mitte"]]) }
   ]
 });
 
@@ -31,6 +41,13 @@ export const QUICK_CHECK_RISKS = Object.freeze([
   { key: "difficultCaseMarker", labelKey: "wellbeing.quick_check.difficult_case_marker", hintKey: "wellbeing.quick_check.risk_hints.difficult_case" },
   { key: "covisionNeed", labelKey: "wellbeing.quick_check.covision_need", hintKey: "wellbeing.quick_check.risk_hints.covision" },
   { key: "supportNeed", labelKey: "wellbeing.quick_check.support_need", hintKey: "wellbeing.quick_check.risk_hints.support" }
+]);
+
+/* Turvalisuse märgid on oma samm: viis märkeruutu ja kolleegi või juhi märke
+   teade ei mahtunud ühte vaatesse (1536 × 640: teade lõppes 68 px paneeli all). */
+export const QUICK_CHECK_SAFETY = Object.freeze([
+  { key: "clientViolenceMarker", labelKey: "wellbeing.quick_check.client_violence_marker", hintKey: "wellbeing.quick_check.risk_hints.client_violence" },
+  { key: "colleagueMistreatmentMarker", labelKey: "wellbeing.quick_check.colleague_mistreatment_marker", hintKey: "wellbeing.quick_check.risk_hints.colleague_mistreatment" }
 ]);
 
 /**
@@ -48,9 +65,13 @@ export const QUICK_CHECK_EMPTY = Object.freeze({
   recoveryLevel: null,
   decisionControl: null,
   priorityClarity: null,
-  supportAvailability: null,
   workBoundaryClarity: null,
+  managerSupport: null,
+  colleagueSupport: null,
+  workMeaning: null,
   difficultCaseMarker: false,
+  clientViolenceMarker: false,
+  colleagueMistreatmentMarker: false,
   covisionNeed: false,
   supportNeed: false
 });

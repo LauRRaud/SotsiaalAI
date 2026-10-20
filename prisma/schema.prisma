@@ -746,6 +746,10 @@ model User {
   // Isikuandmete hoiatus enne saatmist (konto seaded). Väljas: privaatses töövoos läheb tekst
   // küsimata nii, nagu inimene selle kirjutas; avalik tekst varjatakse endiselt alati.
   privacyPromptEnabled          Boolean            @default(true)
+  // Tööheaolu anonüümses koondis osalemine (TO-3, I13). `null` = inimene ei ole valinud ja
+  // kehtib koodi vaikeväärtus (`lib/wellbeing/aggregatePreference.js`); `false` jätab kõik tema
+  // kirjed koondist välja, ka varasemad.
+  wellbeingAggregateEnabled     Boolean?
 
   // NextAuth
   accounts Account[]

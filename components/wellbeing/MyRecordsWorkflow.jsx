@@ -20,7 +20,8 @@ import Button from "@/components/ui/Button";
 import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
 import { CHECKPOINT_FOLLOW_UP_STATES, describeWellbeingCheckpoint } from "@/lib/wellbeing/checkpointState";
 
-import { NextStepView, RecordDraftsView, RecordsListView, RecordView, UnfinishedView } from "./records/RecordsViews";
+import { AggregateView, NextStepView, RecordDraftsView, RecordsListView, RecordView, UnfinishedView } from "./records/RecordsViews";
+import { useWellbeingAggregatePreference } from "./useAggregatePreference";
 
 /* Töövoo-tüüpide sildivõtmed. Kuvasõna tuleb i18n-st (t), fallback on ET.
    Sisu (tegurid, signaalid) läbib olemasoleva `wellbeingLabel`-i (ET-only
@@ -105,6 +106,7 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
   /* Avatud on ainult see kirje, mille detail on päriselt kohal (mitte eelmise kirje oma). */
   const openedRecord = selectedId && detail?.record?.id === selectedId ? detail.record : null;
   const plan = useRecordPlan(openedRecord, () => setReloadToken((token) => token + 1));
+  const aggregate = useWellbeingAggregatePreference();
 
   const dateFormatter = useMemo(
     () => new Intl.DateTimeFormat(locale === "et" ? "et-EE" : locale, { dateStyle: "medium" }),
@@ -338,17 +340,23 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
     setView("record");
   };
 
-  const viewKeys = ["list", ...(selectedId ? ["record", "next", "drafts"] : []), "unfinished"];
+  const viewKeys = ["list", ...(selectedId ? ["record", "next", "drafts"] : []), "unfinished", "aggregate"];
   const viewState = {
     list: "empty",
     record: record ? "done" : "empty",
     next: record?.checkpoint ? (checkpointState?.needsFollowUp ? "partial" : "done") : "empty",
     drafts: relatedDrafts.length ? "done" : "empty",
-    unfinished: unconfirmedDrafts.length ? "partial" : "empty"
+    unfinished: unconfirmedDrafts.length ? "partial" : "empty",
+    aggregate: aggregate.chosen ? "done" : "empty"
   };
   const viewSummary = {
     record: record ? `${workflowLabel(record.workflowType)} · ${formatDate(record.createdAt)}` : "",
-    next: record?.checkpoint?.nextStep ? String(record.checkpoint.nextStep).slice(0, 90) : ""
+    next: record?.checkpoint?.nextStep ? String(record.checkpoint.nextStep).slice(0, 90) : "",
+    aggregate: aggregate.enabled === null
+      ? ""
+      : aggregate.enabled
+        ? t("wellbeing.aggregate.state_on", "Sinu kirjed osalevad koondis")
+        : t("wellbeing.aggregate.state_off", "Sinu kirjed ei osale koondis")
   };
   const steps = viewKeys.map((key) => ({
     key,
@@ -525,6 +533,16 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
                 date: formatDate(draft.handedOffAt || draft.updatedAt),
                 onOpen: draft.covisionCaseId ? () => onNavigate?.(`/kovisioon?case=${encodeURIComponent(draft.covisionCaseId)}`) : null
               }))}
+          />
+        );
+      case "aggregate":
+        return (
+          <AggregateView
+            t={t}
+            status={aggregate.status}
+            enabled={aggregate.enabled}
+            chosen={aggregate.chosen}
+            onToggle={aggregate.save}
           />
         );
       case "unfinished":

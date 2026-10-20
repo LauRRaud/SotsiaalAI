@@ -92,6 +92,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**20.10 Tööheaolu: koondis osalemise valik ja kiirkontroll 1.1 (Claude):** TÜ
+tööheaolu küsitluse võrdluse ja arendusettepaneku sammud 1–2. Töötaja saab vaates
+„Minu kirjed → Anonüümne koond“ oma kirjed piloodi koondist välja lülitada; valik
+jõustub koondi päringus ka varasematele kirjetele (`User.wellbeingAggregateEnabled`,
+aditiivne migratsioon). Eeldus: vaikimisi sees (TO-3 soovitus b), lõplik otsus on
+omaniku oma ja muutub ühe konstandiga. Kiirkontrollis on juhi ja kolleegide tugi
+eraldi, töö tähenduslikkus ning turvalisuse samm (kliendi vägivald; kolleegi või juhi
+ebaväärikas kohtlemine). Kolleegi või juhi märk jääb ainult töötajale: see ei lähe
+koondisse, juhimemosse ega kovisiooni sisendisse. Kohalikus baasis sünteetilise
+kasutajaga kontrolliti salvestust, paigutust (1536 × 640, 390 × 844), lülitit ja
+päris koondi valimit. Järgmine: Taastumise ümberehitus.
+[Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
+
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 264
 salvestatud varianti: 259 PASS, 3 FAIL, 2 lahendatud rakisetakistust.
 Kinnitatud puudused: READY järel võrgustikujagamise `source_inactive`,
@@ -4933,7 +4946,7 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 | Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
 | Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
 | Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
-| Tööheaolu | E0 + piloodirada + koondid | P3–P5; nädalarütm ja naasmispunkt; **O-WB-K: kas tõsta lävi 3 → 5** |
+| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 (20.10) | P3–P5; nädalarütm ja naasmispunkt; Taastumise ümberehitus ja Töövägivalla allikas ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
 | Ühistegevus | osaleja- ja jagamiskiht, kokkuvõtte kinnitusring | võrgustiku vertikaal, kohtumise ühisvaade (S4.1) |
 | Materjalid | esitamise ja ülevaatuse rada | esimesed päris esitused puuduvad — kasutajad, mitte kood |
 
