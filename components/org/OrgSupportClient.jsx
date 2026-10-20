@@ -6,8 +6,19 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 
 import OrgPart from "./OrgPart";
-import { ContactAddView, ContactListView } from "./support/ContactViews";
-import { ADDABLE_CONTACT_TYPES, CONTACT_STEPS, addedContact, candidateOptions, contactRows } from "./support/contactRules";
+import { ContactAddView, ContactListView, ManagerView } from "./support/ContactViews";
+import {
+  ADDABLE_CONTACT_TYPES,
+  CONTACT_STEPS,
+  addedContact,
+  candidateOptions,
+  contactRows,
+  currentManager,
+  memberOptions,
+  reportingSummary,
+  withReportingLine,
+  withoutReportingLine
+} from "./support/contactRules";
 import { MeasureDetailsView, MeasureGroupView } from "./support/MeasureViews";
 import {
   MEASURE_STEPS,
@@ -71,6 +82,7 @@ export default function OrgSupportClient({
   canManage = false,
   contacts = [],
   candidates = [],
+  reportingLines = [],
   prefill = null
 }) {
   const { t } = useI18n();
@@ -82,6 +94,9 @@ export default function OrgSupportClient({
   const [contactList, setContactList] = useState(contacts);
   const [contactStep, setContactStep] = useState(CONTACT_STEPS[0]);
   const [contactForm, setContactForm] = useState({ contactType: ADDABLE_CONTACT_TYPES[0], membershipId: "" });
+  /* Juhiseosed halduri vaates: üks liige korraga. */
+  const [lines, setLines] = useState(reportingLines);
+  const [managerForm, setManagerForm] = useState({ memberMembershipId: "", managerMembershipId: "" });
   /* Asutuse meetmed: salvestatud loend ja muutmise mustand. */
   const [savedMeasures, setSavedMeasures] = useState(measures);
   const [draft, setDraft] = useState(() => measureDraft(measures));
@@ -99,7 +114,8 @@ export default function OrgSupportClient({
   const [wantedList, setWantedList] = useState("received");
   const [openId, setOpenId] = useState("");
   const [stepKey, setStepKey] = useState("who");
-  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "measures" | "contact" | "recall:<id>" | "end:<id>". */
+  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "measures" | "contact" | "manager" |
+     "end-manager" | "recall:<id>" | "end:<id>". */
   const [pending, setPending] = useState("");
   const [notice, setNotice] = useState(() => (openWithPrefill ? { view: "who", text: t("org.support.from_wellbeing") } : null));
   const confirm = useSecondPress();
@@ -265,6 +281,37 @@ export default function OrgSupportClient({
     [call, organizationId, t]
   );
 
+  const setManager = useCallback(async () => {
+    const { memberMembershipId, managerMembershipId } = managerForm;
+    if (!memberMembershipId || !managerMembershipId) {
+      setNotice({ view: "manager", tone: "risk", text: t("org.support.contactAdmin.manager_need") });
+      return;
+    }
+    const payload = await call(`/api/org/${organizationId}/tugi`, {
+      method: "POST",
+      body: { action: "setReportingLine", memberMembershipId, managerMembershipId },
+      fallbackKey: "org.errors.support_update_failed"
+    });
+    if (!payload?.line) return;
+    setLines((current) => withReportingLine(current, memberMembershipId, managerMembershipId));
+    setManagerForm((current) => ({ ...current, managerMembershipId: "" }));
+    setNotice({ view: "manager", text: t("org.support.contactAdmin.manager_saved") });
+  }, [call, managerForm, organizationId, t]);
+
+  const endManager = useCallback(
+    async (memberMembershipId) => {
+      const payload = await call(`/api/org/${organizationId}/tugi`, {
+        method: "POST",
+        body: { action: "endReportingLine", memberMembershipId },
+        fallbackKey: "org.errors.support_update_failed"
+      });
+      if (!payload?.line) return;
+      setLines((current) => withoutReportingLine(current, memberMembershipId));
+      setNotice({ view: "manager", text: t("org.support.contactAdmin.manager_ended") });
+    },
+    [call, organizationId, t]
+  );
+
   /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
   const once = useCallback(async (name, work) => {
     if (sending.current) return;
@@ -333,12 +380,19 @@ export default function OrgSupportClient({
   }
 
   if (mode === "contacts" && canManage) {
+    const summary = reportingSummary(lines, candidates);
+    const stateOf = (key) => {
+      if (key === "list") return contactList.length ? "done" : "empty";
+      if (key === "add") return contactForm.membershipId ? "partial" : "empty";
+      return summary.assigned === 0 ? "empty" : summary.missing === 0 ? "done" : "partial";
+    };
     const steps = CONTACT_STEPS.map((key) => ({
       key,
       label: t(`org.support.contactAdmin.steps.${key}.title`),
       short: t(`org.support.contactAdmin.steps.${key}.short`),
-      state: key === "list" ? (contactList.length ? "done" : "empty") : contactForm.membershipId ? "partial" : "empty"
+      state: stateOf(key)
     }));
+    const current = managerForm.memberMembershipId ? currentManager(lines, candidates, managerForm.memberMembershipId, { t }) : null;
     const leaveContacts = () => {
       clearConfirm();
       setError("");
@@ -361,7 +415,35 @@ export default function OrgSupportClient({
             }}
           >
             {(step, _index, flight) =>
-              step.key === "list" ? (
+              step.key === "manager" ? (
+                <ManagerView
+                  t={t}
+                  form={managerForm}
+                  members={memberOptions(candidates, { t })}
+                  managers={memberOptions(candidates, { t, except: managerForm.memberMembershipId })}
+                  current={current}
+                  summary={summary}
+                  onField={(key, value) => {
+                    setManagerForm((form) => ({ ...form, [key]: value, ...(key === "memberMembershipId" ? { managerMembershipId: "" } : {}) }));
+                    clearConfirm();
+                    setNotice(null);
+                    setError("");
+                  }}
+                  set={{ busy: pending === "manager", onSet: () => { clearConfirm(); void once("manager", setManager); } }}
+                  end={
+                    current
+                      ? {
+                          armed: confirm.armed === "end-manager",
+                          busy: pending === "end-manager",
+                          onPress: () => confirm.press("end-manager", () => once("end-manager", () => endManager(managerForm.memberMembershipId)))
+                        }
+                      : null
+                  }
+                  notice={noticeOf("manager")}
+                  onBack={leaveContacts}
+                  glow={flight?.isActive !== false}
+                />
+              ) : step.key === "list" ? (
                 <ContactListView
                   t={t}
                   rows={contactRows(contactList, { t })}

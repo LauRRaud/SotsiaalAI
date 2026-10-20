@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed ja abipalve päris adressaat (TO-6) teostatud 20.10 (ptk 8.13–8.14); juhiseoste liides ja „võimaldab × vajan“ koond lahti
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); „võimaldab × vajan“ koond lahti
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -298,7 +298,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa — **tehtud 20.10** (ptk 8.10) | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ — **tehtud 20.10 ilma teavituseta** (ptk 8.12) | sõltub meeldetuletuse otsusest | keskmine |
-| 8 | Asutuse meetmete kirjeldus ja abipalve päris adressaat (TO-6) — **tehtud 20.10** (ptk 8.13–8.14); meetmete koond, arenguvajadus | koond ootab esimest KOV-i koondit, arenguvajadus S6 otsust | suur |
+| 8 | Asutuse meetmete kirjeldus, abipalve ja juhimemo päris adressaat (TO-6) — **tehtud 20.10** (ptk 8.13–8.15); meetmete koond, arenguvajadus | koond ootab esimest KOV-i koondit, arenguvajadus S6 otsust | suur |
 
 Sammud 1–7 katavad küsitluse 35 puuduvast punktist umbes 20. Ülejäänud jäävad teadlikult välja (ptk 8.3) või S6-le.
 
@@ -446,8 +446,8 @@ Uus tööriist `/tooheaolu/tugivoimalused` (töövoog `support-measures`, skeem 
 - Kõrvalt: serveri mustandikoostaja (`supportDrafts.js`) jätab nüüd samuti välja ainult töötajale jäävad märgid —
   liidese koostaja tegi seda juba, serveri varukoostaja mitte.
 
-**Samm 8:** asutuse meetmete kirjeldus ja eeltäidetud loend (ptk 8.13) ning abipalve päris adressaat (TO-6, ptk 8.14)
-on tehtud.
+**Samm 8:** asutuse meetmete kirjeldus ja eeltäidetud loend (ptk 8.13) ning abipalve ja juhimemo päris adressaat
+(TO-6, ptk 8.14–8.15) on tehtud.
 
 **Kontroll.** Sihitud eslint, `npm run i18n:check`, `server-message-keys`; funktsioonide kutsega vorm = skeem =
 arvutus, teise rühma meetme tagasilükkamine, rühmitus, tegurid, soovitused, tekstid, neutraalne signaal, koond ja
@@ -466,7 +466,7 @@ kirjet ja silte, tööriist on Tööheaolu laual, neutraalne signaal kuvatakse. 
 | **Kovisiooni sisend kolleegi/juhi kirjelt** | **Peidetud** Tugi-paneelis; juhi puhul ka juhimemo | Sama piir mis töövoo valmis tekstides: kolleegi või juhi tehtut ei viida vaikimisi kolleegide rühma ega osapoolele. Supervisioon, abipalve ja mentor jäävad. | `components/wellbeing/supportOptions.js` |
 | **Nädalarütmi meeldetuletus** | Ainult vaikne märk „Uus nädal“ Tööheaolu laual, teavitust ei saadeta | Taustatööd on suletud avamisvärava taga; märk ei kasva ega korda ennast, seega eraldi peatamist ei ole vaja. Teavitus (kasutaja valitud päev, peatamine) tuleb siis, kui taustatööd on lubatud. | `components/room/RoomStage.jsx` |
 | **Samm 8 (asutuse meetmete kirjeldus)** | Teostatud 20.10 hiljem samal päeval (ptk 8.13) | Algul jäi ootele, sest polnud otsustatud, kes meetmeid haldab. See otsus on järgmisel real. Partner-KOV-i ei ole vaja: sünteetilise asutusega saab kõike kontrollida, ja kui asutus meetmeid ei kirjelda, jääb tööriist samaks. Arenguvajadus ja kutse jäävad S6-le. | ptk 8.13 |
-| **Abipalve adressaat (TO-6)** | Sild asutuse tugivaatesse; saaja valib ja saatmise kinnitab töötaja ise. Sild on ainult abipalvel, juhimemo jääb kopeeritavaks | Saatmise rada, saaja kontroll (juht või asutuse määratud tugikontakt) ja säilitus olid juba olemas ja kontrollitud; teist saatmisrada ei ehitatud. Juhimemo jäi kopeeritavaks, sest juhiseoseid ei saa veel liidesest määrata. | ptk 8.14 |
+| **Abipalve adressaat (TO-6)** | Sild asutuse tugivaatesse; saaja valib ja saatmise kinnitab töötaja ise, juhti ei eelvalita. Abipalvel iga tugitee, juhimemol ainult siis, kui otsene juht on määratud | Saatmise rada, saaja kontroll (juht või asutuse määratud tugikontakt) ja säilitus olid juba olemas ja kontrollitud; teist saatmisrada ei ehitatud. | ptk 8.14–8.15 |
 | **Kes haldab asutuse meetmeid** | Sama inimene, kes haldab tugikontakte (`SUPPORT_CONTACT_ADMIN`, nõuab professionaalse toe moodulit); lugeda saab iga aktiivne liige | Uut õigust ei teki (uus enum-väärtus oleks püsiv). Meetmed ja tugikontaktid on sama töö: kuhu töötaja toe saamiseks pöördub. Mida asutus pakub, ei ole saladus; TLÜ 2024 järgi töötajad just seda ei leia. | `lib/org/supportMeasures.js` |
 
 Allikad: [RaM eetikanõukogu, KOV ametniku pöördumine (sh väidetav töökius), 25.02.2025](https://fin.ee/sites/default/files/documents/2025-03/KOV%20ametniku%20p%C3%B6%C3%B6rdumine%20oma%20%C3%B5iguste%20kaitsmise%20osas%20KOV%20ametiasutuses%20tekkinud%20t%C3%B6%C3%B6vaidluses%20%28sh%20v%C3%A4idetav%20t%C3%B6%C3%B6kius%29.%2025.02.%202025_0.pdf);
@@ -547,7 +547,7 @@ tugikontakte sai määrata ainult API kaudu ja Tööheaolu abipalve oli ainult k
   kokkuvõttega eeltäidetult ja aadressist eemaldatakse mustandi viide. Saaja valib ja saatmise kinnitab inimene ise,
   juhti ei eelvalita. Toeavaldusse läheb ainult kinnitatud tekst; `sourceDraftId` on omaniku ja auditi viide, mida
   saaja ei näe (nagu enne).
-- Juhimemo jääb kopeeritavaks. Juhiseoseid (kes on kelle otsene juht) saab endiselt määrata ainult API kaudu.
+- Juhimemo jäi selles osas kopeeritavaks, sest juhiseoseid sai määrata ainult API kaudu. Järg on ptk 8.15.
 
 **Kontroll.** Sihitud eslint, `npm run i18n:check`, `npm test` (65 läbi, 0 kukkus). Funktsioonide kutsega päris
 kohaliku baasiga: kandidaatidel e-posti ei ole, ilma tugiteeta silda ei ole, kontakti lisamise järel avaneb sild
@@ -559,3 +559,24 @@ saatmine lõi toeavalduse saajarolliga `ALTERNATE_SUPPORT`, snapshot'is ainult `
 abipalvele. Pärast uuesti laadimist oli ees „Saadetud“, mitte uus saatmine. Vale mustandi ID andis tavalise loendi.
 Sünteetilised kasutajad, asutus, toeavaldus ja auditiread kustutati. **Kontrollimata:** EN/RU kuva brauseris ja
 tootmine (organisatsioonikiht on tootmises lipu taga).
+
+### 8.15. Teostus 20.10: otsene juht liidesest ja juhimemo sild
+
+- **Haldus:** halduri nupp on nüüd „Tugiteed“ ja selle vaates on kolmas samm „Otsene juht“. Haldur valib ühe liikme,
+  näeb tema praegust otsest juhti ning saab määrata uue (vana seos lõpeb) või seose lõpetada (teise vajutusega). All
+  on kokkuvõte, mitmel liikmel on juht määratud ja mitmel mitte. Üks liige korraga, et vaade mahuks ka suure asutuse
+  puhul (pikem liikmeloend on rippvalik). Teate järgi juhiseos juhile ligipääsu töötaja andmetele ei anna (§5.4). Route
+  sai juurde toimingu `endReportingLine`; teenusekiht, audit ja kaitsed (iseenda juht 400, sama juht 409) olid juba
+  olemas.
+- **Juhimemo sild:** „Koosta juhiga arutelu memo“ saab sama „Saada asutuse kaudu“ nupu mis abipalve, aga ainult
+  asutuses, kus kasutaja otsene juht on määratud (`GET /api/wellbeing/support-organizations` tagastab nüüd ka
+  `hasManager`). Asutuse tugivaade võtab vastu kinnitatud abipalve või juhimemo. Juhti ei eelvalita, saaja valib
+  töötaja ise. Kolleegilt või juhilt tulnud töövägivalla kirjel jääb juhimemo peidetuks nagu enne (ptk 8.11).
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`, `npm test` (65 läbi, 0 kukkus). Funktsioonide kutsega päris
+kohaliku baasiga: iseenda juht 400, sama juht 409, juhi vahetus, lõpetamine ja korduv lõpetamine 404, kolm auditirida,
+sild teab juhti (`hasManager`), reeglid. Brauseris kahe sünteetilise liikmega (1536 × 640, telefon 390 × 844):
+seose lõpetamine ja uuesti määramine liidesest, töötaja saajate hulka ilmus „Otsene juht“. Nädala peegelduse juhimemo
+→ kinnitamine → „Saada asutuse kaudu“ → eeltäidetud saatmine, kus saajaks oli ainult otsene juht → toeavaldus rolliga
+`DIRECT_MANAGER`, snapshot'is ainult `summary`. Sünteetilised andmed kustutati. **Kontrollimata:** EN/RU kuva
+brauseris ja tootmine.

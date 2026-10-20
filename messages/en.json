@@ -10212,7 +10212,8 @@
       },
       "org_route_notice": "Your organisation has a support contact. Once you have confirmed the request for help, you can send it through the organisation: there you choose the recipient and confirm sending. You can also copy the text.",
       "org_route": "Send through the organisation",
-      "org_route_named": "Send through the organisation: {name}"
+      "org_route_named": "Send through the organisation: {name}",
+      "org_route_notice_manager": "Your direct manager is set in your organisation. Once you have confirmed the memo, you can send it through the organisation: there you choose the recipient and confirm sending. You can also copy the text."
     },
     "errors": {
       "output_draft_conflict": "The draft changed in the meantime or has already been moved to Covision.",
@@ -13071,9 +13072,9 @@
           }
         }
       },
-      "from_wellbeing": "The summary contains your confirmed request for help from Wellbeing. Choose the recipient; you can edit the text before sending.",
+      "from_wellbeing": "The summary contains the text you confirmed in Wellbeing. Choose the recipient; you can edit the text before sending.",
       "contactAdmin": {
-        "open": "Support contacts",
+        "open": "Support routes",
         "lead": "Whom employees can turn to for support besides their direct manager.",
         "note": "Changes take effect immediately. The employee chooses the recipient; the manager is not preselected.",
         "none": "There are no support contacts. Add at least one so that employees do not have to turn only to their manager.",
@@ -13092,7 +13093,7 @@
           "ALTERNATE_SUPPORT": "A support contact is someone employees can turn to when they do not want to or cannot turn to their manager (e.g. an HR officer or a working environment representative).",
           "SAFETY_CONTACT": "A safety contact is someone to turn to in case of danger or violence. If life is in danger, call 112."
         },
-        "steps_label": "Support contacts",
+        "steps_label": "Support routes",
         "steps": {
           "list": {
             "title": "Current support contacts",
@@ -13101,8 +13102,23 @@
           "add": {
             "title": "Add a support contact",
             "short": "Add"
+          },
+          "manager": {
+            "title": "Direct manager",
+            "short": "Manager"
           }
-        }
+        },
+        "manager_note": "A reporting line gives the manager no access to the employee's data. The manager is only one recipient the employee may choose for a support request.",
+        "manager_end_note": "The line will be ended: the manager will no longer be among this employee's support request recipients. Requests already sent remain with them.",
+        "manager_end": "End the line",
+        "manager_set": "Set manager",
+        "manager_current": "Current direct manager",
+        "manager_none": "not set",
+        "manager_new": "New direct manager",
+        "manager_summary": "A direct manager is set for {assigned} members and not set for {missing}.",
+        "manager_need": "Choose the member and their direct manager.",
+        "manager_saved": "The direct manager has been set.",
+        "manager_ended": "The reporting line has been ended."
       }
     },
     "supportShareStatus": {

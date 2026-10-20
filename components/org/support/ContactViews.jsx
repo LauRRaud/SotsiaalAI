@@ -5,6 +5,7 @@
  *  - `ContactListView`  praegused tugi- ja turvakontaktid; lõpetamine küsib
  *                       teist vajutust
  *  - `ContactAddView`   uus kontakt: liik ja liige
+ *  - `ManagerView`      liikme otsene juht: määramine ja lõpetamine
  *
  * Muudatus jõustub kohe (iga tegu on oma päring ja auditirida), seega siin ei
  * ole „Salvesta" nuppu. Reeglid: ./contactRules.js; olek ja päringud lehel
@@ -15,7 +16,7 @@ import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import Button from "@/components/ui/Button";
 
-import { ArmedButton, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
+import { ArmedButton, Facts, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
 import shared from "../org.module.css";
 import { ADDABLE_CONTACT_TYPES } from "./contactRules";
 import { contactTypeKey } from "./supportRules";
@@ -56,6 +57,48 @@ export function ContactListView({ t, rows, end, notice, onBack }) {
       ) : (
         <p className={shared.quiet}>{t("org.support.contactAdmin.none")}</p>
       )}
+    </StepPanel>
+  );
+}
+
+/**
+ * Otsene juht: vali liige, näe tema praegust juhti, määra uus või lõpeta seos.
+ * `set`: { busy, onSet }; `end`: { armed, busy, onPress } või null (kui seost ei ole).
+ */
+export function ManagerView({ t, form, members, managers, current, summary, onField, set, end, notice, onBack, glow }) {
+  return (
+    <StepPanel
+      title={t("org.support.contactAdmin.steps.manager.title")}
+      note={footNote(end?.armed ? { text: t("org.support.contactAdmin.manager_end_note") } : notice, t("org.support.contactAdmin.manager_note"))}
+      actions={
+        <>
+          <BackButton t={t} onBack={onBack} />
+          {end ? <ArmedButton armed={end.armed} busy={end.busy} label={t("org.support.contactAdmin.manager_end")} confirm={t("org.support.contactAdmin.end_confirm")} onPress={end.onPress} mark="end-manager" /> : null}
+          <Button type="button" size="sm" variant="primary" glow={glow} data-submit="1" aria-busy={set.busy ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={set.onSet}>
+            {set.busy ? t("org.support.contactAdmin.adding") : t("org.support.contactAdmin.manager_set")}
+          </Button>
+        </>
+      }
+    >
+      <div className={shared.stack}>
+        <PickOne label={t("org.support.contactAdmin.member_label")} options={members} value={form.memberMembershipId} onChange={(value) => onField("memberMembershipId", value)} columns={2} />
+        {form.memberMembershipId ? (
+          <>
+            <Facts
+              rows={[
+                {
+                  key: "current",
+                  label: t("org.support.contactAdmin.manager_current"),
+                  value: current?.label || t("org.support.contactAdmin.manager_none"),
+                  quiet: !current
+                }
+              ]}
+            />
+            <PickOne label={t("org.support.contactAdmin.manager_new")} options={managers} value={form.managerMembershipId} onChange={(value) => onField("managerMembershipId", value)} columns={2} />
+          </>
+        ) : null}
+        <p className={shared.small}>{t("org.support.contactAdmin.manager_summary", summary)}</p>
+      </div>
     </StepPanel>
   );
 }

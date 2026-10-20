@@ -10212,7 +10212,8 @@
       },
       "org_route_notice": "Sinu asutuses on tugikontakt. Kui oled abipalve kinnitanud, saad selle saata asutuse kaudu: seal valid saaja ja kinnitad saatmise. Teksti võid ka kopeerida.",
       "org_route": "Saada asutuse kaudu",
-      "org_route_named": "Saada asutuse kaudu: {name}"
+      "org_route_named": "Saada asutuse kaudu: {name}",
+      "org_route_notice_manager": "Sinu asutuses on sinu otsene juht määratud. Kui oled memo kinnitanud, saad selle saata asutuse kaudu: seal valid saaja ja kinnitad saatmise. Teksti võid ka kopeerida."
     },
     "errors": {
       "output_draft_conflict": "Mustand muutus vahepeal või on juba Kovisiooni viidud.",
@@ -13071,9 +13072,9 @@
           }
         }
       },
-      "from_wellbeing": "Kokkuvõttes on sinu kinnitatud abipalve Tööheaolust. Vali saaja; teksti saad enne saatmist muuta.",
+      "from_wellbeing": "Kokkuvõttes on sinu Tööheaolus kinnitatud tekst. Vali saaja; teksti saad enne saatmist muuta.",
       "contactAdmin": {
-        "open": "Tugikontaktid",
+        "open": "Tugiteed",
         "lead": "Kelle poole saavad töötajad toe saamiseks pöörduda peale oma otsese juhi.",
         "note": "Muudatus jõustub kohe. Töötaja valib saaja ise, juhti ei eelvalita.",
         "none": "Tugikontakte ei ole. Lisa vähemalt üks, et töötaja ei peaks pöörduma ainult oma juhi poole.",
@@ -13092,7 +13093,7 @@
           "ALTERNATE_SUPPORT": "Tugikontakt on inimene, kelle poole töötaja saab pöörduda, kui ta ei taha või ei saa pöörduda oma juhi poole (nt personalitöötaja või töökeskkonnavolinik).",
           "SAFETY_CONTACT": "Turvakontakt on inimene, kelle poole pöörduda ohu või vägivalla korral. Eluohu korral helista 112."
         },
-        "steps_label": "Tugikontaktid",
+        "steps_label": "Tugiteed",
         "steps": {
           "list": {
             "title": "Praegused tugikontaktid",
@@ -13101,8 +13102,23 @@
           "add": {
             "title": "Lisa tugikontakt",
             "short": "Lisa"
+          },
+          "manager": {
+            "title": "Otsene juht",
+            "short": "Juht"
           }
-        }
+        },
+        "manager_note": "Juhiseos ei anna juhile ligipääsu töötaja andmetele. Juht on ainult üks saaja, kelle töötaja võib toeavaldusele valida.",
+        "manager_end_note": "Seos lõpetatakse: juht ei ole enam selle töötaja toeavalduste saajate hulgas. Juba saadetud avaldused jäävad talle alles.",
+        "manager_end": "Lõpeta seos",
+        "manager_set": "Määra juht",
+        "manager_current": "Praegune otsene juht",
+        "manager_none": "ei ole määratud",
+        "manager_new": "Uus otsene juht",
+        "manager_summary": "Otsene juht on määratud {assigned} liikmel, {missing} liikmel ei ole.",
+        "manager_need": "Vali liige ja tema otsene juht.",
+        "manager_saved": "Otsene juht on määratud.",
+        "manager_ended": "Juhiseos on lõpetatud."
       }
     },
     "supportShareStatus": {

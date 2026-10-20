@@ -3,6 +3,7 @@ import { OrganizationCapability } from "@/lib/org/constants";
 import { badRequest } from "@/lib/org/errors";
 import {
   addSupportContact,
+  endReportingLine,
   endSupportContact,
   listSupportRecipients,
   setReportingLine
@@ -82,6 +83,12 @@ export async function POST(request, context) {
         managerMembershipId: String(body?.managerMembershipId || "").trim()
       });
       return orgJson({ ok: true, line }, 201);
+    }
+    if (action === "endReportingLine") {
+      const line = await endReportingLine(auth.organizationId, String(body?.memberMembershipId || "").trim(), {
+        actorUserId: auth.userId
+      });
+      return orgJson({ ok: true, line: { memberMembershipId: line.memberMembershipId, validUntil: line.validUntil } });
     }
     if (action === "setMeasures") {
       const measures = await setOrganizationSupportMeasures(auth.organizationId, {

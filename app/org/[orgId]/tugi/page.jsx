@@ -4,7 +4,12 @@ import { notFound } from "next/navigation";
 import OrgSupportClient from "@/components/org/OrgSupportClient";
 import { hasCapability } from "@/lib/org/accessContext";
 import { OrganizationCapability } from "@/lib/org/constants";
-import { listSupportContactCandidates, listSupportContacts, listSupportRecipients } from "@/lib/org/support";
+import {
+  listReportingLines,
+  listSupportContactCandidates,
+  listSupportContacts,
+  listSupportRecipients
+} from "@/lib/org/support";
 import { listOrganizationSupportMeasures } from "@/lib/org/supportMeasures";
 import { listOwnSupportSharePage, listReceivedSupportSharePage } from "@/lib/org/supportShare";
 import { getWellbeingOutputDraftForUser } from "@/lib/wellbeing/supportDrafts";
@@ -19,9 +24,13 @@ export const metadata = {
   robots: { index: false, follow: false, nocache: true }
 };
 
+/* Tööheaolu mustandid, millel on asutuses päris saaja: abipalve (tugikontakt
+   või juht) ja juhiga arutelu memo (juht). */
+const ORG_ROUTE_RECIPIENT_TYPES = new Set(["pilot_support_contact", "manager"]);
+
 /**
- * Tööheaolu abipalve sild (TO-6): `?mustand=<id>` eeltäidab saatmise
- * kokkuvõtte inimese ENDA kinnitatud abipalvega. Võõras, kinnitamata või muu
+ * Tööheaolu sild (TO-6): `?mustand=<id>` eeltäidab saatmise kokkuvõtte
+ * inimese ENDA kinnitatud abipalve või juhimemoga. Võõras, kinnitamata või muu
  * liigi mustand jäetakse vaikselt kõrvale ja vorm on siis tühi. Midagi ei
  * saadeta enne, kui inimene saaja valib ja saatmise kinnitab.
  */
@@ -31,7 +40,7 @@ async function confirmedSupportRequest(userId, draftId) {
   const draft = await getWellbeingOutputDraftForUser(userId, id).catch(() => null);
   if (
     !draft
-    || draft.recipientType !== "pilot_support_contact"
+    || !ORG_ROUTE_RECIPIENT_TYPES.has(draft.recipientType)
     || draft.status !== "ready_to_share"
     || draft.userConfirmed !== true
     || draft.visibility !== "private"
@@ -65,13 +74,14 @@ export default async function OrgSupportPage({ params, searchParams }) {
   const canManage =
     auth.context.writable !== false && hasCapability(auth.context, OrganizationCapability.SUPPORT_CONTACT_ADMIN);
 
-  const [recipients, receivedPage, sentPage, measures, contacts, candidates, prefill] = await Promise.all([
+  const [recipients, receivedPage, sentPage, measures, contacts, candidates, reportingLines, prefill] = await Promise.all([
     listSupportRecipients(orgId, membershipId),
     listReceivedSupportSharePage(membershipId),
     listOwnSupportSharePage(auth.userId, { organizationId: orgId }),
     listOrganizationSupportMeasures(orgId),
     canManage ? listSupportContacts(orgId) : [],
     canManage ? listSupportContactCandidates(orgId) : [],
+    canManage ? listReportingLines(orgId) : [],
     confirmedSupportRequest(auth.userId, query.mustand)
   ]);
 
@@ -85,6 +95,7 @@ export default async function OrgSupportPage({ params, searchParams }) {
       canManage={canManage}
       contacts={contacts}
       candidates={candidates}
+      reportingLines={reportingLines}
       prefill={prefill}
     />
   );
