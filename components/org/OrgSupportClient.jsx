@@ -6,6 +6,16 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 
 import OrgPart from "./OrgPart";
+import { MeasureDetailsView, MeasureGroupView } from "./support/MeasureViews";
+import {
+  MEASURE_STEPS,
+  measureDraft,
+  measureGroupsOf,
+  measurePayload,
+  measureStepStates,
+  measuresDirty,
+  toggleMeasure
+} from "./support/measureRules";
 import { ConfirmView, ReceivedView, SupportBoard, WhatView, WhoView } from "./support/SupportViews";
 import {
   EMPTY_SHARE,
@@ -25,10 +35,12 @@ import { useOrgApi } from "./useOrgApi";
 import { useSecondPress } from "./useSecondPress";
 
 /**
- * Töötaja tugivaade. Kolm asja ühes kohas:
+ * Töötaja tugivaade. Neli asja ühes kohas:
  *   1. kellele ma saan toeavalduse saata;
  *   2. mida ma olen saatnud;
- *   3. mis mulle on saadetud.
+ *   3. mis mulle on saadetud;
+ *   4. mida asutus pakub (tugimeetmed; haldur saab neid muuta). Sama loend
+ *      eeltäidab töötaja Tööheaolu „Minu tugivõimalused".
  *
  * PRIVAATSUSTEADE ON SISU, mitte kaunistus: kasutaja peab nägema mustvalgel, et
  * organisatsioon ei tea, kas ta vormi täitis. Seda teadet ei tohi eemaldada.
@@ -44,8 +56,15 @@ import { useSecondPress } from "./useSecondPress";
    toob inimese tagasi saadetud avalduste juurde. Ainult selle vahekaardi mälus. */
 const AFTER_RELOAD = "sotsiaalai:org-support:list";
 
-export default function OrgSupportClient({ context, recipients, receivedPage, sentPage }) {
+export default function OrgSupportClient({ context, recipients, receivedPage, sentPage, measures = [], canManageMeasures = false }) {
   const { t } = useI18n();
+  /* Asutuse meetmed: salvestatud loend ja muutmise mustand. */
+  const [savedMeasures, setSavedMeasures] = useState(measures);
+  const [draft, setDraft] = useState(() => measureDraft(measures));
+  const [measureStep, setMeasureStep] = useState(MEASURE_STEPS[0]);
+  const [editingMeasure, setEditingMeasure] = useState("");
+  const liveDraft = useRef(draft);
+  liveDraft.current = draft;
   const { call, error, setError } = useOrgApi();
   const [form, setForm] = useState(EMPTY_SHARE);
   const [received, setReceived] = useState(receivedPage?.items || []);
@@ -56,7 +75,7 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
   const [wantedList, setWantedList] = useState("received");
   const [openId, setOpenId] = useState("");
   const [stepKey, setStepKey] = useState("who");
-  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "recall:<id>". */
+  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "measures" | "recall:<id>". */
   const [pending, setPending] = useState("");
   const [notice, setNotice] = useState(null);
   const confirm = useSecondPress();
@@ -164,6 +183,20 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
     [call, organizationId]
   );
 
+  const saveMeasures = useCallback(async () => {
+    const payload = await call(`/api/org/${organizationId}/tugi`, {
+      method: "POST",
+      body: { action: "setMeasures", measures: measurePayload(liveDraft.current) },
+      fallbackKey: "org.errors.support_update_failed"
+    });
+    if (!payload?.measures) return;
+    setSavedMeasures(payload.measures);
+    setDraft(measureDraft(payload.measures));
+    setWantedList("measures");
+    setMode("list");
+    setNotice({ view: "board", text: t("org.support.measures.saved") });
+  }, [call, organizationId, t]);
+
   /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
   const once = useCallback(async (name, work) => {
     if (sending.current) return;
@@ -181,6 +214,7 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
   const options = useMemo(() => recipientOptions(recipients, { t }), [recipients, t]);
   const receivedRows = useMemo(() => received.map((share) => receivedRow(share, { t })), [received, t]);
   const sentRows = useMemo(() => sent.map((share) => sentRow(share, { t, writable })), [sent, t, writable]);
+  const measureGroups = useMemo(() => measureGroupsOf(savedMeasures), [savedMeasures]);
   const list = shownList(wantedList);
   const openShare = received.find((share) => share.id === openId) || null;
 
@@ -224,6 +258,84 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
               setOpenId("");
             }}
           />
+        </OrgPart>
+      </div>
+    );
+  }
+
+  if (mode === "measures" && canManageMeasures) {
+    const states = measureStepStates(draft);
+    const steps = MEASURE_STEPS.map((key) => ({
+      key,
+      label: t(key === "details" ? "org.support.measures.steps.details.title" : `org.support.measures.groups.${key}`),
+      short: t(`org.support.measures.steps.${key}.short`),
+      state: states[key]
+    }));
+    const leaveMeasures = () => {
+      setDraft(measureDraft(savedMeasures));
+      setMode("list");
+      setMeasureStep(MEASURE_STEPS[0]);
+      setEditingMeasure("");
+      setNotice(null);
+      setError("");
+    };
+    const decline = {
+      armed: confirm.armed === "decline",
+      onPress: () => {
+        if (sending.current) return;
+        if (!measuresDirty(liveDraft.current, savedMeasures)) leaveMeasures();
+        else confirm.press("decline", leaveMeasures);
+      }
+    };
+    const save = { busy: pending === "measures", onSave: () => { clearConfirm(); void once("measures", saveMeasures); } };
+    const changeDraft = (next) => {
+      setDraft(next);
+      clearConfirm();
+      setError("");
+    };
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="support" compact>
+          <StepFlight
+            label={t("org.support.measures.steps_label")}
+            steps={steps}
+            activeKey={measureStep}
+            onStepChange={(_index, step) => {
+              setMeasureStep(step?.key || MEASURE_STEPS[0]);
+              clearConfirm();
+            }}
+          >
+            {(step, _index, flight) => {
+              const glow = flight?.isActive !== false;
+              if (step.key === "details") {
+                return (
+                  <MeasureDetailsView
+                    t={t}
+                    draft={draft}
+                    editing={editingMeasure}
+                    onEdit={setEditingMeasure}
+                    onDetails={(key, value) => changeDraft({ ...liveDraft.current, [key]: value })}
+                    notice={fault}
+                    decline={decline}
+                    save={save}
+                    glow={glow}
+                  />
+                );
+              }
+              return (
+                <MeasureGroupView
+                  t={t}
+                  group={step.key}
+                  draft={draft}
+                  onToggle={(key) => changeDraft(toggleMeasure(liveDraft.current, key))}
+                  notice={fault}
+                  decline={decline}
+                  save={save}
+                  glow={glow}
+                />
+              );
+            }}
+          </StepFlight>
         </OrgPart>
       </div>
     );
@@ -314,8 +426,25 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
           onList={(value) => {
             clearConfirm();
             setError("");
+            setNotice(null);
             setWantedList(value);
           }}
+          measureGroups={measureGroups}
+          editMeasures={
+            canManageMeasures
+              ? {
+                  onEdit: () => {
+                    clearConfirm();
+                    setError("");
+                    setNotice(null);
+                    setDraft(measureDraft(savedMeasures));
+                    setMeasureStep(MEASURE_STEPS[0]);
+                    setEditingMeasure("");
+                    setMode("measures");
+                  }
+                }
+              : null
+          }
           receivedRows={receivedRows}
           sentRows={sentRows}
           onOpen={(id) => {
@@ -344,8 +473,8 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
             onPress: (row) => confirm.press(`recall:${row.id}`, () => once(`recall:${row.id}`, () => act("recall", row.id))),
             onCancel: clearConfirm
           }}
-          more={cursor ? { busy: pending === "more", onMore: () => once("more", list === "sent" ? loadSent : loadReceived) } : null}
-          notice={fault}
+          more={cursor && list !== "measures" ? { busy: pending === "more", onMore: () => once("more", list === "sent" ? loadSent : loadReceived) } : null}
+          notice={fault || (notice?.view === "board" ? notice : null)}
         />
       </OrgPart>
     </div>

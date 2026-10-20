@@ -200,6 +200,27 @@
   composes: lineItem from "../journey/dashboard/dashboard.module.css";
 }
 
+/* Ülaserva nupud (nt „Muuda" ja „Saada toeavaldus") ühes reas. */
+.headButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Asutuse tugimeetmed: kolm rühma kõrvuti, kitsal pinnal üksteise all. Iga
+   meetme all on asutuse juhis väiksemalt. */
+.measureColumns {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  align-items: start;
+  gap: 0.75rem 1.25rem;
+}
+.measureNote {
+  composes: small from "../journey/journey.module.css";
+  display: block;
+}
+
 /* --- Rühm pealkirjaga ja tegevuslahtrid --------------------------------------- */
 /* Rühm: väike pealkiri ja selle all sisu (nt „Tal on" ja õiguste lahtrid). */
 .group {

@@ -5683,6 +5683,7 @@ model Organization {
   clientSponsorships     OrganizationClientSponsorship[]
   // T25 viil C
   supportContacts        OrganizationSupportContact[]
+  supportMeasures        OrganizationSupportMeasure[]
   supportShares          WellbeingSupportShare[]
   serviceProviderProfile ServiceProviderProfile?
   preInquiries           PreInquiry[]                    @relation("PreInquiryRecipientOrganization")
@@ -6200,6 +6201,27 @@ model OrganizationSupportContact {
   @@index([organizationId, contactType, validUntil])
   @@index([unitId, validUntil])
   @@index([membershipId, validUntil])
+}
+
+/// Tugimeede, mida asutus oma töötajatele pakub (Tööheaolu „Minu tugivõimalused"
+/// teine osa; TÜ küsitluse võrdlus ptk 8.2 p 4 ja 8.13). ASUTUSE andmed, mitte
+/// töötaja omad: rida ei viita ühelegi kasutajale ega liikmele. Kes muutis, on
+/// organisatsiooni auditis (`org.support_measures_set`).
+///
+/// `measureKey` on väärtus kataloogist `lib/wellbeing/supportMeasureCatalog.js`
+/// (teenusekiht kontrollib); `details` on lühike juhis: kellelt, kuidas, kui tihti.
+/// Meetme eemaldamine kustutab rea — ajalugu on auditis.
+model OrganizationSupportMeasure {
+  id             String   @id @default(cuid())
+  organizationId String
+  measureKey     String
+  details        String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, measureKey])
 }
 
 /// Tööheaolu toeavaldus — kasutaja ALGATATUD, kasutaja KINNITATUD, ühele

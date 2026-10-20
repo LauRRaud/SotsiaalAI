@@ -16,8 +16,8 @@ import { dayOf } from "../orgRules.js";
 /** Saatmise sammud lehe järjekorras. */
 export const SEND_STEPS = Object.freeze(["who", "what", "confirm"]);
 
-/** Loendi vaated lahtritena. */
-export const LIST_TABS = Object.freeze(["received", "sent"]);
+/** Loendi vaated lahtritena: saadud ja saadetud avaldused ning mida asutus pakub. */
+export const LIST_TABS = Object.freeze(["received", "sent", "measures"]);
 
 /** Tühi avaldus. Kinnitus on eraldi TEGU, mitte vaikimisi eeldus (§5.8). */
 export const EMPTY_SHARE = Object.freeze({ recipientMembershipId: "", summary: "", needs: "", confirmed: false });

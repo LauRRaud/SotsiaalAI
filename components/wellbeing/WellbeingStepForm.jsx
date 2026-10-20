@@ -76,7 +76,8 @@ export default function WellbeingStepForm({ definition, onNavigate }) {
   const { t } = useI18n();
   const tx = (entry, vars) => (Array.isArray(entry) ? t(entry[0], vars || entry[1], vars ? entry[1] : undefined) : entry);
 
-  const [fields, setFields] = useState(() => emptyFields(definition));
+  /* `initialFields`: eeltäide (nt asutuse kirjeldatud tugimeetmed); inimene saab kõike muuta. */
+  const [fields, setFields] = useState(() => ({ ...emptyFields(definition), ...(definition.initialFields || {}) }));
   const [saveState, setSaveState] = useState("idle");
   const [savedRecordId, setSavedRecordId] = useState(null);
   const [shownOutput, setShownOutput] = useState(0);

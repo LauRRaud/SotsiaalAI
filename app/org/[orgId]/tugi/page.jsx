@@ -2,7 +2,10 @@ import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
 import OrgSupportClient from "@/components/org/OrgSupportClient";
+import { hasCapability } from "@/lib/org/accessContext";
+import { OrganizationCapability } from "@/lib/org/constants";
 import { listSupportRecipients } from "@/lib/org/support";
+import { listOrganizationSupportMeasures } from "@/lib/org/supportMeasures";
 import { listOwnSupportSharePage, listReceivedSupportSharePage } from "@/lib/org/supportShare";
 
 import { requireOrgPageContext } from "../../_serverContext";
@@ -33,11 +36,15 @@ export default async function OrgSupportPage({ params }) {
   const membershipId = auth.context.membership?.id;
   if (!membershipId) notFound();
 
-  const [recipients, receivedPage, sentPage] = await Promise.all([
+  const [recipients, receivedPage, sentPage, measures] = await Promise.all([
     listSupportRecipients(orgId, membershipId),
     listReceivedSupportSharePage(membershipId),
-    listOwnSupportSharePage(auth.userId, { organizationId: orgId })
+    listOwnSupportSharePage(auth.userId, { organizationId: orgId }),
+    listOrganizationSupportMeasures(orgId)
   ]);
+  /* Muutmise nupp on mugavus; tõde on route'i `SUPPORT_CONTACT_ADMIN` värav. */
+  const canManageMeasures =
+    auth.context.writable !== false && hasCapability(auth.context, OrganizationCapability.SUPPORT_CONTACT_ADMIN);
 
   return (
     <OrgSupportClient
@@ -45,6 +52,8 @@ export default async function OrgSupportPage({ params }) {
       recipients={recipients}
       receivedPage={receivedPage}
       sentPage={sentPage}
+      measures={measures}
+      canManageMeasures={canManageMeasures}
     />
   );
 }

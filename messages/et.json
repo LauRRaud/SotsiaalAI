@@ -10420,7 +10420,9 @@
       "outputs": {
         "overview": "Minu tugivõimalused",
         "discussion": "Arenguvestluse sisend"
-      }
+      },
+      "offered_lead_org": "Märgitud on see, mida asutus enda kirjelduse järgi pakub. Muuda, kui sinu teada on teisiti.",
+      "org_offers_title": "Asutus pakub ja sa vajad"
     },
     "weekly_reflection": {
       "title": "Nädala peegeldus",
@@ -12531,7 +12533,8 @@
         "home_care_client_updated": "Koduteenuse kliendi andmeid muudeti",
         "home_care_client_status_changed": "Koduteenuse kliendi seis muutus",
         "home_care_team_member_added": "Koduteenuse meeskonda lisati liige",
-        "home_care_team_member_removed": "Koduteenuse meeskonnast eemaldati liige"
+        "home_care_team_member_removed": "Koduteenuse meeskonnast eemaldati liige",
+        "support_measures_set": "Asutuse tugimeetmeid muudeti"
       },
       "home_care": "Koduteenuse toiming"
     },
@@ -12784,7 +12787,9 @@
       "profile_version_conflict": "Keegi teine muutis profiili vahepeal.",
       "profile_convert_failed": "Profiili üleandmine ebaõnnestus.",
       "profile_update_failed": "Profiili salvestamine ebaõnnestus.",
-      "export_failed": "Ekspordi koostamine ebaõnnestus."
+      "export_failed": "Ekspordi koostamine ebaõnnestus.",
+      "support_measures_invalid": "Tugimeetmete loend ei ole korrektne. Laadi leht uuesti.",
+      "support_measure_details_too_long": "Juhis on liiga pikk. Lühenda see kuni 200 märgini."
     },
     "reason": {
       "founder": "Organisatsiooni looja"
@@ -12987,7 +12992,8 @@
       "tabs": {
         "label": "Mida näidata",
         "received": "Saadud",
-        "sent": "Saadetud"
+        "sent": "Saadetud",
+        "measures": "Asutuse tugi"
       },
       "period": "Periood",
       "from": "Toeavaldus: {name}",
@@ -13024,7 +13030,44 @@
       "confirm_title": "Kinnitan saatmise",
       "confirm_terms": "Avamata sisu kustub 30 päeva järel, avatud sisu hiljemalt 12 kuu jooksul ja minimaalne jagamiskviitung 3 aasta järel.",
       "sending": "Saadan avaldust",
-      "decline_note": "Kirjutatu kustub ja avaldust ei saadeta."
+      "decline_note": "Kirjutatu kustub ja avaldust ei saadeta.",
+      "measures": {
+        "none": "Asutus ei ole veel kirjeldanud, milliseid tugimeetmeid ta pakub.",
+        "note": "Sama loend on eeltäidetud sinu Tööheaolu tööriistas „Minu tugivõimalused“. Asutus ei näe, kas sa seda vaatasid.",
+        "edit": "Muuda",
+        "save": "Salvesta",
+        "saving": "Salvestan…",
+        "saved": "Asutuse tugimeetmed on salvestatud.",
+        "decline_note": "Muudatused jäävad salvestamata. Vajuta uuesti, kui oled kindel.",
+        "edit_note": "Märgi, mida asutus töötajatele päriselt pakub. Töötaja näeb seda oma tööriistas eeltäidetuna.",
+        "group_lead": "Mida asutus pakub? Märgi kõik, mis kehtib.",
+        "details_lead": "Kirjuta iga meetme juurde lühidalt, kuidas seda kasutada.",
+        "details_pick": "Meede",
+        "details_label": "Kuidas kasutada: {measure}",
+        "details_hint": "Kellelt küsida, kuidas broneerida, kui tihti. Kuni {limit} märki. Ära kirjuta siia töötajate andmeid.",
+        "details_empty": "Märgi enne mõni meede. Siis saad selle juurde kirjutada, kuidas seda kasutada.",
+        "steps_label": "Asutuse tugimeetmed",
+        "groups": {
+          "development": "Tugi ja areng",
+          "health": "Tervis ja turvalisus",
+          "organisation": "Töökorraldus ja tunnustus"
+        },
+        "steps": {
+          "development": {
+            "short": "Areng"
+          },
+          "health": {
+            "short": "Tervis"
+          },
+          "organisation": {
+            "short": "Korraldus"
+          },
+          "details": {
+            "title": "Kuidas kasutada",
+            "short": "Juhised"
+          }
+        }
+      }
     },
     "supportShareStatus": {
       "SENT": "Saadetud",

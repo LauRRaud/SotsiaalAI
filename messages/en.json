@@ -10420,7 +10420,9 @@
       "outputs": {
         "overview": "My support options",
         "discussion": "Development conversation input"
-      }
+      },
+      "offered_lead_org": "Marked is what the organisation offers according to its own description. Change it if you know otherwise.",
+      "org_offers_title": "Offered by the organisation and needed by you"
     },
     "weekly_reflection": {
       "title": "Weekly reflection",
@@ -12531,7 +12533,8 @@
         "home_care_client_updated": "A home care client's details were changed",
         "home_care_client_status_changed": "A home care client's status changed",
         "home_care_team_member_added": "A member was added to a home care team",
-        "home_care_team_member_removed": "A member was removed from a home care team"
+        "home_care_team_member_removed": "A member was removed from a home care team",
+        "support_measures_set": "The organisation's support measures were changed"
       },
       "home_care": "Home care action"
     },
@@ -12784,7 +12787,9 @@
       "profile_version_conflict": "Someone else changed the profile in the meantime.",
       "profile_convert_failed": "Transferring the profile failed.",
       "profile_update_failed": "Saving the profile failed.",
-      "export_failed": "Building the export failed."
+      "export_failed": "Building the export failed.",
+      "support_measures_invalid": "The list of support measures is not valid. Reload the page.",
+      "support_measure_details_too_long": "The guidance is too long. Shorten it to 200 characters."
     },
     "reason": {
       "founder": "Organisation founder"
@@ -12987,7 +12992,8 @@
       "tabs": {
         "label": "What to show",
         "received": "Received",
-        "sent": "Sent"
+        "sent": "Sent",
+        "measures": "Organisation support"
       },
       "period": "Period",
       "from": "Support request: {name}",
@@ -13024,7 +13030,44 @@
       "confirm_title": "I confirm the sending",
       "confirm_terms": "Unopened content is deleted after 30 days, opened content within 12 months at the latest and the minimal sharing receipt after 3 years.",
       "sending": "Sending the request",
-      "decline_note": "What you wrote is discarded and no request is sent."
+      "decline_note": "What you wrote is discarded and no request is sent.",
+      "measures": {
+        "none": "The organisation has not yet described which support measures it offers.",
+        "note": "The same list is pre-filled in your Wellbeing tool “My support options”. The organisation cannot see whether you looked at it.",
+        "edit": "Edit",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "The organisation's support measures have been saved.",
+        "decline_note": "Your changes will not be saved. Press again if you are sure.",
+        "edit_note": "Mark what the organisation really offers its employees. Employees see it pre-filled in their tool.",
+        "group_lead": "What does the organisation offer? Mark everything that applies.",
+        "details_lead": "For each measure, write briefly how to use it.",
+        "details_pick": "Measure",
+        "details_label": "How to use: {measure}",
+        "details_hint": "Whom to ask, how to book, how often. Up to {limit} characters. Do not write employee data here.",
+        "details_empty": "Mark a measure first. Then you can write how to use it.",
+        "steps_label": "Organisation support measures",
+        "groups": {
+          "development": "Support and development",
+          "health": "Health and safety",
+          "organisation": "Work organisation and recognition"
+        },
+        "steps": {
+          "development": {
+            "short": "Development"
+          },
+          "health": {
+            "short": "Health"
+          },
+          "organisation": {
+            "short": "Organisation"
+          },
+          "details": {
+            "title": "How to use",
+            "short": "Guidance"
+          }
+        }
+      }
     },
     "supportShareStatus": {
       "SENT": "Sent",

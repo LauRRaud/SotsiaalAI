@@ -28,17 +28,20 @@ import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
 
 import { ArmedButton, Facts, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
+import { MeasuresList } from "./MeasureViews";
 import shared from "../org.module.css";
 
 /**
- * Loend. `list`: "received" | "sent".
+ * Loend. `list`: "received" | "sent" | "measures".
  * `send`: { onSend } või null; `recall`: { armedId, busyId, onPress(row), onCancel() };
- * `more`: { busy, onMore } või null.
+ * `more`: { busy, onMore } või null; `measureGroups`: mida asutus pakub
+ * (`measureGroupsOf`); `editMeasures`: { onEdit } haldurile, muidu null.
  */
-export function SupportBoard({ t, tabs, list, onList, receivedRows, sentRows, onOpen, send, noRecipients, recall, more, notice, glow = true }) {
+export function SupportBoard({ t, tabs, list, onList, receivedRows, sentRows, onOpen, send, noRecipients, recall, more, notice, measureGroups = [], editMeasures = null, glow = true }) {
   const rows = list === "sent" ? sentRows : receivedRows;
+  const measures = list === "measures";
   return (
-    <StepPanel title={t("org.support.heading")} note={footNote(notice, t("org.support.privacyNotice"))}>
+    <StepPanel title={t("org.support.heading")} note={footNote(notice, t(measures ? "org.support.measures.note" : "org.support.privacyNotice"))}>
       <div className={shared.stack}>
         <div className={shared.headBar}>
           <ChoiceRow
@@ -50,86 +53,99 @@ export function SupportBoard({ t, tabs, list, onList, receivedRows, sentRows, on
             columns={tabs.length}
             keepColumns
           />
-          {send ? (
-            <Button type="button" size="sm" variant="primary" glow={glow} data-create="1" onClick={send.onSend}>
-              {t("org.support.send")}
-            </Button>
-          ) : null}
+          <span className={shared.headButtons}>
+            {measures && editMeasures ? (
+              <Button type="button" size="sm" variant="secondary" data-edit-measures="1" onClick={editMeasures.onEdit}>
+                {t("org.support.measures.edit")}
+              </Button>
+            ) : null}
+            {send ? (
+              <Button type="button" size="sm" variant="primary" glow={glow} data-create="1" onClick={send.onSend}>
+                {t("org.support.send")}
+              </Button>
+            ) : null}
+          </span>
         </div>
-        {noRecipients ? <p className={shared.small}>{t("org.support.noRecipients")}</p> : null}
-        {rows.length === 0 ? (
-          <p className={shared.quiet}>{t(list === "sent" ? "org.support.noSent" : "org.support.noReceived")}</p>
-        ) : list === "sent" ? (
-          <ul className={shared.rows} aria-label={t("org.support.sent")}>
-            {sentRows.map((row) => {
-              const armed = recall.armedId === row.id;
-              const busy = recall.busyId === row.id;
-              return (
-                <li key={row.id} className={shared.item} data-armed={armed ? "1" : undefined} data-sent={row.id} aria-busy={busy ? "true" : undefined}>
-                  <div className={shared.rowStatic}>
-                    <span className={shared.rowMain}>
-                      <span className={shared.rowTitle}>{row.title}</span>
-                      {row.sub ? <span className={shared.rowSub}>{row.sub}</span> : null}
-                    </span>
-                    {row.chip ? (
-                      <span className={shared.rowMeta}>
-                        <span className={shared.chip}>{row.chip}</span>
-                      </span>
-                    ) : null}
-                  </div>
-                  {row.canRecall ? (
-                    <span className={shared.itemAside}>
-                      <Button
-                        {...SMALL}
-                        className={armed ? shared.armed : shared.aside}
-                        data-recall={row.id}
-                        aria-label={armed ? undefined : `${t("org.support.recall")}: ${row.title}`}
-                        onKeyDown={ignoreKeyRepeat}
-                        onClick={() => recall.onPress(row)}
-                      >
-                        {armed ? t("org.support.recall_confirm") : t("org.support.recall")}
-                      </Button>
-                      {armed ? (
-                        <Button {...SMALL} onClick={recall.onCancel}>
-                          {t("org.invites.keep")}
-                        </Button>
-                      ) : null}
-                    </span>
-                  ) : null}
-                  {armed ? <p className={shared.itemNote}>{t("org.support.recall_note")}</p> : null}
-                </li>
-              );
-            })}
-          </ul>
+        {measures ? (
+          <MeasuresList t={t} groups={measureGroups} />
         ) : (
-          <ul className={shared.rows} aria-label={t("org.support.received")}>
-            {receivedRows.map((row) => (
-              <li key={row.id} className={shared.rowItem}>
-                <button type="button" className={shared.row} data-received={row.id} onClick={() => onOpen(row.id)}>
-                  <span className={shared.rowMain}>
-                    <span className={shared.rowTitle}>{row.title}</span>
-                    {row.sub ? <span className={shared.rowSub}>{row.sub}</span> : null}
-                  </span>
-                  {row.chip ? (
-                    <span className={shared.rowMeta}>
-                      <span className={shared.chip} data-tone={row.attention ? "wait" : undefined}>
-                        {row.chip}
+          <>
+            {noRecipients ? <p className={shared.small}>{t("org.support.noRecipients")}</p> : null}
+            {rows.length === 0 ? (
+              <p className={shared.quiet}>{t(list === "sent" ? "org.support.noSent" : "org.support.noReceived")}</p>
+            ) : list === "sent" ? (
+              <ul className={shared.rows} aria-label={t("org.support.sent")}>
+                {sentRows.map((row) => {
+                  const armed = recall.armedId === row.id;
+                  const busy = recall.busyId === row.id;
+                  return (
+                    <li key={row.id} className={shared.item} data-armed={armed ? "1" : undefined} data-sent={row.id} aria-busy={busy ? "true" : undefined}>
+                      <div className={shared.rowStatic}>
+                        <span className={shared.rowMain}>
+                          <span className={shared.rowTitle}>{row.title}</span>
+                          {row.sub ? <span className={shared.rowSub}>{row.sub}</span> : null}
+                        </span>
+                        {row.chip ? (
+                          <span className={shared.rowMeta}>
+                            <span className={shared.chip}>{row.chip}</span>
+                          </span>
+                        ) : null}
+                      </div>
+                      {row.canRecall ? (
+                        <span className={shared.itemAside}>
+                          <Button
+                            {...SMALL}
+                            className={armed ? shared.armed : shared.aside}
+                            data-recall={row.id}
+                            aria-label={armed ? undefined : `${t("org.support.recall")}: ${row.title}`}
+                            onKeyDown={ignoreKeyRepeat}
+                            onClick={() => recall.onPress(row)}
+                          >
+                            {armed ? t("org.support.recall_confirm") : t("org.support.recall")}
+                          </Button>
+                          {armed ? (
+                            <Button {...SMALL} onClick={recall.onCancel}>
+                              {t("org.invites.keep")}
+                            </Button>
+                          ) : null}
+                        </span>
+                      ) : null}
+                      {armed ? <p className={shared.itemNote}>{t("org.support.recall_note")}</p> : null}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <ul className={shared.rows} aria-label={t("org.support.received")}>
+                {receivedRows.map((row) => (
+                  <li key={row.id} className={shared.rowItem}>
+                    <button type="button" className={shared.row} data-received={row.id} onClick={() => onOpen(row.id)}>
+                      <span className={shared.rowMain}>
+                        <span className={shared.rowTitle}>{row.title}</span>
+                        {row.sub ? <span className={shared.rowSub}>{row.sub}</span> : null}
                       </span>
-                    </span>
-                  ) : null}
-                </button>
-              </li>
-            ))}
-          </ul>
+                      {row.chip ? (
+                        <span className={shared.rowMeta}>
+                          <span className={shared.chip} data-tone={row.attention ? "wait" : undefined}>
+                            {row.chip}
+                          </span>
+                        </span>
+                      ) : null}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {list === "sent" && sentRows.length ? <p className={shared.small}>{t("org.support.recallHint")}</p> : null}
+            {more ? (
+              <div>
+                <Button {...SMALL} aria-busy={more.busy ? "true" : undefined} data-more="1" onClick={more.onMore}>
+                  {t("org.pagination.loadMore")}
+                </Button>
+              </div>
+            ) : null}
+          </>
         )}
-        {list === "sent" && sentRows.length ? <p className={shared.small}>{t("org.support.recallHint")}</p> : null}
-        {more ? (
-          <div>
-            <Button {...SMALL} aria-busy={more.busy ? "true" : undefined} data-more="1" onClick={more.onMore}>
-              {t("org.pagination.loadMore")}
-            </Button>
-          </div>
-        ) : null}
       </div>
     </StepPanel>
   );

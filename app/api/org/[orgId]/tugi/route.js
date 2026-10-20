@@ -7,6 +7,7 @@ import {
   listSupportRecipients,
   setReportingLine
 } from "@/lib/org/support";
+import { listOrganizationSupportMeasures, setOrganizationSupportMeasures } from "@/lib/org/supportMeasures";
 import { listReceivedSupportSharePage } from "@/lib/org/supportShare";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
@@ -17,9 +18,10 @@ export const revalidate = 0;
 /**
  * `/api/org/[orgId]/tugi` — KAKS ERI ASJA ühe route'i taga, teadlikult:
  *
- *   GET  — MINULE saadetud toeavaldused + kellele MINA saata saan.
- *          Need on MINU andmed ja nad ei vaja ühtegi capability't.
- *   POST — tugikontaktide ja juhiseoste HALDUS. Nõuab
+ *   GET  — MINULE saadetud toeavaldused + kellele MINA saata saan + mida
+ *          asutus pakub. Need on MINU andmed (ja asutuse avalik info töötajale)
+ *          ja nad ei vaja ühtegi capability't.
+ *   POST — tugikontaktide, juhiseoste ja asutuse tugimeetmete HALDUS. Nõuab
  *          `SUPPORT_CONTACT_ADMIN`-it.
  *
  * Nii ei pea töötaja oma toeavalduste nägemiseks olema haldaja, ega haldaja
@@ -32,16 +34,17 @@ export async function GET(request, context) {
   try {
     const membershipId = auth.context.membership?.id;
     const requestUrl = new URL(request.url);
-    const [receivedPage, recipients] = await Promise.all([
+    const [receivedPage, recipients, measures] = await Promise.all([
       listReceivedSupportSharePage(membershipId, {
         cursor: requestUrl.searchParams.get("cursor"),
         take: requestUrl.searchParams.get("take"),
         status: requestUrl.searchParams.get("status"),
         unopened: requestUrl.searchParams.get("unopened") === "1"
       }),
-      listSupportRecipients(auth.organizationId, membershipId)
+      listSupportRecipients(auth.organizationId, membershipId),
+      listOrganizationSupportMeasures(auth.organizationId)
     ]);
-    return orgJson({ ok: true, receivedPage, recipients });
+    return orgJson({ ok: true, receivedPage, recipients, measures });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }
@@ -79,6 +82,13 @@ export async function POST(request, context) {
         managerMembershipId: String(body?.managerMembershipId || "").trim()
       });
       return orgJson({ ok: true, line }, 201);
+    }
+    if (action === "setMeasures") {
+      const measures = await setOrganizationSupportMeasures(auth.organizationId, {
+        actorUserId: auth.userId,
+        measures: body?.measures
+      });
+      return orgJson({ ok: true, measures });
     }
     throw badRequest("org.errors.unknown_action");
   } catch (error) {

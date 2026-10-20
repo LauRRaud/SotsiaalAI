@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8 (asutuse pool) ootab partner-KOV-i
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed teostatud 20.10 (ptk 8.13), abipalve päris adressaat (TO-6) lahti
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -298,7 +298,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa — **tehtud 20.10** (ptk 8.10) | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ — **tehtud 20.10 ilma teavituseta** (ptk 8.12) | sõltub meeldetuletuse otsusest | keskmine |
-| 8 | Asutuse meetmete kirjeldus, meetmete koond, arenguvajadus | vajab partner-KOV-i ja S6 otsust | suur |
+| 8 | Asutuse meetmete kirjeldus — **tehtud 20.10** (ptk 8.13); abipalve päris adressaat (TO-6), meetmete koond, arenguvajadus | adressaat vajab tugikontaktide haldust, arenguvajadus S6 otsust | suur |
 
 Sammud 1–7 katavad küsitluse 35 puuduvast punktist umbes 20. Ülejäänud jäävad teadlikult välja (ptk 8.3) või S6-le.
 
@@ -446,7 +446,8 @@ Uus tööriist `/tooheaolu/tugivoimalused` (töövoog `support-measures`, skeem 
 - Kõrvalt: serveri mustandikoostaja (`supportDrafts.js`) jätab nüüd samuti välja ainult töötajale jäävad märgid —
   liidese koostaja tegi seda juba, serveri varukoostaja mitte.
 
-**Lahti (samm 8):** asutuse enda meetmete kirjeldus (eeltäidetud loend ja abipalve päris adressaat, TO-6).
+**Samm 8:** asutuse meetmete kirjeldus ja eeltäidetud loend on tehtud (ptk 8.13); abipalve päris adressaat (TO-6) on
+lahti.
 
 **Kontroll.** Sihitud eslint, `npm run i18n:check`, `server-message-keys`; funktsioonide kutsega vorm = skeem =
 arvutus, teise rühma meetme tagasilükkamine, rühmitus, tegurid, soovitused, tekstid, neutraalne signaal, koond ja
@@ -464,7 +465,8 @@ kirjet ja silte, tööriist on Tööheaolu laual, neutraalne signaal kuvatakse. 
 | **Töövägivalla abiteed** | Teate sõnastus jääb; ⓘ-infosse kaks rida juurde | Kontrollitud ametlike allikatega: kiusamine ja ahistamine on TTOS § 9¹ psühhosotsiaalsed ohutegurid (tööandja peab hindama ja ennetama); Tööinspektsiooni infotelefon nõustab; töölepinguga töötaja vaidlus läheb töövaidluskomisjoni, **KOV-i ametniku oma halduskohtusse** (RaM eetikanõukogu 25.02.2025). Ametiühing ja asutuse kiusamisvastane kord on ⓘ-infos „kui on“. See on faktikontroll, mitte õigusnõustamine. | `lib/dashboardInfoContent.js` |
 | **Kovisiooni sisend kolleegi/juhi kirjelt** | **Peidetud** Tugi-paneelis; juhi puhul ka juhimemo | Sama piir mis töövoo valmis tekstides: kolleegi või juhi tehtut ei viida vaikimisi kolleegide rühma ega osapoolele. Supervisioon, abipalve ja mentor jäävad. | `components/wellbeing/supportOptions.js` |
 | **Nädalarütmi meeldetuletus** | Ainult vaikne märk „Uus nädal“ Tööheaolu laual, teavitust ei saadeta | Taustatööd on suletud avamisvärava taga; märk ei kasva ega korda ennast, seega eraldi peatamist ei ole vaja. Teavitus (kasutaja valitud päev, peatamine) tuleb siis, kui taustatööd on lubatud. | `components/room/RoomStage.jsx` |
-| **Samm 8 (asutuse meetmete kirjeldus)** | Ei teostatud | Vajab otsust, kes asutuses meetmeid haldab, ja päris partner-KOV-i; ilma selleta oleks see tühi haldusvaade. Arenguvajadus ja kutse jäävad S6-le. | — |
+| **Samm 8 (asutuse meetmete kirjeldus)** | Teostatud 20.10 hiljem samal päeval (ptk 8.13) | Algul jäi ootele, sest polnud otsustatud, kes meetmeid haldab. See otsus on järgmisel real. Partner-KOV-i ei ole vaja: sünteetilise asutusega saab kõike kontrollida, ja kui asutus meetmeid ei kirjelda, jääb tööriist samaks. Arenguvajadus ja kutse jäävad S6-le. | ptk 8.13 |
+| **Kes haldab asutuse meetmeid** | Sama inimene, kes haldab tugikontakte (`SUPPORT_CONTACT_ADMIN`, nõuab professionaalse toe moodulit); lugeda saab iga aktiivne liige | Uut õigust ei teki (uus enum-väärtus oleks püsiv). Meetmed ja tugikontaktid on sama töö: kuhu töötaja toe saamiseks pöördub. Mida asutus pakub, ei ole saladus; TLÜ 2024 järgi töötajad just seda ei leia. | `lib/org/supportMeasures.js` |
 
 Allikad: [RaM eetikanõukogu, KOV ametniku pöördumine (sh väidetav töökius), 25.02.2025](https://fin.ee/sites/default/files/documents/2025-03/KOV%20ametniku%20p%C3%B6%C3%B6rdumine%20oma%20%C3%B5iguste%20kaitsmise%20osas%20KOV%20ametiasutuses%20tekkinud%20t%C3%B6%C3%B6vaidluses%20%28sh%20v%C3%A4idetav%20t%C3%B6%C3%B6kius%29.%2025.02.%202025_0.pdf);
 [TTOS muutmise eelnõu (psühhosotsiaalsed ohutegurid, § 9¹)](https://www.koda.ee/sites/default/files/content-type/content/2017-07/T%C3%B6%C3%B6tervishoiu%20ja%20t%C3%B6%C3%B6ohutuse%20seaduse%20ning%20teiste%20seaduste%20muutmise%20seaduse%20eeln%C3%B5u%20SK_07072017.pdf);
@@ -489,3 +491,41 @@ filter kolme allika puhul; kõik varasemad kontrollid uuesti läbi. Kohalikus ba
 laual märk „Uus nädal“, vorm automaatse edasiliikumisega, tulemus „Nädal oli pingeline“, salvestusnupp paneelis,
 salvestuse järel märk kadus; töövägivalla juhi kirjel puuduvad Tugi-paneelis juhimemo ja kovisiooni sisend.
 Testkasutaja kustutati. **Kontrollimata:** telefoni vaade, EN/RU kuva ja tootmine.
+
+### 8.13. Teostus 20.10: samm 8, asutuse tugimeetmed
+
+Asutus kirjeldab, milliseid tugimeetmeid ta töötajatele pakub, ja töötaja „Minu tugivõimalused“ on selle järgi
+eeltäidetud. See on ptk 8.2 p 4 „teine osa“.
+
+- **Andmed:** uus tabel `OrganizationSupportMeasure` (aditiivne migratsioon
+  `20261020150000_organization_support_measures`): asutus, meede kataloogist (sama väärtus, mida töötaja vorm
+  kasutab) ja lühike juhis kuni 200 märki (kellelt küsida, kuidas broneerida, kui tihti). Tabel ei viita ühelegi
+  kasutajale ega liikmele. Kes muutis, on organisatsiooni auditis (`org.support_measures_set`, ainult meetmete koodid,
+  mitte juhis). Meetmed on asutuse ekspordis.
+- **Asutuse pool:** `/org/<id>/tugi` sai lahtri „Asutuse tugi“: kolm rühma kõrvuti ja iga meetme all asutuse juhis.
+  Seda näeb iga aktiivne liige. Haldur (`SUPPORT_CONTACT_ADMIN`) näeb nuppu „Muuda“. Muutmine on neli sammu: kolm
+  rühma märkelahtritena ja „Kuidas kasutada“, kus valitakse meede ja kirjutatakse juhis. Loobumine küsib
+  kirjutatud mustandi korral teist vajutust. API: `GET /api/org/<id>/tugi` tagastab ka `measures`;
+  `POST … { action: "setMeasures" }` asendab loendi tervikuna. Tundmatu meede, kordus või liiga pikk juhis annab 400.
+- **Töötaja pool:** `GET /api/wellbeing/support-measures/organization` tagastab kasutaja aktiivsete liikmesuste
+  aktiivsete asutuste meetmed. Päring ei jäta asutusele jälge, ja kui organisatsioonikiht on suletud, on vastus tühi.
+  Vorm joonistatakse pärast päringut: „mis on olemas“ on eeltäidetud ja juhis ütleb, et märgitud on asutuse
+  kirjelduse järgi. Tulemuses on loetelu „Asutus pakub ja sa vajad“ koos asutuse juhisega. Töötaja võib eeltäidet
+  muuta, sest tema kirje ütleb, mis on TEMA teada olemas. Koond ei muutu (`measures.gap.*`).
+- **Õigus:** sama värav mis tugikontaktidel. Lugeda saab iga liige, muuta ainult haldur; mooduli puudumisel
+  haldusõigust ei ole.
+
+**Lahti:** abipalve päris adressaat (TO-6). Toeavalduse saatmine juhile või tugikontaktile on olemas (`/org/<id>/tugi`).
+Tugikontakte ja juhiseoseid saab aga määrata ainult API kaudu, liidest ei ole. Tööheaolu abipalve ei ole veel
+sellega ühendatud. „Võimaldab × vajan“ koond jääb ootama esimest KOV-i koondit (k ≥ 5).
+
+**Kontroll.** `npx prisma validate`, migratsioon kohalikus baasis, sihitud eslint, `npm run i18n:check`, `npm test`
+(65 läbi, 0 kukkus). Funktsioonide kutsega päris kohaliku baasiga: vigane sisend (5 juhtu) annab 400, salvestus,
+kataloogi järjekord ja asendamine töötavad, auditis on ainult koodid, töötaja vaade ei näita peatatud asutust ega võõrast
+kasutajat, eksport on puhas, vormi eeltäide ja tulemus (sh kahe asutuse puhul), haldusvaate reeglid. Kohalikus baasis
+sünteetilise asutuse ja kasutajaga brauseris: lahter „Asutuse tugi“ 1536 × 640 ja 390 × 844 vaates (ülevoolu ei ole),
+muutmine ja salvestus (juhis lisati, loend uuenes, teade „salvestatud“), muutmisvaade mahub mõlemas vaates. Töötaja
+vorm oli eeltäidetud, tulemus näitas kahte meedet koos juhisega ja salvestus andis õiged väljad ning teguri
+`measures.gap.health_days`. Pärast haldusõiguse äravõtmist andis POST 403, loend jäi loetavaks ja „Muuda“ kadus.
+Sünteetiline asutus, kasutaja ja auditiread kustutati. **Kontrollimata:** EN/RU kuva brauseris ja tootmine
+(organisatsioonikiht on tootmises lipu taga).
