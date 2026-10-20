@@ -127,8 +127,8 @@ turvakontakte liidesest; kinnitatud abipalve saab „Saada asutuse kaudu“ olem
 määratud.
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
-**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 304
-salvestatud varianti: 292 PASS, 10 FAIL, 2 lahendatud rakisetakistust.
+**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 355
+salvestatud varianti: 339 PASS, 14 FAIL, 2 lahendatud rakisetakistust.
 Kinnitatud puudused: READY järel võrgustikujagamise `source_inactive`,
 saabumiskiri eirab e-postiteavituse eelistust, töö tähtaeg `dueAt` puudub
 (MISSING_FEATURE), teemaseemne privaatsuskontroll blokeerib asutuste nimesid ja
@@ -140,10 +140,19 @@ koordinaatori avamisel. Kohalikus eraldatud koopias (`sol_proof_20261020_local`,
 kood = server) mängiti päris kasutajaliideses läbi eelpöördumise saatmine ja
 asutuse vastuvõtt, kovisioon etapini 2, supervisioon ja mentorlus algusest
 lõpuni; superviisori õigus ja mentori moderatsioon olid märgistatud fixture’id.
-Parandused jäävad Astra/Fable etapile. Testkontode erand kehtib 27.10 kella
-03.00-ni; Claude ei logi sotsiaal.pro peal testkontodega sisse. Järgmine:
-RAG-i vestlustestid pärast omaniku korpuse uuendust (kulupiir 3 €,
-hindajad omanik + spetsialist), FIELD ja GOV.
+Vestluse test sotsiaal.pro peal: 50 enne vastuseid lukustatud küsimust
+(väljalase `12cdf6cc`, korpus v92, kulu 0,20 USD). 108 kontrollitud väitest 103
+toetas viidatud lõik, toetuseta või vastuolus väiteid ei olnud, 5 on vaieldavad.
+Põhijäreldus oli õige 43 küsimuses, 2 keeldumist olid asjakohased, 4 vastust
+osalised: G09 sugulaselt üür (§ 133 lg 8 kitsas lugemine), G13 ja G33
+otsingupuudus (PKS § 96, SHS § 72 lg 2) ja U01 (v89 VIPS-materjal ei jõudnud
+paketti). Kuldlõik oli paketis 31 küsimuses 33-st. Omaniku 20.10 lisatud
+materjale viidati kolmes uuendusküsimuses neljast. Faktid olid kolmes rollis
+samad, pöördumine rollipõhine; dialoogis isik ja parandus ei segunenud; kriisi
+korral tuli `isCrisis`. Parandused jäävad Astra/Fable etapile. Testkontode erand
+kehtib 27.10 kella 03.00-ni; Claude ei logi sotsiaal.pro peal testkontodega
+sisse. Järgmine: omaniku ja spetsialisti sõltumatu hinnang vaieldavatele
+väidetele (RAG-12), FIELD ja GOV.
 [Vahetulemus ja tõendid](../audits/sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md).
 
 **13.10 logo kuvamine:** avalehe logo joonistatakse nüüd lehe Exo 2 fondist
