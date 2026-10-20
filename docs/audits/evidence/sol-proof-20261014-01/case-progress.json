@@ -1,14 +1,14 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T12:18:47.845Z",
+  "updated_at": "2026-10-20T12:34:25.080Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 276,
-  "passed_variants": 271,
-  "failed_variants": 3,
+  "observed_variants": 292,
+  "passed_variants": 281,
+  "failed_variants": 9,
   "blocked_variants": 2,
-  "server_fixture_variants": 53,
+  "server_fixture_variants": 64,
   "case_progress": [
     {
       "case_id": "ENV-01",
@@ -174,8 +174,8 @@
       "case_id": "OPS-06",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 3,
-      "passed_variants": 3,
+      "observed_variants": 4,
+      "passed_variants": 4,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -212,11 +212,11 @@
     },
     {
       "case_id": "DATA-02",
-      "status": "NOT_RUN",
+      "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 4,
-      "passed_variants": 4,
-      "failed_variants": 0,
+      "observed_variants": 15,
+      "passed_variants": 9,
+      "failed_variants": 6,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -404,8 +404,8 @@
       "case_id": "TOOLS-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 28,
-      "passed_variants": 28,
+      "observed_variants": 32,
+      "passed_variants": 32,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4901,6 +4901,297 @@
         "shown": "SOL TEST UI avamise tähendus saadetud, ootab vastuvõtmist (1. päev) SOL TEST — sünteetiline vastuvõtutiim Ava"
       },
       "evidence_file": "local-ui-open-semantics.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_institution_tootukassa",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_institution_city_government",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_institution_hospital",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_phrase_kliendi_olukord",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_phrase_juhtumi_kirjeldus",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_real_case_number",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PHONE",
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "CASE_NUMBER"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_lowercase_control",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_ui_seed_text_after_edit",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_real_name",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "PERSON_NAME"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_email",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "EMAIL"
+        ],
+        "indirect": [],
+        "expected": "EMAIL"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_personal_code",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSONAL_CODE"
+        ],
+        "indirect": [],
+        "expected": "PERSONAL_CODE"
+      },
+      "evidence_file": "local-topicseed-privacy.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "invitee_sees_no_case_title_before_agreement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "titleVisible": false,
+        "role": "osaleja"
+      },
+      "measuredIn": "local-ui-covision-raw.json (before the invitee agreed)",
+      "evidence_file": "local-ui-covision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "invite_not_listed_in_app_for_invitee",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "inviteeHomeShowsCase": false,
+        "deliveryRows": [
+          {
+            "status": "PENDING",
+            "attempts": 0
+          }
+        ],
+        "meaning": "The invitee reaches the session only through the e-mailed link /kovisioon?case=<id>; delivery waits for the notification job."
+      },
+      "measuredIn": "local-ui-covision-raw.json (before the invitee agreed)",
+      "evidence_file": "local-ui-covision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "invitee_sees_title_after_agreement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "titleVisible": true,
+        "inviteeSteps": [
+          {
+            "step": "/Kinnitan oma rolli/",
+            "clicked": false
+          },
+          {
+            "step": "/Nõustun kokkuleppega/",
+            "clicked": false
+          },
+          {
+            "step": "/Olen valmis/",
+            "clicked": false
+          }
+        ]
+      },
+      "evidence_file": "local-ui-covision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "both_participants_ready_and_meeting_started",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "participants": "Osalejad 2",
+        "caseBringerSteps": [
+          {
+            "step": "/Kinnitan oma rolli/",
+            "clicked": false
+          },
+          {
+            "step": "/Nõustun kokkuleppega/",
+            "clicked": false
+          },
+          {
+            "step": "/Olen valmis/",
+            "clicked": false
+          },
+          {
+            "step": "/Juhtumi piir ja anonüümsus on õiged/",
+            "clicked": false
+          },
+          {
+            "step": "/Kinnita seaded/",
+            "clicked": false
+          },
+          {
+            "step": "/Alusta kohtumist/",
+            "clicked": false
+          }
+        ],
+        "gateText": null
+      },
+      "evidence_file": "local-ui-covision.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "stage1_gate_opens_story_stage",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "storyButtonEnabled": true,
+        "stage2Current": true
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The text test looked for \"Lugu\" but the page renders stage names in upper case (\"LUGU\"); the accessibility tree of the same screen shows \"Etapp 2: Lugu — Praegune etapp\" (stage2Current true) after the leader moved the work phase twice and opened the story."
+      },
+      "evidence_file": "local-ui-covision.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]

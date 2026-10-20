@@ -1,0 +1,166 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "local Node run of the current code; synthetic sentences only",
+  "checks": [
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_institution_tootukassa",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_institution_city_government",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_institution_hospital",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_phrase_kliendi_olukord",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_phrase_juhtumi_kirjeldus",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_real_case_number",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PHONE",
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "CASE_NUMBER"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_lowercase_control",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_ui_seed_text_after_edit",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "CASE_NUMBER"
+        ],
+        "indirect": [],
+        "expected": "no direct identifier"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_real_name",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSON_NAME"
+        ],
+        "indirect": [],
+        "expected": "PERSON_NAME"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_email",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "EMAIL"
+        ],
+        "indirect": [],
+        "expected": "EMAIL"
+      }
+    },
+    {
+      "case_id": "DATA-02",
+      "variant_id": "topic_seed_privacy_personal_code",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "assessTopicSeedPrivacy of lib/topicSeeds.js",
+      "actual": {
+        "direct": [
+          "PERSONAL_CODE"
+        ],
+        "indirect": [],
+        "expected": "PERSONAL_CODE"
+      }
+    }
+  ],
+  "rules": [
+    "PERSON_NAME = any two consecutive capitalised words of three or more letters (lib/topicSeeds.js:175)",
+    "CASE_NUMBER = juhtumi/toimiku/menetluse/kliendi followed by any token of five or more letters or digits, case-insensitive (lib/topicSeeds.js:172)"
+  ],
+  "newPaidCalls": false
+}

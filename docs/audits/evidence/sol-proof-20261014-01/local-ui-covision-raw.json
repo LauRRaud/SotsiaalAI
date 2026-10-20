@@ -1,0 +1,162 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser, specialist and provider in separate contexts; no microphone",
+  "history": [
+    {
+      "step": "specialist creates a quick topic seed in the UI",
+      "result": "POST /api/topic-seeds 201, private draft"
+    },
+    {
+      "step": "provider views /teemaseemned and /kovisioon before sharing",
+      "result": "0 seeds, empty queue"
+    },
+    {
+      "step": "queue with \"SOL TEST\" in the title and \"kliendi digiabi\" in the text",
+      "result": "422 Automaatkontroll leidis otsese tuvastaja (shown in the UI, without saying which words)"
+    },
+    {
+      "step": "queue after rewording without capitalised pairs or kliendi/juhtumi phrases",
+      "result": "POST .../queue 200, card Valmis Kovisiooniks"
+    },
+    {
+      "step": "Loo Kovisioon",
+      "result": "POST .../covision 201, session stage 1 Algus, role juhtumi tooja"
+    },
+    {
+      "step": "Kutsu osaleja by e-mail (synthetic .invalid address, no reachable SMTP)",
+      "result": "POST .../session/actions 200; CovisionInviteDelivery PENDING, attempts 0"
+    }
+  ],
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "invitee_sees_no_case_title_before_agreement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "titleVisible": false,
+        "role": "osaleja"
+      }
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "invite_not_listed_in_app_for_invitee",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "inviteeHomeShowsCase": false,
+        "deliveryRows": [
+          {
+            "status": "PENDING",
+            "attempts": 0
+          }
+        ],
+        "meaning": "The invitee reaches the session only through the e-mailed link /kovisioon?case=<id>; delivery waits for the notification job."
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "invitee_sees_title_after_agreement",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "titleVisible": false,
+        "inviteeSteps": [
+          {
+            "step": "/Kinnitan oma rolli/",
+            "clicked": true
+          },
+          {
+            "step": "/Nõustun kokkuleppega/",
+            "clicked": false
+          },
+          {
+            "step": "/Olen valmis/",
+            "clicked": false
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "both_participants_ready_and_meeting_started",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "participants": "Osalejad 2",
+        "caseBringerSteps": [
+          {
+            "step": "/Kinnitan oma rolli/",
+            "clicked": true
+          },
+          {
+            "step": "/Nõustun kokkuleppega/",
+            "clicked": false
+          },
+          {
+            "step": "/Olen valmis/",
+            "clicked": false
+          },
+          {
+            "step": "/Juhtumi piir ja anonüümsus on õiged/",
+            "clicked": false
+          },
+          {
+            "step": "/Kinnita seaded/",
+            "clicked": false
+          },
+          {
+            "step": "/Alusta kohtumist/",
+            "clicked": false
+          }
+        ],
+        "gateText": "Veel 3 tingimust vajab lõpetamist."
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "stage1_gate_opens_story_stage",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "storyButtonEnabled": false,
+        "stage2Current": false
+      }
+    }
+  ],
+  "screens": [
+    {
+      "label": "invitee_ring_after_readiness",
+      "text": "← Välju Tagasi Kovisiooni valikusse Salvestatud. K KINNINE PROFESSIONAALNE TÖÖRUUM Kovisiooni sessioon KOHTUMINE KESTNUD 00:00 ETAPP 1 KESTNUD 00:00 Vajan tuge ↻ osaleja ‹ Ühine laud Ring Kompass › Osa 1/3: Ühine laud KERI EDASI ↓ TURVALINE ÜHINE ALGUS Kohalolu ja kokkulepped 0 jagatud kaarti Kinnitame rollid, konfidentsiaalsuse ja juhtumi piiri enne sisulise töö avamist. Lohista kaarti pidemest või liiguta nooleklahvidega; Home taastab kaardi koha. ETAPI KESE Juhtumi tooja kinnitab, et ühine tööpilt on õige ja piisavalt anonüümne. Esimene jagatud kaart ilmub siia. ÜHINE RING Osalejad 1 S SOL TEST Teenuseosutaja · sina osaleja · kutse ootel Valmisolek kinnitamata ✓ Kinnitan oma rolli 2 Nõustun kokkuleppega 3 Olen valmis ISIKLIK VASTUTUS Alguse kinnitused ○ Juhtumi piir ja anonüümsus on õiged Juhtumi ühine pealkiri Pealkiri puudub ◇ ETAPI 1 VÄRAV Etappi saab lõpetada kohtumise või sessiooni juht. Veel 2 tingimust vajab lõpetamist. Ava juhtumi lugu 1 ALGUS PRAEGUNE ETAPP 2 LUGU AVANEB VÄRAVA KAUDU 3 UURIMINE AVANEB VÄRAVA KAUDU 4 PEEGELDUS AVANEB VÄRAVA KAUDU 5 VÕIMALUSED AVANEB VÄRAVA KAUDU 6 RESSURSID AVANEB VÄRAVA KAUDU 7 VALIK AVANEB VÄRAVA KAUDU 8 LÕPP AVANEB VÄRAVA KAUDU"
+    },
+    {
+      "label": "case_bringer_after_start",
+      "text": "← Välju Tagasi Kovisiooni valikusse Salvestatud. K KINNINE PROFESSIONAALNE TÖÖRUUM koostöö piirid digiabi olukorras (sünteetiline katse) KOHTUMINE KESTNUD 00:00 ETAPP 1 KESTNUD 03:20 Vajan tuge Paus ↻ juhtumi tooja ‹ Ühine laud Ring Kompass › Osa 1/3: Ühine laud KERI EDASI ↓ TURVALINE ÜHINE ALGUS Kohalolu ja kokkulepped 0 jagatud kaarti Kinnitame rollid, konfidentsiaalsuse ja juhtumi piiri enne sisulise töö avamist. Lohista kaarti pidemest või liiguta nooleklahvidega; Home taastab kaardi koha. ETAPI KESE Juhtumi tooja kinnitab, et ühine tööpilt on õige ja piisavalt anonüümne. Esimene jagatud kaart ilmub siia. ÜHINE RING Osalejad 2 S SOL TEST Spetsialist · sina juhtumi tooja Valmisolek kinnitamata S SOL TEST Teenuseosutaja osaleja · kutse ootel · saatmine ootel Valmisolek kinnitamata Saada kutse uuestiLõpeta ligipääs ✓ Kinnitan oma rolli 2 Nõustun kokkuleppega 3 Olen valmis ISIKLIK VASTUTUS Alguse kinnitused ○ Juhtumi piir ja anonüümsus on õiged Kestus minutites Toe kokkulepe Kinnita seaded Alusta kohtumist Kutsu osaleja E-post Roll osaleja Kutsutu ei näe juhtumi pealkirja, sisu ega teisi osalejaid enne kokkuleppe kinnitamist. Saada kutse Juhtumi ühine pealkiri koostöö piirid digiabi olukorras (sünteetiline katse) ◇ ETAPI 1 VÄRAV Tööfaas peab enne jõudma olekusse „valmis juhtumit avama”. Veel 3 tingimust vajab lõpetamist. Ava juhtumi lugu 1 ALGUS PRAEGUNE ETAPP 2 LUGU AVANEB VÄRAVA KAUDU 3 UURIMINE AVANEB VÄRAVA KAUDU 4 PEEGELDUS AVANEB VÄRAVA KAUDU 5 VÕIMALUSED AVANEB VÄRAVA KAUDU 6 RESSURSID AVANEB VÄRAVA KAUDU 7 VALIK AVANEB VÄRAVA KAUDU 8 LÕPP AVANEB VÄRAVA KAUDU"
+    }
+  ],
+  "network": [
+    {
+      "who": "provider",
+      "method": "POST",
+      "path": "/api/covision/cmvgnqns6001m08tsf4zrn0y9/session/actions",
+      "status": 200,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/covision/cmvgnqns6001m08tsf4zrn0y9/session/actions",
+      "status": 200,
+      "message": null
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false
+}

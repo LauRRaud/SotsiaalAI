@@ -1,0 +1,206 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser, specialist and provider in separate contexts; no microphone",
+  "history": [
+    {
+      "step": "specialist creates a quick topic seed in the UI",
+      "result": "POST /api/topic-seeds 201, private draft"
+    },
+    {
+      "step": "provider views /teemaseemned and /kovisioon before sharing",
+      "result": "0 seeds, empty queue"
+    },
+    {
+      "step": "queue with \"SOL TEST\" in the title and \"kliendi digiabi\" in the text",
+      "result": "422 Automaatkontroll leidis otsese tuvastaja (shown in the UI, without saying which words)"
+    },
+    {
+      "step": "queue after rewording without capitalised pairs or kliendi/juhtumi phrases",
+      "result": "POST .../queue 200, card Valmis Kovisiooniks"
+    },
+    {
+      "step": "Loo Kovisioon",
+      "result": "POST .../covision 201, session stage 1 Algus, role juhtumi tooja"
+    },
+    {
+      "step": "Kutsu osaleja by e-mail (synthetic .invalid address, no reachable SMTP)",
+      "result": "POST .../session/actions 200; CovisionInviteDelivery PENDING, attempts 0"
+    }
+  ],
+  "rawRuns": {
+    "local-ui-covision-raw.json": "first run: only the first readiness step was clicked because the UI returns to part 1 after saving (harness)",
+    "local-ui-covision-raw2.json": "second run: Nõustun kokkuleppega answered 409 \"Kovisiooni salvestamine ebaõnnestus.\" for both while the case bringer had not yet confirmed the settings; the button was enabled",
+    "local-ui-covision-raw3.json": "third run: agreement and readiness 200; the start check was click-based and the leader work-phase step was missing (harness)"
+  },
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "invitee_sees_no_case_title_before_agreement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "titleVisible": false,
+        "role": "osaleja"
+      },
+      "measuredIn": "local-ui-covision-raw.json (before the invitee agreed)"
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "invite_not_listed_in_app_for_invitee",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "inviteeHomeShowsCase": false,
+        "deliveryRows": [
+          {
+            "status": "PENDING",
+            "attempts": 0
+          }
+        ],
+        "meaning": "The invitee reaches the session only through the e-mailed link /kovisioon?case=<id>; delivery waits for the notification job."
+      },
+      "measuredIn": "local-ui-covision-raw.json (before the invitee agreed)"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "invitee_sees_title_after_agreement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "titleVisible": true,
+        "inviteeSteps": [
+          {
+            "step": "/Kinnitan oma rolli/",
+            "clicked": false
+          },
+          {
+            "step": "/Nõustun kokkuleppega/",
+            "clicked": false
+          },
+          {
+            "step": "/Olen valmis/",
+            "clicked": false
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "both_participants_ready_and_meeting_started",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "participants": "Osalejad 2",
+        "caseBringerSteps": [
+          {
+            "step": "/Kinnitan oma rolli/",
+            "clicked": false
+          },
+          {
+            "step": "/Nõustun kokkuleppega/",
+            "clicked": false
+          },
+          {
+            "step": "/Olen valmis/",
+            "clicked": false
+          },
+          {
+            "step": "/Juhtumi piir ja anonüümsus on õiged/",
+            "clicked": false
+          },
+          {
+            "step": "/Kinnita seaded/",
+            "clicked": false
+          },
+          {
+            "step": "/Alusta kohtumist/",
+            "clicked": false
+          }
+        ],
+        "gateText": null
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "stage1_gate_opens_story_stage",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real covision UI in the isolated local copy",
+      "actual": {
+        "storyButtonEnabled": true,
+        "stage2Current": true
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The text test looked for \"Lugu\" but the page renders stage names in upper case (\"LUGU\"); the accessibility tree of the same screen shows \"Etapp 2: Lugu — Praegune etapp\" (stage2Current true) after the leader moved the work phase twice and opened the story."
+      }
+    }
+  ],
+  "screens": [
+    {
+      "label": "invitee_ring_after_readiness",
+      "text": "← Välju Tagasi Kovisiooni valikusse K KINNINE PROFESSIONAALNE TÖÖRUUM koostöö piirid digiabi olukorras (sünteetiline katse) KOHTUMISEST ALLES 01:27:08 ETAPP 1 KESTNUD 02:51 Vajan tuge ↻ osaleja ‹ Ühine laud Ring Kompass › Osa 2/3: Ring KERI EDASI ↓ ÜHINE RING Osalejad 2 S SOL TEST Spetsialist juhtumi tooja Valmis S SOL TEST Teenuseosutaja · sina osaleja Valmis ✓ Kinnitan oma rolli ✓ Nõustun kokkuleppega ✓ Olen valmis ISIKLIK VASTUTUS Alguse kinnitused ✓ Juhtumi piir ja anonüümsus on õiged Juhtumi ühine pealkiri koostöö piirid digiabi olukorras (sünteetiline katse) KOMPASS Praegu hoia seda Turvaline ühine algus Juhtumi tooja kinnitab, et ühine tööpilt on õige ja piisavalt anonüümne. Sinu roll osaleja Privaatseid mustandeid 0 ⌁ Privaatne sisu jääb sinu vaatesse. Ühises väljas on ainult teadlikult jagatud kaardid. ◇ ETAPI 1 VÄRAV Etappi saab lõpetada kohtumise või sessiooni juht. Ava juhtumi lugu 1 ALGUS PRAEGUNE ETAPP 2 LUGU AVANEB VÄRAVA KAUDU 3 UURIMINE AVANEB VÄRAVA KAUDU 4 PEEGELDUS AVANEB VÄRAVA KAUDU 5 VÕIMALUSED AVANEB VÄRAVA KAUDU 6 RESSURSID AVANEB VÄRAVA KAUDU 7 VALIK AVANEB VÄRAVA KAUDU 8 LÕPP AVANEB VÄRAVA KAUDU"
+    },
+    {
+      "label": "case_bringer_after_start",
+      "text": "← Välju Tagasi Kovisiooni valikusse K KINNINE PROFESSIONAALNE TÖÖRUUM koostöö piirid digiabi olukorras (sünteetiline katse) KOHTUMISEST ALLES 01:26:50 ETAPP 1 KESTNUD 03:09 Vajan tuge Paus ↻ juhtumi tooja ‹ Ühine laud Ring Kompass › Osa 2/3: Ring KERI EDASI ↓ ÜHINE RING Osalejad 2 S SOL TEST Spetsialist · sina juhtumi tooja Valmis S SOL TEST Teenuseosutaja osaleja · saatmine ootel Valmis Lõpeta ligipääs ✓ Kinnitan oma rolli ✓ Nõustun kokkuleppega ✓ Olen valmis ISIKLIK VASTUTUS Alguse kinnitused ✓ Juhtumi piir ja anonüümsus on õiged Kestus minutites Toe kokkulepe ✓ Seaded kinnitatud Kutsu osaleja E-post Roll osaleja Kutsutu ei näe juhtumi pealkirja, sisu ega teisi osalejaid enne kokkuleppe kinnitamist. Saada kutse Juhtumi ühine pealkiri koostöö piirid digiabi olukorras (sünteetiline katse) KOMPASS Praegu hoia seda Turvaline ühine algus Juhtumi tooja kinnitab, et ühine tööpilt on õige ja piisavalt anonüümne. Sinu roll juhtumi tooja Privaatseid mustandeid 0 ⌁ Privaatne sisu jääb sinu vaatesse. Ühises väljas on ainult teadlikult jagatud kaardid. SESSIOONI JUHI TÖÖRIIST Tööfaas kohtumine alustatud → kinnitused ootel Jätka: kinnitused ootel ◇ ETAPI 1 VÄRAV Tööfaas peab enne jõudma olekusse „valmis juhtumit avama”. Ava juhtumi lugu 1 ALGUS PRAEGUNE ETAPP 2 LUGU AVANEB VÄRAVA KAUDU 3 UURIMINE AVANEB VÄRAVA KAUDU 4 PEEGELDUS AVANEB VÄRAVA KAUDU 5 VÕIMALUSED AVANEB VÄRAVA KAUDU 6 RESSURSID AVANEB VÄRAVA KAUDU 7 VALIK AVANEB VÄRAVA KAUDU 8 LÕPP AVANEB VÄRAVA KAUDU"
+    }
+  ],
+  "network": [
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/covision/cmvgnqns6001m08tsf4zrn0y9/session/actions",
+      "status": 200,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/covision/cmvgnqns6001m08tsf4zrn0y9/session/actions",
+      "status": 200,
+      "message": null
+    },
+    {
+      "who": "specialist",
+      "method": "POST",
+      "path": "/api/covision/cmvgnqns6001m08tsf4zrn0y9/session/actions",
+      "status": 200,
+      "message": null
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "workPhaseSteps": [
+    "Jätka: kinnitused ootel",
+    "Jätka: valmis juhtumit avama"
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "\"Nõustun kokkuleppega\" was enabled for both participants before the case bringer had confirmed the settings, and pressing it answered 409 with the generic \"Kovisiooni salvestamine ebaõnnestus.\" (local-ui-covision-raw2.json). After the settings were confirmed the same step answered 200."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "TOOLS-03",
+      "note": "After each confirmation the session saves and returns to part 1 (Ühine laud); the next confirmation needs the Ring part reopened."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "OPS-06",
+      "note": "The invitee is not shown the invitation anywhere in the app; the session is reached only through the e-mailed link /kovisioon?case=<id>, and the e-mail is sent by the notification job (CovisionInviteDelivery PENDING, attempts 0). On the server that job is refused by the closed gate (server-jobs-and-deadline.json), so covision invitations would not reach anyone there while the platform is closed. Inference from the two measurements; no server invitation was sent."
+    },
+    {
+      "status": "NOT_RUN",
+      "case_id": "TOOLS-05",
+      "note": "Audio, microphone refusal, reconnection and participant removal were not tested: headless browser without a microphone."
+    }
+  ]
+}
