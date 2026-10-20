@@ -1,0 +1,53 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_ui_sends_freeform_inquiry_to_org_intake",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real pre-inquiry wizard: contact path, organisation intake team, Vali see kontakt, own words, situation, whom, urgency, title, Saada platvormis",
+      "actual": {
+        "network": [
+          {
+            "method": "POST",
+            "path": "/api/pre-inquiries",
+            "status": 201,
+            "id": "cmvgn87ym000608tstedx5hsu",
+            "inquiryStatus": "SENT",
+            "channel": "INTERNAL",
+            "error": null
+          }
+        ],
+        "stateShown": "saadetud, ootab vastuvõtmist (1. päev)",
+        "withdrawHintShown": true
+      }
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "FLOW-01",
+      "note": "After the recipient was chosen the wizard jumped to step 9 (text); choosing the description way at step 1 auto-advanced to step 2. The situation step had to be reopened from the step list, as on 14.10. Not a confirmed defect."
+    }
+  ],
+  "screens": [
+    {
+      "label": "step9",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Eelpöördumine\" [level=1]\n    - paragraph: \"Samm 9/11: Pöördumise tekst\"\n    - region \"Pöördumise tekst\":\n      - heading \"Pöördumise tekst\" [level=3]\n      - paragraph: Loe üle ja muuda. Seda teksti näeb vastuvõtja.\n      - text: Teema\n      - textbox \"Teema\":\n        - /placeholder: Lühike pealkiri\n      - text: Tekst\n      - textbox \"Tekst\": \"Lugupeetud SOL TEST — sünteetiline vastuvõtutiim Soovin pöörduda teemal: Eelpöördumine. Olukorra kirjeldus ja eelkaardistus: SOL TEST UI 20.10. Vajan abi testtelefoni kasutamisel ja soovin olukorra enne kohtumist kirja panna. Sünteetiline katse. Eelkaardistuse kokkuvõte Rada: Kirjeldan olukorda oma sõnadega Kelle kohta: Minu enda kohta Kiireloomulisus: Ei ole kiire, saan oodata Nõusolek või pöördumise alus: Pöördun enda kohta Palun aidata välja selgitada, millised toetused või teenused võiksid selles olukorras sobida ning millised oleksid järgmised sammud. Lugupidamisega\""
+    },
+    {
+      "label": "step10_ready",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Eelpöördumine\" [level=1]\n    - paragraph: \"Samm 10/11: Saatmine\"\n    - region \"Saatmine\":\n      - heading \"Saatmine\" [level=3]\n      - paragraph: \"Adressaat: SOL TEST — sünteetiline vastuvõtutiim. Saatmise viis: platvormisisene eelpöördumine.\"\n      - paragraph: Pöördumist loeb asutuse vastuvõtutiim. Vestlust sinuga loeb töötaja, kes pöördumisega tegeleb; kui töö antakse üle, ka järgmine töötaja.\n      - group \"Saatmine\":\n        - button \"Saada platvormis Pöördumine jõuab vastuvõtja Pöördumiste vaatesse. Näed siin, kui see on vastu võetud.\"\n      - button \"Salvesta eelpöördumine\"\n      - button \"Kopeeri tekst\"\n      - button \"Laadi alla\""
+    },
+    {
+      "label": "after_send",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Eelpöördumine\" [level=1]\n    - paragraph: Eelpöördumine saadetud.\n    - paragraph: \"Samm 1/3: Pöördumise seis\"\n    - region \"Pöördumise seis\":\n      - heading \"Pöördumise seis\" [level=3]\n      - paragraph: SOL TEST UI saatmine\n      - paragraph: saadetud, ootab vastuvõtmist (1. päev)\n      - term: Adressaat\n      - definition: SOL TEST — sünteetiline vastuvõtutiim\n      - term: Saadetud\n      - definition: 20.10.2026, 15:12 · platvormis\n      - paragraph: Vastuvõtja ei ole pöördumist veel vastu võtnud. Kui ta selle vastu võtab, näed seda siin.\n      - paragraph:\n        - text: Kuni vastuvõtja ei ole pöördumist vastu võtnud, saad selle tagasi võtta lehel\n        - link \"Minu jagamised\":\n          - /url: /minu-jagamised\n      - button \"Kopeeri tekst\"\n      - button \"Laadi alla\""
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false
+}

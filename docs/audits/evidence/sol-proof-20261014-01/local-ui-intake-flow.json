@@ -1,0 +1,159 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy (code 03960df1 = deployed application code) at localhost:3002, database sol_proof_20261020_local; headless browser, each actor in its own context",
+  "inquiryId": "cmvgn87ym000608tstedx5hsu",
+  "checks": [
+    {
+      "case_id": "OPS-01",
+      "variant_id": "ui_sent_inquiry_arrives_in_org_inbox",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "inboxItemId": "cmvgn87yy000708ts4rba5s5u",
+        "status": "RECEIVED"
+      },
+      "measuredIn": "raw run before the assignment"
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_sees_confirmed_package",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "situationVisible": true,
+        "openingWarningShown": true
+      },
+      "measuredIn": "raw run before the assignment"
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_assignment_waits_for_worker",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "itemStatus": "ASSIGNED",
+        "assignments": [
+          {
+            "status": "PENDING",
+            "toSpecialist": true,
+            "accepted": false
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "opened_inquiry_cannot_be_withdrawn_in_client_ui",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "openedAt": true,
+        "withdrawButtons": 1,
+        "listShowsOpened": true,
+        "detailState": "Avatud paneel"
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The harness counted buttons matching /tagasi/i and matched \"Tagasi loendisse\" (back to list). The saved client detail screen shows only \"Saada parandus\" and \"Tagasi loendisse\": no withdraw control after the organisation opened the package."
+      }
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "assigned_specialist_accepts_in_ui",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "questionShown": true,
+        "itemStatus": "ACCEPTED",
+        "assignment": [
+          {
+            "status": "ACCEPTED",
+            "accepted": true
+          }
+        ],
+        "afterAcceptControls": [
+          "button \"Anna üle\"",
+          "button \"Ava vestlusruum\""
+        ]
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_sees_acceptance_in_own_view",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "stateText": "Saadetud eelpöördumised",
+        "preInquiryStatusView": "vastu võetud 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim"
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The harness read the Minu jagamised overview, which shows only \"Avatud 20. okt 2026, 15:13\" and \"Adressaat on seda vaadanud\". The pre-inquiry status view (Eelpöördumine > Minu eelpöördumised) shows \"vastu võetud 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim\"; read separately after acceptance (ui-explore4)."
+      }
+    }
+  ],
+  "screens": [
+    {
+      "label": "client_sent_list_after_opening",
+      "url": "/minu-jagamised",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Minu jagamised\" [level=1]\n    - paragraph: \"Osa 3/12: Saadetud eelpöördumised\"\n    - region \"Saadetud eelpöördumised\":\n      - heading \"Saadetud eelpöördumised\" [level=3]\n      - paragraph: Tagasivõtt eemaldab avamata platvormisisese pöördumise adressaadi aktiivsest loendist. Auditijälg jääb alles.\n      - list:\n        - listitem:\n          - 'button \"SOL TEST UI saatmine Jagatud: SOL TEST — sünteetiline vastuvõtutiim Saadetud 20. okt 2026, 15:12\"'\n      - paragraph: Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada."
+    },
+    {
+      "label": "client_detail_after_opening",
+      "url": "/minu-jagamised",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Minu jagamised\" [level=1]\n    - paragraph: \"Osa 3/12: Saadetud eelpöördumised\"\n    - region \"Saadetud eelpöördumised\":\n      - heading \"Saadetud eelpöördumised\" [level=3]\n      - paragraph: SOL TEST UI saatmine\n      - paragraph: Saadetud 20. okt 2026, 15:12\n      - term: Kes näeb\n      - definition: \"Jagatud: SOL TEST — sünteetiline vastuvõtutiim\"\n      - term: Päritolu\n      - definition: Sina saatsid\n      - term: Kehtivus\n      - definition: Avatud 20. okt 2026, 15:13; ajalugu säilib\n      - paragraph: \"Adressaat on seda vaadanud ühel päeval: 20. okt 2026.\"\n      - paragraph: Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada.\n      - button \"Saada parandus\"\n      - button \"Tagasi loendisse\""
+    },
+    {
+      "label": "specialist_work_question",
+      "url": "/org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott/cmvgn87yy000708ts4rba5s5u",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - 'heading \"SOL TEST — sünteetiline vastuvõtutiim: Vastuvõtt\" [level=1]'\n    - heading \"Saatja kinnitatud pakett\" [level=3]\n    - radiogroup \"Pöördumise vaated\":\n      - text: Pöördumise vaated\n      - radio \"Pöördumine\"\n      - radio \"Töö\" [checked]\n    - paragraph: See töö on määratud sulle. Kas võtad selle vastu?\n    - radiogroup \"Kellele töö üle anda?\":\n      - text: Kellele töö üle anda?\n      - radio \"SOL TEST Teenuseosutaja\"\n    - button \"Anna üle\"\n    - link \"Tagasi loendisse\":\n      - /url: /org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott\n    - button \"Lükkan tagasi\"\n    - button \"Võtan vastu\""
+    },
+    {
+      "label": "specialist_after_accept",
+      "url": "/org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott/cmvgn87yy000708ts4rba5s5u",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - 'heading \"SOL TEST — sünteetiline vastuvõtutiim: Vastuvõtt\" [level=1]'\n    - heading \"Saatja kinnitatud pakett\" [level=3]\n    - radiogroup \"Pöördumise vaated\":\n      - text: Pöördumise vaated\n      - radio \"Pöördumine\"\n      - radio \"Töö\" [checked]\n    - radiogroup \"Kellele töö üle anda?\":\n      - text: Kellele töö üle anda?\n      - radio \"SOL TEST Teenuseosutaja\"\n    - button \"Anna üle\"\n    - link \"Tagasi loendisse\":\n      - /url: /org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott\n    - button \"Ava vestlusruum\""
+    },
+    {
+      "label": "client_detail_after_acceptance",
+      "url": "/minu-jagamised",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - heading \"Minu jagamised\" [level=1]\n    - paragraph: \"Osa 3/12: Saadetud eelpöördumised\"\n    - region \"Saadetud eelpöördumised\":\n      - heading \"Saadetud eelpöördumised\" [level=3]\n      - paragraph: SOL TEST UI saatmine\n      - paragraph: Saadetud 20. okt 2026, 15:12\n      - term: Kes näeb\n      - definition: \"Jagatud: SOL TEST — sünteetiline vastuvõtutiim\"\n      - term: Päritolu\n      - definition: Sina saatsid\n      - term: Kehtivus\n      - definition: Avatud 20. okt 2026, 15:13; ajalugu säilib\n      - paragraph: \"Adressaat on seda vaadanud ühel päeval: 20. okt 2026.\"\n      - paragraph: Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada.\n      - button \"Saada parandus\"\n      - button \"Tagasi loendisse\""
+    }
+  ],
+  "network": [
+    {
+      "actor": "coordinator",
+      "method": "POST",
+      "path": "/api/org/cmvgiy1ly0000b0tsx3ok71wd/inbox/cmvgn87yy000708ts4rba5s5u/assign",
+      "status": 201,
+      "measuredIn": "raw run"
+    },
+    {
+      "actor": "specialist",
+      "method": "PATCH",
+      "path": "/api/org/cmvgiy1ly0000b0tsx3ok71wd/assignments/cmvgnaxdn000h08tsd1okgxea",
+      "status": 200
+    }
+  ],
+  "rawRun": "local-ui-intake-flow-raw.json",
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "observations": [
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "FLOW-01",
+      "note": "Two client views describe the same state differently: Minu jagamised says opened/viewed, Minu eelpöördumised says accepted."
+    }
+  ],
+  "rawRuns": [
+    "local-ui-intake-flow-raw.json",
+    "local-ui-intake-flow-run2-raw.json"
+  ]
+}

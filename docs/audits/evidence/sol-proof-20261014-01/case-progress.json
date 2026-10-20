@@ -1,11 +1,11 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T11:31:23.860Z",
+  "updated_at": "2026-10-20T12:18:47.845Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 268,
-  "passed_variants": 263,
+  "observed_variants": 276,
+  "passed_variants": 271,
   "failed_variants": 3,
   "blocked_variants": 2,
   "server_fixture_variants": 53,
@@ -44,8 +44,8 @@
       "case_id": "FLOW-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 8,
-      "passed_variants": 8,
+      "observed_variants": 11,
+      "passed_variants": 11,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -104,8 +104,8 @@
       "case_id": "FLOW-07",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 5,
-      "passed_variants": 5,
+      "observed_variants": 6,
+      "passed_variants": 6,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -124,8 +124,8 @@
       "case_id": "OPS-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 5,
-      "passed_variants": 5,
+      "observed_variants": 9,
+      "passed_variants": 9,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4758,6 +4758,149 @@
         "inSocialWorkerAndProviderViews": "no denial"
       },
       "evidence_file": "server-browser-role-walkthrough.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_ui_sends_freeform_inquiry_to_org_intake",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real pre-inquiry wizard: contact path, organisation intake team, Vali see kontakt, own words, situation, whom, urgency, title, Saada platvormis",
+      "actual": {
+        "network": [
+          {
+            "method": "POST",
+            "path": "/api/pre-inquiries",
+            "status": 201,
+            "id": "cmvgn87ym000608tstedx5hsu",
+            "inquiryStatus": "SENT",
+            "channel": "INTERNAL",
+            "error": null
+          }
+        ],
+        "stateShown": "saadetud, ootab vastuvõtmist (1. päev)",
+        "withdrawHintShown": true
+      },
+      "evidence_file": "local-ui-preinquiry-send.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "ui_sent_inquiry_arrives_in_org_inbox",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "inboxItemId": "cmvgn87yy000708ts4rba5s5u",
+        "status": "RECEIVED"
+      },
+      "measuredIn": "raw run before the assignment",
+      "evidence_file": "local-ui-intake-flow.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_sees_confirmed_package",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "situationVisible": true,
+        "openingWarningShown": true
+      },
+      "measuredIn": "raw run before the assignment",
+      "evidence_file": "local-ui-intake-flow.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_assignment_waits_for_worker",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "itemStatus": "ASSIGNED",
+        "assignments": [
+          {
+            "status": "PENDING",
+            "toSpecialist": true,
+            "accepted": false
+          }
+        ]
+      },
+      "evidence_file": "local-ui-intake-flow.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "FLOW-07",
+      "variant_id": "opened_inquiry_cannot_be_withdrawn_in_client_ui",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "openedAt": true,
+        "withdrawButtons": 1,
+        "listShowsOpened": true,
+        "detailState": "Avatud paneel"
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The harness counted buttons matching /tagasi/i and matched \"Tagasi loendisse\" (back to list). The saved client detail screen shows only \"Saada parandus\" and \"Tagasi loendisse\": no withdraw control after the organisation opened the package."
+      },
+      "evidence_file": "local-ui-intake-flow.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "assigned_specialist_accepts_in_ui",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "questionShown": true,
+        "itemStatus": "ACCEPTED",
+        "assignment": [
+          {
+            "status": "ACCEPTED",
+            "accepted": true
+          }
+        ],
+        "afterAcceptControls": [
+          "button \"Anna üle\"",
+          "button \"Ava vestlusruum\""
+        ]
+      },
+      "evidence_file": "local-ui-intake-flow.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_sees_acceptance_in_own_view",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "stateText": "Saadetud eelpöördumised",
+        "preInquiryStatusView": "vastu võetud 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim"
+      },
+      "reclassified": {
+        "from": "FAIL",
+        "reason": "The harness read the Minu jagamised overview, which shows only \"Avatud 20. okt 2026, 15:13\" and \"Adressaat on seda vaadanud\". The pre-inquiry status view (Eelpöördumine > Minu eelpöördumised) shows \"vastu võetud 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim\"; read separately after acceptance (ui-explore4)."
+      },
+      "evidence_file": "local-ui-intake-flow.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_state_before_opening",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "Eelpöördumine > Minu eelpöördumised",
+      "actual": {
+        "inquiryId": "cmvgnfwiv001008ts4oq2iux1",
+        "shown": "SOL TEST UI avamise tähendus saadetud, ootab vastuvõtmist (1. päev) SOL TEST — sünteetiline vastuvõtutiim Ava"
+      },
+      "evidence_file": "local-ui-open-semantics.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]

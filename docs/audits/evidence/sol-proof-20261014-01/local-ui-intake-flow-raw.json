@@ -1,0 +1,54 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local copy (code 03960df1 = deployed application code) at localhost:3002, database sol_proof_20261020_local; headless browser, each actor in its own context",
+  "inquiryId": "cmvgn87ym000608tstedx5hsu",
+  "checks": [
+    {
+      "case_id": "OPS-01",
+      "variant_id": "ui_sent_inquiry_arrives_in_org_inbox",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "inboxItemId": "cmvgn87yy000708ts4rba5s5u",
+        "status": "RECEIVED"
+      }
+    },
+    {
+      "case_id": "OPS-01",
+      "variant_id": "coordinator_sees_confirmed_package",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real UI in the isolated local copy",
+      "actual": {
+        "situationVisible": true,
+        "openingWarningShown": true
+      }
+    }
+  ],
+  "screens": [
+    {
+      "label": "coordinator_package",
+      "url": "/org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott/cmvgn87yy000708ts4rba5s5u",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - 'heading \"SOL TEST — sünteetiline vastuvõtutiim: Vastuvõtt\" [level=1]'\n    - heading \"Saatja kinnitatud pakett\" [level=3]\n    - radiogroup \"Pöördumise vaated\":\n      - text: Pöördumise vaated\n      - radio \"Pöördumine\" [checked]\n      - radio \"Töö\"\n    - paragraph: Seis Saabunud\n    - paragraph: Vastutaja Määramata\n    - paragraph: Saabus 20.10.2026 15.12\n    - paragraph: Teema SOL TEST UI saatmine\n    - paragraph: Olukord\n    - paragraph: SOL TEST UI 20.10. Vajan abi testtelefoni kasutamisel ja soovin olukorra enne kohtumist kirja panna. Sünteetiline katse.\n    - paragraph: Pöördumise tekst\n    - paragraph: \"Lugupeetud SOL TEST — sünteetiline vastuvõtutiim Soovin pöörduda teemal: SOL TEST UI saatmine. Olukorra kirjeldus ja eelkaardistus: SOL TEST UI 20.10. Vajan abi testtelefoni kasutamisel ja soovin olukorra enne kohtumist kirja panna. Sünteetiline katse. Eelkaardistuse kokkuvõte Rada: Kirjeldan olukorda oma sõnadega Kelle kohta: Minu enda kohta Kiireloomulisus: Ei ole kiire, saan oodata Nõusolek või pöördumise alus: Pöördun enda kohta Palun aidata välja selgitada, millised toetused või teenused võiksid selles olukorras sobida ning millised oleksid järgmised sammud. Lugupidamisega\"\n    - paragraph: Sinu avamine on pöördujale nähtav ja pärast seda ei saa ta pöördumist enam tagasi võtta.\n    - link \"Tagasi loendisse\":\n      - /url: /org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott"
+    },
+    {
+      "label": "coordinator_after_assign",
+      "url": "/org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott/cmvgn87yy000708ts4rba5s5u",
+      "aria": "- main:\n  - region \"Avatud paneel\":\n    - 'heading \"SOL TEST — sünteetiline vastuvõtutiim: Vastuvõtt\" [level=1]'\n    - heading \"Saatja kinnitatud pakett\" [level=3]\n    - radiogroup \"Pöördumise vaated\":\n      - text: Pöördumise vaated\n      - radio \"Pöördumine\"\n      - radio \"Töö\" [checked]\n    - radiogroup \"Kellele töö üle anda?\":\n      - text: Kellele töö üle anda?\n      - radio \"SOL TEST Teenuseosutaja\"\n    - button \"Anna üle\"\n    - link \"Tagasi loendisse\":\n      - /url: /org/cmvgiy1ly0000b0tsx3ok71wd/vastuvott\n    - button \"Võta töö tagasi\"\n    - button \"Sulge töö\""
+    }
+  ],
+  "network": [
+    {
+      "actor": "coordinator",
+      "method": "POST",
+      "path": "/api/org/cmvgiy1ly0000b0tsx3ok71wd/inbox/cmvgn87yy000708ts4rba5s5u/assign",
+      "status": 201
+    }
+  ],
+  "newPaidCalls": false,
+  "externalMessagesSent": false,
+  "error": " | Invalid `prisma.organizationInboxItem.findUnique()` invocation: | "
+}
