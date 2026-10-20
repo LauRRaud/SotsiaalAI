@@ -1,12 +1,12 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T10:38:19.445Z",
+  "updated_at": "2026-10-20T10:47:25.460Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 235,
-  "passed_variants": 231,
-  "failed_variants": 2,
+  "observed_variants": 239,
+  "passed_variants": 234,
+  "failed_variants": 3,
   "blocked_variants": 2,
   "server_fixture_variants": 32,
   "case_progress": [
@@ -142,11 +142,11 @@
     },
     {
       "case_id": "OPS-03",
-      "status": "NOT_RUN",
+      "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 0,
+      "observed_variants": 1,
       "passed_variants": 0,
-      "failed_variants": 0,
+      "failed_variants": 1,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -174,8 +174,8 @@
       "case_id": "OPS-06",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 0,
-      "passed_variants": 0,
+      "observed_variants": 3,
+      "passed_variants": 3,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4076,8 +4076,97 @@
         "recipientsCount": 0,
         "syntheticOrganizationStatusAtObservation": "SUSPENDED (restored 14.10; not re-measured on 20.10)"
       },
-      "limit": "The earlier 14.10 browser check showed the same synthetic team as selectable while it was temporarily ACTIVE. The empty list with the SUSPENDED status is consistent with that, but the status was not re-read on 20.10 because server writes and reads through a new shell were blocked in this session. Nothing was saved or sent.",
+      "limit": "The earlier 14.10 browser check showed the same synthetic team as selectable while it was temporarily ACTIVE. The empty list with the SUSPENDED status is consistent with that, but the status was not re-read on 20.10 because the server write needed for it was not permitted in this session. Nothing was saved or sent.",
       "evidence_file": "server-browser-admin-view.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "missing_or_wrong_key_rejected_by_route",
+      "status": "PASS",
+      "evidence_mode": "LOCAL_ISOLATED",
+      "entrypoint": "POST handler of app/api/jobs/notifications/route.js called directly (proxy bypassed)",
+      "actual": {
+        "noKey": 401,
+        "wrongKey": 401,
+        "message": "unauthorized"
+      },
+      "evidence_file": "server-jobs-and-deadline.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "correct_key_route_runs_all_stages_dry_run",
+      "status": "PASS",
+      "evidence_mode": "LOCAL_ISOLATED",
+      "entrypoint": "POST handler called directly with the local job key and dryRun=1",
+      "actual": {
+        "status": 200,
+        "ok": true,
+        "dryRun": true,
+        "stagesOk": [
+          "mentoring",
+          "supervision",
+          "covisionExpiry",
+          "covisionInvites",
+          "practiceAssignments",
+          "practiceRagRecovery",
+          "reconcile",
+          "projector",
+          "delivery",
+          "fieldSafety",
+          "urgentExpiry",
+          "networkShares"
+        ]
+      },
+      "limit": "Dry run on an isolated database; no delivery was attempted and no real recipient existed.",
+      "evidence_file": "server-jobs-and-deadline.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "proxy_denial_distinguished_from_key_check",
+      "status": "PASS",
+      "evidence_mode": "LOCAL_ISOLATED",
+      "entrypoint": "local dev server through proxy.js, POST /api/jobs/notifications?dryRun=1",
+      "actual": {
+        "noKey": {
+          "status": 503,
+          "error": "platform_not_open"
+        },
+        "wrongKey": {
+          "status": 503,
+          "error": "platform_not_open"
+        },
+        "correctKey": {
+          "status": 503,
+          "error": "platform_not_open"
+        }
+      },
+      "reading": "The closed prelaunch gate answers before the route's key check. /api/jobs/notifications and /api/jobs/practice-reviews are not in SERVICE_ENDPOINTS of lib/publicPlatform.js; /api/internal/retention/cleanup is.",
+      "evidence_file": "server-jobs-and-deadline.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "OPS-03",
+      "variant_id": "due_date_settable_via_product_path",
+      "status": "FAIL",
+      "gap_kind": "MISSING_FEATURE",
+      "evidence_mode": "SOURCE_AT_DEPLOYED_SHA",
+      "entrypoint": "git grep over app, lib, components and scripts at the deployed commit",
+      "actual": {
+        "column": "OrganizationInboxItem.dueAt (migration 20260801120000_org_funding_inbox_v1)",
+        "readers": [
+          "lib/org/inbox.js overdue filter dueAt < now",
+          "lib/org/inbox.js list projection",
+          "lib/org/export.js"
+        ],
+        "writers": 0,
+        "runtime14_10": "dueAt stayed null through the whole intake, assignment and handover path (server-intake-flow.json)"
+      },
+      "reading": "No UI or API path can set a work deadline, so the overdue filter can never match. Following the catalog rule, recorded as FAIL/MISSING_FEATURE; no deadline was written to the database to imitate the feature.",
+      "limit": "The legal deadline is a GOV-01 question; this result does not decide which deadline rule should apply.",
+      "evidence_file": "server-jobs-and-deadline.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]

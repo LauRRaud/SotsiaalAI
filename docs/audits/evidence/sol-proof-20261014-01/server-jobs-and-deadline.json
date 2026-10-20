@@ -1,0 +1,77 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "Server: read-only systemd/journal status observation at 20.10 13:42 EEST (no job was triggered, no data written). Local: isolated database sol_proof_20261020_local with a fresh local job key; app/lib/components/scripts/proxy/prisma identical to the deployed commit f15b4866.",
+  "checks": [
+    {
+      "case_id": "OPS-06",
+      "variant_id": "missing_or_wrong_key_rejected_by_route",
+      "status": "PASS",
+      "evidence_mode": "LOCAL_ISOLATED",
+      "entrypoint": "POST handler of app/api/jobs/notifications/route.js called directly (proxy bypassed)",
+      "actual": { "noKey": 401, "wrongKey": 401, "message": "unauthorized" }
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "correct_key_route_runs_all_stages_dry_run",
+      "status": "PASS",
+      "evidence_mode": "LOCAL_ISOLATED",
+      "entrypoint": "POST handler called directly with the local job key and dryRun=1",
+      "actual": {
+        "status": 200,
+        "ok": true,
+        "dryRun": true,
+        "stagesOk": ["mentoring", "supervision", "covisionExpiry", "covisionInvites", "practiceAssignments", "practiceRagRecovery", "reconcile", "projector", "delivery", "fieldSafety", "urgentExpiry", "networkShares"]
+      },
+      "limit": "Dry run on an isolated database; no delivery was attempted and no real recipient existed."
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "proxy_denial_distinguished_from_key_check",
+      "status": "PASS",
+      "evidence_mode": "LOCAL_ISOLATED",
+      "entrypoint": "local dev server through proxy.js, POST /api/jobs/notifications?dryRun=1",
+      "actual": {
+        "noKey": { "status": 503, "error": "platform_not_open" },
+        "wrongKey": { "status": 503, "error": "platform_not_open" },
+        "correctKey": { "status": 503, "error": "platform_not_open" }
+      },
+      "reading": "The closed prelaunch gate answers before the route's key check. /api/jobs/notifications and /api/jobs/practice-reviews are not in SERVICE_ENDPOINTS of lib/publicPlatform.js; /api/internal/retention/cleanup is."
+    },
+    {
+      "case_id": "OPS-03",
+      "variant_id": "due_date_settable_via_product_path",
+      "status": "FAIL",
+      "gap_kind": "MISSING_FEATURE",
+      "evidence_mode": "SOURCE_AT_DEPLOYED_SHA",
+      "entrypoint": "git grep over app, lib, components and scripts at the deployed commit",
+      "actual": {
+        "column": "OrganizationInboxItem.dueAt (migration 20260801120000_org_funding_inbox_v1)",
+        "readers": ["lib/org/inbox.js overdue filter dueAt < now", "lib/org/inbox.js list projection", "lib/org/export.js"],
+        "writers": 0,
+        "runtime14_10": "dueAt stayed null through the whole intake, assignment and handover path (server-intake-flow.json)"
+      },
+      "reading": "No UI or API path can set a work deadline, so the overdue filter can never match. Following the catalog rule, recorded as FAIL/MISSING_FEATURE; no deadline was written to the database to imitate the feature.",
+      "limit": "The legal deadline is a GOV-01 question; this result does not decide which deadline rule should apply."
+    }
+  ],
+  "observations": [
+    {
+      "status": "OWNER_DECISION_NEEDED",
+      "case_id": "OPS-06",
+      "note": "On the server, sotsiaalai-notifications.service runs every 5 minutes and is failed: all 24 runs in the 2 hours before 20.10 13:42 EEST ended with 'Notification job failed (503)'. sotsiaalai-practice-reviews.service failed on 19.10 and 20.10 with HTTP 503 from 127.0.0.1:3000/api/jobs/practice-reviews. The notification job also carries the field-safety check-in and urgent-help expiry stages. Commit b743f560 says work APIs are closed until opening, but no written decision says these background jobs should pause; the owner needs to decide whether they must run in closed mode."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "OPS-06",
+      "note": "scripts/payment-emails.mjs treats every 503 as 'worker disabled by config'. Behind the closed gate the proxy also answers 503, so the script cannot tell the two apart and the unit stays green. The route is marked inactive by design; whether PAYMENT_EMAIL_WORKER_ENABLED is set on the server was not measured (reading the server environment file was not permitted in this session)."
+    },
+    {
+      "status": "NOT_PROVEN",
+      "case_id": "OPS-06",
+      "note": "An anonymous no-key request to the real server job routes was not permitted in this session; the server-side 503 cause rests on the journal and on the 14.10 safe GET observation (platform_not_open on the same route)."
+    }
+  ],
+  "cleanup": { "localServerStopped": true, "temporaryEnvLocalRemoved": true, "localJobKeyDeleted": true, "serverDataWritten": false, "jobsTriggeredOnServer": false }
+}
