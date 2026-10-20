@@ -10078,7 +10078,10 @@
       "saving": "Saving...",
       "save": "Save work-boundaries agreement",
       "saved": "The work-boundaries agreement was saved privately.",
-      "save_failed": "Saving failed. Try again."
+      "save_failed": "Saving failed. Try again.",
+      "overtime_heading": "Working time and overtime",
+      "overtime_short": "Overtime",
+      "overtime_lead": "Think about the last month. Choose one on each row."
     },
     "interruptions": {
       "title": "Interruptions",

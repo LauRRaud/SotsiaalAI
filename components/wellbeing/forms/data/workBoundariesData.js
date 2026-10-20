@@ -23,6 +23,36 @@ export const initialFields = {
 };
 
 export const selectFields = [
+  /* 1.1: ületunnid ja paindlik tööaeg (lühikesed skaalad: samm on tabel). */
+  {
+    key: "overtimeLastMonth",
+    label: "Ületunnid viimasel kuul",
+    options: [
+      ["none", "Ei olnud"],
+      ["occasional", "Aeg-ajalt"],
+      ["regular", "Regulaarselt"]
+    ]
+  },
+  {
+    key: "overtimeCompensation",
+    label: "Kui oli, kas need hüvitatakse?",
+    options: [
+      ["yes", "Jah"],
+      ["partly", "Osaliselt"],
+      ["no", "Ei"],
+      ["unknown", "Ei tea"]
+    ]
+  },
+  {
+    key: "flexibleHours",
+    label: "Paindlik tööaeg on võimalik",
+    options: [
+      ["yes", "Jah"],
+      ["partly", "Osaliselt"],
+      ["no", "Ei"],
+      ["unknown", "Ei tea"]
+    ]
+  },
   {
     key: "agreementType",
     label: "Kokkuleppe fookus",

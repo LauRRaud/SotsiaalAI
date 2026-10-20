@@ -33,6 +33,13 @@ export const workBoundariesForm = {
       ])
     },
     {
+      key: "overtime",
+      title: ["wellbeing.work_boundaries.overtime_heading", "Tööaeg ja ületunnid"],
+      short: ["wellbeing.work_boundaries.overtime_short", "Ületunnid"],
+      lead: ["wellbeing.work_boundaries.overtime_lead", "Mõtle viimasele kuule. Vali igal real üks."],
+      fields: enumFields(selectFields, ["overtimeLastMonth", "overtimeCompensation", "flexibleHours"])
+    },
+    {
       key: "agreement",
       title: ["wellbeing.work_boundaries.agreement", "Kokkuleppe raam"],
       short: "Raam",

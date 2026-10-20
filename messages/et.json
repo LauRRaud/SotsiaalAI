@@ -10078,7 +10078,10 @@
       "saving": "Salvestan...",
       "save": "Salvesta tööpiiride kokkulepe",
       "saved": "Tööpiiride kokkulepe salvestati privaatselt.",
-      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti."
+      "save_failed": "Salvestamine ebaõnnestus. Proovi uuesti.",
+      "overtime_heading": "Tööaeg ja ületunnid",
+      "overtime_short": "Ületunnid",
+      "overtime_lead": "Mõtle viimasele kuule. Vali igal real üks."
     },
     "interruptions": {
       "title": "Katkestused",

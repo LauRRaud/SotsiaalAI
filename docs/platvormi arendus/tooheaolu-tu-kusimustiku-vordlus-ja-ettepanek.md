@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–4 teostatud 20.10 (ptk 8.6–8.8; sammu 4 abiteede sisu ootab asjatundja ülevaatust), sammud 5–8 tegemata
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–5 teostatud 20.10 (ptk 8.6–8.9; sammu 4 abiteede sisu ootab asjatundja ülevaatust), sammud 6–8 tegemata
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -295,7 +295,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 2 | Kiirkontroll: juhi ja kolleegi tugi lahku, tähenduslikkus, kaks märkeruutu — **tehtud 20.10** (ptk 8.6) | odav, lahendab TO-9; koondi järjepidevus ei kannata, sest päriskirjeid ei ole | väike |
 | 3 | Taastumise ümberehitus — **tehtud 20.10** (ptk 8.7) | suurim metoodiline puudus (I8), katab küsimuse 27 | keskmine |
 | 4 | Töövägivald: allikas, kolleegi ja juhi abitee, märkmik — **tehtud 20.10, sisu ootab ülevaatust** (ptk 8.8) | 61% töökius; sisu vajab asjatundja ülevaatust | keskmine |
-| 5 | Lisad Tööprotsessidesse ja Tööpiiridesse | odavad, olemasolevate vormide sees | väike |
+| 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ | sõltub meeldetuletuse otsusest | keskmine |
 | 8 | Asutuse meetmete kirjeldus, meetmete koond, arenguvajadus | vajab partner-KOV-i ja S6 otsust | suur |
@@ -405,3 +405,25 @@ kasutajaga brauseris (1536 × 640): teade mahub „Kellelt“ sammu (279–440 p
 juhi puhul kaks, tulemuse lause ütleb „See kirje ei osale anonüümses koondis“, salvestus andis `schemaVersion` 1.1 ja
 `aggregationEligible: false`, märkmik on „Minu kirjetes“ loetav. Testkasutaja kustutati. **Kontrollimata:** telefoni
 vaade selles sammus, EN/RU kuva ja tootmine.
+
+### 8.9. Teostus 20.10: samm 5, Tööprotsesside ja Tööpiiride lisad
+
+**Tööprotsessid** (`work-processes-v2`, skeem jääb 1.0, sest lisandusid ainult loendi väärtused ja vana kirje jääb
+kehtivaks). Ajakulu allikate hulgas on „Töövahendid ei toimi (arvuti, telefon, auto)“ ja „Ruum ei sobi (vestluse
+privaatsus, müra)“ — küsitluse küsimuse 24 kaks puuduvat punkti. Neist tekivad koondi tegurid
+`processes.tools_not_working` ja `processes.workspace_unsuitable`, juhimemo lisab rea töötingimuste kohta ning
+piloodi aruanne soovitab „Vaadata üle töövahendid ja ruumid“. Vähese väärtusega tegevused liikusid sammu
+„Lihtsustamine“, et „Ajaröövlid“ mahuks ära.
+
+**Tööpiirid 1.1** (`work-boundaries-v2`). Uus samm „Tööaeg ja ületunnid“: ületunnid viimasel kuul (ei olnud /
+aeg-ajalt / regulaarselt), kas need hüvitatakse (loeb ainult siis, kui ületunde oli) ja kas paindlik tööaeg on
+võimalik. Koondi tegurid `boundaries.overtime_regular`, `boundaries.overtime_uncompensated`,
+`boundaries.flexibility_missing`; ületunnid tõstavad signaali. Juhimemo lisab ületundide ja paindlikkuse read ning
+palve hüvitamise kokkuleppeks. Piloodi aruanne soovitab TLÜ 2024 soovituse 1 järgi „Teha ületunnid nähtavaks ja
+hüvitada“ ning „Kaaluda paindlikku tööaega“.
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`; funktsioonide kutsega vorm = skeem = arvutus, vana
+ajakulu loendi kehtivus, sammude kaal (kõrgeim 7,4 / 7,6), tegurid, juhimemo, hüvitamise tingimus, koond ja kolm uut
+aruande soovitust. Kohalikus baasis sünteetilise kasutajaga brauseris (1536 × 640): ületundide samm on tabel ja
+mahub, salvestus andis `schemaVersion` 1.1 ja oodatud tegurid; Tööprotsesside „Ajaröövlid“ ja „Lihtsustamine“
+mahuvad. Testkasutaja kustutati. **Kontrollimata:** telefoni vaade, EN/RU kuva ja tootmine.

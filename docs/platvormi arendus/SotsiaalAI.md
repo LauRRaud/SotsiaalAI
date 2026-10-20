@@ -109,7 +109,10 @@ töötajale jääva märgi, mis ei muuda koondisse minevat signaali. Samm 4: Tö
 küsib, kellelt see tuli; kolleegi või juhi puhul on abiteede teade, pöördumise mustand
 (juhi puhul juhimemo asemel), privaatne märkmik ja kogu kirje jääb koondist välja.
 **Abiteede sõnastus ootab tööõiguse või ESTA asjatundja ülevaatust enne avamist.**
-Järgmine: väikesed lisad Tööprotsessidesse ja Tööpiiridesse.
+Samm 5: Tööprotsessides on ajakulu allikatena töövahendid ja ruum, Tööpiirides
+ületunnid, nende hüvitamine ja paindlik tööaeg; piloodi aruanne annab nende kohta
+TLÜ 2024 soovitustele vastavad organisatsiooni soovitused. Järgmine: „Minu
+tugivõimalused“ (privaatne meetmete loend).
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 304
@@ -4955,7 +4958,7 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 | Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
 | Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
 | Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
-| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1, Töövägivalla allikas ja märkmik (20.10) | P3–P5; nädalarütm ja naasmispunkt; abiteede sõnastuse asjatundja ülevaatus; Tööprotsesside ja Tööpiiride lisad ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
+| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1, Töövägivalla allikas ja märkmik, ületunnid, töövahendid ja ruum (20.10) | P3–P5; nädalarütm ja naasmispunkt; abiteede sõnastuse asjatundja ülevaatus; „Minu tugivõimalused“ ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
 | Ühistegevus | osaleja- ja jagamiskiht, kokkuvõtte kinnitusring | võrgustiku vertikaal, kohtumise ühisvaade (S4.1) |
 | Materjalid | esitamise ja ülevaatuse rada | esimesed päris esitused puuduvad — kasutajad, mitte kood |
 

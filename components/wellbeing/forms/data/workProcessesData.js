@@ -98,7 +98,9 @@ export const multiFields = [
       ["manual_status_updates", "Käsitsi staatuse uuendamine"],
       ["waiting_for_answers", "Vastuste ootamine"],
       ["copying_between_systems", "Süsteemide vahel kopeerimine"],
-      ["unclear_next_step", "Ebaselge järgmine samm"]
+      ["unclear_next_step", "Ebaselge järgmine samm"],
+      ["tools_not_working", "Töövahendid ei toimi (arvuti, telefon, auto)"],
+      ["workspace_unsuitable", "Ruum ei sobi (vestluse privaatsus, müra)"]
     ]
   },
   {

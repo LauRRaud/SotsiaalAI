@@ -36,10 +36,12 @@ export const workProcessesForm = {
       fields: [multi("categories")]
     },
     {
+      /* Ajakulu allikaid on kaheksa (sh töövahendid ja ruum); vähese väärtusega
+         tegevused on seepärast lihtsustamise sammus, et vaade mahuks. */
       key: "time",
       title: "Ajaröövlid",
       lead: flowLead("mark_all"),
-      fields: [multi("timeCostSources"), multi("lowValueActivities")]
+      fields: [multi("timeCostSources")]
     },
     {
       key: "blockers",
@@ -51,7 +53,7 @@ export const workProcessesForm = {
       key: "simplify",
       title: "Lihtsustamine",
       lead: flowLead("mark_all"),
-      fields: [multi("simplificationNeeds")]
+      fields: [multi("lowValueActivities"), multi("simplificationNeeds")]
     }
   ],
   signals: signals(signalCopy, { manageable: "ok", needs_simplification: "warn", needs_organizational_change: "risk" }),
