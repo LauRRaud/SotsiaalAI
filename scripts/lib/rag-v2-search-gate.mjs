@@ -15,8 +15,9 @@
 //   largest_document  how many places the title with the most candidates takes
 //   deciding          for each deciding phrase of the catalogue, the place of the first candidate that holds it, or null
 //   fallback          the evidence of a turn whose selection model failed (the hook returns null, so the seeds follow
-//                     the fused order): the hashes of its excerpts (the body alone, so not a pool hash), and the tokens
-//                     of the whole context
+//                     the fused order): the hashes of its excerpts (the body alone, so not a pool hash), the tokens
+//                     of the whole context, and for each deciding phrase whether an excerpt of that context holds it
+//                     (deciding: true or false; a run made before 20.10.2026 has no such field)
 //   records           the municipal catalogue: region, view, counts, entries by detail, contacts as a count
 //   ms                the search, and each lane's own time (lanes run side by side)
 //
@@ -24,6 +25,10 @@
 //   error           the present run could not search it                                   exit 20
 //   deciding_lost   a deciding passage that was among the candidates no longer is         exit 20
 //   deciding_worse  a deciding passage stands later among them                            exit 10
+//                   (each deciding place says in_fallback: whether the context of a failed selection still holds it;
+//                   the summary counts the worse ones it no longer holds as left_fallback: a later place that the
+//                   model still reads is a shift to read, one it no longer reads is the one to act on; owner
+//                   20.10.2026 on two such shifts after corpus v92: "uuri miks ja tehke kõik korda")
 //   changed         candidates entered or left or moved, the largest document's places,
 //                   the fallback evidence or the catalogue differ                         exit 10
 //   not_compared    the question, its vectors or its presence differ between the runs     exit 10
@@ -112,16 +117,18 @@ export const searchIdentity = (config, date) => ({ generation: config.generation
 /** What the knowledge search left: the candidates the hook received, and the evidence of the knowledge and period lanes. */
 export function observeKnowledge(question, pool, packet) {
   const texts = pool.map(passage => spaced(passage.text)), titles = pool.map(passage => short(passage.title)), perTitle = new Map();
+  const phrases = (question.evidence_text ?? []).map(spaced);
   for (const title of titles) perTitle.set(title, (perTitle.get(title) || 0) + 1);
   // Which candidates are the reserve's only the lane's own audit says (retrieval.js: rerank.candidates and reserved). The
   // packet the chat's search returns is the merged one and carries no such audit today; the place is then null.
   const reserved = new Set(packet.rerank?.reserved || []), reserveAt = (packet.rerank?.candidates || []).findIndex(unit => reserved.has(unit));
   // The lanes say whose each excerpt is. A municipal record's excerpt may be a contact's own text: never hashed.
   const refs = new Set((packet.retrieval_context?.lanes || []).filter(lane => lane.kind !== 'local_records').flatMap(lane => lane.refs));
+  const kept = (packet.evidence || []).filter((_, index) => refs.has(`S${index + 1}`)), keptTexts = kept.map(entry => spaced(String(entry.source_text ?? '')));
   return { pool: pool.map((passage, index) => [short(passage.text), titles[index]]), reserve_from: reserveAt < 0 ? null : reserveAt + 1,
     largest_document: Math.max(0, ...perTitle.values()),
-    deciding: (question.evidence_text ?? []).map(phrase => { const at = texts.findIndex(text => text.includes(spaced(phrase))); return at < 0 ? null : at + 1; }),
-    fallback: { evidence: (packet.evidence || []).filter((_, index) => refs.has(`S${index + 1}`)).map(entry => short(entry.source_text)),
+    deciding: phrases.map(phrase => { const at = texts.findIndex(text => text.includes(phrase)); return at < 0 ? null : at + 1; }),
+    fallback: { evidence: kept.map(entry => short(entry.source_text)), deciding: phrases.map(phrase => keptTexts.some(text => text.includes(phrase))),
       // The count a budget reads: annotations (an act's dates, a passage's provision label) are outside it, and a change in them
       // is not a change in what the search found.
       context_tokens: packet.measurements?.budget_context_tokens ?? packet.measurements?.model_context_tokens ?? null } };
@@ -185,7 +192,8 @@ export function compareRow(baseline, present) {
   if (present.state !== 'ok' || baseline?.state !== 'ok') return { id, verdict: baseline?.state === present.state ? 'skipped' : 'not_compared',
     reason: present.state !== 'ok' ? present.state : baseline ? `baseline_${baseline.state}` : 'no_baseline' };
   const before = baseline.pool.map(([text]) => text), after = present.pool.map(([text]) => text);
-  const deciding = present.deciding.map((place, index) => ({ before: baseline.deciding[index] ?? null, after: place }));
+  const deciding = present.deciding.map((place, index) => ({ before: baseline.deciding[index] ?? null, after: place,
+    ...(Array.isArray(present.fallback.deciding) ? { in_fallback: present.fallback.deciding[index] ?? null } : {}) }));
   const lost = deciding.some(item => item.before && !item.after), worse = deciding.some(item => item.before && item.after > item.before);
   const better = deciding.some(item => item.after && (!item.before || item.after < item.before));
   const entered = without(after, before), left = without(before, after), moved = after.filter((text, index) => text !== before[index]).length;
@@ -229,5 +237,9 @@ export function compareRuns(baseline, present, { allow = [] } = {}) {
   if (rows.length === counts.skipped + counts.not_compared) return { ok: false, exit: 2, refused: [{ key: 'nothing_compared', baseline: baseline.rows.length, present: present.rows.length }] };
   return { ok: true, exit: counts.error || counts.deciding_lost ? 20 : counts.deciding_worse || counts.changed || counts.not_compared ? 10 : 0,
     allowed: DECIDES.filter(key => stable(baseline.search?.[key]) !== stable(present.search?.[key])),
-    summary: { questions: rows.length, ...counts, median_search_ms: { baseline: middle(baseline.rows, 'search'), present: middle(present.rows, 'search') } }, rows };
+    summary: { questions: rows.length, ...counts,
+      // The worse ones whose deciding passage the context of a failed selection no longer holds (null: the present run does not say).
+      left_fallback: present.rows.every(row => row.state !== 'ok' || Array.isArray(row.fallback?.deciding))
+        ? rows.filter(row => row.verdict === 'deciding_worse' && row.deciding.some(item => item.before && item.after > item.before && item.in_fallback === false)).length : null,
+      median_search_ms: { baseline: middle(baseline.rows, 'search'), present: middle(present.rows, 'search') } }, rows };
 }
