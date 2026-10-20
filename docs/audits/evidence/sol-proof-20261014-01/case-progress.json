@@ -1,14 +1,14 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T10:55:36.773Z",
+  "updated_at": "2026-10-20T11:00:47.467Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 260,
-  "passed_variants": 255,
+  "observed_variants": 264,
+  "passed_variants": 259,
   "failed_variants": 3,
   "blocked_variants": 2,
-  "server_fixture_variants": 52,
+  "server_fixture_variants": 53,
   "case_progress": [
     {
       "case_id": "ENV-01",
@@ -234,8 +234,8 @@
       "case_id": "DATA-04",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 2,
-      "passed_variants": 2,
+      "observed_variants": 6,
+      "passed_variants": 6,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -4519,6 +4519,185 @@
         "lastMessageRole": "developer"
       },
       "evidence_file": "local-rag-source-injection.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "account_deletion_leaves_only_deletion_bookkeeping",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "deleteUserWithPrivacyCleanup (the function DELETE /api/profile calls); every User relation, ...userId field and e-mail field of schema.prisma counted before and after",
+      "actual": {
+        "fieldsScanned": 328,
+        "before": [
+          {
+            "table": "Profile",
+            "field": "userId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "Subscription",
+            "field": "userId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "Journey",
+            "field": "ownerUserId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "JourneyStep",
+            "field": "ownerUserId",
+            "kind": "soft",
+            "rows": 2
+          },
+          {
+            "table": "PreInquiry",
+            "field": "authorId",
+            "kind": "relation",
+            "rows": 2
+          },
+          {
+            "table": "DomainEvent",
+            "field": "actorUserId",
+            "kind": "soft",
+            "rows": 1
+          }
+        ],
+        "after": [
+          {
+            "table": "DataAuditLog",
+            "field": "actorUserId",
+            "kind": "soft",
+            "rows": 2
+          },
+          {
+            "table": "DataAuditLog",
+            "field": "targetUserId",
+            "kind": "soft",
+            "rows": 2
+          },
+          {
+            "table": "DataDeletionJob",
+            "field": "actorUserId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "DataDeletionJob",
+            "field": "targetUserId",
+            "kind": "soft",
+            "rows": 1
+          }
+        ],
+        "userExistsAfter": false,
+        "deletionJob": [
+          {
+            "status": "done",
+            "action": "USER_DELETE",
+            "attempts": 1,
+            "lastError": null
+          }
+        ],
+        "counts": {
+          "documents": 0,
+          "materialSubmissions": 0,
+          "artifacts": 0,
+          "retainedDocuments": 0,
+          "personalDomainEvents": 0,
+          "dataExportsRemoved": 0,
+          "caseWorkClientReferences": 0,
+          "retainedDocumentsArchived": 0,
+          "anonymizedSentPreInquiries": 1,
+          "deletedUnsentPreInquiries": 1,
+          "receiverNotesCleared": 0,
+          "anonymizedUrgentRequests": 0,
+          "deletedClientNetworkShares": 0,
+          "archivedPayments": 0,
+          "organizationMembershipsEnded": 0,
+          "organizationMembershipsErased": 0,
+          "hiddenServiceProfiles": 0,
+          "hiddenServiceMapEntries": 0,
+          "queuedServiceProfileRagDeletions": 0,
+          "serviceLogReferences": 0,
+          "serviceLog": {
+            "referralsAsClient": 0,
+            "entriesAsClient": 0,
+            "entriesAsOwner": 0,
+            "correctionsAsActor": 0,
+            "narrativesAsClient": 0,
+            "routesAsWorker": 0,
+            "visitsAsOwner": 0,
+            "visitsAsClient": 0,
+            "timeSamples": 0,
+            "reportSharesAsOwner": 0,
+            "reportSharesAsRecipient": 0
+          },
+          "supervisionProcessesTombstoned": 0,
+          "supervisionParticipationsTombstoned": 0,
+          "supervisionTopicsTombstoned": 0,
+          "covisionParticipationsTombstoned": 0
+        }
+      },
+      "evidence_file": "local-data04-deletion.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "private_content_not_left_in_side_stores",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "search of every text, varchar, json, jsonb and array column of the database for the private marker, the user id and the e-mail",
+      "actual": {
+        "privateMarkerHits": 0,
+        "emailHits": 0,
+        "userIdHits": [
+          "DataAuditLog.actorUserId 2",
+          "DataAuditLog.targetUserId 2",
+          "DataAuditLog.resourceId 2",
+          "DataDeletionJob.actorUserId 1",
+          "DataDeletionJob.targetUserId 1",
+          "DataDeletionJob.resourceId 1"
+        ]
+      },
+      "evidence_file": "local-data04-deletion.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "sent_inquiry_kept_for_receiver_with_visible_erasure",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "getVisiblePreInquiry for the recipient after the author deletion",
+      "actual": {
+        "draftDeleted": true,
+        "receiverSeesRecord": true,
+        "status": "SENT",
+        "authorId": null,
+        "authorErasedAtSet": true,
+        "topic": null,
+        "situationEmpty": true,
+        "sourceJourneyId": null
+      },
+      "evidence_file": "local-data04-deletion.json",
+      "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "deletion_order_and_error_paths_retained_tests",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "tests/deletion-completeness.test.mjs and tests/deletion-with-retired-index.test.mjs",
+      "actual": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "tap": "local-deletion-risk-tests.tap"
+      },
+      "evidence_file": "local-data04-deletion.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     }
   ]

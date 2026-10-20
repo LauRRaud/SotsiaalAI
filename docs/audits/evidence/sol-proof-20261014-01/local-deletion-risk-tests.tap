@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: F-ERR-03: fail kustutatakse enne rida ja rida ainult siis, kui fail on läinud
+ok 1 - F-ERR-03: fail kustutatakse enne rida ja rida ainult siis, kui fail on läinud
+  ---
+  duration_ms: 1.0418
+  type: 'test'
+  ...
+# Subtest: F-ERR-03: kui faili ei saanud kustutada (või kustutustööd luua), jääb rida alles
+ok 2 - F-ERR-03: kui faili ei saanud kustutada (või kustutustööd luua), jääb rida alles
+  ---
+  duration_ms: 0.5574
+  type: 'test'
+  ...
+# Subtest: F-ERR-03: rea kustutuse viga jõuab kutsujani (rida jääb nähtavaks ja kordus on võimalik)
+ok 3 - F-ERR-03: rea kustutuse viga jõuab kutsujani (rida jääb nähtavaks ja kordus on võimalik)
+  ---
+  duration_ms: 0.1408
+  type: 'test'
+  ...
+# Subtest: F-ERR-01: mustandite kustutuse viga pöörab ka kirje kustutuse tagasi ja kordus teeb mõlemad
+ok 4 - F-ERR-01: mustandite kustutuse viga pöörab ka kirje kustutuse tagasi ja kordus teeb mõlemad
+  ---
+  duration_ms: 0.6117
+  type: 'test'
+  ...
+# Subtest: F-ERR-01: valik jääb teadlikuks ja omaniku piir samaks
+ok 5 - F-ERR-01: valik jääb teadlikuks ja omaniku piir samaks
+  ---
+  duration_ms: 0.2088
+  type: 'test'
+  ...
+# Subtest: väljalülitatud indeks ei ole takistus, muu ebaõnnestumine on
+ok 6 - väljalülitatud indeks ei ole takistus, muu ebaõnnestumine on
+  ---
+  duration_ms: 0.6479
+  type: 'test'
+  ...
+# Subtest: konto kustutamine jõuab lõpuni, kui indeks on välja lülitatud
+ok 7 - konto kustutamine jõuab lõpuni, kui indeks on välja lülitatud
+  ---
+  duration_ms: 1.1047
+  type: 'test'
+  ...
+# Subtest: konto kustutamine jääb ootele, kui indeksist eemaldamine päriselt ebaõnnestus või faili ei saanud kustutada
+ok 8 - konto kustutamine jääb ootele, kui indeksist eemaldamine päriselt ebaõnnestus või faili ei saanud kustutada
+  ---
+  duration_ms: 0.2507
+  type: 'test'
+  ...
+# Subtest: toorheli pühkimine: väljalülitatud indeksiga kustuvad nii fail kui rida
+ok 9 - toorheli pühkimine: väljalülitatud indeksiga kustuvad nii fail kui rida
+  ---
+  duration_ms: 0.7019
+  type: 'test'
+  ...
+# Subtest: toorheli pühkimine: takistuse korral ei kustutata faili enne rida ära
+ok 10 - toorheli pühkimine: takistuse korral ei kustutata faili enne rida ära
+  ---
+  duration_ms: 0.1797
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 367.7895

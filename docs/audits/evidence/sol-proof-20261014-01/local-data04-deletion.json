@@ -1,0 +1,201 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+  "checkpointDate": "2026-10-20",
+  "environment": "isolated local database sol_proof_20261020_local; code identical to the deployed commit; new synthetic CLIENT created through journey and pre-inquiry service functions",
+  "fixture": {
+    "userId": "cmvgkmfu40000g8ts4wadfswa",
+    "journeyId": "jrn_55f0a5f5c510053994b4401f91da",
+    "draftId": "cmvgkmfwg0006g8tsymfcykk2",
+    "sentInquiryId": "cmvgkmfwz0007g8tsfsxs4676",
+    "recipient": "local synthetic specialist cmv7uufv50003u3kmxjmb35yj",
+    "privateMarkerLength": 27
+  },
+  "checks": [
+    {
+      "case_id": "DATA-04",
+      "variant_id": "account_deletion_leaves_only_deletion_bookkeeping",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "deleteUserWithPrivacyCleanup (the function DELETE /api/profile calls); every User relation, ...userId field and e-mail field of schema.prisma counted before and after",
+      "actual": {
+        "fieldsScanned": 328,
+        "before": [
+          {
+            "table": "Profile",
+            "field": "userId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "Subscription",
+            "field": "userId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "Journey",
+            "field": "ownerUserId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "JourneyStep",
+            "field": "ownerUserId",
+            "kind": "soft",
+            "rows": 2
+          },
+          {
+            "table": "PreInquiry",
+            "field": "authorId",
+            "kind": "relation",
+            "rows": 2
+          },
+          {
+            "table": "DomainEvent",
+            "field": "actorUserId",
+            "kind": "soft",
+            "rows": 1
+          }
+        ],
+        "after": [
+          {
+            "table": "DataAuditLog",
+            "field": "actorUserId",
+            "kind": "soft",
+            "rows": 2
+          },
+          {
+            "table": "DataAuditLog",
+            "field": "targetUserId",
+            "kind": "soft",
+            "rows": 2
+          },
+          {
+            "table": "DataDeletionJob",
+            "field": "actorUserId",
+            "kind": "soft",
+            "rows": 1
+          },
+          {
+            "table": "DataDeletionJob",
+            "field": "targetUserId",
+            "kind": "soft",
+            "rows": 1
+          }
+        ],
+        "userExistsAfter": false,
+        "deletionJob": [
+          {
+            "status": "done",
+            "action": "USER_DELETE",
+            "attempts": 1,
+            "lastError": null
+          }
+        ],
+        "counts": {
+          "documents": 0,
+          "materialSubmissions": 0,
+          "artifacts": 0,
+          "retainedDocuments": 0,
+          "personalDomainEvents": 0,
+          "dataExportsRemoved": 0,
+          "caseWorkClientReferences": 0,
+          "retainedDocumentsArchived": 0,
+          "anonymizedSentPreInquiries": 1,
+          "deletedUnsentPreInquiries": 1,
+          "receiverNotesCleared": 0,
+          "anonymizedUrgentRequests": 0,
+          "deletedClientNetworkShares": 0,
+          "archivedPayments": 0,
+          "organizationMembershipsEnded": 0,
+          "organizationMembershipsErased": 0,
+          "hiddenServiceProfiles": 0,
+          "hiddenServiceMapEntries": 0,
+          "queuedServiceProfileRagDeletions": 0,
+          "serviceLogReferences": 0,
+          "serviceLog": {
+            "referralsAsClient": 0,
+            "entriesAsClient": 0,
+            "entriesAsOwner": 0,
+            "correctionsAsActor": 0,
+            "narrativesAsClient": 0,
+            "routesAsWorker": 0,
+            "visitsAsOwner": 0,
+            "visitsAsClient": 0,
+            "timeSamples": 0,
+            "reportSharesAsOwner": 0,
+            "reportSharesAsRecipient": 0
+          },
+          "supervisionProcessesTombstoned": 0,
+          "supervisionParticipationsTombstoned": 0,
+          "supervisionTopicsTombstoned": 0,
+          "covisionParticipationsTombstoned": 0
+        }
+      }
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "private_content_not_left_in_side_stores",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "search of every text, varchar, json, jsonb and array column of the database for the private marker, the user id and the e-mail",
+      "actual": {
+        "privateMarkerHits": 0,
+        "emailHits": 0,
+        "userIdHits": [
+          "DataAuditLog.actorUserId 2",
+          "DataAuditLog.targetUserId 2",
+          "DataAuditLog.resourceId 2",
+          "DataDeletionJob.actorUserId 1",
+          "DataDeletionJob.targetUserId 1",
+          "DataDeletionJob.resourceId 1"
+        ]
+      }
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "sent_inquiry_kept_for_receiver_with_visible_erasure",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "getVisiblePreInquiry for the recipient after the author deletion",
+      "actual": {
+        "draftDeleted": true,
+        "receiverSeesRecord": true,
+        "status": "SENT",
+        "authorId": null,
+        "authorErasedAtSet": true,
+        "topic": null,
+        "situationEmpty": true,
+        "sourceJourneyId": null
+      }
+    },
+    {
+      "case_id": "DATA-04",
+      "variant_id": "deletion_order_and_error_paths_retained_tests",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "tests/deletion-completeness.test.mjs and tests/deletion-with-retired-index.test.mjs",
+      "actual": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "tap": "local-deletion-risk-tests.tap"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "status": "NOT_RUN",
+      "case_id": "DATA-04",
+      "note": "Files, the search index and backups were not covered: the synthetic user had no documents, recordings or exports. The retained tests cover their ordering and error handling with fixtures only."
+    },
+    {
+      "status": "NOT_RUN",
+      "case_id": "DATA-04",
+      "note": "The warning and retention deadline part of the case was not checked; which retention policy applies is an owner/GOV decision. An inquiry already accepted (READY) with receiver notes, and how the receiver UI shows authorErasedAt, were not tested."
+    }
+  ],
+  "newPaidCalls": false,
+  "serverDataWritten": false
+}
