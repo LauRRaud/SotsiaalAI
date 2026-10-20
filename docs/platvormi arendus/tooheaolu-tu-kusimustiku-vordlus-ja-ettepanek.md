@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); „võimaldab × vajan“ koond lahti
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ koond lahti
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -467,6 +467,7 @@ kirjet ja silte, tööriist on Tööheaolu laual, neutraalne signaal kuvatakse. 
 | **Nädalarütmi meeldetuletus** | Ainult vaikne märk „Uus nädal“ Tööheaolu laual, teavitust ei saadeta | Taustatööd on suletud avamisvärava taga; märk ei kasva ega korda ennast, seega eraldi peatamist ei ole vaja. Teavitus (kasutaja valitud päev, peatamine) tuleb siis, kui taustatööd on lubatud. | `components/room/RoomStage.jsx` |
 | **Samm 8 (asutuse meetmete kirjeldus)** | Teostatud 20.10 hiljem samal päeval (ptk 8.13) | Algul jäi ootele, sest polnud otsustatud, kes meetmeid haldab. See otsus on järgmisel real. Partner-KOV-i ei ole vaja: sünteetilise asutusega saab kõike kontrollida, ja kui asutus meetmeid ei kirjelda, jääb tööriist samaks. Arenguvajadus ja kutse jäävad S6-le. | ptk 8.13 |
 | **Abipalve adressaat (TO-6)** | Sild asutuse tugivaatesse; saaja valib ja saatmise kinnitab töötaja ise, juhti ei eelvalita. Abipalvel iga tugitee, juhimemol ainult siis, kui otsene juht on määratud | Saatmise rada, saaja kontroll (juht või asutuse määratud tugikontakt) ja säilitus olid juba olemas ja kontrollitud; teist saatmisrada ei ehitatud. | ptk 8.14–8.15 |
+| **Kuhu „Mida tahaksin õppida“** | „Minu tugivõimaluste“ viimaseks sammuks, mitte Alustaja toesse | Arenguvajadus on kõigi töötajate küsimus (küsitlus küsib seda kõigilt) ja arenguvormid on juba seal. Platvorm ei ole koolitaja, valik suunab olemasolevatesse kohtadesse. Koondisse see ei lähe, see jääb S6-le. | ptk 8.16 |
 | **Kes haldab asutuse meetmeid** | Sama inimene, kes haldab tugikontakte (`SUPPORT_CONTACT_ADMIN`, nõuab professionaalse toe moodulit); lugeda saab iga aktiivne liige | Uut õigust ei teki (uus enum-väärtus oleks püsiv). Meetmed ja tugikontaktid on sama töö: kuhu töötaja toe saamiseks pöördub. Mida asutus pakub, ei ole saladus; TLÜ 2024 järgi töötajad just seda ei leia. | `lib/org/supportMeasures.js` |
 
 Allikad: [RaM eetikanõukogu, KOV ametniku pöördumine (sh väidetav töökius), 25.02.2025](https://fin.ee/sites/default/files/documents/2025-03/KOV%20ametniku%20p%C3%B6%C3%B6rdumine%20oma%20%C3%B5iguste%20kaitsmise%20osas%20KOV%20ametiasutuses%20tekkinud%20t%C3%B6%C3%B6vaidluses%20%28sh%20v%C3%A4idetav%20t%C3%B6%C3%B6kius%29.%2025.02.%202025_0.pdf);
@@ -580,3 +581,30 @@ seose lõpetamine ja uuesti määramine liidesest, töötaja saajate hulka ilmus
 → kinnitamine → „Saada asutuse kaudu“ → eeltäidetud saatmine, kus saajaks oli ainult otsene juht → toeavaldus rolliga
 `DIRECT_MANAGER`, snapshot'is ainult `summary`. Sünteetilised andmed kustutati. **Kontrollimata:** EN/RU kuva
 brauseris ja tootmine.
+
+### 8.16. Teostus 20.10: Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.2 p 2 ja p 5)
+
+- **„Mis toimib“ (ideed 19.4 ja 21.2):** kirjed salvestavad tegurina ainult puudujääke, seega tuletab Ülevaade
+  tugevused töötaja enda kirjete selgelt positiivsetest vastustest (`lib/wellbeing/strengths.js`). Kiirkontrollist
+  arvestatakse piisav taastumine, kõrge otsustusruum, selged prioriteedid ja tööpiirid, kättesaadav juhi ja kolleegide
+  tugi ning tööl on mõte. Nädala peegeldusest arvestatakse taastumine ja mõte, Tööpiiridest selged piirid ja paindlik
+  tööaeg, „Minu tugivõimalustest“ see, et vajatud tugi on olemas. „Osaline“ tugevuseks ei lähe, skoori ei arvutata. Mustrite
+  vaates on plokk esimene ja juhiga jagatavas memos on „Mis toimib“ enne koormustegureid. Koondisse tugevused praegu ei
+  lähe (koond loeb salvestatud tegureid); see on eraldi otsus koos esimese KOV-i koondiga.
+- **„Mida tahaksin õppida“ (küsitluse 16. küsimus):** omaniku volitusel otsustatud, et see ei lähe Alustaja toesse,
+  vaid „Minu tugivõimaluste“ viimaseks sammuks (skeem 1.1, `learningAreas`). Arenguvajadus puudutab kõiki töötajaid
+  ja arenguvormid (17. küsimus: mentorlus, koolitused, kovisioon jt) on seal juba olemas. Kaksteist valdkonda
+  (`lib/wellbeing/learningAreaCatalog.js`). Valik läheb valmis tekstidesse („Mida tahaksin õppida“ ja arenguvestluse
+  sisend) ning suunab platvormil sinna, kus juba saab õppida: õigusaktid → Luna, juhtumikorraldus ja hindamine →
+  Meetodipeegel, eetika → Eetikaruum, vaimne tervis ja digioskused → materjalid, enesehoid → Taastumine,
+  töökorraldus → Tööprotsessid, meeskonnatöö → kovisioon. Õpisoovitusi on kuni kolm ja kõiki soovitusi kuni neli
+  pluss Ülevaade, et vaade mahuks. Koondisse õpisoov ei lähe (S6 otsus).
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`, `npm test` (65 läbi, 0 kukkus). Funktsioonide kutsega: vorm =
+skeem (1.1), õppimise sammu kaal 6,2 / 7,6, tundmatu valdkond lükatakse tagasi, soovituste järjekord, piir ja
+kordumatus, marsruudid, õpisoov ei lähe koondi teguritesse, valmis tekstid (ka ainult õpisooviga), 9 tugevust neljast
+töövoost, „osaline“ ei ole tugevus, Ülevaate tugevused ja memo järjekord võltsandmebaasiga. Brauseris sünteetilise
+kasutajaga (1536 × 640): õppimise samm mahub (12 valikut neljas reas), viie soovituskaardiga vaade mahub, salvestus
+andis skeemi 1.1 ja ainult `measures.gap.covision` teguri, vigane valdkond 400. Ülevaate Mustrites oli „Mis toimib“
+esimene ja memos enne koormustegureid. Testkasutaja kustutati. **Kontrollimata:** telefoni vaade, EN/RU kuva ja
+tootmine. Serveris käis sel ajal teine test, seega on kommit ainult kohalik (lükkamata).

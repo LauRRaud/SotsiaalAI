@@ -6,8 +6,14 @@
  * mahuks paneeli. Arvutus ja valmis tekstid: `lib/wellbeing/supportMeasures.js`.
  */
 
+import { LEARNING_AREAS } from "@/lib/wellbeing/learningAreaCatalog";
 import { SUPPORT_MEASURE_GROUPS, SUPPORT_MEASURE_LABELS } from "@/lib/wellbeing/supportMeasureCatalog";
-import { buildSupportMeasuresRecord, classifySupportMeasures, SUPPORT_MEASURES_FIELDS } from "@/lib/wellbeing/supportMeasures";
+import {
+  buildSupportMeasuresRecord,
+  classifySupportMeasures,
+  SUPPORT_MEASURES_FIELDS,
+  SUPPORT_MEASURES_LEARNING_FIELD
+} from "@/lib/wellbeing/supportMeasures";
 
 import { formText, listField, output, signals } from "./helpers.js";
 import { wellbeingActionRoute } from "./routes.js";
@@ -41,8 +47,25 @@ const steps = Object.entries(SUPPORT_MEASURES_FIELDS).flatMap(([group, [offeredK
   ];
 });
 
-/* Platvormil endal olevad tugivormid viivad nende lehele. */
-const platformRoutes = { supervision: "/supervisioon", mentoring: "/mentorlus" };
+/* „Mida tahaksin õppida" (TÜ küsitluse küsimus 16): kõigile, mitte ainult
+   alustajatele. Jääb töötajale; valik suunab platvormi olemasolevatesse kohtadesse. */
+steps.push({
+  key: SUPPORT_MEASURES_LEARNING_FIELD,
+  title: msg("steps.learning.title", "Mida tahaksin õppida"),
+  short: msg("steps.learning.short", "Õppimine"),
+  lead: msg("learning_lead", "Milles tahaksid end täiendada? Märgi kõik, mis sobib. See on arenguvestluse sisendis ja jääb sulle."),
+  fields: [listField(SUPPORT_MEASURES_LEARNING_FIELD, msg("learning_label", "Tahaksin õppida"), LEARNING_AREAS)]
+});
+
+/* Platvormil endal olevad tugivormid ja õppimise kohad viivad nende lehele. */
+const platformRoutes = {
+  supervision: "/supervisioon",
+  mentoring: "/mentorlus",
+  luna: "/vestlus",
+  method_mirror: "/refleksioon",
+  ethics_room: "/eetikaruum",
+  materials: "/materjalid"
+};
 
 export const supportMeasuresForm = {
   workflowType: "support-measures",

@@ -200,6 +200,13 @@ export default function OverviewWorkflow({ onNavigate }) {
             t={t}
             signals={["green", "yellow", "red"].map((level) => ({ key: level, label: signalLabel(level), count: signalCounts[level] || 0, tone: SIGNAL_TONES[level] }))}
             groups={[
+              /* Tugevused enne puudujääke: need ei tohi jääda riskide varju (ideed 19.4, 21.2). */
+              {
+                key: "strengths",
+                title: t("wellbeing.overview.strengths", "Mis toimib"),
+                items: factorItems(overview?.strengths),
+                empty: t("wellbeing.overview.no_strengths", "Selgelt toimivaid ressursse ei ole sinu vastustes veel märgitud.")
+              },
               {
                 key: "demands",
                 title: t("wellbeing.overview.work_demands", "Töö nõudmised"),

@@ -124,7 +124,9 @@ peidetud. Samm 8: asutus kirjeldab oma tugimeetmed (`/org/<id>/tugi` → „Asut
 tugivõimalused“ on selle järgi eeltäidetud koos asutuse juhisega. TO-6: haldur lisab ja lõpetab tugi- ja
 turvakontakte liidesest; kinnitatud abipalve saab „Saada asutuse kaudu“ olemasolevasse toeavalduse rajasse
 (saaja valib ja kinnitab töötaja). Haldur määrab liidesest ka otsese juhi; juhimemo saab sama silla, kui juht on
-määratud.
+määratud. Ülevaade näitab „Mis toimib“ (tugevused töötaja enda positiivsetest vastustest, ka memos) ja „Minu
+tugivõimalused“ sai sammu „Mida tahaksin õppida“ (skeem 1.1; suunab Lunasse, Meetodipeeglisse, Eetikaruumi ja
+materjalidesse, koondisse ei lähe).
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
 **20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 355
@@ -4986,7 +4988,7 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 | Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
 | Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
 | Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
-| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1, Töövägivalla allikas ja märkmik, ületunnid, töövahendid ja ruum, „Minu tugivõimalused“ koos asutuse tugimeetmetega, nädala peegeldus (20.10) | P3–P5; nädalarütmi teavitus (taustatööde järel); „võimaldab × vajan“ koond ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
+| Tööheaolu | E0 + piloodirada + koondid; koondis osalemise valik ja kiirkontroll 1.1 ja Taastumine 1.1, Töövägivalla allikas ja märkmik, ületunnid, töövahendid ja ruum, „Minu tugivõimalused“ koos asutuse tugimeetmete ja õpisooviga, Ülevaate „Mis toimib“, nädala peegeldus (20.10) | P3–P5; nädalarütmi teavitus (taustatööde järel); „võimaldab × vajan“ koond ([TÜ võrdlus ptk 8.5](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md)); **O-WB-K: kas tõsta lävi 3 → 5** |
 | Ühistegevus | osaleja- ja jagamiskiht, kokkuvõtte kinnitusring | võrgustiku vertikaal, kohtumise ühisvaade (S4.1) |
 | Materjalid | esitamise ja ülevaatuse rada | esimesed päris esitused puuduvad — kasutajad, mitte kood |
 

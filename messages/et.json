@@ -9958,7 +9958,9 @@
           "short": "Edasi",
           "covision": "Aruta olukorda kolleegidega struktureeritud kohtumisel."
         }
-      }
+      },
+      "strengths": "Mis toimib",
+      "no_strengths": "Selgelt toimivaid ressursse ei ole sinu vastustes veel märgitud."
     },
     "quick_check": {
       "title": "Kiirkontroll",
@@ -10411,6 +10413,10 @@
           "needed_title": "Töökorraldus ja tunnustus: mida vajan",
           "offered_short": "Korraldus: on",
           "needed_short": "Korraldus: vajan"
+        },
+        "learning": {
+          "title": "Mida tahaksin õppida",
+          "short": "Õppimine"
         }
       },
       "signals": {
@@ -10426,7 +10432,9 @@
         "discussion": "Arenguvestluse sisend"
       },
       "offered_lead_org": "Märgitud on see, mida asutus enda kirjelduse järgi pakub. Muuda, kui sinu teada on teisiti.",
-      "org_offers_title": "Asutus pakub ja sa vajad"
+      "org_offers_title": "Asutus pakub ja sa vajad",
+      "learning_lead": "Milles tahaksid end täiendada? Märgi kõik, mis sobib. See on arenguvestluse sisendis ja jääb sulle.",
+      "learning_label": "Tahaksin õppida"
     },
     "weekly_reflection": {
       "title": "Nädala peegeldus",

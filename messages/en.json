@@ -9958,7 +9958,9 @@
           "short": "Next",
           "covision": "Discuss the situation with colleagues in a structured meeting."
         }
-      }
+      },
+      "strengths": "What works",
+      "no_strengths": "Your answers do not yet show resources that clearly work."
     },
     "quick_check": {
       "title": "Quick check",
@@ -10411,6 +10413,10 @@
           "needed_title": "Work organisation and recognition: what I need",
           "offered_short": "Organisation: offered",
           "needed_short": "Organisation: needed"
+        },
+        "learning": {
+          "title": "What I would like to learn",
+          "short": "Learning"
         }
       },
       "signals": {
@@ -10426,7 +10432,9 @@
         "discussion": "Development conversation input"
       },
       "offered_lead_org": "Marked is what the organisation offers according to its own description. Change it if you know otherwise.",
-      "org_offers_title": "Offered by the organisation and needed by you"
+      "org_offers_title": "Offered by the organisation and needed by you",
+      "learning_lead": "Where would you like to develop? Mark everything that applies. It goes into the development talk input and stays with you.",
+      "learning_label": "I would like to learn"
     },
     "weekly_reflection": {
       "title": "Weekly reflection",
