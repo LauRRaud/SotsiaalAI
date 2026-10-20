@@ -10209,7 +10209,10 @@
         "institution": "Üldista asutus rolliks, näiteks kool, tööandja või teenuseosutaja.",
         "rare_detail": "Hinda, kas haruldane detail on vajalik, või kirjelda seda üldisemalt.",
         "other": "Hinda, kas detail on vajalik, või üldista see."
-      }
+      },
+      "org_route_notice": "Sinu asutuses on tugikontakt. Kui oled abipalve kinnitanud, saad selle saata asutuse kaudu: seal valid saaja ja kinnitad saatmise. Teksti võid ka kopeerida.",
+      "org_route": "Saada asutuse kaudu",
+      "org_route_named": "Saada asutuse kaudu: {name}"
     },
     "errors": {
       "output_draft_conflict": "Mustand muutus vahepeal või on juba Kovisiooni viidud.",
@@ -13065,6 +13068,39 @@
           "details": {
             "title": "Kuidas kasutada",
             "short": "Juhised"
+          }
+        }
+      },
+      "from_wellbeing": "Kokkuvõttes on sinu kinnitatud abipalve Tööheaolust. Vali saaja; teksti saad enne saatmist muuta.",
+      "contactAdmin": {
+        "open": "Tugikontaktid",
+        "lead": "Kelle poole saavad töötajad toe saamiseks pöörduda peale oma otsese juhi.",
+        "note": "Muudatus jõustub kohe. Töötaja valib saaja ise, juhti ei eelvalita.",
+        "none": "Tugikontakte ei ole. Lisa vähemalt üks, et töötaja ei peaks pöörduma ainult oma juhi poole.",
+        "end": "Lõpeta",
+        "end_confirm": "Kinnita lõpetamine",
+        "end_note": "Lõpetatud kontaktile ei saa enam toeavaldust saata. Juba saadetud avaldused jäävad talle alles.",
+        "ended": "Tugikontakt on lõpetatud.",
+        "added": "Tugikontakt on lisatud.",
+        "add": "Lisa",
+        "adding": "Lisan…",
+        "need_member": "Vali liige, kellest saab tugikontakt.",
+        "type_label": "Mis tee",
+        "member_label": "Liige",
+        "no_candidates": "Kõik aktiivsed liikmed on juba sellised kontaktid.",
+        "type_hint": {
+          "ALTERNATE_SUPPORT": "Tugikontakt on inimene, kelle poole töötaja saab pöörduda, kui ta ei taha või ei saa pöörduda oma juhi poole (nt personalitöötaja või töökeskkonnavolinik).",
+          "SAFETY_CONTACT": "Turvakontakt on inimene, kelle poole pöörduda ohu või vägivalla korral. Eluohu korral helista 112."
+        },
+        "steps_label": "Tugikontaktid",
+        "steps": {
+          "list": {
+            "title": "Praegused tugikontaktid",
+            "short": "Praegused"
+          },
+          "add": {
+            "title": "Lisa tugikontakt",
+            "short": "Lisa"
           }
         }
       }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import ActionCard, { ActionCardGrid } from "@/components/stage/ActionCard";
@@ -39,6 +39,9 @@ export default function SupportRequestPanel({
      kuvatakse covision_identifiers staatuse all i18n kaudu. */
   const [identifierIssueTypes, setIdentifierIssueTypes] = useState([]);
   const requestGateRef = useRef(createLatestRequestGate());
+  /* TO-6: asutused, kus abipalvel on päris adressaat (juht või tugikontakt).
+     Küsitakse alles siis, kui abipalve on kinnitatud; `null` = veel küsimata. */
+  const [supportOrganizations, setSupportOrganizations] = useState(null);
 
   const preview = useMemo(() => {
     if (!selected) return "";
@@ -54,6 +57,22 @@ export default function SupportRequestPanel({
   const hasUnconfirmedEdits = draft?.status === "ready_to_share"
     && String(editedText || preview).trim() !== savedConfirmedText;
   const isBusy = status === "saving" || status === "starting_covision";
+  const supportRequestChosen = selected?.recipientType === "pilot_support_contact";
+  /* Asutuse tee on olemas; saata saab alles kinnitatud ja muutmata teksti. */
+  const organizationRoute = supportRequestChosen && supportOrganizations?.length > 0;
+  const supportRequestReady = organizationRoute && draft?.status === "ready_to_share" && !hasUnconfirmedEdits;
+
+  useEffect(() => {
+    if (!supportRequestChosen || supportOrganizations !== null) return undefined;
+    const controller = new AbortController();
+    fetch("/api/wellbeing/support-organizations", { headers: { Accept: "application/json" }, signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => setSupportOrganizations(Array.isArray(payload?.organizations) ? payload.organizations : []))
+      .catch((error) => {
+        if (!isAbortError(error)) setSupportOrganizations([]);
+      });
+    return () => controller.abort();
+  }, [supportRequestChosen, supportOrganizations]);
 
   function changeEditedText(value) {
     if (isBusy) return;
@@ -388,15 +407,40 @@ export default function SupportRequestPanel({
                 ja annab selle asemel päris toimingu — teksti kopeerimise. */}
             {selected.copyOnly ? (
               <div>
+                {/* TO-6: kui asutuses on tugitee, ei ole abipalve enam „ainult
+                    kopeeritav". Kinnitatud teksti saab saata asutuse tugivaate
+                    kaudu; seal valib inimene saaja ja kinnitab saatmise. Siit
+                    ei saadeta midagi. */}
                 <p>
-                  {t(
-                    "wellbeing.support.copy_only_notice",
-                    "Sellel valikul ei ole platvormisisest adressaati: tekst jääb sinu privaatseks mustandiks ja sina otsustad, kellega ja millal ta jagad."
-                  )}
+                  {organizationRoute
+                    ? t(
+                        "wellbeing.support.org_route_notice",
+                        "Sinu asutuses on tugikontakt. Kui oled abipalve kinnitanud, saad selle saata asutuse kaudu: seal valid saaja ja kinnitad saatmise. Teksti võid ka kopeerida."
+                      )
+                    : t(
+                        "wellbeing.support.copy_only_notice",
+                        "Sellel valikul ei ole platvormisisest adressaati: tekst jääb sinu privaatseks mustandiks ja sina otsustad, kellega ja millal ta jagad."
+                      )}
                 </p>
                 <Button type="button" onClick={copyDraftText} disabled={isBusy}>
                   {t("wellbeing.support.copy_text", "Kopeeri tekst")}
                 </Button>
+                {supportRequestReady ? (
+                  <div>
+                    {supportOrganizations.map((organization) => (
+                      <Button
+                        key={organization.id}
+                        type="button"
+                        onClick={() => router.push(`/org/${encodeURIComponent(organization.id)}/tugi?mustand=${encodeURIComponent(draft.id)}`)}
+                        disabled={isBusy}
+                      >
+                        {supportOrganizations.length > 1
+                          ? t("wellbeing.support.org_route_named", { name: organization.name }, "Saada asutuse kaudu: {name}")
+                          : t("wellbeing.support.org_route", "Saada asutuse kaudu")}
+                      </Button>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             ) : null}
             {selected.handoff === "supervision"

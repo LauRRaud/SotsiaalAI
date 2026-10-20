@@ -6,6 +6,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import StepFlight from "@/components/stage/StepFlight";
 
 import OrgPart from "./OrgPart";
+import { ContactAddView, ContactListView } from "./support/ContactViews";
+import { ADDABLE_CONTACT_TYPES, CONTACT_STEPS, addedContact, candidateOptions, contactRows } from "./support/contactRules";
 import { MeasureDetailsView, MeasureGroupView } from "./support/MeasureViews";
 import {
   MEASURE_STEPS,
@@ -42,6 +44,10 @@ import { useSecondPress } from "./useSecondPress";
  *   4. mida asutus pakub (tugimeetmed; haldur saab neid muuta). Sama loend
  *      eeltäidab töötaja Tööheaolu „Minu tugivõimalused".
  *
+ * Haldur (`SUPPORT_CONTACT_ADMIN`) haldab siin ka tugi- ja turvakontakte.
+ * Tööheaolu abipalve jõuab siia kinnitatud tekstiga (`prefill`, TO-6): saatmine
+ * avaneb, aga saaja valib ja saatmise kinnitab inimene ise.
+ *
  * PRIVAATSUSTEADE ON SISU, mitte kaunistus: kasutaja peab nägema mustvalgel, et
  * organisatsioon ei tea, kas ta vormi täitis. Seda teadet ei tohi eemaldada.
  *
@@ -56,8 +62,26 @@ import { useSecondPress } from "./useSecondPress";
    toob inimese tagasi saadetud avalduste juurde. Ainult selle vahekaardi mälus. */
 const AFTER_RELOAD = "sotsiaalai:org-support:list";
 
-export default function OrgSupportClient({ context, recipients, receivedPage, sentPage, measures = [], canManageMeasures = false }) {
+export default function OrgSupportClient({
+  context,
+  recipients,
+  receivedPage,
+  sentPage,
+  measures = [],
+  canManage = false,
+  contacts = [],
+  candidates = [],
+  prefill = null
+}) {
   const { t } = useI18n();
+  /* Tööheaolu abipalve: saatmine avaneb kohe, kui on kellele saata. Lähteviide
+     läheb kaasa ainult selle teksti saatmisel. */
+  const fromWellbeing = useRef(prefill?.summary ? prefill : null);
+  const openWithPrefill = Boolean(fromWellbeing.current) && context?.writable !== false && recipients?.length > 0;
+  /* Tugikontaktid halduri vaates. */
+  const [contactList, setContactList] = useState(contacts);
+  const [contactStep, setContactStep] = useState(CONTACT_STEPS[0]);
+  const [contactForm, setContactForm] = useState({ contactType: ADDABLE_CONTACT_TYPES[0], membershipId: "" });
   /* Asutuse meetmed: salvestatud loend ja muutmise mustand. */
   const [savedMeasures, setSavedMeasures] = useState(measures);
   const [draft, setDraft] = useState(() => measureDraft(measures));
@@ -66,18 +90,18 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
   const liveDraft = useRef(draft);
   liveDraft.current = draft;
   const { call, error, setError } = useOrgApi();
-  const [form, setForm] = useState(EMPTY_SHARE);
+  const [form, setForm] = useState(() => (openWithPrefill ? { ...EMPTY_SHARE, summary: fromWellbeing.current.summary } : EMPTY_SHARE));
   const [received, setReceived] = useState(receivedPage?.items || []);
   const [receivedCursor, setReceivedCursor] = useState(receivedPage?.nextCursor || null);
   const [sent, setSent] = useState(sentPage?.items || []);
   const [sentCursor, setSentCursor] = useState(sentPage?.nextCursor || null);
-  const [mode, setMode] = useState("list");
+  const [mode, setMode] = useState(openWithPrefill ? "send" : "list");
   const [wantedList, setWantedList] = useState("received");
   const [openId, setOpenId] = useState("");
   const [stepKey, setStepKey] = useState("who");
-  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "measures" | "recall:<id>". */
+  /* Mis päring käib: "" | "send" | "more" | "open" | "close" | "measures" | "contact" | "recall:<id>" | "end:<id>". */
   const [pending, setPending] = useState("");
-  const [notice, setNotice] = useState(null);
+  const [notice, setNotice] = useState(() => (openWithPrefill ? { view: "who", text: t("org.support.from_wellbeing") } : null));
   const confirm = useSecondPress();
   const clearConfirm = confirm.clear;
   const sending = useRef(false);
@@ -87,6 +111,15 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
+
+  /* Mustandi viide aadressist ära: uuesti laadimine (nt pärast saatmist) ei
+     ava sama abipalvet teist korda. */
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("mustand")) return;
+    url.searchParams.delete("mustand");
+    window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+  }, []);
 
   useEffect(() => {
     try {
@@ -124,12 +157,15 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
 
   const send = useCallback(async () => {
     const { recipientMembershipId, summary, needs, confirmed } = live.current;
+    const source = fromWellbeing.current;
     const payload = await call(`/api/org/${organizationId}/tugi/avaldused`, {
       method: "POST",
       body: {
         action: "send",
         recipientMembershipId,
         userConfirmed: confirmed,
+        /* Omaniku ja auditi viide Tööheaolu mustandile; saaja seda ei näe. */
+        ...(source ? { sourceDraftId: source.sourceDraftId, sourceRecordId: source.sourceRecordId } : {}),
         snapshot: {
           summary,
           needs: needs
@@ -197,6 +233,38 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
     setNotice({ view: "board", text: t("org.support.measures.saved") });
   }, [call, organizationId, t]);
 
+  const addContact = useCallback(async () => {
+    const { contactType, membershipId } = contactForm;
+    if (!membershipId) {
+      setNotice({ view: "add", tone: "risk", text: t("org.support.contactAdmin.need_member") });
+      return;
+    }
+    const payload = await call(`/api/org/${organizationId}/tugi`, {
+      method: "POST",
+      body: { action: "addContact", membershipId, contactType },
+      fallbackKey: "org.errors.support_update_failed"
+    });
+    if (!payload?.contact) return;
+    setContactList((current) => [...current, addedContact(payload.contact, candidates)]);
+    setContactForm((current) => ({ ...current, membershipId: "" }));
+    setContactStep("list");
+    setNotice({ view: "list", text: t("org.support.contactAdmin.added") });
+  }, [call, candidates, contactForm, organizationId, t]);
+
+  const endContact = useCallback(
+    async (contactId) => {
+      const payload = await call(`/api/org/${organizationId}/tugi`, {
+        method: "POST",
+        body: { action: "endContact", contactId },
+        fallbackKey: "org.errors.support_update_failed"
+      });
+      if (!payload?.contact) return;
+      setContactList((current) => current.filter((contact) => contact.contactId !== contactId));
+      setNotice({ view: "list", text: t("org.support.contactAdmin.ended") });
+    },
+    [call, organizationId, t]
+  );
+
   /* Üks tegevus korraga: topeltvajutus ei saada teist päringut. */
   const once = useCallback(async (name, work) => {
     if (sending.current) return;
@@ -234,6 +302,7 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
   const fault = error ? { tone: "risk", text: error } : null;
 
   const leaveSend = useCallback(() => {
+    fromWellbeing.current = null;
     setForm(EMPTY_SHARE);
     setMode("list");
     setStepKey("who");
@@ -263,7 +332,71 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
     );
   }
 
-  if (mode === "measures" && canManageMeasures) {
+  if (mode === "contacts" && canManage) {
+    const steps = CONTACT_STEPS.map((key) => ({
+      key,
+      label: t(`org.support.contactAdmin.steps.${key}.title`),
+      short: t(`org.support.contactAdmin.steps.${key}.short`),
+      state: key === "list" ? (contactList.length ? "done" : "empty") : contactForm.membershipId ? "partial" : "empty"
+    }));
+    const leaveContacts = () => {
+      clearConfirm();
+      setError("");
+      setNotice(null);
+      setContactStep(CONTACT_STEPS[0]);
+      setWantedList("measures");
+      setMode("list");
+    };
+    const noticeOf = (view) => fault || (notice?.view === view ? notice : null);
+    return (
+      <div ref={rootRef}>
+        <OrgPart context={context} part="support" compact>
+          <StepFlight
+            label={t("org.support.contactAdmin.steps_label")}
+            steps={steps}
+            activeKey={contactStep}
+            onStepChange={(_index, step) => {
+              setContactStep(step?.key || CONTACT_STEPS[0]);
+              clearConfirm();
+            }}
+          >
+            {(step, _index, flight) =>
+              step.key === "list" ? (
+                <ContactListView
+                  t={t}
+                  rows={contactRows(contactList, { t })}
+                  end={{
+                    armedId: confirm.armed.startsWith("end:") ? confirm.armed.slice(4) : "",
+                    busyId: pending.startsWith("end:") ? pending.slice(4) : "",
+                    onPress: (row) => confirm.press(`end:${row.id}`, () => once(`end:${row.id}`, () => endContact(row.id)))
+                  }}
+                  notice={noticeOf("list")}
+                  onBack={leaveContacts}
+                />
+              ) : (
+                <ContactAddView
+                  t={t}
+                  form={contactForm}
+                  options={candidateOptions(candidates, contactList, contactForm.contactType, { t })}
+                  onField={(key, value) => {
+                    setContactForm((current) => ({ ...current, [key]: value, ...(key === "contactType" ? { membershipId: "" } : {}) }));
+                    setNotice(null);
+                    setError("");
+                  }}
+                  add={{ busy: pending === "contact", onAdd: () => void once("contact", addContact) }}
+                  notice={noticeOf("add")}
+                  onBack={leaveContacts}
+                  glow={flight?.isActive !== false}
+                />
+              )
+            }
+          </StepFlight>
+        </OrgPart>
+      </div>
+    );
+  }
+
+  if (mode === "measures" && canManage) {
     const states = measureStepStates(draft);
     const steps = MEASURE_STEPS.map((key) => ({
       key,
@@ -431,7 +564,7 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
           }}
           measureGroups={measureGroups}
           editMeasures={
-            canManageMeasures
+            canManage
               ? {
                   onEdit: () => {
                     clearConfirm();
@@ -441,6 +574,13 @@ export default function OrgSupportClient({ context, recipients, receivedPage, se
                     setMeasureStep(MEASURE_STEPS[0]);
                     setEditingMeasure("");
                     setMode("measures");
+                  },
+                  onContacts: () => {
+                    clearConfirm();
+                    setError("");
+                    setNotice(null);
+                    setContactStep(CONTACT_STEPS[0]);
+                    setMode("contacts");
                   }
                 }
               : null

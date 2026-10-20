@@ -35,7 +35,7 @@ import shared from "../org.module.css";
  * Loend. `list`: "received" | "sent" | "measures".
  * `send`: { onSend } või null; `recall`: { armedId, busyId, onPress(row), onCancel() };
  * `more`: { busy, onMore } või null; `measureGroups`: mida asutus pakub
- * (`measureGroupsOf`); `editMeasures`: { onEdit } haldurile, muidu null.
+ * (`measureGroupsOf`); `editMeasures`: { onEdit, onContacts } haldurile, muidu null.
  */
 export function SupportBoard({ t, tabs, list, onList, receivedRows, sentRows, onOpen, send, noRecipients, recall, more, notice, measureGroups = [], editMeasures = null, glow = true }) {
   const rows = list === "sent" ? sentRows : receivedRows;
@@ -55,9 +55,14 @@ export function SupportBoard({ t, tabs, list, onList, receivedRows, sentRows, on
           />
           <span className={shared.headButtons}>
             {measures && editMeasures ? (
-              <Button type="button" size="sm" variant="secondary" data-edit-measures="1" onClick={editMeasures.onEdit}>
-                {t("org.support.measures.edit")}
-              </Button>
+              <>
+                <Button type="button" size="sm" variant="secondary" data-edit-contacts="1" onClick={editMeasures.onContacts}>
+                  {t("org.support.contactAdmin.open")}
+                </Button>
+                <Button type="button" size="sm" variant="secondary" data-edit-measures="1" onClick={editMeasures.onEdit}>
+                  {t("org.support.measures.edit")}
+                </Button>
+              </>
             ) : null}
             {send ? (
               <Button type="button" size="sm" variant="primary" glow={glow} data-create="1" onClick={send.onSend}>

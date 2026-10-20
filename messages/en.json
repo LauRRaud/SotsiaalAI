@@ -10209,7 +10209,10 @@
         "institution": "Generalize the institution to a role, such as school, employer or service provider.",
         "rare_detail": "Consider whether the rare detail is necessary, or describe it more generally.",
         "other": "Consider whether the detail is necessary, or generalize it."
-      }
+      },
+      "org_route_notice": "Your organisation has a support contact. Once you have confirmed the request for help, you can send it through the organisation: there you choose the recipient and confirm sending. You can also copy the text.",
+      "org_route": "Send through the organisation",
+      "org_route_named": "Send through the organisation: {name}"
     },
     "errors": {
       "output_draft_conflict": "The draft changed in the meantime or has already been moved to Covision.",
@@ -13065,6 +13068,39 @@
           "details": {
             "title": "How to use",
             "short": "Guidance"
+          }
+        }
+      },
+      "from_wellbeing": "The summary contains your confirmed request for help from Wellbeing. Choose the recipient; you can edit the text before sending.",
+      "contactAdmin": {
+        "open": "Support contacts",
+        "lead": "Whom employees can turn to for support besides their direct manager.",
+        "note": "Changes take effect immediately. The employee chooses the recipient; the manager is not preselected.",
+        "none": "There are no support contacts. Add at least one so that employees do not have to turn only to their manager.",
+        "end": "End",
+        "end_confirm": "Confirm ending",
+        "end_note": "An ended contact can no longer receive support requests. Requests already sent remain with them.",
+        "ended": "The support contact has been ended.",
+        "added": "The support contact has been added.",
+        "add": "Add",
+        "adding": "Adding…",
+        "need_member": "Choose the member who becomes the support contact.",
+        "type_label": "Type of route",
+        "member_label": "Member",
+        "no_candidates": "All active members are already contacts of this type.",
+        "type_hint": {
+          "ALTERNATE_SUPPORT": "A support contact is someone employees can turn to when they do not want to or cannot turn to their manager (e.g. an HR officer or a working environment representative).",
+          "SAFETY_CONTACT": "A safety contact is someone to turn to in case of danger or violence. If life is in danger, call 112."
+        },
+        "steps_label": "Support contacts",
+        "steps": {
+          "list": {
+            "title": "Current support contacts",
+            "short": "Current"
+          },
+          "add": {
+            "title": "Add a support contact",
+            "short": "Add"
           }
         }
       }

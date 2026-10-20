@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed teostatud 20.10 (ptk 8.13), abipalve päris adressaat (TO-6) lahti
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed ja abipalve päris adressaat (TO-6) teostatud 20.10 (ptk 8.13–8.14); juhiseoste liides ja „võimaldab × vajan“ koond lahti
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -298,7 +298,7 @@ eneseanalüüsi ettevalmistus oleks eristuv funktsioon, kuid see on omaette uuri
 | 5 | Lisad Tööprotsessidesse ja Tööpiiridesse — **tehtud 20.10** (ptk 8.9) | odavad, olemasolevate vormide sees | väike |
 | 6 | „Minu tugivõimalused“, privaatne osa — **tehtud 20.10** (ptk 8.10) | katab küsimused 20–21 töötaja poolelt | keskmine |
 | 7 | Nädalarütm: koormus, taastumine, „mis andis mõtte“ — **tehtud 20.10 ilma teavituseta** (ptk 8.12) | sõltub meeldetuletuse otsusest | keskmine |
-| 8 | Asutuse meetmete kirjeldus — **tehtud 20.10** (ptk 8.13); abipalve päris adressaat (TO-6), meetmete koond, arenguvajadus | adressaat vajab tugikontaktide haldust, arenguvajadus S6 otsust | suur |
+| 8 | Asutuse meetmete kirjeldus ja abipalve päris adressaat (TO-6) — **tehtud 20.10** (ptk 8.13–8.14); meetmete koond, arenguvajadus | koond ootab esimest KOV-i koondit, arenguvajadus S6 otsust | suur |
 
 Sammud 1–7 katavad küsitluse 35 puuduvast punktist umbes 20. Ülejäänud jäävad teadlikult välja (ptk 8.3) või S6-le.
 
@@ -446,8 +446,8 @@ Uus tööriist `/tooheaolu/tugivoimalused` (töövoog `support-measures`, skeem 
 - Kõrvalt: serveri mustandikoostaja (`supportDrafts.js`) jätab nüüd samuti välja ainult töötajale jäävad märgid —
   liidese koostaja tegi seda juba, serveri varukoostaja mitte.
 
-**Samm 8:** asutuse meetmete kirjeldus ja eeltäidetud loend on tehtud (ptk 8.13); abipalve päris adressaat (TO-6) on
-lahti.
+**Samm 8:** asutuse meetmete kirjeldus ja eeltäidetud loend (ptk 8.13) ning abipalve päris adressaat (TO-6, ptk 8.14)
+on tehtud.
 
 **Kontroll.** Sihitud eslint, `npm run i18n:check`, `server-message-keys`; funktsioonide kutsega vorm = skeem =
 arvutus, teise rühma meetme tagasilükkamine, rühmitus, tegurid, soovitused, tekstid, neutraalne signaal, koond ja
@@ -466,6 +466,7 @@ kirjet ja silte, tööriist on Tööheaolu laual, neutraalne signaal kuvatakse. 
 | **Kovisiooni sisend kolleegi/juhi kirjelt** | **Peidetud** Tugi-paneelis; juhi puhul ka juhimemo | Sama piir mis töövoo valmis tekstides: kolleegi või juhi tehtut ei viida vaikimisi kolleegide rühma ega osapoolele. Supervisioon, abipalve ja mentor jäävad. | `components/wellbeing/supportOptions.js` |
 | **Nädalarütmi meeldetuletus** | Ainult vaikne märk „Uus nädal“ Tööheaolu laual, teavitust ei saadeta | Taustatööd on suletud avamisvärava taga; märk ei kasva ega korda ennast, seega eraldi peatamist ei ole vaja. Teavitus (kasutaja valitud päev, peatamine) tuleb siis, kui taustatööd on lubatud. | `components/room/RoomStage.jsx` |
 | **Samm 8 (asutuse meetmete kirjeldus)** | Teostatud 20.10 hiljem samal päeval (ptk 8.13) | Algul jäi ootele, sest polnud otsustatud, kes meetmeid haldab. See otsus on järgmisel real. Partner-KOV-i ei ole vaja: sünteetilise asutusega saab kõike kontrollida, ja kui asutus meetmeid ei kirjelda, jääb tööriist samaks. Arenguvajadus ja kutse jäävad S6-le. | ptk 8.13 |
+| **Abipalve adressaat (TO-6)** | Sild asutuse tugivaatesse; saaja valib ja saatmise kinnitab töötaja ise. Sild on ainult abipalvel, juhimemo jääb kopeeritavaks | Saatmise rada, saaja kontroll (juht või asutuse määratud tugikontakt) ja säilitus olid juba olemas ja kontrollitud; teist saatmisrada ei ehitatud. Juhimemo jäi kopeeritavaks, sest juhiseoseid ei saa veel liidesest määrata. | ptk 8.14 |
 | **Kes haldab asutuse meetmeid** | Sama inimene, kes haldab tugikontakte (`SUPPORT_CONTACT_ADMIN`, nõuab professionaalse toe moodulit); lugeda saab iga aktiivne liige | Uut õigust ei teki (uus enum-väärtus oleks püsiv). Meetmed ja tugikontaktid on sama töö: kuhu töötaja toe saamiseks pöördub. Mida asutus pakub, ei ole saladus; TLÜ 2024 järgi töötajad just seda ei leia. | `lib/org/supportMeasures.js` |
 
 Allikad: [RaM eetikanõukogu, KOV ametniku pöördumine (sh väidetav töökius), 25.02.2025](https://fin.ee/sites/default/files/documents/2025-03/KOV%20ametniku%20p%C3%B6%C3%B6rdumine%20oma%20%C3%B5iguste%20kaitsmise%20osas%20KOV%20ametiasutuses%20tekkinud%20t%C3%B6%C3%B6vaidluses%20%28sh%20v%C3%A4idetav%20t%C3%B6%C3%B6kius%29.%2025.02.%202025_0.pdf);
@@ -515,9 +516,8 @@ eeltäidetud. See on ptk 8.2 p 4 „teine osa“.
 - **Õigus:** sama värav mis tugikontaktidel. Lugeda saab iga liige, muuta ainult haldur; mooduli puudumisel
   haldusõigust ei ole.
 
-**Lahti:** abipalve päris adressaat (TO-6). Toeavalduse saatmine juhile või tugikontaktile on olemas (`/org/<id>/tugi`).
-Tugikontakte ja juhiseoseid saab aga määrata ainult API kaudu, liidest ei ole. Tööheaolu abipalve ei ole veel
-sellega ühendatud. „Võimaldab × vajan“ koond jääb ootama esimest KOV-i koondit (k ≥ 5).
+**Järg:** abipalve päris adressaat (TO-6) ja tugikontaktide haldus on ptk 8.14. „Võimaldab × vajan“ koond jääb
+ootama esimest KOV-i koondit (k ≥ 5).
 
 **Kontroll.** `npx prisma validate`, migratsioon kohalikus baasis, sihitud eslint, `npm run i18n:check`, `npm test`
 (65 läbi, 0 kukkus). Funktsioonide kutsega päris kohaliku baasiga: vigane sisend (5 juhtu) annab 400, salvestus,
@@ -529,3 +529,33 @@ vorm oli eeltäidetud, tulemus näitas kahte meedet koos juhisega ja salvestus a
 `measures.gap.health_days`. Pärast haldusõiguse äravõtmist andis POST 403, loend jäi loetavaks ja „Muuda“ kadus.
 Sünteetiline asutus, kasutaja ja auditiread kustutati. **Kontrollimata:** EN/RU kuva brauseris ja tootmine
 (organisatsioonikiht on tootmises lipu taga).
+
+### 8.14. Teostus 20.10: abipalve päris adressaat (TO-6) ja tugikontaktide haldus
+
+Toeavalduse saatmine juhile või tugikontaktile oli organisatsiooni tugivaates (`/org/<id>/tugi`) juba olemas, aga
+tugikontakte sai määrata ainult API kaudu ja Tööheaolu abipalve oli ainult kopeeritav tekst.
+
+- **Tugikontaktide haldus:** lahtris „Asutuse tugi“ on haldurile (`SUPPORT_CONTACT_ADMIN`) nupp „Tugikontaktid“.
+  Vaade on kaks sammu: praegused kontaktid (lõpetamine küsib teist vajutust) ja uue lisamine (liik: alternatiivne
+  tugikontakt või turvakontakt; liige nime või ametinimetuse järgi, e-posti ei näidata). Muudatus jõustub kohe ja on
+  auditis, nagu varem API kaudu. Olemasolev kaitse jääb: viimast alternatiivset tugiteed ei saa aktiivse
+  professionaalse toe mooduliga eemaldada (§5.8) ja liides ütleb selle põhjuse.
+- **Abipalve sild:** kui Tööheaolu „Koosta abipalve“ valitakse ja kasutaja asutuses on vähemalt üks tugitee
+  (`GET /api/wellbeing/support-organizations`), ütleb paneel seda. Kinnitatud ja muutmata abipalve juurde tuleb nupp
+  „Saada asutuse kaudu“. See avab `/org/<id>/tugi?mustand=<id>`. Server loeb ainult kasutaja ENDA kinnitatud
+  abipalve mustandi (võõras, kinnitamata või muu liigi mustand jäetakse vaikselt kõrvale), saatmine avaneb
+  kokkuvõttega eeltäidetult ja aadressist eemaldatakse mustandi viide. Saaja valib ja saatmise kinnitab inimene ise,
+  juhti ei eelvalita. Toeavaldusse läheb ainult kinnitatud tekst; `sourceDraftId` on omaniku ja auditi viide, mida
+  saaja ei näe (nagu enne).
+- Juhimemo jääb kopeeritavaks. Juhiseoseid (kes on kelle otsene juht) saab endiselt määrata ainult API kaudu.
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`, `npm test` (65 läbi, 0 kukkus). Funktsioonide kutsega päris
+kohaliku baasiga: kandidaatidel e-posti ei ole, ilma tugiteeta silda ei ole, kontakti lisamise järel avaneb sild
+teisele liikmele, aga mitte kontaktile endale; sama liigi kordus 409, viimane alternatiivne tee 409, turvakontakti
+lõpetamine. Brauseris kahe sünteetilise liikmega asutuses (1536 × 640 ja 390 × 844): kontakti lisamine ja lõpetamine,
+§5.8 keeld koos põhjusega. Nädala peegeldus → „Koosta abipalve“ näitas asutuse teadet, nupp ilmus alles pärast
+kinnitamist, asutuse tugivaade avanes saatmisega („Kellele“, teade, eeltäidetud kokkuvõte, `?mustand` eemaldatud),
+saatmine lõi toeavalduse saajarolliga `ALTERNATE_SUPPORT`, snapshot'is ainult `summary` ja `sourceDraftId` viitab
+abipalvele. Pärast uuesti laadimist oli ees „Saadetud“, mitte uus saatmine. Vale mustandi ID andis tavalise loendi.
+Sünteetilised kasutajad, asutus, toeavaldus ja auditiread kustutati. **Kontrollimata:** EN/RU kuva brauseris ja
+tootmine (organisatsioonikiht on tootmises lipu taga).
