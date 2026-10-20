@@ -464,8 +464,9 @@ export default function AdminWellbeingClient() {
 
       <section aria-live="polite">
         <div>
-          <MetricCard label="Valim" value={dataset?.sampleSize ?? "-"} />
-          <MetricCard label="Kirjeid" value={dataset?.recordCount ?? "-"} />
+          {/* Summutatud koond ei anna täpset valimit (`aggregate.js`). */}
+          <MetricCard label="Valim" value={dataset?.sampleSize ?? (dataset?.sampleSizeWithheld ? `< ${dataset.minimumGroupSize}` : "-")} />
+          <MetricCard label="Kirjeid" value={dataset?.recordCount ?? (dataset?.sampleSizeWithheld ? `< ${dataset.minimumGroupSize}` : "-")} />
           <MetricCard label="Miinimumgrupp" value={dataset?.minimumGroupSize ?? "-"} />
           <MetricCard label="Staatus" value={dataset?.suppressed ? "Summutatud" : "Avatud"} tone={dataset?.suppressed ? "warning" : "ok"} />
         </div>

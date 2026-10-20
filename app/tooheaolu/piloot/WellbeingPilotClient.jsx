@@ -66,6 +66,12 @@ const copy = {
 const aggregationLevelOptions = ["role_group", "organization", "municipality"];
 
 
+/* Summutatud koond ei anna täpset valimit (`aggregate.js`): näita „< k“, mitte kriipsu. */
+function sampleValue(dataset, key) {
+  if (!dataset) return "-";
+  return dataset[key] ?? (dataset.sampleSizeWithheld ? `< ${dataset.minimumGroupSize}` : "-");
+}
+
 function formatMetricValue(metric) {
   const value = Number(metric?.metricValue || 0);
   if (String(metric?.metricKey || "").endsWith(".share")) {
@@ -273,10 +279,14 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
               <Input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder={isAdmin ? "nt child_protection" : "piloodi rolligrupp"} disabled={!isAdmin} />
             )}
           </label>
-          <label>
-            {copy.workflowType}
-            <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
-          </label>
+          {/* Töövoo filter on ainult adminil: vaataja saaks väikese töövoo teistest
+              lahutades tagasi arvutada (`pilotAccess.js`, ptk 8.22). */}
+          {isAdmin ? (
+            <label>
+              {copy.workflowType}
+              <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
+            </label>
+          ) : null}
           <label>
             {copy.period}
             <Dropdown
@@ -314,8 +324,8 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
 
       <section className="feature-section wellbeing-pilot__metrics" aria-live="polite">
         <div>
-          <MetricCard label={copy.sampleSize} value={dataset?.sampleSize ?? "-"} />
-          <MetricCard label={copy.recordCount} value={dataset?.recordCount ?? "-"} />
+          <MetricCard label={copy.sampleSize} value={sampleValue(dataset, "sampleSize")} />
+          <MetricCard label={copy.recordCount} value={sampleValue(dataset, "recordCount")} />
           <MetricCard label={copy.minimumGroupSize} value={dataset?.minimumGroupSize ?? "-"} />
           <MetricCard label={copy.status} value={dataset?.suppressed ? copy.suppressed : copy.open} tone={dataset?.suppressed ? "warning" : "ok"} />
         </div>

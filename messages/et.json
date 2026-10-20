@@ -10352,6 +10352,8 @@
       "nothing_to_update": "Muuta ei ole midagi.",
       "period_invalid": "Periood ei sobi. Vali periood loendist.",
       "period_free_form_forbidden": "Vaba kuupäevavahemikku ei saa kasutada. Vali periood loendist.",
+      "workflow_filter_forbidden": "Töövoo kaupa koondit piloodis vaadata ei saa, sest väikese töövoo saaks teistest lahutades tagasi arvutada.",
+      "analysis_unit_forbidden": "Piloodis saab koondit vaadata ainult inimese kaupa (üks kirje inimese ja töövoo kohta).",
       "viewer_email_required": "Sisesta vaataja e-posti aadress.",
       "viewer_not_found": "Selle e-posti aadressiga kasutajat ei leitud."
     },

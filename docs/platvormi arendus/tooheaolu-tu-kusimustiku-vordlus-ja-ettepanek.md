@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); kokkulepe iga teguri jaoks (ptk 8.21); arenguvajadus ja kutse jäävad S6-le
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); kokkulepe iga teguri jaoks (ptk 8.21); koondi kaitse: kattuvad viilud ja harv valim (ptk 8.22, perioodide otsus lahti); arenguvajadus ja kutse jäävad S6-le
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -797,3 +797,54 @@ dokumenteerimist. Kohalikus baasis sama sünteetiline piloot nagu ptk 8.20: esim
 ja juhtumite jaotus“. Kokku tuli üheksa kokkulepet, mille hulgas olid uued taastumise ja supervisiooni kokkulepped.
 Sünteetilised andmed kustutati. **Kontrollimata:** tootmine; kokkulepete sõnastust ei ole sotsiaaltöö praktik üle
 vaadanud.
+
+### 8.22. Koondi kaitse 20.10: kattuvad viilud (A3) ja harv valim (A5)
+
+V2 analüüs (`fable-5-tooheaolu-v2-iganadalane-pusiruum.md` ptk 4) nimetas viis auku. Seis 20.10: A1 (kirjepõhised
+jaotused) on suletud inimese ühikuga, A2 (lahutamine üldsummast) lahtrisummutuse teise kihiga ja A5 (harv sündmus)
+lahtrisummutuse esimese kihiga. A3 (kitsaste viilude kombineerimine) oli osaliselt lahti ja A4 (täpsed arvud) on
+lahti. Seekord kontrollisin A3 piloodi vaataja päringuruumi järgi: millised kaks lubatud päringut annavad vahena
+väikese rühma.
+
+**Leitud ja suletud** (`lib/wellbeing/pilotAccess.js`, `aggregate.js`):
+
+- **Töövoo filter.** „Kõik töövood“ miinus teiste töövoogude päringud annab ülejäänud töövoo lahtrid täpselt, ka siis,
+  kui seda töövoogu kasutas üks inimene ja tema enda päring on summutatud. Võltsandmetega näide: kuus inimest,
+  kiirkontroll ja nädala peegeldus; Taastumise tööriista kasutas üks. Vähene taastumine: kõik 12, kiirkontroll 6,
+  peegeldus 5, vahe 1. Nii selgus ainsa Taastumise kasutaja vastus. Töövägivald ja Raske juhtum ongi tööriistad, mida
+  kasutab vähe inimesi. **Otsus:** piloodi vaataja töövoo filtrit ei saa (403
+  `wellbeing.pilot.workflow_filter_forbidden`). Töövoogude arvud ja kõik tegurid teemade kaupa on aruandes niigi
+  olemas. Admin saab filtrit edasi kasutada.
+- **Ühik `record`.** „Kõik kirjed“ miinus „viimane kirje inimese kohta“ on nende inimeste varasemad kirjed, kes
+  vastasid mitu korda. Kui selliseid on üks, on see tema. **Otsus:** vaataja näeb ainult inimese ühikut, mis on niigi
+  vaikimisi (403 `wellbeing.pilot.analysis_unit_forbidden`). Admin saab mõlemat.
+- **Summutatud vastus ütles täpse valimi.** „Valim 2“ töövoo ja kuu kohta oli ise avaldus („kaks inimest täitis
+  oktoobris Töövägivalla vormi“), kuigi ühtki lahtrit ei avaldatud. Nüüd on summutatud vastuses valim, kirjete arv ja
+  ühikute arv `null` ja kuvatakse „< k“ (piloodi ja admini lehel, HTML-is ja XLSX-is). Null jääb täpseks, sest
+  „kedagi ei ole“ ei kirjelda kedagi. Avaldatud koondi valim on täpne nagu enne.
+
+**Lahti, vajab omaniku otsust: kattuvad perioodid.** Kuu, kvartal, aasta ja „kõik“ on sisestikku. Inimese ühik ei
+aita. Võltsandmetega näide: oktoobris kuus vastajat, viiel vähe taastumist; novembris vastas ainult üks, tema
+novembri päring on summutatud. Kvartal 6 miinus oktoober 5 on 1, nii et selgus novembri ainsa vastaja vastus. Sama
+kehtib sama perioodi kohta kahel eri päeval (vahepeal lisandunud kirje) ja koondist loobumise korral (TO-3 kehtib
+arvutamise hetkel). Lahtrisummutus kaitseb ühte päringut, mitte kahe päringu vahet. Valikud:
+
+1. **Lõppenud kvartali hetktõmmis:** vaataja näeb ainult lõppenud kvartalite aruandeid, mis arvutatakse üks kord ja
+   külmutatakse. See sulgeb ka ajas lahutamise ja sobib ideede 21 perioodilise KOV-i aruandega. Vajab uut tabelit
+   (migratsioon) ja on suurem töö.
+2. **Ainult kvartalid, elav arvutus:** sulgeb kuu, kvartali, aasta ja „kõik“ kattumise. Ajas lahutamine jääb.
+3. **Müra** (sama lahter annab alati sama nihke): kõik perioodid jäävad, arvud on ±1–2 ebatäpsed.
+4. **Jätta, nagu on:** jääkrisk on kirjas ja audit (O-WB-2) näitab, kes mida vaatas.
+
+Päris piloodi skoopi veel ei ole ja avamisvärav laseb koondi juurde ainult admini, seega praegu see risk andmeid ei
+puuduta.
+
+**Teadlikult tegemata:** A4 (vahemikud täpsete arvude asemel). Summutuse ja ülaltoodud piirangutega on täpne arv
+tavapärane. Vahemik ei sulge kattuvate päringute vahet, sest vahemike vahe on samuti kitsas.
+
+**Kontroll.** Sihitud eslint, `npm run i18n:check`, `tests/server-message-keys.test.mjs` (4 läbi). Funktsiooni kutsega
+võltsandmebaasiga: töövoo rünnak annab koondi tasemel 1 (värav peab olema päringu tasemel). Summutatud valim on
+`null`, tühi valim 0 ja avaldatud valim täpne; aruande kokkuvõttes ei ole valimi arvu; HTML ja XLSX näitavad „< 5“.
+Vaataja ja pärandvaataja töövoo filter ning vaataja `record` ühik annavad 403. Admin saab mõlemat, vigane ühik annab
+endiselt 400. Kvartali ja kuu rünnak annab 1 ka pärast seda muudatust (otsus on lahti). Brauseris kontrollimata:
+avamisvärav laseb lehele ainult admini, seega vaataja vaadet (töövoo välja peitmist) sai kontrollida ainult koodist.

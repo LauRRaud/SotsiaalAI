@@ -10352,6 +10352,8 @@
       "nothing_to_update": "There is nothing to change.",
       "period_invalid": "The period is not valid. Choose a period from the list.",
       "period_free_form_forbidden": "A free date range cannot be used. Choose a period from the list.",
+      "workflow_filter_forbidden": "The pilot overview cannot be filtered by workflow, because a small workflow could be worked out by subtracting the others.",
+      "analysis_unit_forbidden": "In the pilot, the overview can only be viewed per person (one record per person and workflow).",
       "viewer_email_required": "Enter the viewer's e-mail address.",
       "viewer_not_found": "No user was found with this e-mail address."
     },
