@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
 import {httpHarness,recorder} from './server-http-support.mjs';
