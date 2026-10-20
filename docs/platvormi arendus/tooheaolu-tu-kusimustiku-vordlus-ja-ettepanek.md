@@ -1,4 +1,4 @@
-STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); arenguvajadus ja kutse jäävad S6-le
+STATUS: võrdlus (ptk 1–7) ja arendusettepanek (ptk 8); järjekorra sammud 1–7 teostatud 20.10 (ptk 8.6–8.12), lahtised otsused tehtud omaniku volitusel (ptk 8.11); samm 8: asutuse tugimeetmed, abipalve ja juhimemo päris adressaat (TO-6) ning tugiteede haldus teostatud 20.10 (ptk 8.13–8.15); Ülevaate „Mis toimib“ ja „Mida tahaksin õppida“ (ptk 8.16); „võimaldab × vajan“ piloodi aruandes (ptk 8.18); tugevused („Mis toimib“) sisepiloodi koondis ja aruandes (ptk 8.19); piloodi aruande tegurite nimed ja teemad (ptk 8.20); kokkulepe iga teguri jaoks (ptk 8.21); arenguvajadus ja kutse jäävad S6-le
 
 # TÜ tööheaolu küsimustik ja platvormi Tööheaolu: võrdlus küsimuste kaupa
 
@@ -772,3 +772,28 @@ sotsiaalne: 1 tugevus, psühholoogiline: 4 tegurit ja 1 tugevus, professionaalne
 element ei ulatunud aruandest välja. HTML-is oli neli teemat ja toorvõtmeid ei olnud, XLSX-is leht „Teemad“ ja
 nimetused. Sünteetilised kasutajad, asutus, skoop ja auditiread kustutati. **Kontrollimata:** tootmine; EN/RU (piloodi
 leht on ainult eesti keeles).
+
+### 8.21. Teostus 20.10: piloodi aruande kokkulepped iga teguri jaoks
+
+**Leitud puudus.** Soovitatud kokkuleppeid oli kaheksal teemal (dokumenteerimine, tugi, katkestused, töövälise
+kättesaadavuse piir, ületunnid, paindlikkus, tugimeetmed, töövahendid ja raske juhtum). Kõige sagedasematel teguritel
+ei olnud ühtki: töömaht, taastumine, emotsionaalne koormus, ebaselged prioriteedid, töö mõte ja kliendi vägivald.
+Esimene kokkulepe oli alati loendi esimene sobiv reegel, mitte suurim mure. Sünteetilises piloodis olid fookuses
+töömaht ja taastumine (10/20), aga esimene kokkulepe käsitles dokumenteerimist (5/20).
+
+**Lahendus** (`lib/wellbeing/pilotReport.js`). Uued kokkulepped: töövägivalla ennetus ja järeltugi, töömahu ja
+juhtumite jaotuse ülevaatus, pauside ja taastumise kaitse, regulaarne supervisioon või kovisioon, uue töötaja
+sisseelamise tugi, prioriteetide, rollide ja vastutuse täpsustus, töötajate kaasamine töökorralduse otsustesse,
+juhtumi seisu ja info ühine nähtavus, rollid ja infovahetus koostööpartneritega ning töö mõtte ja tunnustamise arutelu.
+Senised reeglid loevad nüüd ka sama teema teisi tegureid: katkestuste reegel ka Katkestuste töövoo tegureid,
+dokumenteerimise reegel ka Tööprotsesside tegureid. Kokkulepped reastatakse tõendi järgi: suurim avaldatud lahter, mis
+reegli käivitas. Viigi korral tuleb ohutus enne töökorraldust. Töövägivalla kokkuleppes on lause, et kliendi vägivalla
+oht kuulub töökeskkonna riskianalüüsi; seadust ei tsiteerita. Uut arvu ei teki, kokkulepe sünnib ainult avaldatud
+lahtrist.
+
+**Kontroll.** Sihitud eslint. Funktsiooni kutsega: kõik 136 tegurit annavad üksi vähemalt ühe kokkuleppe (ka
+kiirkontroll 1.0 ühine tugi). Suurima lahtri kokkulepe on esimene ja viigi korral tuleb töövägivald enne
+dokumenteerimist. Kohalikus baasis sama sünteetiline piloot nagu ptk 8.20: esimene kokkulepe on „Vaadata üle töömaht
+ja juhtumite jaotus“. Kokku tuli üheksa kokkulepet, mille hulgas olid uued taastumise ja supervisiooni kokkulepped.
+Sünteetilised andmed kustutati. **Kontrollimata:** tootmine; kokkulepete sõnastust ei ole sotsiaaltöö praktik üle
+vaadanud.
