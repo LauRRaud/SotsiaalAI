@@ -74,3 +74,14 @@ kolmes seisus:
   lõik 1 korral. Enne oli tulemus samuti 3/4, eesmärk oli vähemalt 4.
 - **Eelregistreeritud otsus:** H3 ei täitunud põhjusel, mida muudatus võib põhjustada (valiku sisend), seega `revert_all`.
   Mõõdetavat kasu müra piiridest kõrgemal ei ole. Otsus on omaniku käes, see on allpool.
+
+## Omaniku otsus (21.10.2026): valikumudel loeb vana kaarti, jälg jääb
+
+- Eelregistreeritud otsus oli tagasivõtmine. Omanik valis „Tagasi, jälg jääb“.
+- **search-assist-20** on search-assist-18 tekst. Plaani ja valiku päring on baitideni sama mis search-assist-18-l
+  (kohalikult võrreldud).
+- `section`, `source_type` ja `authority` arvutatakse edasi, aga need on kaardi kõrval mitteloetleva omadusena
+  `card`. Valikumudeli päringu JSON jätab need välja.
+- Pöörde kandidaadikirje (`candidateRecord`) ja admini jälg loevad need sealt. Admin näeb iga kandidaadi alampealkirja,
+  liiki ja väljaandjat. Valikumudel ei näe.
+- `documentSources` jääb: üks päring dokumendi ja protsessi kohta, ainult jälje jaoks.
