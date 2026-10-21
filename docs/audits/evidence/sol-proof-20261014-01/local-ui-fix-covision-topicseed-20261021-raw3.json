@@ -1,0 +1,116 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy at localhost:3002, code = fix worktree with the 21.10 fixes, database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "topic_seed_name_blocked_with_flagged_words",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "status": 422,
+        "messageKey": "topic_seeds.errors.direct_identifier_detected",
+        "privacyMatches": [
+          "SOL TEST",
+          "TEST Mari",
+          "Mari Maasikas"
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "topic_seed_institution_name_passes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "status": 200,
+        "messageKey": null,
+        "before20_10": "422 PERSON_NAME for \"Eesti Töötukassaga\""
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "agreement_waits_for_settings_with_reason",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "agreementDisabled": true,
+        "reasonShown": true,
+        "before20_10": "enabled; pressing it answered 409 \"Kovisiooni salvestamine ebaõnnestus.\""
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "agreement_enabled_after_settings_and_saves",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "agreementEnabled": false,
+        "acceptStatus": null,
+        "caseBringerPressed": [
+          "/Kinnitan oma rolli/",
+          "/Juhtumi piir ja anonüümsus on õiged/",
+          "/Kinnita seaded/"
+        ]
+      }
+    }
+  ],
+  "api": [
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds/<id>/queue",
+      "status": 422
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds/<id>/queue",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds/<id>/covision",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/covision/<id>/session",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/covision/<id>/session/actions",
+      "status": 200
+    }
+  ],
+  "covisionStartKeys": [
+    "ok",
+    "seedId",
+    "covisionCaseId",
+    "created",
+    "session"
+  ],
+  "invite": {
+    "status": 200,
+    "caseFound": true
+  },
+  "caseBringerPressed": [
+    "/Kinnitan oma rolli/",
+    "/Juhtumi piir ja anonüümsus on õiged/",
+    "/Kinnita seaded/"
+  ]
+}

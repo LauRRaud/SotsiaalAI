@@ -1,0 +1,22 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy at localhost:3002, code = fix worktree with the 21.10 fixes, database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_list_shows_opened_for_organisation",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real pre-inquiry page of the synthetic client in the isolated local copy",
+      "actual": {
+        "row": "SOL TEST UI avamise tähendus asutus avas 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim Ava SOL TEST UI saatmine asutus avas 20.10.2026 SOL TEST — sünteetilin",
+        "before20_10": "vastu võetud 20.10.2026"
+      }
+    }
+  ],
+  "listText": "Eelpöördumine Samm 1/1: Minu eelpöördumised Minu eelpöördumised Milliseid eelpöördumisi näidata Saadetud · 3 Mustandid · 0 Arhiiv · 0 SOL TEST jagamine pärast vastuvõttu vastu võetud 21.10.2026 SOL TEST Spetsialist Ava SOL TEST UI avamise tähendus asutus avas 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim Ava SOL TEST UI saatmine asutus avas 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim Ava Uus eelpöördumine",
+  "rawRuns": {
+    "local-ui-fix-sender-label-20261021-raw.json": "harness: the client list opens from the \"Minu eelpöördumised\" button, which the first run did not press"
+  }
+}

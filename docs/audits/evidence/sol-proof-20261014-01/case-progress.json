@@ -1,14 +1,14 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-20T16:58:23.462Z",
+  "updated_at": "2026-10-21T08:34:23.715Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 355,
-  "passed_variants": 339,
-  "failed_variants": 14,
+  "observed_variants": 370,
+  "passed_variants": 355,
+  "failed_variants": 13,
   "blocked_variants": 2,
-  "server_fixture_variants": 64,
+  "server_fixture_variants": 71,
   "case_progress": [
     {
       "case_id": "ENV-01",
@@ -44,8 +44,8 @@
       "case_id": "FLOW-01",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 11,
-      "passed_variants": 11,
+      "observed_variants": 14,
+      "passed_variants": 14,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -114,8 +114,8 @@
       "case_id": "FLOW-08",
       "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 2,
-      "passed_variants": 1,
+      "observed_variants": 4,
+      "passed_variants": 3,
       "failed_variants": 1,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -154,8 +154,8 @@
       "case_id": "OPS-04",
       "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 2,
-      "passed_variants": 1,
+      "observed_variants": 5,
+      "passed_variants": 4,
       "failed_variants": 1,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -174,8 +174,8 @@
       "case_id": "OPS-06",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 4,
-      "passed_variants": 4,
+      "observed_variants": 5,
+      "passed_variants": 5,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -232,11 +232,11 @@
     },
     {
       "case_id": "DATA-04",
-      "status": "FAIL",
+      "status": "NOT_RUN",
       "whole_case_complete": false,
       "observed_variants": 7,
-      "passed_variants": 6,
-      "failed_variants": 1,
+      "passed_variants": 7,
+      "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -404,8 +404,8 @@
       "case_id": "TOOLS-03",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 43,
-      "passed_variants": 43,
+      "observed_variants": 49,
+      "passed_variants": 49,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -5400,16 +5400,29 @@
     {
       "case_id": "DATA-04",
       "variant_id": "recipient_views_consistent_after_author_erasure",
-      "status": "FAIL",
+      "status": "PASS",
       "evidence_mode": "CURRENT_RUNTIME",
       "entrypoint": "real casework board and pre-inquiry work queue in the isolated local copy",
       "actual": {
-        "board": "Saabunud eelpöördumised lists one item: Eelpöördumine 20.10.26, 13:59, linking to /eelpoordumised",
-        "queue": "Tööjärg shows Uued 0, Minu töös 0, Arhiiv 0",
-        "database": "the only inquiry addressed to the specialist is cmvgkmfwz0007g8tsfsxs4676: SENT, INTERNAL, topic null, empty situation, authorErasedAt set (DATA-04 deletion test)",
-        "api": "getVisiblePreInquiry still returned the record with authorErasedAt for the recipient (local-data04-deletion.json)"
+        "queueAfterLoading": "Uued · 1, Minu töös · 0, Arhiiv · 0",
+        "row": "Kustutatud kasutaja pöördumine · SOL TEST Spetsialist · saabus 20.10.2026",
+        "board": "counts the same item"
       },
-      "reading": "After the author deleted the account, the recipient work queue no longer shows the inquiry at all and gives no erasure notice, while the casework board still counts it and links to the queue where it is absent. Whether a recipient should keep the erased shell is a product decision; the inconsistency between the three surfaces is the finding.",
+      "first_run": {
+        "status": "FAIL",
+        "actual": {
+          "board": "Saabunud eelpöördumised lists one item: Eelpöördumine 20.10.26, 13:59, linking to /eelpoordumised",
+          "queue": "Tööjärg shows Uued 0, Minu töös 0, Arhiiv 0",
+          "database": "the only inquiry addressed to the specialist is cmvgkmfwz0007g8tsfsxs4676: SENT, INTERNAL, topic null, empty situation, authorErasedAt set (DATA-04 deletion test)",
+          "api": "getVisiblePreInquiry still returned the record with authorErasedAt for the recipient (local-data04-deletion.json)"
+        },
+        "reading": "After the author deleted the account, the recipient work queue no longer shows the inquiry at all and gives no erasure notice, while the casework board still counts it and links to the queue where it is absent. Whether a recipient should keep the erased shell is a product decision; the inconsistency between the three surfaces is the finding."
+      },
+      "reclassified": {
+        "date": "2026-10-21",
+        "by": "local-ui-casework-board-recheck.json",
+        "reason": "harness timing: the first run read the work queue while \"Laen eelpöördumisi...\" was still on the page (its own aria snapshot shows it). Read after loading, the queue shows \"Uued · 1\" with the row \"Kustutatud kasutaja pöördumine · SOL TEST Spetsialist · saabus 20.10.2026\", the same item the board counts; the server list does not filter erased authors (recipientVisiblePreInquiryWhere). No product change."
+      },
       "evidence_file": "local-ui-casework-board.json",
       "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9"
     },
@@ -7543,6 +7556,220 @@
       },
       "evidence_file": "server-rag-chat-50.json",
       "serverRelease": "12cdf6cc (deploy run finished 2026-10-20 15:53 UTC; no deploy between the first question 16:29 UTC and the end 16:54 UTC; later commits 2f7ab419 and e7fd0d58 are documents only)"
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "network_share_from_accepted_ready_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "sourceStatus": "READY",
+        "error": null,
+        "shareStatus": "DRAFT",
+        "before20_10": "network_share.source_inactive (server-baseline.json)"
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "network_share_refused_from_archived_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "error": "network_share.source_inactive"
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_email_respects_disabled_preference",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "result": {
+          "sent": false,
+          "reason": "email_disabled"
+        },
+        "transportCalls": 0
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_email_unset_preference_treated_as_off",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "result": {
+          "sent": false,
+          "reason": "email_disabled"
+        },
+        "transportCalls": 0,
+        "rule": "same as optional notifications (lib/notifications.js: only true sends)"
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_email_sent_neutral_when_enabled",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "result": {
+          "sent": true
+        },
+        "transportCalls": 1,
+        "subject": "Uus eelpöördumine Sotsiaal.pro platvormil",
+        "contentFree": true
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "personal_recipient_accept_shows_accepted",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "senderState": "accepted"
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "organisation_open_shows_opened_not_accepted",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "inquiry": "cmvgnfwiv001008ts4oq2iux1",
+        "inboxStatuses": [
+          "RECEIVED"
+        ],
+        "senderState": "opened",
+        "before20_10": "accepted (\"vastu võetud\")"
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "payment_email_script_reports_closed_gate",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "node scripts/payment-emails.mjs against the local copy (closed gate, dummy key, dry run)",
+      "actual": {
+        "status": 503,
+        "body": {
+          "error": "platform_not_open"
+        },
+        "log": "blocked by the closed platform gate (platform_not_open) — the job did not run",
+        "exitCode": 1,
+        "before20_10": "logged \"worker disabled — nothing to do\" and exited 0"
+      },
+      "evidence_file": "local-fix-verify-20261021.json"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "topic_seed_name_blocked_with_flagged_words",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "status": 422,
+        "messageKey": "topic_seeds.errors.direct_identifier_detected",
+        "privacyMatches": [
+          "SOL TEST",
+          "TEST Mari",
+          "Mari Maasikas"
+        ]
+      },
+      "evidence_file": "local-ui-fix-covision-topicseed-20261021.json"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "topic_seed_institution_name_passes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "status": 200,
+        "messageKey": null,
+        "before20_10": "422 PERSON_NAME for \"Eesti Töötukassaga\""
+      },
+      "evidence_file": "local-ui-fix-covision-topicseed-20261021.json"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "agreement_waits_for_settings_with_reason",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "agreementDisabled": true,
+        "reasonShown": true,
+        "before20_10": "enabled; pressing it answered 409 \"Kovisiooni salvestamine ebaõnnestus.\""
+      },
+      "evidence_file": "local-ui-fix-covision-topicseed-20261021.json"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "agreement_enabled_after_settings_and_saves",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "agreementEnabled": true,
+        "acceptStatus": 200,
+        "caseBringerPressed": [
+          "/Kinnitan oma rolli/",
+          "/Juhtumi piir ja anonüümsus on õiged/",
+          "/Kinnita seaded/"
+        ]
+      },
+      "evidence_file": "local-ui-fix-covision-topicseed-20261021.json"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "close_final_press_locked_without_title",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision close page in the isolated local copy",
+      "actual": {
+        "finalButtonFound": true,
+        "locked": true,
+        "reasonShown": true,
+        "before20_10": "two presses possible, then returned to step 2"
+      },
+      "evidence_file": "local-ui-fix-supervision-close-20261021.json"
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "close_with_title_enabled_and_closes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision close page in the isolated local copy",
+      "actual": {
+        "enabled": true,
+        "closeStatus": 200
+      },
+      "evidence_file": "local-ui-fix-supervision-close-20261021.json"
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "client_list_shows_opened_for_organisation",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real pre-inquiry page of the synthetic client in the isolated local copy",
+      "actual": {
+        "row": "SOL TEST UI avamise tähendus asutus avas 20.10.2026 SOL TEST — sünteetiline vastuvõtutiim Ava SOL TEST UI saatmine asutus avas 20.10.2026 SOL TEST — sünteetilin",
+        "before20_10": "vastu võetud 20.10.2026"
+      },
+      "evidence_file": "local-ui-fix-sender-label-20261021.json"
     }
   ]
 }

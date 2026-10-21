@@ -1,38 +1,51 @@
 {
-  "runId": "sol-proof-20261014-01",
-  "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
-  "checkpointDate": "2026-10-20",
-  "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser; synthetic specialist session",
-  "checks": [
-    {
-      "case_id": "DATA-04",
-      "variant_id": "recipient_views_consistent_after_author_erasure",
-      "status": "FAIL",
-      "evidence_mode": "CURRENT_RUNTIME",
-      "entrypoint": "real casework board and pre-inquiry work queue in the isolated local copy",
-      "actual": {
-        "board": "Saabunud eelpöördumised lists one item: Eelpöördumine 20.10.26, 13:59, linking to /eelpoordumised",
-        "queue": "Tööjärg shows Uued 0, Minu töös 0, Arhiiv 0",
-        "database": "the only inquiry addressed to the specialist is cmvgkmfwz0007g8tsfsxs4676: SENT, INTERNAL, topic null, empty situation, authorErasedAt set (DATA-04 deletion test)",
-        "api": "getVisiblePreInquiry still returned the record with authorErasedAt for the recipient (local-data04-deletion.json)"
-      },
-      "reading": "After the author deleted the account, the recipient work queue no longer shows the inquiry at all and gives no erasure notice, while the casework board still counts it and links to the queue where it is absent. Whether a recipient should keep the erased shell is a product decision; the inconsistency between the three surfaces is the finding."
-    }
-  ],
-  "screens": [
-    {
-      "label": "incoming_block",
-      "url": "/toolaud/juhtumitoo",
-      "aria": "region \"Avatud paneel\":\n    - heading \"Juhtumitöö laud\" [level=1]\n    - paragraph: \"Osa 1/10: Saabunud eelpöördumised\"\n    - region \"Saabunud eelpöördumised\":\n      - heading \"Saabunud eelpöördumised\" [level=3]\n      - list:\n        - listitem:\n          - link \"Eelpöördumine 20.10.26, 13:59\":\n            - /url: /eelpoordumised"
+ "runId": "sol-proof-20261014-01",
+ "serverRelease": "f15b4866f9a3305c1d9de5ee93fcd3cdbfc76ff9",
+ "checkpointDate": "2026-10-20",
+ "environment": "isolated local copy at localhost:3002 (code 03960df1), database sol_proof_20261020_local; headless browser; synthetic specialist session",
+ "checks": [
+  {
+   "case_id": "DATA-04",
+   "variant_id": "recipient_views_consistent_after_author_erasure",
+   "status": "PASS",
+   "evidence_mode": "CURRENT_RUNTIME",
+   "entrypoint": "real casework board and pre-inquiry work queue in the isolated local copy",
+   "actual": {
+    "queueAfterLoading": "Uued · 1, Minu töös · 0, Arhiiv · 0",
+    "row": "Kustutatud kasutaja pöördumine · SOL TEST Spetsialist · saabus 20.10.2026",
+    "board": "counts the same item"
+   },
+   "first_run": {
+    "status": "FAIL",
+    "actual": {
+     "board": "Saabunud eelpöördumised lists one item: Eelpöördumine 20.10.26, 13:59, linking to /eelpoordumised",
+     "queue": "Tööjärg shows Uued 0, Minu töös 0, Arhiiv 0",
+     "database": "the only inquiry addressed to the specialist is cmvgkmfwz0007g8tsfsxs4676: SENT, INTERNAL, topic null, empty situation, authorErasedAt set (DATA-04 deletion test)",
+     "api": "getVisiblePreInquiry still returned the record with authorErasedAt for the recipient (local-data04-deletion.json)"
     },
-    {
-      "label": "item_open",
-      "url": "/eelpoordumised",
-      "aria": "region \"Avatud paneel\":\n    - heading \"Eelpöördumine\" [level=1]\n    - paragraph: Laen eelpöördumisi...\n    - paragraph: \"Samm 1/2: Tööjärg\"\n    - region \"Tööjärg\":\n      - heading \"Tööjärg\" [level=3]\n      - radiogroup \"Milliseid pöördumisi näidata\":\n        - text: Milliseid pöördumisi näidata\n        - radio \"Uued · 0\" [checked]\n        - radio \"Minu töös · 0\"\n        - radio \"Arhiiv · 0\"\n      - paragraph: Sulle adresseeritud eelpöördumised ilmuvad siia."
-    }
-  ],
-  "limits": [
-    "The other nine board blocks (contacts, preparations, STAR2 drafts and history, missing information, network work, method mirror, covision preparation) were empty for this synthetic specialist and were not filled through their own modules in this run; TOOLS-06 manual STAR preparation was tested at API level on 14.10."
-  ],
-  "newPaidCalls": false
+    "reading": "After the author deleted the account, the recipient work queue no longer shows the inquiry at all and gives no erasure notice, while the casework board still counts it and links to the queue where it is absent. Whether a recipient should keep the erased shell is a product decision; the inconsistency between the three surfaces is the finding."
+   },
+   "reclassified": {
+    "date": "2026-10-21",
+    "by": "local-ui-casework-board-recheck.json",
+    "reason": "harness timing: the first run read the work queue while \"Laen eelpöördumisi...\" was still on the page (its own aria snapshot shows it). Read after loading, the queue shows \"Uued · 1\" with the row \"Kustutatud kasutaja pöördumine · SOL TEST Spetsialist · saabus 20.10.2026\", the same item the board counts; the server list does not filter erased authors (recipientVisiblePreInquiryWhere). No product change."
+   }
+  }
+ ],
+ "screens": [
+  {
+   "label": "incoming_block",
+   "url": "/toolaud/juhtumitoo",
+   "aria": "region \"Avatud paneel\":\n    - heading \"Juhtumitöö laud\" [level=1]\n    - paragraph: \"Osa 1/10: Saabunud eelpöördumised\"\n    - region \"Saabunud eelpöördumised\":\n      - heading \"Saabunud eelpöördumised\" [level=3]\n      - list:\n        - listitem:\n          - link \"Eelpöördumine 20.10.26, 13:59\":\n            - /url: /eelpoordumised"
+  },
+  {
+   "label": "item_open",
+   "url": "/eelpoordumised",
+   "aria": "region \"Avatud paneel\":\n    - heading \"Eelpöördumine\" [level=1]\n    - paragraph: Laen eelpöördumisi...\n    - paragraph: \"Samm 1/2: Tööjärg\"\n    - region \"Tööjärg\":\n      - heading \"Tööjärg\" [level=3]\n      - radiogroup \"Milliseid pöördumisi näidata\":\n        - text: Milliseid pöördumisi näidata\n        - radio \"Uued · 0\" [checked]\n        - radio \"Minu töös · 0\"\n        - radio \"Arhiiv · 0\"\n      - paragraph: Sulle adresseeritud eelpöördumised ilmuvad siia."
+  }
+ ],
+ "limits": [
+  "The other nine board blocks (contacts, preparations, STAR2 drafts and history, missing information, network work, method mirror, covision preparation) were empty for this synthetic specialist and were not filled through their own modules in this run; TOOLS-06 manual STAR preparation was tested at API level on 14.10."
+ ],
+ "newPaidCalls": false
 }

@@ -1,0 +1,116 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy, code = fix worktree on origin/main 311375cc with the 21.10 fixes, database sol_proof_20261020_local",
+  "checks": [
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "network_share_from_accepted_ready_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "sourceStatus": "READY",
+        "error": null,
+        "shareStatus": "DRAFT",
+        "before20_10": "network_share.source_inactive (server-baseline.json)"
+      }
+    },
+    {
+      "case_id": "FLOW-08",
+      "variant_id": "network_share_refused_from_archived_source",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "error": "network_share.source_inactive"
+      }
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_email_respects_disabled_preference",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "result": {
+          "sent": false,
+          "reason": "email_disabled"
+        },
+        "transportCalls": 0
+      }
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_email_unset_preference_treated_as_off",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "result": {
+          "sent": false,
+          "reason": "email_disabled"
+        },
+        "transportCalls": 0,
+        "rule": "same as optional notifications (lib/notifications.js: only true sends)"
+      }
+    },
+    {
+      "case_id": "OPS-04",
+      "variant_id": "arrival_email_sent_neutral_when_enabled",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "result": {
+          "sent": true
+        },
+        "transportCalls": 1,
+        "subject": "Uus eelpöördumine Sotsiaal.pro platvormil",
+        "contentFree": true
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "personal_recipient_accept_shows_accepted",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "senderState": "accepted"
+      }
+    },
+    {
+      "case_id": "FLOW-01",
+      "variant_id": "organisation_open_shows_opened_not_accepted",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_FIXTURE",
+      "entrypoint": "service functions of the fix worktree code in the isolated local copy",
+      "actual": {
+        "inquiry": "cmvgnfwiv001008ts4oq2iux1",
+        "inboxStatuses": [
+          "RECEIVED"
+        ],
+        "senderState": "opened",
+        "before20_10": "accepted (\"vastu võetud\")"
+      }
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "payment_email_script_reports_closed_gate",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "node scripts/payment-emails.mjs against the local copy (closed gate, dummy key, dry run)",
+      "actual": {
+        "status": 503,
+        "body": {
+          "error": "platform_not_open"
+        },
+        "log": "blocked by the closed platform gate (platform_not_open) — the job did not run",
+        "exitCode": 1,
+        "before20_10": "logged \"worker disabled — nothing to do\" and exited 0"
+      }
+    }
+  ],
+  "restoredPreference": false
+}

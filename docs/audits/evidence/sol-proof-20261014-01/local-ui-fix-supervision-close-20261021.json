@@ -1,0 +1,46 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy at localhost:3002, code = fix worktree with the 21.10 fixes, database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "close_final_press_locked_without_title",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision close page in the isolated local copy",
+      "actual": {
+        "finalButtonFound": true,
+        "locked": true,
+        "reasonShown": true,
+        "before20_10": "two presses possible, then returned to step 2"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "close_with_title_enabled_and_closes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision close page in the isolated local copy",
+      "actual": {
+        "enabled": true,
+        "closeStatus": 200
+      }
+    }
+  ],
+  "steps": [
+    {
+      "create": "INDIVIDUAL",
+      "status": 201
+    }
+  ],
+  "fixtureGrant": {
+    "id": "cmvhurbfz0000vstsp0ksy7l6",
+    "validUntil": "2026-10-21T10:30:50.327Z",
+    "revoked": true
+  },
+  "processFound": true,
+  "rawRuns": {
+    "local-ui-fix-supervision-close-20261021-raw.json": "fixture: the 20.10 SupervisorGrant fixture had expired (validUntil 20.10 18:46), creating a process answered 403; a labelled 2-hour fixture was added for this run and revoked at its end"
+  }
+}

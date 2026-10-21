@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: katsed peatatud omaniku limiidipalvel; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 355 salvestatud kontrollvarianti: 339 PASS, 14 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 370 salvestatud kontrollvarianti: 355 PASS, 13 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 **Parandusnimekiri:** kõik leiud, mida tuleb parandada või otsustada, on koondatud [ühte faili](sotsiaal-pro-parandusnimekiri-sol-proof-20261014-01.md).
 
@@ -329,3 +329,20 @@ Eelregistreeritud ja versiooniga märgitud valimi kontroll on PASS. RAG-12 tervi
 8. Abiotsija vastusest jäävad vahel välja olulised järgmised sammud: tööampsu tagasiulatuv lõpetamine (N01; spetsialisti vaates oli olemas) ja hooldekodu kohatasu puudujäägi muud teed (G02).
 9. Kaks keeleviga (G04, G42).
 10. Admini vaikimisi spetsialistiroll vestluses on testimisel lihtne märkamata jätta.
+
+**21.10 kinnitatud vigade parandused — 15 uut kontrollvarianti ja üks ümberhinnang (kohalik eraldatud koopia).** Omaniku palvel („parandad ära vead?”) parandati [parandusnimekirja](sotsiaal-pro-parandusnimekiri-sol-proof-20261014-01.md) vead A1–A6 ja A8. Kontroll tehti eraldi worktree koodiga kohalikus koopias: baasi `sol_proof_20261020_local` rakendati enne Tööheaolu neli lisavat migratsiooni. Tulemused:
+
+- **A1:** võrgustikujagamine töötab vastu võetud (READY) pöördumiselt ja keeldub arhiveeritud pöördumiselt ([teenusetaseme kontroll](evidence/sol-proof-20261014-01/local-fix-verify-20261021.json)).
+- **A2:** saabumiskiri peatub enne transpordi kutset, kui konto e-postiteavitus on välja lülitatud või määramata. Sisselülitatud eelistuse korral läheb sisuta kiri.
+- **A3:** pöörduja loend näitab asutusele saadetud ja ainult avatud pöördumise juures „asutus avas 20.10.2026”. Isiklikule saajale saadetud ja vastu võetud pöördumise juures on „vastu võetud” ([päris leht](evidence/sol-proof-20261014-01/local-ui-fix-sender-label-20261021.json)).
+- **A4:** „Eesti Töötukassaga” läheb teemaseemne kontrollist läbi. „Mari Maasikas” peatatakse ja vastus nimetab peatanud sõnad. Kõik 11 varasemat juhtumit ja 11 lisajuhtumit läbisid; nimi tuvastatakse nüüd ka „Õ”-ga algades.
+- **A5:** kutsutu „Nõustun kokkuleppega” on lukus ja põhjus on näha, kuni juhtumi tooja on seaded kinnitanud. Pärast kinnitamist salvestub nõustumine (200) ([päris leht](evidence/sol-proof-20261014-01/local-ui-fix-covision-topicseed-20261021.json)). Brauserikontroll leidis esimesest A5 parandusest puuduse: kutsutu kärbitud seansivaade ei öelnud, kas seaded on kinnitatud, ja nupp jäi jäädavalt lukku (`-raw3`). See parandati: vaade annab ainult tõeväärtuse, seadete sisu mitte.
+- **A6:** supervisiooni sulgemise lõplik vajutus on pealkirjata lukus ja pealkirjaga sulgemine õnnestub (200). Selleks loodi uus märgistatud kahetunnine sünteetiline superviisoriõigus, sest 20.10 oma oli aegunud; see tühistati ([päris leht](evidence/sol-proof-20261014-01/local-ui-fix-supervision-close-20261021.json)).
+- **A8:** maksekirjade skript annab suletud värava korral selge teate ja väljumiskoodi 1, varem „worker disabled” ja 0.
+- **A7 ümberhinnang:** 20.10 FAIL oli katseraki ajastusviga. Tööjärg loeti laadimise ajal; pärast laadimist näitab see „Uued · 1” ja rida „Kustutatud kasutaja pöördumine”, sama kirjet loeb laud. FAIL → PASS koos esialgse lugemisega ([kordusmõõtmine](evidence/sol-proof-20261014-01/local-ui-casework-board-recheck.json)).
+
+Toorjooksud ja rakise vead on säilitatud ja põhjendatud. Kontrollimata jäi järgmine:
+
+- serveris kontrollimine: testkontodega Claude sotsiaal.pro-sse ei logi ja admin ei pääse kovisiooni ega supervisiooni API-desse;
+- päris e-kirja saatmine;
+- B9 ja B10: otsingu tuuma muutmist ei saa ilma serveri indeksita kontrollida. Diagnoos on parandusnimekirjas.

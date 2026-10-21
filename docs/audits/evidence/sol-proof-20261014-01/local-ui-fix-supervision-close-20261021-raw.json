@@ -1,0 +1,46 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy at localhost:3002, code = fix worktree with the 21.10 fixes, database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "close_final_press_locked_without_title",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision close page in the isolated local copy",
+      "actual": {
+        "finalButtonFound": false,
+        "locked": null,
+        "reasonShown": false,
+        "before20_10": "two presses possible, then returned to step 2"
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "close_with_title_enabled_and_closes",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "real supervision close page in the isolated local copy",
+      "actual": {
+        "enabled": null,
+        "closeStatus": null
+      }
+    }
+  ],
+  "steps": [
+    {
+      "create": "INDIVIDUAL",
+      "status": 403
+    },
+    {
+      "create": "individual",
+      "status": 403
+    },
+    {
+      "create": "INDIVIDUAALNE",
+      "status": 403
+    }
+  ],
+  "processFound": false
+}

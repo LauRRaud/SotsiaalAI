@@ -1,0 +1,84 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy at localhost:3002, code = fix worktree with the 21.10 fixes, database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "topic_seed_name_blocked_with_flagged_words",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "status": 422,
+        "messageKey": "topic_seeds.errors.direct_identifier_detected",
+        "privacyMatches": [
+          "SOL TEST",
+          "TEST Mari",
+          "Mari Maasikas"
+        ]
+      }
+    },
+    {
+      "case_id": "TOOLS-03",
+      "variant_id": "topic_seed_institution_name_passes",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "HTTP routes and real covision page in the isolated local copy",
+      "actual": {
+        "status": 200,
+        "messageKey": null,
+        "before20_10": "422 PERSON_NAME for \"Eesti Töötukassaga\""
+      }
+    }
+  ],
+  "api": [
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds/<id>/queue",
+      "status": 422
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds/<id>/queue",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/topic-seeds/<id>/covision",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/covision/undefined/session",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/covision/undefined/session/actions",
+      "status": 400
+    }
+  ],
+  "covisionStartKeys": [
+    "ok",
+    "seedId",
+    "covisionCaseId",
+    "created",
+    "session"
+  ],
+  "invite": {
+    "status": 400,
+    "caseFound": false
+  },
+  "error": "locator.click: Timeout 30000ms exceeded. | Call log: | \u001b[2m  - waiting for getByRole('button', { name: /Kinnitan oma rolli/ }).first()\u001b[22m"
+}

@@ -1,43 +1,67 @@
 # Sotsiaal.pro parandusnimekiri — Soli tõenduskatsete leiud
 
-Seis 20.10.2026. Siin on ühes kohas kõik, mida Soli tõenduskatsed (`sol-proof-20261014-01`) leidsid ja mida
-tuleb Astra/Fable arendusetapis parandada või otsustada. Tõenduskatsete ajal parandusi ei tehtud
-(`productFixesDuringBaseline: false`), seega on kõik punktid avatud. Enne parandust kontrolli, kas mõni on vahepeal
-juba tehtud. Täpne kirjeldus ja mõõtmise piirid on [Soli aruandes](sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md),
-toorandmed kaustas `evidence/sol-proof-20261014-01/`.
+Seis 21.10.2026. Siin on ühes kohas kõik, mida Soli tõenduskatsed (`sol-proof-20261014-01`) leidsid ja mida
+tuleb parandada või otsustada. Tõenduskatsete ajal (14.–20.10) parandusi ei tehtud
+(`productFixesDuringBaseline: false`). 21.10 parandati omaniku palvel kinnitatud vead A1–A6 ja A8; A7 osutus
+katseraki ajastusveaks. Iga punkti juures on seis. Täpne kirjeldus ja mõõtmise piirid on
+[Soli aruandes](sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md), toorandmed kaustas
+`evidence/sol-proof-20261014-01/`. 21.10 kontrollid tehti kohalikus eraldatud koopias, mitte serveris.
 
 ## A. Kinnitatud vead
 
 1. **Võrgustikujagamine katkeb pärast vastuvõttu (`network_share.source_inactive`).** Spetsialist saab jagamise
    mustandi teha enne vastuvõttu, kuid vastuvõtt viib pöördumise olekusse READY ja sama lubatud jagamine keeldub
-   (arendusülesanne D01). Valmis, kui jagamine töötab ka READY olekus ning saajaõigus, kliendi jagamiskinnitus,
-   tagasikutsumine ja sulgemise piir säilivad. [Tõend, FLOW-08](evidence/sol-proof-20261014-01/server-baseline.json)
-2. **Saabumiskiri eirab konto e-postiteavituse eelistust.** Omaniku otsus: eelistust tuleb arvestada. Valmis, kui
-   `lib/preInquiries.js` peatab saatmise enne transpordi kutset, kui teavitus on välja lülitatud; sisselülitatud
-   konto neutraalne kiri ja ebaõnnestunud saatmise aus tulemus jäävad. [Tõend](evidence/sol-proof-20261014-01/server-safety-mail.json)
+   (arendusülesanne D01). [Tõend, FLOW-08](evidence/sol-proof-20261014-01/server-baseline.json)
+   **Parandatud 21.10:** `lib/network/share.js` lubab allikana SENT ja READY olekut; arhiveeritud pöördumist ei
+   jagata. Saajaõigus, tagasivõtmise ja asendamise piir jäid samaks.
+   [Kontroll](evidence/sol-proof-20261014-01/local-fix-verify-20261021.json)
+2. **Saabumiskiri eirab konto e-postiteavituse eelistust.** Omaniku otsus: eelistust tuleb arvestada.
+   [Tõend](evidence/sol-proof-20261014-01/server-safety-mail.json)
+   **Parandatud 21.10:** `sendInternalPreInquiryArrivalEmail` peatub enne transpordi kutset, kui eelistus ei ole
+   `true` (sama reegel nagu teistel valikulistel teavitustel); platvormisisene teavitus jääb. Sisselülitatud eelistuse
+   korral läheb sisuta neutraalne kiri. [Kontroll](evidence/sol-proof-20261014-01/local-fix-verify-20261021.json)
 3. **Pöörduja näeb „vastu võetud”, kui asutuse koordinaator kirje ainult avab.** Avamine ei ole vastuvõtt.
    [Tõend](evidence/sol-proof-20261014-01/local-ui-open-semantics.json)
-4. **Teemaseemne privaatsuskontrolli valepositiivid.** Asutuste nimed ja ühendid „kliendi/juhtumi + sõna” loetakse
-   isikutuvastajateks ja kasutaja ei saa teada, milline sõna lisamise peatas.
+   **Parandatud 21.10:** asutusele saadetud ja avatud pöördumise seis on pöördujale „asutus avas {kuupäev}”;
+   isikliku saaja vastuvõtt jääb „vastu võetud”. Asutuse sisemist tööle võtmist pöördujale ei avaldata, nagu enne.
+   [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-sender-label-20261021.json)
+4. **Teemaseemne privaatsuskontrolli valepositiivid.** Asutuste nimed ja ühendid „kliendi/juhtumi + sõna” loeti
+   isikutuvastajateks ja kasutaja ei saanud teada, milline sõna lisamise peatas.
    [Tõend](evidence/sol-proof-20261014-01/local-topicseed-privacy.json)
+   **Parandatud 21.10:** juhtumi number peab sisaldama numbrit; suurtähepaar ei ole nimi, kui üks sõna on asutus
+   või koht (linnad ja omavalitsused asustusüksuste failist, maakonnad); nimi tuvastatakse nüüd ka „Õ”-ga algades.
+   Jagamise peatamisel näeb omanik oma sõnu, mis kontrolli peatasid (ainult selles vastuses, ei logita).
+   [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-covision-topicseed-20261021.json)
 5. **Kovisiooni „Nõustun kokkuleppega” on aktiivne enne seadete kinnitamist** ja vajutus annab üldise 409-teate.
    [Tõend](evidence/sol-proof-20261014-01/local-ui-covision.json)
+   **Parandatud 21.10:** nupp on lukus, kuni juhtumi tooja on seaded kinnitanud, ja põhjus on näha; kutsutu
+   kärbitud seansivaade ütleb ainult, kas seaded on kinnitatud.
+   [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-covision-topicseed-20261021.json)
 6. **Supervisiooni sulgemise viisard lubab lõpliku vajutuse ilma kohustusliku üldistatud pealkirjata.**
    [Tõend](evidence/sol-proof-20261014-01/local-ui-supervision.json)
-7. **Pärast autori konto kustutamist lähevad saaja vaated lahku.** Tööjärg näitab „Uued 0”, juhtumitöö laud loeb
-   pöördumist edasi ja link viib tühja kohta; API tagastab kirje `authorErasedAt` märkega. Kas saaja peab
-   tühjendatud kirjet nägema, on tooteotsus; vastuolu tuleb igal juhul kaotada.
-   [Tõend](evidence/sol-proof-20261014-01/local-ui-casework-board.json)
+   **Parandatud 21.10:** lõplik vajutus on lukus ja põhjus on näha, kuni pealkiri puudub.
+   [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-supervision-close-20261021.json)
+7. **Pärast autori konto kustutamist lähevad saaja vaated lahku.** **Ei olnud viga (21.10):** esimene jooks luges
+   tööjärge laadimise ajal. Pärast laadimist näitab tööjärg „Uued · 1” ja rida „Kustutatud kasutaja pöördumine”,
+   sama kirjet loeb laud. [Kordusmõõtmine](evidence/sol-proof-20261014-01/local-ui-casework-board-recheck.json)
 8. **Maksekirjade skript loeb värava 503 vastuse olekuks „töötaja välja lülitatud”.**
    [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json)
+   **Parandatud 21.10:** `scripts/payment-emails.mjs` eristab vastuse sisu järgi suletud avamisvärava
+   (`platform_not_open`: veateade, väljumiskood 1) ja töötaja konfiguratsioonis väljalülituse (väljumiskood 0).
+   Kas taustatööd peavad suletud režiimis jooksma, on punkt 22. [Kontroll](evidence/sol-proof-20261014-01/local-fix-verify-20261021.json)
 
 ## B. Vestlus ja RAG
 
 Kõik punktid peale viimase tulevad 50 küsimuse testist sotsiaal.pro peal (väljalase `12cdf6cc`, korpus v92).
-[Tõend](evidence/sol-proof-20261014-01/server-rag-chat-50.json)
+[Tõend](evidence/sol-proof-20261014-01/server-rag-chat-50.json) Avatud. Otsingu tuuma muudatusi ei saa kohalikult
+kontrollida (indeks on serveris); need jäävad RAG-i töösuunale koos tema hindamisvalimiga.
 
 9. **§ 95 juurde ei tule § 72 lg 2 välistust (G33).** Toetatud elamise küsimus alkoholisõltuvuse kohta jäi
    välistuseta, kuigi § 88 (G04) ja § 98 (G34) juurde tuli sama lõik kaasa. Kaaslõigu reegel on ebaühtlane.
+   Diagnoos 21.10 (koodi lugemine): seaduse sisesed viited („käesoleva seaduse § 72 lõikes 2”) järgib rada
+   `query.references` (`lib/rag-v2/search/retrieval.js`), kuid see loeb ainult algselt valitud lõike, mitte teiste
+   radade lisatud lõike; kui § 95 jõudis paketti lisarajana, jäi tema viide järgimata. Pöördumise diagnostikas
+   otsingujälge ei olnud, seega põhjus tuleb kinnitada serveri otsingujäljega.
 10. **Hooldekodu kohatasu küsimus ei leia PKS § 96 ülalpidamiskohustust (G13).** Otsene küsimus (G49) leiab.
 11. **§ 133 lg 8 (sugulaselt üür) loetakse kitsalt (G09).** Vastus lisab koos elamise tingimuse ja ütleb, et mujal
     elavale emale makstud üür võib arvesse minna. Enne parandust kinnitab tõlgenduse omaniku ja spetsialisti hinnang.
@@ -57,11 +81,11 @@ Kõik punktid peale viimase tulevad 50 küsimuse testist sotsiaal.pro peal (väl
 ## C. Puuduv funktsioon
 
 19. **Töö tähtaeg `dueAt` puudub kasutusrajal** (MISSING_FEATURE). Õiguslik tähtaeg on eraldi GOV-01 küsimus.
-    [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json)
+    [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json) Avatud.
 20. **Supervisiooni osaleja kutsutakse sisemise kasutaja ID-ga** ja kasutajaliides ei ütle, kust seda leida.
-    [Tõend](evidence/sol-proof-20261014-01/local-ui-supervision.json)
+    [Tõend](evidence/sol-proof-20261014-01/local-ui-supervision.json) Avatud.
 21. **Kovisiooni kutse jõuab kutsutuni ainult e-kirjaga**, mida serveris suletud värav praegu ei lase saata (vt 22).
-    [Tõend](evidence/sol-proof-20261014-01/local-ui-covision.json)
+    [Tõend](evidence/sol-proof-20261014-01/local-ui-covision.json) Avatud.
 
 ## D. Vajab enne parandust omaniku otsust
 
@@ -74,7 +98,8 @@ Kõik punktid peale viimase tulevad 50 küsimuse testist sotsiaal.pro peal (väl
 ## E. Protsess
 
 24. **`docs/audits/**` muudatused ei käivita `quality-gate`-i, kuid täislint kontrollib sealseid `.mjs` tõendiskripte.**
-    14.10 skripti lint-viga peatas seetõttu alles 20.10 koodimuudatuse paigalduse.
+    14.10 skripti lint-viga peatas seetõttu alles 20.10 koodimuudatuse paigalduse. 21.10 tõendiskriptid linditi enne
+    lükkamist.
 
 ## Enne RAG-parandusi: inimhinnang (RAG-12)
 
