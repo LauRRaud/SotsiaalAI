@@ -158,7 +158,11 @@ viited ja loetelu järg otsingus, juhis 47 („ei saa kindlalt määrata“ ei o
 loetelu loetakse koos, keelekontroll), search-assist-15; admin näeb pöörde jälge
 /admin/rag/chat-trace all. Serveris korras: G33, G13 (PKS § 96), E9 (päevakeskus ei
 ole 13 kohustusliku teenuse hulgas), N01, keel. Avatud: E7 (Tartu linn/vald), VIPS-i
-lehe lisamine korpusesse (piloodi aeg puudub korpusest).
+lehe lisamine korpusesse (piloodi aeg puudub korpusest). E7 parandatud (ADR-157).
+21.10 kolm juhtumit, 75 küsimust (0,40 USD): kõik vastatud, aeg mediaan 35 s;
+leiud – omavalitsus kaob spetsialisti/osutaja vestlusest, kirjeloend täidab paketi,
+vektorotsing serveris aeglane (4 s, max 23 s). Analüüs:
+docs/audits/Sotsiaal-pro-vestlustest-kolm-juhtumit-2026-10-21.pdf.
 21.10 RAG-07 (puuduv info, 10 käiku) ja RAG-06 (allikaliigid) 13/14 PASS;
 GOV-01–04 dokumendid tehtud: kirja 19 väitest 4 kinnitatud, 12 piiratud
 ulatuses, 2 tõendamata (sääst, võrreldav turvatase), 1 tulevikuplaan.

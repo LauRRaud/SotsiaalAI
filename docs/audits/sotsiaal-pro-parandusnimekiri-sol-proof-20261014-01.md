@@ -131,7 +131,10 @@ Serveri kordustestid (eelregistreeritud): 7 PASS, 3 FAIL, korduses 2/2 PASS ([ju
     - vastus ütleb, et koduteenust korraldab omavalitsus (SHS § 17), ega järjesta osutajaid;
     - see ei ole aga esimene plokk ja taotlemist ei ole;
     - linna kord ei tulnud paketti, sest plaan ei saanud aru, kas mõeldi Tartu linna või Tartu valda, ja vastus küsis
-      seda. **Avatud.** [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
+      seda. **Parandatud 21.10 (ADR-157), serveris kontrollitud:**
+    - kui otsingu päring jätab ühise nime (Tartu) kandidaatide vahele, valib sõnumi kontrollitud koht;
+    - vastus alustab nüüd sellest, et Tartu linnas korraldab koduteenuse piirkonnakeskuse sotsiaaltöö spetsialist, ja
+      taotlus esitatakse linnaportaalis. [Tõend](evidence/sol-proof-20261014-01/server-rag-chat-three-cases-raw.json) (`e7`)
 18. **Ebaselge plaani korral seotakse esimeses isikus küsimus eelmise fookusisiku omavalitsusega** (NOT_PROVEN:
     kohalik komponendikatse, päris sagedust ei mõõdetud). [Tõend](evidence/sol-proof-20261014-01/local-rag-dialogue-places.json)
 
@@ -172,6 +175,39 @@ Serveri kordustestid (eelregistreeritud): 7 PASS, 3 FAIL, korduses 2/2 PASS ([ju
 24. **`docs/audits/**` muudatused ei käivita `quality-gate`-i, kuid täislint kontrollib sealseid `.mjs` tõendiskripte.**
     14.10 skripti lint-viga peatas seetõttu alles 20.10 koodimuudatuse paigalduse. 21.10 tõendiskriptid linditi enne
     lükkamist.
+
+## F. Kolme juhtumi test (21.10.2026, 75 küsimust)
+
+Omaniku palvel kolm juhtumit (Tartu, Narva, Viljandi), igaühes pöörduja, sotsiaaltöötaja ja teenuseosutaja; kokku 75
+küsimust.
+- Kõik said vastuse: 29 täis, 46 osalist, 29 täpsustava küsimusega.
+- Kulu 0,40 USD; aeg mediaanina 35 s.
+- Analüüs ja iga pöörde andmed: [PDF](Sotsiaal-pro-vestlustest-kolm-juhtumit-2026-10-21.pdf), [CSV](evidence/sol-proof-20261014-01/server-rag-chat-three-cases.csv),
+  [toorandmed koos jälgedega](evidence/sol-proof-20261014-01/server-rag-chat-three-cases-raw.json).
+
+25. **Omavalitsus kaob vestlusest.** Tartu pöördetes A13–A25 ja Viljandi pöördetes C04–C25 (osaliselt) ei olnud
+    piirkonda ja omavalitsuse kirjete rada jäi tühjaks. Põhjused:
+    - sotsiaaltöötaja või teenuseosutaja küsimuses on isik klient, kelle elukohta pole teada, ja spetsialisti
+      tööpiirkonda („Tartu linna sotsiaaltöötaja”, „Oleme Tartus …”) ei kasutata vaikimisi piirkonnana, kuigi
+      rolli juhis seda nõuab;
+    - ühise nimega omavalitsus (Viljandi linn või vald) lahendatakse ainult pöördes, kus koht nimetati.
+
+    Avatud.
+26. **Omavalitsuse kirjeloend täidab paketi.** Pakettides oli 2507 kirje-lõiku, keskmiselt 33 pöörde kohta, ja
+    tsiteeriti 46 (1,8%). Tõendite maht oli mediaanina 45 000 märki. Ettepanek: saata ainult küsimusega seotud kirjed.
+    Avatud.
+27. **Vastus võtab mediaanina 35 s (p90 50 s, max 60 s).** Etappide mediaanid:
+    - otsinguplaan 7,7 s;
+    - vektorotsing serveris 4,0 s (max 23 s, kitsama filtriga reservpäringud 0,1–0,2 s);
+    - sõnaotsing 3,6 s;
+    - valikumudel 5,7 s;
+    - vastuse kirjutamine 14,6 s. See sõltub väljundi pikkusest (r = 0,69).
+
+    Ettepanekud on PDF-is (Qdranti filter ja indeks, plaan otsinguga samal ajal, valikumudelile lõigu algus, lühem
+    spetsialisti vastus, voogesitus). Avatud.
+28. **Teenuseosutaja küsimustele puudub korpusest kohalik kord** (aruandlus, lepingud, andmete säilitus, tugiisiku
+    kestus, võlanõustaja volitused). Need vastused jäid osaliseks ja suunasid omavalitsuse poole. Avatud: korpuse
+    otsus.
 
 ## Enne RAG-parandusi: inimhinnang (RAG-12)
 
