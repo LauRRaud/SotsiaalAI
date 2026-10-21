@@ -53,3 +53,13 @@ vastuse tagasi. Võta see ära, see mehhanism.“
   - tühi vastus lükatakse tagasi;
   - parandatud vastuse uus parandus ei muuda midagi.
 - `npm test`: 70 läbis, 3 vahele jäetud.
+
+## Parandus 21.10.2026 õhtul: pöörde taastamine
+
+- Esimene parandatud vastus (Tartu sotsiaaltöötaja küsimus, neli plokki viitemärkidega) avaldati õigesti. Kasutaja sai
+  aga vea `inline_answer_reference`.
+- Põhjus: pöörde taastamine (`restore` → `checkDialogueState`) projitseerib vastuse ja dialoogiseisu uuesti mudeli
+  salvestatud mustandist. Seal olid viitemärgid veel sees, ja kontroll lükkas juba avaldatud pöörde tagasi.
+- Nüüd teeb taastamine parandatud pöörde (`answerRepair` on olemas) mustandiga sama parandust, mida avaldamine tegi.
+  Parandus on deterministlik, nii et projektsioon ja selle räsi on samad.
+- Pöördeid, mida ei parandatud, see ei puuduta.
