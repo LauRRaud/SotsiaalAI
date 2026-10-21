@@ -113,6 +113,14 @@
         "E9-allikad-paevakeskus",
         "U01-vips"
       ]
+    },
+    {
+      "date": "2026-10-21",
+      "before": "the ADR-157 run",
+      "text": "E7 failed in the prompt-46 run because the plan query named Tartu, shared by Tartu linn and Tartu vald, while the message's checked place was Tartu linn. ADR-157 lets that checked place choose. E7 is asked again with the same expectations: the city organises koduteenus and how to get it comes first (the city's procedure from the records lane), no ranking of providers, no hedging limitation. The trace must show the records lane with region tartu_linn. Expected cost about 0.006 USD.",
+      "items": [
+        "E7-allikad-pakkuja"
+      ]
     }
   ]
 }
