@@ -38,3 +38,15 @@ Valikumudeli juhisesse lisandub pärast seda reeglit üldine reegel (`RERANK_CIR
 - Sama küsimus uues vestluses: kas valik võtab ravikindlustamata inimeste tervishoiu lõigu või vältimatu abi sätte ning
   kas vastus ütleb, kust abi saab.
 - Kuus kolme juhtumi küsimust: valitud lõikude arv, aeg ja vastuse kuju võrreldes ADR-162 jooksuga.
+
+### m4-grounded-answer-14 ja m4-grounded-dialogue-48: sama reegel vastuses
+
+- Kolm kordust search-assist-18-ga, sama küsimus eraldi vestlustes:
+  - plaan kirjutas igas ravikindlustuse päringu;
+  - kandidaatide seas oli 5–12 ravikindlustuse lõiku;
+  - valik võttis igas lõigu „Tervishoiuteenused ravikindlustamata inimestele“, mis räägib vältimatust abist (perearst,
+    EMO, 112) ja tasuta vältimatust hambaravist.
+- Vastus seda lõiku ei kasutanud. Juhis „Offer a small number of relevant supported options, usually one to three“
+  jättis ravikindlustuse neljandaks: alles jäid pöördumine, kontaktid ja toimetulekutoetus.
+- Vastuse juhise A GOOD ANSWER osasse lisandub: omaette vajadusega asjaolu saab oma lühikese ploki, kui tõendid ütlevad,
+  mis abi või reegel kehtib, ka siis, kui küsimus on muu kohta. See ei loe nende ühe kuni kolme võimaluse hulka.
