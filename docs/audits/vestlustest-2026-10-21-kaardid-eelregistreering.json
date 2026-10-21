@@ -1,0 +1,31 @@
+{
+  "title": "Sotsiaal.pro vestlus: valiku kandidaadikaardi alampealkiri, allika liik ja väljaandja (ADR-166) — eelregistreering",
+  "date": "2026-10-21",
+  "run": "sol-proof-20261014-01 / three-cases-adr166",
+  "server": "sotsiaal.pro after the deploy of the ADR-166 commit (search-assist-19, answer m4-grounded-answer-14, dialogue m4-grounded-dialogue-48)",
+  "baseline": "the same 75 questions on the ADR-165 state (search-assist-18, answer-14, dialogue-48; release cf1dfe66), started 2026-10-21T18:43:57Z, run before this file's change was deployed",
+  "costCap": "owner 21.10.2026: two runs of 75 questions, about 0.80 USD in all; this run about 0.40 USD plus the five repeats below",
+  "written": "before the ADR-166 run; the baseline run was still going and its results were not read except its failures (A12 answer time limit)",
+  "method": {
+    "entry": "POST /api/chat with x-rag-pilot: 1 (full turn, no stream) from the owner's signed-in ADMIN session, view role per item as in the three-case test",
+    "turns": "the 75 questions of docs/audits/vestlustest-2026-10-21-kolm-juhtumit-eelregistreering.json in their three conversations, in the same order; then the owner's Tabasalu question five times, each in a new conversation, role CLIENT",
+    "trace": "every turn read from /api/admin/rag/chat-trace/<turnId>: the pool with section, source type, issuer, ranks and picks; evidence, cited refs, stage times",
+    "comparison": "baseline and this run with the same script; run-to-run variation is large (morning and evening runs of 21.10 differed in the answer kind of 32 of 75 turns with the same totals), so single turns are not read as effects"
+  },
+  "hypotheses": [
+    { "id": "H1-selection-precision", "measure": "cited picks / all picks of the knowledge lane's selection", "expect": "not lower than the baseline by more than 3 percentage points; an improvement is the aim" },
+    { "id": "H2-authority", "measure": "share of cited knowledge passages whose source_type is legal_act or official_guideline, or kov_* of the turn's municipality", "expect": "not lower than the baseline by more than 3 percentage points" },
+    { "id": "H3-no-harm", "measure": "answers given; answer kinds; turns with a cannot-say sentence; median and p90 whole-turn time; selection input tokens", "expect": "no more failures than the baseline other than answer time limits; kinds within ±5 of the baseline; cannot-say turns at most baseline + 3; median time at most baseline + 1.5 s; selection input at most +8%" },
+    { "id": "H4-tabasalu-section", "measure": "the owner's question, five times: when the page passage 'Tervishoiuteenused ravikindlustamata inimestele' is in the pool, is it picked rather than the same page's 'Toimetulekutoetus' passage", "expect": "picked in at least 4 of the turns where it is in the pool; before ADR-166 it was picked in 3 of 4" }
+  ],
+  "decision": {
+    "keep": "H3 holds and at least one of H1, H2, H4 improves",
+    "revert_instruction": "H3 holds but none of H1, H2, H4 improves: the selection's instruction line (search-assist-19) goes back; the trace's section, type and issuer stay for the admin",
+    "revert_all": "H3 fails for a reason the change can cause (selection input, selection time, failures of the selection)"
+  },
+  "limits": [
+    "One run per state; the comparison reads totals, not single turns.",
+    "Answer time-limit failures (60 s) happen independently of this change (three on 21.10 before and during the baseline) and are reported apart.",
+    "The baseline includes ADR-165's answer rule (answer-14), so both runs share it."
+  ]
+}

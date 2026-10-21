@@ -102,7 +102,7 @@ export default function ChatTurnTrace({ trace, locale }) {
             <tbody>{trace.pool.map((item, index) => (
               <tr key={item.id}>
                 <td>{index + 1}{item.reserved ? ` (${f.reserved})` : ""}</td>
-                <td><strong>{item.title || f.none}</strong>{item.validFrom ? ` · ${item.validFrom}` : ""}{item.lead ? <><br /><small>{item.lead}</small></> : null}</td>
+                <td><strong>{item.title || f.none}</strong>{item.section ? ` › ${item.section}` : ""}{item.validFrom ? ` · ${item.validFrom}` : ""}{item.sourceType || item.authority ? <><br /><small>{[item.sourceType, item.authority].filter(Boolean).join(" · ")}</small></> : null}{item.lead ? <><br /><small>{item.lead}</small></> : null}</td>
                 <td>{number(item.score)}</td>
                 <td><Channels ranks={item.ranks} contributions={item.contributions} copy={copy} /></td>
                 <td>{item.pick ? `#${item.pick}` : f.notPicked}</td>
