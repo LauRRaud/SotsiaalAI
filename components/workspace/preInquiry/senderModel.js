@@ -71,6 +71,7 @@ export function senderFlowKeys(workflowMode, { hasDomains = false } = {}) {
 const NEXT_BY_STATE = Object.freeze({
   sent_waiting: "waiting",
   accepted: "accepted",
+  opened: "opened",
   answered: "answered",
   sent_external: "external",
   recalled: "recalled",

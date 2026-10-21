@@ -3351,6 +3351,7 @@
           "next": {
             "waiting": "The recipient has not accepted the pre-inquiry yet. When they do, you will see it here.",
             "accepted": "The recipient has accepted the pre-inquiry. The answer will come to the shared conversation room.",
+            "opened": "The organisation has opened the pre-inquiry. The organisation decides whether and who takes it on; if someone there answers, the answer will come to the shared conversation room.",
             "answered": "The recipient has answered. The answer is in the shared conversation room.",
             "external": "You sent this pre-inquiry by e-mail. The answer will come to your e-mail; the platform does not see whether it was accepted.",
             "recalled": "You recalled this pre-inquiry. The recipient no longer sees it.",
@@ -3372,6 +3373,7 @@
         "downloaded": "downloaded",
         "sent_waiting": "sent, waiting to be accepted (day {days})",
         "accepted": "accepted {date}",
+        "opened": "opened by the organisation {date}",
         "answered": "the recipient has answered",
         "sent_external": "sent by e-mail, acceptance unknown",
         "recalled": "recalled",
@@ -6884,7 +6886,8 @@
         "access_locked": "content is locked",
         "access_accepted": "agreement confirmed",
         "steps_aria": "Invitation acceptance steps",
-        "reload_notice": "Each confirmation is saved on the server. If the session changes at the same time, the latest state is loaded."
+        "reload_notice": "Each confirmation is saved on the server. If the session changes at the same time, the latest state is loaded.",
+        "waiting_settings": "You can accept the agreement once the case owner has confirmed the settings."
       },
       "invite_participant": {
         "title": "Invite a participant",
@@ -12677,6 +12680,7 @@
       "edit_conflict": "The seed changed in the meantime or can no longer be edited. Reload the page.",
       "lifecycle_conflict": "The seed changed or its lifecycle no longer allows this action. Reload the page.",
       "direct_identifier_detected": "The automatic check found a direct identifier. Remove the name, contact detail, personal code, address or case number and try again.",
+      "flagged_parts": "The check stopped at these places: {items}.",
       "privacy_review_required": "The automatic check found an uncertain identification risk. Revise the generalization or complete a separate privacy review.",
       "save_failed": "The topic seed could not be saved. Please try again.",
       "load_failed": "Topic seeds could not be loaded."

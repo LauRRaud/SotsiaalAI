@@ -203,11 +203,14 @@ export function CloseTitleView({ t, value, onChange, error, currentTitle, onEnte
  */
 export function CloseConfirmView({ t, facts, note, busy, onClose, onBack }) {
   const press = useTwoPress();
+  /* Puuduva kohustusliku fakti korral (üldistatud pealkiri) on lõplik vajutus lukus ja põhjus
+     näha kohe; varem sai kaks korda vajutada ja alles siis viidi tagasi (Soli katse 20.10). */
+  const blocked = facts.some((fact) => fact.missing);
   return (
     <StepPanel
       title={t("supervision.close.views.close.title")}
       lead={t("supervision.close.views.close.lead")}
-      note={press.note || note}
+      note={press.note || note || (blocked ? t("supervision.close.titleMissing") : "")}
       actions={
         <>
           <Button type="button" size="sm" variant="secondary" onClick={onBack}>
@@ -220,7 +223,7 @@ export function CloseConfirmView({ t, facts, note, busy, onClose, onBack }) {
             confirmLabel={t("supervision.close.confirmAgain")}
             cancelLabel={t("supervision.common.cancel")}
             consequence={t("supervision.close.consequence")}
-            disabled={busy}
+            disabled={busy || blocked}
             busyLabel={t("supervision.process.busy.closing")}
             onConfirm={onClose}
           />

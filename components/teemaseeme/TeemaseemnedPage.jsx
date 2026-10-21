@@ -468,12 +468,19 @@ export default function TeemaseemnedPage({ owner = null }) {
         if (payload?.messageKey === "topic_seeds.errors.privacy_review_required") {
           setPrivacyReviewRequired(true);
         }
-        setError(resolveApiMessage({
+        const message = resolveApiMessage({
           payload,
           t,
           fallbackKey: "topic_seeds.errors.request_failed",
           fallbackText: "Teemaseemne toiming ebaõnnestus. Proovi uuesti."
-        }));
+        });
+        /* Server ütleb, millised sinu enda sõnad kontrolli peatasid; nende järgi saab üldistust parandada. */
+        const flagged = Array.isArray(payload?.privacyMatches)
+          ? [...new Set(payload.privacyMatches.map((match) => String(match?.text || "").trim()).filter(Boolean))]
+          : [];
+        setError(flagged.length
+          ? `${message} ${readText(t, "topic_seeds.errors.flagged_parts", "Kontroll peatus nende kohtade juures: {items}.").replace("{items}", flagged.map((item) => `„${item}”`).join(", "))}`
+          : message);
         return;
       }
       dataVersionRef.current += 1;

@@ -3351,6 +3351,7 @@
           "next": {
             "waiting": "Vastuvõtja ei ole pöördumist veel vastu võtnud. Kui ta selle vastu võtab, näed seda siin.",
             "accepted": "Vastuvõtja on pöördumise vastu võtnud. Vastus tuleb ühisesse vestlusruumi.",
+            "opened": "Asutus on pöördumise avanud. Kas ja kes selle tööle võtab, otsustab asutus; kui asutuses vastatakse, tuleb vastus ühisesse vestlusruumi.",
             "answered": "Vastuvõtja on vastanud. Vastus on ühises vestlusruumis.",
             "external": "Saatsid selle pöördumise e-kirjaga. Vastus tuleb sinu e-posti; vastuvõtmist platvorm ei näe.",
             "recalled": "Võtsid selle pöördumise tagasi. Vastuvõtja seda enam ei näe.",
@@ -3372,6 +3373,7 @@
         "downloaded": "alla laaditud",
         "sent_waiting": "saadetud, ootab vastuvõtmist ({days}. päev)",
         "accepted": "vastu võetud {date}",
+        "opened": "asutus avas {date}",
         "answered": "vastuvõtja on vastanud",
         "sent_external": "saadetud e-kirjaga, vastuvõtt teadmata",
         "recalled": "tagasi võetud",
@@ -6884,7 +6886,8 @@
         "access_locked": "sisu on lukus",
         "access_accepted": "kokkulepe kinnitatud",
         "steps_aria": "Kutse vastuvõtmise sammud",
-        "reload_notice": "Iga kinnitus salvestatakse serveris. Kui keegi muudab sessiooni samal ajal, laaditakse värske olek."
+        "reload_notice": "Iga kinnitus salvestatakse serveris. Kui keegi muudab sessiooni samal ajal, laaditakse värske olek.",
+        "waiting_settings": "Kokkuleppega saad nõustuda, kui juhtumi tooja on seaded kinnitanud."
       },
       "invite_participant": {
         "title": "Kutsu osaleja",
@@ -12677,6 +12680,7 @@
       "edit_conflict": "Seeme muutus vahepeal või ei ole enam muudetav. Laadi leht uuesti.",
       "lifecycle_conflict": "Seeme muutus vahepeal või selle elutsükkel ei luba enam seda toimingut. Laadi leht uuesti.",
       "direct_identifier_detected": "Automaatkontroll leidis otsese tuvastaja. Eemalda nimi, kontakt, isikukood, aadress või juhtuminumber ja proovi uuesti.",
+      "flagged_parts": "Kontroll peatus nende kohtade juures: {items}.",
       "privacy_review_required": "Automaatkontroll leidis ebakindla tuvastamisriski. Paranda üldistust või tee eraldi privaatsuskontroll.",
       "save_failed": "Teemaseemet ei saanud salvestada. Proovi uuesti.",
       "load_failed": "Teemaseemneid ei saanud laadida."

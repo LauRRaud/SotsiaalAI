@@ -360,7 +360,7 @@ function nextCanonicalPhase(stage, phase) {
   return currentIndex >= 0 ? sequence[currentIndex + 1] || null : null;
 }
 
-function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
+function InvitationAcceptance({ participant, me, busy, settingsConfirmed, dispatchAction, copy }) {
   const state = participant?.state || participant?.sessionState || {};
   const roleConfirmed = Boolean(state.roleConfirmedAt ?? participant?.roleConfirmed);
   const agreementConfirmed = Boolean(state.agreementConfirmedAt ?? participant?.agreementConfirmed);
@@ -388,7 +388,7 @@ function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
           </button>
           <button
             type="button"
-            disabled={busy || !roleConfirmed || agreementConfirmed}
+            disabled={busy || !roleConfirmed || agreementConfirmed || !settingsConfirmed}
             onClick={() => dispatchAction(ACTIONS.confirmParticipant, { agreementConfirmed: true })}
           >
             <span>{agreementConfirmed ? "✓" : "2"}</span>
@@ -403,6 +403,9 @@ function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
             {copyValue(copy, "actions.ready")}
           </button>
         </div>
+        {roleConfirmed && !agreementConfirmed && !settingsConfirmed ? (
+          <p role="status">{copyValue(copy, "invitation.waiting_settings")}</p>
+        ) : null}
         <small>{copyValue(copy, "invitation.reload_notice")}</small>
         <button type="button" disabled={busy} onClick={async () => {
           const result = await dispatchAction(ACTIONS.declineInvitation, {});
@@ -505,7 +508,7 @@ function StageDock({ stage, snapshots, completed, copy, onSelect }) {
   );
 }
 
-function ParticipantList({ participants, me, stage, canLead, busy, dispatchAction, copy }) {
+function ParticipantList({ participants, me, stage, canLead, busy, settingsConfirmed, dispatchAction, copy }) {
   const myParticipant = participants.find((item) => (
     item?.id === me?.participantId || (me?.userId && item?.userId === me.userId)
   ));
@@ -583,7 +586,7 @@ function ParticipantList({ participants, me, stage, canLead, busy, dispatchActio
           </button>
           <button
             type="button"
-            disabled={busy || !myState.roleConfirmedAt || Boolean(myState.agreementConfirmedAt)}
+            disabled={busy || !myState.roleConfirmedAt || Boolean(myState.agreementConfirmedAt) || !settingsConfirmed}
             onClick={() => dispatchAction(ACTIONS.confirmParticipant, { agreementConfirmed: true })}
           >
             <span>{myState.agreementConfirmedAt ? "✓" : "2"}</span>
@@ -597,6 +600,9 @@ function ParticipantList({ participants, me, stage, canLead, busy, dispatchActio
             <span>{myState.readyAt ? "✓" : "3"}</span>
             {copyValue(copy, "actions.ready")}
           </button>
+          {myState.roleConfirmedAt && !myState.agreementConfirmedAt && !settingsConfirmed ? (
+            <p role="status">{copyValue(copy, "invitation.waiting_settings")}</p>
+          ) : null}
         </div>
       ) : null}
     </section>
@@ -1744,6 +1750,9 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
     item?.id === model.me?.participantId || (model.me?.userId && item?.userId === model.me.userId)
   ));
   const myParticipantState = myParticipant?.state || myParticipant?.sessionState || {};
+  /* Kokkuleppega saab nõustuda alles pärast seda, kui juhtumi tooja on seaded kinnitanud
+     (server: SETTINGS_NOT_CONFIRMED). Varem oli nupp aktiivne ja andis üldise 409-teate (Soli katse 20.10). */
+  const settingsConfirmed = Boolean(model.session?.settingsConfirmedAt || model.session?.settingsConfirmed);
   const inviteFlowRequired = !isOwner
     && model.me?.inviteStatus !== "DECLINED"
     && !Boolean(myParticipantState.readyAt ?? myParticipant?.ready)
@@ -1759,6 +1768,7 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
         participant={myParticipant}
         me={model.me}
         busy={busy}
+        settingsConfirmed={settingsConfirmed}
         dispatchAction={dispatchAction}
         copy={copy}
       />
@@ -1859,6 +1869,7 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
                       stage={stage}
                       canLead={canLead}
                       busy={busy}
+                      settingsConfirmed={settingsConfirmed}
                       dispatchAction={dispatchAction}
                       copy={copy}
                     />

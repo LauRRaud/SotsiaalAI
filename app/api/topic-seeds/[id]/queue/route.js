@@ -17,7 +17,12 @@ function topicSeedErrorResponse(error, locale, context) {
   if (status >= 500) {
     console.error(context, safeError(error));
   }
-  return errorJson(messageKey, status, locale);
+  /* Privaatsuskontroll ütleb seemne omanikule, milline tema enda sõna peatas jagamise
+     (Soli katse 20.10: varem jäi kasutaja arvama). Ainult selles vastuses, ei logita. */
+  const privacy = status === 422 && Array.isArray(error?.privacyMatches)
+    ? { privacyCategories: error.privacyCategories || [], privacyMatches: error.privacyMatches.slice(0, 10) }
+    : {};
+  return errorJson(messageKey, status, locale, privacy);
 }
 
 // A6.1: the owner deliberately queues a DRAFT, freezing a shareable generalized

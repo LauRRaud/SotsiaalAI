@@ -33,9 +33,17 @@ const text = await response.text();
 console.log(`[payment-emails] status=${response.status}`);
 console.log(text);
 
-// 503 = worker disabled by config (PAYMENT_EMAIL_WORKER_ENABLED not set). Known "off" state.
-if (response.status === 503) {
+// 503 has two causes that must not look alike (Soli katse 20.10): the route's own "off" state
+// (PAYMENT_EMAIL_WORKER_ENABLED not set) and the closed opening gate in proxy.js
+// (`platform_not_open`), which stops the job before the route runs.
+let body = null;
+try { body = JSON.parse(text); } catch { body = null; }
+// exitCode instead of exit(): the process ends on its own after the response is read.
+if (response.status === 503 && body?.error === "platform_not_open") {
+  console.error("[payment-emails] blocked by the closed platform gate (platform_not_open) — the job did not run");
+  process.exitCode = 1;
+} else if (response.status === 503 && body?.message === "payment email worker disabled") {
   console.log("[payment-emails] worker disabled — nothing to do");
-  process.exit(0);
+} else if (!response.ok) {
+  process.exitCode = 1;
 }
-if (!response.ok) process.exit(1);
