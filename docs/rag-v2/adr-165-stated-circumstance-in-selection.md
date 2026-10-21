@@ -50,3 +50,15 @@ Valikumudeli juhisesse lisandub pärast seda reeglit üldine reegel (`RERANK_CIR
   jättis ravikindlustuse neljandaks: alles jäid pöördumine, kontaktid ja toimetulekutoetus.
 - Vastuse juhise A GOOD ANSWER osasse lisandub: omaette vajadusega asjaolu saab oma lühikese ploki, kui tõendid ütlevad,
   mis abi või reegel kehtib, ka siis, kui küsimus on muu kohta. See ei loe nende ühe kuni kolme võimaluse hulka.
+
+### Vastuse reegel võetud tagasi (m4-grounded-answer-15, m4-grounded-dialogue-49)
+
+- 75 küsimuse jooks answer-14-ga peatati 18 pöörde järel. Kaks sotsiaaltöötaja vastust (A12, A13) ületasid vastusekutse
+  60 s ajapiiri, ja kasutaja sai vea. Eelmises 75 küsimuse jooksus answer-13-ga ei olnud ühtegi.
+- Lõpuni jõudnud vastustes kasvas mõnes pöördes mõtlemine järsult, näiteks A08-s 0 tokenilt 1133 peale. Vastuste pikkus
+  ja plokkide arv muutusid mõlemas suunas.
+- Tõenäoline põhjus: sotsiaaltöötaja pikas vestluses on palju kirjeldatud asjaolusid ja reegel pani mudeli igaüht eraldi
+  kaaluma.
+- answer-15 on answer-13 tekst ja dialogue-49 on dialogue-47 tekst. Plaani ja valiku reeglid (search-assist-18) jäävad.
+- Asjaolu sisuline käsitlus vastuses jääb lahtiseks. Seda tuleb teha nii, et vastus ei pikene: näiteks ainult
+  asjaolu kohta, mille kohta valik lõigu jättis, ja ühe lausega.
