@@ -1,0 +1,120 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "f4e42aeb (dialogue prompt m4-grounded-dialogue-45; the release log says \"Chat plan: renewed\")",
+  "checkpointDate": "2026-10-21",
+  "preregistration": {
+    "path": "docs/audits/vestlustest-2026-10-21-juhis44-eelregistreering.json",
+    "sha256": "be1a31f1ba7f58066e995c621638e82e632b76340b4b1d9a0595ef1b27679b94",
+    "amendment": "the v45 re-test amendment, committed in f4e42aeb before this run"
+  },
+  "raw": {
+    "path": "docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-prompt45-raw.json",
+    "exportSha256": "46a7645dd9f80da4c6b99fdb7b187cb3dc869fdc45050de1a15fdc6da68233f4"
+  },
+  "checks": [
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p45_N01-tooamps",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "when the packet holds it (it did on 20.10, S2): if the work lasted longer or paid more than allowed, Töötukassa ends the registration retroactively from the start of the work and paid benefits may have to be repaid"
+        ],
+        "fault": "list items 12 and 16",
+        "turnId": "ee42a021-3f85-454f-b90f-d311b99246d6",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal"
+        ],
+        "packetSize": 5,
+        "latencyMs": 32876,
+        "costUsd": 0.004891,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units still: \"Tööampsuga võid töötada kuni 8 kalendripäeva kuus\" (the contract length is given separately as eight calendar days). The rest holds: 40 % and 378.40 euros (11.10 page state) in a block, 12 of 24 months, telling Töötukassa first, and the retroactive end with repayment (list item 16 holds for the second time)."
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "chat2110p45_R03-tooamps-spetsialist",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role SOCIAL_WORKER",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "addressed to a colleague (role text unchanged)"
+        ],
+        "fault": "list item 12",
+        "turnId": "9e012249-aa41-4205-8500-597cfebaf5fa",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal",
+          "S4 Töölepingu seadus § 29 lg 1–9"
+        ],
+        "packetSize": 4,
+        "latencyMs": 24489,
+        "costUsd": 0.004476,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units moved the other way: \"ühe töökorra kestus võib olla kuni kaheksa päeva ning kuus võib ajutiselt töötada kuni kaheksa kalendripäeva\". Other facts present, addressed to a colleague (\"Sinu järgmine samm spetsialistina ...\"); no retroactive end this time (not required for this role)."
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "chat2110p45_R04-tooamps-teenuseosutaja",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role SERVICE_PROVIDER",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "addressed to a provider (role text unchanged)"
+        ],
+        "fault": "list item 12",
+        "turnId": "962a99f4-29c7-4343-bca8-fdc75ae93a35",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal"
+        ],
+        "packetSize": 4,
+        "latencyMs": 20960,
+        "costUsd": 0.003117,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units still: \"kuni 8 kalendripäeva kuus\". Other facts present."
+      }
+    }
+  ],
+  "totals": {
+    "turns": 3,
+    "pass": 0,
+    "fail": 3,
+    "costUsd": 0.012483
+  },
+  "observations": [
+    "v45 did not change the monthly unit in any of the three answers; R03 moved the word \"kalendri-\" from the contract to the month.",
+    "Decision: no further prompt change for this one word: each further line would be shaped by this one case (AGENTS.md: no exceptions by source or expected answer). The v45 line stays (general, harmless, about 120 tokens) and can be dropped in the next prompt revision.",
+    "Severity: a wording imprecision. The law says \"kuni kaheksa päeva kalendrikuus\" and the page \"lubatud töötamispäevade arv kuus on kaheksa\"; every day worked is a calendar day, so \"8 kalendripäeva kuus\" misleads only if read as a span. The 20.10 expectation \"kuni 8 tööpäeva\" was imprecise too (\"töötamispäev\", not \"tööpäev\"). The owner and a specialist rate whether it is a defect (RAG-12)."
+  ],
+  "limits": [
+    "Pre-rating by Claude only; one answer per question."
+  ],
+  "newPaidCalls": true,
+  "finishedAt": "2026-10-21T11:57:13.460Z"
+}

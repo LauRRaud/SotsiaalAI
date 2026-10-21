@@ -151,8 +151,9 @@ aegumine, kovisiooni kutsekirjad) ja praktikate ülevaated jooksevad suletud
 režiimis, samuti raha ja andmeekspordi tööd (oma võtme ja lipuga). Admin näeb
 vestluses „Vastan kui: …”.
 21.10 tehtud ka: töö tähtaeg (koordinaator), supervisiooni kutse e-posti järgi,
-kovisiooni kutse kaart ja vestluse juhis 44 (ADR-153: teemaväline palve, leidmata
-toetus, ühikud, abiotsija sammud). Avatud RAG-i töösuunale: otsingu kaaslõigud
+kovisiooni kutse kaart ja vestluse juhis 44–45 (ADR-153): teemaväline palve ja leidmata
+toetus serveris parandatud, abiotsija tagajärg olemas; tööampsu „kalendripäeva kuus”
+jäi (sõnastus, hinnata RAG-12). Avatud RAG-i töösuunale: otsingu kaaslõigud
 (G33 § 72 lg 2, uus profiil ja plaan), G13 PKS § 96, KOV-i teenuste loetelu.
 21.10 RAG-07 (puuduv info, 10 käiku) ja RAG-06 (allikaliigid) 13/14 PASS;
 GOV-01–04 dokumendid tehtud: kirja 19 väitest 4 kinnitatud, 12 piiratud

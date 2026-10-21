@@ -79,8 +79,12 @@ ainult koodi väljad, kasutajad, eelarve ja otsinguprofiil jäävad samaks.
     elavale emale makstud üür võib arvesse minna. Enne parandust kinnitab tõlgenduse omaniku ja spetsialisti hinnang.
 12. **Tööampsu kuupiir sõnastatakse „kuni 8 kalendripäeva kuus” (N01, R03, R04).** Allikas: leping kuni
     8 kalendripäeva, kuus kuni 8 tööpäeva. Juhis 44 seda **ei parandanud** (kordustest: kolmes vastuses
-    sama ühik); põhjus on sõna „kalendrikuus” → „kalendripäeva”. Juhis 45 ütleb, et ühiku sõna kuulub selle sõna
-    juurde, mille kõrval ta allikas seisab. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json)
+    sama ühik); põhjus on sõna „kalendrikuus” → „kalendripäeva”. Ka juhis 45 (ühiku sõna kuulub selle sõna juurde, mille kõrval ta
+    allikas seisab) ei parandanud seda: 0/3. **Juhisega edasi ei parandata;** see on sõnastuse ebatäpsus (iga töötatud
+    päev on kalendripäev), mille raskuse hindavad omanik ja spetsialist (RAG-12). Ka 20.10 ootus „tööpäeva” oli
+    ebatäpne: allikas ütleb „töötamispäevade arv”.
+    [Kordustest 44](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json),
+    [kordustest 45](evidence/sol-proof-20261014-01/server-rag-chat-prompt45.json)
 13. **v89 VIPS-i ja astmelise abi materjal ei jõua VIPS-i küsimuse paketti (U01).** Paketis oli üks varasem TAI leht.
     Enne kontrolli, kas v89 failid piloodi aega üldse nimetavad.
 14. **Teemavälise palve keeldumine kõlab teabepuudusena (B01).** „Pole piisavalt teavet” asemel peaks vastus ütlema,

@@ -89,6 +89,17 @@ lepingu pikkust. Loendust öeldakse allika sõnaga ja ühiku sõna ei tõsteta �
 arvu viis, mitte kaheksat, ega nimeta allikat. Muud lõigud on samad mis juhises 44. Kordustest: N01, R03, R04 samade
 ootustega (eelregistreeringu lisa).
 
+**Kordustest (väljalase `f4e42aeb`, kulu 0,012 USD): 0/3.** Kõik kolm ütlesid endiselt „kuni 8 kalendripäeva kuus”;
+R03 tõstis sõna teistpidi („töökord kuni kaheksa päeva”, „kuus kuni kaheksa kalendripäeva”). Abiotsija tagajärg
+(N01) jäi teist korda alles.
+
+**Otsus: selle sõna pärast juhist rohkem ei muudeta.** Iga järgmine lause oleks kujundatud ühe juhtumi järgi. Viga on
+sõnastuse ebatäpsus: iga töötatud päev on kalendripäev, nii et „8 kalendripäeva kuus” eksitab ainult siis, kui seda
+loetakse vahemikuna. Ka 20.10 ootus „kuni 8 tööpäeva” oli ebatäpne (allikas: „töötamispäevade arv”), ja kas see on
+viga, hindavad omanik ja spetsialist (RAG-12). Juhise 45 rida jääb: see on üldine, kahjutu ja umbes 120 tokenit;
+järgmises juhise ülevaatuses võib selle mõõdetud mõjuta reana eemaldada.
+[Tõend](../audits/evidence/sol-proof-20261014-01/server-rag-chat-prompt45.json)
+
 ## Mida see ei paranda
 
 - **Punkt 9 (§ 95 juurde ei tule § 72 lg 2):** see on otsingu, mitte juhise viga. Selle parandus muudab profiili

@@ -1,12 +1,12 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-21T11:48:14.902Z",
+  "updated_at": "2026-10-21T11:57:13.716Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 398,
+  "observed_variants": 401,
   "passed_variants": 379,
-  "failed_variants": 17,
+  "failed_variants": 20,
   "blocked_variants": 2,
   "server_fixture_variants": 71,
   "case_progress": [
@@ -34,9 +34,9 @@
       "case_id": "ENV-03",
       "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 27,
+      "observed_variants": 29,
       "passed_variants": 25,
-      "failed_variants": 2,
+      "failed_variants": 4,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -304,9 +304,9 @@
       "case_id": "RAG-05",
       "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 3,
+      "observed_variants": 4,
       "passed_variants": 2,
-      "failed_variants": 1,
+      "failed_variants": 2,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -8482,6 +8482,100 @@
       },
       "evidence_file": "server-rag-chat-prompt44.json",
       "serverRelease": "7df8616f (dialogue prompt m4-grounded-dialogue-44; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p45_N01-tooamps",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "when the packet holds it (it did on 20.10, S2): if the work lasted longer or paid more than allowed, Töötukassa ends the registration retroactively from the start of the work and paid benefits may have to be repaid"
+        ],
+        "fault": "list items 12 and 16",
+        "turnId": "ee42a021-3f85-454f-b90f-d311b99246d6",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal"
+        ],
+        "packetSize": 5,
+        "latencyMs": 32876,
+        "costUsd": 0.004891,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units still: \"Tööampsuga võid töötada kuni 8 kalendripäeva kuus\" (the contract length is given separately as eight calendar days). The rest holds: 40 % and 378.40 euros (11.10 page state) in a block, 12 of 24 months, telling Töötukassa first, and the retroactive end with repayment (list item 16 holds for the second time)."
+      },
+      "evidence_file": "server-rag-chat-prompt45.json",
+      "serverRelease": "f4e42aeb (dialogue prompt m4-grounded-dialogue-45; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "chat2110p45_R03-tooamps-spetsialist",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role SOCIAL_WORKER",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "addressed to a colleague (role text unchanged)"
+        ],
+        "fault": "list item 12",
+        "turnId": "9e012249-aa41-4205-8500-597cfebaf5fa",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal",
+          "S4 Töölepingu seadus § 29 lg 1–9"
+        ],
+        "packetSize": 4,
+        "latencyMs": 24489,
+        "costUsd": 0.004476,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units moved the other way: \"ühe töökorra kestus võib olla kuni kaheksa päeva ning kuus võib ajutiselt töötada kuni kaheksa kalendripäeva\". Other facts present, addressed to a colleague (\"Sinu järgmine samm spetsialistina ...\"); no retroactive end this time (not required for this role)."
+      },
+      "evidence_file": "server-rag-chat-prompt45.json",
+      "serverRelease": "f4e42aeb (dialogue prompt m4-grounded-dialogue-45; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "chat2110p45_R04-tooamps-teenuseosutaja",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role SERVICE_PROVIDER",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "addressed to a provider (role text unchanged)"
+        ],
+        "fault": "list item 12",
+        "turnId": "962a99f4-29c7-4343-bca8-fdc75ae93a35",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal"
+        ],
+        "packetSize": 4,
+        "latencyMs": 20960,
+        "costUsd": 0.003117,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units still: \"kuni 8 kalendripäeva kuus\". Other facts present."
+      },
+      "evidence_file": "server-rag-chat-prompt45.json",
+      "serverRelease": "f4e42aeb (dialogue prompt m4-grounded-dialogue-45; the release log says \"Chat plan: renewed\")"
     }
   ]
 }
