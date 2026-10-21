@@ -3,8 +3,8 @@
 Seis 21.10.2026. Siin on ühes kohas kõik, mida Soli tõenduskatsed (`sol-proof-20261014-01`) leidsid ja mida
 tuleb parandada või otsustada. Tõenduskatsete ajal (14.–20.10) parandusi ei tehtud
 (`productFixesDuringBaseline: false`). 21.10 parandati omaniku palvel kinnitatud vead A1–A6 ja A8; A7 osutus
-katseraki ajastusveaks. Samal päeval lisati puuduvad funktsioonid 19–21; vestluse otsingu ja juhiste punktid (B)
-on RAG-i töösuunal, sest vajavad uut juhise-/profiiliversiooni ja serveri plaani. Iga punkti juures on seis. Täpne kirjeldus ja mõõtmise piirid on
+katseraki ajastusveaks. Samal päeval lisati puuduvad funktsioonid 19–21 ja vestluse juhise parandused 12, 14, 15, 16 (juhis 44);
+vestluse otsingu ja sisu punktid (B) on RAG-i töösuunal. Iga punkti juures on seis. Täpne kirjeldus ja mõõtmise piirid on
 [Soli aruandes](sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md), toorandmed kaustas
 `evidence/sol-proof-20261014-01/`. 21.10 kontrollid tehti kohalikus eraldatud koopias, mitte serveris.
 
@@ -54,19 +54,17 @@ on RAG-i töösuunal, sest vajavad uut juhise-/profiiliversiooni ja serveri plaa
 ## B. Vestlus ja RAG
 
 Kõik punktid peale viimase tulevad 50 küsimuse testist sotsiaal.pro peal (väljalase `12cdf6cc`, korpus v92).
-[Tõend](evidence/sol-proof-20261014-01/server-rag-chat-50.json) Avatud — **RAG-i töösuunale.** Põhjus, miks
-21.10 neid koodis ei muudetud: vastuse juhised on versioonitud (`PROMPT_VERSION` m4-grounded-answer-13,
-`DIALOGUE_PROMPT_VERSION` m4-grounded-dialogue-43) ja server keeldub vastamast, kui koodi versioon ei klapi serveri
-plaanifailiga (`lib/rag-v2/pilot/config.js:140`); otsingu käitumine on profiilides, mille ajaloolised eelarved on
-lukus, ja uus käitumine tähendab uut profiili. Mõlemad vajavad koodi ja serveri plaani ühist muutust ning
-hindamisvalimi kordamist. Ettepanekud:
-- **Juhised (uus prompt-versioon):** teemavälise palve korral öelda, milleks vestlus on mõeldud (14); kui küsitud
-  toetust, teenust või reeglit teabes ei ole, öelda otse „seda ma oma teabest ei leidnud” ja kuhu küsida (15); hoida
-  arvude ühik ja loendatav sama nagu allikas — kalendripäev/tööpäev, kuus/ühe lepingu kohta (12); anda abiotsijale
-  sama järgmine samm, mis spetsialistile (16).
-- **Otsing (uus profiil, nt chat-v7):** seaduse sisesed viited („käesoleva seaduse § 72 lõikes 2”) järgida ka teiste
-  radade lisatud lõikudes, mitte ainult algselt valitud lõikudes; välistuse viidetele („välja arvatud … nimetatud
-  isikul”) eraldi koht, mida teised viited ei täida (9).
+[Tõend](evidence/sol-proof-20261014-01/server-rag-chat-50.json)
+**Juhise vead 12, 14, 15, 16: tehtud 21.10 koodis**, juhise versioon `m4-grounded-dialogue-44`
+([ADR-153](../rag-v2/adr-153-request-fit-not-found-units-and-help-seeker-steps.md)); mudeli käitumine mõõdetakse
+samade küsimustega serveris. Paranduse eelne märkus „server keeldub, kuni plaan on uuendatud” oli liiga range:
+väljalase uuendab kinnitatud vestlusplaani uuele koodile ise (omaniku otsus 27.09.2026, `renewChatPlan`); muutuvad
+ainult koodi väljad, kasutajad, eelarve ja otsinguprofiil jäävad samaks.
+**Otsingu ja sisu punktid jäävad RAG-i töösuunale:**
+- **Otsing (uus profiil, nt chat-v7, 9):** seaduse sisesed viited („käesoleva seaduse § 72 lõikes 2”) järgida ka
+  teiste radade lisatud lõikudes, mitte ainult algselt valitud lõikudes; välistuse viidetele („välja arvatud …
+  nimetatud isikul”) eraldi koht. Uus profiil vajab uut omaniku kinnitatud plaani, sest profiil kuulub kinnitatud
+  ulatusse; põhjus tuleb enne kinnitada serveri otsingujäljega.
 - **Sisu:** KOV-i kohustuslike teenuste loetelu üks lõik korpusesse (18a); G13 (PKS § 96 hooldekodu sõnastusega)
   kontrollida otsinguplaani ja järjestuse jäljega (10).
 
@@ -80,14 +78,20 @@ hindamisvalimi kordamist. Ettepanekud:
 11. **§ 133 lg 8 (sugulaselt üür) loetakse kitsalt (G09).** Vastus lisab koos elamise tingimuse ja ütleb, et mujal
     elavale emale makstud üür võib arvesse minna. Enne parandust kinnitab tõlgenduse omaniku ja spetsialisti hinnang.
 12. **Tööampsu kuupiir sõnastatakse „kuni 8 kalendripäeva kuus” (N01, R03, R04).** Allikas: leping kuni
-    8 kalendripäeva, kuus kuni 8 tööpäeva.
+    8 kalendripäeva, kuus kuni 8 tööpäeva. **Tehtud 21.10 (juhis 44):** arv jääb oma ühiku ja loendatavaga; eri
+    loendusega piire ei liideta.
 13. **v89 VIPS-i ja astmelise abi materjal ei jõua VIPS-i küsimuse paketti (U01).** Paketis oli üks varasem TAI leht.
     Enne kontrolli, kas v89 failid piloodi aega üldse nimetavad.
 14. **Teemavälise palve keeldumine kõlab teabepuudusena (B01).** „Pole piisavalt teavet” asemel peaks vastus ütlema,
-    milleks vestlus on mõeldud.
-15. **Olematu toetuse korral ei öelda selgelt, et sellist toetust allikates ei ole (X01).**
+    milleks vestlus on mõeldud. **Tehtud 21.10 (juhis 44):** teemaväline palve saab täpsustuse, milleks vestlus on;
+    osaliselt seotud ja kahtlane palve saab tavalise vastuse.
+15. **Olematu toetuse korral ei öelda selgelt, et sellist toetust allikates ei ole (X01).** **Tehtud 21.10 (juhis
+    44):** esimene piirang ütleb minavormis, et seda ei leitud (mitte et seda pole olemas); lähedast asja pakutakse
+    võimalusena ja küsitakse.
 16. **Abiotsija vastusest jäävad vahel olulised järgmised sammud välja:** tööampsu piiri ületamise tagasiulatuv
-    lõpetamine (N01; spetsialisti vaates oli olemas) ja hooldekodu kohatasu puudujäägi muud teed (G02).
+    lõpetamine (N01; spetsialisti vaates oli olemas) ja hooldekodu kohatasu puudujäägi muud teed (G02). **Tehtud
+    21.10 (juhis 44):** abiotsija tekst hoiab tagajärjed, tähtajad, teavitamiskohustuse ja muud teed nagu
+    spetsialisti vastus.
 17. **Keelevead:** G04 „Kui su isa 70-aastasel isal…”, G42 „peab sa elama”.
 18a. **Päevakeskuse küsimusele (RAG-06 E9, 21.10) ei saa vastust:** pakett ei sisalda KOV-i kohustuslike teenuste
     loetelu (teenused on seaduses eraldi paragrahvides), vastus jätab küsimuse lahtiseks. Valeväidet ei olnud.
@@ -117,9 +121,12 @@ hindamisvalimi kordamist. Ettepanekud:
     praktikate ülevaated ja kovisiooni kutsekirjad. [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json)
     **Otsustatud ja tehtud 21.10:** omanik: jooksevad ka suletud režiimis. `lib/publicPlatform.js` laseb värava
     tagant läbi `/api/jobs/notifications` ja `/api/jobs/practice-reviews` (mõlemad kontrollivad oma võtit).
-    Raha ja andmeekspordi tööd (subscription-*, payment-emails, usage-reservation-reaper, data-exports) jäid
-    küsimusest välja ja on endiselt värava taga — nende kohta on vaja eraldi otsust.
     [Kontroll](evidence/sol-proof-20261014-01/local-ui-admin-role-caption-20261021.json)
+    **Raha ja andmeekspordi tööd, otsustatud ja tehtud 21.10:** omanik „jah, tohib”. Värava tagant läbi lastakse ka
+    subscription-renewals, subscription-reconcile, payment-emails, usage-reservation-reaper ja data-exports
+    (`82d9eccb`); igaüks kontrollib oma võtit ja raha- ning kasutustööd käivituvad ainult oma `*_ENABLED` lipuga.
+    Serveris pärast paigaldust ilma võtmeta: need viis vastavad 401 (marsruut), muu `/api/jobs/…` 503 (värav).
+    Kas serveris on nende tööde ajastus ja lipud olemas, ei ole kontrollitud (repos on ajastus ainult teavitustööl).
 23. **Admin ilma vaaterollita vastab vestluses spetsialistina** (`lib/authz.js:33`).
     **Otsustatud ja tehtud 21.10:** omanik: näita aktiivset rolli. Vestluses on admini S/P/T lüliti kõrval kiri
     „Vastan kui: Sotsiaaltöö spetsialist” (või valitud roll); vaikimisi käitumine sama.

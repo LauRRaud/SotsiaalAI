@@ -148,11 +148,12 @@ skript eristab suletud väravat. Kontroll kohalikus eraldatud koopias,
 serveris kontrollimata. Autori kustutamise järel tööjärje „0” oli rakise viga.
 21.10 omaniku otsused tehtud: teavitustöö (välitöö turvakontroll, kiire abi
 aegumine, kovisiooni kutsekirjad) ja praktikate ülevaated jooksevad suletud
-režiimis; raha ja andmeekspordi tööd ootavad eraldi otsust. Admin näeb
+režiimis, samuti raha ja andmeekspordi tööd (oma võtme ja lipuga). Admin näeb
 vestluses „Vastan kui: …”.
 21.10 tehtud ka: töö tähtaeg (koordinaator), supervisiooni kutse e-posti järgi,
-kovisiooni kutse kaart. Avatud RAG-i töösuunale (vajab uut prompt-/profiiliversiooni
-ja serveri plaani): otsingu kaaslõigud (G33 § 72 lg 2, G13 PKS § 96) ja juhised.
+kovisiooni kutse kaart ja vestluse juhis 44 (ADR-153: teemaväline palve, leidmata
+toetus, ühikud, abiotsija sammud). Avatud RAG-i töösuunale: otsingu kaaslõigud
+(G33 § 72 lg 2, uus profiil ja plaan), G13 PKS § 96, KOV-i teenuste loetelu.
 21.10 RAG-07 (puuduv info, 10 käiku) ja RAG-06 (allikaliigid) 13/14 PASS;
 GOV-01–04 dokumendid tehtud: kirja 19 väitest 4 kinnitatud, 12 piiratud
 ulatuses, 2 tõendamata (sääst, võrreldav turvatase), 1 tulevikuplaan.
