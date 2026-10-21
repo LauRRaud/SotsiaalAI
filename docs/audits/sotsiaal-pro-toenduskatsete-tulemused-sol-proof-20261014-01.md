@@ -4,6 +4,8 @@
 
 **Jooksev koond:** 355 salvestatud kontrollvarianti: 339 PASS, 14 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
+**Parandusnimekiri:** kõik leiud, mida tuleb parandada või otsustada, on koondatud [ühte faili](sotsiaal-pro-parandusnimekiri-sol-proof-20261014-01.md).
+
 Käivituskavand: [14.10 kontrollikavand](sotsiaal-pro-toenduskatsete-kavand-2026-10-14.md). Täpne edenemine ja kõik variandid: [case-progress.json](evidence/sol-proof-20261014-01/case-progress.json).
 
 **Praegune otsus:** kontrollitud eelpöördumise, Teekonna, asutuse vastuvõtu ja koduteenuse töövood toimivad tegeliku serveri HTTPS- ja brauseriradadel kirjeldatud ulatuses. Kaks kinnitatud puudust on vastuvõtujärgne võrgustikujagamine ja saabumiskirja eelistuse eiramine. Need jäävad kokkulepitud Astra/Fable arendusetappi. Ajavõit, netokulu, praeguse RAG-i sisuline õigsusmäär ja STAR-i tegelik andmevahetus on veel tõendamata. Kolme testkonto ajutine ligipääs ei ava platvormi teistele.
