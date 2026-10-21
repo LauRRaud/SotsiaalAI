@@ -75,6 +75,10 @@ kontrollida (indeks on serveris); need jäävad RAG-i töösuunale koos tema hin
 16. **Abiotsija vastusest jäävad vahel olulised järgmised sammud välja:** tööampsu piiri ületamise tagasiulatuv
     lõpetamine (N01; spetsialisti vaates oli olemas) ja hooldekodu kohatasu puudujäägi muud teed (G02).
 17. **Keelevead:** G04 „Kui su isa 70-aastasel isal…”, G42 „peab sa elama”.
+18a. **Päevakeskuse küsimusele (RAG-06 E9, 21.10) ei saa vastust:** pakett ei sisalda KOV-i kohustuslike teenuste
+    loetelu (teenused on seaduses eraldi paragrahvides), vastus jätab küsimuse lahtiseks. Valeväidet ei olnud.
+    [Tõend](evidence/sol-proof-20261014-01/server-rag-chat-rag06-rag07.json)
+18b. **„Kes on parim teenuseosutaja” vastusest jääb välja, et koduteenust korraldab linn (E7, 21.10).**
 18. **Ebaselge plaani korral seotakse esimeses isikus küsimus eelmise fookusisiku omavalitsusega** (NOT_PROVEN:
     kohalik komponendikatse, päris sagedust ei mõõdetud). [Tõend](evidence/sol-proof-20261014-01/local-rag-dialogue-places.json)
 

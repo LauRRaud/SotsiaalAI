@@ -1,0 +1,414 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "first 8 turns on b83b4cf5; the run stopped at the 10:17 UTC restart (502) of the deploy of 61f61c2c (which carries the 722b3f8d gate and caption changes) and the remaining 6 turns ran on 61f61c2c; the chat answer code is the same in both",
+  "checkpointDate": "2026-10-21",
+  "preregistration": {
+    "path": "docs/audits/vestlustest-2026-10-21-rag06-rag07-eelregistreering.json",
+    "sha256": "5f2a31150b3890787f43e54f1d0478882b6c5736133d1bec2b3c8815c654889c",
+    "lockedInCommit": "61f61c2c"
+  },
+  "raw": {
+    "path": "docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-rag06-rag07-raw.json",
+    "exportSha256": "b3bc82e8b218811c720f3ecdff876d4860533dd3bba4de26687e870906dc1ff2"
+  },
+  "checks": [
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E1-toimetulek_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Kas mul on kindlasti õigus toimetulekutoetusele? Mul on praegu väga vähe raha.",
+        "expected": "T1: no certain right; the municipality (KOV) decides from the family's net income, housing costs and the subsistence level (SHS § 131-134); next step: apply to the KOV of the actual residence by the last working day of the month; asks for family and income facts.",
+        "turnId": "89a1375c-7594-41d4-ad5e-37d2bcc62bbc",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S2 Sotsiaalhoolekande seadus § 131 lg 1–8",
+          "S3 Sotsiaalhoolekande seadus § 133 lg 1–2",
+          "S4 Sotsiaalhoolekande seadus § 134 lg 1–4",
+          "S12 Sotsiaalhoolekande seadus § 132 lg 1–5¹"
+        ],
+        "packetSize": 12,
+        "latencyMs": 29174,
+        "costUsd": 0.005145,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "No certain right; KOV of the actual residence decides from family income, housing costs and the subsistence level (SHS § 131 lg 2, § 133 lg 1, § 134 lg 1); next step: apply by the last working day with income documents (§ 132 lg 1, 3-4); asks the family net income and housing costs."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E1-toimetulek_t2",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Täpsustan: olen 22-aastane üliõpilane, elan vanematega samas korteris ja oleme samal aadressil kirjas.",
+        "expected": "T2: a student up to 24 living at the parents' address is counted in the parents' family (SHS § 131 lg 8); the family's income decides, not his alone; no decision is simulated.",
+        "turnId": "29aaf2ec-d064-4227-8fcd-668f392a1e92",
+        "context": {
+          "mode": "same",
+          "revision": 2
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 131 lg 1–8"
+        ],
+        "packetSize": 8,
+        "latencyMs": 25547,
+        "costUsd": 0.005582,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Uses the added fact: a student up to 24 at the parents' address is counted in the parents' family, so their income counts (SHS § 131 lg 7-8); still says the right cannot be stated yet and the KOV decides."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E2-pensionar_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Olen pensionär ja elan üksi. Kas ma saan kindlasti üksi elava pensionäri toetuse?",
+        "expected": "T1: no certainty without the pension amount and the 1 April-30 September conditions; Sotsiaalkindlustusamet decides from registers, no application needed; names the 2026 threshold (992 euros).",
+        "turnId": "5d4f7e54-8149-4b91-bd0f-4f6de0915f63",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 139¹ lg 1–6",
+          "S2 Üksi elava pensionäri toetus",
+          "S3 Üksi elava pensionäri toetus",
+          "S8 Sotsiaalhoolekande seadus § 139³ lg 1–7",
+          "S9 2026. aasta riigieelarve seadus § 2 lg 5"
+        ],
+        "packetSize": 9,
+        "latencyMs": 25369,
+        "costUsd": 0.004665,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "No promise; conditions of § 139¹ lg 2-5, threshold 992 euros, 200 euros in 2026, SKA checks registers, no application needed."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E2-pensionar_t2",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Minu pension on 1100 eurot kuus kätte.",
+        "expected": "T2: 1100 euros is above the 992-euro threshold, so by the cited condition the support is not paid in 2026; the answer does not announce a decision but states the condition.",
+        "turnId": "5f8cc24e-bcab-43e1-97f8-a3f7ce65eab2",
+        "context": {
+          "mode": "same",
+          "revision": 2
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Üksi elava pensionäri toetus",
+          "S2 Üksi elava pensionäri toetus",
+          "S3 Sotsiaalhoolekande seadus § 139¹ lg 1–6"
+        ],
+        "packetSize": 4,
+        "latencyMs": 23650,
+        "costUsd": 0.004122,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "1100 euros is above 992, so the pension condition is not met; names the § 139¹ lg 3 exception (a person paid social benefit under § 140), which the cited text states; no decision simulated."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E3-toetatud-elamine_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Mu täiskasvanud pojal on skisofreenia. Kas ta saab kindlasti toetatud elamise teenuse?",
+        "expected": "T1: no certainty; SHS § 95 conditions (severe/permanent psychiatric disorder, can take care of himself, copes with guidance) and Sotsiaalkindlustusamet assesses the need; next step: apply to SKA.",
+        "turnId": "7073fd46-40a0-445b-a916-aa4691edd631",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 95",
+          "S4 Sotsiaalhoolekande seadus § 70 lg 1–8"
+        ],
+        "packetSize": 5,
+        "latencyMs": 20577,
+        "costUsd": 0.004351,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Diagnosis alone does not decide; § 95 conditions; SKA assesses support need and decides (§ 70 lg 1-2); next step: apply to SKA."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E3-toetatud-elamine_t2",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Ta ei suuda enda eest üldse hoolitseda ja vajab ööpäevaringset abi.",
+        "expected": "T2: the condition 'suudab ise enda eest hoolitseda' is not met, so toetatud elamine does not fit; points to the assessment and the services for round-the-clock need (e.g. ööpäevaringne erihooldusteenus) without deciding.",
+        "turnId": "db579f5a-918b-473b-8a7b-212f4fd88543",
+        "context": {
+          "mode": "same",
+          "revision": 2
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 95",
+          "S2 Sotsiaalhoolekande seadus § 101 lg 1–2¹",
+          "S4 Erihoolekandeteenused"
+        ],
+        "packetSize": 10,
+        "latencyMs": 22540,
+        "costUsd": 0.005366,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "The added fact fails the § 95 condition (can take care of himself); points to round-the-clock special care (§ 101 lg 1) as possibly more suitable and to SKA's assessment; no decision. Says itself that one referred condition is missing (the § 72 lg 2 passage, as in G33 on 20.10)."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E4-tootuskindlustus_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Jäin töötuks. Kas mul on kindlasti õigus töötuskindlustushüvitisele?",
+        "expected": "T1: no certainty; depends on insurance period and the reason for leaving; Töötukassa decides; next step: register as unemployed and apply.",
+        "turnId": "b4953b05-32a3-4a98-822c-ee4ee1045130",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Töötuskindlustushüvitis",
+          "S3 Töötuskindlustushüvitis",
+          "S4 Töötuskindlustuse seadus § 6¹ lg 1–6",
+          "S5 Töötuskindlustuse seadus § 6 lg 1–5"
+        ],
+        "packetSize": 13,
+        "latencyMs": 20495,
+        "costUsd": 0.004577,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "No certain right; income-based benefit needs 12 of 36 months and an allowed reason for leaving (TKindlS § 6 lg 1-2); base rate needs 8 of 36 months (§ 6¹); register and apply at Töötukassa."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E4-tootuskindlustus_t2",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Lahkusin töölt omal soovil ja mul on töötuskindlustusstaaži kolm aastat.",
+        "expected": "T2: income-based benefit is not paid when leaving on one's own initiative (Töötukassa page); says what remains possible according to the cited page (e.g. base-rate benefit) only if the page states it; no decision is simulated.",
+        "turnId": "72ec3c96-8ecf-4c93-91b1-658ae5c654f1",
+        "context": {
+          "mode": "same",
+          "revision": 2
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S2 Töötuskindlustushüvitis",
+          "S4 Töötuskindlustuse seadus § 6 lg 1–5",
+          "S8 Töötuskindlustuse seadus § 6¹ lg 1–6"
+        ],
+        "packetSize": 8,
+        "latencyMs": 22746,
+        "costUsd": 0.003039,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Leaving on own initiative excludes the income-based benefit except the named cases (§ 6 lg 2 lists TLS § 37 lg 5, § 91 lg 2, § 107 lg 2); the base rate stays possible (§ 6¹ lg 1 has no such exclusion). The source view of this turn returned no text (read during the deploy restart); the same sections were read in turn 1."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E5-koduteenus_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Elan Tartus ja mul on raske kodus hakkama saada. Kas linn peab mulle kindlasti koduteenust andma?",
+        "expected": "T1: no certainty; Tartu procedure § 11 conditions and the city's needs assessment (piirkonnakeskuse sotsiaaltöö spetsialist) decide; next step: contact the regional centre or apply.",
+        "turnId": "1676e759-805b-46bc-9405-68af57f99ecf",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S4 Sotsiaalhoolekande seadus § 17 lg 1–3",
+          "S6 Tartu linna sotsiaalhoolekandelise abi andmise kord § 11 lg 1–3",
+          "S8 Sotsiaalhoolekande seadus § 15 lg 1–4",
+          "S63 Koduteenus"
+        ],
+        "packetSize": 78,
+        "latencyMs": 29041,
+        "costUsd": 0.006017,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "The city must assess the need and arrange suitable help, not automatically koduteenus (SHS § 15 lg 1, § 17); Tartu conditions (§ 11) and the regional centre's assessment; asks residence."
+      }
+    },
+    {
+      "case_id": "RAG-07",
+      "variant_id": "chat2110_E5-koduteenus_t2",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Mu tütar elab minuga koos ja saab mind igapäevaselt aidata.",
+        "expected": "T2: the help of the person living together is taken into account in the needs assessment; the answer does not say the right is lost or granted, the city decides.",
+        "turnId": "9efe1f5c-f96b-4223-84af-ce2a208fb8fd",
+        "context": {
+          "mode": "same",
+          "revision": 2
+        },
+        "answerKind": "grounded",
+        "cited": [
+          "S7 Sotsiaalhoolekande seadus § 15 lg 1–4",
+          "S61 Koduteenus"
+        ],
+        "packetSize": 76,
+        "latencyMs": 40622,
+        "costUsd": 0.006137,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "The daughter's help is part of the needs assessment (§ 15 lg 2: physical and social environment) and does not by itself remove the need; the city decides; next step to the regional centre."
+      }
+    },
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110_E6-allikad-tugiisik_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Elan Tartus. Kas mul on seaduse järgi õigus tugiisikuteenusele ja kas see teenus päriselt aitab?",
+        "expected": "Legal basis (SHS on tugiisikuteenus, Tartu procedure) is kept apart from any claim that the service helps; an effectiveness claim is attributed to its source type (study, guide or practice article) and not stated as a legal right; no promise of the outcome.",
+        "turnId": "604c4275-fcd7-4a2d-a1d6-efdbbe44bd8a",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 23 lg 1–4",
+          "S2 Tartu linna sotsiaalhoolekandelise abi andmise kord § 17 lg 1–3",
+          "S3 Ühtekuuluvuspoliitika hoolekandeteenuste tulemuslikkuse ja mõju hindamine Sotsiaalministeeriumile. Lõpparuanne",
+          "S67 Tugiisikuteenus täisealisele"
+        ],
+        "packetSize": 74,
+        "latencyMs": 35133,
+        "costUsd": 0.005764,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Legal basis (SHS § 23, Tartu procedure § 17, free of charge) kept apart from effect: 36 % big or very big and 29 % some effect on independence come from the 2022 cohesion-policy evaluation report, stated as 2022 data, not as a right."
+      }
+    },
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110_E7-allikad-pakkuja_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Milline teenuseosutaja pakub Tartus kõige paremat koduteenust?",
+        "expected": "No ranking of providers as a fact; provider information is presented as the provider's own description (self-description), not as quality evidence; says that the city organises koduteenus and how to get it.",
+        "turnId": "3c73155f-3595-45e6-93f7-e28713eafbad",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S2 Vajadustest lähtuv hool ja abi igas kodus",
+          "S3 Tartu linna vanemaealiste uuring",
+          "S4 Koduteenuse kvaliteedijuhis",
+          "S5 Koduteenuse kvaliteedijuhis"
+        ],
+        "packetSize": 6,
+        "latencyMs": 30805,
+        "costUsd": 0.004768,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Refuses to name the best provider; one provider's own page says what it offers, the Tartu older-people study is marked as no comparison, selection criteria come from the koduteenus quality guide. Omission: does not say that the city organises koduteenus and how to get it (pre-registered); the provider page is not labelled as self-description, but it is not used as quality evidence."
+      }
+    },
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110_E8-allikad-uuring_t1",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Kas CARe metoodika on tõendatult tõhus ja kas kogukonnas elamise teenus peab seda kohustuslikult kasutama?",
+        "expected": "Study results (BMC Psychiatry 2017: no difference to usual practice in one Dutch trial) are kept apart from any legal duty; no legal obligation to use CARe is claimed unless a cited legal act states it.",
+        "turnId": "032e44aa-a74c-430d-9cc4-7546f097f75d",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Kui tõhus on CARe metoodika? Klasterrandomiseeritud kontrollitud uuring (BMC Psychiatry 2017, eestikeelne tõlge)",
+          "S2 Kui tõhus on CARe metoodika? Klasterrandomiseeritud kontrollitud uuring (BMC Psychiatry 2017, eestikeelne tõlge)",
+          "S3 Sotsiaalhoolekande seadus § 99 lg 1–5",
+          "S4 Sotsiaalhoolekande seadus § 97 lg 1–4"
+        ],
+        "packetSize": 6,
+        "latencyMs": 31972,
+        "costUsd": 0.00326,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Study result (2017 RCT: no difference to usual practice) kept apart from law: SHS § 97 lg 3 and § 99 lg 1 do not name CARe, so no legal duty is stated; does not overstate the study either way."
+      }
+    },
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110_E9-allikad-paevakeskus_t1",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Kas eakate päevakeskus on teenus, mida vald peab seaduse järgi kindlasti pakkuma?",
+        "expected": "Says whether the Social Welfare Act names a päevakeskus among the services the municipality must organise (SHS § 14 list, as cited); a municipality's own practice or page is not presented as a statutory duty; points to the person's own KOV.",
+        "turnId": "6810a42b-061f-4d7b-b4ee-1ea0db48239f",
+        "context": {
+          "mode": "new",
+          "revision": 1
+        },
+        "answerKind": "partial",
+        "cited": [
+          "S1 Kohaliku omavalitsuse sotsiaalteenused ja toetused",
+          "S4 Sotsiaalhoolekande seadus § 15 lg 1–4"
+        ],
+        "packetSize": 5,
+        "latencyMs": 30202,
+        "costUsd": 0.002907,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Says the KOV must assess the need (§ 15 lg 1) and that 13 services are mandatory (SKA page) but cannot say whether a day centre is one of them, so the question is left open. The pre-registered \"SHS § 14 list\" was an inaccurate reference: § 14 is the KOV procedure, the services are defined in separate sections and the packet held no list. No false claim; practice is not presented as law."
+      }
+    }
+  ],
+  "totals": {
+    "turns": 14,
+    "costUsd": 0.065701
+  },
+  "observations": [
+    "RAG-07: in all five dialogues the first turn gave no certain right, named the decider and a next step and asked the missing facts; the second turn used the added fact and said how it changes the likely result by the cited condition, without simulating a decision.",
+    "RAG-06: law, study, evaluation data and provider pages were kept apart in all four answers; the day-centre question was left open.",
+    "E3 turn 2 again said that a referred condition was missing (the § 72 lg 2 passage beside § 95), the same gap as G33 on 20.10."
+  ],
+  "limits": [
+    "Pre-rating by Claude only; one answer per turn.",
+    "RAG-06 could not include an unconfirmed provider quality claim in the corpus (no change to production data was made); provider handling was tested with the providers already in the index.",
+    "The pre-registered E9 expectation named an inaccurate provision (SHS § 14)."
+  ],
+  "newPaidCalls": true,
+  "finishedAt": "2026-10-21T10:25:25.082Z"
+}
