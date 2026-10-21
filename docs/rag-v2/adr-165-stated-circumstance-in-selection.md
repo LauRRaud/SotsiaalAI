@@ -1,4 +1,4 @@
-# ADR-165 — Valik hoiab lõigu ka kasutaja kirjeldatud asjaolu kohta (search-assist-17)
+# ADR-165 — Plaan ja valik katavad ka kasutaja kirjeldatud asjaolu (search-assist-17 ja 18)
 
 21.10.2026. Teostus Claude Opus 5.5. Omaniku pööre serveris: „Elan tabasalus, tervisekassat ei ole, toimetulek on raske.
 Kas saan pöörduda kohaliku omavalitsuse sotsiaaltöötaja poole?“ ja omaniku märkus „kahju, et välja jättis“.
