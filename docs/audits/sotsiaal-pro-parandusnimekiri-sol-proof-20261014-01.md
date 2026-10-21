@@ -3,7 +3,8 @@
 Seis 21.10.2026. Siin on ühes kohas kõik, mida Soli tõenduskatsed (`sol-proof-20261014-01`) leidsid ja mida
 tuleb parandada või otsustada. Tõenduskatsete ajal (14.–20.10) parandusi ei tehtud
 (`productFixesDuringBaseline: false`). 21.10 parandati omaniku palvel kinnitatud vead A1–A6 ja A8; A7 osutus
-katseraki ajastusveaks. Iga punkti juures on seis. Täpne kirjeldus ja mõõtmise piirid on
+katseraki ajastusveaks. Samal päeval lisati puuduvad funktsioonid 19–21; vestluse otsingu ja juhiste punktid (B)
+on RAG-i töösuunal, sest vajavad uut juhise-/profiiliversiooni ja serveri plaani. Iga punkti juures on seis. Täpne kirjeldus ja mõõtmise piirid on
 [Soli aruandes](sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md), toorandmed kaustas
 `evidence/sol-proof-20261014-01/`. 21.10 kontrollid tehti kohalikus eraldatud koopias, mitte serveris.
 
@@ -53,8 +54,21 @@ katseraki ajastusveaks. Iga punkti juures on seis. Täpne kirjeldus ja mõõtmis
 ## B. Vestlus ja RAG
 
 Kõik punktid peale viimase tulevad 50 küsimuse testist sotsiaal.pro peal (väljalase `12cdf6cc`, korpus v92).
-[Tõend](evidence/sol-proof-20261014-01/server-rag-chat-50.json) Avatud. Otsingu tuuma muudatusi ei saa kohalikult
-kontrollida (indeks on serveris); need jäävad RAG-i töösuunale koos tema hindamisvalimiga.
+[Tõend](evidence/sol-proof-20261014-01/server-rag-chat-50.json) Avatud — **RAG-i töösuunale.** Põhjus, miks
+21.10 neid koodis ei muudetud: vastuse juhised on versioonitud (`PROMPT_VERSION` m4-grounded-answer-13,
+`DIALOGUE_PROMPT_VERSION` m4-grounded-dialogue-43) ja server keeldub vastamast, kui koodi versioon ei klapi serveri
+plaanifailiga (`lib/rag-v2/pilot/config.js:140`); otsingu käitumine on profiilides, mille ajaloolised eelarved on
+lukus, ja uus käitumine tähendab uut profiili. Mõlemad vajavad koodi ja serveri plaani ühist muutust ning
+hindamisvalimi kordamist. Ettepanekud:
+- **Juhised (uus prompt-versioon):** teemavälise palve korral öelda, milleks vestlus on mõeldud (14); kui küsitud
+  toetust, teenust või reeglit teabes ei ole, öelda otse „seda ma oma teabest ei leidnud” ja kuhu küsida (15); hoida
+  arvude ühik ja loendatav sama nagu allikas — kalendripäev/tööpäev, kuus/ühe lepingu kohta (12); anda abiotsijale
+  sama järgmine samm, mis spetsialistile (16).
+- **Otsing (uus profiil, nt chat-v7):** seaduse sisesed viited („käesoleva seaduse § 72 lõikes 2”) järgida ka teiste
+  radade lisatud lõikudes, mitte ainult algselt valitud lõikudes; välistuse viidetele („välja arvatud … nimetatud
+  isikul”) eraldi koht, mida teised viited ei täida (9).
+- **Sisu:** KOV-i kohustuslike teenuste loetelu üks lõik korpusesse (18a); G13 (PKS § 96 hooldekodu sõnastusega)
+  kontrollida otsinguplaani ja järjestuse jäljega (10).
 
 9. **§ 95 juurde ei tule § 72 lg 2 välistust (G33).** Toetatud elamise küsimus alkoholisõltuvuse kohta jäi
    välistuseta, kuigi § 88 (G04) ja § 98 (G34) juurde tuli sama lõik kaasa. Kaaslõigu reegel on ebaühtlane.
@@ -84,12 +98,18 @@ kontrollida (indeks on serveris); need jäävad RAG-i töösuunale koos tema hin
 
 ## C. Puuduv funktsioon
 
-19. **Töö tähtaeg `dueAt` puudub kasutusrajal** (MISSING_FEATURE). Õiguslik tähtaeg on eraldi GOV-01 küsimus.
-    [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json) Avatud.
-20. **Supervisiooni osaleja kutsutakse sisemise kasutaja ID-ga** ja kasutajaliides ei ütle, kust seda leida.
-    [Tõend](evidence/sol-proof-20261014-01/local-ui-supervision.json) Avatud.
-21. **Kovisiooni kutse jõuab kutsutuni ainult e-kirjaga**, mida serveris suletud värav praegu ei lase saata (vt 22).
-    [Tõend](evidence/sol-proof-20261014-01/local-ui-covision.json) Avatud.
+19. **Töö tähtaeg `dueAt` puudus kasutusrajal** (MISSING_FEATURE). [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json)
+    **Tehtud 21.10:** koordinaator paneb lahtisele kirjele tähtaja (Eesti kalendripäev) või eemaldab selle; kirje ja
+    loend näitavad tähtaega ja „üle tähtaja”; möödunud päeva ei saa valida; auditisse ainult kuupäev. Õigusliku
+    menetlustähtaja algus on eraldi GOV-01 küsimus. [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-c19-c21-20261021.json)
+20. **Supervisiooni osaleja kutsuti sisemise kasutaja ID-ga.** [Tõend](evidence/sol-proof-20261014-01/local-ui-supervision.json)
+    **Tehtud 21.10:** kutse e-posti järgi; puuduv konto ja sobimatu roll annavad sama vastuse.
+    [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-c19-c21-20261021.json)
+21. **Kovisiooni kutse oli kutsutu loendis tühja pealkirjaga kaart** (20.10 vaatlus „ei näidata kusagil” oli liiga
+    tugev: kaart oli olemas, aga märkamatu). [Tõend](evidence/sol-proof-20261014-01/local-ui-covision.json)
+    **Tehtud 21.10:** kaart ütleb „Kutse Kovisiooni”, et sisu avaneb pärast rolli ja kokkuleppe kinnitamist, ja nupp
+    on „Vaata kutset”; e-kiri läheb uuesti teele, sest teavitustöö jookseb suletud režiimis (22).
+    [Kontroll](evidence/sol-proof-20261014-01/local-ui-fix-c19-c21-20261021.json)
 
 ## D. Vajab enne parandust omaniku otsust
 

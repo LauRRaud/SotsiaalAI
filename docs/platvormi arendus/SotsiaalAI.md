@@ -150,8 +150,9 @@ serveris kontrollimata. Autori kustutamise järel tööjärje „0” oli rakise
 aegumine, kovisiooni kutsekirjad) ja praktikate ülevaated jooksevad suletud
 režiimis; raha ja andmeekspordi tööd ootavad eraldi otsust. Admin näeb
 vestluses „Vastan kui: …”.
-Avatud: töö tähtaeg `dueAt` (MISSING_FEATURE), supervisiooni kutse ID-ga,
-vestluse otsingu kaaslõigud (G33 § 72 lg 2, G13 PKS § 96) RAG-i töösuunale.
+21.10 tehtud ka: töö tähtaeg (koordinaator), supervisiooni kutse e-posti järgi,
+kovisiooni kutse kaart. Avatud RAG-i töösuunale (vajab uut prompt-/profiiliversiooni
+ja serveri plaani): otsingu kaaslõigud (G33 § 72 lg 2, G13 PKS § 96) ja juhised.
 21.10 RAG-07 (puuduv info, 10 käiku) ja RAG-06 (allikaliigid) 13/14 PASS;
 GOV-01–04 dokumendid tehtud: kirja 19 väitest 4 kinnitatud, 12 piiratud
 ulatuses, 2 tõendamata (sääst, võrreldav turvatase), 1 tulevikuplaan.
