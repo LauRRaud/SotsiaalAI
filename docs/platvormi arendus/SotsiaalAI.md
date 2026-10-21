@@ -152,13 +152,17 @@ režiimis; raha ja andmeekspordi tööd ootavad eraldi otsust. Admin näeb
 vestluses „Vastan kui: …”.
 Avatud: töö tähtaeg `dueAt` (MISSING_FEATURE), supervisiooni kutse ID-ga,
 vestluse otsingu kaaslõigud (G33 § 72 lg 2, G13 PKS § 96) RAG-i töösuunale.
+21.10 RAG-07 (puuduv info, 10 käiku) ja RAG-06 (allikaliigid) 13/14 PASS;
+GOV-01–04 dokumendid tehtud: kirja 19 väitest 4 kinnitatud, 12 piiratud
+ulatuses, 2 tõendamata (sääst, võrreldav turvatase), 1 tulevikuplaan.
 Vestluse test sotsiaal.pro peal: 50 enne vastuseid lukustatud küsimust
 (väljalase `12cdf6cc`, korpus v92, kulu 0,20 USD). 108 kontrollitud väitest 103
 toetas viidatud lõik, toetuseta või vastuolus väiteid ei olnud, 5 on vaieldavad;
 põhijäreldus õige 43 küsimuses, 4 osalist; faktid kolmes rollis samad.
 Testkontode erand kehtib 27.10 kella 03.00-ni; Claude ei logi sotsiaal.pro peal
 testkontodega sisse. Järgmine: omaniku ja spetsialisti sõltumatu hinnang
-vaieldavatele väidetele (RAG-12), FIELD ja GOV.
+(RAG-12), GOV-küsimused õigus- ja andmekaitsehindajale ning SKA-le, FIELD-katsed
+päris spetsialistidega.
 [Vahetulemus ja tõendid](../audits/sotsiaal-pro-toenduskatsete-tulemused-sol-proof-20261014-01.md).
 
 **13.10 logo kuvamine:** avalehe logo joonistatakse nüüd lehe Exo 2 fondist
