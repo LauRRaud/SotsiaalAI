@@ -204,7 +204,20 @@ küsimust.
     - vastuse kirjutamine 14,6 s. See sõltub väljundi pikkusest (r = 0,69).
 
     Ettepanekud on PDF-is (Qdranti filter ja indeks, plaan otsinguga samal ajal, valikumudelile lõigu algus, lühem
-    spetsialisti vastus, voogesitus). Avatud.
+    spetsialisti vastus, voogesitus).
+
+    **Osaliselt tehtud 21.10.2026.** Omaniku otsus: Luna jääb samaks (tavaline teenindustase, mõtlemine „low“).
+    - Vektorotsing käib HNSW-indeksi kaudu, mitte täpse otsinguna: Qdranti aeg 3–14 s → 0,2–0,4 s
+      ([ADR-159](../rag-v2/adr-159-wide-vector-search-through-the-index.md)).
+    - Otsinguplaani skeemist võeti välja pikkuspiirid: plaan 7–12 s → 2–4,5 s sama väljundiga
+      ([ADR-162](../rag-v2/adr-162-plan-schema-without-bounds.md)).
+    - Sama katse vastuse skeemiga ei kiirendanud ja võeti tagasi
+      ([ADR-163](../rag-v2/adr-163-answer-schema-without-bounds.md)).
+    - Sõnaotsingu 3–4 s põhjus on leitud ([ADR-161](../rag-v2/adr-161-lexical-search-time.md)).
+    - Vastuse kontroll parandab, mitte ei lükka tagasi
+      ([ADR-160](../rag-v2/adr-160-answer-repair-instead-of-refusal.md)).
+    - Ülejäänud oote põhjustab peamiselt Luna mõtlemine: valikumudelis 0–400 tokenit (0–8 s) ja vastuses enne esimest
+      sõna 250–750 tokenit (5–13 s).
 28. **Teenuseosutaja küsimustele puudub korpusest kohalik kord** (aruandlus, lepingud, andmete säilitus, tugiisiku
     kestus, võlanõustaja volitused). Need vastused jäid osaliseks ja suunasid omavalitsuse poole. Avatud: korpuse
     otsus.

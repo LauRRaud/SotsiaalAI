@@ -128,6 +128,19 @@ model RagV2VersionUnit {
   @@index([tenant, config_id, version_id], map: "rag_v2_version_unit_version_idx")
   @@map("rag_v2_version_unit")
 }
+// ADR-164: the two text vectors of a version unit, in a narrow row of their own for the lexical search; a trigger on
+// rag_v2_version_unit writes it, and a deleted unit takes it along.
+model RagV2VersionLexical {
+  tenant String
+  config_id String
+  id String
+  version_id String
+  search_vector Unsupported("tsvector")?
+  morphology_vector Unsupported("tsvector")?
+  @@id([tenant, config_id, id])
+  @@index([tenant, config_id, version_id], map: "rag_v2_version_lexical_version_idx")
+  @@map("rag_v2_version_lexical")
+}
 model RagV2VectorCache {
   tenant String
   key String
