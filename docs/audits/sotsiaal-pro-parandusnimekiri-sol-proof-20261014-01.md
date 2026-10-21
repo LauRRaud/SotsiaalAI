@@ -90,10 +90,16 @@ kontrollida (indeks on serveris); need jäävad RAG-i töösuunale koos tema hin
 ## D. Vajab enne parandust omaniku otsust
 
 22. **Suletud avamisvärav keelab võtmega taustatööd:** teavitused, välitöö turvakontroll, kiire abi aegumine,
-    praktikate ülevaated ja kovisiooni kutsekirjad. Kas need peavad suletud režiimis jooksma?
-    [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json)
-23. **Admin ilma vaaterollita vastab vestluses spetsialistina** (`lib/authz.js:33`). Testides on seda lihtne märkamata
-    jätta; kas vaikimisi roll peaks olema nähtav või valitav?
+    praktikate ülevaated ja kovisiooni kutsekirjad. [Tõend](evidence/sol-proof-20261014-01/server-jobs-and-deadline.json)
+    **Otsustatud ja tehtud 21.10:** omanik: jooksevad ka suletud režiimis. `lib/publicPlatform.js` laseb värava
+    tagant läbi `/api/jobs/notifications` ja `/api/jobs/practice-reviews` (mõlemad kontrollivad oma võtit).
+    Raha ja andmeekspordi tööd (subscription-*, payment-emails, usage-reservation-reaper, data-exports) jäid
+    küsimusest välja ja on endiselt värava taga — nende kohta on vaja eraldi otsust.
+    [Kontroll](evidence/sol-proof-20261014-01/local-ui-admin-role-caption-20261021.json)
+23. **Admin ilma vaaterollita vastab vestluses spetsialistina** (`lib/authz.js:33`).
+    **Otsustatud ja tehtud 21.10:** omanik: näita aktiivset rolli. Vestluses on admini S/P/T lüliti kõrval kiri
+    „Vastan kui: Sotsiaaltöö spetsialist” (või valitud roll); vaikimisi käitumine sama.
+    [Kontroll](evidence/sol-proof-20261014-01/local-ui-admin-role-caption-20261021.json)
 
 ## E. Protsess
 

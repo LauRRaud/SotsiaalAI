@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: katsed peatatud omaniku limiidipalvel; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 370 salvestatud kontrollvarianti: 355 PASS, 13 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 373 salvestatud kontrollvarianti: 358 PASS, 13 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 **Parandusnimekiri:** kõik leiud, mida tuleb parandada või otsustada, on koondatud [ühte faili](sotsiaal-pro-parandusnimekiri-sol-proof-20261014-01.md).
 
@@ -346,3 +346,5 @@ Toorjooksud ja rakise vead on säilitatud ja põhjendatud. Kontrollimata jäi j�
 - serveris kontrollimine: testkontodega Claude sotsiaal.pro-sse ei logi ja admin ei pääse kovisiooni ega supervisiooni API-desse;
 - päris e-kirja saatmine;
 - B9 ja B10: otsingu tuuma muutmist ei saa ilma serveri indeksita kontrollida. Diagnoos on parandusnimekirjas.
+
+**21.10 omaniku otsused — kolm uut kontrollvarianti (kohalik eraldatud koopia).** Omanik otsustas, et võtmega taustatööd jooksevad ka suletud režiimis ning admin näeb vestluses, millise rollina vastus tuleb. `lib/publicPlatform.js` laseb nüüd värava tagant läbi teavitustöö (koos välitöö turvakontrolli, kiire abi aegumise ja kovisiooni kutsekirjadega) ja praktikate ülevaated; mõlemad vastasid valele võtmele 401 (enne 503 `platform_not_open`). Raha ja andmeekspordi tööd jäid küsimusest välja ja vastasid endiselt 503. Vestluses kuvas märgistatud lokaalse fixture-admini S/P/T lüliti kõrval „Vastan kui: Sotsiaaltöö spetsialist” ja pärast vahetust „Vastan kui: Pöörduja”; vaateroll taastati. Rakise esimene jooks ootas koodi varuteksti „Spetsialist” (toorkirjena alles). Kas serveri taustatööde unit'id pärast paigaldust roheliseks läksid, tuleb kontrollida serveri journalist. [Tõend](evidence/sol-proof-20261014-01/local-ui-admin-role-caption-20261021.json).

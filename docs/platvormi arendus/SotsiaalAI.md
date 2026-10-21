@@ -136,8 +136,8 @@ koondis on pere `work_strength.*` k-läve ja täiendi kaitsega ning piloodi arua
 toimib“; töötaja koondivaade nimetab seda. Avalik koond jääb O-WB-3/4 otsuseni kinni (ptk 8.19).
 [Võrdlus, ettepanek ja teostus](tooheaolu-tu-kusimustiku-vordlus-ja-ettepanek.md).
 
-**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 370
-salvestatud varianti: 355 PASS, 13 FAIL, 2 lahendatud rakisetakistust.
+**20.10 Soli tõenduskatsete jätk — pooleli:** 52 juhtumi kavandist 373
+salvestatud varianti: 358 PASS, 13 FAIL (neist 8 parandatud vigade ajalugu), 2 lahendatud rakisetakistust.
 **21.10 parandatud** ([parandusnimekiri](../audits/sotsiaal-pro-parandusnimekiri-sol-proof-20261014-01.md)):
 võrgustikujagamine töötab vastu võetud pöördumiselt; saabumiskiri arvestab
 e-postiteavituse eelistust; asutusele saadetud pöördumise juures näeb pöörduja
@@ -146,8 +146,10 @@ kohti nimedeks ning ütleb, milline sõna peatas; kovisiooni nõustumine ootab
 seadete kinnitamist; supervisiooni sulgemine ootab pealkirja; maksekirjade
 skript eristab suletud väravat. Kontroll kohalikus eraldatud koopias,
 serveris kontrollimata. Autori kustutamise järel tööjärje „0” oli rakise viga.
-Omaniku otsust vajab: suletud avamisvärav keelab võtmega taustatööd
-(teavitused, välitöö turvakontroll, kiire abi aegumine, kovisiooni kutsekirjad).
+21.10 omaniku otsused tehtud: teavitustöö (välitöö turvakontroll, kiire abi
+aegumine, kovisiooni kutsekirjad) ja praktikate ülevaated jooksevad suletud
+režiimis; raha ja andmeekspordi tööd ootavad eraldi otsust. Admin näeb
+vestluses „Vastan kui: …”.
 Avatud: töö tähtaeg `dueAt` (MISSING_FEATURE), supervisiooni kutse ID-ga,
 vestluse otsingu kaaslõigud (G33 § 72 lg 2, G13 PKS § 96) RAG-i töösuunale.
 Vestluse test sotsiaal.pro peal: 50 enne vastuseid lukustatud küsimust

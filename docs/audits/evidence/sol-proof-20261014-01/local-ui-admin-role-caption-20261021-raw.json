@@ -1,0 +1,75 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-21",
+  "environment": "isolated local copy at localhost:3002, code = origin/main b83b4cf5 plus the 21.10 owner-decision changes, database sol_proof_20261020_local; headless browser",
+  "checks": [
+    {
+      "case_id": "OPS-06",
+      "variant_id": "safety_and_notification_jobs_reach_their_key_check",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "local copy HTTP routes and real chat page",
+      "actual": {
+        "jobs": {
+          "notifications": {
+            "status": 401,
+            "body": "unauthorized"
+          },
+          "practice-reviews": {
+            "status": 401,
+            "body": "unauthorized"
+          }
+        },
+        "before21_10": "503 platform_not_open"
+      }
+    },
+    {
+      "case_id": "OPS-06",
+      "variant_id": "money_and_export_jobs_stay_behind_the_gate",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "local copy HTTP routes and real chat page",
+      "actual": {
+        "jobs": {
+          "payment-emails": {
+            "status": 503,
+            "body": "platform_not_open"
+          },
+          "subscription-renewals": {
+            "status": 503,
+            "body": "platform_not_open"
+          },
+          "subscription-reconcile": {
+            "status": 503,
+            "body": "platform_not_open"
+          },
+          "usage-reservation-reaper": {
+            "status": 503,
+            "body": "platform_not_open"
+          },
+          "data-exports": {
+            "status": 503,
+            "body": "platform_not_open"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "admin_chat_shows_answering_role",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "local copy HTTP routes and real chat page",
+      "actual": {
+        "captionWithoutViewRole": "Vastan kui: Sotsiaaltöö spetsialist",
+        "captionAfterSwitchToClient": "Vastan kui: Pöörduja"
+      }
+    }
+  ],
+  "fixtureAdmin": {
+    "email": "sol-proof-20261021-admin@example.invalid",
+    "note": "local isolated database only"
+  },
+  "restoredViewRole": true,
+  "sessionRoleAfter": "ADMIN"
+}
