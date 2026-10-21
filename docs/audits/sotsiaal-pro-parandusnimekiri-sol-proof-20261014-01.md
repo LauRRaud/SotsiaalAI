@@ -78,20 +78,23 @@ ainult koodi väljad, kasutajad, eelarve ja otsinguprofiil jäävad samaks.
 11. **§ 133 lg 8 (sugulaselt üür) loetakse kitsalt (G09).** Vastus lisab koos elamise tingimuse ja ütleb, et mujal
     elavale emale makstud üür võib arvesse minna. Enne parandust kinnitab tõlgenduse omaniku ja spetsialisti hinnang.
 12. **Tööampsu kuupiir sõnastatakse „kuni 8 kalendripäeva kuus” (N01, R03, R04).** Allikas: leping kuni
-    8 kalendripäeva, kuus kuni 8 tööpäeva. **Tehtud 21.10 (juhis 44):** arv jääb oma ühiku ja loendatavaga; eri
-    loendusega piire ei liideta.
+    8 kalendripäeva, kuus kuni 8 tööpäeva. Juhis 44 seda **ei parandanud** (kordustest: kolmes vastuses
+    sama ühik); põhjus on sõna „kalendrikuus” → „kalendripäeva”. Juhis 45 ütleb, et ühiku sõna kuulub selle sõna
+    juurde, mille kõrval ta allikas seisab. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json)
 13. **v89 VIPS-i ja astmelise abi materjal ei jõua VIPS-i küsimuse paketti (U01).** Paketis oli üks varasem TAI leht.
     Enne kontrolli, kas v89 failid piloodi aega üldse nimetavad.
 14. **Teemavälise palve keeldumine kõlab teabepuudusena (B01).** „Pole piisavalt teavet” asemel peaks vastus ütlema,
-    milleks vestlus on mõeldud. **Tehtud 21.10 (juhis 44):** teemaväline palve saab täpsustuse, milleks vestlus on;
-    osaliselt seotud ja kahtlane palve saab tavalise vastuse.
-15. **Olematu toetuse korral ei öelda selgelt, et sellist toetust allikates ei ole (X01).** **Tehtud 21.10 (juhis
-    44):** esimene piirang ütleb minavormis, et seda ei leitud (mitte et seda pole olemas); lähedast asja pakutakse
-    võimalusena ja küsitakse.
+    milleks vestlus on mõeldud. **Parandatud 21.10 (juhis 44), serveris kontrollitud:** „See vestlus aitab
+    sotsiaalhoolekande, toetuste, teenuste … küsimustes. Küsi julgelt …”.
+    [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json)
+15. **Olematu toetuse korral ei öelda selgelt, et sellist toetust allikates ei ole (X01).** **Parandatud 21.10 (juhis
+    44), serveris kontrollitud:** „Sellise 300-eurose eakate digitoetuse taotlemise korda ma oma teabest ei leidnud.
+    See ei ütle, kas toetus on olemas.” [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json)
 16. **Abiotsija vastusest jäävad vahel olulised järgmised sammud välja:** tööampsu piiri ületamise tagasiulatuv
-    lõpetamine (N01; spetsialisti vaates oli olemas) ja hooldekodu kohatasu puudujäägi muud teed (G02). **Tehtud
-    21.10 (juhis 44):** abiotsija tekst hoiab tagajärjed, tähtajad, teavitamiskohustuse ja muud teed nagu
-    spetsialisti vastus.
+    lõpetamine (N01; spetsialisti vaates oli olemas) ja hooldekodu kohatasu puudujäägi muud teed (G02). **N01 osa
+    parandatud 21.10 (juhis 44), serveris kontrollitud:** abiotsija vastuses on nüüd tagasiulatuv lõpetamine ja
+    tagasimaksmine. **G02 osa ei ole juhise viga:** 20.10 paketis ei olnud ühtki muud teed (ülalpidamiskohustus, KOV),
+    see on otsingu küsimus nagu punkt 10. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json)
 17. **Keelevead:** G04 „Kui su isa 70-aastasel isal…”, G42 „peab sa elama”.
 18a. **Päevakeskuse küsimusele (RAG-06 E9, 21.10) ei saa vastust:** pakett ei sisalda KOV-i kohustuslike teenuste
     loetelu (teenused on seaduses eraldi paragrahvides), vastus jätab küsimuse lahtiseks. Valeväidet ei olnud.

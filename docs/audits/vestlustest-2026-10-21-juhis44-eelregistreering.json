@@ -80,5 +80,17 @@
     "One answer per question; repeat variation is not measured.",
     "The packet may differ from 20.10; the comparison is reported with both packets.",
     "Expectations come from the passages the 20.10 packets held (server-rag-chat-50-raw.json); a wrong expectation is reported, not changed after seeing answers."
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-21",
+      "before": "the v45 run",
+      "text": "v44 left list item 12 (units) unfixed in N01, R03 and R04 (server-rag-chat-prompt44.json). v45 sharpens only the unit line. The same three questions are asked again with the same expectations; the retroactive end stays required only for N01 when the packet holds it. Expected cost about 0.01 USD.",
+      "items": [
+        "N01-tooamps",
+        "R03-tooamps-spetsialist",
+        "R04-tooamps-teenuseosutaja"
+      ]
+    }
   ]
 }

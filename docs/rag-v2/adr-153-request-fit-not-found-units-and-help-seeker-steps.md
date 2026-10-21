@@ -63,8 +63,31 @@ Kontrollitud ilma mudelita (päringu kokkupanek):
 
 Testid `deploy-plan-release` (14/14), `rag-v2-pilot-crisis-route` (2/2) ja `rag-cost` (8/8) läbisid.
 
-**Kontrollimata:** kas mudel juhist päriselt järgib. Kontrolliks tuleb pärast paigaldust samad küsimused
-(B01, X01, N01, R03, R04, G02) serveris uuesti esitada; tulemus läheb Soli aruandesse.
+## Kordustest serveris (21.10, juhis 44)
+
+Väljalase `7df8616f`, logis „Chat plan: renewed”. Samad küsimused omaniku admin-seansist, eelregistreering
+lukustati enne jooksu (`e1dd5fdd`); kulu 0,017 USD. G02 jäeti välja: 20.10 paketis ei olnud ühtki muud teed, seega
+see osa on otsingu, mitte juhise viga (vt punkt 10).
+
+| Küsimus | 20.10 (juhis 43) | 21.10 (juhis 44) |
+|---|---|---|
+| B01 pitsaretsept | „Mul pole siin piisavalt teavet …” | **PASS:** „See vestlus aitab sotsiaalhoolekande, toetuste, teenuste … küsimustes. Küsi julgelt …” |
+| X01 olematu toetus | lähim toetus ja küsimus, „ei leidnud” puudus | **PASS:** „Sellise 300-eurose eakate digitoetuse taotlemise korda ma oma teabest ei leidnud. See ei ütle, kas toetus on olemas.” |
+| N01 abiotsija | „kuni 8 kalendripäeva kuus”, tagajärg puudus | **FAIL:** ühik sama; tagajärg (tagasiulatuv lõpetamine, tagasimaks) nüüd olemas |
+| R03 spetsialist | „kuni 8 kalendripäeva kuus” | **FAIL:** ühik sama |
+| R04 teenuseosutaja | „kuni 8 kalendripäeva kuus” | **FAIL:** ühik sama |
+
+Ühikuviga ei tule allikate kokkusulandamisest, nagu esialgu arvati, vaid sõnast: seadus ütleb „kuni kaheksa päeva
+**kalendrikuus**”, Töötukassa leht „leping võib kesta kuni kaheksa **kalendripäeva**”, ja vastus tõstis sõna
+„kalendri-” päevade juurde.
+
+## Juhis 45
+
+`UNIT_INSTRUCTIONS` lõppu lisandub üks reegel: ühiku sõna kuulub selle sõna juurde, mille kõrval ta allikas seisab.
+„kuni viis päeva kalendrikuus” loeb päevi kuu sees ega tee neist kalendripäevi; „kuni viis kalendripäeva” mõõdab
+lepingu pikkust. Loendust öeldakse allika sõnaga ja ühiku sõna ei tõsteta ühelt loenduselt teisele. Näide kasutab
+arvu viis, mitte kaheksat, ega nimeta allikat. Muud lõigud on samad mis juhises 44. Kordustest: N01, R03, R04 samade
+ootustega (eelregistreeringu lisa).
 
 ## Mida see ei paranda
 

@@ -1,12 +1,12 @@
 {
   "run_id": "sol-proof-20261014-01",
-  "updated_at": "2026-10-21T10:48:23.449Z",
+  "updated_at": "2026-10-21T11:48:14.902Z",
   "phase": "stopped at owner quota request; evidence checkpoint saved",
   "catalog_cases": 52,
   "whole_catalog_completed": false,
-  "observed_variants": 393,
-  "passed_variants": 377,
-  "failed_variants": 14,
+  "observed_variants": 398,
+  "passed_variants": 379,
+  "failed_variants": 17,
   "blocked_variants": 2,
   "server_fixture_variants": 71,
   "case_progress": [
@@ -32,11 +32,11 @@
     },
     {
       "case_id": "ENV-03",
-      "status": "NOT_RUN",
+      "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 25,
+      "observed_variants": 27,
       "passed_variants": 25,
-      "failed_variants": 0,
+      "failed_variants": 2,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -302,11 +302,11 @@
     },
     {
       "case_id": "RAG-05",
-      "status": "NOT_RUN",
+      "status": "FAIL",
       "whole_case_complete": false,
-      "observed_variants": 2,
+      "observed_variants": 3,
       "passed_variants": 2,
-      "failed_variants": 0,
+      "failed_variants": 1,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
     },
@@ -334,8 +334,8 @@
       "case_id": "RAG-08",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 3,
-      "passed_variants": 3,
+      "observed_variants": 4,
+      "passed_variants": 4,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -354,8 +354,8 @@
       "case_id": "RAG-10",
       "status": "NOT_RUN",
       "whole_case_complete": false,
-      "observed_variants": 13,
-      "passed_variants": 13,
+      "observed_variants": 14,
+      "passed_variants": 14,
       "failed_variants": 0,
       "blocked_variants": 0,
       "remaining_scope": "See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations."
@@ -8336,6 +8336,152 @@
         "formShown": true
       },
       "evidence_file": "local-ui-fix-c19-c21-20261021.json"
+    },
+    {
+      "case_id": "RAG-10",
+      "variant_id": "chat2110p44_B01-teemavaline",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Kirjuta mulle hea pitsa retsept.",
+        "expected": [
+          "kind clarification (or no blocks), no recipe",
+          "clarification says in Estonian what this chat helps with (social welfare) and invites a question about such a matter",
+          "no sentence that it lacks information for the request"
+        ],
+        "fault": "list item 14",
+        "turnId": "015a8dcd-c2c1-4022-89f8-5e5cb6f85f97",
+        "answerKind": "clarification",
+        "cited": [],
+        "packetSize": 0,
+        "latencyMs": 33961,
+        "costUsd": 0.002576,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "kind clarification, no blocks or limitations: \"See vestlus aitab sotsiaalhoolekande, toetuste, teenuste, pensionide, hoolduse, töö ja sissetuleku või nendega seotud õiguste küsimustes. Küsi julgelt mõne sellise teema kohta.\" No sentence on missing information (20.10: unsupported, \"Mul pole siin piisavalt teavet, et pitsaretsepti anda.\")."
+      },
+      "evidence_file": "server-rag-chat-prompt44.json",
+      "serverRelease": "7df8616f (dialogue prompt m4-grounded-dialogue-44; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "RAG-08",
+      "variant_id": "chat2110p44_X01-vale-toetus",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Kuidas taotleda 2026. aastal kehtima hakanud digitoetust eakatele summas 300 eurot?",
+        "expected": [
+          "the first limitation says in the first person that such a benefit was not found in its information",
+          "it does not say that the benefit does not exist",
+          "no conditions or application steps are invented for the named benefit; a close benefit, if offered, is named as itself and as a possibility, with a question whether it is meant"
+        ],
+        "fault": "list item 15",
+        "turnId": "59540493-6136-4083-8d8c-1f095e097220",
+        "answerKind": "unsupported",
+        "cited": [],
+        "packetSize": 2,
+        "latencyMs": 14431,
+        "costUsd": 0.002967,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "kind unsupported; the first limitation: \"Sellise 300-eurose eakate digitoetuse taotlemise korda ma oma teabest ei leidnud. See ei ütle, kas toetus on olemas.\" No conditions or steps invented. No close benefit offered: this packet (a 2025 population survey, a disability page) held none, unlike 20.10 (the single pensioner benefit). It says the procedure was not found rather than the benefit, which is narrower than asked but not false."
+      },
+      "evidence_file": "server-rag-chat-prompt44.json",
+      "serverRelease": "7df8616f (dialogue prompt m4-grounded-dialogue-44; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p44_N01-tooamps",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "when the packet holds it (it did on 20.10, S2): if the work lasted longer or paid more than allowed, Töötukassa ends the registration retroactively from the start of the work and paid benefits may have to be repaid"
+        ],
+        "fault": "list items 12 and 16",
+        "turnId": "c6e5bc99-8c4b-4c7a-8a01-93bb6b0990fa",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal"
+        ],
+        "packetSize": 4,
+        "latencyMs": 17800,
+        "costUsd": 0.003903,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units not fixed: \"kuni 8 kalendripäeva kuus\" again (TTMS § 11 lg 2: \"kuni kaheksa päeva kalendrikuus\"; the page: a contract up to eight calendar days, eight days of work a month). List item 16 fixed for this case: the help seeker now gets the retroactive end of the registration and the possible repayment (S3), which the 20.10 answer left out. 40 %, 12 of 24 months and telling Töötukassa first are there; 378.40 euros is now only in a hedged limitation (20.10: in a block), because the minimum wage passage was not in the packet."
+      },
+      "evidence_file": "server-rag-chat-prompt44.json",
+      "serverRelease": "7df8616f (dialogue prompt m4-grounded-dialogue-44; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "chat2110p44_R03-tooamps-spetsialist",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role SOCIAL_WORKER",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "addressed to a colleague (role text unchanged)"
+        ],
+        "fault": "list item 12",
+        "turnId": "81b1ccb1-5830-4f61-be8e-2f025352966f",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal",
+          "S4 Töölepingu seadus § 29 lg 1–9"
+        ],
+        "packetSize": 4,
+        "latencyMs": 36332,
+        "costUsd": 0.003324,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units not fixed: \"Kuus võib ajutiselt töötada kuni 8 kalendripäeva\" (the contract length of eight calendar days is kept apart in the first sentence). Other facts present and addressed to a colleague (\"Selgita inimesele\", \"Palu inimesel\"); the retroactive end is included."
+      },
+      "evidence_file": "server-rag-chat-prompt44.json",
+      "serverRelease": "7df8616f (dialogue prompt m4-grounded-dialogue-44; the release log says \"Chat plan: renewed\")"
+    },
+    {
+      "case_id": "ENV-03",
+      "variant_id": "chat2110p44_R04-tooamps-teenuseosutaja",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role SERVICE_PROVIDER",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "one contract (tööamps) lasts at most 8 calendar days and the monthly limit is 8 days of work per month (TTMS § 11 lg 1-2; the Töötukassa page: \"lubatud töötamispäevade arv kuus on kaheksa\"); the two limits stay apart: the answer does not say \"8 kalendripäeva kuus\"",
+          "gross pay at most 378.40 euros a month (one or several together), at most 12 calendar months within 24 months, Töötukassa is told in advance",
+          "addressed to a provider (role text unchanged)"
+        ],
+        "fault": "list item 12",
+        "turnId": "0e76641a-18dc-42b7-bd46-a4d101ca8363",
+        "answerKind": "partial",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal"
+        ],
+        "packetSize": 5,
+        "latencyMs": 30550,
+        "costUsd": 0.003927,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Units not fixed: \"kuni 8 kalendripäeva kuus\". 40 %, 378.40 euros (11.10 page state), 12 of 24 months and telling Töötukassa first are there; the retroactive end is not (not required for this role)."
+      },
+      "evidence_file": "server-rag-chat-prompt44.json",
+      "serverRelease": "7df8616f (dialogue prompt m4-grounded-dialogue-44; the release log says \"Chat plan: renewed\")"
     }
   ]
 }
