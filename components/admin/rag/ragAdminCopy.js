@@ -14,7 +14,8 @@ export function getRagAdminCopy(locale) {
         kov: "KOV",
         organizations: "Organisatsioonid",
         sourcePackages: "Lähtepaketid",
-        sourceFeedback: "Veateated"
+        sourceFeedback: "Veateated",
+        chatTrace: "Vastuste jälg"
       },
       landing: {
         title: "Töölaud",
@@ -82,6 +83,10 @@ export function getRagAdminCopy(locale) {
         sourceFeedback: {
           title: "Veateated ja vastuste tagasiside",
           subtitle: "Vaata, mida inimesed vastuste ja allikate kohta teatasid, ning märgi kontrollitud teated auditeeritavalt lahendatuks."
+        },
+        chatTrace: {
+          title: "Kuidas vastus tekkis",
+          subtitle: "Sinu enda vestluste pöörded: mida AI otsinguks koostas, mida otsing leidis ja miks, ning millest vastus kirjutati."
         }
       },
       kov: {
@@ -112,7 +117,8 @@ export function getRagAdminCopy(locale) {
       kov: "Municipal",
       organizations: "Organizations",
       sourcePackages: "Source packages",
-      sourceFeedback: "Source reports"
+      sourceFeedback: "Source reports",
+      chatTrace: "Answer traces"
     },
       landing: {
         title: "Workspace",
@@ -180,6 +186,10 @@ export function getRagAdminCopy(locale) {
       sourceFeedback: {
         title: "Reports and answer feedback",
         subtitle: "Review what people reported about answers and sources, and resolve checked items with an audit trail."
+      },
+      chatTrace: {
+        title: "How an answer was made",
+        subtitle: "Turns of your own conversations: what the AI made of the question for the search, what the search found and why, and what the answer was written from."
       }
     },
     kov: {

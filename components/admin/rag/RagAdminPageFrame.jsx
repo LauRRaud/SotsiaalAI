@@ -7,7 +7,7 @@ import { localizePath } from "@/lib/localizePath";
 import { getRagAdminCopy } from "./ragAdminCopy";
 
 
-const NAV_ORDER = ["home", "ingest", "kov", "organizations", "sourceFeedback"];
+const NAV_ORDER = ["home", "ingest", "kov", "organizations", "sourceFeedback", "chatTrace"];
 
 const NAV_PATHS = {
   home: "/admin/rag",
@@ -16,7 +16,8 @@ const NAV_PATHS = {
   kov: "/admin/rag/kov",
   organizations: "/admin/rag/organizations",
   sourcePackages: "/admin/rag/source-packages",
-  sourceFeedback: "/admin/rag/source-feedback"
+  sourceFeedback: "/admin/rag/source-feedback",
+  chatTrace: "/admin/rag/chat-trace"
 };
 
 /* Täisekraani juhtimiskeskuse raam: kicker + pealkiri vasakul,
