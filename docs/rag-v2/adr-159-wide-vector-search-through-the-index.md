@@ -59,3 +59,21 @@ sekundi pealt lühemaks ja saame toimiva RAG süsteemi“.
   - kitsas päring, kirjete päring ja loendita päring jäävad täpseks;
   - loendist väljaspool olev tabamus lükatakse endiselt tagasi.
 - Serveris: samad küsimused enne ja pärast muudatust, võrreldakse raja aegu ja valikumudeli kandidaate.
+
+## Tulemus serveris (12f310fb, 21.10.2026)
+
+Kuus kolme juhtumi küsimust (A01, A11, B01, B11, C01, C11), kohe pärast deploy'd.
+
+| | Enne (proov ja 75 küsimust) | Pärast |
+|---|---:|---:|
+| laia päringu Qdranti aeg (`vector_server`) | 3,3–14 s, mediaan 4 s | 0,17–0,41 s |
+| vektorikanal rajas (`vector`) | 3,5–14 s | 0,34–1,1 s |
+| teadmusrada kokku | 23,5 s (A01 proov) | 7,5–15,6 s |
+| `vector_hnsw` | — | 1 kõigis 24 laias päringus |
+
+- Ükski päring ei vajanud täpset varupäringut.
+- Otsingu aeg sõltub nüüd sõnaotsingust (2,9–3,8 s) ja valikumudelist (1,9–10 s).
+- Pöörde kogu aeg (31–51 s) tuleb nüüd peamiselt kolmest mudelikutsest:
+  - plaan 6,9–9,4 s;
+  - valik 1,9–9,6 s;
+  - vastus 10,8–29,6 s.

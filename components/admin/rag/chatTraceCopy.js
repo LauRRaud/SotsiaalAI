@@ -22,14 +22,14 @@ const ET = {
   },
   fields: {
     asked: "Küsitud", searchText: "Otsingu tekst", role: "Roll, kellele vastati", language: "Keel", prompt: "Juhise versioon", profile: "Otsinguprofiil",
-    plan: "Plaan", generation: "Indeks", state: "Seis", time: "Aeg", variants: "Otsinguvariandid (AI kirjutas)", none: "—",
+    plan: "Plaan", generation: "Indeks", state: "Seis", failure: "Miks pööre katkes", time: "Aeg", variants: "Otsinguvariandid (AI kirjutas)", none: "—",
     places: "Kohad", plannedPlaces: "Kohad, mida AI nimetas", person: "Isik", planLanguage: "Keel (AI tuvastas)", failures: "Abikutsete tõrked",
     greeting: "Tervitus: otsingut ei tehtud", thanks: "Tänu: otsingut ei tehtud", assistantQuestion: "Küsimus eelmise vastuse kohta",
     lane: "Rada", laneState: "Seis", refs: "Tõendid", counts: "Kandidaate kanalites", leftOut: "Välja jäetud", coverage: "Kaetus",
     rank: "Koht", pick: "Valikumudel", title: "Pealkiri", lead: "Algus", score: "RRF-skoor", channels: "Kohad kanalites (osa skoorist)",
     reserved: "reservkoht", finalRef: "Paketis", notPicked: "ei valinud", cited: "Vastus viitab", reason: "Miks paketis", source: "Allikas",
     heading: "Pealkirjatee", provision: "Säte", text: "Lõigu tekst", kind: "Liik", blocks: "Vastuse plokid", limitations: "Piirangud",
-    clarification: "Täpsustav küsimus", instructions: "Juhis (instructions)", developer: "Rolli tekst (pärast tõendeid)", modelContext: "Tõendid, nagu AI need sai",
+    clarification: "Täpsustav küsimus", repairs: "Server parandas vastuses", instructions: "Juhis (instructions)", developer: "Rolli tekst (pärast tõendeid)", modelContext: "Tõendid, nagu AI need sai",
     model: "Mudel", reasoning: "Mõtlemise tase", maxOutput: "Vastuse piir (tokenit)", evidenceChars: "Tõendite maht (märki)", records: "Omavalitsuse kirjed",
     stage: "Samm", input: "Sisend (tokenit)", output: "Väljund (tokenit)", usd: "Kulu (USD)", ms: "Aeg (ms)", phases: "Etapid (ms algusest)"
   },
@@ -84,14 +84,14 @@ const EN = {
   },
   fields: {
     asked: "Asked", searchText: "Search text", role: "Role answered", language: "Language", prompt: "Prompt version", profile: "Search profile",
-    plan: "Plan", generation: "Index", state: "State", time: "Time", variants: "Search variants (written by the AI)", none: "—",
+    plan: "Plan", generation: "Index", state: "State", failure: "Why the turn stopped", time: "Time", variants: "Search variants (written by the AI)", none: "—",
     places: "Places", plannedPlaces: "Places the AI named", person: "Person", planLanguage: "Language (detected by the AI)", failures: "Assist call failures",
     greeting: "Greeting: no search", thanks: "Thanks: no search", assistantQuestion: "Question about the previous answer",
     lane: "Lane", laneState: "State", refs: "Evidence", counts: "Candidates per channel", leftOut: "Left out", coverage: "Coverage",
     rank: "Place", pick: "Selection model", title: "Title", lead: "Start", score: "RRF score", channels: "Places per channel (share of score)",
     reserved: "reserved place", finalRef: "In packet", notPicked: "not picked", cited: "Answer cites", reason: "Why in the packet", source: "Source",
     heading: "Heading path", provision: "Provision", text: "Passage text", kind: "Kind", blocks: "Answer blocks", limitations: "Limitations",
-    clarification: "Clarifying question", instructions: "Instructions", developer: "Role text (after the evidence)", modelContext: "Evidence as the AI received it",
+    clarification: "Clarifying question", repairs: "Repaired by the server", instructions: "Instructions", developer: "Role text (after the evidence)", modelContext: "Evidence as the AI received it",
     model: "Model", reasoning: "Reasoning effort", maxOutput: "Output limit (tokens)", evidenceChars: "Evidence size (characters)", records: "Municipal records",
     stage: "Step", input: "Input (tokens)", output: "Output (tokens)", usd: "Cost (USD)", ms: "Time (ms)", phases: "Phases (ms from start)"
   },

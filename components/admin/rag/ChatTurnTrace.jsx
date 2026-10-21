@@ -50,6 +50,7 @@ export default function ChatTurnTrace({ trace, locale }) {
           <Row label={f.language}>{q.language || f.none}</Row>
           <Row label={f.time}>{dateTime(q.createdAt, locale)}</Row>
           <Row label={f.state}>{q.state || f.none}</Row>
+          {q.failure ? <Row label={f.failure}><Json value={q.failure} /></Row> : null}
           <Row label={f.prompt}>{q.promptVersion || f.none}</Row>
           <Row label={f.profile}>{q.profile || f.none}</Row>
           <Row label={f.plan}>{q.plan || f.none}</Row>
@@ -148,6 +149,7 @@ export default function ChatTurnTrace({ trace, locale }) {
             <Row label={f.blocks}>{trace.answer.blocks.length ? <ol>{trace.answer.blocks.map((block, index) => <li key={index}>{block.text} <small>[{block.refs.join(", ")}]</small></li>)}</ol> : f.none}</Row>
             <Row label={f.limitations}>{trace.answer.limitations.length ? <ul>{trace.answer.limitations.map((text, index) => <li key={index}>{text}</li>)}</ul> : f.none}</Row>
             <Row label={f.clarification}>{trace.answer.clarification || f.none}</Row>
+            {trace.answer.repairs?.length ? <Row label={f.repairs}><Json value={trace.answer.repairs} /></Row> : null}
           </tbody></table>
         ) : <p>{f.none}</p>}
       </section>
