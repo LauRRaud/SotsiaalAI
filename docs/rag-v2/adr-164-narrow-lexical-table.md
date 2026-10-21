@@ -56,3 +56,20 @@
   lõpetamata. Enne järgmist deploy'd on vaja seal käivitada
   `prisma migrate resolve --rolled-back 202610210001_version_lexical`. Kuna laused on korratavad, saab migratsiooni
   siis uuesti proovida.
+
+## Tulemus serveris (33775f37, 21.10.2026): lugemine võetud tagasi
+
+- Migratsioon rakendus deploy'ga vigadeta. Kuus kolme juhtumi küsimust kohe pärast seda:
+
+  | | Lai tabel (14 pööret varem) | Kitsas tabel (6 pööret) |
+  |---|---:|---:|
+  | teadmusraja `lexical` | 2,9–4,4 s | 3,7–4,7 s |
+  | seaduste reserv `reserve_lexical` | 0,6–1,2 s | 0,8–1,2 s |
+
+- Serveris kiiremaks ei läinud. Tõenäoline põhjus: kitsas tabel hoiab vektoreid reas, ja selle heap on umbes 1 GB.
+  Täisskaneerimine loeb selle iga päringuga läbi. Kohalikus masinas mahtus see mällu, serveris ilmselt mitte. Laia
+  tabeli TOAST-plokkidest oli enamik vahemälus (ADR-161: umbes 1,1 mln tabamust ja 0,08–0,14 mln lugemist).
+- Sõnapäring loeb jälle `rag_v2_version_unit`-i. Tabel `rag_v2_version_lexical` ja päästik jäävad ning päästik hoiab
+  tabeli ajakohasena. Otsingut see ei mõjuta. Eemaldamine on hävitav migratsioon (`DROP TABLE`) ja vajab omaniku
+  otsust.
+- Järgmine mõõtmine peab olema serveri enda mälu ja `EXPLAIN (BUFFERS)` järgi, mitte kohaliku koopia järgi.
