@@ -53,3 +53,10 @@ Kohalik kontroll päris `retrieve()` koodiga mälus olevate väljamõeldud dokum
 - juhise rida on ainult siis, kui kontekstis on `continues`.
 
 Mudeli käitumine mõõdetakse E9 ja U01 kordustestiga (eelregistreeringu lisa enne jooksu).
+
+## Kordustest serveris (21.10, `375271b1`, 0,008 USD): 2/2
+
+- **E9 PASS:** „Ei. Eakate päevakeskus ei kuulu nende 13 sotsiaalteenuse hulka, mille korraldamise kohustus on seadusega omavalitsusele pandud. Vald võib korraldada ka muid sotsiaalteenuseid.“ Juurde tulevad omavalitsuse hindamiskohustus (SHS § 15 lg 1) ja pöördumine. Piirangut ei ole.
+- **U01: vastus on õige, viga on korpuses.** Piloodi aeg, 24 EAP ja viis moodulit on Sotsiaalministeeriumi VIPS-spetsialisti lehel, mis korpuses puudub (omaniku tekst `Andmebaasi/Uut juurde/VIPS-spetsialist.txt`; korje nimekirjas „Veel puudu: … lisada veebilehena“). Vastus „ei saa oma teabest öelda“ on siis õige. 20.10 ootus eeldas ekslikult, et v89 sisaldab seda. Valikumudel jättis seekord alles ühe lõigu; puuduva lehe tõttu ei muuda see vastust. search-assist-15 mõju ei ole sellega mõõdetud.
+
+[Tõend](../audits/evidence/sol-proof-20261014-01/server-rag-chat-prompt47.json)

@@ -16,6 +16,7 @@ files.push('local-ui-fix-c19-c21-20261021.json');
 files.push('server-rag-chat-prompt44.json');
 files.push('server-rag-chat-prompt45.json');
 files.push('server-rag-chat-prompt46.json');
+files.push('server-rag-chat-prompt47.json');
 const variants=[];
 for(const file of files){const p=path.join(dir,file);if(fs.existsSync(p)){const data=JSON.parse(fs.readFileSync(p));for(const v of data.checks||[])variants.push({...v,evidence_file:file,serverRelease:data.serverRelease});}}
 const result={run_id:'sol-proof-20261014-01',updated_at:new Date().toISOString(),phase:'stopped at owner quota request; evidence checkpoint saved',catalog_cases:catalog.cases.length,whole_catalog_completed:false,observed_variants:variants.length,passed_variants:variants.filter(v=>v.status==='PASS').length,failed_variants:variants.filter(v=>v.status==='FAIL').length,blocked_variants:variants.filter(v=>v.status==='BLOCKED').length,server_fixture_variants:variants.filter(v=>v.evidence_mode==='CURRENT_FIXTURE').length,case_progress:catalog.cases.map(c=>{const vv=variants.filter(v=>v.case_id===c.id);return {case_id:c.id,status:vv.some(v=>v.status==='FAIL')?'FAIL':'NOT_RUN',whole_case_complete:false,observed_variants:vv.length,passed_variants:vv.filter(v=>v.status==='PASS').length,failed_variants:vv.filter(v=>v.status==='FAIL').length,blocked_variants:vv.filter(v=>v.status==='BLOCKED').length,remaining_scope:'See catalog and report: runtime variants do not replace complete UI paths, human assessments or external confirmations.'};}),variants};

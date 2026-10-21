@@ -1,0 +1,85 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "375271b1 (ADR-156: dialogue prompt m4-grounded-dialogue-47, search-assist-15, list items after their announcement; \"Chat plan: renewed\")",
+  "checkpointDate": "2026-10-21",
+  "preregistration": {
+    "path": "docs/audits/vestlustest-2026-10-21-juhis46-eelregistreering.json",
+    "sha256": "acf6b7dc55ef3d91b51496696f79f86897d36416274089000c95428cf7e89349",
+    "amendment": "the ADR-156 re-test amendment, committed in 375271b1 before this run"
+  },
+  "raw": {
+    "path": "docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-prompt47-raw.json",
+    "exportSha256": "68f2a9cdaa5ecedab73008114e88b2c6a24e0f7d6921e098d1eeb90b92563bb3"
+  },
+  "checks": [
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110p47_E9-allikad-paevakeskus",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/7e0dfccb-59ba-4e8c-91aa-d309a7bbde4c",
+      "actual": {
+        "question": "Kas eakate päevakeskus on teenus, mida vald peab seaduse järgi kindlasti pakkuma?",
+        "expected": [
+          "trace: the passages under \"Neist täiskasvanutele mõeldud teenused on:\" are in the packet as list continuations, if that passage is selected",
+          "answer: names the services the municipality must organise (as far as the evidence lists them) and says that an older people's day centre is not among them; a municipality may organise other services; points to the person's own municipality",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "turnId": "7e0dfccb-59ba-4e8c-91aa-d309a7bbde4c",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Kohaliku omavalitsuse sotsiaalteenused ja toetused",
+          "S2 Täisealise abivajaja toetamine",
+          "S11 Sotsiaalabi piirid – inimeste õigused ja KOV kohustused",
+          "S12 Sotsiaalhoolekande seadus § 14 lg 1–2",
+          "S13 Sotsiaalhoolekande seadus § 15 lg 1–4"
+        ],
+        "packetSize": 13,
+        "latencyMs": 16673,
+        "costUsd": 0.004332,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "\"Ei. Eakate päevakeskus ei kuulu nende 13 sotsiaalteenuse hulka, mille korraldamise kohustus on seadusega omavalitsusele pandud. Vald võib korraldada ka muid sotsiaalteenuseid.\" (SKA list S2-S9 right after its announcement, SHS § 14 lg 2), then the municipality's duty to assess the need (§ 15 lg 1) and whom to contact. No limitation. On 20.10 and in the prompt-46 run the question was left open."
+      }
+    },
+    {
+      "case_id": "RAG-08",
+      "variant_id": "chat2110p47_U01-vips",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/6f6f5334-b113-4b06-b761-db07f8c13c8a",
+      "actual": {
+        "question": "Mis on VIPS-spetsialisti baasõpe ja millal selle piloteerimine algab?",
+        "expected": [
+          "trace: which VIPS / stepped-care documents of corpus v89 were candidates, which the selection model kept, and whether the pilot timing passage was among the candidates",
+          "answer: the basic training (24 ECTS, five modules) and the pilot timing (end of 2026 to end of 2027) when the evidence gives them",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "turnId": "6f6f5334-b113-4b06-b761-db07f8c13c8a",
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sekkumised"
+        ],
+        "packetSize": 2,
+        "latencyMs": 13664,
+        "costUsd": 0.004002,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "The answer gives the basic training as the TAI page describes it and says \"Ma ei saa oma teabest öelda, millal baaskoolituse piloteerimine algab.\" That is right: the pilot timing (end of 2026 to end of 2027), 24 ECTS and five modules stand on the ministry's VIPS specialist page, which is not in the corpus (the owner's file Andmebaasi/Uut juurde/VIPS-spetsialist.txt; the harvest list of 20.10: \"Veel puudu: Sotsiaalministeeriumi veebileht ... lisada veebilehena\"). The pre-registered expectation of 20.10 wrongly assumed corpus v89 held it. The selection model kept 1 passage this time (2 in the prompt-46 run); with the page missing that does not change the answer. Corpus gap: list item 13."
+      }
+    }
+  ],
+  "totals": {
+    "turns": 2,
+    "pass": 2,
+    "fail": 0,
+    "costUsd": 0.008335
+  },
+  "observations": [
+    "E9 is answered: the list read with its announcement gives a plain \"no\" and what the municipality must do instead.",
+    "U01: the missing detail is a corpus gap, not search or selection; found by comparing the trace with the owner's source folder."
+  ],
+  "limits": [
+    "Pre-rating by Claude only; one answer per question."
+  ],
+  "newPaidCalls": true,
+  "finishedAt": "2026-10-21T13:00:25.367Z"
+}

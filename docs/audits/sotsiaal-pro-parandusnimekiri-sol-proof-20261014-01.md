@@ -60,21 +60,29 @@ Kõik punktid peale viimase tulevad 50 küsimuse testist sotsiaal.pro peal (väl
 samade küsimustega serveris. Paranduse eelne märkus „server keeldub, kuni plaan on uuendatud” oli liiga range:
 väljalase uuendab kinnitatud vestlusplaani uuele koodile ise (omaniku otsus 27.09.2026, `renewChatPlan`); muutuvad
 ainult koodi väljad, kasutajad, eelarve ja otsinguprofiil jäävad samaks.
-**Otsingu ja sisu punktid jäävad RAG-i töösuunale:**
-- **Otsing (uus profiil, nt chat-v7, 9):** seaduse sisesed viited („käesoleva seaduse § 72 lõikes 2”) järgida ka
-  teiste radade lisatud lõikudes, mitte ainult algselt valitud lõikudes; välistuse viidetele („välja arvatud …
-  nimetatud isikul”) eraldi koht. Uus profiil vajab uut omaniku kinnitatud plaani, sest profiil kuulub kinnitatud
-  ulatusse; põhjus tuleb enne kinnitada serveri otsingujäljega.
-- **Sisu:** KOV-i kohustuslike teenuste loetelu üks lõik korpusesse (18a); G13 (PKS § 96 hooldekodu sõnastusega)
-  kontrollida otsinguplaani ja järjestuse jäljega (10).
+**21.10 hilisem töö (ADR-154, ADR-155, ADR-156):**
+- otsing loeb hilisemate radade sätete viited ja kooloniga lõppeva lõigu järje;
+- juhised 46–47 ütlevad välja, mida tõendid ütlevad, ja keelekontroll on lisatud;
+- valikumudel jätab detaili lõigud alles.
+
+Profiili ega plaani ei muudetud, nagu ADR-145 ja ADR-149 puhul. Admin näeb iga oma vestluse pöörde jälge lehel
+`/admin/rag/chat-trace`: AI otsinguvariandid, kandidaadid kanalikohtade ja skooriga, valikumudeli valik, iga tõendi
+põhjus, lisarajad ning juhis ja tõendid nii, nagu AI need sai.
+
+Serveri kordustestid (eelregistreeritud): 7 PASS, 3 FAIL, korduses 2/2 PASS ([juhis 46](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json), [juhis 47](evidence/sol-proof-20261014-01/server-rag-chat-prompt47.json)).
+**Alles on:** E7 (Tartu linn või vald) ja VIPS-i lehe lisamine korpusesse (13).
 
 9. **§ 95 juurde ei tule § 72 lg 2 välistust (G33).** Toetatud elamise küsimus alkoholisõltuvuse kohta jäi
    välistuseta, kuigi § 88 (G04) ja § 98 (G34) juurde tuli sama lõik kaasa. Kaaslõigu reegel on ebaühtlane.
    Diagnoos 21.10 (koodi lugemine): seaduse sisesed viited („käesoleva seaduse § 72 lõikes 2”) järgib rada
    `query.references` (`lib/rag-v2/search/retrieval.js`), kuid see loeb ainult algselt valitud lõike, mitte teiste
-   radade lisatud lõike; kui § 95 jõudis paketti lisarajana, jäi tema viide järgimata. Pöördumise diagnostikas
-   otsingujälge ei olnud, seega põhjus tuleb kinnitada serveri otsingujäljega.
+   radade lisatud lõike; kui § 95 jõudis paketti lisarajana, jäi tema viide järgimata.
+   **Parandatud 21.10 (ADR-154):** pärast hilisemaid radu loetakse viited teist korda, samas ruumis. Seda näitas
+   kohalik kontroll päris otsingukoodiga. Serveris tuli § 72 lg 2 kaasa ja vastus ütleb välistuse välja; seekord oli
+   § 95 järjestatud lõik. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
 10. **Hooldekodu kohatasu küsimus ei leia PKS § 96 ülalpidamiskohustust (G13).** Otsene küsimus (G49) leiab.
+    **Serveris korras 21.10:** PKS § 96 on paketis ja vastuses („olete ema täisealiste lastena
+    ülalpidamiskohustuslased”), koos omavalitsuse rolliga ja ilma lubatud summata. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
 11. **§ 133 lg 8 (sugulaselt üür) loetakse kitsalt (G09).** Vastus lisab koos elamise tingimuse ja ütleb, et mujal
     elavale emale makstud üür võib arvesse minna. Enne parandust kinnitab tõlgenduse omaniku ja spetsialisti hinnang.
 12. **Tööampsu kuupiir sõnastatakse „kuni 8 kalendripäeva kuus” (N01, R03, R04).** Allikas: leping kuni
@@ -85,8 +93,16 @@ ainult koodi väljad, kasutajad, eelarve ja otsinguprofiil jäävad samaks.
     ebatäpne: allikas ütleb „töötamispäevade arv”.
     [Kordustest 44](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json),
     [kordustest 45](evidence/sol-proof-20261014-01/server-rag-chat-prompt45.json)
+    **21.10 hiljem (juhis 46):** vastus ütles „kuni 8 päeva kalendrikuus”, nagu seadus. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
 13. **v89 VIPS-i ja astmelise abi materjal ei jõua VIPS-i küsimuse paketti (U01).** Paketis oli üks varasem TAI leht.
-    Enne kontrolli, kas v89 failid piloodi aega üldse nimetavad.
+    **Põhjus 21.10 (jälg ja allikakaust):**
+    - otsing leidis v89 ülevaate ja astmelise abi tegevuskava, kuid piloodi aega, 24 EAP-d ja viit moodulit need ei
+      ütle;
+    - need on Sotsiaalministeeriumi VIPS-spetsialisti lehel, mida korpusesse ei lisatud. Omaniku kopeeritud tekst on
+      `Andmebaasi/Uut juurde/VIPS-spetsialist.txt`; korje nimekirjas on „Veel puudu: … lisada veebilehena”;
+    - vastus „ei leidnud oma teabest” on seega õige.
+
+    **Vaja: lisada see leht korpusesse** (RAG-i korpuse töö: korje, ost, uus indeks). [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt47.json)
 14. **Teemavälise palve keeldumine kõlab teabepuudusena (B01).** „Pole piisavalt teavet” asemel peaks vastus ütlema,
     milleks vestlus on mõeldud. **Parandatud 21.10 (juhis 44), serveris kontrollitud:** „See vestlus aitab
     sotsiaalhoolekande, toetuste, teenuste … küsimustes. Küsi julgelt …”.
@@ -99,11 +115,23 @@ ainult koodi väljad, kasutajad, eelarve ja otsinguprofiil jäävad samaks.
     parandatud 21.10 (juhis 44), serveris kontrollitud:** abiotsija vastuses on nüüd tagasiulatuv lõpetamine ja
     tagasimaksmine. **G02 osa ei ole juhise viga:** 20.10 paketis ei olnud ühtki muud teed (ülalpidamiskohustus, KOV),
     see on otsingu küsimus nagu punkt 10. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt44.json)
-17. **Keelevead:** G04 „Kui su isa 70-aastasel isal…”, G42 „peab sa elama”.
+17. **Keelevead:** G04 „Kui su isa 70-aastasel isal…”, G42 „peab sa elama”. **Parandatud 21.10 (juhis 46,
+    keelekontroll):** samades küsimustes keelevigu ei olnud (üks vastus kumbagi, sagedust ei mõõdetud).
+    [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
 18a. **Päevakeskuse küsimusele (RAG-06 E9, 21.10) ei saa vastust:** pakett ei sisalda KOV-i kohustuslike teenuste
     loetelu (teenused on seaduses eraldi paragrahvides), vastus jätab küsimuse lahtiseks. Valeväidet ei olnud.
     [Tõend](evidence/sol-proof-20261014-01/server-rag-chat-rag06-rag07.json)
-18b. **„Kes on parim teenuseosutaja” vastusest jääb välja, et koduteenust korraldab linn (E7, 21.10).**
+    **Parandatud 21.10 (ADR-154, ADR-156), serveris kontrollitud:**
+    - SKA lehe lõigu „Neist täiskasvanutele mõeldud teenused on:“ järel tulevad teenuste lõigud, sissejuhatuse järel
+      ja märkega `continues`;
+    - vastus: „Ei. Eakate päevakeskus ei kuulu nende 13 sotsiaalteenuse hulka …”, koos omavalitsuse
+      hindamiskohustusega. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt47.json)
+18b. **„Kes on parim teenuseosutaja” vastusest jääb välja, et koduteenust korraldab linn (E7, 21.10).** **Osaliselt
+    21.10 (juhis 46):**
+    - vastus ütleb, et koduteenust korraldab omavalitsus (SHS § 17), ega järjesta osutajaid;
+    - see ei ole aga esimene plokk ja taotlemist ei ole;
+    - linna kord ei tulnud paketti, sest plaan ei saanud aru, kas mõeldi Tartu linna või Tartu valda, ja vastus küsis
+      seda. **Avatud.** [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
 18. **Ebaselge plaani korral seotakse esimeses isikus küsimus eelmise fookusisiku omavalitsusega** (NOT_PROVEN:
     kohalik komponendikatse, päris sagedust ei mõõdetud). [Tõend](evidence/sol-proof-20261014-01/local-rag-dialogue-places.json)
 
