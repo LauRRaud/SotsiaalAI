@@ -24,7 +24,14 @@ Valikumudeli juhisesse lisandub pärast seda reeglit üldine reegel (`RERANK_CIR
 - Sama dokumendi eri pealkirjade all olevad lõigud on eri lõigud. Neid valitakse oma teksti järgi, mitte dokumendi
   pealkirja järgi.
 
-Plaani juhis ei muutu.
+### search-assist-18: sama reegel plaanis
+
+- Esimene kontroll (search-assist-17, sama küsimus uues vestluses): plaan kirjutas ainult kaks päringut. Ravikindlustuse
+  päring oli „ravikindlustuseta inimese sotsiaalabi kohaliku omavalitsuse abi“.
+- Kandidaatide seas ei olnud siis ravikindlustamata inimeste tervishoiu lõiku ega vältimatu abi sätet. Valikul polnud
+  midagi alles jätta, ja vastus jättis ravikindlustuse mainimata.
+- Plaani juhisesse lisandub pärast muretseva sõnumi reeglit `PLAN_CIRCUMSTANCE_INSTRUCTIONS`: omaette vajadusega
+  asjaolu saab oma päringu selle asjaolu abi või reegli kohta, ametlikes terminites, ka siis, kui sõnum küsib muud.
 
 ## Kontroll
 
