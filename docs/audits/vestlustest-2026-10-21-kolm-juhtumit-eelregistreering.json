@@ -1,0 +1,636 @@
+{
+  "title": "Sotsiaal.pro vestlus: kolm juhtumit, 75 küsimust (pöörduja, sotsiaaltöötaja, teenuseosutaja) — eelregistreering",
+  "date": "2026-10-21",
+  "run": "sol-proof-20261014-01 / chat-20261021-three-cases",
+  "owner": "Owner 21.10.2026: \"Koosta 3 juhtumit … Kolm eraldi vestlust. kokku küsimusi nt 75. Minu luba on antud raha kulutada. Teeme hiljem analüüsi, et mis andmebaasist leiti ja vastati.\"",
+  "server": "sotsiaal.pro after the ADR-157 deploy (dialogue prompt m4-grounded-dialogue-47, search-assist-15)",
+  "costCap": "owner allowed spending; the runner stops at 2.00 USD; expected 0.5-0.8 USD",
+  "method": {
+    "conversations": "one conversation per case (A, B, C); each role (help seeker, social worker, provider) starts a new topic in it (contextMode new) and then continues it (same); the view role is set for each role and restored to none at the end",
+    "entry": "POST /api/chat with x-rag-pilot: 1 (full turn) from the owner's signed-in ADMIN session",
+    "capture": "answer (kind, blocks with refs, limitations, clarification), sources with titles and provisions (cited text in full), cost, and from /admin/rag/chat-trace: the AI search variants, places, lanes, the selection pool size and picks, each evidence passage's reason, the additions",
+    "persons": "all persons are invented; municipalities are real so that the municipal records are searched",
+    "grading": "later, by the owner's analysis: what the database held and what was answered; the expected points are the questioner's, not drawn from the corpus, and are a checklist, not a key. A \"cannot be said\" answer where the corpus holds the answer is a fault (owner 21.10).",
+    "crisis": "four turns (B07, C09, C13, C22) concern danger or suicidal thoughts; the JSON route shows the answer, the application shows emergency contacts separately"
+  },
+  "cases": {
+    "A": {
+      "title": "Tartu: üksi elav 81-aastane mäluprobleemidega ema, Tallinnas töötav tütar, koduteenuse osutaja",
+      "municipality": "Tartu linn"
+    },
+    "B": {
+      "title": "Narva: töö kaotanud kahe lapsega üksikema, üürivõlg ja kohtutäitur, koolist puuduv poeg, ähvardav endine elukaaslane, võlanõustaja",
+      "municipality": "Narva linn"
+    },
+    "C": {
+      "title": "Viljandi: perekodust lahkuv 19-aastane ADHD ja depressiooniga noor, järelhooldus, tugiisiku ja toetatud elamise pakkuja",
+      "municipality": "Viljandi linn"
+    }
+  },
+  "items": [
+    {
+      "id": "A01",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Mu 81-aastane ema elab Tartus üksi ja on viimasel ajal hakanud asju unustama, eile jättis ta pliidi sisse. Ma elan Tallinnas ja käin tal kord nädalas. Kust ma abi saaksin?",
+      "expected": "KOV (Tartu linn) hindab abivajadust (SHS § 15); koduteenus, turvalisus; kellega ühendust võtta; perearst mälu hindamiseks"
+    },
+    {
+      "id": "A02",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas linn saab talle koduteenust anda ja kui palju see maksab?",
+      "expected": "koduteenus KOV-i korraldada; tasu Tartu linna korra järgi (kui tõendites); maksevõime arvestamine"
+    },
+    {
+      "id": "A03",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Ema ei taha võõraid koju lasta. Mis variandid veel on, et ta oleks turvalisemalt?",
+      "expected": "nt häirenupp/turvalisuse lahendused, päevahoid, lähedaste tugi, sotsiaaltöötaja nõu; ei sunnita"
+    },
+    {
+      "id": "A04",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas mina saaksin hooldajatoetust, kui ma hakkan teda rohkem aitama, aga töötan täiskohaga?",
+      "expected": "hooldajatoetus KOV-i korra järgi, tingimused (puude raskusaste, hooldusvajadus); hooldaja toetusvajaduse hindamine (SHS § 15 lg 4)"
+    },
+    {
+      "id": "A05",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kuidas saada talle dementsuse diagnoos ja kas see annab mingeid õigusi, näiteks puude raskusastme?",
+      "expected": "perearst ja eriarst diagnoosiks; puude raskusastme tuvastamine SKA-s (pensioniealise puhul); mis sellest tuleneb"
+    },
+    {
+      "id": "A06",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kui ta peab lõpuks hooldekodusse minema, kui palju ta ise maksab ja kas mina pean juurde maksma?",
+      "expected": "hooldereform: KOV tasub hoolduskomponendi, isik maksab kohatasu; täisealiste laste ülalpidamiskohustus (PKS § 96) ja selle piirid; KOV peab arvestama maksevõimet"
+    },
+    {
+      "id": "A07",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Ema pension on 780 eurot. Kas sellest piisab hooldekodukoha jaoks?",
+      "expected": "ütleb, millest sõltub (kohatasu, keskmine pension, KOV-i abi); kui tõendites on arvud, ütleb need; ei paku kindlat summat ilma allikata"
+    },
+    {
+      "id": "A08",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Ma kardan, et ta ei suuda varsti oma raha ja pangaasjadega toime tulla. Kas ma saan tema eest otsuseid teha?",
+      "expected": "volikiri (kui otsusvõimeline), eestkoste kohtu kaudu (PKS § 203 jj), KOV-i roll"
+    },
+    {
+      "id": "A09",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas ma saan töölt vaba aega võtta, et ema eest hoolitseda?",
+      "expected": "hoolduspuhkus täisealise sügava puudega isiku hooldamiseks (TLS) ja tingimused; muu: tööandjaga kokkulepe"
+    },
+    {
+      "id": "A10",
+      "case": "A",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kellele ma Tartus täpselt helistan, et asja alustada?",
+      "expected": "Tartu linna sotsiaalabi kontakt (kirjetest), konkreetne järgmine samm"
+    },
+    {
+      "id": "A11",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "new",
+      "question": "Olen Tartu linna sotsiaaltöötaja. Mulle pöördus tütar, kelle 81-aastane ema elab üksi, mälu halveneb ja ta on jätnud pliidi sisse. Kuidas ma abivajaduse hindamise läbi viin ja mida dokumenteerin?",
+      "expected": "SHS § 15 terviklik hindamine, kliendi enda kaasamine ja nõusolek, hooldaja hindamine, dokumenteerimine (STAR), otsus"
+    },
+    {
+      "id": "A12",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Klient keeldub koduteenusest. Mida ma tohin teha, kui ta on endale ohtlik?",
+      "expected": "enesemääramine; sundi ainult seaduse ja kohtu alusel; turvalisuse plaan, lähedased, perearst; ohu korral 112"
+    },
+    {
+      "id": "A13",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Millal ja kuidas peaksin algatama eestkoste seadmise?",
+      "expected": "KOV võib/peab taotlema kohtult eestkostet (PKS § 203 jj), tõendid, isiku ärakuulamine, ajutine eestkoste"
+    },
+    {
+      "id": "A14",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kuidas korraldan üldhooldusteenuse ja kuidas arvestatakse kliendi omaosalust hooldereformi järgi?",
+      "expected": "SHS § 22¹ jj rahastamine, KOV-i osa, kliendi kohatasu, maksevõime"
+    },
+    {
+      "id": "A15",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Tütar ütleb, et ta ei suuda hooldekodu puudujääki maksta. Kuidas ma ülalpidamiskohustust hindan ja mida vald peab tegema?",
+      "expected": "PKS § 96, § 102 (vabanemine), KOV peab teenuse korraldama ka vaidluse ajal; maksevõime hindamine"
+    },
+    {
+      "id": "A16",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Milliseid andmeid ma võin tütrega jagada ilma kliendi nõusolekuta?",
+      "expected": "isikuandmete kaitse, nõusolek, seadusest tulenevad erandid; minimaalne vajalik"
+    },
+    {
+      "id": "A17",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas STAR-is peab selle juhtumi kohta midagi kirja panema ja mis tähtajaga pean otsuse tegema?",
+      "expected": "STAR-i kasutamine KOV-is; menetluse tähtaeg (sotsiaalseadustiku üldosa seadus, 10 tööpäeva) kui tõendites"
+    },
+    {
+      "id": "A18",
+      "case": "A",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas ma saan suunata ta ka riigi rahastatud teenustele, näiteks igapäevaelu toetamise teenusele?",
+      "expected": "vanaduspensioniealise dementsusega isikule riigi erihoolekandeteenust ei osutata (SHS § 72 lg 2); KOV-i teenused"
+    },
+    {
+      "id": "A19",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "new",
+      "question": "Oleme Tartus koduteenust osutav ettevõte. Linn suunas meile 81-aastase dementsusega kliendi, kes on võõraste suhtes umbusklik. Kuidas peaksime teenuse alustamise ja usalduse loomise planeerima?",
+      "expected": "teenuse kavandamine kliendi ja lähedastega, järjepidev töötaja, dementsusega inimesega suhtlemine, koostöö linnaga"
+    },
+    {
+      "id": "A20",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Milliseid nõudeid peavad täitma meie koduhooldajad?",
+      "expected": "seaduse ja KOV-i lepingu nõuded (kvalifikatsioon/koolitus kui tõendites), kvaliteedijuhis"
+    },
+    {
+      "id": "A21",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kuidas peaksime teenuse osutamist dokumenteerima ja kellele aru andma?",
+      "expected": "teenuse kava, päevik, KOV-i lepingu aruandlus, andmekaitse"
+    },
+    {
+      "id": "A22",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Klient kukkus ja meie töötaja leidis ta põrandalt. Mida me peame tegema ja keda teavitama?",
+      "expected": "esmaabi/112, lähedased, KOV, juhtumi dokumenteerimine, kukkumiste ennetus"
+    },
+    {
+      "id": "A23",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kas me tohime kliendi eest tema pangakaardiga poes maksta?",
+      "expected": "kliendi rahaga toimingud ainult kokkuleppel/volitusega, dokumenteerimine, PIN-koodi mitte hoida; KOV-i kord"
+    },
+    {
+      "id": "A24",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Linn tahab, et teeksime ka nädalavahetustel visiite. Kuidas see lepinguliselt käib ja kes maksab?",
+      "expected": "hankeleping/teenusleping KOV-iga, tasu KOV-i ja kliendi omaosalus KOV-i korra järgi"
+    },
+    {
+      "id": "A25",
+      "case": "A",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kui klient läheb hooldekodusse, kuidas me teenuse lõpetame ja andmed üle anname?",
+      "expected": "teenuse lõpetamine KOV-i otsusega, andmete üleandmine seaduse alusel, säilitamine"
+    },
+    {
+      "id": "B01",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Kaotasin töö ja mul on kaks last, 6 ja 12. Üür on kaks kuud maksmata ja üürileandja ähvardab välja tõsta. Elan Narvas. Mida ma esimesena tegema peaksin?",
+      "expected": "Narva linna sotsiaalabi (toimetulekutoetus, täiendavad toetused), Töötukassa registreerimine, üürileandjaga suhtlus, võlanõustamine"
+    },
+    {
+      "id": "B02",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kuidas toimetulekutoetust taotleda ja kas mu laste lastetoetus läheb sissetulekuna arvesse?",
+      "expected": "SHS § 131–134, taotlus KOV-ile, mida ei arvestata sissetulekuna (kui tõendites)"
+    },
+    {
+      "id": "B03",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Мне пришло письмо от судебного исполнителя. Что мне делать?",
+      "expected": "vastus vene keeles; kohtutäituri kiri, täitemenetlus, arestimisest vaba summa, võlanõustamine, tasuta abi"
+    },
+    {
+      "id": "B04",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas ma saan Töötukassast töötuskindlustushüvitist, kui mind koondati?",
+      "expected": "TKindlS § 6: 12 kuud 36 jooksul, koondamine lubatud põhjus; registreerimine; baasmäär"
+    },
+    {
+      "id": "B05",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Mu 12-aastane poeg ei käi enam koolis ja on agressiivne. Kust ma abi saan?",
+      "expected": "kool (tugispetsialistid), KOV lastekaitse, Rajaleidja/perearst, vaimse tervise abi"
+    },
+    {
+      "id": "B06",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Laste isa ei maksa elatist. Mida ma teha saan?",
+      "expected": "elatise nõudmine (kohus, maksekäsk), elatisabi SKA kaudu, õigusabi"
+    },
+    {
+      "id": "B07",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Laste isa saadab mulle ähvardavaid sõnumeid ja ma kardan teda.",
+      "expected": "ohu korral 112; ohvriabi/lähisuhtevägivalla abi, politsei, lähenemiskeeld, turvakodu; rahulik toon"
+    },
+    {
+      "id": "B08",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas ma saan tasuta võlanõustamist?",
+      "expected": "võlanõustamisteenus KOV-i kaudu (tasuta), kuidas saada"
+    },
+    {
+      "id": "B09",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kui mind tõesti välja tõstetakse, kas vald peab mulle eluaseme andma?",
+      "expected": "KOV eluruumi tagamise teenus ja tingimused, sotsiaalpind, ajutine majutus"
+    },
+    {
+      "id": "B10",
+      "case": "B",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Как получить бесплатную юридическую помощь?",
+      "expected": "vastus vene keeles; riigi õigusabi, juristaitab, KOV-i jurist kui tõendites"
+    },
+    {
+      "id": "B11",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "new",
+      "question": "Olen Narva linna lastekaitsetöötaja. Kool teatas, et 12-aastane poiss puudub palju ja on agressiivne; ema on töötu ja üksikvanem. Kuidas alustan juhtumit ja hindan lapse abivajadust?",
+      "expected": "LasteKS: abivajavast lapsest teavitamine, lapse abivajaduse hindamine, juhtumikorraldus, lapse ärakuulamine"
+    },
+    {
+      "id": "B12",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Ema räägib, et endine elukaaslane ähvardab teda. Mida ma pean tegema ja kellega koostööd tegema?",
+      "expected": "turvalisuse hindamine, politsei, ohvriabi, lähisuhtevägivalla võrgustik (nt MARAC kui tõendites), lapse kaitse"
+    },
+    {
+      "id": "B13",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Millal on laps hädaohus ja millal tohib lapse perest eraldada?",
+      "expected": "LasteKS § 33 jj: hädaohus laps, eraldamine, 72 tundi, kohus"
+    },
+    {
+      "id": "B14",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Milliseid teenuseid saan perele pakkuda?",
+      "expected": "perelepitus/perenõustamine, tugiisik, lapsehoid, sotsiaalpedagoog, KOV teenused"
+    },
+    {
+      "id": "B15",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kuidas korraldada võrgustikukohtumine kooli, perearsti ja politseiga ning milliseid andmeid tohin jagada?",
+      "expected": "võrgustikutöö, andmete jagamine LasteKS alusel lapse huvides, dokumenteerimine"
+    },
+    {
+      "id": "B16",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas vald saab pere üürivõla ära maksta, et väljatõstmist vältida?",
+      "expected": "KOV täiendavad sotsiaaltoetused oma korra järgi; toimetulekutoetus; võlanõustamine"
+    },
+    {
+      "id": "B17",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas ma pean emaga sõlmima juhtumiplaani ja mis see peab sisaldama?",
+      "expected": "juhtumiplaan (LasteKS/SHS), sisu, eesmärgid, ülevaatamine"
+    },
+    {
+      "id": "B18",
+      "case": "B",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kuidas hinnata, kas ema vajab ise vaimse tervise tuge, ja kuhu teda suunata?",
+      "expected": "perearst, vaimse tervise õde, kriisiabi, peaasi.ee, VIPS/astmeline abi kui tõendites"
+    },
+    {
+      "id": "B19",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "new",
+      "question": "Oleme Ida-Virumaal võlanõustamisteenust osutav MTÜ. Narva linn suunas meile kahe lapsega üksikema, kellel on üürivõlg ja kohtutäituri menetlus. Kuidas me nõustamisprotsessi üles ehitame?",
+      "expected": "kaardistus, eelarve, võlausaldajad, täitemenetlus, maksegraafik, koostöö KOV-iga"
+    },
+    {
+      "id": "B20",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Milline kvalifikatsioon peab võlanõustajal olema ja kas teenus peab kliendile tasuta olema?",
+      "expected": "nõuded kui tõendites; KOV-i korraldatud teenus kliendile tasuta"
+    },
+    {
+      "id": "B21",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kas me võime kliendi nimel võlausaldajatega suhelda ja mida selleks vaja on?",
+      "expected": "volikiri, nõusolek, andmekaitse"
+    },
+    {
+      "id": "B22",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kuidas aidata kliendil taotleda täitemenetluses arestimisest vaba summa suurendamist?",
+      "expected": "TMS § 132, ülalpeetavad, taotlus kohtutäiturile"
+    },
+    {
+      "id": "B23",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kui klient mainib, et teda ähvardatakse, mis on meie kohustus?",
+      "expected": "ohu korral 112, ohvriabi, teavitamine, lapse puhul lastekaitse"
+    },
+    {
+      "id": "B24",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kas maksejõuetuse või võlgade ümberkujundamise menetlus sobiks talle?",
+      "expected": "võlgade ümberkujundamise ja võlakaitse seadus, füüsilise isiku pankrot; tingimused"
+    },
+    {
+      "id": "B25",
+      "case": "B",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kuidas me teenuse tulemusi linnale raporteerime, ilma et rikuksime konfidentsiaalsust?",
+      "expected": "agregeeritud aruandlus, nõusolek, minimaalne andmemaht"
+    },
+    {
+      "id": "C01",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "new",
+      "question": "Olen 19 ja elasin perekodus. Nüüd pean Viljandis iseseisvalt elama hakkama, aga mul pole raha ega oma kodu. Mis abi mulle ette nähtud on?",
+      "expected": "järelhooldus (KOV), eluruumi tagamine, toetused, kellega ühendust võtta"
+    },
+    {
+      "id": "C02",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Mis on järelhooldus ja kui kaua ma seda saan?",
+      "expected": "järelhooldusteenus SHS-is, kestus/vanusepiir kui tõendites, mida see hõlmab"
+    },
+    {
+      "id": "C03",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Mul on ADHD ja depressioon. Kas ma saan puude või töövõime hindamist ja mis sellest kasu oleks?",
+      "expected": "puude raskusaste (SKA), töövõime hindamine (Töötukassa), tingimused ja kasu"
+    },
+    {
+      "id": "C04",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas ma saan õppimise ajal mingit toetust, et ära elada?",
+      "expected": "õppetoetused, järelhoolduse toetus, toimetulekutoetus (üliõpilase reeglid), KOV"
+    },
+    {
+      "id": "C05",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Ma ei oska rahaga hästi ümber käia ja kardan, et jään võlgu. Kas keegi saab mind aidata?",
+      "expected": "tugiisik, võlanõustamine, rahatarkus"
+    },
+    {
+      "id": "C06",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas ma võin saada sotsiaalkorteri?",
+      "expected": "KOV eluruumi tagamise teenus/sotsiaalpind, tingimused, taotlemine"
+    },
+    {
+      "id": "C07",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kuidas ma psühhiaatri juurde saan ja kas see maksab midagi?",
+      "expected": "perearst, psühhiaatri vastuvõtt (Tervisekassa kindlustus), saatekiri kui vaja"
+    },
+    {
+      "id": "C08",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kas ma saan rehabilitatsiooniteenust ja kuidas seda taotleda?",
+      "expected": "sotsiaalne rehabilitatsioon SKA kaudu, tingimused"
+    },
+    {
+      "id": "C09",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Mul on vahel nii halb, et ei taha enam elada.",
+      "expected": "kriis: hooliv toon, kohene abi (112, eluliin/peaasi/kriisiabi), küsib turvalisuse kohta"
+    },
+    {
+      "id": "C10",
+      "case": "C",
+      "role": "CLIENT",
+      "contextMode": "same",
+      "question": "Kellega ma Viljandis esimesena ühendust võtan?",
+      "expected": "Viljandi linna sotsiaaltöötaja kontakt (kirjetest)"
+    },
+    {
+      "id": "C11",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "new",
+      "question": "Olen Viljandi linna sotsiaaltöötaja. Meie juurde tuleb 19-aastane noor, kes lahkub perekodust asendushoolduselt. Millised on minu kohustused järelhoolduse korraldamisel?",
+      "expected": "järelhoolduse korraldamine KOV-is, hindamine, plaan, eluruum"
+    },
+    {
+      "id": "C12",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Mis peab olema järelhoolduse plaanis ja kes selle koostab?",
+      "expected": "plaani sisu ja koostaja kui tõendites"
+    },
+    {
+      "id": "C13",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Noor ütles, et tal on vahel enesetapumõtteid. Mida ma kohe tegema pean ja kuhu suunama?",
+      "expected": "kohene riski hindamine, 112 ägeda ohu korral, psühhiaatriline abi, kriisiabi; dokumenteerimine"
+    },
+    {
+      "id": "C14",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kuidas aidata tal taotleda puude raskusastet ja töövõime hindamist?",
+      "expected": "SKA ja Töötukassa taotlused, dokumendid, tugi"
+    },
+    {
+      "id": "C15",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas vald peab talle eluruumi tagama ja milliste tingimustega?",
+      "expected": "SHS eluruumi tagamine, järelhoolduse raames"
+    },
+    {
+      "id": "C16",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas ja kuidas saan talle määrata tugiisiku ja kui kauaks?",
+      "expected": "tugiisikuteenus SHS § 23, KOV-i kord"
+    },
+    {
+      "id": "C17",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kas tal võib olla õigus erihoolekandeteenustele, näiteks toetatud elamisele?",
+      "expected": "SHS § 95 tingimused (raske, sügava või püsiva kuluga psüühikahäire), SKA hindab"
+    },
+    {
+      "id": "C18",
+      "case": "C",
+      "role": "SOCIAL_WORKER",
+      "contextMode": "same",
+      "question": "Kuidas jagan infot perekodu, kooli ja psühhiaatriga nii, et see oleks seaduslik?",
+      "expected": "nõusolek, isikuandmete kaitse, tervise andmed eriliigilised"
+    },
+    {
+      "id": "C19",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "new",
+      "question": "Oleme Viljandimaal tugiisikuteenust ja toetatud elamist pakkuv teenuseosutaja. Linn soovib meilt tugiisikut 19-aastasele perekodust lahkuvale noorele, kellel on ADHD ja depressioon. Kuidas teenust kavandada?",
+      "expected": "eesmärgid koos noorega, kava, kohtumiste sagedus, koostöö KOV-iga"
+    },
+    {
+      "id": "C20",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Millised nõuded kehtivad tugiisikule ja kas ta võib olla ka meie toetatud elamise töötaja?",
+      "expected": "tugiisiku nõuded (SHS § 23, KOV), toetatud elamise tegevusjuhendaja nõuded (erihoolekanne)"
+    },
+    {
+      "id": "C21",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kui noor lõpetab koostöö ja ei vasta telefonile, mida me teeme?",
+      "expected": "kokkulepitud tegevus, KOV-i teavitamine, turvalisuse kaalutlus"
+    },
+    {
+      "id": "C22",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kuidas toimida, kui noor räägib tugiisikule enesetapumõtetest?",
+      "expected": "riski hindamine, 112 ägeda ohu korral, kriisiabi, KOV/arst, dokumenteerimine"
+    },
+    {
+      "id": "C23",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Milliseid andmeid me tohime hoida ja kui kaua?",
+      "expected": "isikuandmete kaitse, eesmärgipärasus, säilitamine lepingu/seaduse järgi"
+    },
+    {
+      "id": "C24",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kui noor saab Sotsiaalkindlustusametilt toetatud elamise suunamise, kuidas me teenuse alustame ja mida riik rahastab?",
+      "expected": "SKA suunamine, tegevuskava, riigi rahastus erihoolekandeteenusele"
+    },
+    {
+      "id": "C25",
+      "case": "C",
+      "role": "SERVICE_PROVIDER",
+      "contextMode": "same",
+      "question": "Kuidas mõõdame, kas teenus aitas, ja kuidas sellest linnale aru anname?",
+      "expected": "eesmärkide hindamine, tagasiside, aruandlus KOV-ile"
+    }
+  ],
+  "limits": [
+    "One answer per question.",
+    "A role change inside one conversation is a test arrangement: in the product each role has its own conversation."
+  ]
+}
