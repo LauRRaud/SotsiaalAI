@@ -218,9 +218,19 @@ küsimust.
       ([ADR-160](../rag-v2/adr-160-answer-repair-instead-of-refusal.md)).
     - Ülejäänud oote põhjustab peamiselt Luna mõtlemine: valikumudelis 0–400 tokenit (0–8 s) ja vastuses enne esimest
       sõna 250–750 tokenit (5–13 s).
+    - **Tulemus:** 75 küsimust, kogu aeg mediaan 34,9 → 25,2–26,1 s, p90 50,5 → 32,9–33,9 s. Vastuste liigid ja
+      tsiteeritud allikad on samad (R0, R1 ja R2 [ADR-166](../rag-v2/adr-166-candidate-card-section-type-issuer.md)-s).
+    - **Avatud:** vastusekutse ületab vahel 60 s ajapiiri ja kasutaja saab vea. 21.10 oli selliseid juhtumeid viis umbes
+      400 pöördest. Omanik valis õige korduse (kulu arvestus lubab pöördele teise vastusekutse), mis tehakse eraldi tööna.
 28. **Teenuseosutaja küsimustele puudub korpusest kohalik kord** (aruandlus, lepingud, andmete säilitus, tugiisiku
     kestus, võlanõustaja volitused). Need vastused jäid osaliseks ja suunasid omavalitsuse poole. Avatud: korpuse
     otsus.
+29. **Kirjeldatud asjaolu (ravikindlustus puudub jne) jäi vastuses käsitlemata**
+    ([ADR-165](../rag-v2/adr-165-stated-circumstance-in-selection.md)). Omaniku pööre Tabasalust.
+    - Plaan otsib nüüd asjaolu abi (search-assist-18).
+    - Valik hoiab asjaolu lõigu. Kaardi alampealkirjaga katse ei parandanud seda üle müra (ADR-166).
+    - Vastuse reegel (answer-14) võeti tagasi, sest kaks vastust ületas 60 s piiri.
+    - Avatud: vastus peab asjaolu lõiku kasutama nii, et vastus ei pikene.
 
 ## Enne RAG-parandusi: inimhinnang (RAG-12)
 
