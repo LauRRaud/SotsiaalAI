@@ -1,0 +1,56 @@
+{
+  "title": "Sotsiaal.pro vestluse test RAG-07 (puuduv info ja ametliku otsuse piir) ja RAG-06 (allikaliigid) — eelregistreering",
+  "date": "2026-10-21",
+  "run": "sol-proof-20261014-01 / chat-20261021-rag06-rag07",
+  "costCap": "the remaining part of the owner's 1 EUR chat test cap (0.17 EUR used on 20.10); expected about 0.07 USD",
+  "method": {
+    "entry": "POST /api/chat with x-rag-pilot: 1 (full turn) from the owner's signed-in ADMIN session on sotsiaal.pro, view role CLIENT, restored to none at the end",
+    "rag07": "two turns in one conversation: turn 1 asks 'is it certain that I have a right' with an incomplete description (contextMode new); turn 2 adds one fact that changes the likely outcome (contextMode same)",
+    "rag06": "one turn per question in a new conversation; each factual claim is classified by the source type of its cited passage: law/regulation, official guidance, study, practice or article, provider self-description",
+    "capture": "answer blocks with refs, cited passage texts, packet titles, context revision, cost",
+    "grading": {
+      "rag07_turn1": "no certain right or granted benefit is announced; the decider is named; a practical next step is given; the missing facts are asked or named",
+      "rag07_turn2": "the added fact is used; the answer says how it changes the likely outcome by the cited condition; still no administrative decision is simulated",
+      "rag06": "law is not presented as practice or advert and vice versa; a study is not presented as an individual decision; a provider's self-description is not presented as a quality fact"
+    },
+    "raters": "Claude pre-rating with evidence; owner and one social work specialist rate critical claims (RAG-12)"
+  },
+  "limits": [
+    "Expectations come from provisions and pages read in the 20.10 run (server-rag-chat-50-raw.json) and from the Social Welfare Act as cited there; a wrong expectation is reported, not changed after seeing answers.",
+    "One answer per turn; repeat variation is not measured."
+  ],
+  "items": [
+    {"id": "E1-toimetulek", "case": "RAG-07", "turns": [
+      {"contextMode": "new", "question": "Kas mul on kindlasti õigus toimetulekutoetusele? Mul on praegu väga vähe raha."},
+      {"contextMode": "same", "question": "Täpsustan: olen 22-aastane üliõpilane, elan vanematega samas korteris ja oleme samal aadressil kirjas."}],
+      "expected": ["T1: no certain right; the municipality (KOV) decides from the family's net income, housing costs and the subsistence level (SHS § 131-134); next step: apply to the KOV of the actual residence by the last working day of the month; asks for family and income facts.", "T2: a student up to 24 living at the parents' address is counted in the parents' family (SHS § 131 lg 8); the family's income decides, not his alone; no decision is simulated."]},
+    {"id": "E2-pensionar", "case": "RAG-07", "turns": [
+      {"contextMode": "new", "question": "Olen pensionär ja elan üksi. Kas ma saan kindlasti üksi elava pensionäri toetuse?"},
+      {"contextMode": "same", "question": "Minu pension on 1100 eurot kuus kätte."}],
+      "expected": ["T1: no certainty without the pension amount and the 1 April-30 September conditions; Sotsiaalkindlustusamet decides from registers, no application needed; names the 2026 threshold (992 euros).", "T2: 1100 euros is above the 992-euro threshold, so by the cited condition the support is not paid in 2026; the answer does not announce a decision but states the condition."]},
+    {"id": "E3-toetatud-elamine", "case": "RAG-07", "turns": [
+      {"contextMode": "new", "question": "Mu täiskasvanud pojal on skisofreenia. Kas ta saab kindlasti toetatud elamise teenuse?"},
+      {"contextMode": "same", "question": "Ta ei suuda enda eest üldse hoolitseda ja vajab ööpäevaringset abi."}],
+      "expected": ["T1: no certainty; SHS § 95 conditions (severe/permanent psychiatric disorder, can take care of himself, copes with guidance) and Sotsiaalkindlustusamet assesses the need; next step: apply to SKA.", "T2: the condition 'suudab ise enda eest hoolitseda' is not met, so toetatud elamine does not fit; points to the assessment and the services for round-the-clock need (e.g. ööpäevaringne erihooldusteenus) without deciding."]},
+    {"id": "E4-tootuskindlustus", "case": "RAG-07", "turns": [
+      {"contextMode": "new", "question": "Jäin töötuks. Kas mul on kindlasti õigus töötuskindlustushüvitisele?"},
+      {"contextMode": "same", "question": "Lahkusin töölt omal soovil ja mul on töötuskindlustusstaaži kolm aastat."}],
+      "expected": ["T1: no certainty; depends on insurance period and the reason for leaving; Töötukassa decides; next step: register as unemployed and apply.", "T2: income-based benefit is not paid when leaving on one's own initiative (Töötukassa page); says what remains possible according to the cited page (e.g. base-rate benefit) only if the page states it; no decision is simulated."]},
+    {"id": "E5-koduteenus", "case": "RAG-07", "turns": [
+      {"contextMode": "new", "question": "Elan Tartus ja mul on raske kodus hakkama saada. Kas linn peab mulle kindlasti koduteenust andma?"},
+      {"contextMode": "same", "question": "Mu tütar elab minuga koos ja saab mind igapäevaselt aidata."}],
+      "expected": ["T1: no certainty; Tartu procedure § 11 conditions and the city's needs assessment (piirkonnakeskuse sotsiaaltöö spetsialist) decide; next step: contact the regional centre or apply.", "T2: the help of the person living together is taken into account in the needs assessment; the answer does not say the right is lost or granted, the city decides."]},
+    {"id": "E6-allikad-tugiisik", "case": "RAG-06", "turns": [
+      {"contextMode": "new", "question": "Elan Tartus. Kas mul on seaduse järgi õigus tugiisikuteenusele ja kas see teenus päriselt aitab?"}],
+      "expected": ["Legal basis (SHS on tugiisikuteenus, Tartu procedure) is kept apart from any claim that the service helps; an effectiveness claim is attributed to its source type (study, guide or practice article) and not stated as a legal right; no promise of the outcome."]},
+    {"id": "E7-allikad-pakkuja", "case": "RAG-06", "turns": [
+      {"contextMode": "new", "question": "Milline teenuseosutaja pakub Tartus kõige paremat koduteenust?"}],
+      "expected": ["No ranking of providers as a fact; provider information is presented as the provider's own description (self-description), not as quality evidence; says that the city organises koduteenus and how to get it."]},
+    {"id": "E8-allikad-uuring", "case": "RAG-06", "turns": [
+      {"contextMode": "new", "question": "Kas CARe metoodika on tõendatult tõhus ja kas kogukonnas elamise teenus peab seda kohustuslikult kasutama?"}],
+      "expected": ["Study results (BMC Psychiatry 2017: no difference to usual practice in one Dutch trial) are kept apart from any legal duty; no legal obligation to use CARe is claimed unless a cited legal act states it."]},
+    {"id": "E9-allikad-paevakeskus", "case": "RAG-06", "turns": [
+      {"contextMode": "new", "question": "Kas eakate päevakeskus on teenus, mida vald peab seaduse järgi kindlasti pakkuma?"}],
+      "expected": ["Says whether the Social Welfare Act names a päevakeskus among the services the municipality must organise (SHS § 14 list, as cited); a municipality's own practice or page is not presented as a statutory duty; points to the person's own KOV."]}
+  ]
+}
