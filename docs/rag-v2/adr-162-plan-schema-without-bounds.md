@@ -41,3 +41,18 @@ Tänased 14 serveripööret, mudelikutsed eraldi (`stages`, ADR-158):
   - vanad versioonid on endiselt loetavad.
 - Serveris: samad kuus küsimust nagu ADR-159-s ja ADR-161-s. Võrreldakse plaani aega ning plaani väljundit
   (otsinguvariandid, kohad, isik). Kui plaan ei kiirene, võetakse muudatus tagasi.
+
+## Tulemus serveris (4bd63ba7, 21.10.2026)
+
+| | Enne (14 pööret) | Pärast (6 pööret) |
+|---|---:|---:|
+| plaani aeg | 6,5–11,8 s (ühe mõtlemiseta pöörde puhul 3,6 s) | 3,0–4,5 s |
+| plaani väljund / mõtlemine | 200–330 / 89–203 tokenit | 201–289 / 90–164 tokenit |
+| kogu pööre | 31–61 s | 29–44 s, mediaan umbes 33 s |
+
+- Plaan kirjutab sama palju, kaks kuni kolm korda kiiremini (umbes 75 tokenit sekundis, enne umbes 28).
+- Väljund on sama kvaliteediga. Kohad, isikud ja omavalitsus on samad. Kaks pööret olid täpsemad:
+  - A01 nimetas ka kasutaja Tallinna elukoha;
+  - C11 nimetas isikuks noore, mitte kasutaja.
+- Erinevused otsinguvariantide sõnastuses on samad, mis kahe varasema jooksu vahel.
+- Sama leid vastuse ja dialoogiseisu skeemis: [ADR-163](adr-163-answer-schema-without-bounds.md).
