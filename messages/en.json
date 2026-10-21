@@ -4450,7 +4450,8 @@
         }
       },
       "view_role": {
-        "label": "Workspace view"
+        "label": "Workspace view",
+        "answering_as": "Answering as: {role}"
       }
     },
     "help": {

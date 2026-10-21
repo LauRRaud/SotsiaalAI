@@ -16,7 +16,8 @@ export default function AdminRoleViewCycleButton({
   className,
   ariaLabel,
   placement = "corner",
-  fallback = false
+  fallback = false,
+  caption = ""
 }) {
   const i18n = useI18n();
   const router = useRouter();
@@ -99,9 +100,11 @@ export default function AdminRoleViewCycleButton({
         "admin-role-view-cycle",
         placement === "cards" ? "admin-role-view-cycle--cards" : "admin-role-view-cycle--corner",
         placement === "inline" && "admin-role-view-cycle--inline",
+        caption && "admin-role-view-cycle--captioned",
         className
       )}
     >
+      {caption ? <span className="admin-role-view-cycle__caption">{caption}</span> : null}
       <WorkspaceRoleCycleButton
         t={translate}
         value={optimisticRole || value}

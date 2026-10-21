@@ -17,8 +17,9 @@
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
+import { normalizeWorkspaceRole, workspaceRoleLabel } from "./WorkspaceRoleCycleButton";
 
-export default function RoleViewSwitcher({ ariaLabel = "", className, placement = "corner", fallback = false, onRoleChanged }) {
+export default function RoleViewSwitcher({ ariaLabel = "", className, placement = "corner", fallback = false, onRoleChanged, showCaption = false }) {
   const { t, locale } = useI18n();
   const { effectiveRole, isAdmin, isRoleResolved, refresh } = useEffectiveRole();
 
@@ -42,6 +43,9 @@ export default function RoleViewSwitcher({ ariaLabel = "", className, placement 
       className={className}
       placement={placement}
       fallback={fallback}
+      caption={showCaption
+        ? t("chat.workspace.view_role.answering_as", "Vastan kui: {role}").replace("{role}", workspaceRoleLabel(t, normalizeWorkspaceRole(effectiveRole)))
+        : ""}
     />
   );
 }

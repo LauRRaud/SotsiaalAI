@@ -4450,7 +4450,8 @@
         }
       },
       "view_role": {
-        "label": "Töölaua vaade"
+        "label": "Töölaua vaade",
+        "answering_as": "Vastan kui: {role}"
       }
     },
     "help": {

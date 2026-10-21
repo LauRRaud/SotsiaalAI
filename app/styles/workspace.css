@@ -85,6 +85,18 @@
 .admin-role-view-cycle--corner:focus-within {
   opacity: 1;
 }
+/* Vestluses on lüliti kõrval kirjas, millise rollina vestlus vastab (omanik 21.10). */
+.admin-role-view-cycle--captioned {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-inline-start: 0.7rem;
+}
+.admin-role-view-cycle__caption {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
 .admin-role-view-cycle--corner .workspace-role-switch {
   gap: 0.12rem;
 }

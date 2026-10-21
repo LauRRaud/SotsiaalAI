@@ -85,5 +85,6 @@ export default function WorkspaceRoleCycleButton({
 }
 
 export {
-  normalizeWorkspaceRole
+  normalizeWorkspaceRole,
+  workspaceRoleLabel
 };

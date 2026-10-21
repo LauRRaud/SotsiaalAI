@@ -178,7 +178,8 @@ export default function ChatBodyView({
                   RAG-sihtrühma ja vastuse pikkust (lib/chat/requestBootstrap).
                   Töölaua-näol on oma lüliti (WorkspacePanel), seega ainult
                   vestlusevaates; ruumis roll ei mängi (liikmesuspõhine). */}
-              {showStandardChat && isAdmin && !isRoomMode ? <RoleViewSwitcher /> : null}
+              {/* Omaniku otsus 21.10: admin näeb kirjas, millise rollina vestlus vastab (ilma valitud vaaterollita spetsialistina). */}
+              {showStandardChat && isAdmin && !isRoomMode ? <RoleViewSwitcher showCaption /> : null}
               {showStandardChat ? listingsPanelNode : null}
               {showStandardChat ? selectedListingContextNode : null}
 
