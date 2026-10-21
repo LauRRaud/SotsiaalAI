@@ -1,4 +1,4 @@
-# ADR-163 — Vastuse ja dialoogiseisu skeem ilma pikkuspiirideta
+# ADR-163 — Vastuse ja dialoogiseisu skeem ilma pikkuspiirideta (proovitud, tagasi võetud)
 
 21.10.2026. Teostus Claude Opus 5.5. Jätk [ADR-162](adr-162-plan-schema-without-bounds.md)-le. Kui plaani skeemist
 pikkuspiirid välja võeti, kirjutas plaan sama sisu kaks kuni kolm korda kiiremini (6,5–11,8 s asemel 3,0–4,5 s).
@@ -37,3 +37,18 @@ Vastusekutse võtab 9–31 s.
   - `npm test`: 70 läbis.
 - Serveris: samad kuus küsimust. Võrreldakse vastusekutse aega, vastuse kuju (liik, plokid, viited, parandused) ja
   dialoogiseisu (faktid, välja jäetud kirjed). Kui vastus ei kiirene, võetakse muudatus tagasi.
+
+## Tulemus serveris (90d802d8, 21.10.2026): võetud tagasi
+
+Samad kuus küsimust:
+
+| | Enne (11 pööret) | Pärast (6 pööret) |
+|---|---:|---:|
+| vastuse kiirus | 48–133 tokenit/s, mediaan umbes 106 | 64–136 tokenit/s, mediaan umbes 111 |
+| vastuseid viitemärkidega tekstis | 0 / 12 (alates ADR-160-st) | 2 / 6 (6 plokki) |
+
+- Kiiruse vahet ei ole. Plaani puhul oli vahe selge ja püsiv (ADR-162), vastuse puhul mitte. Vastuse kiirus sõltub
+  teenusepakkuja koormusest.
+- Ilma tekstimustrita kirjutas mudel nähtavasse teksti rohkem viitemärke. Parandus võttis need välja (ADR-160), aga
+  see on kvaliteedirisk ilma võiduta.
+- Muudatus on tagasi võetud: vastuse ja dialoogiseisu skeem on jälle piiridega nagu enne.
