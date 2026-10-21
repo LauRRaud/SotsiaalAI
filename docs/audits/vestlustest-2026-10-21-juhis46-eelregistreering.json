@@ -103,5 +103,16 @@
     "One answer per question.",
     "The packets may differ from the earlier runs; both are compared.",
     "Expectations come from the earlier runs and the sources read there; a wrong expectation is reported, not changed after seeing answers."
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-21",
+      "before": "the ADR-156 run",
+      "text": "E9 and U01 failed (server-rag-chat-prompt46.json). ADR-156 (prompt 47, search-assist-15, list items after their announcement with continues) is re-tested with the same two questions and the same expectations. Expected cost about 0.012 USD.",
+      "items": [
+        "E9-allikad-paevakeskus",
+        "U01-vips"
+      ]
+    }
   ]
 }

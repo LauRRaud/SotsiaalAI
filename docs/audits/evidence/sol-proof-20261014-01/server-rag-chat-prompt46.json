@@ -1,0 +1,263 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "7da241c7 (ADR-154 search, ADR-155 dialogue prompt m4-grounded-dialogue-46, the admin trace; \"Chat plan: renewed\")",
+  "checkpointDate": "2026-10-21",
+  "preregistration": {
+    "path": "docs/audits/vestlustest-2026-10-21-juhis46-eelregistreering.json",
+    "sha256": "3ca598b7438d86cd74c9750c6a2b99bb28ec43293611bf27804f28dd4226f0c5",
+    "lockedInCommit": "7da241c7"
+  },
+  "raw": {
+    "path": "docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-prompt46-raw.json",
+    "exportSha256": "f93e502b2ca496d83ac79cb856c4bdbf424273670252856a06d82eb1ba46eaff"
+  },
+  "checks": [
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p46_G33-supported-living-alcohol",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/2aa7be0e-39ef-41ec-95f4-7b47ec96a7b4",
+      "actual": {
+        "question": "Mu täiskasvanud pojal on alkoholisõltuvus. Kas ta saab riigi rahastatud toetatud elamise teenust?",
+        "expected": [
+          "trace: SHS § 72 lg 2 is in the packet as a cross-reference from § 95 (or § 72 lg 2 is there by another reason; then the second reading is not shown by this question)",
+          "answer: the state-funded supported living service is not provided to a person whose main illness is an alcohol or drug dependence (SHS § 95 with § 72 lg 2); names what else may help or whom to ask",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "ADR-154 second reading",
+        "turnId": "2aa7be0e-39ef-41ec-95f4-7b47ec96a7b4",
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 95",
+          "S2 Töö alkoholi liigtarvitava kliendiga. Abiks spetsialistile",
+          "S3 Sotsiaalhoolekande seadus § 72 lg 1–6"
+        ],
+        "packetSize": 3,
+        "latencyMs": 30651,
+        "costUsd": 0.0042,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "SHS § 72 lg 2 is in the packet (S3) as an own-act cross-reference of § 95, which was a ranked passage this time, so the second reading (ADR-154) was not needed here (shown locally). The answer: when the main illness is an alcohol dependence the state does not fund special care services (§ 95 with § 72 lg 2, the 2019 guide). A limitation names the son's other diagnoses, a fact of the person, not of the evidence."
+      }
+    },
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110p46_E9-allikad-paevakeskus",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/ccdaac22-14a8-4ec4-9328-676c2ef6543d",
+      "actual": {
+        "question": "Kas eakate päevakeskus on teenus, mida vald peab seaduse järgi kindlasti pakkuma?",
+        "expected": [
+          "trace: the passages under \"Neist täiskasvanutele mõeldud teenused on:\" are in the packet as list continuations, if that passage is selected",
+          "answer: names the services the municipality must organise (as far as the evidence lists them) and says that an older people's day centre is not among them; a municipality may organise other services; points to the person's own municipality",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "ADR-154 list continuation, ADR-155 commit",
+        "turnId": "ccdaac22-14a8-4ec4-9328-676c2ef6543d",
+        "answerKind": "partial",
+        "cited": [
+          "S2 Kohaliku omavalitsuse sotsiaalteenused ja toetused",
+          "S5 Sotsiaalhoolekande seadus § 14 lg 1–2"
+        ],
+        "packetSize": 13,
+        "latencyMs": 19065,
+        "costUsd": 0.004383,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Search fixed, answer not: the list continuation (ADR-154) added the seven services under the SKA page's \"Neist täiskasvanutele mõeldud teenused on:\" (trace: list_continuations announcing 1, additions 7; S7-S13), but they stood after two provisions and the answer said \"siin olev teave ei loetle neid teenuseid\" and could not tell whether a day centre is one. ADR-156 puts the items right after the announcement, marks them continues: S4 in the context, and adds a line on reading such a list."
+      }
+    },
+    {
+      "case_id": "RAG-06",
+      "variant_id": "chat2110p46_E7-allikad-pakkuja",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/4b04102e-1c13-443c-8e68-77faa359e784",
+      "actual": {
+        "question": "Milline teenuseosutaja pakub Tartus kõige paremat koduteenust?",
+        "expected": [
+          "answer: says first that the city organises koduteenus and how to get it (the city's procedure, if in the evidence), then any provider as its own description; no ranking of providers",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "ADR-155 municipal route",
+        "turnId": "4b04102e-1c13-443c-8e68-77faa359e784",
+        "answerKind": "partial",
+        "cited": [
+          "S1 Vajadustest lähtuv hool ja abi igas kodus",
+          "S3 Koduteenuse kvaliteedijuhis",
+          "S5 Tartu linna vanemaealiste uuring",
+          "S6 Sotsiaalhoolekande seadus § 3 lg 1–2",
+          "S7 Sotsiaalhoolekande seadus § 17 lg 1–3"
+        ],
+        "packetSize": 8,
+        "latencyMs": 30873,
+        "costUsd": 0.005224,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Better but not as pre-registered: the answer refuses to rank providers (correct), names a provider's own description and the study, and says that the municipality organises koduteenus (SHS § 17, § 3), but only in its second block and without how to get it. The city's procedure was not in this packet: the plan could not tell Tartu linn from Tartu vald, the records lane had no evidence, and the answer asked which one."
+      }
+    },
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p46_N01-tooamps",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/725d7af3-1b8b-4608-8d85-659541fc9a7b",
+      "actual": {
+        "question": "Olen töötuna arvel. Kui mitu päeva kuus ja kui palju raha võin ajutise töö ehk tööampsuga teenida, nii et arvelolek ei lõpe?",
+        "expected": [
+          "answer: the gross pay limit of 378.40 euros a month (with the date of the page) stands in a block, not only in a hedged limitation; the retroactive end stays (list item 16)",
+          "the monthly day unit is reported, not graded (left to the owner and a specialist, ADR-153)"
+        ],
+        "fix": "ADR-155 commit",
+        "turnId": "725d7af3-1b8b-4608-8d85-659541fc9a7b",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Tööturumeetmete seadus § 11 lg 1–3",
+          "S2 Ajutine töötamine arveloleku ajal",
+          "S3 Ajutine töötamine arveloleku ajal",
+          "S4 Töölepingu seadus § 29 lg 1–9"
+        ],
+        "packetSize": 4,
+        "latencyMs": 22867,
+        "costUsd": 0.004225,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "378.40 euros (the page of 11.10.2026) stands in a block with no hedging limitation; the retroactive end and repayment are there. The monthly limit is now \"kuni 8 päeva kalendrikuus\" as the law says (not graded, ADR-153)."
+      }
+    },
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p46_G04-day-support-dementia-retirement",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/7e200d82-4c62-46f6-ac59-a20885f742ab",
+      "actual": {
+        "question": "Minu 70-aastasel isal on dementsus. Kas ta saab riigi rahastatud igapäevaelu toetamise teenust?",
+        "expected": [
+          "answer: no grammatical error of the kind \"Kui su isa 70-aastasel isal\"",
+          "content: the state-funded everyday life support service is not provided to a person of retirement age with dementia (SHS § 88 with § 72 lg 2); points to the municipality's services",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "ADR-155 language",
+        "turnId": "7e200d82-4c62-46f6-ac59-a20885f742ab",
+        "answerKind": "partial",
+        "cited": [
+          "S2 Ida-Virumaa Puuetega Inimeste Koda: Igapäevaelu toetamine",
+          "S4 Riigi sotsiaalteenused",
+          "S5 Riikliku pensionikindlustuse seadus § 7 lg 1–3",
+          "S6 Sotsiaalhoolekande seadus § 72 lg 1–6",
+          "S7 Sotsiaalhoolekande seadus § 88"
+        ],
+        "packetSize": 9,
+        "latencyMs": 21406,
+        "costUsd": 0.004524,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "No grammatical error. The answer: without another severe mental disorder the state does not fund the service for him; the retirement-age condition is met at 70 (SHS § 72 lg 2, RPKS § 7); § 88 conditions; SKA assesses. It asks whether there is another disorder; it also repeats that as a limitation (minor)."
+      }
+    },
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p46_G42-subsistence-home-loan",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/24d61490-7e37-49fd-a3aa-574dfa2f7f2b",
+      "actual": {
+        "question": "Taotlen toimetulekutoetust ja maksan iga kuu oma korteri ostuks võetud laenu. Kas laenumakse läheb eluasemekuluna arvesse?",
+        "expected": [
+          "answer: no grammatical error of the kind \"peab sa\"",
+          "content: the repayment of a loan taken to acquire the dwelling, with interest, counts as a housing cost (SHS § 133 lg 5)",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "ADR-155 language",
+        "turnId": "24d61490-7e37-49fd-a3aa-574dfa2f7f2b",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 133 lg 9–10",
+          "S4 Sotsiaalhoolekande seadus § 131 lg 1–8"
+        ],
+        "packetSize": 6,
+        "latencyMs": 21156,
+        "costUsd": 0.004771,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "No grammatical error. \"Jah\" with the conditions of SHS § 133 lg 9 (own loan, the dwelling is the registered residence, payment holiday used or refused, no insurance covering it) and what to submit. § 133 lg 5 was in the packet but not cited; the conditions given are those of the law in force."
+      }
+    },
+    {
+      "case_id": "RAG-05",
+      "variant_id": "chat2110p46_G13-who-pays-for-mother-in-care-home",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/1ff64d56-77ff-4724-bd4b-9684ea0f611c",
+      "actual": {
+        "question": "Ema läheb hooldekodusse ja tema pensionist ei jätku. Kas mina ja mu vend peame puuduva osa maksma?",
+        "expected": [
+          "trace: whether Perekonnaseadus § 96 is among the candidates the selection model read, at which place, and if not, at which place in each channel the maintenance passages stood",
+          "answer: adult children owe maintenance to a parent in need (PKS § 96); the municipality's role and the limits of the duty; no sum promised",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "diagnosis with the trace",
+        "turnId": "1ff64d56-77ff-4724-bd4b-9684ea0f611c",
+        "answerKind": "grounded",
+        "cited": [
+          "S1 Hooldekodude rahastamise põhimõtted muutuvad",
+          "S2 Üldjuhend KOV sotsiaalteenuse korraldamiseks ametnikule",
+          "S5 Hooldekodude rahastamise põhimõtted muutuvad",
+          "S6 Sotsiaalhoolekande seadus § 16 lg 1–3",
+          "S7 Perekonnaseadus § 105 lg 1–3",
+          "S8 Perekonnaseadus § 96 lg 1–2"
+        ],
+        "packetSize": 8,
+        "latencyMs": 21777,
+        "costUsd": 0.003215,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "Perekonnaseadus § 96 lg 1-2 is in the packet (S8) and cited: \"Sina ja su vend olete ema täisealiste lastena ülalpidamiskohustuslased\", each one's share by income and means (§ 105); the municipality must weigh ability to pay and organise the service meanwhile; no sum promised. On 20.10 § 96 was not in the packet."
+      }
+    },
+    {
+      "case_id": "RAG-08",
+      "variant_id": "chat2110p46_U01-vips",
+      "status": "FAIL",
+      "gap_kind": "DEFECT",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro POST /api/chat (x-rag-pilot: 1, full turn) from the owner ADMIN session, view role CLIENT; trace read at /admin/rag/chat-trace/503e0a49-c9e5-4286-b65f-0618ed3b4bdf",
+      "actual": {
+        "question": "Mis on VIPS-spetsialisti baasõpe ja millal selle piloteerimine algab?",
+        "expected": [
+          "trace: which VIPS / stepped-care documents of corpus v89 were candidates, which the selection model kept, and whether the pilot timing passage was among the candidates",
+          "answer: the basic training (24 ECTS, five modules) and the pilot timing (end of 2026 to end of 2027) when the evidence gives them",
+          "no limitation or sentence that only says the matter cannot be confirmed or decided when the evidence gives it (owner 21.10: \"ei saa kindlalt määrata\" is no answer)"
+        ],
+        "fix": "diagnosis with the trace",
+        "turnId": "503e0a49-c9e5-4286-b65f-0618ed3b4bdf",
+        "answerKind": "partial",
+        "cited": [
+          "S1 Sekkumised",
+          "S2 Väheintensiivse psühholoogilise sekkumise „Problem Management Plus“ teostatavusuuring"
+        ],
+        "packetSize": 2,
+        "latencyMs": 19554,
+        "costUsd": 0.002067,
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "The pilot timing is not given. The trace shows why: the candidates held the 2024 overview of low-intensity psychological interventions (places 2-5, 8-10, incl. \"3.2 Spetsialistide ...\") and the stepped-care action plan 2024-2027 (place 6), but the selection model kept only 2 of 36 (the TAI page and the PM+ feasibility study). ADR-156: search-assist-15 keeps passages that may state an asked detail."
+      }
+    }
+  ],
+  "totals": {
+    "turns": 8,
+    "pass": 5,
+    "fail": 3,
+    "costUsd": 0.032609
+  },
+  "observations": [
+    "The admin trace (ADR-154) showed for every turn the AI's search variants, the selection model's pool with each candidate's channel places and fused score, its picks, each evidence passage's reason and the additional lanes; it gave the causes of E9 and U01 directly.",
+    "G13 (PKS § 96) and the hedged figure of N01 are fixed; G04 and G42 have no language errors.",
+    "E9: retrieval fixed, the answer did not read the list: ADR-156. U01: the selection model left the detail passages out: ADR-156 (search-assist-15). E7: the city's procedure needs the municipality (Tartu linn or vald); the answer asked."
+  ],
+  "limits": [
+    "Pre-rating by Claude only; one answer per question.",
+    "G33: § 95 was ranked this time, so the second reading was shown only locally."
+  ],
+  "newPaidCalls": true,
+  "finishedAt": "2026-10-21T12:50:21.542Z"
+}

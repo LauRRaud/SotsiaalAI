@@ -2,7 +2,7 @@
 
 14.10.2026. **Vahetulemus: katsed peatatud omaniku limiidipalvel; kogu 52 juhtumiga kavand pole täidetud.** Omaniku juhisel kasutatakse põhiliseks kinnituseks serveris töötavat arendusplatvormi ja selle tegelikku andmebaasi. Platvorm ei ole produktsioonis. Kohalik eraldatud keskkond jääb tõrke- ja hävitavate katsete abivahendiks.
 
-**Jooksev koond:** 401 salvestatud kontrollvarianti: 379 PASS, 20 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
+**Jooksev koond:** 409 salvestatud kontrollvarianti: 384 PASS, 23 FAIL, 2 katserakise takistuse vaatlust. Terve 52 juhtumi kavand pole lõpetatud.
 
 **Parandusnimekiri:** kõik leiud, mida tuleb parandada või otsustada, on koondatud [ühte faili](sotsiaal-pro-parandusnimekiri-sol-proof-20261014-01.md).
 
