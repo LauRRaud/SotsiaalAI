@@ -1,6 +1,6 @@
 import { assertWritable } from "@/lib/org/accessContext";
 import { assertOrgInboxEnabled } from "@/lib/org/flags";
-import { getInboxItem, transitionInboxItem } from "@/lib/org/inbox";
+import { getInboxItem, setInboxItemDueDate, transitionInboxItem } from "@/lib/org/inbox";
 import { orgErrorResponse, orgJson, readJsonBody, readParam, requireOrgContext } from "../../../_shared";
 
 export const runtime = "nodejs";
@@ -43,6 +43,11 @@ export async function PATCH(request, context) {
     assertWritable(auth.context);
     const itemId = await readParam(context, "itemId");
     const body = await readJsonBody(request);
+    /* Töö tähtaeg (koordinaator): `dueOn` = "YYYY-MM-DD" või null eemaldamiseks. */
+    if (body && Object.prototype.hasOwnProperty.call(body, "dueOn") && !body.toStatus) {
+      const due = await setInboxItemDueDate(auth.context, itemId, { dueOn: body.dueOn });
+      return orgJson({ ok: true, due });
+    }
     const item = await transitionInboxItem(auth.context, itemId, {
       toStatus: String(body?.toStatus || "").trim(),
       reason: body?.reason

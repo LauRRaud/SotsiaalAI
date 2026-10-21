@@ -47,10 +47,11 @@ export default function ParticipantsPanel({ process, onReload, onConflict, glow 
   const canInvite = Boolean(process.capabilities?.canInvite);
 
   const invite = useCallback(async () => {
-    const userId = inviteUserId.trim();
-    if (!userId) return;
+    const email = inviteUserId.trim();
+    if (!email) return;
     setInviteTaken(false);
-    const ok = await runInvite("invite", `/api/supervision/processes/${encodeURIComponent(process.id)}/invites`, { body: { userId } });
+    /* Kutse e-posti järgi (Soli katse 20.10: sisemist ID-d superviisor ei näe). */
+    const ok = await runInvite("invite", `/api/supervision/processes/${encodeURIComponent(process.id)}/invites`, { body: { email } });
     if (!ok) return;
     setInviteUserId("");
     /* Kutse on saadetud: vorm annab koha loendile tagasi. Keeldumise korral

@@ -25,6 +25,7 @@ import ChoiceRow from "@/components/stage/ChoiceRow";
 import StepPanel from "@/components/stage/StepPanel";
 import TextAreaField from "@/components/stage/TextAreaField";
 import Button from "@/components/ui/Button";
+import DateField from "@/components/ui/DateField";
 
 import { ArmedButton, Facts, PickOne, SMALL, footNote, ignoreKeyRepeat } from "../OrgBits";
 import shared from "../org.module.css";
@@ -190,6 +191,23 @@ export function ItemView({ t, tabs, tab, onTab, facts, parts, closingNote = "", 
               ) : (
                 <p className={shared.quiet}>{t("org.inbox.no_workers")}</p>
               )
+            ) : null}
+            {actions.setDue ? (
+              <div className={shared.group} data-due-form="1">
+                <p className={shared.groupTitle}>{t("org.inbox.due_question")}</p>
+                <p className={shared.quiet}>{t("org.inbox.due_hint")}</p>
+                <DateField name="dueOn" value={work.dueOn} onChange={work.onDueOn} ariaLabel={t("org.inbox.due_question")} />
+                <div>
+                  <Button {...SMALL} data-due="1" aria-busy={work.pending === "due" ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={work.onSaveDue}>
+                    {t("org.inbox.due_save")}
+                  </Button>
+                  {work.dueSaved ? (
+                    <Button {...SMALL} data-due-clear="1" aria-busy={work.pending === "dueClear" ? "true" : undefined} onKeyDown={ignoreKeyRepeat} onClick={work.onClearDue}>
+                      {t("org.inbox.due_clear")}
+                    </Button>
+                  ) : null}
+                </div>
+              </div>
             ) : null}
           </>
         ) : (

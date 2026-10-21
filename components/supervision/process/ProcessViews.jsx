@@ -233,7 +233,8 @@ export function ParticipantsView({ t, glow, mode, rows, canInvite, lead, note, u
             <Input
               id={`${id}-user`}
               className={styles.input}
-              type="text"
+              type="email"
+              inputMode="email"
               value={userId}
               autoComplete="off"
               describedBy={describedBy(`${id}-user`, { hint })}

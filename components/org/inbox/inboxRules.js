@@ -47,12 +47,12 @@ export function inboxRow(item, { t }) {
   return {
     id: String(item?.id || ""),
     title: stampOf(item?.receivedAt),
-    sub: [text(item?.unit?.name), assignee].filter(Boolean).join(" · "),
+    sub: [text(item?.unit?.name), assignee, !finished && item?.dueOn ? `${t("org.inbox.dueOn")} ${dueLabel(item, { t })}` : ""].filter(Boolean).join(" · "),
     urgency: text(item?.urgencyDeclaredBySender),
     chip: shownItemStatus(item) ? t(`org.inboxStatus.${shownItemStatus(item)}`) : "",
     /* Loetamatu aeg jääb tühjaks, mitte ei viska viga. */
     receivedAt: stampOf(item?.receivedAt) ? new Date(item.receivedAt).toISOString() : "",
-    attention: !finished && !assignment
+    attention: !finished && (!assignment || Boolean(item?.overdue))
   };
 }
 
@@ -104,6 +104,14 @@ export function assigneeLabel(item, members, { t }) {
  * Lõpetatud kirjel vastutajat ei ole (elav määramine lõppes koos tööga): „Määramata" oleks
  * seal vale. Selle asemel seisab, millal töö lõppes.
  */
+/** Tähtaeg kujul PP.KK.AAAA; möödunud tähtaja järel „üle tähtaja". */
+export function dueLabel(item, { t }) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(item?.dueOn || ""));
+  if (!match) return "";
+  const day = `${match[3]}.${match[2]}.${match[1]}`;
+  return item?.overdue ? `${day} · ${t("org.inbox.overdue")}` : day;
+}
+
 export function itemFacts(item, members, { t }) {
   const finished = isFinishedItem(item);
   return [
@@ -111,6 +119,8 @@ export function itemFacts(item, members, { t }) {
     { key: "assignee", label: t("org.inbox.assignee"), value: finished ? "" : assigneeLabel(item, members, { t }) },
     { key: "received", label: t("org.inbox.receivedAt"), value: stampOf(item?.receivedAt) },
     { key: "closed", label: t("org.inbox.closedAt"), value: finished ? stampOf(item?.closedAt) : "" },
+    /* Asutuse töö tähtaeg (Eesti kalendripäev); möödunud tähtaeg on kirjas. */
+    { key: "due", label: t("org.inbox.dueOn"), value: !finished && item?.dueOn ? dueLabel(item, { t }) : "" },
     { key: "urgency", label: t("org.inbox.urgency"), value: text(item?.urgencyDeclaredBySender) }
   ].filter((row) => row.value);
 }
@@ -231,13 +241,15 @@ export function workActions(item, { context, canAssign = false } = {}) {
     handOver: open && Boolean(assignment) && (Boolean(canAssign) || mine),
     takeBack: open && coordinator && Boolean(assignment) && canTransitionInboxStatus(status, OrganizationInboxStatus.ASSIGNMENT_PENDING),
     close: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.CLOSED),
-    rejectItem: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.REJECTED)
+    rejectItem: open && coordinator && canTransitionInboxStatus(status, OrganizationInboxStatus.REJECTED),
+    /* Töö tähtaja paneb koordinaator lahtisele kirjele (server: setInboxItemDueDate). */
+    setDue: open && coordinator
   };
 }
 
 /** Kas kirjega saab üldse midagi teha (kas töö vaade on olemas). */
 export function hasWork(actions) {
-  return Boolean(actions?.assign || actions?.respond || actions?.handOver || actions?.takeBack || actions?.close || actions?.rejectItem);
+  return Boolean(actions?.assign || actions?.respond || actions?.handOver || actions?.takeBack || actions?.close || actions?.rejectItem || actions?.setDue);
 }
 
 /** Avatud pöördumise vaated lahtritena. */

@@ -62,6 +62,8 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   /* Mis lõpetamise vorm on ees ("" | "close" | "rejectItem") ja mis sinna on kirjutatud. */
   const [wantedEnding, setWantedEnding] = useState("");
   const [endingText, setEndingText] = useState("");
+  /* Töö tähtaeg (koordinaator): kuupäevavälja väärtus; algab serveri öeldud tähtajast. */
+  const [dueOn, setDueOn] = useState(item.dueOn || "");
   const confirm = useSecondPress();
   const clearConfirm = confirm.clear;
   const sending = useRef(false);
@@ -94,6 +96,15 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
     });
     if (payload) refresh();
   }, [assigneeId, call, item.id, organizationId, refresh]);
+
+  const saveDue = useCallback(async (value) => {
+    const payload = await call(`/api/org/${organizationId}/inbox/${item.id}`, {
+      method: "PATCH",
+      body: { dueOn: value || null },
+      fallbackKey: "org.errors.inbox_due_failed"
+    });
+    if (payload) refresh();
+  }, [call, item.id, organizationId, refresh]);
 
   const respond = useCallback(
     async (action) => {
@@ -313,7 +324,26 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
             takeBackArmed: confirm.armed === "takeBack",
             onTakeBack: () => confirm.press("takeBack", () => once("takeBack", takeBack)),
             onClose: () => openEnding("close"),
-            onRejectItem: () => openEnding("rejectItem")
+            onRejectItem: () => openEnding("rejectItem"),
+            dueOn,
+            dueSaved: Boolean(item.dueOn),
+            onDueOn: (value) => {
+              setDueOn(value);
+              setHint("");
+            },
+            onSaveDue: () => {
+              if (!dueOn) {
+                setHint(t("org.inbox.due_pick_first"));
+                return;
+              }
+              clearConfirm();
+              void once("due", () => saveDue(dueOn));
+            },
+            onClearDue: () => {
+              clearConfirm();
+              setDueOn("");
+              void once("dueClear", () => saveDue(""));
+            }
           }}
           room={
             item.room?.canOpen

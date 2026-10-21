@@ -423,12 +423,18 @@ export default function CovisionWorkspace() {
               <ul className="cvw-card-list">
                 {activeCases.map((item) => (
                   <li key={item.id}>
-                    <article className="cvw-case-card">
+                    <article className="cvw-case-card" data-invitation={item.isInvitation ? "1" : undefined}>
                       <div className="cvw-case-symbol" aria-hidden="true">{String(item.title || "K").slice(0, 1).toUpperCase()}</div>
                       <div className="cvw-case-main">
-                        <p className="cvw-case-state">{message(t, `covision.status.${item.status}`, item.status || "")}</p>
-                        <h3>{item.title}</h3>
-                        <p>{item.centralQuestion || item.summary || message(t, "covision.workspace.active.no_focus", "Tööfookus täpsustub sessioonis.")}</p>
+                        {/* Kutse sisu (pealkiri, küsimus) on enne rolli ja kokkuleppe kinnitamist peidetud; kaart ütleb
+                            selgelt, et see on kutse ja mida teha (Soli katse 20.10: tühja pealkirjaga kaart jäi märkamatuks). */}
+                        <p className="cvw-case-state">{item.isInvitation
+                          ? message(t, "covision.workspace.active.invitation_kicker", "Kutse ootab vastust")
+                          : message(t, `covision.status.${item.status}`, item.status || "")}</p>
+                        <h3>{item.isInvitation ? message(t, "covision.workspace.active.invitation_title", "Kutse Kovisiooni") : item.title}</h3>
+                        <p>{item.isInvitation
+                          ? message(t, "covision.workspace.active.invitation_text", "Juhtumi pealkiri ja sisu avanevad pärast seda, kui oled kinnitanud oma rolli ja konfidentsiaalsuskokkuleppe.")
+                          : item.centralQuestion || item.summary || message(t, "covision.workspace.active.no_focus", "Tööfookus täpsustub sessioonis.")}</p>
                         <dl>
                           <div>
                             <dt>{message(t, "covision.workspace.active.updated", "Viimati avatud")}</dt>
@@ -441,7 +447,9 @@ export default function CovisionWorkspace() {
                         </dl>
                       </div>
                       <button type="button" data-variant="primary" onClick={() => openCase(item.id)}>
-                        {message(t, "covision.workspace.active.open", "Ava Kovisioon")}
+                        {item.isInvitation
+                          ? message(t, "covision.workspace.active.invitation_open", "Vaata kutset")
+                          : message(t, "covision.workspace.active.open", "Ava Kovisioon")}
                       </button>
                     </article>
                   </li>
