@@ -1,0 +1,1029 @@
+{
+  "summary": {
+    "R1": {
+      "byRole": {
+        "pöörduja": {
+          "turns": 30,
+          "region": 29,
+          "states": {
+            "person_mentioned_region": 3,
+            "person_region": 25,
+            "search_plan_region": 1,
+            "region_required": 1
+          },
+          "missing": 0
+        },
+        "spetsialist": {
+          "turns": 24,
+          "region": 15,
+          "states": {
+            "search_plan_region": 15,
+            "region_required": 8,
+            "search_plan_ambiguous_region": 1
+          },
+          "missing": 0
+        },
+        "teenuseosutaja": {
+          "turns": 21,
+          "region": 1,
+          "states": {
+            "search_plan_ambiguous_region": 4,
+            "region_required": 16,
+            "search_plan_region": 1
+          },
+          "missing": 0
+        }
+      },
+      "turns": 75,
+      "answered": 75,
+      "failures": [],
+      "full": 0,
+      "partial": 45,
+      "hedgeTurns": 10,
+      "msMedian": 25982,
+      "msP90": 33919,
+      "planInputMedian": 2086,
+      "planMsMedian": 4216,
+      "usd": 0.39874773
+    },
+    "R2": {
+      "byRole": {
+        "pöörduja": {
+          "turns": 30,
+          "region": 26,
+          "states": {
+            "person_mentioned_region": 3,
+            "person_region": 23,
+            "region_required": 3
+          },
+          "missing": 1
+        },
+        "spetsialist": {
+          "turns": 24,
+          "region": 17,
+          "states": {
+            "search_plan_region": 17,
+            "region_required": 6,
+            "search_plan_ambiguous_region": 1
+          },
+          "missing": 0
+        },
+        "teenuseosutaja": {
+          "turns": 21,
+          "region": 0,
+          "states": {
+            "search_plan_ambiguous_region": 3,
+            "region_required": 18
+          },
+          "missing": 0
+        }
+      },
+      "turns": 75,
+      "answered": 74,
+      "failures": [
+        "B03:500:{\"ok\":false,\"code\":\"pilot_failed\"}"
+      ],
+      "full": 0,
+      "partial": 42,
+      "hedgeTurns": 18,
+      "msMedian": 26603,
+      "msP90": 33248,
+      "planInputMedian": 2087,
+      "planMsMedian": 4395,
+      "usd": 0.396052985
+    },
+    "R3": {
+      "byRole": {
+        "pöörduja": {
+          "turns": 30,
+          "region": 19,
+          "states": {
+            "person_mentioned_region": 2,
+            "person_region": 17,
+            "region_required": 10,
+            "question_regions": 1
+          },
+          "missing": 0
+        },
+        "spetsialist": {
+          "turns": 24,
+          "region": 24,
+          "states": {
+            "search_plan_region": 17,
+            "work_region": 7
+          },
+          "missing": 0
+        },
+        "teenuseosutaja": {
+          "turns": 21,
+          "region": 8,
+          "states": {
+            "work_region": 4,
+            "work_region_choice": 3,
+            "search_plan_region": 1,
+            "region_required": 12
+          },
+          "missing": 1
+        }
+      },
+      "turns": 75,
+      "answered": 74,
+      "failures": [
+        "C20:500:{\"ok\":false,\"code\":\"pilot_failed\"}"
+      ],
+      "full": 0,
+      "partial": 46,
+      "hedgeTurns": 16,
+      "msMedian": 27701,
+      "msP90": 41166,
+      "planInputMedian": 2140,
+      "planMsMedian": 5393,
+      "usd": 0.416144555
+    }
+  },
+  "h1": [
+    {
+      "id": "A11",
+      "region": "tartu_linn",
+      "state": "search_plan_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A12",
+      "region": "tartu_linn",
+      "state": "search_plan_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A13",
+      "region": "tartu_linn",
+      "state": "search_plan_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A14",
+      "region": "tartu_linn",
+      "state": "search_plan_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A15",
+      "region": "tartu_linn",
+      "state": "search_plan_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A16",
+      "region": "tartu_linn",
+      "state": "work_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A17",
+      "region": "tartu_linn",
+      "state": "search_plan_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "A18",
+      "region": "tartu_linn",
+      "state": "work_region",
+      "expected": "tartu_linn",
+      "ok": true
+    },
+    {
+      "id": "B11",
+      "region": "narva_linn",
+      "state": "search_plan_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B12",
+      "region": "narva_linn",
+      "state": "search_plan_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B13",
+      "region": "narva_linn",
+      "state": "work_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B14",
+      "region": "narva_linn",
+      "state": "search_plan_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B15",
+      "region": "narva_linn",
+      "state": "work_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B16",
+      "region": "narva_linn",
+      "state": "search_plan_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B17",
+      "region": "narva_linn",
+      "state": "work_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "B18",
+      "region": "narva_linn",
+      "state": "search_plan_region",
+      "expected": "narva_linn",
+      "ok": true
+    },
+    {
+      "id": "C11",
+      "region": "viljandi_linn",
+      "state": "search_plan_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C12",
+      "region": "viljandi_linn",
+      "state": "search_plan_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C13",
+      "region": "viljandi_linn",
+      "state": "search_plan_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C14",
+      "region": "viljandi_linn",
+      "state": "work_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C15",
+      "region": "viljandi_linn",
+      "state": "search_plan_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C16",
+      "region": "viljandi_linn",
+      "state": "search_plan_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C17",
+      "region": "viljandi_linn",
+      "state": "search_plan_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    },
+    {
+      "id": "C18",
+      "region": "viljandi_linn",
+      "state": "work_region",
+      "expected": "viljandi_linn",
+      "ok": true
+    }
+  ],
+  "c10": {
+    "id": "C10",
+    "role": "pöörduja",
+    "R1": "— region_required",
+    "R2": "— region_required",
+    "R3": "— question_regions"
+  },
+  "turns": [
+    {
+      "id": "A01",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_mentioned_region",
+      "R2": "tartu_linn person_mentioned_region",
+      "R3": "tartu_linn person_mentioned_region"
+    },
+    {
+      "id": "A02",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A03",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A04",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tallinn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A05",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A06",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A07",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A08",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A09",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A10",
+      "role": "pöörduja",
+      "R1": "tartu_linn person_region",
+      "R2": "tartu_linn person_region",
+      "R3": "tartu_linn person_region"
+    },
+    {
+      "id": "A11",
+      "role": "spetsialist",
+      "R1": "tartu_linn search_plan_region",
+      "R2": "tartu_linn search_plan_region",
+      "R3": "tartu_linn search_plan_region"
+    },
+    {
+      "id": "A12",
+      "role": "spetsialist",
+      "R1": "tartu_linn search_plan_region",
+      "R2": "tartu_linn search_plan_region",
+      "R3": "tartu_linn search_plan_region"
+    },
+    {
+      "id": "A13",
+      "role": "spetsialist",
+      "R1": "tartu_linn search_plan_region",
+      "R2": "— region_required",
+      "R3": "tartu_linn search_plan_region"
+    },
+    {
+      "id": "A14",
+      "role": "spetsialist",
+      "R1": "tartu_linn search_plan_region",
+      "R2": "tartu_linn search_plan_region",
+      "R3": "tartu_linn search_plan_region"
+    },
+    {
+      "id": "A15",
+      "role": "spetsialist",
+      "R1": "tartu_linn search_plan_region",
+      "R2": "tartu_linn search_plan_region",
+      "R3": "tartu_linn search_plan_region"
+    },
+    {
+      "id": "A16",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "tartu_linn work_region"
+    },
+    {
+      "id": "A17",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "tartu_linn search_plan_region",
+      "R3": "tartu_linn search_plan_region"
+    },
+    {
+      "id": "A18",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "tartu_linn search_plan_region",
+      "R3": "tartu_linn work_region"
+    },
+    {
+      "id": "A19",
+      "role": "teenuseosutaja",
+      "R1": "— search_plan_ambiguous_region",
+      "R2": "— search_plan_ambiguous_region",
+      "R3": "tartu_linn work_region"
+    },
+    {
+      "id": "A20",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— search_plan_ambiguous_region",
+      "R3": "tartu_linn work_region_choice"
+    },
+    {
+      "id": "A21",
+      "role": "teenuseosutaja",
+      "R1": "— search_plan_ambiguous_region",
+      "R2": "— search_plan_ambiguous_region",
+      "R3": "tartu_linn work_region"
+    },
+    {
+      "id": "A22",
+      "role": "teenuseosutaja",
+      "R1": "— search_plan_ambiguous_region",
+      "R2": "— region_required",
+      "R3": "tartu_linn work_region"
+    },
+    {
+      "id": "A23",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "tartu_linn work_region"
+    },
+    {
+      "id": "A24",
+      "role": "teenuseosutaja",
+      "R1": "— search_plan_ambiguous_region",
+      "R2": "— region_required",
+      "R3": "tartu_linn work_region_choice"
+    },
+    {
+      "id": "A25",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "tartu_linn work_region_choice"
+    },
+    {
+      "id": "B01",
+      "role": "pöörduja",
+      "R1": "narva_linn person_mentioned_region",
+      "R2": "narva_linn person_mentioned_region",
+      "R3": "narva_linn person_mentioned_region"
+    },
+    {
+      "id": "B02",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "narva_linn person_region",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B03",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "puudub",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B04",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "narva_linn person_region",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B05",
+      "role": "pöörduja",
+      "R1": "narva_linn search_plan_region",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "B06",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "— region_required",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B07",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "narva_linn person_region",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B08",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "narva_linn person_region",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B09",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "narva_linn person_region",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B10",
+      "role": "pöörduja",
+      "R1": "narva_linn person_region",
+      "R2": "narva_linn person_region",
+      "R3": "narva_linn person_region"
+    },
+    {
+      "id": "B11",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "narva_linn search_plan_region",
+      "R3": "narva_linn search_plan_region"
+    },
+    {
+      "id": "B12",
+      "role": "spetsialist",
+      "R1": "narva_linn search_plan_region",
+      "R2": "narva_linn search_plan_region",
+      "R3": "narva_linn search_plan_region"
+    },
+    {
+      "id": "B13",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "narva_linn work_region"
+    },
+    {
+      "id": "B14",
+      "role": "spetsialist",
+      "R1": "narva_linn search_plan_region",
+      "R2": "narva_linn search_plan_region",
+      "R3": "narva_linn search_plan_region"
+    },
+    {
+      "id": "B15",
+      "role": "spetsialist",
+      "R1": "narva_linn search_plan_region",
+      "R2": "— region_required",
+      "R3": "narva_linn work_region"
+    },
+    {
+      "id": "B16",
+      "role": "spetsialist",
+      "R1": "narva_linn search_plan_region",
+      "R2": "narva_linn search_plan_region",
+      "R3": "narva_linn search_plan_region"
+    },
+    {
+      "id": "B17",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "narva_linn work_region"
+    },
+    {
+      "id": "B18",
+      "role": "spetsialist",
+      "R1": "narva_linn search_plan_region",
+      "R2": "narva_linn search_plan_region",
+      "R3": "narva_linn search_plan_region"
+    },
+    {
+      "id": "B19",
+      "role": "teenuseosutaja",
+      "R1": "narva_linn search_plan_region",
+      "R2": "— region_required",
+      "R3": "narva_linn search_plan_region"
+    },
+    {
+      "id": "B20",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "B21",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "B22",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "B23",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "B24",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "B25",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C01",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_mentioned_region",
+      "R2": "viljandi_linn person_mentioned_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C02",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C03",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C04",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C05",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C06",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C07",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C08",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C09",
+      "role": "pöörduja",
+      "R1": "viljandi_linn person_region",
+      "R2": "viljandi_linn person_region",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C10",
+      "role": "pöörduja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— question_regions"
+    },
+    {
+      "id": "C11",
+      "role": "spetsialist",
+      "R1": "viljandi_linn search_plan_region",
+      "R2": "viljandi_linn search_plan_region",
+      "R3": "viljandi_linn search_plan_region"
+    },
+    {
+      "id": "C12",
+      "role": "spetsialist",
+      "R1": "viljandi_linn search_plan_region",
+      "R2": "viljandi_linn search_plan_region",
+      "R3": "viljandi_linn search_plan_region"
+    },
+    {
+      "id": "C13",
+      "role": "spetsialist",
+      "R1": "— search_plan_ambiguous_region",
+      "R2": "— search_plan_ambiguous_region",
+      "R3": "viljandi_linn search_plan_region"
+    },
+    {
+      "id": "C14",
+      "role": "spetsialist",
+      "R1": "viljandi_linn search_plan_region",
+      "R2": "viljandi_linn search_plan_region",
+      "R3": "viljandi_linn work_region"
+    },
+    {
+      "id": "C15",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "viljandi_linn search_plan_region",
+      "R3": "viljandi_linn search_plan_region"
+    },
+    {
+      "id": "C16",
+      "role": "spetsialist",
+      "R1": "viljandi_linn search_plan_region",
+      "R2": "viljandi_linn search_plan_region",
+      "R3": "viljandi_linn search_plan_region"
+    },
+    {
+      "id": "C17",
+      "role": "spetsialist",
+      "R1": "viljandi_linn search_plan_region",
+      "R2": "viljandi_linn search_plan_region",
+      "R3": "viljandi_linn search_plan_region"
+    },
+    {
+      "id": "C18",
+      "role": "spetsialist",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "viljandi_linn work_region"
+    },
+    {
+      "id": "C19",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C20",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "puudub"
+    },
+    {
+      "id": "C21",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C22",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C23",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C24",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    },
+    {
+      "id": "C25",
+      "role": "teenuseosutaja",
+      "R1": "— region_required",
+      "R2": "— region_required",
+      "R3": "— region_required"
+    }
+  ],
+  "h5": [
+    {
+      "id": "A16",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "tartu_linn",
+      "question": "Milliseid andmeid ma võin tütrega jagada ilma kliendi nõusolekuta?",
+      "answer": [
+        "Ära jaga tütrega kliendi andmeid lihtsalt selle põhjal, et ta on tema tütar. Sotsiaalkaitse vajadus ja hüvitise saamine on era- ja perekonnaelu saladus (Sotsiaalseadustiku üldosa seaduse § 8). Ilma kliendi nõusolekuta saab teavet avaldada seaduses ette nähtud juhul; andmete töötlemiseks peab olema konkreetne õiguslik alus ning jagada tohib ainult abi korraldamiseks vajalikku teavet. Hinda iga kord, kas tütrega suhtlemine ja just nende andmete avaldamine on selleks vajalik.",
+        "Kui kliendi elu või tervis võib olla ohus, võta seda abi korraldamisel arvesse, kuid ära käsita ohtu iseenesest üldise loana tütrele andmeid avaldada. Kutse-eetika järgi tuleb inimest teavitada, kui privaatsusõigust piirab seadus, näiteks ohu korral talle endale või teistele. Tee enne jagamist kindlaks, milline õiguslik alus katab konkreetselt selle teabe edastamise.",
+        "[piirang] Siin oleva teabe põhjal ei saa ma nimetada konkreetset seadusesätet, mis lubaks sul selles juhtumis täiskasvanud tütrele kliendi andmeid nõusolekuta edastada. Eetika- ja juhendmaterjal ei ütle, millised konkreetsed andmed või milline edastamisalus sinu juhtumis kehtib."
+      ]
+    },
+    {
+      "id": "A18",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "tartu_linn",
+      "question": "Kas ma saan suunata ta ka riigi rahastatud teenustele, näiteks igapäevaelu toetamise teenusele?",
+      "answer": [
+        "Jah, saad igapäevaelu toetamise teenust kaaluda ja talle seda võimalust tutvustada, kuid suunamisotsuse teeb Sotsiaalkindlustusamet. Õigus teenusele on täisealisel inimesel, kellel on raske, sügav või püsiva kuluga psüühikahäire ning kellele ei osutata samal ajal loetletud teisi erihoolekandeteenuseid; erandina ei rahastata teenust vanaduspensionieas dementsuse diagnoosiga inimesele, kui tal pole lisaks muud raske, sügava või püsiva kuluga psüühikahäiret (Sotsiaalhoolekande seaduse § 88 ja § 72 lg 2 p 1).",
+        "Ema vanus ja halvenev mälu üksi ei näita, et need tingimused oleksid täidetud. Riiklikult rahastatava erihoolekandeteenuse vajaduse hindab Sotsiaalkindlustusamet; taotluse saab esitada ameti juhtumikorraldajale või eesti.ee kaudu. Sina saad järgmise sammuna selgitada, kas emal on diagnoositud dementsus ja kas tal on lisaks mõni raske, sügav või püsiva kuluga psüühikahäire, ning aidata sobivuse korral taotluse suunamist korraldada.",
+        "[küsimus] Kas emal on diagnoositud dementsus või mõni muu raske, sügav või püsiva kuluga psüühikahäire?"
+      ]
+    },
+    {
+      "id": "A19",
+      "role": "teenuseosutaja",
+      "state": "work_region",
+      "region": "tartu_linn",
+      "question": "Oleme Tartus koduteenust osutav ettevõte. Linn suunas meile 81-aastase dementsusega kliendi, kes on võõraste suhtes umbusklik. Kuidas peaksime teenuse alustamise ja usalduse loomise planeerima?",
+      "answer": [
+        "Alustage kliendiga tema kodus ja tema tavapärases keskkonnas. Linn hindab abivajadust inimese kodus ning kaasab hindamisse võimaluse korral lähedased, et selgitada välja igapäevased harjumused ja vajalik abi. Tartu linna ülesanne on koostada teenuse saaja ja teiega koostöös teenuse osutamise haldusakt või leping, kus on kokku lepitud vajalikud toimingud. (Sotsiaalhoolekande seaduse § 15 lg 1–2 ja § 18 lg 2)",
+        "Usalduse loomiseks uurige, mis on kliendi jaoks tuttav ja tähtis, ning lähtuge tema harjumustest ja oskustest. Selgitage iga toimingut enne selle tegemist arusaadavalt. Dementsusega inimesega suheldes ärge vaielge; püüdke mõista, mida ta kogeb, ja valige rahustav ning austav viis vastata.",
+        "Kooskõlastage linnaga teenuse toimingud ja kokkulepped ning rääkige läbi, kuidas annate teada kliendi seisundi või abivajaduse muutusest. Kui kliendi käitumine või kodune olukord tekitab vahetule teenuseosutajale turvariski, arutage linnaga vajalikke kokkuleppeid enne teenuse osutamist. Dementsuse alast nõu ja tuge pakub Dementsuse Kompetentsikeskus.",
+        "[piirang] Ma ei saa nende väljavõtete põhjal öelda, milline on konkreetse kliendi jaoks sobiv kohtumiste sagedus või teenuse järkjärgulise alustamise kava."
+      ]
+    },
+    {
+      "id": "A20",
+      "role": "teenuseosutaja",
+      "state": "work_region_choice",
+      "region": "tartu_linn",
+      "question": "Milliseid nõudeid peavad täitma meie koduhooldajad?",
+      "answer": [
+        "Kui peate silmas koduteenust, siis 2022. aastal avaldatud ülevaate järgi ei olnud koduteenuse töötajale riiklikult määratud kvalifikatsiooninõudeid. See kirjeldab 2022. aasta seisu ja võib olla vahepeal muutunud. Samas ülevaates oli 70% teenuseosutajatest erialase väljaõppega töötajad. (Sotsiaalhoolekande seaduse § 22 käsitleb eraldi hooldusteenust, mitte koduteenust.)",
+        "Sotsiaalhoolekande seaduse § 22 järgi peab hooldusteenuse osutajal olema piisavalt töötajaid, kelle kvalifikatsioon ja töökoormus võimaldavad täita hooldusplaanis määratud ülesandeid. Vahetult osutavad seda teenust hooldustöötaja ja abihooldustöötaja; abihooldustöötajat juhendab hooldustöötaja. Hooldustöötajal peab olema läbitud asjakohane kutseõppe või täienduskoolituse õppekava või tal peab olema hooldustöötaja kutse. Vahetult ei tohi teenust osutada inimene, kelle tahtliku kuriteo eest saadud karistus võib ohustada teenuse saaja elu, tervist või vara. Need nõuded on hooldusteenuse kohta, mitte tõend koduteenuse töötajate nõuete kohta. (Sotsiaalhoolekande seaduse § 22 lg 1, 3–5)",
+        "Töötajate oskuste toetamiseks on ühes koduhooldust käsitlevas 2022. aasta artiklis kirjeldatud abivahendite koolitusi ja õppimise võimaldamist. Artiklis peetakse koduhooldaja töös oluliseks ka avatust, paindlikkust, kohusetundlikkust ning rahulikku ja viisakat suhtlemist. Need on artiklis väljendatud tööandja vaade ja praktika, mitte õiguslikud nõuded. (2022. aastal)",
+        "[piirang] Ma ei saa siinse teabe põhjal kinnitada, kas mõni muu, siin käsitlemata õigusnorm seab koduteenuse töötajatele praegu nõudeid."
+      ]
+    },
+    {
+      "id": "A21",
+      "role": "teenuseosutaja",
+      "state": "work_region",
+      "region": "tartu_linn",
+      "question": "Kuidas peaksime teenuse osutamist dokumenteerima ja kellele aru andma?",
+      "answer": [
+        "Koduteenuse puhul määrab Tartu linn koostöös teenuse saaja ja teiega teenuse osutamise haldusaktis või -lepingus kindlaks vajalikud toimingud. Kui teenuse vajadus muutub, tuleb need kokkulepped ja hooldusplaan üle vaadata ning vajaduse korral muuta. (Sotsiaalhoolekande seaduse § 18 lg 2)",
+        "Kui teenuse osutamisel ilmneb probleem või takistus, teavita sellest tellijat. Kui tellija on Tartu linn, anna sellest teada linnale. Üldist regulaarse aruandluse tähtaega või vormi ma siinse teabe põhjal öelda ei saa. Vaata lisaks: juristaitab.ee/et/teenuse-osutaja-ja-tellija-oigused-ja-kohustused",
+        "[piirang] Ma ei saa siinse teabe põhjal öelda, kas teil tuleb esitada linnale regulaarseid aruandeid või millises vormis neid esitada.",
+        "[küsimus] Kas teie lepingu tellija on Tartu linn või on teil leping mõne teise tellijaga?"
+      ]
+    },
+    {
+      "id": "A22",
+      "role": "teenuseosutaja",
+      "state": "work_region",
+      "region": "tartu_linn",
+      "question": "Klient kukkus ja meie töötaja leidis ta põrandalt. Mida me peame tegema ja keda teavitama?",
+      "answer": [
+        "Kui klient võib olla vigastatud või terviseriskiga, ära käsitle kukkumist pelgalt püsti aitamise vajadusena. Kohapeal võib ilmneda vajadus kiirabi järele; kui klient ei saa liikuda või tema tõstmine pole töötajale ohutu, võib vaja minna pääste abi. Kui kliendil on sotsiaalhoolekande abi vajadus, tuleb sellest teatada selle omavalitsuse üksusele, kelle territooriumil ta viibib (sotsiaalhoolekande seaduse § 13).",
+        "[piirang] Ma ei saa siinse info põhjal öelda, kas teie tellija või leping näeb ette eraldi teavitamise korra või tähtaja.",
+        "[küsimus] Kas klient on praegu teadvusel ning kas tal on vigastus või ta ei saa liikuda?"
+      ]
+    },
+    {
+      "id": "A23",
+      "role": "teenuseosutaja",
+      "state": "work_region",
+      "region": "tartu_linn",
+      "question": "Kas me tohime kliendi eest tema pangakaardiga poes maksta?",
+      "answer": [
+        "Ära maksa poes kliendi pangakaardiga. Koduteenuse töötaja võib klienti ostude tegemisel abistada, kuid kliendile väljastatud pangakaarti ja PIN-koode tohib kasutada ainult klient ise. Juhendis on ka öeldud, et kliendi pangakaart ega vara ei tohiks olla töötajale antud esindusvolituse kasutamise vahend. (Sotsiaalkindlustusameti koduteenuse juhend, 2024)",
+        "Korralda ostude eest tasumine nii, et töötaja kasutab ostudeks eraldi tööandja kontot ja pangakaarti ning klienti ei maksa tema enda pangakaardiga. 2022. aasta projektinäites olid limiit ja arveldamise kord lepingus kokku lepitud; see on näide, mitte üldine kohustus. Juhendis soovitatakse teenuseosutajal kehtestada selged reeglid kliendi sularaha kasutamise ja aruandluse kohta ning toimingud kirjalikult fikseerida. (Sotsiaalkindlustusameti koduteenuse juhend, 2024; 2022. aasta projektinäide)",
+        "[piirang] Ma ei saa nende andmete põhjal öelda, kas teie leping või kliendi antud volitus lubab mõnd muud makseviisi. Pangakaardiga maksmise kohta on juhendis siiski selge juhis: kaarti kasutab ainult selle omanik."
+      ]
+    },
+    {
+      "id": "A24",
+      "role": "teenuseosutaja",
+      "state": "work_region_choice",
+      "region": "tartu_linn",
+      "question": "Linn tahab, et teeksime ka nädalavahetustel visiite. Kuidas see lepinguliselt käib ja kes maksab?",
+      "answer": [
+        "Tartu linnas maksab koduteenuse saaja 1 euro iga koduskäigu eest. Lisaks võib lisanduda sissetulekust sõltuv tunnitasu: 601–800 euro suuruse kuusissetuleku korral 6,50 eurot tunnis ning üle 801 euro suuruse kuusissetuleku korral 13 eurot tunnis. Need tasud on Tartu linna koduteenuse kord (Tartu Linnavolikogu määruse § 11 lg 3).",
+        "Tartu linna teenuseinfo järgi saab vajaduse korral taotleda omaosaluse vähendamist või sellest vabastamist. Teenuse vajadust hindab piirkonnakeskuse sotsiaaltöö spetsialist ning teenust korraldatakse spetsialistiga ühendust võttes või taotlust esitades. Vaata lähemalt: tartu.ee/et/koduhooldusteenus.",
+        "[piirang] Ma ei saa siinse info põhjal öelda, kuidas nädalavahetuse visiidid teie linnaga sõlmitud lepingusse lisada või kas linn tasub nende eest eraldi. Tartu koduteenuse tasu kirjeldus ei täpsusta nädalavahetuse visiidi erihinda ega seda, kuidas teenuseosutajale teenuse eest tasutakse."
+      ]
+    },
+    {
+      "id": "A25",
+      "role": "teenuseosutaja",
+      "state": "work_region_choice",
+      "region": "tartu_linn",
+      "question": "Kui klient läheb hooldekodusse, kuidas me teenuse lõpetame ja andmed üle anname?",
+      "answer": [
+        "Hooldekodusse minek ei tähenda nende juhiste põhjal automaatselt koduteenuse lõpetamist. Kui inimese abivajadus on muutunud, teeb kordushindamise Tartu linna sotsiaaltöötaja ning selgitab, kas koduteenus jätkub, on vaja muid teenuseid või tuleb teenus lõpetada. Teenuseosutajana jälgi kliendi toimetulekut ja anna tema seisundi muutusest teada. Koduteenuse lõpetamise alustena on nimetatud muu hulgas seda, et inimene ei vaja enam määratud teenust; juhend nimetab ka teise omavalitsusse elama asumist ja korduvaid teenuse osutamist takistavaid olukordi.",
+        "Teenuse lõppedes on asjakohane küsida kliendilt tagasisidet. Koduteenuse osutamise andmed tuleb sisestada STARi ehk sotsiaalteenuste ja -toetuste andmeregistrisse; kvaliteedijuhis soovitab, et teenuse osutamise andmed oleksid riiklikus infosüsteemis kättesaadavad.",
+        "[piirang] Ma ei saa siin oleva teabe põhjal öelda, milliseid kliendiandmeid, millise nõusoleku või aluse korral ja kellele tohib hooldekodusse üle anda. Samuti ei ole siin kirjeldatud teenuse lõpetamise dokumenteerimise ega Tartu linnale teatamise täpseid samme."
+      ]
+    },
+    {
+      "id": "B13",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "narva_linn",
+      "question": "Millal on laps hädaohus ja millal tohib lapse perest eraldada?",
+      "answer": [
+        "Lastekaitseseaduse (LasteKS) § 30 järgi on laps hädaohus siis, kui olukord ohustab tema elu või tervist või kui lapse enda käitumine ohustab tema enda või kellegi teise elu või tervist. See on kitsam kui abivajadus: LasteKS § 26 järgi on laps abivajav ka siis, kui tema heaolu on ohustatud või on tekkinud kahtlus väärkohtlemise, hooletusse jätmise või muu lapse õigusi rikkuva olukorra suhtes. Seega nõuavad koolist puudumine ja agressiivsus olukorra hindamist, kuid üksi ei tõenda need, et laps on hädaohus.",
+        "Hädaohus olevat last tuleb viivitamata aidata ning kõrvaldada ohtlik olukord. Vajaduse korral võib lapse toimetada ohututesse tingimustesse kuni ohu möödumiseni ka hooldusõigust teostava isiku nõusolekuta. Seda teeb lapse viibimiskoha järgne omavalitsuse lastekaitsetöötaja või politsei; ohutu ajutine koht valitakse lapse olukorra ja vajaduste järgi. Kui lapse ohtu sattumine ei olnud põhjustatud hooldusõigust teostava isiku tegevusest või tegevusetusest või temast tulenev oht on lõppenud, antakse laps hooldusõigust teostavale isikule üle (LasteKS § 32 lg 1–4).",
+        "Lapse ajutine perekonnast eraldamine enne kohtumäärust on eraldi meede. Lastekaitseseaduse § 33 lg 1 järgi võib selle otsustada kohaliku omavalitsuse üksus või Sotsiaalkindlustusamet, kui lapse perekonda jätmine või vanema ja lapse suhtlus ohustab lapse elu või tervist, ning lisaks kehtib üks kahest tingimusest: ohu põhjustas hooldusõigust teostav isik oma tegevuse või tegevusetusega või ta keeldub lapse ajutisest paigutamisest sobiva teenuse saamiseks. Otsuses määratakse lapse viibimiskoht ja vajaduse korral suhtluskord kuni 72 tunniks eraldamisest; selle aja jooksul tuleb hinnata lapse olukorda ja abivajadust ning pöörduda kohtusse hooldusõiguse ja vajaduse korral suhtlusõiguse piiramiseks (Lastekaitseseaduse § 33 lg 2–3).",
+        "Perekonnaseaduse (PKS) § 135 lg 1 järgi võib kohus lapse vanematest eraldada ainult siis, kui lapse huvide kahjustamist ei saa ära hoida muude vanemate ja lapse suhtes kasutusele võetud toetavate abinõudega. Seega ei tähenda hädaohu hindamine iseenesest, et laps tuleb perest eraldada: eraldamise alus ja pädev otsustaja sõltuvad sellest, kas tegemist on vahetu ohutusse viimise, ajutise eraldamise enne kohtumäärust või kohtu otsustatava meetmega.",
+        "Sinu kirjeldatud asjaolude põhjal ei saa veel öelda, kas poisi või ema elu või tervis on ohus või kas ajutise eraldamise tingimused on täidetud. Hinda vahetult lapse turvalisust ja seda, kas ema ähvardustest tuleneb lapsele oht; kui oht on olemas, tegutse LasteKS § 32 järgi viivitamata ning eraldamise küsimuses kontrolli eraldi LasteKS § 33 tingimusi. § 33 alusel teeb otsuse omavalitsuse üksus või Sotsiaalkindlustusamet, mitte töötaja üksnes oma ametinimetuse tõttu.",
+        "[piirang] Ma ei saa kirjeldatud asjaolude põhjal otsustada, kas selle lapse puhul on hädaoht või ajutise eraldamise seaduslikud eeldused täidetud; see sõltub lapse olukorra ja ohu hindamisest."
+      ]
+    },
+    {
+      "id": "B15",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "narva_linn",
+      "question": "Kuidas korraldada võrgustikukohtumine kooli, perearsti ja politseiga ning milliseid andmeid tohin jagada?",
+      "answer": [
+        "Lastekaitsetöötajana saad lapse abivajaduse hindamiseks kaasata asjakohased spetsialistid, kelle töö või ametikohustus on lapse õiguste ja heaolu kaitsmine ning kes lapsega vahetult kokku puutuvad. Lapsele abi osutamisel tuleb teha võrgustikutööd ja järgida juhtumikorralduse põhimõtteid (Lastekaitseseaduse (LasteKS) § 29 lg 2).",
+        "Korraldusliku näitena: 2022. aastal kirjeldati võrgustikukohtumist inforingina, kus iga osaline jagab talle teadaolevat infot. Kohtumine protokollitakse, kokkulepped pannakse kirja võimalikult täpselt ja tegevustele määratakse tähtajad; protokolli kirjeldati STARi laaditavana. See on kirjeldatud tööpraktika, mitte siin toodud siduv vorminõue.",
+        "Jaga asjaomaste spetsialistidega lapse isikuandmeid ainult selles ulatuses, mis on konkreetsel juhul vajalik lapse vajaduste hindamiseks ja sobivate tugimeetmete valimiseks. Abivajavast lapsest võib pädevale asutusele edastada ka lapse abivajadusega seotud tundlikke andmeid ilma lapse või seadusliku esindaja nõusolekuta. Kooli, perearsti või muu võrgustikuliikme teave peab aitama last abistada; küsi vajaduse korral osalistelt üle, milliseid andmeid nad selleks vajavad.",
+        "Tervishoiuteenuse osutaja võib edastada lapse terviseandmeid lastekaitsetöötajale, kui see on vajalik lapse abivajaduse väljaselgitamiseks või sobiva abi korraldamiseks, ning edastada tuleb ainult vältimatult vajalik teave. See ei anna alust jagada perearsti käes olevaid terviseandmeid automaatselt kõigi kohtumisel osalejatega.",
+        "[piirang] Ma ei saa nende asjaolude põhjal määrata, millised konkreetsed andmed on selle juhtumi lahendamiseks vajalikud; see sõltub olukorrast ja sellest, milleks iga osaline teavet vajab."
+      ]
+    },
+    {
+      "id": "B17",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "narva_linn",
+      "question": "Kas ma pean emaga sõlmima juhtumiplaani ja mis see peab sisaldama?",
+      "answer": [
+        "Kui hindad, et tegu on abivajava lapsega ja tema abivajadust ei saa lahendada ühekordse meetmega, tuleb juhtumikorraldus algatada. Enne sobiva abimeetme rakendamist hinda lapse abivajadust ning kaasa hindamisse laps ja last kasvatav isik. (Lastekaitseseaduse § 29 lg 4; Lastekaitseseaduse § 28 lg 1 ja 3)",
+        "Juhtumiplaan on kirjalik dokument, mis sisaldab hinnangut abivajadusele ja abimeetmete rakendamise tegevuskava. Juhtumikorraldus hõlmab ka osapoolte tegevuste ajakava kooskõlastamist, juhtumi koordineerija määramist ja teabevahetuses kokkuleppimist. (Sotsiaalhoolekande seaduse § 9 lg 2–3)",
+        "Lapse abivajadust hinnates anna hinnang tema füüsilisele, tervislikule, psühholoogilisele, emotsionaalsele, sotsiaalsele, kognitiivsele, hariduslikule ja majanduslikule seisundile ning last kasvatava isiku vanemlikele oskustele. Dokumenteeri lapse arvamus ja lisa see kohustuslikku juhtumiplaani. (Lastekaitseseaduse § 28 lg 2; Lastekaitseseaduse § 29 lg 5)",
+        "Juhtumiplaanile kirjutavad alla juhtumi koordineerija ja isik, kellele plaan on koostatud. Kuna siin kirjeldatud plaan on lapse juhtumiplaan, ei sätesta see allkirjareegel eraldi ema kohustust plaanile alla kirjutada. Emaga tasub plaan ja tegevused läbi arutada ning teda kaasata; lapse arvamust tuleb samuti küsida ja sellega arvestada lapse vanust ning arengutaset silmas pidades."
+      ]
+    },
+    {
+      "id": "C14",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "viljandi_linn",
+      "question": "Kuidas aidata tal taotleda puude raskusastet ja töövõime hindamist?",
+      "answer": [
+        "Saad aidata noorel esitada töövõime hindamise ja puude raskusastme tuvastamise ühistaotlus. Töövõime hindamise taotlus esitatakse Eesti Töötukassale; kui see esitatakse koos puude taotlusega, võib noor esitada mõlemad Sotsiaalkindlustusameti kaudu. Puude taotlus esitatakse Sotsiaalkindlustusametile, kuid koos töövõime hindamise taotlusega võib selle esitada Töötukassa kaudu (Töövõimetoetuse seaduse § 6 lg 1–2; Puuetega inimeste sotsiaaltoetuste seaduse § 2² lg 1–2).",
+        "Tööealise ühistaotlusel tuleb märkida, et taotletakse ka puude raskusastme tuvastamist. Taotluses kirjeldatakse muu hulgas tervisega seotud tegutsemispiiranguid ning abivahendite ja kõrvalise abi kasutamist. Aidates taotlust ette valmistada, pane noorega kirja, kuidas tervis mõjutab tema igapäevast toimetulekut ja tegevusi eri valdkondades. Taotlusvormi leiad: sotsiaalkindlustusamet.ee/tooealise-puude-tuvastamine",
+        "Kontrolli koos noorega, kas ta on taotluse esitamisele eelneva kuue kuu jooksul käinud perearsti, teda põhiliselt raviva eriarsti või töötervishoiuarsti vastuvõtul. Kui ta pole käinud, teavitab Töötukassa teda arsti vastuvõtu vajadusest ja määrab tähtaja. Töövõimetoetuse seaduse § 6 lg 4–5 järgi.",
+        "Puude raskusastme tuvastab Sotsiaalkindlustusamet; ühistaotluse korral kasutab amet töövõime hindamisel koostatud eksperdiarvamust ja Töötukassa otsust. Puude taotluse jaoks võetakse arvesse terviseseisundit, tegevusvõimet, kõrvalabi vajadust ja muid seaduses nimetatud asjaolusid (Puuetega inimeste sotsiaaltoetuste seaduse § 2³ lg 1, 6–7)."
+      ]
+    },
+    {
+      "id": "C18",
+      "role": "spetsialist",
+      "state": "work_region",
+      "region": "viljandi_linn",
+      "question": "Kuidas jagan infot perekodu, kooli ja psühhiaatriga nii, et see oleks seaduslik?",
+      "answer": [
+        "Enne info jagamist selgita noorele, mis eesmärgil ja kellele infot edastad, ning küsi tema teadlikku ja vabatahtlikku nõusolekut. Kui nõusolek puudub, jaga infot ainult siis, kui konkreetne õigusakt annab selleks aluse. Edasta üksnes seda teavet, mida on abi korraldamiseks vaja.",
+        "Noore sotsiaalkaitse vajadus on era- ja perekonnaelu saladus (sotsiaalseadustiku üldosa seaduse § 8). Psüühilist seisundit, ravi ja diagnoosi puudutavat infot võib raviprotsessist väljapoole edastada üldjuhul ainult noore või tema seadusliku esindaja kirjalikul nõusolekul; seaduses on ka erandid (psühhiaatrilise abi seaduse § 5 lg 2).",
+        "Praktiliselt lepi noorega kokku, millist teavet võib jagada perekodu, kooli ja psühhiaatriga ning mis eesmärgil. Pane kirja, kellele, mida ja mis õiguslikul alusel edastad. Kui räägid psühhiaatriga, ära küsi ega jaga diagnoosi või raviandmeid ilma vastava kirjaliku nõusoleku või selge seadusliku aluseta. Isikuandmeid peavad kaitsma ka koolitöötajad ja kohaliku omavalitsuse ametnikud.",
+        "[piirang] Ma ei saa nende andmete põhjal määrata, milline konkreetne õiguslik alus kehtib iga perekodu, kooli või psühhiaatriga jagatava infokillu kohta. See sõltub jagamise eesmärgist ja sellest, millist infot soovid edastada."
+      ]
+    }
+  ]
+}

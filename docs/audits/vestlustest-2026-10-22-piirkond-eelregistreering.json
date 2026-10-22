@@ -48,5 +48,31 @@
     "One run; the comparison reads totals against two baseline runs.",
     "Answer time-limit failures (60 s) happen independently of this change (about 1.2% of turns on 21.10) and are reported apart.",
     "The local check used a stub in place of EstNLTK; the server's morphology may read a word differently."
-  ]
+  ],
+  "results_R3": {
+    "run": "22.10.2026 07:44-08:20 UTC (10:44-11:20 local), release 53f5c92b; evidence docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-three-cases-adr167-raw.json",
+    "H1": "held: 24/24 specialist turns with the municipality named (R1 15, R2 17)",
+    "H2": "held: 8/21 provider turns (R1 1, R2 0); A19-A25 Tartu linn (the plan gave the relation works), B and C as expected without",
+    "H3": "failed: 19/30 help seeker turns (R1 29, R2 26). C01 was planned with the name \"Viljandi\" (R1 and R2: \"Viljandi linn\"); the answer asked \"Viljandi linn or vald?\" and the scripted conversation does not reply, so the C help seeker turns had no municipality. Five repeats of C01: 3 \"Viljandi linn\", 2 \"Viljandi\". C10 was untestable as pre-registered.",
+    "H4": "failed on p90: median 27.7 s (limit 28.1), p90 41.2 s (limit 36.9). The plan call with the same tokens was 1 s slower and untouched help seeker turns were slower too (the run was in the morning, the baselines at night); the answer of specialist and provider turns got the municipality catalogue (about 10,000 input tokens), of which no title-only record was cited",
+    "H5": "held: none of the 14 answers searched in the place of work called it the client's home or sent the specialist to their own municipality's social worker",
+    "decision": "by the rule: revert the work scope (C). Owner 22.10.2026: \"Jätta, kärpida, mõõta\" - keep it, trim the catalogue (ADR-169), and run again in the evening at the baselines' time of day with the same limits; if it fails then, the work scope is reverted"
+  },
+  "addendum_R4": {
+    "written": "22.10.2026 before R4, after the deploys of ADR-168 (4e692a85), ADR-169 (80b0f9a3) and ADR-170 (09a3af43)",
+    "run": "the same 75 questions and script, started at 19:00 UTC (22:00 local) or later, as R1 and R2",
+    "server": "search-assist-21, record-catalogue-6 (ADR-169), ADR-168 own-municipality rules, ADR-170 answer retry; answer-15 and dialogue-49 unchanged",
+    "hypotheses": "H1-H5 as above with the same limits against R1 and R2",
+    "H3_note": "reported twice: all 30 turns, and without the C help seeker conversation when its first message is planned with the shared name \"Viljandi\" (then the answer rightly asks and the script never replies)",
+    "descriptive": [
+      "answer input tokens by role against R3 (ADR-169: expected 1,000 to 5,000 fewer where a municipality is set)",
+      "answer retries: how many, answered or not (ADR-170)",
+      "B05 (the help seeker's 12-year-old son): household_region narva_linn expected where the plan writes no municipality (ADR-168)"
+    ],
+    "decision": {
+      "keep": "H4 and H1 hold",
+      "revert_work_scope": "H4 fails in specialist or provider turns for a reason the place of work can cause",
+      "other": "a failure that ADR-168, 169 or 170 can cause is reported with that change, and the owner decides"
+    }
+  }
 }

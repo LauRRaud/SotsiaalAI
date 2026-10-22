@@ -128,3 +128,37 @@ Põhjuseid oli kolm.
   - ADR-154, 157, 160 ja 166 kohalikud kontrollid läbisid.
 - **Serveris:** 75 küsimust eelregistreeringu järgi
   ([eelregistreering](../audits/vestlustest-2026-10-22-piirkond-eelregistreering.json)).
+
+## Tulemus serveris (22.10 hommik, R3)
+
+Jooks käis 10:44–11:20 kohaliku aja järgi, väljalase 53f5c92b. Andmed:
+[toorandmed](../audits/evidence/sol-proof-20261014-01/server-rag-chat-three-cases-adr167-raw.json),
+[võrdlus](../audits/evidence/sol-proof-20261014-01/server-rag-chat-three-cases-adr167-compare.json).
+
+| | R1 (21.10 õhtu) | R2 (21.10 õhtu) | R3 |
+|---|---:|---:|---:|
+| spetsialisti pöörded omavalitsusega | 15/24 | 17/24 | **24/24** |
+| teenuseosutaja | 1/21 | 0/21 | **8/21** |
+| pöörduja | 29/30 | 26/30 | 19/30 |
+| vastuseid | 75/75 | 74/75 | 74/75 (C20 ajapiir) |
+| „ei saa“ lausega pöördeid | 10 | 18 | 16 |
+| aeg mediaan / p90 | 26,0 / 33,9 s | 26,6 / 33,2 s | 27,7 / 41,2 s |
+
+- **H1, H2 ja H5 läbisid.**
+  - Tööpiirkond jõudis igasse spetsialisti pöördesse: Tartu linn, Narva linn, Viljandi linn.
+  - A-vestluse teenuseosutaja sai Tartu linna. Eile küsiti seal „Tartu linn või Tartu vald?“.
+  - Ükski 14 vastusest ei pidanud tööpiirkonda kliendi koduks.
+- **H3 kukkus.**
+  - C01 plaan andis nimeks „Viljandi“ (R1 ja R2: „Viljandi linn“). Vastus küsis õigesti „linn või vald?“, aga testivestlus
+    ei vasta. Seepärast jäi C-pöörduja vestlus omavalitsuseta.
+  - Viis C01 kordust andsid kolm korda „Viljandi linn“ ja kaks korda „Viljandi“.
+  - Osade A ja B loogika seda ei põhjustanud. A10 puhul jäi ema Tartu linn alles ja kasutaja Tallinn ei kadunud.
+- **H4 kukkus p90 tõttu.**
+  - Plaanikutse oli sama tokenimahuga, kuid 1 s aeglasem. Valikumudel oli kiirem.
+  - Ka pöörduja pöörded, mida muudatus ei puuduta, olid aeglasemad: jooks oli hommikul, baasjooksud öösel.
+  - Päris kulu: tööpiirkonnaga pöörde vastus sai omavalitsuse kataloogi, umbes 10 000 sisendtokenit. Ühelegi ainult
+    pealkirjana loetletud kirjele ei viidatud.
+- **Otsus.** Reegli järgi tuli tööpiirkond maha võtta. Omanik valis „Jätta, kärpida, mõõta“:
+  - kataloogi kärbib ADR-169;
+  - kõrval on ADR-168 ja ADR-170;
+  - õhtul baasjooksudega samal kellaajal tehakse uus jooks samade piiridega (eelregistreeringu lisa R4).
