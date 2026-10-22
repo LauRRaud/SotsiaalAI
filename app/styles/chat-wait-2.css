@@ -134,11 +134,18 @@
 .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.9s var(--ease-soft);
 }
+/* The map stays in the background (owner 22.10: "eesti kaart võiks rohkem ära hajuda taustast"). */
 .pilot-wait[data-variant="2"] .hs-scene:has(> .hs-stage) .pilot-map__lines {
-  opacity: 0.55;
+  opacity: 0.38;
 }
 .pilot-wait[data-variant="2"] .hs-scene .hs-map[data-quiet] .pilot-map__lines {
-  opacity: 0.32;
+  opacity: 0.2;
+}
+.pilot-wait[data-variant="2"] .hs-map .pilot-map__pin {
+  transition: opacity 0.9s var(--ease-soft);
+}
+.pilot-wait[data-variant="2"] .hs-scene .hs-map[data-quiet] .pilot-map__pin {
+  opacity: 0.6;
 }
 /* The place is in the detail line; the map does not say it twice. */
 .pilot-wait[data-variant="2"] .pilot-map__label {
