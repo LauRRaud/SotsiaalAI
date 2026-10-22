@@ -57,3 +57,14 @@ etapid 0 ja 1. Omanik: „aeg esimese tekstini. muus osas tuleb teha parim valik
   - Serveri tabeli `rag_v2_version_unit` primaarvõti on `(tenant, config_id, id)`, ja päring annab kõik kolm.
 - **eslint** muudetud failil läbis.
 - **Serveris** näitavad taimerid mõõtmisjooksus, kui palju laadimine võitis ja kas sõnaotsingu piiramine on ohutu.
+
+## Tulemus (F2, 22.10.2026)
+
+- **Varjupäring jõudis õigeks ajaks 27 pöördel 27-st.** Mediaan oli 145 ms ja sõnaotsing ei aeglustunud: ta oli
+  vektoritest aeglasem mediaanis 2,38 s, 21.10 regressioonis 2,35 s.
+- **Kattuvus jäi alla eelregistreeritud reegli.**
+  - K10: mediaan 0,944 ja p10 0,833. Reegel nõudis 0,95 ja 0,90.
+  - K20 ja K40 kattusid vähem.
+- **Täielik sõnaotsing jääb alles.** Seda nõuab reegel ja nii otsustas ka omanik.
+- **ADR-175 eemaldas varjupäringu.** Seemnete ettelugemine ja laadimise taimerid jäid alles.
+- Arvud on eelregistreeringus (`focused_runs.results_F2`).
