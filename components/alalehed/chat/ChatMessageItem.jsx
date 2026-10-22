@@ -5,8 +5,7 @@ import { parseAssistantMarkdownBlocks } from "@/lib/chat/messageMarkdown";
 import { messageLinks, splitByLinks } from "@/lib/chat/messageLinks";
 import AnswerFeedbackCard from "./AnswerFeedbackCard";
 import MessageActionsMenu from "./MessageActionsMenu";
-import PilotWait, { PilotWaitSummary } from "./wait/PilotWait";
-import { useActiveWaitVariant } from "./wait/waitVariant";
+import PilotWait from "./wait/PilotWait";
 
 const ICON_PROPS = {
   "aria-hidden": "true",
@@ -337,10 +336,9 @@ const ChatMessageItem = memo(function ChatMessageItem({
     : [];
   const showCards = isAssistant && normalizedCards.length > 0;
   const showThinking = isAssistant && isStreaming && !String(visibleText || "").trim() && !showCards && !showAttachments;
-  // ADR-176: the waiting design an administrator chose (0 = today's turning S for everyone else), only for a message
-  // whose stream reports its steps (the pilot's); other streams keep the turning S.
-  const waitVariant = useActiveWaitVariant();
-  const designedWait = isAssistant && waitVariant > 0 && Array.isArray(pilotSteps);
+  // ADR-176: the waiting view with the turn's real steps, for a message whose stream reports them (the pilot's);
+  // other streams keep the turning S.
+  const designedWait = isAssistant && Array.isArray(pilotSteps);
   const tr = key => {
     const value = typeof t === "function" ? t(key) : "";
     return value && value !== key ? value : "";
@@ -497,17 +495,16 @@ const ChatMessageItem = memo(function ChatMessageItem({
           </div> : null}
       </div>;
   }
-  return <div role="article" tabIndex={showThinking ? -1 : 0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking && !designedWait ? "true" : undefined} data-pilot-wait={showThinking && designedWait ? String(waitVariant) : undefined} data-streaming={isStreaming ? "true" : undefined} data-time-open={aiTimeVisible ? "true" : undefined} onClick={toggleAiTimestamp} onKeyDown={handleAiBubbleKeyDown}>
+  return <div role="article" tabIndex={showThinking ? -1 : 0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking && !designedWait ? "true" : undefined} data-pilot-wait={showThinking && designedWait ? "2" : undefined} data-streaming={isStreaming ? "true" : undefined} data-time-open={aiTimeVisible ? "true" : undefined} onClick={toggleAiTimestamp} onKeyDown={handleAiBubbleKeyDown}>
       <span className="sr-only">
         {authorLabel}
         {": "}
       </span>
 
-      {designedWait && text && pilotSteps.length ? <PilotWaitSummary t={t} steps={pilotSteps} /> : null}
       {text ? (
         <AssistantMarkdown text={visibleText} onRefs={hasMessageSources && onShowSources ? openRefs : null} links={sourceLinks} />
       ) : null}
-      {showThinking && designedWait ? <PilotWait t={t} variant={waitVariant} steps={pilotSteps} /> : null}
+      {showThinking && designedWait ? <PilotWait t={t} steps={pilotSteps} /> : null}
       {showThinking && !designedWait ? (
         <span role="status" aria-live="polite" aria-label={thinkingLabel} />
       ) : null}

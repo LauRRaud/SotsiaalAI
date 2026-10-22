@@ -4959,31 +4959,14 @@
       "choose_reason": "Выберите одну причину."
     },
     "pilot_wait": {
-      "picker": "Ожидание",
       "reading": "Читаю вопрос…",
-      "understood": "Вопрос понятен",
       "searching": "Ищу в базе Sotsiaal.pro…",
-      "searched": "Искал в базе Sotsiaal.pro",
       "found": "Фрагментов: {passages}, источников: {sources}",
       "choosing": "Выбираю, что прочитать…",
       "chosen": "Выбрано для чтения",
       "more": "+{n}",
       "writing": "Пишу ответ…",
-      "wrote": "Начал писать ответ",
-      "summary": "Источников просмотрено: {n}",
-      "place_or": "{a} или {b}",
-      "design": {
-        "current": "Текущий",
-        "notebook": "Блокнот",
-        "breathing": "Дышащая S",
-        "cards": "Карточки",
-        "constellation": "Созвездие"
-      },
-      "map": "Карта",
-      "map_icon": "Значок",
-      "map_outline": "Контур",
-      "slow": "Это занимает больше времени, чем обычно.",
-      "your_question": "Ваш вопрос"
+      "place_or": "{a} или {b}"
     }
   },
   "documents": {

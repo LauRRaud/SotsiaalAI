@@ -4959,31 +4959,14 @@
       "choose_reason": "Vali üks põhjus."
     },
     "pilot_wait": {
-      "picker": "Ootus",
       "reading": "Loen küsimust…",
-      "understood": "Sain küsimusest aru",
       "searching": "Otsin Sotsiaal.pro andmebaasist…",
-      "searched": "Otsisin Sotsiaal.pro andmebaasist",
       "found": "{passages} lõiku {sources} allikast",
       "choosing": "Valin, mida lugeda…",
       "chosen": "Valisin lugemiseks",
       "more": "+{n}",
       "writing": "Kirjutan vastust…",
-      "wrote": "Vastuse kirjutamine algas",
-      "summary": "Vaatasin {n} allikat",
-      "place_or": "{a} või {b}",
-      "design": {
-        "current": "Praegune",
-        "notebook": "Märkmik",
-        "breathing": "Hingav S",
-        "cards": "Kaardid",
-        "constellation": "Tähtkuju"
-      },
-      "map": "Kaart",
-      "map_icon": "Ikoon",
-      "map_outline": "Kontuur",
-      "slow": "Võtab tavalisest kauem.",
-      "your_question": "Sinu küsimus"
+      "place_or": "{a} või {b}"
     }
   },
   "documents": {

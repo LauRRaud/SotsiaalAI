@@ -37,9 +37,10 @@
   overflow: visible;
 }
 
-/* The S: whole and solid from the start and breathing quietly; no glow and no outline that fills (owner 22.10). */
+/* The S: whole and solid from the start; no glow and no outline that fills (owner 22.10). It first turns a few times,
+   as the platform's own S does ("võiks alguses mõned pöörded teha"), then breathes quietly. */
 .pilot-wait[data-variant="2"] .hs-s {
-  animation: hs-breath 4.4s ease-in-out infinite;
+  animation: hs-turns 2.6s cubic-bezier(0.33, 0, 0.2, 1) both, hs-breath 4.4s ease-in-out 2.6s infinite;
 }
 .pilot-wait[data-variant="2"] .hs-s svg {
   opacity: 0.9;
@@ -238,6 +239,10 @@
   opacity: 0.72;
 }
 
+@keyframes hs-turns {
+  from { transform: perspective(320px) rotateY(0deg); }
+  to { transform: perspective(320px) rotateY(1080deg); }
+}
 @keyframes hs-breath {
   0%, 100% { transform: scale(1); opacity: 0.9; }
   50% { transform: scale(1.03); opacity: 1; }

@@ -50,10 +50,8 @@ export function waitTexts(t, view) {
   const found = view.found
     ? tr(t, "chat.pilot_wait.found", "{passages} lõiku {sources} allikast").replace("{passages}", String(view.found.passages)).replace("{sources}", String(view.found.sources ?? "?"))
     : null;
-  const chosenCount = view.chosen ? view.chosen.titles.length + view.chosen.more : 0;
   return {
     reading: tr(t, "chat.pilot_wait.reading", "Loen küsimust…"),
-    understood: tr(t, "chat.pilot_wait.understood", "Sain küsimusest aru"),
     searching: tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…"),
     found,
     choosing: tr(t, "chat.pilot_wait.choosing", "Valin, mida lugeda…"),
@@ -61,9 +59,6 @@ export function waitTexts(t, view) {
     more: view.chosen?.more ? tr(t, "chat.pilot_wait.more", "+{n}").replace("{n}", String(view.chosen.more)) : null,
     writing: tr(t, "chat.pilot_wait.writing", "Kirjutan vastust…"),
     places: view.places.map(names => placeText(t, names)),
-    summary: chosenCount
-      ? tr(t, "chat.pilot_wait.summary", "Vaatasin {n} allikat").replace("{n}", String(chosenCount))
-      : null,
     current: view.stage === "writing" ? tr(t, "chat.pilot_wait.writing", "Kirjutan vastust…")
       : view.stage === "choosing" ? tr(t, "chat.pilot_wait.choosing", "Valin, mida lugeda…")
         : view.stage === "searching" ? tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…")
@@ -71,4 +66,3 @@ export function waitTexts(t, view) {
   };
 }
 
-export const seconds = ms => (Number.isFinite(ms) ? `${Math.round(ms / 1000)} s` : "");

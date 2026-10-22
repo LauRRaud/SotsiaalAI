@@ -75,3 +75,23 @@
 - **Muu.** eslint muudetud failidel, `i18n:check`, `rag-cost` ja `rag-v2-pilot-crisis-route` testid läbisid. Uued
   CSS-failid parsivad lightningcss-iga hoiatusteta.
 - **Serveris.** Proovipöördes kirjutatakse sammude ajad ja järjekord voost üles.
+
+## Omaniku valik (22.10 õhtul) ja selle järel tehtu
+
+- **Valik: kujundus 2 („Hingav S“) koos ikoonikaardiga.** Omanik: „vist meeldis variant nr 2 ja kaardi ikoon“. Valija
+  eemaldati („ja need ka ära võtta“). Ootevaade on nüüd kõigile kasutajatele, kelle voog samme saadab.
+- **Eemaldatud.** Kujundused 1, 3 ja 4, kontuurkaart, valija ning kokkuvõtterida vastuse kohal. Kokkuvõtterida luges
+  omanik häireks („allika glitch üleval servas“). Koos nendega eemaldati ka kasutuseta tekstid.
+- **S.** S on algusest täidetud, ilma kontuuri joonistamise, täitumise ja kumata. Omanik: „hele kuma S ümber kahtlane“,
+  „S on seest tühi alguses ja täitub“. Alguses teeb S kolm pööret nagu platvormi enda S ja hingab siis vaikselt.
+- **Kaart ainult otsingu ajaks.** Omanik: „liiga kaardikeskne“. S-i all on korraga üks asi:
+  1. kaart, kui küsimuses on koht;
+  2. leitud allikad väikeste lehtedena ja tekst „36 lõiku 18 allikast“;
+  3. valitud materjali nimekiri.
+
+  Teema ja koht jäävad S-i kõrvale.
+- **Nõel.** Platvormi kaardiikooni nõela kuju. Täpp on kaardi tooni ja suurem: omanik „see auk peaks markeris suurem
+  olema“.
+- **Mullid.** Assistendi ja kasutaja mullil pole helendavat serva ega ülemist helki, alles on ainult vari.
+- **Vaaterolli lüliti.** Aktiivne nupp on jälle esile tõstetud, sest primary-nupp ei erinenud pinnast. Sildi tekst on
+  „Küsin kui: …“, mitte „Vastan kui“, sest administraator küsib valitud rollina.
