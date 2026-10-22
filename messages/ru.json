@@ -4984,6 +4984,7 @@
     },
     "pilot_wait": {
       "reading": "Читаю вопрос…",
+      "planning": "Составляю план поиска…",
       "searching": "Ищу в базе Sotsiaal.pro…",
       "choosing": "Выбираю, что прочитать…",
       "chosen": "Выбрано для чтения",
@@ -4994,10 +4995,10 @@
       "earlier": "ранее",
       "found_plain": "Подходящих источников: {sources}",
       "found_plain_one": "Подходящий источник: 1",
-      "fact_corpus": "В базе Sotsiaal.pro записей-источников: {documents}, поисковых фрагментов: {passages}",
-      "fact_knowledge": "В рамках этого вопроса документов знаний: {documents}, фрагментов: {passages}",
-      "fact_records": "Записей муниципалитетов об услугах и контактах всего: {total}",
-      "fact_region": "{place}: подходящих записей {listed} из {catalogue}",
+      "fact_corpus": "В базе {documents} источников, {passages} фрагментов",
+      "fact_knowledge": "По вопросу {documents} документов, {passages} фрагментов",
+      "fact_records": "Записей муниципалитетов: {total}",
+      "fact_region": "{place}: {listed} записей из {catalogue}",
       "fact_chosen": "Выбрано источников: {count}",
       "fact_chosen_one": "Выбран 1 источник"
     }

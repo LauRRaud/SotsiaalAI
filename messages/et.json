@@ -4984,6 +4984,7 @@
     },
     "pilot_wait": {
       "reading": "Loen küsimust…",
+      "planning": "Koostan otsinguplaani…",
       "searching": "Otsin Sotsiaal.pro andmebaasist…",
       "choosing": "Valin, mida lugeda…",
       "chosen": "Valisin lugemiseks",
@@ -4994,10 +4995,10 @@
       "earlier": "varasemast",
       "found_plain": "{sources} sobivat allikat",
       "found_plain_one": "1 sobiv allikas",
-      "fact_corpus": "Sotsiaal.pro andmebaasis on {documents} allikakirjet ja {passages} otsingulõiku",
-      "fact_knowledge": "Selle küsimuse ulatuses {documents} teadmusdokumenti ja {passages} lõiku",
-      "fact_records": "Omavalitsuste teenuse- ja kontaktikirjeid on kokku {total}",
-      "fact_region": "{place}: {listed} asjakohast kirjet {catalogue} seast",
+      "fact_corpus": "Andmebaasis {documents} allikakirjet, {passages} otsingulõiku",
+      "fact_knowledge": "Küsimuse ulatuses {documents} dokumenti, {passages} lõiku",
+      "fact_records": "Omavalitsuste kirjeid kokku {total}",
+      "fact_region": "{place}: {listed} kirjet {catalogue} seast",
       "fact_chosen": "Valitud {count} allikat",
       "fact_chosen_one": "Valitud 1 allikas"
     }

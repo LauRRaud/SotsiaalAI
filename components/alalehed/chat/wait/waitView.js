@@ -86,13 +86,13 @@ export function waitTexts(t, view) {
   // number on screen never changes (the index's own count by region is a wider one).
   const catalogue = view.records?.catalogue ?? null, listed = view.records?.listed ?? null;
   const facts = [
-    view.corpus && view.corpus.passages != null ? { key: "corpus", text: fill(tr(t, "chat.pilot_wait.fact_corpus", "Sotsiaal.pro andmebaasis on {documents} allikakirjet ja {passages} otsingulõiku"),
+    view.corpus && view.corpus.passages != null ? { key: "corpus", text: fill(tr(t, "chat.pilot_wait.fact_corpus", "Andmebaasis {documents} allikakirjet, {passages} otsingulõiku"),
       { documents: number(view.corpus.documents), passages: number(view.corpus.passages) }) } : null,
-    view.knowledge && view.knowledge.passages != null ? { key: "knowledge", text: fill(tr(t, "chat.pilot_wait.fact_knowledge", "Selle küsimuse ulatuses {documents} teadmusdokumenti ja {passages} lõiku"),
+    view.knowledge && view.knowledge.passages != null ? { key: "knowledge", text: fill(tr(t, "chat.pilot_wait.fact_knowledge", "Küsimuse ulatuses {documents} dokumenti, {passages} lõiku"),
       { documents: number(view.knowledge.documents), passages: number(view.knowledge.passages) }) } : null,
-    view.records?.total ? { key: "records", text: fill(tr(t, "chat.pilot_wait.fact_records", "Omavalitsuste teenuse- ja kontaktikirjeid on kokku {total}"),
+    view.records?.total ? { key: "records", text: fill(tr(t, "chat.pilot_wait.fact_records", "Omavalitsuste kirjeid kokku {total}"),
       { total: number(view.records.total) }) } : null,
-    place && catalogue ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {listed} asjakohast kirjet {catalogue} seast"),
+    place && catalogue ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {listed} kirjet {catalogue} seast"),
       { place, listed: number(listed ?? 0), catalogue: number(catalogue) }) } : null,
   ].filter(Boolean);
   // How many sources the answer reads, under their pages (the facts line does not say it twice).
@@ -102,6 +102,7 @@ export function waitTexts(t, view) {
     facts,
     chosenCount: chosenText,
     reading: tr(t, "chat.pilot_wait.reading", "Loen küsimust…"),
+    planning: tr(t, "chat.pilot_wait.planning", "Koostan otsinguplaani…"),
     searching: tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…"),
     found,
     choosing: tr(t, "chat.pilot_wait.choosing", "Valin, mida lugeda…"),

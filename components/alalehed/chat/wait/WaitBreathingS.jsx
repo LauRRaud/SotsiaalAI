@@ -17,6 +17,19 @@ const PAGES_MAX = 8; // one row on the map (owner 22.10: "neid vähemaks, ühte 
 const SEARCH_PAGES = 8; // the shelf the lens passes over while the search runs (no count is known yet)
 const NBSP = String.fromCharCode(0xa0);
 const FACT_MS = 3200; // how long one fact stays before the next
+const PLANNING_MS = 1200; // how long "Loen küsimust…" stands before the plan's own caption
+
+/* Whether the turn has been reading its question for a while: the search plan is being written then (owner 22.10:
+   "„Loen küsimust...“ on mõnikord veidi pikalt ees, midagi muud ka panna?"). */
+function usePlanning(reading) {
+  const [planning, setPlanning] = useState(false);
+  useEffect(() => {
+    if (!reading) return undefined;
+    const timer = setTimeout(() => setPlanning(true), PLANNING_MS);
+    return () => { clearTimeout(timer); setPlanning(false); };
+  }, [reading]);
+  return reading && planning;
+}
 
 /* One fact at a time, in the order they came (the platform's records first), the line turning through all of them. */
 function useFact(facts) {
@@ -45,6 +58,7 @@ function Lines({ className, lines, quiet = false }) {
 export default function WaitBreathingS({ view, texts, map }) {
   const stage = view.stageIndex;
   const fact = useFact(texts.facts || []);
+  const planning = usePlanning(stage === 0);
   // Below the head, one thing at a time (owner 22.10: "liiga kaardikeskne"): the search (faint pages and a lens passing
   // over them, no count yet), then the sources found as small pages, then the chosen ones, read in turn, with how many
   // they are. No titles: "seda ei jõua niikuinii lugeda. Lihtsalt mitu faili kasutati" (owner 22.10).
@@ -58,6 +72,7 @@ export default function WaitBreathingS({ view, texts, map }) {
 
   const captions = [
     { key: "reading", text: texts.reading },
+    planning || stage >= 1 ? { key: "planning", text: texts.planning } : null,
     stage >= 1 ? { key: "searching", text: texts.searching } : null,
     stage >= 2 ? { key: "choosing", text: texts.choosing } : null,
     view.chosen ? { key: "chosen", text: texts.chosen } : null,
@@ -105,6 +120,7 @@ export default function WaitBreathingS({ view, texts, map }) {
                 </span>
                 <span className="hs-lens" />
               </span>
+              <span className="hs-pages-label">{NBSP}</span>
             </div>
           ) : null}
           {pages ? (

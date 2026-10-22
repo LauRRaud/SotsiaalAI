@@ -202,11 +202,16 @@
 }
 /* No place in the question: while the search runs, a lens passes over a faint shelf of pages (no count is shown
    before the search gives one). */
+/* The shelf has the found pages' build, an empty count line too, so its row stands where theirs will (owner 22.10:
+   "luubi ja dokumendi rida asus teises kohas alguses kui järgmised ikoonid"). */
 .pilot-wait[data-variant="2"] .hs-search {
   display: grid;
+  gap: 0.95rem;
   justify-self: start;
-  padding: 0.25rem 0;
   animation: hs-fade 0.5s var(--ease-soft) var(--hs-shelf-delay) both;
+}
+.pilot-wait[data-variant="2"] .hs-search .hs-pages-label {
+  visibility: hidden;
 }
 /* A glowing shelf the lens chases along: the lens sweeps left to right (hs-lens) and each page lights up as it reaches
    it (the delay is when the lens's middle is over the page's middle: 0.17 s, then 0.298 s a page). */
