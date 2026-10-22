@@ -126,7 +126,25 @@
         "T": "a passage on health care without insurance among the candidates in at least 2 of 3 and marked in at least 1",
         "tokens": "answer input lower than F1 for the same questions with a municipality (median at least 1,000 tokens)",
         "rest": "E1, E2 as in F1; no failures but provider time limits"
-      }
+      },
+      "written_adr174": "22.10.2026 14:45 local, after the deploy of c264cb43 (ADR-174) and before the run; the owner asked for the run now (\"tee jooks\"), so it is in the daytime like F1 (12:31-12:47 local), not at 22:03",
+      "run_F2": {
+        "set": "the 27 turns of F1 (adr172-items.json), the same conversations and order",
+        "client": "as the chat asks: x-rag-pilot-format chat with the answer stream (Accept text/event-stream); firstTextMs is the browser time from the request to the first delta event, done is the browser time to the done event; the turn's phases and search timings from its admin trace (scratchpad adr174-stream-runner.js over adr167-runner.js)",
+        "costCap": "0.40 USD for the run (F1: 0.15 USD)",
+        "baseline": "F1 (release 269e7ab0, daytime, no stream): done time by question; there is no earlier first_text measurement, F2 gives its first one"
+      },
+      "expect_adr174": {
+        "S1-first-text": "first text median and p90 reported for all answered turns and by role (no earlier value to hold it against); the server phase first_text agrees with the browser value within 1 s in the median",
+        "S2-sources-read-ahead": "hydrate_calls lower than the number of loaded documents in most turns; hydrate_db + hydrate_check reported by median and p90; the knowledge lane lane time not higher than F1 by more than its run-to-run spread (median within 10%)",
+        "S3-shadow": "the shadow query ended before fusion (no shadow_late or shadow_failed) in at least 90% of the knowledge-lane turns; shadow_lexical median under 300 ms; the knowledge lexical time not higher than F1 (no added load from the shadow)",
+        "S4-no-harm": "the answers as in F1: no failures but provider time limits; answer kinds and municipalities as expected in before_F2.expect"
+      },
+      "decision_adr174": [
+        "Lexical only among the vector candidates (plan stage 1, about -2.1 to -2.35 s) goes to implementation when, over the turns with the shadow in time, the smallest K of 10/20/40 has shadow_same_kK / shadow_pool at least 0.95 in the median turn and at least 0.90 in 90% of turns; it is then checked by replaying turns before it is used.",
+        "Below that the full lexical query stays; the overlap numbers and which pool passages changed are reported, and the owner decides.",
+        "If the shadow slows the knowledge lane (S3 fails), the shadow is switched off."
+      ]
     }
   }
 }
