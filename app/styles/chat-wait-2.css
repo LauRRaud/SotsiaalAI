@@ -6,15 +6,9 @@
 .pilot-wait[data-variant="2"] {
   --hs-mark: 3.75rem;
   --hs-gap: 0.9rem;
-  /* Dark card: a faint warm light behind the S. */
-  --hs-glow: radial-gradient(closest-side, rgba(255, 250, 240, 0.36) 0%, rgba(255, 246, 232, 0.14) 50%, transparent 100%);
   /* A steady width: the caption changes but the card does not jump with it. A fixed-max track, not a width, so the
      card asks for 24.5rem but its smallest size stays 0 and a phone column never overflows. */
   grid-template-columns: minmax(0, 24.5rem);
-}
-/* Light card: the glow is daylight on frosted glass (a dark glow would read as a smudge). */
-html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant="2"] {
-  --hs-glow: radial-gradient(closest-side, rgba(255, 255, 255, 0.98) 0%, rgba(255, 251, 245, 0.8) 40%, rgba(226, 208, 186, 0.22) 72%, transparent 100%);
 }
 
 /* ---------- Head: the mark and the status ---------- */
@@ -43,67 +37,15 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant
   overflow: visible;
 }
 
-/* Glow: only while the answer is written; the wrapper fades in, the light inside it breathes. */
-.pilot-wait[data-variant="2"] .hs-glow {
-  position: absolute;
-  inset: -38%;
-  display: block;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1.2s var(--ease-soft);
-}
-.pilot-wait[data-variant="2"] .hs-glow::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--hs-glow);
-}
-.pilot-wait[data-variant="2"][data-stage="writing"] .hs-glow {
-  opacity: 1;
-}
-.pilot-wait[data-variant="2"][data-stage="writing"] .hs-glow::before {
-  animation: hs-glow 2.8s ease-in-out infinite;
-}
-
-/* The S breathes once its outline is written (the delay), through every step. */
+/* The S: whole and solid from the start and breathing quietly; no glow and no outline that fills (owner 22.10). */
 .pilot-wait[data-variant="2"] .hs-s {
-  animation: hs-breath 4.4s ease-in-out 1.5s infinite;
+  animation: hs-breath 4.4s ease-in-out infinite;
 }
 .pilot-wait[data-variant="2"] .hs-s svg {
-  opacity: 0.86;
-  filter: drop-shadow(0 0 5px rgba(249, 249, 249, 0.28));
-}
-html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant="2"] .hs-s svg {
-  opacity: 0.8;
-  filter: none;
-}
-.pilot-wait[data-variant="2"] .hs-trace {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.05;
-  stroke-opacity: 0.78;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  transition: opacity 1s var(--ease-soft) 0.9s;
-}
-.pilot-wait[data-variant="2"] .hs-draw {
-  animation: hs-draw 1.8s var(--ease-drift) both;
+  opacity: 0.9;
 }
 .pilot-wait[data-variant="2"] .hs-fill {
   fill: currentColor;
-}
-.pilot-wait[data-variant="2"] .hs-rise {
-  transform: translateY(52px);
-  transition: transform 1.6s var(--ease-drift);
-}
-/* Understood (the plan came, or a later step implies it): the fill rises and the outline rests in it. */
-.pilot-wait[data-variant="2"] .hs-head[data-filled] .hs-rise {
-  transform: none;
-}
-.pilot-wait[data-variant="2"] .hs-head[data-filled] .hs-trace {
-  opacity: 0;
 }
 
 /* ---------- Ring: one dot per source found, mounted only once the count is reported ---------- */
@@ -199,13 +141,9 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant
   margin-left: calc(var(--hs-mark) + var(--hs-gap));
 }
 
-@keyframes hs-draw {
-  from { transform: translateY(-56px); }
-  to { transform: none; }
-}
 @keyframes hs-breath {
   0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.045); opacity: 1; }
+  50% { transform: scale(1.03); opacity: 1; }
 }
 @keyframes hs-spin {
   to { transform: rotate(360deg); }
@@ -220,10 +158,6 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant
 @keyframes hs-pick {
   0%, 100% { opacity: 0.72; }
   16% { opacity: 1; }
-}
-@keyframes hs-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
 }
 @keyframes hs-line-in {
   from { opacity: 0; transform: translateY(0.32em); }
@@ -248,23 +182,13 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant
    Both the OS setting and the app's own (AccessibilityProvider's data-reduce-motion), as chat.css does. */
 @media (prefers-reduced-motion: reduce) {
   .pilot-wait[data-variant="2"] .hs-s,
-  .pilot-wait[data-variant="2"] .hs-draw,
   .pilot-wait[data-variant="2"] .hs-ring,
   .pilot-wait[data-variant="2"] .hs-dot circle,
-  .pilot-wait[data-variant="2"][data-stage="writing"] .hs-glow::before,
   .pilot-wait[data-variant="2"][data-stage="choosing"] .hs-head[data-chosen] .hs-dot-move[data-pick] circle {
     animation: none;
   }
-  .pilot-wait[data-variant="2"][data-stage="writing"] .hs-glow {
-    opacity: 0.75;
-  }
-  .pilot-wait[data-variant="2"] .hs-glow,
-  .pilot-wait[data-variant="2"] .hs-trace,
   .pilot-wait[data-variant="2"] .hs-dot-move {
     transition: opacity 0.3s linear;
-  }
-  .pilot-wait[data-variant="2"] .hs-rise {
-    transition: none;
   }
   .pilot-wait[data-variant="2"] .hs-dot {
     animation: hs-fade 0.3s linear both;
@@ -278,23 +202,13 @@ html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant
   }
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-s,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-draw,
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-ring,
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot circle,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"][data-stage="writing"] .hs-glow::before,
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"][data-stage="choosing"] .hs-head[data-chosen] .hs-dot-move[data-pick] circle {
   animation: none;
 }
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"][data-stage="writing"] .hs-glow {
-  opacity: 0.75;
-}
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-glow,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-trace,
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot-move {
   transition: opacity 0.3s linear;
-}
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-rise {
-  transition: none;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot {
   animation: hs-fade 0.3s linear both;

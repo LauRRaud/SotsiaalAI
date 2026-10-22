@@ -55,40 +55,55 @@
   -webkit-mask: url("/icons/eesti_kontuurkaart.svg") center / contain no-repeat;
   mask: url("/icons/eesti_kontuurkaart.svg") center / contain no-repeat;
 }
+/* The brand pin: a solid head in the text colour, a dot in the card's colour (dark on the dark card, light on the
+   light one), a thin edge so it stands off the map's line. Its point is 4 % above the box's bottom (the -96 %). */
+.pilot-map {
+  --pw-pin-hole: rgba(22, 20, 18, 0.72);
+  --pw-pin-edge: rgba(0, 0, 0, 0.28);
+}
+html.theme-light:not(:has(.room[data-power="standby"])) .pilot-map {
+  --pw-pin-hole: rgba(255, 255, 255, 0.9);
+  --pw-pin-edge: rgba(255, 255, 255, 0.55);
+}
 .pilot-map__pin {
   position: absolute;
-  width: 1.15rem;
-  height: 1.6rem;
-  transform: translate(-50%, -100%);
+  width: 1.05rem;
+  height: 1.28rem;
+  transform: translate(-50%, -96%);
   animation: pilot-pin-drop 620ms cubic-bezier(0.22, 1.2, 0.36, 1) both;
   animation-delay: var(--pin-delay, 350ms);
 }
 .pilot-map__pin[data-small="1"] {
-  width: 0.85rem;
-  height: 1.2rem;
+  width: 0.8rem;
+  height: 0.97rem;
 }
 .pilot-map__needle {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 1.5px 2px rgba(0, 0, 0, 0.22));
+}
+.pilot-map__needle path {
   fill: currentColor;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+  stroke: var(--pw-pin-edge);
+  stroke-width: 0.45;
 }
 .pilot-map__needle circle {
-  fill: var(--pw-pin-hole, rgba(255, 255, 255, 0.85));
+  fill: var(--pw-pin-hole);
 }
 .pilot-map__ring {
   position: absolute;
   left: 50%;
-  bottom: -0.2rem;
-  width: 1.4rem;
-  height: 0.55rem;
-  margin-left: -0.7rem;
+  bottom: -0.12rem;
+  width: 1.15rem;
+  height: 0.42rem;
+  margin-left: -0.575rem;
   border-radius: 50%;
-  border: 1.5px solid currentColor;
+  border: 1px solid currentColor;
   opacity: 0;
-  animation: pilot-pin-ring 2.4s ease-out infinite;
+  animation: pilot-pin-ring 2.6s ease-out infinite;
   animation-delay: calc(var(--pin-delay, 350ms) + 600ms);
 }
 .pilot-map__label {
@@ -102,12 +117,12 @@
   to { opacity: 1; transform: none; }
 }
 @keyframes pilot-pin-drop {
-  0% { opacity: 0; transform: translate(-50%, -190%); }
-  70% { opacity: 1; transform: translate(-50%, -94%); }
-  100% { opacity: 1; transform: translate(-50%, -100%); }
+  0% { opacity: 0; transform: translate(-50%, -186%); }
+  70% { opacity: 1; transform: translate(-50%, -90%); }
+  100% { opacity: 1; transform: translate(-50%, -96%); }
 }
 @keyframes pilot-pin-ring {
-  0% { opacity: 0.55; transform: scale(0.4); }
+  0% { opacity: 0.4; transform: scale(0.4); }
   80%, 100% { opacity: 0; transform: scale(1.9); }
 }
 

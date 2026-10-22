@@ -15,9 +15,10 @@ function Pin({ x, y, small, delay }) {
     <span className="pilot-map__pin" data-small={small ? "1" : undefined}
       style={{ left: `${(x * 100).toFixed(2)}%`, top: `${(y * 100).toFixed(2)}%`, "--pin-delay": `${delay}ms` }}>
       <span className="pilot-map__ring" aria-hidden="true" />
-      <svg className="pilot-map__needle" viewBox="0 0 24 34" aria-hidden="true">
-        <path d="M12 33c-.6 0-1-.4-1.3-1C8.3 26.7 2 20.6 2 12.5 2 6.7 6.5 2 12 2s10 4.7 10 10.5c0 8.1-6.3 14.2-8.7 19.5-.3.6-.7 1-1.3 1z" />
-        <circle cx="12" cy="12.5" r="4" />
+      {/* The pin of the brand map icon (eesti_kontuurkaart_logo.svg): a round head, a slim point, a dot inside. */}
+      <svg className="pilot-map__needle" viewBox="13.5 5 12.6 15.3" aria-hidden="true">
+        <path d="M19.8,19.68c-.66,0-1.34-.34-1.82-.91-2.32-2.75-3.84-5.6-3.84-7.58,0-3.13,2.54-5.66,5.66-5.66,3.12,0,5.66,2.53,5.66,5.66,0,1.98-1.52,4.83-3.84,7.58-.48.57-1.16.91-1.82.91Z" />
+        <circle cx="19.8" cy="11.25" r="2.05" />
       </svg>
     </span>
   );
