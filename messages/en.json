@@ -4966,7 +4966,8 @@
       "chosen": "Chosen to read",
       "more": "+{n}",
       "writing": "Writing the answer…",
-      "place_or": "{a} or {b}"
+      "place_or": "{a} or {b}",
+      "earlier": "from earlier"
     }
   },
   "documents": {

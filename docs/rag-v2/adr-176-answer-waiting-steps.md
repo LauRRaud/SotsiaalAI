@@ -95,3 +95,11 @@
 - **Mullid.** Assistendi ja kasutaja mullil pole helendavat serva ega ülemist helki, alles on ainult vari.
 - **Vaaterolli lüliti.** Aktiivne nupp on jälle esile tõstetud, sest primary-nupp ei erinenud pinnast. Sildi tekst on
   „Küsin kui: …“, mitte „Vastan kui“, sest administraator küsib valitud rollina.
+- **Koht ka jätkuküsimuses ja kohata küsimusel.** Omanik: „kui on küsimus, kus ei ole asukohta mainitud?“, „tee veidi
+  paremaks“.
+  - Otsing saadab sammu `scope` omavalitsusega, mida ta päriselt kasutab. Kui seda pole, saadab ta mõlemad omavalitsused,
+    mida sama nimi võib tähendada.
+  - Kaart näitab seda omavalitsust. Kui see tuli varasemast sõnumist, mitte praegusest, on detailireal märge
+    „(varasemast)“.
+  - Kui kohta pole, liigub otsingu ajal kaardi asemel luup üle hämarate lehtede. Arvu näidatakse alles siis, kui otsing
+    selle annab.

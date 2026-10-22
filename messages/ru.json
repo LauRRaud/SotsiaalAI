@@ -4966,7 +4966,8 @@
       "chosen": "Выбрано для чтения",
       "more": "+{n}",
       "writing": "Пишу ответ…",
-      "place_or": "{a} или {b}"
+      "place_or": "{a} или {b}",
+      "earlier": "ранее"
     }
   },
   "documents": {

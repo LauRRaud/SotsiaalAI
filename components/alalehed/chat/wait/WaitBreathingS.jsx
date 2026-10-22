@@ -13,6 +13,7 @@ const RING_MAX = 24; // more would read as a band, not as dots
 const RING_R = 30;
 const STEP_IN = 4.5;
 const PAGES_MAX = 14; // the label keeps the true count
+const SEARCH_PAGES = 9; // the shelf the lens passes over while the search runs (no count is known yet)
 const NBSP = String.fromCharCode(0xa0);
 
 /* One dot per source found; the chosen ones spread round the ring (never bunched at the top) and step inward. */
@@ -61,9 +62,12 @@ export default function WaitBreathingS({ view, texts, map }) {
   // Below the head, one thing at a time (owner 22.10: "liiga kaardikeskne"): the map while the search runs, then the
   // sources found as small pages, then the chosen material as a list. They share one grid cell and crossfade.
   const showMap = Boolean(map) && !view.found && !view.chosen;
+  // Without a place, the search itself fills the moment: faint pages and a lens passing over them, no count yet.
+  const searching = !map && stage === 1;
   const pages = view.found && !view.chosen ? Math.min(Math.max(view.found.sources ?? view.found.passages ?? 0, 0), PAGES_MAX) : 0;
-  // The place stays in the detail line after the map has gone.
-  const about = [view.topic, ...texts.places].filter(Boolean).join(`${NBSP}· `);
+  // The place stays in the detail line after the map has gone; one an earlier message gave says so.
+  const places = texts.earlier ? texts.places.map(place => `${place} (${texts.earlier})`) : texts.places;
+  const about = [view.topic, ...places].filter(Boolean).join(`${NBSP}· `);
 
   const captions = [
     { key: "reading", text: texts.reading },
@@ -108,6 +112,14 @@ export default function WaitBreathingS({ view, texts, map }) {
       </div>
       <div className="hs-stage">
         {map ? <div className="hs-map" data-on={showMap ? "1" : undefined} aria-hidden={showMap ? undefined : "true"}>{map}</div> : null}
+        {searching ? (
+          <div className="hs-search" key="search" aria-hidden="true">
+            <span className="hs-page-row">
+              {Array.from({ length: SEARCH_PAGES }, (_, i) => <span key={i} className="hs-page hs-page--dim" style={{ "--i": i }} />)}
+            </span>
+            <span className="hs-lens" />
+          </div>
+        ) : null}
         {pages ? (
           <div className="hs-pages" key="pages">
             <span className="hs-page-row" aria-hidden="true">

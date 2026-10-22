@@ -4966,7 +4966,8 @@
       "chosen": "Valisin lugemiseks",
       "more": "+{n}",
       "writing": "Kirjutan vastust…",
-      "place_or": "{a} või {b}"
+      "place_or": "{a} või {b}",
+      "earlier": "varasemast"
     }
   },
   "documents": {

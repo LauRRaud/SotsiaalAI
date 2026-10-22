@@ -204,6 +204,42 @@
   animation: hs-page-in 0.4s var(--ease-soft) both, hs-page-read 3.2s ease-in-out infinite;
   animation-delay: calc(var(--i) * 70ms), calc(0.7s + var(--i) * 230ms);
 }
+/* No place in the question: while the search runs, a lens passes over a faint shelf of pages (no count is shown
+   before the search gives one). */
+.pilot-wait[data-variant="2"] .hs-search {
+  position: relative;
+  justify-self: start;
+  padding: 0.25rem 0;
+  animation: hs-fade 0.5s var(--ease-soft) both;
+}
+.pilot-wait[data-variant="2"] .hs-page.hs-page--dim {
+  opacity: 0.24;
+  animation: hs-page-in 0.4s var(--ease-soft) both;
+  animation-delay: calc(var(--i) * 60ms);
+}
+.pilot-wait[data-variant="2"] .hs-lens {
+  position: absolute;
+  top: 0.05rem;
+  left: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: hs-lens 3.4s ease-in-out infinite;
+}
+.pilot-wait[data-variant="2"] .hs-lens::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  width: 0.42rem;
+  height: 1.5px;
+  margin: -0.12rem 0 0 -0.16rem;
+  background: currentColor;
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
 .pilot-wait[data-variant="2"] .hs-pages-label {
   font-size: var(--fs-small, 0.85rem);
   opacity: 0.82;
@@ -246,6 +282,10 @@
 @keyframes hs-breath {
   0%, 100% { transform: scale(1); opacity: 0.9; }
   50% { transform: scale(1.03); opacity: 1; }
+}
+@keyframes hs-lens {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(7.8rem); }
 }
 @keyframes hs-page-in {
   from { opacity: 0; transform: translateY(4px) scale(0.9); }
@@ -310,6 +350,9 @@
   .pilot-wait[data-variant="2"] .hs-material li {
     animation: hs-fade 0.3s linear both;
   }
+  .pilot-wait[data-variant="2"] .hs-lens {
+    animation: none;
+  }
   .pilot-wait[data-variant="2"] .hs-dot {
     animation: hs-fade 0.3s linear both;
   }
@@ -338,6 +381,9 @@ html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map[data-on] {
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page,
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-material li {
   animation: hs-fade 0.3s linear both;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-lens {
+  animation: none;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot {
   animation: hs-fade 0.3s linear both;
