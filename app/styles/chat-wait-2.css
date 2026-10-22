@@ -146,15 +146,18 @@
 .pilot-wait[data-variant="2"] .hs-pages {
   display: grid;
   align-content: start;
-  gap: 0.45rem;
+  /* The count stands a little below the pages (owner 22.10: "16 sobivat allikat veidi alla poole"). */
+  gap: 0.95rem;
   animation: hs-fade 0.5s var(--ease-soft) both;
 }
+/* One row (owner 22.10: "dokumendid veidi suuremaks ja neid vähemaks, ühte ritta"). */
 .pilot-wait[data-variant="2"] .hs-page-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.32rem;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
 }
-/* A small page: an outline with two text lines; each is read in turn (a quiet brightening that walks the row). */
+/* A small page: an outline with two text lines; each is read in turn (a quiet brightening that walks the row). The
+   pages of the search are larger than the mark beside a chosen title. */
 .pilot-wait[data-variant="2"] .hs-page,
 .pilot-wait[data-variant="2"] .hs-doc {
   position: relative;
@@ -164,6 +167,11 @@
   height: 1.02rem;
   border: 1px solid currentColor;
   border-radius: 0.14rem;
+}
+.pilot-wait[data-variant="2"] .hs-page {
+  width: 1.05rem;
+  height: 1.34rem;
+  border-radius: 0.18rem;
 }
 .pilot-wait[data-variant="2"] .hs-page::before,
 .pilot-wait[data-variant="2"] .hs-doc::before {
@@ -204,10 +212,10 @@
 }
 .pilot-wait[data-variant="2"] .hs-lens {
   position: absolute;
-  top: -0.2rem;
+  top: -0.06rem;
   left: 0;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.45rem;
+  height: 1.45rem;
   border: 1.5px solid currentColor;
   border-radius: 50%;
   opacity: 0.85;
@@ -218,9 +226,9 @@
   position: absolute;
   left: 100%;
   top: 100%;
-  width: 0.42rem;
+  width: 0.5rem;
   height: 1.5px;
-  margin: -0.12rem 0 0 -0.16rem;
+  margin: -0.14rem 0 0 -0.19rem;
   background: currentColor;
   transform: rotate(45deg);
   transform-origin: left center;
@@ -298,7 +306,7 @@
 }
 @keyframes hs-lens {
   0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(8.6rem); }
+  50% { transform: translateX(9.75rem); }
 }
 @keyframes hs-page-in {
   from { opacity: 0; transform: translateY(4px) scale(0.9); }
