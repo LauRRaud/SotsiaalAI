@@ -33,7 +33,7 @@ const ET = {
     model: "Mudel", reasoning: "Mõtlemise tase", maxOutput: "Vastuse piir (tokenit)", evidenceChars: "Tõendite maht (märki)", records: "Omavalitsuse kirjed", scope: "Piirkonna otsus", work: "tööpiirkond",
     stage: "Samm", input: "Sisend (tokenit)", output: "Väljund (tokenit)", usd: "Kulu (USD)", ms: "Aeg (ms)", phases: "Etapid (ms algusest)"
   },
-  stages: { plan: "otsinguplaan", embedding: "vektorid", rerank: "valikumudel", answer: "vastus" },
+  stages: { plan: "otsinguplaan", embedding: "vektorid", rerank: "valikumudel", answer: "vastus", answer_retry: "vastus (kordus)" },
   reasons: {
     ranked_seed: "järjestatud lõik (otsing + valikumudel)",
     cross_reference: "sama seaduse viide",
@@ -95,7 +95,7 @@ const EN = {
     model: "Model", reasoning: "Reasoning effort", maxOutput: "Output limit (tokens)", evidenceChars: "Evidence size (characters)", records: "Municipal records", scope: "How the municipality was decided", work: "place of work",
     stage: "Step", input: "Input (tokens)", output: "Output (tokens)", usd: "Cost (USD)", ms: "Time (ms)", phases: "Phases (ms from start)"
   },
-  stages: { plan: "search plan", embedding: "vectors", rerank: "selection model", answer: "answer" },
+  stages: { plan: "search plan", embedding: "vectors", rerank: "selection model", answer: "answer", answer_retry: "answer (retry)" },
   reasons: {
     ranked_seed: "ranked passage (search + selection model)", cross_reference: "own-act reference", cross_reference_named: "other act's reference",
     question_reference: "provision the question names", companion_provision: "law provision saying the same (vector nearness)",

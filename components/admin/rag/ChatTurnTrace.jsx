@@ -177,7 +177,7 @@ export default function ChatTurnTrace({ trace, locale }) {
         <table>
           <thead><tr><th>{f.stage}</th><th>{f.state}</th><th>{f.input}</th><th>{f.output}</th><th>{f.usd}</th></tr></thead>
           <tbody>{trace.stages.map((stage, index) => (
-            <tr key={`${stage.stage}-${index}`}><td>{copy.stages[stage.stage] || stage.stage}</td><td>{stage.state || f.none}</td>
+            <tr key={`${stage.stage}-${index}`}><td>{copy.stages[stage.stage] || stage.stage}</td><td>{stage.state || f.none}{stage.code ? ` (${stage.code})` : ""}</td>
               <td>{stage.input ?? f.none}</td><td>{stage.output ?? f.none}</td><td>{Number.isFinite(stage.nanoUsd) ? (stage.nanoUsd / 1e9).toFixed(6) : f.none}</td></tr>
           ))}</tbody>
         </table>

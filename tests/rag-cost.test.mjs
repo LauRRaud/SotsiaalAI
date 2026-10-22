@@ -5,7 +5,8 @@ import { priceProviderUsage, reserveProviderCost } from '../lib/rag-v2/pilot/cos
 import { parseEcbRate, nanoUsdToEur } from '../lib/usage/exchangeRate.js';
 import { displayUsageAmount, storeUsageAmount } from '../lib/usage/amounts.js';
 import { providerCall } from '../lib/rag-v2/pilot/provider.js';
-import { PilotService } from '../lib/rag-v2/pilot/service.js';
+import { PilotService, ANSWER_RETRY, answerRetryTimeout } from '../lib/rag-v2/pilot/service.js';
+import { PilotStore } from '../lib/rag-v2/pilot/store.js';
 
 const base = { stage: 'answer', model: 'gpt-6-luna', mode: 'real', billing: { model: 'gpt-6-luna', serviceTier: 'default' } };
 const price = usage => priceProviderUsage({ ...base, usage });
@@ -69,6 +70,49 @@ test('all response stages preserve cache fields and billing metadata, including 
     assert.equal(result.usage.cachedInput,400); assert.equal(result.usage.cacheWriteInput,600);
     assert.equal(result.billing.serviceTier,'default'); assert.equal(result.requestId,'req_test');
   }
+});
+// ADR-170: the answer's one retry after a time limit is a paid call of its own.
+test('answer retry only after a time limit with nothing shown, and only while the turn can still end', () => {
+  const timeout = Object.assign(new Error('timeout'), { name: 'TimeoutError' }), aborted = Object.assign(new Error('aborted'), { name: 'AbortError' });
+  const at = (elapsedMs, error = timeout, textShown = false) => answerRetryTimeout({ error, textShown, elapsedMs, timeoutMs: 60000 });
+  assert.equal(at(75000), 60000); assert.equal(at(100000, aborted), ANSWER_RETRY.turnMs - 100000);
+  assert.equal(at(ANSWER_RETRY.turnMs - ANSWER_RETRY.minimumMs + 1), null);
+  assert.equal(at(75000, timeout, true), null);
+  for (const error of [Object.assign(new Error('x'), { code: 'provider_http_error' }), Object.assign(new Error('x'), { name: 'TimeoutError', usage: { input: 1, output: 1 } }), null]) assert.equal(at(75000, error), null);
+});
+test('answer retry reserves and accounts a second answer attempt, the timed-out one stays reserved', async () => {
+  const config = { id: 'plan-1', configHash: 'cfg', mode: 'real', model: 'gpt-6-luna', embedding: { model: 'text-embedding-3-large' }, timeoutMs: 60000,
+    budget: { attempts: 100, tokens: 10000000, nanoUsd: 10000000000, embeddingAttempts: 10, answerAttempts: 10 }, prices: { answerInput: 125, answerOutput: 500 } };
+  const reservation = { tokens: 30000, nanoUsd: 5000000 }, trace = { bodyHash: 'b', inputBound: 20000, maxOutputTokens: 10000 };
+  const fake = answerAttempts => {
+    const state = { turn: { id: 'turn-1', configHash: 'cfg', expiresAt: null, state: 'answer_sent',
+      payload: { userId: 'user-1', convId: 'conv-1', events: [{ stage: 'answer', state: 'sent_unknown', reservation, ...trace }] } },
+    ledger: { id: 'plan-1', configHash: 'cfg', totals: { attempts: 3, tokens: 50000, nanoUsd: 6000000, embeddingAttempts: 1, answerAttempts, planAttempts: 1, rerankAttempts: 0 } } };
+    const tx = { $executeRaw: async () => 0, $queryRaw: async () => [],
+      conversation: { findUnique: async () => ({ id: 'conv-1', userId: 'user-1', archivedAt: null, expiresAt: null, metadata: { m4: true } }) },
+      m4PilotTurn: { findUnique: async () => structuredClone(state.turn), update: async ({ data }) => (state.turn = { ...state.turn, ...structuredClone(data) }) },
+      m4PilotLedger: { findUnique: async () => structuredClone(state.ledger), upsert: async ({ update }) => { state.ledger = { ...state.ledger, ...update }; },
+        update: async ({ data }) => { state.ledger = { ...state.ledger, ...data }; } } };
+    return { state, store: new PilotStore({ $transaction: async fn => fn(tx) }) };
+  };
+  const { state, store } = fake(1), calls = [], reached = [];
+  const result = { value: {}, usage: { input: 20000, output: 900, cachedInput: 0, cacheWriteInput: 0 }, requestId: 'req_retry',
+    billing: { model: 'gpt-6-luna', responseId: 'resp_retry', serviceTier: 'default' }, timings: {} };
+  const service = new PilotService({ store, readConfig: async () => config, adapters: {}, call: async args => { calls.push(args); return result; } });
+  const timeout = Object.assign(new Error('timeout'), { name: 'TimeoutError' });
+  const { row } = await service.answerRetry(config, structuredClone(state.turn), { body: { model: 'gpt-6-luna' }, reservation, trace, timeoutMs: 50000,
+    error: timeout, textStream: () => null, reached: name => reached.push(name) });
+  assert.deepEqual(calls.map(args => [args.stage, args.config.timeoutMs]), [['answer_retry', 50000]]);
+  assert.deepEqual(row.payload.events.map(e => [e.stage, e.state, e.code ?? null]), [['answer', 'provider_failed', 'TimeoutError'], ['answer_retry', 'sent_unknown', null]]);
+  assert.equal(row.state, 'answer_retry_sent'); assert.deepEqual(reached, ['answer_retry']);
+  assert.deepEqual(row.payload.events[0].reservation, reservation);
+  assert.deepEqual([state.ledger.totals.answerAttempts, state.ledger.totals.attempts, state.ledger.totals.tokens, state.ledger.totals.nanoUsd], [2, 4, 80000, 11000000]);
+  const done = await store.usage(config, row, 'answer_retry', result);
+  assert.equal(done.payload.events[1].state, 'response_received'); assert.equal(done.payload.events[0].state, 'provider_failed');
+  // One retry a turn, and the answers' cap counts it.
+  await assert.rejects(store.reserve(config, done, 'answer_retry', reservation, trace), { code: 'attempt_already_reserved' });
+  const capped = fake(10);
+  await assert.rejects(capped.store.reserve(config, structuredClone(capped.state.turn), 'answer_retry', reservation, trace), { code: 'pilot_stage_budget_exhausted' });
 });
 test('two real synthetic receipts reproduce cache write/read costs without another API call', () => {
   const evidence=JSON.parse(fs.readFileSync(new URL('../docs/audits/evidence/rag-cost-live-receipts-2026-10-08.json',import.meta.url),'utf8').replace(/^\uFEFF/,''));
