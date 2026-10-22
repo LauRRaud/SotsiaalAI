@@ -6,9 +6,16 @@
 .pilot-wait[data-variant="2"] {
   --hs-mark: 3.25rem;
   --hs-gap: 0.9rem;
-  /* A steady width: the caption changes but the card does not jump with it. A fixed-max track, not a width, so the
-     card asks for 24.5rem but its smallest size stays 0 and a phone column never overflows. */
+  /* A steady width once the search runs: the caption changes but the card does not jump with it. A fixed-max track,
+     not a width, so the card asks for 24.5rem but its smallest size stays 0 and a phone column never overflows. */
   grid-template-columns: minmax(0, 24.5rem);
+}
+/* While the question is read and the plan written, only the S and a short caption stand there: a narrow card, one width
+   for both captions (owner 22.10: "need assistendi mullid on mõnikord üsna pikad, isegi kui tekst ei ulatu"). It widens
+   once, when the topic, the facts and the map come. */
+.pilot-wait[data-variant="2"][data-stage="reading"] {
+  min-width: min(17rem, 70vw);
+  grid-template-columns: fit-content(24.5rem);
 }
 
 /* ---------- Head: the mark and the status ---------- */
