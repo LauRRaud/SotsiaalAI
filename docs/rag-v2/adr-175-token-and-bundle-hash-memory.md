@@ -82,4 +82,16 @@ Paketid, vead ja kontrollid on samad. Muutuvad ainult aeg ja mälu.
     selle juhu.
   - Muid leide ei olnud.
 - **eslint** muudetud failidel läbis.
-- **Serveris** näitavad `hydrate_check` ja `hydrate_db` järgmises jooksus, kui palju saba lühenes.
+- **Serveris (22.10 pärast juurutust 12:44 UTC, kolm proovipööret).** Kõik vastasid, Narva linn õige, varjupäringut
+  enam pole.
+
+  | pööre | hydrate_db | hydrate_check | kokku |
+  |---|---:|---:|---:|
+  | B01 F2-s | 1242 ms | 1221 ms | 2,46 s |
+  | B01 kohe pärast juurutust, protsess tühi | 1243 ms | 1358 ms | 2,60 s |
+  | B01 kordus samade dokumentidega | 288 ms | 250 ms | 0,54 s |
+
+  - Võit tuleb dokumentidelt, mida protsess on juba näinud.
+  - Esimene tekst oli korduses siiski 32,1 s. Vastuse kutse võttis 24,6 s (F2-s 14,3 s): väljund oli 1646 tokenit
+    (F2-s 1475) ja arutlus 702 (495). See on mudeli kõikumine, mitte kood. Otsingu faas oli 17,8 s (F2-s 18,5 s).
+  - Kui palju saba tavaliste pöörete seas lüheneb, näitavad `hydrate_db` ja `hydrate_check` järgmises jooksus.
