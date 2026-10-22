@@ -4451,7 +4451,7 @@
       },
       "view_role": {
         "label": "Töölaua vaade",
-        "answering_as": "Vastan kui: {role}"
+        "asking_as": "Küsin kui: {role}"
       }
     },
     "help": {

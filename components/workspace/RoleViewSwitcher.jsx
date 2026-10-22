@@ -44,7 +44,7 @@ export default function RoleViewSwitcher({ ariaLabel = "", className, placement 
       placement={placement}
       fallback={fallback}
       caption={showCaption
-        ? t("chat.workspace.view_role.answering_as", "Vastan kui: {role}").replace("{role}", workspaceRoleLabel(t, normalizeWorkspaceRole(effectiveRole)))
+        ? t("chat.workspace.view_role.asking_as", "Küsin kui: {role}").replace("{role}", workspaceRoleLabel(t, normalizeWorkspaceRole(effectiveRole)))
         : ""}
     />
   );

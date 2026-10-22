@@ -4406,7 +4406,7 @@
       },
       "view_role": {
         "label": "Вид рабочего стола",
-        "answering_as": "Отвечаю как: {role}"
+        "asking_as": "Спрашиваю как: {role}"
       }
     },
     "help": {

@@ -4451,7 +4451,7 @@
       },
       "view_role": {
         "label": "Workspace view",
-        "answering_as": "Answering as: {role}"
+        "asking_as": "Asking as: {role}"
       }
     },
     "help": {

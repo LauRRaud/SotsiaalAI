@@ -179,7 +179,7 @@ export default function ChatBodyView({
                   RAG-sihtrühma ja vastuse pikkust (lib/chat/requestBootstrap).
                   Töölaua-näol on oma lüliti (WorkspacePanel), seega ainult
                   vestlusevaates; ruumis roll ei mängi (liikmesuspõhine). */}
-              {/* Omaniku otsus 21.10: admin näeb kirjas, millise rollina vestlus vastab (ilma valitud vaaterollita spetsialistina). */}
+              {/* Omaniku otsus 21.10: admin näeb kirjas, millise rollina ta küsib („Küsin kui", omanik 22.10; ilma valitud vaaterollita spetsialistina). */}
               {showStandardChat && isAdmin && !isRoomMode ? <RoleViewSwitcher showCaption /> : null}
               {/* ADR-176: the administrator tries the answer's waiting designs (owner 22.10). */}
               {showStandardChat && isAdmin && !isRoomMode ? <WaitVariantPicker t={t} /> : null}
