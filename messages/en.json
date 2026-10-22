@@ -73,7 +73,31 @@
     "metrics": "Attempt timing and usage",
     "metricNote": "Cost is a conservative estimate. Unknown usage stays reserved.",
     "nextIntent": "Start the next question",
-    "nextIntentHint": "The previous attempt remains saved. New sending is blocked while an external attempt is unknown."
+    "nextIntentHint": "The previous attempt remains saved. New sending is blocked while an external attempt is unknown.",
+    "sourceRecord": "Record",
+    "sourceWeb": "Web page",
+    "recordField": {
+      "summary": "Description",
+      "targetGroup": "For whom",
+      "conditions": "Conditions",
+      "amount": "Price or amount",
+      "application": "How to apply",
+      "deadline": "Deadline",
+      "format": "Form",
+      "officialUrl": "Official page",
+      "url": "Official page",
+      "last_checked": "Checked",
+      "checked_at": "Checked",
+      "name": "Name",
+      "role": "Role",
+      "department": "Unit",
+      "phone": "Phone",
+      "email": "E-mail",
+      "decisionTime": "Decision time",
+      "retrieved_at": "Collected",
+      "valid_from": "Valid from",
+      "valid_to": "Valid until"
+    }
   },
   "calls": {
     "recording_consent_intro": "{requesterName} would like to record this audio call.",

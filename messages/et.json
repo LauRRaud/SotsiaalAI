@@ -73,7 +73,31 @@
     "metrics": "Katse aeg ja kasutus",
     "metricNote": "Kulu on konservatiivne hinnang. Teadmata kasutus jääb reserveerituks.",
     "nextIntent": "Alusta järgmist küsimust",
-    "nextIntentHint": "Senise katse tulemus jääb alles. Teadmata väliskatse korral on uus saatmine blokeeritud."
+    "nextIntentHint": "Senise katse tulemus jääb alles. Teadmata väliskatse korral on uus saatmine blokeeritud.",
+    "sourceRecord": "Kirje",
+    "sourceWeb": "Veebileht",
+    "recordField": {
+      "summary": "Kirjeldus",
+      "targetGroup": "Kellele",
+      "conditions": "Tingimused",
+      "amount": "Hind või summa",
+      "application": "Kuidas taotleda",
+      "deadline": "Tähtaeg",
+      "format": "Vorm",
+      "officialUrl": "Ametlik leht",
+      "url": "Ametlik leht",
+      "last_checked": "Kontrollitud",
+      "checked_at": "Kontrollitud",
+      "name": "Nimi",
+      "role": "Roll",
+      "department": "Üksus",
+      "phone": "Telefon",
+      "email": "E-post",
+      "decisionTime": "Otsuse aeg",
+      "retrieved_at": "Kogutud",
+      "valid_from": "Kehtib alates",
+      "valid_to": "Kehtib kuni"
+    }
   },
   "calls": {
     "recording_consent_intro": "{requesterName} soovib selle helikõne salvestada.",
