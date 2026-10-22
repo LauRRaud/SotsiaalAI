@@ -4,7 +4,7 @@
    Motion is transform and opacity only; every change is a mount (new key) or a data attribute (stage, found, chosen). */
 
 .pilot-wait[data-variant="2"] {
-  --hs-mark: 3.75rem;
+  --hs-mark: 3.25rem;
   --hs-gap: 0.9rem;
   /* A steady width: the caption changes but the card does not jump with it. A fixed-max track, not a width, so the
      card asks for 24.5rem but its smallest size stays 0 and a phone column never overflows. */
@@ -12,9 +12,10 @@
 }
 
 /* ---------- Head: the mark and the status ---------- */
+/* The S and the text share one middle line (owner 22.10: the text sat above the turning S). */
 .pilot-wait[data-variant="2"] .hs-head {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--hs-gap);
   min-width: 0;
 }
@@ -99,7 +100,6 @@
   display: block;
   flex: 1;
   min-width: 0;
-  padding-top: max(0px, calc((var(--hs-mark) - 2.75em) / 2));
   overflow-wrap: break-word;
 }
 .pilot-wait[data-variant="2"] :is(.hs-cap, .hs-det) {
@@ -111,9 +111,8 @@
   line-height: 1.38;
   letter-spacing: 0.012em;
 }
-/* The detail line keeps its place before it has a text, so the caption does not move when it arrives. */
+/* The detail line comes with its text (the topic and the place); before that the caption stands alone by the S. */
 .pilot-wait[data-variant="2"] .hs-det {
-  min-height: 1.42em;
   margin-top: 0.16rem;
   font-size: 0.84em;
   line-height: 1.42;
@@ -318,7 +317,7 @@
 /* ---------- Phone (chat.css breakpoint): a smaller mark, the map centred under it all ---------- */
 @media (max-width: 768px) {
   .pilot-wait[data-variant="2"] {
-    --hs-mark: 3.25rem;
+    --hs-mark: 2.9rem;
     --hs-gap: 0.75rem;
   }
   .pilot-wait[data-variant="2"] .hs-stage {

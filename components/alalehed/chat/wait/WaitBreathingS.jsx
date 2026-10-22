@@ -107,10 +107,10 @@ export default function WaitBreathingS({ view, texts, map }) {
         </span>
         <span className="hs-status">
           <Lines className="hs-cap" lines={captions} quiet={captionRepeats} />
-          <Lines className="hs-det" lines={details} />
+          {details.length ? <Lines className="hs-det" lines={details} /> : null}
         </span>
       </div>
-      <div className="hs-stage">
+      {map || searching || pages || view.chosen ? <div className="hs-stage">
         {map ? <div className="hs-map" data-on={showMap ? "1" : undefined} aria-hidden={showMap ? undefined : "true"}>{map}</div> : null}
         {searching ? (
           <div className="hs-search" key="search" aria-hidden="true">
@@ -136,7 +136,7 @@ export default function WaitBreathingS({ view, texts, map }) {
             {texts.more ? <li className="hs-more" style={{ "--i": view.chosen.titles.length }}>{texts.more}</li> : null}
           </ul>
         ) : null}
-      </div>
+      </div> : null}
     </>
   );
 }
