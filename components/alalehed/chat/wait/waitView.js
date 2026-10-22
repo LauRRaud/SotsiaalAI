@@ -34,7 +34,7 @@ export function waitView(steps = []) {
       : null,
     found: Number.isInteger(found?.passages) ? { passages: found.passages, sources: Number.isInteger(found.sources) ? found.sources : null } : null,
     chosen: chosen && Array.isArray(chosen.titles)
-      ? { titles: chosen.titles.filter(title => typeof title === "string" && title).slice(0, 4), more: Number.isInteger(chosen.more) ? chosen.more : 0,
+      ? { titles: chosen.titles.filter(title => typeof title === "string" && title).slice(0, 12), more: Number.isInteger(chosen.more) ? chosen.more : 0,
         passages: Number.isInteger(chosen.passages) ? chosen.passages : null,
         // ADR-180: the sources are the answer before's own, read again for the provisions asked about (no search).
         previous: chosen.previous === true }

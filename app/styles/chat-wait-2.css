@@ -243,34 +243,40 @@
   font-size: 0.95em;
   opacity: 0.88;
 }
+/* The chosen sources, every one, small and running on as one paragraph (owner 22.10: "suurelt ma neid allikate
+   nimekirja ei tahtnud"; no "+2" that hides some). A title wraps like text, so two share a line where they fit. */
 .pilot-wait[data-variant="2"] .hs-material {
-  display: grid;
-  align-content: start;
-  gap: 0.38rem;
+  align-self: center;
   margin: 0;
   padding: 0;
   list-style: none;
+  font-size: 0.8em;
+  line-height: 1.55;
+  opacity: 0.88;
 }
 .pilot-wait[data-variant="2"] .hs-material li {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  min-width: 0;
-  font-size: 0.95em;
-  animation: hs-line-in 0.5s var(--ease-soft) both;
-  animation-delay: calc(var(--i) * 140ms);
+  display: inline;
+  margin-right: 0.85rem;
+  animation: hs-fade 0.5s var(--ease-soft) both;
+  animation-delay: calc(var(--i) * 110ms);
 }
 .pilot-wait[data-variant="2"] .hs-doc {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.78rem;
+  margin-right: 0.35rem;
+  vertical-align: -0.08em;
+  border-radius: 0.1rem;
   opacity: 0.8;
 }
+.pilot-wait[data-variant="2"] .hs-doc::before {
+  top: 30%;
+  box-shadow: 0 0.16rem 0 currentColor;
+}
 .pilot-wait[data-variant="2"] .hs-doc-title {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .pilot-wait[data-variant="2"] .hs-more {
-  padding-left: 1.35rem;
   opacity: 0.72;
 }
 
