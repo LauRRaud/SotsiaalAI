@@ -203,10 +203,8 @@ html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conver
     linear-gradient(160deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.12) 55%, rgba(255, 255, 255, 0.18) 100%),
     linear-gradient(rgba(232, 226, 219, 0.5), rgba(232, 226, 219, 0.5)),
     var(--room-frost-image);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
-    0 10px 28px rgba(60, 45, 30, 0.12);
+  /* Servata (omanik 22.10): ainult vari. */
+  box-shadow: 0 10px 28px rgba(60, 45, 30, 0.12);
 }
 html.theme-light:not(:has(.room[data-power="standby"]))[data-reduce-transparency="1"] .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
   background: rgba(248, 246, 243, 0.98);

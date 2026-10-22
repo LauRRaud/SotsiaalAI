@@ -1111,29 +1111,14 @@ button[aria-controls="chat-window-scroll"] {
   background-attachment: scroll, scroll, fixed;
   background-size: auto, auto, var(--room-frost-size);
   background-position: 0 0, 0 0, var(--room-frost-position);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 12px 32px rgba(5, 5, 5, 0.22);
+  /* Servata nagu AI-mull (omanik 22.10: „kasutaja mullil ei pidanud serva olema"): ainult vari. */
+  box-shadow: 0 12px 32px rgba(5, 5, 5, 0.22);
   /* Vt AI-mulli juures: pööre eemaldatud, mull seisab otse. */
   transform-origin: right center;
 }
+/* Klaasi helendav serv on ka kasutaja mullilt ära (omanik 22.10). */
 .panel-scrim[data-conversation="1"] [role="article"][data-role="user"]::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.34) 0%,
-    rgba(255, 255, 255, 0.05) 42%,
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
+  content: none;
 }
 /* Hover: mull EI liigu, ei kasva ega saa varju (omanik 23.09: hover-vari
    eemaldatud). */
