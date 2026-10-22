@@ -14,13 +14,17 @@ import { createPortal } from "react-dom";
    jäi riba alla (omanik 26.09: „hiir läheb sinna menüü alla").
 
    Tegevus võib riba asemel avada väikese kaardi (`renderPanel`, vastuse
-   tagasiside): kaart istub samas klaasis ja samas kohas. Avatud kaart ei
-   sulgu kerimisest ega akna suuruse muutusest (telefoni klaviatuur teeb
-   mõlemat), vaid liigub nupuga kaasa. `inert` tegevus on näha ja loetav,
-   aga ei tee midagi (tagasiside on juba saadetud). */
+   tagasiside): kaart on samast klaasist, aga ekraani ülaosas keskel (omanik
+   22.10: „võiks olla üleval pool, ekraani keskel“; nupu kõrval istus ta
+   sisestusvälja ja rollinuppude peal). Avatud kaart ei sulgu kerimisest ega
+   akna suuruse muutusest (telefoni klaviatuur teeb mõlemat), vaid paigutub
+   uuesti. `inert` tegevus on näha ja loetav, aga ei tee midagi (tagasiside
+   on juba saadetud). */
 
 const GAP = 6;
 const EDGE = 8;
+// Kaardi ülaserv on akna kõrgusest nii kaugel: ülaosas, aga mitte vastu akna serva.
+const PANEL_TOP = 0.14;
 // Kaardi fookuspeatused Tab-järjekorras: valikurühmast üks lahter (rändav tabulatsioon), väli ja nupud.
 const PANEL_FOCUSABLE = 'button:not(:disabled):not([tabindex="-1"]), textarea:not(:disabled), input:not(:disabled)';
 
@@ -39,27 +43,26 @@ export default function MessageActionsMenu({ label, tip, actions, speaking = fal
     if (returnFocus) buttonRef.current?.focus();
   }, []);
 
-  // Asukoht nupu järgi; ruumi puudumisel avaneb riba nupu kohale.
+  // Riba asukoht nupu järgi, ruumi puudumisel nupu kohal; kaart ekraani ülaosas keskel.
   const place = useCallback(() => {
     const button = buttonRef.current;
     const menu = menuRef.current;
     if (!button || !menu) return;
-    const b = button.getBoundingClientRect();
     const m = menu.getBoundingClientRect();
+    if (menu.hasAttribute("data-msg-menu-panel")) {
+      const top = Math.max(EDGE, Math.min(window.innerHeight * PANEL_TOP, window.innerHeight - m.height - EDGE));
+      menu.style.top = `${Math.round(top)}px`;
+      menu.style.left = `${Math.round(Math.max(EDGE, (window.innerWidth - m.width) / 2))}px`;
+      return;
+    }
+    const b = button.getBoundingClientRect();
     const below = b.bottom + GAP;
     const fitsBelow = below + m.height <= window.innerHeight - EDGE;
-    const beside = b.right + GAP;
-    let top = fitsBelow ? Math.max(EDGE, below) : Math.max(EDGE, b.top - GAP - m.height);
-    let left = Math.min(
+    const top = fitsBelow ? Math.max(EDGE, below) : Math.max(EDGE, b.top - GAP - m.height);
+    const left = Math.min(
       Math.max(EDGE, b.right - m.width),
       window.innerWidth - m.width - EDGE
     );
-    // Kaart, mis nupu alla ei mahu, läheb laias aknas mulli kõrvale: nupu kohal kataks ta vastuse,
-    // mille kohta inimene parajasti kirjutab.
-    if (!fitsBelow && menu.hasAttribute("data-msg-menu-panel") && beside + m.width <= window.innerWidth - EDGE) {
-      left = beside;
-      top = Math.max(EDGE, Math.min(b.top, window.innerHeight - m.height - EDGE));
-    }
     menu.style.top = `${Math.round(top)}px`;
     menu.style.left = `${Math.round(left)}px`;
   }, []);
