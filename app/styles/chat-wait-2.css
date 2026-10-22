@@ -99,9 +99,17 @@
    its pin stays. The shelf and the pages keep to the map's width and middle; the material list may run past its
    edge. ---------- */
 .pilot-wait[data-variant="2"] .hs-scene {
+  --hs-shelf-delay: 0s;
   display: grid;
   min-width: 0;
   margin-left: calc(var(--hs-mark) + var(--hs-gap));
+}
+/* With a place, in turn (owner 22.10: "varem oli ikkagi animatsioon, kuidas tekkis kaart, valiti asukoht, siis võib
+   sul tulla helendav allikarida sinna peale mida luup ajab taga ja kaart veidi kaob taustalt, alguses tugevamalt"): the
+   map comes and its pin drops (pilot-map-in and pilot-pin-drop, about a second), then the shelf comes onto it with the
+   lens and the map recedes; the found pages push it further back. */
+.pilot-wait[data-variant="2"] .hs-scene[data-map] {
+  --hs-shelf-delay: 1.5s;
 }
 .pilot-wait[data-variant="2"] :is(.hs-scene, .hs-stage) > * {
   grid-area: 1 / 1;
@@ -134,18 +142,19 @@
 .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.9s var(--ease-soft);
 }
-/* The map stays in the background (owner 22.10: "eesti kaart võiks rohkem ära hajuda taustast"). */
+/* The map goes to the background (owner 22.10: "eesti kaart võiks rohkem ära hajuda taustast"). The pin's own drop
+   holds its opacity, so the pin fades by a filter. */
 .pilot-wait[data-variant="2"] .hs-scene:has(> .hs-stage) .pilot-map__lines {
-  opacity: 0.38;
+  animation: hs-map-recede 1.2s var(--ease-soft) var(--hs-shelf-delay) both;
 }
 .pilot-wait[data-variant="2"] .hs-scene .hs-map[data-quiet] .pilot-map__lines {
-  opacity: 0.2;
+  animation: hs-map-quiet 0.9s var(--ease-soft) both;
 }
 .pilot-wait[data-variant="2"] .hs-map .pilot-map__pin {
-  transition: opacity 0.9s var(--ease-soft);
+  transition: filter 0.9s var(--ease-soft);
 }
 .pilot-wait[data-variant="2"] .hs-scene .hs-map[data-quiet] .pilot-map__pin {
-  opacity: 0.6;
+  filter: opacity(0.6);
 }
 /* The place is in the detail line; the map does not say it twice. */
 .pilot-wait[data-variant="2"] .pilot-map__label {
@@ -197,12 +206,14 @@
   display: grid;
   justify-self: start;
   padding: 0.25rem 0;
-  animation: hs-fade 0.5s var(--ease-soft) both;
+  animation: hs-fade 0.5s var(--ease-soft) var(--hs-shelf-delay) both;
 }
+/* A glowing shelf the lens chases along: the lens sweeps left to right (hs-lens) and each page lights up as it reaches
+   it (the delay is when the lens's middle is over the page's middle: 0.17 s, then 0.298 s a page). */
 .pilot-wait[data-variant="2"] .hs-page.hs-page--dim {
-  opacity: 0.24;
-  animation: hs-page-in 0.4s var(--ease-soft) both;
-  animation-delay: calc(var(--i) * 60ms);
+  opacity: 0.5;
+  animation: hs-page-in 0.4s var(--ease-soft) both, hs-page-glow 2.6s linear infinite;
+  animation-delay: calc(var(--hs-shelf-delay) + var(--i) * 60ms), calc(var(--hs-shelf-delay) + 0.17s + var(--i) * 0.298s);
 }
 /* The shelf the lens passes over: the lens moves along it wherever the shelf stands (at the text, or in the map's
    middle). */
@@ -220,7 +231,7 @@
   border: 1.5px solid currentColor;
   border-radius: 50%;
   opacity: 0.85;
-  animation: hs-lens 3.4s ease-in-out infinite;
+  animation: hs-lens 2.6s linear var(--hs-shelf-delay) infinite both;
 }
 .pilot-wait[data-variant="2"] .hs-lens::after {
   content: "";
@@ -276,8 +287,22 @@
   animation: hs-line-in 0.5s var(--ease-soft) both;
 }
 @keyframes hs-lens {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(9.75rem); }
+  0% { transform: translateX(0); opacity: 0; }
+  8% { transform: translateX(0); opacity: 0.85; }
+  85% { transform: translateX(9.75rem); opacity: 0.85; }
+  100% { transform: translateX(9.75rem); opacity: 0; }
+}
+@keyframes hs-page-glow {
+  0% { opacity: 1; }
+  22%, 100% { opacity: 0.5; }
+}
+@keyframes hs-map-recede {
+  from { opacity: 1; }
+  to { opacity: 0.38; }
+}
+@keyframes hs-map-quiet {
+  from { opacity: 0.38; }
+  to { opacity: 0.2; }
 }
 @keyframes hs-page-in {
   from { opacity: 0; transform: translateY(4px) scale(0.9); }
@@ -318,7 +343,8 @@
   .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
     transition: opacity 0.3s linear;
   }
-  .pilot-wait[data-variant="2"] .hs-page {
+  .pilot-wait[data-variant="2"] .hs-page,
+  .pilot-wait[data-variant="2"] .hs-page.hs-page--dim {
     animation: hs-fade 0.3s linear both;
   }
   .pilot-wait[data-variant="2"] .hs-lens {
@@ -341,7 +367,8 @@ html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-s {
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.3s linear;
 }
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page {
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page,
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page.hs-page--dim {
   animation: hs-fade 0.3s linear both;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-lens {
