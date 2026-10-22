@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "created_at": "2026-09-07T20:16:49.778Z",
-  "updated_at": "2026-10-20",
+  "updated_at": "2026-10-22",
   "path_base": "Andmebaasi",
   "archive": "../Arhiiv/Andmebaasi_2026-09-07",
   "import_rule": "Use source entries with their metadata. reference_lookup and review_source require reconciliation; metadata, source_register and source_planning_register are not independent knowledge documents. Folder organisation does not assert ingest acceptance.",
@@ -11,8 +11,8 @@
       "sources": 892
     },
     "juhendid_ja_uuringud": {
-      "files": 370,
-      "sources": 185
+      "files": 372,
+      "sources": 186
     },
     "KOV": {
       "files": 234,
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v92",
-    "index_generation": "48dbc850",
-    "read_at": "2026-10-20",
-    "documents": 11023,
-    "units": 107727,
+    "version": "v93",
+    "index_generation": "ab0ef1d3",
+    "read_at": "2026-10-22",
+    "documents": 11024,
+    "units": 107810,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,11 +105,11 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 582,
+        "documents": 583,
         "by_source_type": {
           "research_report": 281,
           "information_material": 145,
-          "official_guideline": 142,
+          "official_guideline": 143,
           "policy_analysis": 14
         }
       },
@@ -195,11 +195,11 @@
         }
       },
       "juhendid_ja_uuringud": {
-        "documents": 171,
+        "documents": 172,
         "by_source_type": {
           "information_material": 81,
           "research_report": 46,
-          "official_guideline": 38,
+          "official_guideline": 39,
           "policy_analysis": 6
         }
       }
@@ -33502,6 +33502,23 @@
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
       "sha256": "effab245498dd8ac359a73eb3ac547efe75e6943ee803ad53e0806b6efe9b70c"
+    },
+    {
+      "path": "juhendid_ja_uuringud/justiits_ja_digiministeerium_lahisuhtevagivalla_kasitlus_perearstiabis_tegevusjuhend_2026.pdf",
+      "category": "juhendid_ja_uuringud",
+      "role": "source",
+      "sha256": "1ebf88a83e1b7034dd073c7a138c34324b23d95da882f9be332917e4b2c60fb7",
+      "original_path": "www.justdigi.ee/sites/default/files/documents/2026-10/Impact_LSV_juhend%20v2.0%20KU%CC%88LJENDATUD_16.10.2026_LO%CC%83PLIK.pdf",
+      "title": "Lähisuhtevägivalla käsitlus perearstiabis. Tegevusjuhend 2026",
+      "metadata_path": "juhendid_ja_uuringud/justiits_ja_digiministeerium_lahisuhtevagivalla_kasitlus_perearstiabis_tegevusjuhend_2026.json",
+      "review_status": "metadata_conversion_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "juhendid_ja_uuringud/justiits_ja_digiministeerium_lahisuhtevagivalla_kasitlus_perearstiabis_tegevusjuhend_2026.json",
+      "category": "juhendid_ja_uuringud",
+      "role": "metadata",
+      "sha256": "c87cb8f678e8561939af3b3f9b89844574dfe3826ffbebfd7895658bbbe23cca"
     },
     {
       "path": "juhendid_ja_uuringud/lastekaitse_liit_lapse_osalemise_pohimotted.pdf",
