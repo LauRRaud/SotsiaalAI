@@ -1,5 +1,7 @@
 # ADR-178 — Paragrahv lause sees, mitte lõigu taga (m4-grounded-answer-16, m4-grounded-dialogue-51)
 
+**Asendatud ADR-179-ga samal päeval:** omanik ütles sellise vastuse kohta „ei meeldi“, nüüd nimetab vastus paragrahvi ainult küsimisel.
+
 22.10.2026. Teostus Claude Opus 5.5. Omaniku tähelepanek vastuse kohta: „viited vist ei peaks lõikude taga olema“.
 Valikute peale vastas omanik: „variant on ka lõigu sees lühendatult, siduda teksti sisse. Või siis ainult eraldi
 allikatesse, kust saab ka vaadata“.

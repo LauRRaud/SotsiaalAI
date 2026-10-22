@@ -19,10 +19,9 @@
         {
           "mode": "new",
           "text": "Mul on raha otsas ja üür on maksmata. Kas ma saan toimetulekutoetust ja kui kiiresti peab vald otsustama?",
-          "note": "A help seeker: the act's full name, provisions in brackets for what the person can rely on, usually one to three.",
+          "note": "ADR-179 (22.10.2026): the question asks for no provision, so the answer names none; the sources panel shows them. Until then: the act's full name, provisions in brackets for what the person can rely on, usually one to three.",
           "expect": {
-            "names_provision": true,
-            "provisions_at_most": 4,
+            "names_provision": false,
             "cited": ["Sotsiaalhoolekande seadus"],
             "must_not": ["\\bSHS\\b"]
           }
@@ -47,11 +46,10 @@
         {
           "mode": "new",
           "text": "Elan Kuusalu vallas. Milliseid eluasemekulusid ja mis piirini toimetulekutoetuse arvestamisel arvesse võetakse?",
-          "note": "A municipality's regulation is named by the municipality (Kuusalu valla määruse § …), the law by its full name.",
+          "note": "ADR-179 (22.10.2026): the question asks for no provision, so the answer names none. Where one is asked for, a municipality's regulation is named by the municipality (Kuusalu valla määruse § …), the law by its full name.",
           "expect": {
             "region": "kuusalu_vald",
-            "names_provision": true,
-            "provisions_at_most": 4
+            "names_provision": false
           }
         }
       ]
@@ -353,8 +351,9 @@
         {
           "mode": "new",
           "text": "Osutan koduteenust. Mis nõuded on seaduses teenust vahetult osutavale isikule?",
+          "note": "ADR-179 (22.10.2026): the question asks what the law requires, not for a provision, so the answer names none and cites § 25 by its refs.",
           "expect": {
-            "names_provision": true,
+            "names_provision": false,
             "cited_provision": [{ "title": "^Sotsiaalhoolekande seadus$", "section": "25" }]
           }
         }
