@@ -4961,13 +4961,16 @@
     "pilot_wait": {
       "reading": "Читаю вопрос…",
       "searching": "Ищу в базе Sotsiaal.pro…",
-      "found": "Фрагментов: {passages}, источников: {sources}",
+      "found": "Подходящих источников: {sources} из {documents} документов",
       "choosing": "Выбираю, что прочитать…",
       "chosen": "Выбрано для чтения",
       "more": "+{n}",
       "writing": "Пишу ответ…",
       "place_or": "{a} или {b}",
-      "earlier": "ранее"
+      "earlier": "ранее",
+      "found_one": "Подходящий источник: 1 из {documents} документов",
+      "found_plain": "Подходящих источников: {sources}",
+      "found_plain_one": "Подходящий источник: 1"
     }
   },
   "documents": {

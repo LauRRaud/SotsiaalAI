@@ -103,3 +103,7 @@
     „(varasemast)“.
   - Kui kohta pole, liigub otsingu ajal kaardi asemel luup üle hämarate lehtede. Arvu näidatakse alles siis, kui otsing
     selle annab.
+- **Arv ilma eksitava 36-ta.** Omanik: „see on veidi eksitav … alati näitab „leitud 36 lõiku““.
+  - 36 on valiku kandidaatide lühinimekirja suurus (30 + 6 reservkohta) ja on alati sama.
+  - Nüüd on tekst kujul „19 sobivat allikat 4512 dokumendi seast“: sobivad allikad lühinimekirjas ja dokumendid, mille
+    seast otsing järjestas (`scope.documents`, teadmiste raja ulatus pärast kehtivuse ja omavalitsuse filtrit).

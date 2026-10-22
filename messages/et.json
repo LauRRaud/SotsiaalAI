@@ -4961,13 +4961,16 @@
     "pilot_wait": {
       "reading": "Loen küsimust…",
       "searching": "Otsin Sotsiaal.pro andmebaasist…",
-      "found": "{passages} lõiku {sources} allikast",
+      "found": "{sources} sobivat allikat {documents} dokumendi seast",
       "choosing": "Valin, mida lugeda…",
       "chosen": "Valisin lugemiseks",
       "more": "+{n}",
       "writing": "Kirjutan vastust…",
       "place_or": "{a} või {b}",
-      "earlier": "varasemast"
+      "earlier": "varasemast",
+      "found_one": "1 sobiv allikas {documents} dokumendi seast",
+      "found_plain": "{sources} sobivat allikat",
+      "found_plain_one": "1 sobiv allikas"
     }
   },
   "documents": {

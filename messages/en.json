@@ -4961,13 +4961,16 @@
     "pilot_wait": {
       "reading": "Reading your question…",
       "searching": "Searching the Sotsiaal.pro database…",
-      "found": "{passages} passages in {sources} sources",
+      "found": "{sources} relevant sources among {documents} documents",
       "choosing": "Choosing what to read…",
       "chosen": "Chosen to read",
       "more": "+{n}",
       "writing": "Writing the answer…",
       "place_or": "{a} or {b}",
-      "earlier": "from earlier"
+      "earlier": "from earlier",
+      "found_one": "1 relevant source among {documents} documents",
+      "found_plain": "{sources} relevant sources",
+      "found_plain_one": "1 relevant source"
     }
   },
   "documents": {

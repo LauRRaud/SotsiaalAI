@@ -24,6 +24,8 @@ export function waitView(steps = []) {
     topic: typeof plan?.topic === "string" && plan.topic ? plan.topic : null,
     places,
     earlier,
+    // How many documents the search ranked (the shortlist of passages has the same size every time, so it is not shown).
+    searched: Number.isInteger(scope?.documents) && scope.documents > 0 ? scope.documents : null,
     found: Number.isInteger(found?.passages) ? { passages: found.passages, sources: Number.isInteger(found.sources) ? found.sources : null } : null,
     chosen: chosen && Array.isArray(chosen.titles)
       ? { titles: chosen.titles.filter(title => typeof title === "string" && title).slice(0, 4), more: Number.isInteger(chosen.more) ? chosen.more : 0,
@@ -52,9 +54,15 @@ export function tr(t, key, fallback) {
 
 /* The texts of each stage, so the designs say the same things in every language. */
 export function waitTexts(t, view) {
-  const found = view.found
-    ? tr(t, "chat.pilot_wait.found", "{passages} lõiku {sources} allikast").replace("{passages}", String(view.found.passages)).replace("{sources}", String(view.found.sources ?? "?"))
-    : null;
+  // The sources the search found worth reading, among the documents it searched (not the shortlist's fixed 36 passages,
+  // which read as if every answer came from 36 passages: owner 22.10).
+  const sources = view.found?.sources ?? null;
+  const documents = view.searched != null ? new Intl.NumberFormat("et-EE").format(view.searched) : null;
+  const found = sources == null ? null
+    : (documents
+      ? tr(t, sources === 1 ? "chat.pilot_wait.found_one" : "chat.pilot_wait.found", sources === 1 ? "1 sobiv allikas {documents} dokumendi seast" : "{sources} sobivat allikat {documents} dokumendi seast")
+      : tr(t, sources === 1 ? "chat.pilot_wait.found_plain_one" : "chat.pilot_wait.found_plain", sources === 1 ? "1 sobiv allikas" : "{sources} sobivat allikat"))
+      .replace("{sources}", String(sources)).replace("{documents}", documents ?? "");
   return {
     reading: tr(t, "chat.pilot_wait.reading", "Loen küsimust…"),
     searching: tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…"),
