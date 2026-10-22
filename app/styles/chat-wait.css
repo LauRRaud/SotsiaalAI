@@ -112,12 +112,17 @@
 }
 
 /* ---------- The folded line once the answer is written ---------- */
+.pilot-wait-summary-row {
+  display: block;
+  margin: 0 0 0.55rem;
+}
 .pilot-wait-summary {
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
-  margin: 0 0 0.55rem;
+  margin: 0;
   padding: 0;
+  white-space: nowrap;
   border: 0;
   background: none;
   color: inherit;
@@ -137,7 +142,7 @@
   transform: rotate(180deg);
 }
 .pilot-wait-trail {
-  margin: 0 0 0.7rem;
+  margin: 0.45rem 0 0.2rem;
   padding: 0 0 0 0.9rem;
   border-left: 1px solid currentColor;
   font-size: var(--fs-small, 0.85rem);

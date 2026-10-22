@@ -195,10 +195,8 @@ html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conver
     radial-gradient(120% 90% at 14% 0%, rgba(255, 255, 255, 0.4), transparent 52%),
     linear-gradient(165deg, rgba(250, 248, 245, 0.4) 0%, rgba(248, 246, 243, 0.46) 58%, rgba(246, 244, 241, 0.5) 100%),
     var(--room-frost-image);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
-    0 14px 36px rgba(60, 45, 30, 0.14);
+  /* Servata (omanik 22.10): ainult vari. */
+  box-shadow: 0 14px 36px rgba(60, 45, 30, 0.14);
 }
 html.theme-light:not(:has(.room[data-power="standby"])) .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
   background-image:

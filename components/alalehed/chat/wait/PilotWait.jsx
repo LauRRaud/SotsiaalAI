@@ -39,8 +39,10 @@ export function PilotWaitSummary({ t, steps }) {
     view.chosen ? [texts.chosen, [...view.chosen.titles, texts.more].filter(Boolean).join(" · "), view.at.chosen] : null,
     view.at.writing != null ? [tr(t, "chat.pilot_wait.wrote", "Vastuse kirjutamine algas"), "", view.at.writing] : null,
   ].filter(Boolean);
+  // In its own block: chat.css lays out a message row that has a button as a direct child as a flex row
+  // (#chat-window-scroll > div:has(> button)), which put this line beside the answer as a narrow column.
   return (
-    <>
+    <div className="pilot-wait-summary-row">
       <button type="button" className="pilot-wait-summary" aria-expanded={open ? "true" : "false"} onClick={event => { event.stopPropagation(); setOpen(value => !value); }}>
         <span>{line}{view.at.writing != null ? ` · ${seconds(view.at.writing)}` : ""}</span>
         <span className="pilot-wait-summary__chev" aria-hidden="true">⌄</span>
@@ -52,6 +54,6 @@ export function PilotWaitSummary({ t, steps }) {
           ))}
         </ol>
       ) : null}
-    </>
+    </div>
   );
 }

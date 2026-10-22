@@ -66,7 +66,9 @@ export default function WorkspaceRoleCycleButton({
           <button
             key={role}
             type="button"
-            data-variant={active ? "primary" : "default"}
+            // The active role shows as selected (glass.css aria-pressed): "primary" no longer differs from the
+            // surface (01.08), so the active role had become invisible (owner 22.10).
+            data-variant="default"
             data-on={active ? "1" : "0"}
             aria-pressed={active}
             aria-label={label}
