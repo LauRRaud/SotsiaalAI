@@ -1,0 +1,621 @@
+/* ADR-176, design 4 "Tähtkuju" (components/alalehed/chat/wait/WaitConstellation.jsx): a small constellation in the
+   answer's card. The S in the centre; the found passages as points of light; the chosen sources drawn into the S.
+   Colours come from the text colour (currentColor = --text-warm) and a few tokens below, so the same sky reads on the
+   dark card at night and the milky card by day. Motion is transform and opacity only. */
+
+/* ---------- The card ----------
+   The sky runs to the card's edges (as in the mockup): the bubble keeps its sides and bottom, and the sky bleeds over
+   the same side padding, which these properties carry so the two never drift apart. */
+[role="article"][data-role="ai"][data-pilot-wait="4"] {
+  --pw4-pad-l: 1.3em;
+  --pw4-pad-r: 1.25em;
+  padding: 0 var(--pw4-pad-r) 0.95em var(--pw4-pad-l);
+}
+
+.pilot-wait[data-variant="4"] {
+  /* Night (default): warm light around the points on the smoked card. */
+  --pw4-glow: 255 236 210;
+  --pw4-halo-a: 0.42;
+  --pw4-core: 92%;
+  --pw4-dim-a: 0.26;
+  --pw4-ray: 42%;
+  --pw4-neb-a: 0.08;
+  --pw4-beam-a: 0.1;
+  --pw4-mark-a: 0.84;
+  --pw4-mark-shadow: drop-shadow(0 0 5px rgba(249, 249, 249, 0.28));
+  --pw4-chip-bg: 6%;
+  --pw4-chip-edge: 15%;
+  /* As wide as the bubble lets an answer be, so the card does not change width when the answer starts. */
+  width: 48rem;
+  max-width: 100%;
+  gap: 0.15rem;
+}
+/* Day: dark points with a white halo on the milky card (theme-light.css's "lights on" condition). */
+html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant="4"] {
+  --pw4-glow: 255 255 255;
+  --pw4-halo-a: 0.95;
+  --pw4-core: 74%;
+  --pw4-dim-a: 0.3;
+  --pw4-ray: 36%;
+  --pw4-neb-a: 0.5;
+  --pw4-beam-a: 0.6;
+  --pw4-mark-a: 0.78;
+  --pw4-mark-shadow: none;
+  --pw4-chip-bg: 4.5%;
+  --pw4-chip-edge: 13%;
+}
+
+/* ---------- The sky ---------- */
+.pilot-wait[data-variant="4"] .pw4-sky {
+  position: relative;
+  height: clamp(7.75rem, 17vh, 9.75rem);
+  margin-inline: calc(-1 * var(--pw4-pad-l, 0px)) calc(-1 * var(--pw4-pad-r, 0px));
+  overflow: hidden;
+  /* Soft edges, so the sky sits in the card rather than in a box. */
+  -webkit-mask-image: radial-gradient(ellipse 50% 56% at 50% 50%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 56% at 50% 50%, #000 60%, transparent 100%);
+}
+/* chat.css caps the bubble's grandchildren at 100% (long words); the sky is wider than its column on purpose. */
+[role="article"][data-role="ai"] .pilot-wait[data-variant="4"] > .pw4-sky {
+  max-width: none;
+}
+.pilot-wait[data-variant="4"] .pw4-nebula {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 30% 62% at 50% 50%, rgb(var(--pw4-glow) / var(--pw4-neb-a)), transparent 72%);
+}
+
+/* Searching: rings go out from the S, the card's own oval shape. */
+.pilot-wait[data-variant="4"] .pw4-ripples {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-soft, ease-out);
+}
+.pilot-wait[data-variant="4"] .pw4-ripples > span {
+  position: absolute;
+  inset: 8% 10%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+  opacity: 0;
+  transform: scale(0.06);
+}
+.pilot-wait[data-variant="4"][data-stage="searching"] .pw4-ripples {
+  opacity: 1;
+}
+/* Kept running into the next stage while the rings fade, so none snaps back. */
+.pilot-wait[data-variant="4"]:is([data-stage="searching"], [data-stage="choosing"]) .pw4-ripples > span {
+  animation: pw4-ripple 3.6s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.pilot-wait[data-variant="4"]:is([data-stage="searching"], [data-stage="choosing"]) .pw4-ripples > span + span {
+  animation-delay: 1.8s;
+}
+/* The calm variant's searching: one still dashed ring (shown only under reduced motion). */
+.pilot-wait[data-variant="4"] .pw4-ring {
+  position: absolute;
+  inset: 22% 30%;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, currentColor 35%, transparent);
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+/* Choosing: a soft light sweeps round, and each point glints as it passes. Its turn (6 s after 1.1 s) is shared with
+   the glint delays the component computes (BEAM_S). */
+.pilot-wait[data-variant="4"] .pw4-beam {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s var(--ease-soft, ease-out), visibility 0s linear 0.7s;
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-beam="on"] .pw4-beam {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.7s var(--ease-soft, ease-out) 1.1s, visibility 0s linear 1.1s;
+}
+.pilot-wait[data-variant="4"] .pw4-beam > span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 104%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    transparent 0deg,
+    rgb(var(--pw4-glow) / 0) 4deg,
+    rgb(var(--pw4-glow) / var(--pw4-beam-a)) 27deg,
+    rgb(var(--pw4-glow) / 0) 36deg,
+    transparent 360deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 4%, #000 14%, #000 34%, transparent 50%);
+  mask-image: radial-gradient(circle, transparent 0 4%, #000 14%, #000 34%, transparent 50%);
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-beam] .pw4-beam > span {
+  animation: pw4-spin 6s linear 1.1s infinite;
+}
+
+/* ---------- Points, lines and rays ---------- */
+.pilot-wait[data-variant="4"] .pw4-field {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+
+/* A found passage. Its group is its source; only each group's first point twinkles and glints, so half the layers
+   move. */
+.pilot-wait[data-variant="4"] .pw4-star {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  translate: var(--x) var(--y);
+  transition: opacity 0.9s var(--ease-soft, ease-out), scale 0.9s var(--ease-drift, ease-out);
+  animation: pw4-star-in 1.05s var(--ease-drift, ease-out) var(--ad, 0s) backwards;
+}
+.pilot-wait[data-variant="4"] .pw4-star > span {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.pilot-wait[data-variant="4"] .pw4-star__halo {
+  width: 18px;
+  height: 18px;
+  left: -9px;
+  top: -9px;
+  background: radial-gradient(circle, rgb(var(--pw4-glow) / var(--pw4-halo-a)) 0%, rgb(var(--pw4-glow) / 0) 68%);
+  opacity: 0.55;
+  transition: opacity 0.9s var(--ease-soft, ease-out);
+}
+.pilot-wait[data-variant="4"] .pw4-star__core {
+  width: 3px;
+  height: 3px;
+  left: -1.5px;
+  top: -1.5px;
+  background: color-mix(in srgb, currentColor var(--pw4-core), transparent);
+  box-shadow: 0 0 5px 0.5px rgb(var(--pw4-glow) / calc(var(--pw4-halo-a) * 0.8));
+}
+.pilot-wait[data-variant="4"] .pw4-star__ring {
+  width: 11px;
+  height: 11px;
+  left: -5.5px;
+  top: -5.5px;
+  border: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity 0.6s var(--ease-soft, ease-out) 0.25s,
+    transform 0.8s cubic-bezier(0.26, 1.18, 0.4, 1) 0.25s;
+}
+.pilot-wait[data-variant="4"] .pw4-star[data-first] .pw4-star__core {
+  animation: pw4-twinkle var(--tw, 4s) ease-in-out var(--twd, 0s) infinite alternate;
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-beam="on"] .pw4-star[data-first] .pw4-star__halo {
+  animation: pw4-glint 6s linear calc(1.1s + var(--gd, 0s)) infinite;
+}
+/* The selection: its sources grow and ring, the rest step back (the answer will not use them). */
+.pilot-wait[data-variant="4"] .pw4-sky[data-chosen] .pw4-star:not([data-chosen]) {
+  opacity: var(--pw4-dim-a);
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-chosen] .pw4-star[data-chosen] {
+  scale: 1.3;
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-chosen] .pw4-star[data-chosen] .pw4-star__halo {
+  opacity: 0.85;
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-chosen] .pw4-star[data-chosen][data-first] .pw4-star__ring {
+  opacity: 1;
+  transform: none;
+}
+/* A source chip under the pointer shows where its passages are. */
+.pilot-wait[data-variant="4"] .pw4-sky[data-lit] .pw4-star[data-chosen]:not([data-lit]) {
+  opacity: 0.45;
+}
+.pilot-wait[data-variant="4"] .pw4-sky[data-lit] .pw4-star[data-lit] {
+  scale: 1.65;
+  transition-duration: 0.35s;
+}
+
+/* A line inside a chosen group, and a chosen group's ray into the S: drawn from the point towards the S by scaling. */
+.pilot-wait[data-variant="4"] :is(.pw4-link, .pw4-ray) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform: translate(var(--x), var(--y)) rotate(var(--a));
+}
+.pilot-wait[data-variant="4"] .pw4-link::before,
+.pilot-wait[data-variant="4"] .pw4-ray__line {
+  content: "";
+  position: absolute;
+  left: var(--from, 0px);
+  top: -0.5px;
+  width: var(--len);
+  height: 1px;
+  border-radius: 1px;
+  background: color-mix(in srgb, currentColor var(--pw4-ray), transparent);
+  transform-origin: 0 50%;
+  animation: pw4-draw 1.15s var(--ease-drift, ease-out) var(--ld, 0s) both;
+}
+.pilot-wait[data-variant="4"] .pw4-link::before {
+  opacity: 0.85;
+}
+/* Writing: a pulse of light runs along each ray into the S. */
+.pilot-wait[data-variant="4"] .pw4-ray__pulse {
+  position: absolute;
+  left: -2.5px;
+  top: -2.5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, currentColor 95%, transparent);
+  box-shadow: 0 0 8px 2px rgb(var(--pw4-glow) / var(--pw4-halo-a));
+  opacity: 0;
+  animation: pw4-travel 4.2s cubic-bezier(0.45, 0, 0.35, 1) var(--pd, 1.3s) infinite;
+}
+
+/* ---------- The S ---------- */
+.pilot-wait[data-variant="4"] .pw4-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+.pilot-wait[data-variant="4"] .pw4-glow {
+  position: absolute;
+  width: 6.5rem;
+  height: 6.5rem;
+  left: -3.25rem;
+  top: -3.25rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--pw4-glow) / calc(var(--pw4-halo-a) * 0.9)) 0%, rgb(var(--pw4-glow) / 0) 66%);
+  opacity: 0.55;
+  animation: pw4-breathe 4.4s ease-in-out infinite alternate;
+}
+.pilot-wait[data-variant="4"][data-stage="writing"] .pw4-glow {
+  animation: pw4-breathe-more 3.2s ease-in-out infinite alternate;
+}
+/* Reading: one point circles the S. The ring is drawn too, or the point reads as a full stop after the S. */
+.pilot-wait[data-variant="4"] .pw4-orbit {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  left: -2rem;
+  top: -2rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 20%, transparent);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-soft, ease-out);
+}
+.pilot-wait[data-variant="4"] .pw4-orbit::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -1.75px;
+  width: 3.5px;
+  height: 3.5px;
+  margin-left: -1.75px;
+  border-radius: 50%;
+  background: color-mix(in srgb, currentColor 85%, transparent);
+  box-shadow: 0 0 6px 1.5px rgb(var(--pw4-glow) / var(--pw4-halo-a));
+}
+.pilot-wait[data-variant="4"][data-stage="reading"] .pw4-orbit {
+  opacity: 1;
+}
+.pilot-wait[data-variant="4"]:is([data-stage="reading"], [data-stage="searching"]) .pw4-orbit {
+  animation: pw4-spin 7.5s linear infinite;
+}
+/* The platform's S, in the text colour; it turns once as the card arrives, as today's waiting S does. */
+.pilot-wait[data-variant="4"] .pw4-mark {
+  position: absolute;
+  height: 2.15rem;
+  width: calc(2.15rem * 25.2 / 41.6);
+  left: calc(2.15rem * 25.2 / 41.6 / -2);
+  top: -1.075rem;
+  opacity: var(--pw4-mark-a);
+  filter: var(--pw4-mark-shadow, none);
+  animation: pw4-s-flip 1.9s var(--ease-drift, ease-out) 0.15s both;
+}
+.pilot-wait[data-variant="4"] .pw4-mark > span {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  -webkit-mask: url("/logo/sai-s-valge.svg") center / contain no-repeat;
+  mask: url("/logo/sai-s-valge.svg") center / contain no-repeat;
+}
+
+/* ---------- Caption: the real steps ---------- */
+.pilot-wait[data-variant="4"] .pw4-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.1rem;
+}
+.pilot-wait[data-variant="4"] .pw4-text {
+  flex: 1 1 15rem;
+  min-width: 0;
+  display: grid;
+  /* minmax(0, …): a long source title must shorten with "…", not widen the column past a phone's card. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.18em;
+}
+.pilot-wait[data-variant="4"] .pw4-text > p {
+  margin: 0;
+}
+.pilot-wait[data-variant="4"] .pw4-lead {
+  min-height: 1.6em;
+  color: var(--text-soft, currentColor);
+}
+.pilot-wait[data-variant="4"] .pw4-topic {
+  font-weight: 560;
+  color: var(--pw-ink, currentColor);
+}
+.pilot-wait[data-variant="4"] .pw4-place {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.1em 0.65em 0.12em;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor var(--pw4-chip-bg), transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor var(--pw4-chip-edge), transparent);
+  font-size: 0.78em;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* One name, two municipalities: the place is not settled yet. */
+.pilot-wait[data-variant="4"] .pw4-place[data-unsure] {
+  background: none;
+  box-shadow: none;
+  border: 1px dashed color-mix(in srgb, currentColor 32%, transparent);
+}
+/* The map already names the place under its pin. */
+.pilot-wait[data-variant="4"]:has(.pilot-map) .pw4-place {
+  display: none;
+}
+.pilot-wait[data-variant="4"] .pw4-activity {
+  min-height: 1.45em;
+  font-size: 0.86em;
+  color: var(--text-dim, currentColor);
+  font-variant-numeric: tabular-nums;
+}
+.pilot-wait[data-variant="4"] .pw4-fact {
+  color: var(--text-soft, currentColor);
+}
+.pilot-wait[data-variant="4"] .pw4-sep {
+  margin: 0 0.45em;
+  opacity: 0.6;
+}
+/* New text arrives by mounting (React keys): it rises in where the old line was. */
+.pilot-wait[data-variant="4"] .pw4-in {
+  display: inline-block;
+  max-width: 100%;
+  animation: pw4-in 0.5s var(--ease-soft, ease-out) 0.1s both;
+}
+.pilot-wait[data-variant="4"] .pw4-in.pw4-topicline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em 0.6em;
+}
+.pilot-wait[data-variant="4"] .pw4-dots > i {
+  display: inline-block;
+  font-style: normal;
+  opacity: 0.25;
+  animation: pw4-dot 1.5s ease-in-out infinite;
+}
+.pilot-wait[data-variant="4"] .pw4-dots > i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.pilot-wait[data-variant="4"] .pw4-dots > i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+/* The chosen sources as small labels, each with its point of light. */
+.pilot-wait[data-variant="4"] .pw4-sources {
+  list-style: none;
+  margin: 0.3em 0 0.15em;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+.pilot-wait[data-variant="4"] .pw4-src {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  max-width: 100%;
+  padding: 0.18em 0.75em 0.2em 0.6em;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor var(--pw4-chip-bg), transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor var(--pw4-chip-edge), transparent);
+  color: var(--text-soft, currentColor);
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+  cursor: default;
+  animation: pw4-src-in 0.5s var(--ease-soft, ease-out) var(--sd, 0s) both;
+}
+.pilot-wait[data-variant="4"] .pw4-src[data-more] {
+  color: var(--text-dim, currentColor);
+}
+.pilot-wait[data-variant="4"] .pw4-src__dot {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, currentColor 90%, transparent);
+  box-shadow: 0 0 0 2.5px color-mix(in srgb, currentColor 14%, transparent);
+}
+.pilot-wait[data-variant="4"] .pw4-src__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pilot-wait[data-variant="4"] .pw4-note {
+  margin-top: 0.3em;
+  font-size: 0.8em;
+  color: var(--text-dim, currentColor);
+  animation: pw4-fade 0.6s var(--ease-soft, ease-out) both;
+}
+/* The place map beside the caption; on a phone it wraps under it, centred. */
+.pilot-wait[data-variant="4"] .pw4-caption > .pilot-map {
+  flex: 0 0 auto;
+  margin-inline: auto;
+}
+.pilot-wait[data-variant="4"] .pilot-map[data-look] .pilot-map__frame {
+  width: 8.5rem;
+}
+.pilot-wait[data-variant="4"] .pilot-map__label {
+  font-size: 0.78rem;
+}
+
+/* ---------- Motion ---------- */
+@keyframes pw4-ripple {
+  0% { transform: scale(0.06); opacity: 0; }
+  12% { opacity: 0.75; }
+  100% { transform: scale(1); opacity: 0; }
+}
+@keyframes pw4-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes pw4-star-in {
+  from { opacity: 0; scale: 0.2; }
+}
+@keyframes pw4-twinkle {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
+@keyframes pw4-glint {
+  0% { opacity: 0.55; transform: scale(1); }
+  5% { opacity: 1; transform: scale(1.7); }
+  24% { opacity: 0.55; transform: scale(1); }
+  100% { opacity: 0.55; transform: scale(1); }
+}
+@keyframes pw4-draw {
+  from { transform: scaleX(0); }
+}
+@keyframes pw4-travel {
+  0% { transform: translateX(0) scale(0.5); opacity: 0; }
+  8% { opacity: 0.95; }
+  48% { opacity: 0.85; }
+  58% { transform: translateX(var(--travel)) scale(0.35); opacity: 0; }
+  100% { transform: translateX(var(--travel)) scale(0.35); opacity: 0; }
+}
+@keyframes pw4-breathe {
+  from { opacity: 0.45; transform: scale(0.9); }
+  to { opacity: 0.85; transform: scale(1.04); }
+}
+@keyframes pw4-breathe-more {
+  from { opacity: 0.7; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.16); }
+}
+@keyframes pw4-s-flip {
+  from { transform: perspective(600px) rotateY(0deg); }
+  to { transform: perspective(600px) rotateY(360deg); }
+}
+@keyframes pw4-in {
+  from { opacity: 0; transform: translateY(0.3em); }
+}
+@keyframes pw4-src-in {
+  from { opacity: 0; transform: translateY(0.25em); }
+}
+@keyframes pw4-dot {
+  0%, 70%, 100% { opacity: 0.25; }
+  30% { opacity: 1; }
+}
+@keyframes pw4-fade {
+  from { opacity: 0; }
+}
+
+/* ---------- Phone (chat.css's mobile width) ---------- */
+@media (max-width: 768px) {
+  .pilot-wait[data-variant="4"] .pw4-sky {
+    height: 7.4rem;
+  }
+  .pilot-wait[data-variant="4"] .pw4-mark {
+    height: 1.9rem;
+    width: calc(1.9rem * 25.2 / 41.6);
+    left: calc(1.9rem * 25.2 / 41.6 / -2);
+    top: -0.95rem;
+  }
+  .pilot-wait[data-variant="4"] .pw4-glow {
+    width: 5.4rem;
+    height: 5.4rem;
+    left: -2.7rem;
+    top: -2.7rem;
+  }
+}
+
+/* ---------- Reduced motion: a calm, still sky ----------
+   No turning, rings, sweeping light or pulses. Points appear in place and states change with a short fade only.
+   Both the app's own setting (html[data-reduce-motion]) and the system's. */
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] :is(.pw4-orbit, .pw4-ripples, .pw4-beam, .pw4-ray__pulse, .pilot-map__ring) {
+  display: none;
+}
+/* chat-wait.css calms the map under the system setting only; inside this card the app's own setting counts too. */
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] :is(.pilot-map, .pilot-map__pin) {
+  animation: none;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"][data-stage="searching"] .pw4-ring {
+  opacity: 1;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] :is(.pw4-mark, .pw4-glow, .pw4-star__core, .pw4-star__halo, .pw4-ray__line, .pw4-dots > i),
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] .pw4-link::before {
+  animation: none !important;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] .pw4-glow {
+  opacity: 0.7;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] .pw4-dots > i {
+  opacity: 1;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] .pw4-star {
+  scale: 1 !important;
+  transition: opacity 0.25s linear !important;
+  animation: pw4-fade 0.25s linear backwards !important;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] .pw4-star__ring {
+  transform: none !important;
+  transition: opacity 0.25s linear !important;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="4"] :is(.pw4-in, .pw4-src, .pw4-note) {
+  animation: pw4-fade 0.25s linear both !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pilot-wait[data-variant="4"] :is(.pw4-orbit, .pw4-ripples, .pw4-beam, .pw4-ray__pulse) {
+    display: none;
+  }
+  .pilot-wait[data-variant="4"][data-stage="searching"] .pw4-ring {
+    opacity: 1;
+  }
+  .pilot-wait[data-variant="4"] :is(.pw4-mark, .pw4-glow, .pw4-star__core, .pw4-star__halo, .pw4-ray__line, .pw4-dots > i),
+  .pilot-wait[data-variant="4"] .pw4-link::before {
+    animation: none !important;
+  }
+  .pilot-wait[data-variant="4"] .pw4-glow {
+    opacity: 0.7;
+  }
+  .pilot-wait[data-variant="4"] .pw4-dots > i {
+    opacity: 1;
+  }
+  .pilot-wait[data-variant="4"] .pw4-star {
+    scale: 1 !important;
+    transition: opacity 0.25s linear !important;
+    animation: pw4-fade 0.25s linear backwards !important;
+  }
+  .pilot-wait[data-variant="4"] .pw4-star__ring {
+    transform: none !important;
+    transition: opacity 0.25s linear !important;
+  }
+  .pilot-wait[data-variant="4"] :is(.pw4-in, .pw4-src, .pw4-note) {
+    animation: pw4-fade 0.25s linear both !important;
+  }
+}

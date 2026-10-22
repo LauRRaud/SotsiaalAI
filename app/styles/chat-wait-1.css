@@ -1,0 +1,543 @@
+/* ADR-176, design 1 "Märkmik" (components/alalehed/chat/wait/WaitNotebook.jsx): the answer's card as a notebook
+   page. The ink is the text colour (--pw-ink), so the page reads on the dark card and in the light theme alike; only
+   the paper notes have a material of their own. Motion is transform and opacity only: each line takes its place at
+   once and is revealed by a moving window, never by animating height. --d is a line's pen delay (set once when the
+   line appears), --o an element's offset inside its line. */
+
+/* The card has the answer's width from the start, so it does not jump when the answer replaces the page. */
+[role="article"][data-role="ai"][data-pilot-wait="1"] {
+  width: 100%;
+}
+
+.pilot-wait[data-variant="1"] {
+  --nb-ink: var(--pw-ink);
+  --nb-soft: color-mix(in srgb, var(--pw-ink) 88%, transparent);
+  --nb-dim: color-mix(in srgb, var(--pw-ink) 70%, transparent);
+  --nb-faint: color-mix(in srgb, var(--pw-ink) 40%, transparent);
+  --nb-rule: color-mix(in srgb, var(--pw-ink) 15%, transparent);
+  --nb-mg: 1.65em;
+  --nb-ease-pen: cubic-bezier(0.45, 0.05, 0.3, 1);
+  --nb-ease-settle: cubic-bezier(0.3, 1.1, 0.4, 1);
+  /* Paper on the dark card: warm grey, a little see-through, white ink. */
+  --nb-paper: linear-gradient(178deg, rgba(138, 131, 123, 0.66) 0%, rgba(104, 99, 94, 0.62) 100%);
+  --nb-paper-hi: inset 0 1px 0 rgba(255, 248, 238, 0.16);
+  --nb-paper-back: rgba(70, 68, 66, 0.58);
+  --nb-ear: rgba(186, 180, 172, 0.6);
+  --nb-paper-ink: rgba(250, 250, 250, 0.94);
+  --nb-paper-drop: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.32));
+}
+/* Paper in the light room: real white paper with a soft warm shadow. */
+html.theme-light:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant="1"] {
+  --nb-paper: linear-gradient(178deg, #fefdfb 0%, #f6f3ee 100%);
+  --nb-paper-hi: inset 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+  --nb-paper-back: #ece8e2;
+  --nb-ear: #e2ddd5;
+  --nb-paper-ink: rgba(21, 21, 21, 0.84);
+  --nb-paper-drop: drop-shadow(0 2px 4px rgba(60, 45, 30, 0.16)) drop-shadow(0 0 0.6px rgba(0, 0, 0, 0.22));
+}
+html[data-reduce-transparency="1"] .pilot-wait[data-variant="1"] {
+  --nb-paper: #77716b;
+  --nb-paper-back: #4a4745;
+  --nb-ear: #a8a29b;
+}
+/* High contrast: outlined paper in the text colour, no shadows. */
+html[data-contrast="hc"] .pilot-wait[data-variant="1"],
+html.theme-light[data-contrast="hc"]:not(:has(.room[data-power="standby"])) .pilot-wait[data-variant="1"] {
+  --nb-paper: transparent;
+  --nb-paper-hi: inset 0 0 0 1px currentColor;
+  --nb-paper-back: transparent;
+  --nb-ear: currentColor;
+  --nb-paper-ink: currentColor;
+  --nb-paper-drop: none;
+}
+
+/* ---------- The page ---------- */
+.pilot-wait[data-variant="1"] .pilot-nb {
+  --d: 0ms;
+  --o: 0ms;
+  position: relative;
+  display: grid;
+  align-content: start;
+}
+/* The margin rule: drawn down the page as the card opens. */
+.pilot-wait[data-variant="1"] .pilot-nb::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--nb-mg) - 0.55em);
+  top: 0.3em;
+  bottom: 0.3em;
+  width: 1px;
+  background: var(--nb-rule);
+  transform-origin: 50% 0;
+  animation: pilot-nb-rule 900ms var(--ease-soft, ease-out) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line {
+  display: grid;
+  grid-template-columns: var(--nb-mg) minmax(0, 1fr);
+  align-items: start;
+  padding-block: 0.14em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__margin {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.2em;
+  color: var(--nb-dim);
+  transition: opacity 600ms ease;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__text {
+  min-width: 0;
+  font-size: 0.88em;
+  color: var(--nb-soft);
+  transition: opacity 600ms ease;
+}
+/* A finished step steps back a little; its "…" fades, so it no longer looks unfinished. The topic stays clear. */
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-done] .pilot-nb__text {
+  opacity: 0.8;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-done] .pilot-nb__margin {
+  opacity: 0.62;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__dots {
+  transition: opacity 700ms ease;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-done] .pilot-nb__dots {
+  opacity: 0;
+}
+
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="topic"] {
+  margin-top: 0.2em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="topic"] .pilot-nb__text {
+  font-size: 1.04em;
+  font-weight: 600;
+  letter-spacing: 0.012em;
+  color: var(--nb-ink);
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="place"] .pilot-nb__text {
+  font-weight: 500;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="search"] {
+  margin-top: 0.35em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="count"] .pilot-nb__text {
+  font-variant-numeric: tabular-nums;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="count"] b {
+  font-weight: 600;
+  color: var(--nb-ink);
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="compose"] {
+  margin-top: 0.1em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line[data-line="slow"] .pilot-nb__text {
+  font-size: 0.8em;
+  color: var(--nb-dim);
+}
+.pilot-wait[data-variant="1"] .pilot-nb__line:is([data-line="notes"], [data-line="pen"]) .pilot-nb__text {
+  font-size: 1em;
+}
+
+/* ---------- The pen's writing ----------
+   The window (.pilot-nb__sweep) comes in from the left and the words go the same distance back, so the text stands
+   still while it appears. The window's last 1.4em fades out: that is the wet edge of the ink. */
+.pilot-wait[data-variant="1"] .pilot-nb__ink {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__clip {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  vertical-align: top;
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__sweep {
+  position: relative;
+  display: inline-block;
+  padding-right: 1.4em;
+  margin-right: -1.4em;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 1.4em), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 1.4em), transparent);
+  animation: pilot-nb-sweep var(--wd, 700ms) var(--nb-ease-pen) calc(var(--d) + var(--o)) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__words {
+  display: inline-block;
+  max-width: 100%;
+  animation: pilot-nb-sweep-back var(--wd, 700ms) var(--nb-ease-pen) calc(var(--d) + var(--o)) both;
+}
+/* The nib rides at the end of the ink, inside the window, so it needs no measuring. */
+.pilot-wait[data-variant="1"] .pilot-nb__nib {
+  position: absolute;
+  right: 1.55em;
+  top: 55%;
+  width: 0.3em;
+  height: 0.3em;
+  margin-top: -0.15em;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  animation: pilot-nb-nib var(--wd, 700ms) linear calc(var(--d) + var(--o)) both;
+}
+
+/* ---------- Margin marks ---------- */
+.pilot-wait[data-variant="1"] .pilot-nb__glyph {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 0;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__glyph-sweep {
+  display: block;
+  padding-right: 0.4em;
+  margin-right: -0.4em;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 0.4em), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 0.4em), transparent);
+  animation: pilot-nb-sweep 560ms var(--nb-ease-pen) calc(var(--d) + var(--o)) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__glyph-sweep > * {
+  display: block;
+  animation: pilot-nb-glyph-back 560ms var(--nb-ease-pen) calc(var(--d) + var(--o)) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__glyph[data-down] {
+  margin-top: -0.14em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__glyph[data-down] .pilot-nb__glyph-sweep {
+  padding: 0 0 0.4em;
+  margin: 0 0 -0.4em;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 0.4em), transparent);
+  mask-image: linear-gradient(180deg, #000 calc(100% - 0.4em), transparent);
+  animation-name: pilot-nb-sweep-down;
+  animation-duration: 900ms;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__glyph[data-down] .pilot-nb__glyph-sweep > * {
+  animation-name: pilot-nb-glyph-up;
+  animation-duration: 900ms;
+}
+/* The platform's S, in the ink's colour (the white SVG is only its shape). */
+.pilot-wait[data-variant="1"] .pilot-nb__s {
+  width: 0.78em;
+  height: 1.28em;
+  background: var(--nb-soft);
+  -webkit-mask: url("/logo/sai-s-valge.svg") center / contain no-repeat;
+  mask: url("/logo/sai-s-valge.svg") center / contain no-repeat;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__mark {
+  width: 1em;
+  height: 1em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- The topic's underline: one hand-drawn stroke, as wide as the topic ---------- */
+.pilot-wait[data-variant="1"] .pilot-nb__topic {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__underline {
+  display: block;
+  width: 0;
+  min-width: 100%;
+  height: 0.5em;
+  margin-top: -0.08em;
+  overflow: hidden;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__underline > span {
+  display: block;
+  height: 100%;
+  animation: pilot-nb-underline 620ms var(--nb-ease-pen) calc(var(--d) + var(--o)) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__underline svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__underline path {
+  fill: none;
+  stroke: var(--nb-faint);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ---------- The place: the shared map, under the written name ---------- */
+.pilot-wait[data-variant="1"] .pilot-nb__map {
+  margin: 0.4em 0 0.2em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__map .pilot-map {
+  justify-items: start;
+  animation-delay: calc(var(--d) + var(--o));
+}
+.pilot-wait[data-variant="1"] .pilot-nb__map .pilot-map__frame {
+  max-width: 100%;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__map .pilot-map__label {
+  display: none;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__map .pilot-map__pin {
+  animation-delay: calc(var(--d) + var(--o) + var(--pin-delay, 350ms));
+}
+.pilot-wait[data-variant="1"] .pilot-nb__map .pilot-map__ring {
+  animation-delay: calc(var(--d) + var(--o) + var(--pin-delay, 350ms) + 600ms);
+}
+
+/* ---------- Tally of the sources found ---------- */
+.pilot-wait[data-variant="1"] .pilot-nb__tally {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.15em 0.55em;
+  margin-left: 0.55em;
+  vertical-align: -0.1em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__five {
+  position: relative;
+  display: inline-flex;
+  gap: 0.2em;
+  height: 0.92em;
+  padding: 0 0.1em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__five > span {
+  display: block;
+  width: 1.4px;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--nb-dim);
+  transform: rotate(var(--t, 0deg));
+  transform-origin: 50% 0;
+  animation: pilot-nb-stroke 240ms var(--nb-ease-pen) calc(var(--d) + var(--o) + var(--s, 0ms)) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__five > span[data-strike] {
+  position: absolute;
+  left: -0.2em;
+  right: -0.2em;
+  top: 46%;
+  width: auto;
+  height: 1.4px;
+  transform: rotate(-22deg);
+  transform-origin: 0 50%;
+  animation-name: pilot-nb-strike;
+  animation-duration: 280ms;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__tally-more {
+  font-size: 0.8em;
+  color: var(--nb-dim);
+}
+
+/* ---------- The chosen sources: small paper notes ---------- */
+.pilot-wait[data-variant="1"] .pilot-nb__notes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.55em 0.6em;
+  padding: 0.4em 0 0.35em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__note {
+  position: relative;
+  max-width: 15.5em;
+  font-size: 0.76em;
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: 0.01em;
+  color: var(--nb-paper-ink);
+  filter: var(--nb-paper-drop);
+  transform: translate3d(0, var(--y, 0px), 0) rotate(var(--r, 0deg));
+  animation:
+    pilot-nb-note 780ms var(--nb-ease-settle) calc(var(--d) + var(--o)) both,
+    pilot-nb-fade 340ms ease calc(var(--d) + var(--o)) both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__paper {
+  position: relative;
+  display: block;
+  padding: 0.55em 1.25em 0.6em 0.8em;
+  border-radius: 0.28em 0 0.32em 0.3em;
+  background: var(--nb-paper);
+  box-shadow: var(--nb-paper-hi);
+  clip-path: polygon(0 0, calc(100% - 0.8em) 0, 100% 0.8em, 100% 100%, 0 100%);
+  overflow-wrap: anywhere;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__ear {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.8em;
+  height: 0.8em;
+  background: linear-gradient(225deg, transparent 50%, var(--nb-ear) 50%);
+  border-bottom-left-radius: 0.18em;
+}
+/* "+3": a small stack, the rest are under the answer's sources. */
+.pilot-wait[data-variant="1"] .pilot-nb__note[data-more] {
+  isolation: isolate;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__note[data-more] .pilot-nb__paper {
+  padding-right: 1.15em;
+  font-weight: 600;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__note[data-more]::before,
+.pilot-wait[data-variant="1"] .pilot-nb__note[data-more]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0.3em;
+  background: var(--nb-paper-back);
+}
+.pilot-wait[data-variant="1"] .pilot-nb__note[data-more]::before {
+  transform: translate3d(0.22em, 0.2em, 0) rotate(3deg);
+}
+.pilot-wait[data-variant="1"] .pilot-nb__note[data-more]::after {
+  transform: translate3d(0.42em, 0.36em, 0) rotate(-2deg);
+  opacity: 0.8;
+}
+
+/* ---------- The pen rests on the next line ----------
+   Dots a little uneven, as by hand, set down one by one; when the line is full they fade and it starts again. */
+.pilot-wait[data-variant="1"] .pilot-nb__rest {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36em;
+  height: 1.36em;
+  padding-left: 0.05em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__rest > span {
+  position: relative;
+  display: block;
+  width: 0.26em;
+  height: 0.26em;
+  border-radius: 50%;
+  background: var(--nb-ink);
+  opacity: 0.42;
+  animation: pilot-nb-dot-1 6.4s ease-in-out var(--d) infinite both;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__rest > span:nth-child(1) {
+  width: 0.27em;
+  height: 0.27em;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__rest > span:nth-child(2) {
+  top: -0.035em;
+  width: 0.23em;
+  height: 0.23em;
+  animation-name: pilot-nb-dot-2;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__rest > span:nth-child(3) {
+  top: 0.02em;
+  width: 0.29em;
+  height: 0.29em;
+  animation-name: pilot-nb-dot-3;
+}
+.pilot-wait[data-variant="1"] .pilot-nb__rest > span:nth-child(4) {
+  top: -0.015em;
+  width: 0.24em;
+  height: 0.24em;
+  animation-name: pilot-nb-dot-4;
+}
+
+/* ---------- Mobile: a narrower margin, notes may take the full line ---------- */
+@media (max-width: 768px) {
+  .pilot-wait[data-variant="1"] {
+    --nb-mg: 1.5em;
+  }
+  .pilot-wait[data-variant="1"] .pilot-nb__note {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Reduced motion: a calm, still page ----------
+   Every element's resting style is its written state, so without animations the page simply shows what is known.
+   (html[data-reduce-motion] also mirrors the OS setting; both are listed so either one is enough.) */
+@media (prefers-reduced-motion: reduce) {
+  .pilot-wait[data-variant="1"] *,
+  .pilot-wait[data-variant="1"] *::before,
+  .pilot-wait[data-variant="1"] *::after {
+    animation: none !important;
+  }
+  .pilot-wait[data-variant="1"] .pilot-nb__rest > span:nth-child(4) {
+    display: none;
+  }
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="1"] *,
+html[data-reduce-motion="1"] .pilot-wait[data-variant="1"] *::before,
+html[data-reduce-motion="1"] .pilot-wait[data-variant="1"] *::after {
+  animation: none !important;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="1"] .pilot-nb__rest > span:nth-child(4) {
+  display: none;
+}
+
+@keyframes pilot-nb-rule {
+  from { transform: scaleY(0); }
+}
+@keyframes pilot-nb-sweep {
+  from { transform: translate3d(-100%, 0, 0); }
+}
+@keyframes pilot-nb-sweep-back {
+  from { transform: translate3d(calc(100% + 1.4em), 0, 0); }
+}
+@keyframes pilot-nb-glyph-back {
+  from { transform: translate3d(calc(100% + 0.4em), 0, 0); }
+}
+@keyframes pilot-nb-sweep-down {
+  from { transform: translate3d(0, -100%, 0); }
+}
+@keyframes pilot-nb-glyph-up {
+  from { transform: translate3d(0, calc(100% + 0.4em), 0); }
+}
+@keyframes pilot-nb-nib {
+  0% { opacity: 0; }
+  12%, 82% { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+@keyframes pilot-nb-underline {
+  from { transform: translate3d(-101%, 0, 0); }
+}
+@keyframes pilot-nb-stroke {
+  from { transform: rotate(var(--t, 0deg)) scaleY(0); }
+}
+@keyframes pilot-nb-strike {
+  from { transform: rotate(-22deg) scaleX(0); }
+}
+@keyframes pilot-nb-note {
+  from { transform: translate3d(0, -0.9em, 0) rotate(calc(var(--r, 0deg) * 4)); }
+}
+@keyframes pilot-nb-fade {
+  from { opacity: 0; }
+}
+/* Four dots in a 6.4 s round: one every 1.1 s, the newest a little brighter, the last one (the nib) breathes once,
+   then all fade together. */
+@keyframes pilot-nb-dot-1 {
+  0% { opacity: 0; transform: scale(0.3); }
+  7% { opacity: 0.86; transform: scale(1.2); }
+  17% { opacity: 0.62; transform: none; }
+  25%, 81% { opacity: 0.42; transform: none; }
+  92%, 100% { opacity: 0; transform: scale(0.6); }
+}
+@keyframes pilot-nb-dot-2 {
+  0%, 17% { opacity: 0; transform: scale(0.3); }
+  24% { opacity: 0.86; transform: scale(1.2); }
+  34% { opacity: 0.62; transform: none; }
+  42%, 81% { opacity: 0.42; transform: none; }
+  92%, 100% { opacity: 0; transform: scale(0.6); }
+}
+@keyframes pilot-nb-dot-3 {
+  0%, 34% { opacity: 0; transform: scale(0.3); }
+  41% { opacity: 0.86; transform: scale(1.2); }
+  52% { opacity: 0.62; transform: none; }
+  59%, 81% { opacity: 0.42; transform: none; }
+  92%, 100% { opacity: 0; transform: scale(0.6); }
+}
+@keyframes pilot-nb-dot-4 {
+  0%, 52% { opacity: 0; transform: scale(0.3); }
+  59% { opacity: 0.86; transform: scale(1.2); }
+  66% { opacity: 0.5; transform: none; }
+  73% { opacity: 0.78; transform: scale(1.18); }
+  81% { opacity: 0.42; transform: none; }
+  92%, 100% { opacity: 0; transform: scale(0.6); }
+}

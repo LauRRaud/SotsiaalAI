@@ -4957,6 +4957,33 @@
       "sent": "Thank you! Your feedback has been sent.",
       "failed": "The feedback could not be sent. Try again.",
       "choose_reason": "Choose one reason."
+    },
+    "pilot_wait": {
+      "picker": "Waiting",
+      "reading": "Reading your question…",
+      "understood": "I understood your question",
+      "searching": "Searching the Sotsiaal.pro database…",
+      "searched": "Searched the Sotsiaal.pro database",
+      "found": "{passages} passages in {sources} sources",
+      "choosing": "Choosing what to read…",
+      "chosen": "Chosen to read",
+      "more": "+{n}",
+      "writing": "Writing the answer…",
+      "wrote": "Started writing the answer",
+      "summary": "Read {n} sources",
+      "place_or": "{a} or {b}",
+      "design": {
+        "current": "Current",
+        "notebook": "Notebook",
+        "breathing": "Breathing S",
+        "cards": "Cards",
+        "constellation": "Constellation"
+      },
+      "map": "Map",
+      "map_icon": "Icon",
+      "map_outline": "Outline",
+      "slow": "Taking longer than usual.",
+      "your_question": "Your question"
     }
   },
   "documents": {

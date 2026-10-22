@@ -1612,7 +1612,9 @@ export function useChatStream(config) {
       text: "",
       isStreaming: true,
       aiVisible: true,
-      ...(cfg.isRoomMode ? { roomScoped: true } : {})
+      ...(cfg.isRoomMode ? { roomScoped: true } : {}),
+      // ADR-176: only the pilot's stream reports its steps; elsewhere the waiting view stays the turning S.
+      ...(cfg.pilotEnabled && !cfg.isRoomMode ? { pilotSteps: [] } : {})
     });
     cfg.onAssistantMessageCreated?.(streamingMessageId);
     const latestHelpWorkflowState = !cfg.isRoomMode && typeof cfg.getLatestHelpWorkflowState === "function"
@@ -1630,6 +1632,14 @@ export function useChatStream(config) {
 
     const flushAllPending = () => {
       doPushVisibleText();
+    };
+    // ADR-176: what the turn has done so far (the server's 'step' events), one entry per kind with the seconds since
+    // the question was sent, for the waiting view.
+    let pilotSteps = [];
+    const pushPilotStep = step => {
+      if (streamingMessageId == null) return;
+      pilotSteps = [...pilotSteps.filter(known => known.kind !== step.kind), { ...step, atMs: Date.now() - turnStartedAtMs }];
+      cfg.mutateMessage?.(streamingMessageId, msg => ({ ...msg, pilotSteps }));
     };
 
     let pilotContextAccepted = false;
@@ -1695,6 +1705,7 @@ export function useChatStream(config) {
         const pilot = cfg.pilotEnabled ? await pilotExchange(() => fetch("/api/chat", requestInit), {
           createReader: cfg.createSSEReader || defaultCreateSSEReader,
           onText: text => { visibleText += text; doPushVisibleText(); },
+          onStep: pushPilotStep,
           onRestart: () => { visibleText = ""; doPushVisibleText(); }
         }) : null;
         if (pilot?.lost) throw createLocalizedError("chat.error.stream_incomplete");

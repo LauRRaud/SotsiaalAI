@@ -1,0 +1,77 @@
+# ADR-176 — Vastuse ootamise ajal näeb kasutaja päris samme. Neli kujundust ja kaart katsetamiseks
+
+22.10.2026. Teostus Claude Opus 5.5. Omaniku soovid:
+- „kas nii saab ka, et inimese ekraanile on kuvatud AI plaani koostamine kohe alguses“;
+- „et ei oleks ainult S logo tiirlemas, vaid oleks selline haaravam vastuse ootamine“;
+- „Otsin Sotsiaal.pro andmebaasist“;
+- „selline läbipaistev kaart … sinna nõel“, „kui küsimuses on asukoht“;
+- „Pane mulle sinna kuhugi 4 numbrit vestluse lehele“.
+
+## Leid
+
+- Esimene tekst tuleb mediaanis 21,7 s pärast saatmist (F2). Selle ajani näeb kasutaja ainult tiirlevat S-i ja teksti
+  „Otsin ja kontrollin vastust…“.
+- Server teab vahepeal palju:
+  - plaani teemat ja kohta ~4,6 s juures;
+  - mitu lõiku ja allikat otsing leidis ~8,5 s juures;
+  - milliseid allikaid valik loeb ~14 s juures;
+  - et vastust kirjutatakse.
+
+## Otsus
+
+- **Server (`service.js`, `m4PilotServer.js`).** Pöörde voos tulevad `step`-sündmused, mida näeb ainult küsija ise:
+  - `plan`: teema, mis on plaani esimene päring või küsimus, ühel real ja kuni 90 märki, ning kohad;
+  - `found`: lõikude ja allikate arv valiku kandidaatide seas;
+  - `chosen`: valiku allikate pealkirjad, kuni 4, ja ülejäänute arv;
+  - `writing`: vastuse kutse on teele saadetud.
+
+  Kohad tulevad kontrollitud kohtadest (`placeLabels`): omavalitsuse nimi ja ID või sama nimega mõlemad omavalitsused.
+  Koht, kus inimene ei ela, jääb välja.
+
+  Sammud on ainult kuvamiseks. Midagi ei oota neid ja nende viga ei peata pööret. `plan` ei pea kohtade nimede
+  lugemist ootama. Vanem klient jätab tundmatud sündmused vahele.
+- **Klient (`m4PilotStream.js`, `useChatStream.js`).** Sammud jäävad ootava sõnumi juurde (`pilotSteps`) koos ajaga
+  saatmisest. `waitView.js` teeb neist ühe vaate. Hilinev või puuduv samm ei jäta vaadet kinni, sest hilisem samm
+  tähendab ka varasemaid.
+- **Kujundused (`components/alalehed/chat/wait`).** Neli kujundust: märkmik, hingav S, kaardid ja tähtkuju. Need tegid
+  ja vaatasid läbi kujundusagendid, lähtudes omaniku toast.
+  - Kõik toimub vestluse enda kaardil ega sõltu taustast, tahvlist ega seinast. Omanik: „ei tohi olla seotud tausta
+    efektiga“; tahvli kohale tuleb seinamaal.
+  - Pärast vastuse algust jääb vastuse kohale üks vaikne rida, näiteks „Vaatasin 5 allikat · 21 s“, mis avab sammud
+    koos aegadega.
+- **Kaart (`PlaceMap.jsx`).** Kui plaan luges koha, ilmub läbipaistev Eesti kaart ja nõel kukub omavalitsuse kohale.
+  Sama nimega linna ja valla korral tuleb kaks väikest nõela. Kaarte on kaks:
+  - „ikoon“: platvormi väike Eesti kaart (`eesti_kontuurkaart_logo.svg`) suurelt ja ilma oma nõelata;
+  - „kontuur“: täpne kontuurkaart (`eesti_kontuurkaart.svg`).
+
+  Omavalitsuse keskuse koordinaadid on `municipalityPoints.js`-is (78 omavalitsust). Kontuuri kalibreerimiseks on
+  kasutatud äärmuspunkte. Ikoonil kaardistatakse iga maismaa oma kastiga; mandri kaks mõõtkava erinevad 0,03 %.
+- **Valija (`WaitVariantPicker.jsx`).** All vasakul on „Ootus 0 1 2 3 4 · Kaart ikoon / kontuur“. Seda näeb ainult
+  administraator. 0 on praegune tiirlev S. Valik jääb sellesse brauserisse. Teised kasutajad näevad endist ootamist,
+  kuni omanik valib.
+
+## Kontroll
+
+- **Kohalik (`adr176-check`).**
+  - Teema lõikamine.
+  - Voo `step`-sündmused: vigased jäävad vahele ja `onStep`-ita klient loeb vastuse edasi.
+  - `pilotExchange` annab sammud edasi.
+  - Vaade sammudest, mis tulevad hilja, vales järjekorras või puuduvad. Vigased kohad jäävad välja.
+- **Kaart (`adr176-map-check`, `adr176-icon-map`).**
+  - Kontuuril on kõik 76 maismaa omavalitsuse nõela kontuuri sees. Mõni ranna- või piirilinn on nihutatud veidi
+    sisemaale.
+  - Ikoonil on kõik mandri ja suurte saarte nõelad joonistatud maismaa sees.
+  - Kihnu, Ruhnu, Muhu ja Vormsi saart kummalgi kaardil pole. Nende nõel jääb merre sinna, kus saar on.
+- **Ülevaatus.** Kolm sõltumatut ülevaatajat vaatasid muudatust: integratsioon, tavakasutaja ja andmed ning
+  ligipääsetavus ja jõudlus. Igale leiule tehti ümberlükkamise katse. Kõik kaheksa leidu olid madala või keskmise
+  raskusega ja on parandatud:
+  - teema ei ole kunagi kogu teema tekst. See on plaani päring või praegune küsimus; ebaõnnestunud plaani korral teemat
+    pole; inglise ja vene keeles on teemaks küsimus ise;
+  - `plan`-sammu ja kohanimede päringut ei tehta, kui keegi ei kuula, näiteks voota päringus;
+  - kujundus tuleb ainult sõnumile, mille voog samme saadab. Mujal jääb tiirlev S;
+  - kaartide pealkiri „Sain küsimusest aru“ tuleb ainult pärast plaani;
+  - valitud allikad jäävad ekraanilugejale alles ka kirjutamise ajal;
+  - valija mahub telefonis ekraanile ega kata sisestusriba.
+- **Muu.** eslint muudetud failidel, `i18n:check`, `rag-cost` ja `rag-v2-pilot-crisis-route` testid läbisid. Uued
+  CSS-failid parsivad lightningcss-iga hoiatusteta.
+- **Serveris.** Proovipöördes kirjutatakse sammude ajad ja järjekord voost üles.
