@@ -495,7 +495,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
           </div> : null}
       </div>;
   }
-  return <div role="article" tabIndex={showThinking ? -1 : 0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking && !designedWait ? "true" : undefined} data-pilot-wait={showThinking && designedWait ? "2" : undefined} data-streaming={isStreaming ? "true" : undefined} data-time-open={aiTimeVisible ? "true" : undefined} onClick={toggleAiTimestamp} onKeyDown={handleAiBubbleKeyDown}>
+  return <div role="article" tabIndex={showThinking ? -1 : 0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking && !designedWait ? "true" : undefined} data-pilot-wait={showThinking && designedWait ? "2" : undefined} data-streaming={isStreaming ? "true" : undefined} data-time-open={aiTimeVisible && !messageActions.length ? "true" : undefined} onClick={toggleAiTimestamp} onKeyDown={handleAiBubbleKeyDown}>
       <span className="sr-only">
         {authorLabel}
         {": "}
@@ -557,7 +557,8 @@ const ChatMessageItem = memo(function ChatMessageItem({
           </div>
         </span>
       ) : null}
-      {messageTime && aiTimeVisible ? (
+      {/* The actions menu shows the time itself; a second one beside the bubble is not needed (owner 22.10). */}
+      {messageTime && aiTimeVisible && !messageActions.length ? (
         <time dateTime={messageTime.iso}>
           {messageTime.label}
         </time>
