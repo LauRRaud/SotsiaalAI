@@ -3,12 +3,12 @@
 /* ADR-176, waiting design 2 "Hingav S": the S mark, whole and solid from the start (owner 22.10: no outline that fills,
    no glow around it), breathes quietly through the turn. A ring of dots (one per source found) appears with the search
    result and the chosen ones step inward. One caption crossfades beside it, with the topic and place under it. Below,
-   the information at the top, one thing at a time: a lens over a shelf while the search runs, then the sources found as
-   small pages being read, then the chosen material as a list; under it one quiet line turns through the facts the
-   server reported for this question (the records and passages of the platform, the documents in scope, the
-   municipality's records, the sources chosen), in the order they came. A place map, when the question has a place,
-   stays at the bottom of the card the whole wait (owner 22.10: the map that vanished left a gap). Everything else is
-   derived from the props on each render, so a step that arrives late or never only leaves its part out. */
+   the text first: one quiet line turns through the facts the server reported for this question (the records and
+   passages of the platform, the documents in scope, the municipality's records, the sources chosen), in the order they
+   came. Then the pictures, one thing at a time: a lens over a shelf while the search runs, then the sources found as
+   small pages being read, then the chosen material as a list. A place map, when the question has a place, stays at the
+   bottom of the card the whole wait (owner 22.10: the map that vanished left a gap). Everything else is derived from
+   the props on each render, so a step that arrives late or never only leaves its part out. */
 import { useEffect, useState } from "react";
 
 /* public/logo/sai-s-valge.svg (viewBox 0 8 25.2 41.6), inline so it takes the text colour. */
@@ -125,6 +125,13 @@ export default function WaitBreathingS({ view, texts, map }) {
           {details.length ? <Lines className="hs-det" lines={details} /> : null}
         </span>
       </div>
+      {/* The facts right under the head, the pictures under them: the line keeps its place when the material below
+          grows (owner 22.10: the page icons "enne teksti või all pool, kaardi üleval"). */}
+      {fact ? (
+        <div className="hs-facts" aria-hidden="true">
+          <span key={fact.key} className="hs-fact">{fact.text}</span>
+        </div>
+      ) : null}
       {searching || pages || view.chosen ? <div className="hs-stage">
         {searching ? (
           <div className="hs-search" key="search" aria-hidden="true">
@@ -151,11 +158,6 @@ export default function WaitBreathingS({ view, texts, map }) {
           </ul>
         ) : null}
       </div> : null}
-      {fact ? (
-        <div className="hs-facts" aria-hidden="true">
-          <span key={fact.key} className="hs-fact">{fact.text}</span>
-        </div>
-      ) : null}
       {/* Fades once the sources are found, so the information above is what reads. */}
       {map ? <div className="hs-map" data-quiet={view.found || view.chosen ? "1" : undefined}>{map}</div> : null}
     </>
