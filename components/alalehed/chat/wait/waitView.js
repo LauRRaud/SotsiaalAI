@@ -35,7 +35,9 @@ export function waitView(steps = []) {
     found: Number.isInteger(found?.passages) ? { passages: found.passages, sources: Number.isInteger(found.sources) ? found.sources : null } : null,
     chosen: chosen && Array.isArray(chosen.titles)
       ? { titles: chosen.titles.filter(title => typeof title === "string" && title).slice(0, 4), more: Number.isInteger(chosen.more) ? chosen.more : 0,
-        passages: Number.isInteger(chosen.passages) ? chosen.passages : null }
+        passages: Number.isInteger(chosen.passages) ? chosen.passages : null,
+        // ADR-180: the sources are the answer before's own, read again for the provisions asked about (no search).
+        previous: chosen.previous === true }
       : null,
     at: {
       plan: plan?.atMs ?? null,
@@ -101,7 +103,8 @@ export function waitTexts(t, view) {
     searching: tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…"),
     found,
     choosing: tr(t, "chat.pilot_wait.choosing", "Valin, mida lugeda…"),
-    chosen: tr(t, "chat.pilot_wait.chosen", "Valisin lugemiseks"),
+    chosen: view.chosen?.previous ? tr(t, "chat.pilot_wait.chosen_previous", "Vaatan eelmise vastuse allikaid…")
+      : tr(t, "chat.pilot_wait.chosen", "Valisin lugemiseks"),
     more: view.chosen?.more ? tr(t, "chat.pilot_wait.more", "+{n}").replace("{n}", String(view.chosen.more)) : null,
     writing: tr(t, "chat.pilot_wait.writing", "Kirjutan vastust…"),
     // The detail line writes the topic and the place; a place the topic already names ("Harku valla koduteenus") is not
