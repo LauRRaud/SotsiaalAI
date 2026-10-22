@@ -145,6 +145,21 @@
         "Below that the full lexical query stays; the overlap numbers and which pool passages changed are reported, and the owner decides.",
         "If the shadow slows the knowledge lane (S3 fails), the shadow is switched off."
       ]
+    },
+    "results_F2": {
+      "run": "22.10.2026 11:46-12:00 UTC (14:46-15:00 local), release c264cb43 (ADR-174, search-assist-24), chat format with the answer stream; 27/27 answered, 0.147 USD; evidence server-rag-chat-focused-F2-raw.json and -compare.json",
+      "S1-first-text": "first text (browser) median 21.65 s, p90 27.7 s, max 36.7 s (C01); by role median: help seeker 21.7, specialist 21.4, provider 21.6 s; the server phase first_text is 72 ms (median, max 165 ms) before the browser value, so the trace phase can stand for it in runs without the stream. Holds.",
+      "S2-sources-read-ahead": "hydrate_calls median 2 (max 5); hydrate_db median 230 ms (p90 940, max 1353), hydrate_check median 373 ms (p90 1171, max 2659): the read plus check is on the path before the answer and its tail comes from sources not in the process cache (B01, C01, B21, A19). Search time without the selection call, by question against F1: median +0.27 s, mean +0.13 s, within run-to-run spread; the read-ahead's own gain is not separable from it.",
+      "S3-shadow": "in time in 27/27 (none late or failed); shadow_lexical median 145 ms (p90 274, max 375); lexical query median 3079 ms, lexical minus slowest vector median 2.38 s (21.10 regression 2.35 s), so the shadow added no visible load. Holds.",
+      "S4-no-harm": "no failures, no answer retries; kinds 16 partial / 11 grounded (F1 15/12). Model calls were slower than in F1 with the same tokens: selection median 5.43 s against 3.89 s (output 285 vs 296, reasoning 252 vs 253), plan 4.63 s against 3.91 s; done median 27.2 s against 25.2 s comes from these. Holds for the code; the provider times are not comparable between the runs.",
+      "decision_lexical": "The rule is not met: shadow_same_k10/pool median 0.944 (rule 0.95), p10 0.833 (rule 0.90); k20 0.889/0.639, k40 0.833/0.583. The full lexical query stays; the owner decides. Lexical-only passages entered the pool 0 times; the pool had a median of 4 passages with a lexical boost (p90 9, max 14), of them 1 chosen by the selection (p90 3); without any lexical query a chosen passage could fall out of the pool in 13 of 27 turns (at most 4 in one, C01). So neither the candidate-only query nor no lexical query keeps the selection the same.",
+      "expect": {
+        "B": "held: B19, B20, B21, B25 4/4 Narva linn (F1: 1/4)",
+        "C10": "held: Viljandi linn (earlier choice); C19r, C20, C21, C25 Viljandi linn",
+        "T": "held: a health-care-without-insurance passage among the candidates and chosen in 3/3; every answer has a sentence on it",
+        "tokens": "held: answer input median 25.0k against 27.2k in F1",
+        "rest": "A provider 5/5 Tartu linn, specialists 4/4, B01/B05 Narva linn, C01 Viljandi linn; A01 and A10 without a municipality this time: the plan wrote \"Tartu\" instead of \"Tartu linn\" for \"ema elab Tartus\", which names Tartu linn and Tartu vald, so the answer asks which (reported like the linn/vald case in E1, not a failure); C19 asks and the bare reply C19r keeps Viljandi linn as in F1"
+      }
     }
   }
 }
