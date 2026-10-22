@@ -84,12 +84,18 @@
   omanik häireks („allika glitch üleval servas“). Koos nendega eemaldati ka kasutuseta tekstid.
 - **S.** S on algusest täidetud, ilma kontuuri joonistamise, täitumise ja kumata. Omanik: „hele kuma S ümber kahtlane“,
   „S on seest tühi alguses ja täitub“. Alguses teeb S kolm pööret nagu platvormi enda S ja hingab siis vaikselt.
-- **Kaart ainult otsingu ajaks.** Omanik: „liiga kaardikeskne“. S-i all on korraga üks asi:
-  1. kaart, kui küsimuses on koht;
-  2. leitud allikad väikeste lehtedena ja tekst „36 lõiku 18 allikast“;
-  3. valitud materjali nimekiri.
+- **Info üleval, kaart all.** Omanik: „liiga kaardikeskne“, hiljem „kaart kaob ära ja siis on mingi rida all ja mingi
+  rida üleval“ ning „kaart ehk on kuvatud selle akna all pool, et üleval kuvatakse info“. Ootekaardi järjekord ülevalt:
+  1. S, olek ja detailirida (teema ja koht);
+  2. info, korraga üks asi: otsingu ajal luup üle hämarate lehtede, siis leitud allikad väikeste lehtedena koos tekstiga
+     „16 sobivat allikat“, siis valitud materjali nimekiri. Ala pole kunagi madalam kui lehed, nii et otsingu järel
+     midagi ei hüppa;
+  3. faktide rida otse info all;
+  4. kaart, kui küsimuses on koht. Kaart jääb kogu ootamise ajaks paika ega jäta enam tühja kohta. Kui allikad on
+     leitud, muutub kaart tuhmimaks, et loetav oleks info.
 
-  Teema ja koht jäävad S-i kõrvale.
+  Kui teema juba nimetab kohta („Harku valla koduteenus“), ei korrata kohta detailireal. Kahe võimaliku omavalitsuse
+  korral kirjutatakse mõlemad, sest see on uus info.
 - **Nõel.** Platvormi kaardiikooni nõela kuju. Täpp on kaardi tooni ja suurem: omanik „see auk peaks markeris suurem
   olema“.
 - **Mullid.** Assistendi ja kasutaja mullil pole helendavat serva ega ülemist helki, alles on ainult vari.
@@ -101,18 +107,18 @@
     mida sama nimi võib tähendada.
   - Kaart näitab seda omavalitsust. Kui see tuli varasemast sõnumist, mitte praegusest, on detailireal märge
     „(varasemast)“.
-  - Kui kohta pole, liigub otsingu ajal kaardi asemel luup üle hämarate lehtede. Arvu näidatakse alles siis, kui otsing
-    selle annab.
+  - Otsingu ajal liigub luup üle hämarate lehtede, nii kohaga kui kohata küsimusel. Arvu näidatakse alles siis, kui
+    otsing selle annab.
 - **Arv ilma eksitava 36-ta.** Omanik: „see on veidi eksitav … alati näitab „leitud 36 lõiku““.
   - 36 on valiku kandidaatide lühinimekirja suurus (30 + 6 reservkohta) ja on alati sama.
-  - Nüüd on tekst kujul „19 sobivat allikat 4512 dokumendi seast“: sobivad allikad lühinimekirjas ja dokumendid, mille
-    seast otsing järjestas (`scope.documents`, teadmiste raja ulatus pärast kehtivuse ja omavalitsuse filtrit).
+  - Lehtede all on ainult „19 sobivat allikat“ (sobivad allikad lühinimekirjas). 36 lõiku ei mainita kuskil, ka mitte
+    faktide reas: omanik „seda 36 lõiku ei pea mainima“. Kui palju otsiti, ütleb faktide rida.
 - **Faktide rida.** Omanik: „võimalikult palju huvitavat infot … allikakirjed, otsingulõigud, teadmusdokumendid,
-  omavalitsuste kirjed“. S-i all vahetub iga 3,2 s järel üks rida, ja uus fakt tuleb ette kohe, kui server selle
-  saadab. Kõik arvud on selle küsimuse omad:
+  omavalitsuste kirjed“. Info all vahetub iga 3,2 s järel üks rida, faktid saabumise järjekorras. Esimene on alati
+  andmebaasi allikakirjete ja otsingulõikude arv (omanik: „allikakirjeid ei mainitud“, sest varem hüppas rida kohe
+  uusimale faktile). Kõik arvud on selle küsimuse omad:
   - andmebaasi allikakirjed ja otsingulõigud (kataloogi read ja nende üksused);
   - küsimuse ulatuses olevad teadmusdokumendid ja nende lõigud;
   - omavalitsuste kirjed kokku ja küsitud omavalitsuse kirjed;
-  - lühinimekiri (36 lõiku, nüüd koos selgitusega, mis see on);
   - asjakohased kirjed (`records`-samm pärast otsingut);
   - lugemiseks valitud allikad.

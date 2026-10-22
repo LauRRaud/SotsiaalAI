@@ -134,31 +134,31 @@
   transition: opacity 0.2s var(--ease-soft), transform 0.3s var(--ease-soft);
 }
 
-/* ---------- Place map: under the status, aligned with its text ---------- */
-/* ---------- Below the head, one thing at a time (owner 22.10: "liiga kaardikeskne"): the map while the search runs,
-   then the sources found as small pages, then the chosen material. One grid cell, so they crossfade in place. ---------- */
+/* ---------- Under the head, the information, one thing at a time (owner 22.10: "liiga kaardikeskne"): the search,
+   then the sources found as small pages, then the chosen material. One grid cell, so they replace each other in place;
+   the cell is never lower than the pages, so the search does not leave a jump behind it. ---------- */
 .pilot-wait[data-variant="2"] .hs-stage {
   display: grid;
+  align-items: center;
   min-width: 0;
+  min-height: 3rem;
   margin-left: calc(var(--hs-mark) + var(--hs-gap));
 }
 .pilot-wait[data-variant="2"] .hs-stage > * {
   grid-area: 1 / 1;
   min-width: 0;
 }
+/* ---------- Place map: at the bottom of the card the whole wait, under the information (owner 22.10: "kaart ehk on
+   kuvatud selle akna all pool, et üleval kuvatakse info"), aligned with the text; it fades once the sources are found,
+   so the information above is what reads ("kaart võib tuhmuda"). */
 .pilot-wait[data-variant="2"] .hs-map {
   justify-self: start;
   max-width: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-4px) scale(0.97);
-  transition: opacity 0.7s var(--ease-soft), transform 0.7s var(--ease-soft), visibility 0s linear 0.7s;
+  margin-left: calc(var(--hs-mark) + var(--hs-gap));
+  transition: opacity 0.9s var(--ease-soft);
 }
-.pilot-wait[data-variant="2"] .hs-map[data-on] {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  transition: opacity 0.7s var(--ease-soft), transform 0.7s var(--ease-soft);
+.pilot-wait[data-variant="2"] .hs-map[data-quiet] {
+  opacity: 0.38;
 }
 /* The place is in the detail line; the map does not say it twice. */
 .pilot-wait[data-variant="2"] .pilot-map__label {
@@ -181,8 +181,8 @@
   position: relative;
   display: block;
   flex: none;
-  width: 0.72rem;
-  height: 0.92rem;
+  width: 0.8rem;
+  height: 1.02rem;
   border: 1px solid currentColor;
   border-radius: 0.14rem;
 }
@@ -239,9 +239,10 @@
   transform: rotate(45deg);
   transform-origin: left center;
 }
+/* The information reads at nearly the caption's size (owner 22.10: "kasvõi suuremana"). */
 .pilot-wait[data-variant="2"] .hs-pages-label {
-  font-size: var(--fs-small, 0.85rem);
-  opacity: 0.82;
+  font-size: 0.95em;
+  opacity: 0.88;
 }
 .pilot-wait[data-variant="2"] .hs-material {
   display: grid;
@@ -256,7 +257,7 @@
   align-items: center;
   gap: 0.55rem;
   min-width: 0;
-  font-size: var(--fs-small, 0.88rem);
+  font-size: 0.95em;
   animation: hs-line-in 0.5s var(--ease-soft) both;
   animation-delay: calc(var(--i) * 140ms);
 }
@@ -270,7 +271,7 @@
   white-space: nowrap;
 }
 .pilot-wait[data-variant="2"] .hs-more {
-  padding-left: 1.27rem;
+  padding-left: 1.35rem;
   opacity: 0.72;
 }
 
@@ -288,11 +289,12 @@
   align-items: baseline;
   gap: 0.5rem;
   min-width: 0;
-  min-height: 1.4em;
+  /* Two lines kept, as the longer facts wrap: a shorter one does not move the map under it. */
+  min-height: 2.8em;
   margin-left: calc(var(--hs-mark) + var(--hs-gap));
-  font-size: 0.8em;
+  font-size: 0.88em;
   line-height: 1.4;
-  opacity: 0.72;
+  opacity: 0.8;
 }
 .pilot-wait[data-variant="2"] .hs-facts::before {
   content: "";
@@ -310,7 +312,7 @@
 }
 @keyframes hs-lens {
   0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(7.8rem); }
+  50% { transform: translateX(8.6rem); }
 }
 @keyframes hs-page-in {
   from { opacity: 0; transform: translateY(4px) scale(0.9); }
@@ -347,7 +349,8 @@
     --hs-gap: 0.75rem;
   }
   .pilot-wait[data-variant="2"] .hs-stage,
-  .pilot-wait[data-variant="2"] .hs-facts {
+  .pilot-wait[data-variant="2"] .hs-facts,
+  .pilot-wait[data-variant="2"] .hs-map {
     margin-left: 0;
   }
   .pilot-wait[data-variant="2"] .hs-map {
@@ -367,10 +370,8 @@
   .pilot-wait[data-variant="2"] .hs-dot-move {
     transition: opacity 0.3s linear;
   }
-  .pilot-wait[data-variant="2"] .hs-map,
-  .pilot-wait[data-variant="2"] .hs-map[data-on] {
-    transform: none;
-    transition: opacity 0.3s linear, visibility 0s linear 0.3s;
+  .pilot-wait[data-variant="2"] .hs-map {
+    transition: opacity 0.3s linear;
   }
   .pilot-wait[data-variant="2"] .hs-page,
   .pilot-wait[data-variant="2"] .hs-material li {
@@ -402,10 +403,8 @@ html[data-reduce-motion="1"] .pilot-wait[data-variant="2"][data-stage="choosing"
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot-move {
   transition: opacity 0.3s linear;
 }
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map[data-on] {
-  transform: none;
-  transition: opacity 0.3s linear, visibility 0s linear 0.3s;
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map {
+  transition: opacity 0.3s linear;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page,
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-material li {

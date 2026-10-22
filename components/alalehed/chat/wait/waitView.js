@@ -26,8 +26,6 @@ export function waitView(steps = []) {
     topic: typeof plan?.topic === "string" && plan.topic ? plan.topic : null,
     places,
     earlier,
-    // How many documents the search ranked (the shortlist of passages has the same size every time, so it is not shown).
-    searched: Number.isInteger(scope?.documents) && scope.documents > 0 ? scope.documents : null,
     // What the platform holds and what this question searches, for the facts the waiting view turns through.
     corpus: count(scope?.corpus?.documents) ? { documents: scope.corpus.documents, passages: count(scope.corpus.passages) } : null,
     knowledge: count(scope?.knowledge?.documents) ? { documents: scope.knowledge.documents, passages: count(scope.knowledge.passages) } : null,
@@ -54,6 +52,14 @@ export function placeText(t, entries) {
   return tr(t, "chat.pilot_wait.place_or", "{a} või {b}").replace("{a}", entries[0].name).replace("{b}", entries[1].name);
 }
 
+/* Whether the topic names the place: a word of it starts with the place's first word ("Harku vald" in "Harku valla
+   koduteenus", "Tallinn" in "Tallinna sotsiaaltransport"), as a case ending changes only the end. */
+function inTopic(topic, name) {
+  const stem = String(name || "").split(" ")[0].toLocaleLowerCase("et");
+  if (!topic || stem.length < 3) return false;
+  return topic.toLocaleLowerCase("et").split(/[\s,.;:()«»"]+/).some(word => word.startsWith(stem));
+}
+
 /* Interface text with a fallback, as the chat's other components read it. */
 export function tr(t, key, fallback) {
   const value = typeof t === "function" ? t(key) : "";
@@ -62,15 +68,12 @@ export function tr(t, key, fallback) {
 
 /* The texts of each stage, so the designs say the same things in every language. */
 export function waitTexts(t, view) {
-  // The sources the search found worth reading, among the documents it searched (not the shortlist's fixed 36 passages,
-  // which read as if every answer came from 36 passages: owner 22.10).
+  // The sources the search found worth reading. The fixed size of the shortlist (36 passages) is never shown: it read as
+  // if every answer came from 36 passages (owner 22.10); how much was searched is in the facts line.
   const sources = view.found?.sources ?? null;
-  const documents = view.searched != null ? new Intl.NumberFormat("et-EE").format(view.searched) : null;
   const found = sources == null ? null
-    : (documents
-      ? tr(t, sources === 1 ? "chat.pilot_wait.found_one" : "chat.pilot_wait.found", sources === 1 ? "1 sobiv allikas {documents} dokumendi seast" : "{sources} sobivat allikat {documents} dokumendi seast")
-      : tr(t, sources === 1 ? "chat.pilot_wait.found_plain_one" : "chat.pilot_wait.found_plain", sources === 1 ? "1 sobiv allikas" : "{sources} sobivat allikat"))
-      .replace("{sources}", String(sources)).replace("{documents}", documents ?? "");
+    : tr(t, sources === 1 ? "chat.pilot_wait.found_plain_one" : "chat.pilot_wait.found_plain", sources === 1 ? "1 sobiv allikas" : "{sources} sobivat allikat")
+      .replace("{sources}", String(sources));
   // Facts the view turns through while waiting (owner 22.10: "võimalikult palju huvitavat infot"), each from a number the
   // server reported for this question, in the order they come.
   const number = value => new Intl.NumberFormat("et-EE").format(value);
@@ -89,8 +92,6 @@ export function waitTexts(t, view) {
       { total: number(view.records.total) }) } : null,
     place && catalogue ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {listed} asjakohast kirjet {catalogue} seast"),
       { place, listed: number(listed ?? 0), catalogue: number(catalogue) }) } : null,
-    view.found?.sources != null ? { key: "shortlist", text: fill(tr(t, "chat.pilot_wait.fact_shortlist", "Lühinimekirjas {passages} lõiku {sources} allikast"),
-      { passages: number(view.found.passages), sources: number(view.found.sources) }) } : null,
     chosenCount ? { key: "chosen", text: chosenCount === 1 ? tr(t, "chat.pilot_wait.fact_chosen_one", "Lugemiseks valitud 1 allikas")
       : fill(tr(t, "chat.pilot_wait.fact_chosen", "Lugemiseks valitud {count} allikat"), { count: number(chosenCount) }) } : null,
   ].filter(Boolean);
@@ -103,7 +104,9 @@ export function waitTexts(t, view) {
     chosen: tr(t, "chat.pilot_wait.chosen", "Valisin lugemiseks"),
     more: view.chosen?.more ? tr(t, "chat.pilot_wait.more", "+{n}").replace("{n}", String(view.chosen.more)) : null,
     writing: tr(t, "chat.pilot_wait.writing", "Kirjutan vastust…"),
-    places: view.places.map(names => placeText(t, names)),
+    // The detail line writes the topic and the place; a place the topic already names ("Harku valla koduteenus") is not
+    // written twice (owner 22.10). Both of two municipalities a shared name may be still are, as that is news.
+    places: view.places.filter(names => !(names.length === 1 && inTopic(view.topic, names[0].name))).map(names => placeText(t, names)),
     earlier: view.earlier ? tr(t, "chat.pilot_wait.earlier", "varasemast") : null,
     current: view.stage === "writing" ? tr(t, "chat.pilot_wait.writing", "Kirjutan vastust…")
       : view.stage === "choosing" ? tr(t, "chat.pilot_wait.choosing", "Valin, mida lugeda…")
