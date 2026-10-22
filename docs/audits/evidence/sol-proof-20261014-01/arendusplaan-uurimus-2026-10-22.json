@@ -1,0 +1,895 @@
+{
+ "reports": [
+  {
+   "area": "Pöörde ülesehitus: mis ootab mille järel ja mida saab plaaniga samal ajal teha. Analüüsitud on (a) küsimuse vektor plaani ajal, (b) teadmiste kanali otsing algse küsimusega plaani ajal ning (c) muud kattumised. Andmed: R3 ja F1 (101 pööret; ainult phases ja stages) ning 21.10 õhtune regressioonijooks (75 pööret; sisaldab otsingu sisemisi aegu, docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-three-cases-regression-raw.json).",
+   "findings": [
+    {
+     "claim": "Pöörde ajast läheb keskmiselt 44,9% vastuse kutsele, 18,2% plaanile, 19,1% otsingu mitte-LLM osale ja 13,2% valikule. Ülejäänud ~4,6% on ümbris: enne plaani 1,3%, enne vastust 1,1%, pärast vastust 2,2%.",
+     "evidence": "node -e üle R3+F1 101 pöörde. Mõõdud: plaani kestus = stages.plan.ms; otsingu mitte-LLM osa = (searched − planned) − rerank.ms; vastus = answer.ms; enne plaani = planned − plan.ms; enne vastust = answered − searched − answer.ms; pärast vastust = ms − answered. Keskmised: 0,35 / 5,14 / 5,39 / 3,73 / 0,31 / 12,68 / 0,61 s. Mediaanid: pööre 27,1 s, plaan 4,80 s, otsingu mitte-LLM osa 4,99 s, valik 3,90 s, vastus 11,79 s.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Pärast plaani on kriitilisel teel sõnaotsing, mitte embedding. Sõnaotsing oli kanalitest pikim kõigis 75 regressioonipöördes.",
+     "evidence": "Regressioonijooksu searchTimings.lanes.knowledge, mediaan (p90): lexical 2887 ms (3762); vector_* koos embeddingu ootega 492 ms (944); reserve_* 705 ms (1235). Tingimus lexical ≥ max(vektor, reserv) kehtis 75/75 pöördes. Embedding: regressioonis 333 ms, R3+F1-s 313 ms (p90 1038). R3+F1-s on embedded − planned mediaan 390 ms, p90 1092 ms; üle 2 s ainult R3 A01 (2439) ja B24 (3351). R3/F1 ekspordis otsingu sisemisi aegu pole. Ülekandmist toetab see, et otsingu mitte-LLM osa mediaan on R3+F1-s 4,99 s ja regressioonis 4,85 s.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Sõnaotsingu tekst sõltub plaani variantidest. Kogu tekst on üks VÕI-päring küsimuse ja variantidega, seega sama tulemusega päringut ei saa alustada enne, kui plaani queries on teada.",
+     "evidence": "lib/rag-v2/search/retrieval.js:222 (texts = [query.text, ...variants]), :242 (lexicalText = texts.join), :255-257 (sõnapäring ainult indeksil 0, ühendatud tekstiga). Seaduste reservi päring kasutab sama teksti (:262-264). ADR-161 tabel: aeg kulub umbes 73–78 tuhande rea skaneerimisele ja lahtipakkimisele. Päringu sõnade analüüs võtab 4–8 ms, nii et sõnade arv aega peaaegu ei mõjuta.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Plaanist sõltuvad: variandid (sõnaotsingu tekst, variantide vektorid, reservi perQuery), jätkupöördes küsimuse tekst (kitsendatakse praegusele sõnumile ainult siis, kui plaan kirjutas päringuid), isik, kohad ja asulad. Kohtadest tuleb knowledgeRegion, mis määrab omavalitsuse tekstid teadmiste rajal, kirjete raja ja teenuseosutajate raja. Plaanist ei sõltu: preflight, generatsioon, poliitika ja kataloog, kuupäevad ja õigusaktide kehtivus (retrievalPlan loeb ainult pöörete teksti), riiklike seaduste reserv ja kõik dokumendid, millel regions-välja pole.",
+     "evidence": "service.js:342 (validateQueryPlan), :346-347 (isik), :349-354 (checkedPlaces), :367-373 (currentMessageQuery), :386 (pending = küsimus + variandid). pilot/retrieval.js:229-245 (searchScope: places, person, planQueries, settlements), :353 (retrievalPlan(query, today)), :358-359 (legalValidityScope, municipalScope), :413-426 (teenuseosutajate ja kirjete rada vajavad knowledgeRegioni). unified.js:50 (regions-väljata dokument on alati lubatud). retrieval-plan.js:141-164 (ainult turns ja previousState). Keelt otsing ainult valideerib (ranking.js:54).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Sõnaotsingu dokumendihulga võib jagada plaanist sõltumatuks osaks (dokumendid ilma regions-väljata) ja omavalitsuse osaks. Kahe osa tulemuste liitmine annab täpselt sama tulemuse kui üks päring.",
+     "evidence": "postgres.js:559: skoor = ts_rank_cd(rea vektor, päring) + 0,35·ts_rank_cd(…), arvutatakse iga rea kohta eraldi, korpuse statistikat ei kasutata. :562: ORDER BY score DESC, id COLLATE \"C\" LIMIT k. Seega liidu top-k = kahe osa top-k liidetud ja sama võtmega sorteeritud. Vektoripoolt (HNSW, ligikaudne) jagada vaja pole, sest see pole kriitilisel teel.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Plaani skeemis on queries esimene väli. Kui plaani voogedastada, oleks queries teada umbes 0,6–0,9 s enne plaani lõppu, sest pärast seda kirjutab mudel veel language, person ja places.",
+     "evidence": "search-assist.js:185-188: required ['queries','language','person','places']; :225-227: päring praegu voogedastuseta. R3+F1: väljund 287 tokenit (mediaan), sellest arutlus 185 ja nähtav osa 114. queries moodustab rekonstrueeritud plaani-JSON-i märkidest mediaanis 0,545 (p10 0,40, p90 0,62). Lineaarne regressioon plan.ms = 1190 + 13,4·väljundtokenid (r = 0,63) annab queries'ile järgneva osa kestuseks mediaanis 717 ms (p10 575, p90 831); suhtemeetodiga ms/väljund saab 903 ms. Hinnang on ligikaudne: märgid ei ole tokenid ja JSON on taastatud traces'ist.",
+     "confidence": "madal"
+    },
+    {
+     "claim": "Paralleelseid tasulisi kutseid ühes pöördes praegune kuluarvestus ei toeta. Rea olek on üks sammu märk ja koodis on kutsed teadlikult järjestatud.",
+     "evidence": "store.js:216 (reserve seab state = `${stage}_reserved`), :231 (sent keeldub, kui state ei ole `${stage}_reserved`). service.js:382-385: embedding salvestab kasutuse enne, kui vektor välja antakse, et valiku kirjutused jääksid hilisemaks. service.js:568: veaharu loeb ainult viimast sündmust (events.at(-1)).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Kirjete ja teenuseosutajate rada ei ole kunagi kriitilisel teel. Perioodiradu nendes küsimustes ei esinenud.",
+     "evidence": "Regressioonijooks: kirjete rada mediaan 736 ms (p90 1866), teadmiste rajast pikem 0/75 pöördes. Teenuseosutajad 69 ms (37 pööret). Perioodiradu 0/75. Need käivad järjest pärast teadmiste rada (pilot/retrieval.js:435).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Pärast valikut laetakse valitud dokumentide allikad ükshaaval. See võtab mediaanis 0,33 s ja p90-s 1,3 s.",
+     "evidence": "search/retrieval.js:439-443: `await hydrate` tsüklis, üks dokument korraga. Regressioonijooks: fusion_selection − lanes.knowledge.rerank mediaan 329 ms (p90 1297); see vahe sisaldab ka RRF-i, mis on tühine. Lisaks named_acts 44 ms (p90 263) ja companion_provisions 153 ms (p90 537).",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Valiku ümbris võtab mediaanis 0,43 s (p90 0,71 s). See sisaldab kogumi ühikute laadimist, documentSources'i ja nelja kuluarvestuse kirjutust koos access()-kontrolliga. Neid osi andmetest eraldada ei saa.",
+     "evidence": "Regressioonijooks: lanes.knowledge.rerank − stages.rerank.ms mediaan 429 ms. search/retrieval.js:386-387 (units), :397 (documentSources, ADR-166 järgi ainult kirje jaoks), service.js:158-178 (reserve, access, sent, recordCost, usage). access() kutsub readConfigi (sessioon ja konfiguratsioon, m4PilotServer.js:54-59). service.js-is on `this.access(` 23 korda.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Sõnakanal ei toonud R1/R2-s valikukogumisse ühtki kandidaati üksi. Tema mõju piirdub RRF-i järjestusega.",
+     "evidence": "R1+R2 jsonTrace.pool: 154 pööret, 5544 kandidaati. Ilma ühegi vektorikohata 0 kandidaati. Sõnakanali koht (lexical või reserve_lexical) on 1093 kandidaadil (19,7%) ja 264 valitud lõigul 896-st (29,5%).",
+     "confidence": "kõrge"
+    }
+   ],
+   "options": [
+    {
+     "change": "(a) Küsimuse vektor arvutatakse plaani ajal. Ei soovita.",
+     "mechanism": "Küsimuse tekst (jätkupöördes praegune sõnum) saadetakse embeddingusse plaaniga samal ajal; pärast plaani embeditakse ainult variandid.",
+     "expected_gain": "Umbes 0 s pöörde kohta.",
+     "basis": "Embedding ei olnud kriitilisel teel üheski 75-st regressioonipöördest: vektor koos ootega 0,49 s, sõnaotsing 2,89 s (mediaanid). Variandid vajavad pärast plaani ikkagi oma embeddingu päringut (service.js:386-405), mille latentsus on sama. Ainus muutus: kirjete rada saaks varem alata, aga see pole kunagi kriitiline (0/75).",
+     "quality_risk": "Tulemus ei muutu. Riskid: jätkupöördes vale tekst, kui plaan ei kirjuta päringuid (siis kasutatakse kogu teema teksti, service.js:367-373), ning lisapäring (embedding maksab ~17 000 nanoUSD). Kuluarvestus: kaks tasulist kutset korraga on vastuolus store.js:231 olekukontrolliga ja service.js:568 viimase sündmuse loogikaga.",
+     "effort": "M",
+     "owner_decision": false,
+     "measurement": "Pole vaja teha. Kui siiski: uus faas 'question_vector_ready' ja võrdlus lexicaliga searchTimings'is."
+    },
+    {
+     "change": "(b1) Sõnaotsing algse küsimusega plaani ajal ja variantide sõnaotsing pärast plaani eraldi nimekirjana. Ei soovita.",
+     "mechanism": "Praegune üks VÕI-päring (retrieval.js:242) jagatakse kaheks RRF-i nimekirjaks: küsimuse oma alustab plaani ajal, variantide oma pärast plaani.",
+     "expected_gain": "Umbes 0 s; mõõtmata ülempiir alla 1 s.",
+     "basis": "ADR-161: aeg kulub umbes 70 000 rea skaneerimisele, sõnade arv peaaegu ei mõjuta (analüüs 4–8 ms, 28–39 sõna). Variantide päring pärast plaani skaneeriks sama hulga ja jääks kriitilisele teele.",
+     "quality_risk": "RRF-i nimekirjad muutuvad: üks sõnakanal juurde, skoorid teised. Vajaks kvaliteedijooksu ilma ajavõiduta.",
+     "effort": "L",
+     "owner_decision": false,
+     "measurement": "Ei soovita teha. Avatud küsimus on vaid, kas ainult variantidega päring on oluliselt odavam (EXPLAIN ANALYZE serveris)."
+    },
+    {
+     "change": "(b2) Teadmiste raja ja seaduste reservi sõnaotsing tehakse ainult algse küsimusega ja juba plaani ajal; variandid lähevad ainult vektorikanalisse. Plaani ajal otsitakse dokumentidest, millel regions-välja pole. Pöörde omavalitsuse tekstid otsitakse pärast plaani väikese lisapäringuga ja tulemused liidetakse täpselt (postgres.js:559-562).",
+     "mechanism": "Sõnaotsingu ~3 s skaneering jookseb plaaniga (mediaan 4,8 s) samal ajal. Pärast plaani jäävad ootele omavalitsuse ulatus, embedding ja vektoripäringud (~0,5 s).",
+     "expected_gain": "Otsingu faas lüheneb mediaanis umbes 2,6 s (p10 2,1 s, p90 3,2 s), pöördes ~27 s → ~24,5 s, eeldusel et ainult küsimusega päring pole kallim kui praegune.",
+     "basis": "Simulatsioon iga regressioonipöörde kohta. Praegu: scope + registry + max(kanalid), mediaan 3,16 s. Uues skeemis jääb pärast plaani max(spekulatiivse päringu lõpetamata osa, omavalitsuse ulatus + max(vektor, reservi vektor)), mediaan 0,53 s. 53/75 pöördes oleks spekulatiivne päring täielikult plaani sisse mahtunud. R3/F1 plaan on pikem (4,8 vs 3,8 s), nii et seal mahub veel paremini.",
+     "quality_risk": "Päris kvaliteedirisk: variantide ametlikud terminid ei mõjuta enam sõnakanalit. Sõnakanali kohta on 19,7%-l kogumi kandidaatidest ja 29,5%-l valitud lõikudest. Kogumisse ei toonud see kanal üksi ühtki kandidaati (0/5544), seega muutub peamiselt järjestus. ADR-161 variant 3 märgib sama riski. Lisaks: jätkupöördes, kus plaan päringuid ei kirjuta, visatakse spekulatiivne töö ära ja tehakse praegune tee (lisakoormus andmebaasile). Kuluarvestust ei puuduta, sest see on andmebaasipäring, mitte tasuline kutse.",
+     "effort": "L",
+     "owner_decision": true,
+     "measurement": "Enne katset eelregistreerida hüpotees ja otsustusreegel (vastuste liigid, viidatud allikad, valikute kattuvus R-jooksudega). 75 küsimust samal kellaajal. Ajaline võit mõõta faasidega planned → channels_done ja searched − planned, mitte pöörde koguajaga, sest sama küsimuse aeg erineb jooksude vahel mediaanis 5,7 s. Eksport peab sisaldama payload.timings.search, mida R3/F1-s polnud."
+    },
+    {
+     "change": "(b3) Plaani voogedastus koos täpse jaotusega. Kui `queries` massiiv on voos valmis, alustatakse sama VÕI-päringut (küsimus + variandid) regions-väljata dokumentidel ja seaduste reservil. Omavalitsuse osa ja embedding tehakse pärast plaani nagu praegu, et tasulised kutsed jääksid järjestikku.",
+     "mechanism": "Sõnaotsing algab umbes 0,7 s enne plaani lõppu, mitte ~0,35 s pärast seda (directory, scope ja registry tehakse plaani ajal, vt c1). Mudel, arutlustase ja skeem jäävad samaks; muutub ainult transport (provider.js:41 lubab voogedastust igal mitte-embeddingu sammul).",
+     "expected_gain": "Mediaanis umbes 0,75–1,15 s otsingu faasis (sisaldab c1 võitu). Tulemused jäävad samaks.",
+     "basis": "Simulatsioon regressioonipööretel, kus queries'ile järgnev osa oli 0,5 / 0,7 / 0,9 s: võit mediaanis 0,75 / 0,95 / 1,15 s, p90 1,16 / 1,36 / 1,56 s. Järgneva osa hinnang tuleb R3+F1-st (regressioon 717 ms, suhtemeetod 903 ms) ja on madala kindlusega.",
+     "quality_risk": "Kandidaadid peavad jääma samaks; seda tuleb tõestada võrdsustestiga (samad id-d ja skoorid kõigil 75 küsimusel). Riskid: plaan ebaõnnestub pärast queries'it (spekulatiivne päring visatakse ära, tagasi praegusele teele); voog lõpeb ilma lõppsündmuseta (kasutus jääb teadmata, broneering jääb alles, nagu vastusel); jätkupöördes tuleb kitsendus (service.js:367-373) teha osalise plaani põhjal. Keerukus suureneb: osaline JSON-lugeja ja kaheosaline sõnaotsing retrieve()-s.",
+     "effort": "L",
+     "owner_decision": false,
+     "measurement": "Uued faasid plan_queries_ready, lexical_started ja channels_done. Võrdsustest: kandidaatide nimekiri vana ja uue tee kaudu. 75 küsimuse jooks samal kellaajal, peamõõdik planned → channels_done."
+    },
+    {
+     "change": "(c1) Plaanist sõltumatu otsingu ettevalmistus tehakse plaani ajal: generatsioon, poliitika, retrievalDirectory, õigusaktide kehtivus, documentTitles ning retrieve() registry ja directoryScope plaanist sõltumatu osa jaoks.",
+     "mechanism": "Need sammud (pilot/retrieval.js:344-373 ja search/retrieval.js:149-209) ei vaja plaani väljundit. Lõpus tehtav access_changed_during_retrieval kontroll (pilot/retrieval.js:437-439) jääb alles.",
+     "expected_gain": "Mediaanis umbes 0,25 s (p90 0,66 s).",
+     "basis": "Regressioonijooks: directory 80 ms, registry 152 ms, scope p90 338 ms. Simulatsioonis 'prep only' mediaan 254 ms, p90 663 ms.",
+     "quality_risk": "Tulemus ei muutu. Poliitika ja generatsiooni hetktõmmis võetakse varem, kuid lõpu kontroll jääb.",
+     "effort": "M",
+     "owner_decision": false,
+     "measurement": "searchTimings since_start_ms ja uus faas search_prepared; võrrelda planned → channels_done enne ja pärast."
+    },
+    {
+     "change": "(c2) Valitud lõikude allikad laetakse korraga ühe hydrate-kutsega ning kogumi dokumentide bundle'id laetakse ette valikukutse ajal (valik kestab ~4 s).",
+     "mechanism": "Praegu laetakse pärast valikut dokumendid ükshaaval (search/retrieval.js:439-443). Ettelaadimine käib samal ajal kui hooks.rerank (retrieval.js:420).",
+     "expected_gain": "Kuni 0,33 s mediaanis ja kuni ~1,3 s p90-s.",
+     "basis": "fusion_selection − lane rerank: mediaan 329 ms, p90 1297 ms (regressioonijooks, 75 pööret).",
+     "quality_risk": "Tulemus ei muutu: samad allikad ja sama kontroll. Kasvavad andmebaasi koormus ja bundle-vahemälu kasutus, sest laetakse ka allikaid, mida valik ei vali (kogumis kuni ~36 kandidaati, valitakse kuni 9).",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Uus aeg seeds_hydrated ja võrdlus fusion_selection − rerank vahega. Viidatud allikad peavad jääma samaks."
+    },
+    {
+     "change": "(c3) Kaaslassätete (ADR-149) vektorid ja Qdranti päringud tehakse valiku ajal ette kõigile kogumi mitte-akti lõikudele; pärast valikut kasutatakse valitud lõikude omi.",
+     "mechanism": "Praegu tehakse qdrant.vectors ja kuni 9 päringut pärast valikut (search/retrieval.js:636-669).",
+     "expected_gain": "Kuni 0,15 s mediaanis (p90 kuni 0,54 s).",
+     "basis": "companion_provisions mediaan 153 ms, p90 537 ms (regressioonijooks).",
+     "quality_risk": "Tulemus ei muutu. Qdranti päringuid on kuni ~4 korda rohkem.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "companion_provisions aeg searchTimings'is enne ja pärast; kaaslassätete nimekiri peab jääma samaks."
+    },
+    {
+     "change": "(c4) Ümbrise kattumised. documentSources (ADR-166, ainult kirje jaoks) viiakse valikukutsest välja või temaga samale ajale. Enne vastust tehakse checkReferences ja store.save korraga. Hinnatakse restore'i korduvat checkReferences'it kohe pärast avaldamist.",
+     "mechanism": "retrieval.js:397 ootab enne valikukutset. service.js:459-460 ja :479 on järjestikku. service.js:549 ja :147 (restore pärast publish'i, :560) kontrollivad samu viiteid kaks korda ühe päringu jooksul.",
+     "expected_gain": "Mõõtmata. Ülempiirid: valiku ümbris 0,43 s (mediaan), enne vastust 0,30 s, pärast vastust 0,60 s. Realistlik kokku ~0,1–0,4 s.",
+     "basis": "Regressioon: lane rerank − LLM 429 ms. R3+F1: enne vastust mediaan 298 ms, pärast vastust 604 ms. Osade jaotust andmed ei anna.",
+     "quality_risk": "Vastus ei muutu. checkReferences'i ja readConfig/access()-kontrollide vähendamine on turvaotsus: kontrollitakse enne tasulist kutset ja enne avaldamist. reserve ja sent kirjutuste ühendamine muudaks kuluarvestuse semantikat.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "Lisada ajad iga store'i kirjutuse ja access()-i ümber (pöörde timings'isse). Alles siis valida, mida liita."
+    }
+   ],
+   "open_questions": [
+    "Kas ainult algse küsimusega (või ainult variantidega) sõnapäring on serveris odavam kui praegune ühendatud VÕI-päring? Variantide b1/b2 hinnang eeldab, et ei ole kallim. Vaja EXPLAIN (ANALYZE, BUFFERS) samadel küsimustel.",
+    "R3/F1 ekspordis pole payload.timings.search välja. Otsingu sisemine jaotus on võetud 21.10 õhtusest regressioonijooksust, mis tehti enne ADR-165..172. Kas 22.10 hommikune jaotus on sama? Otsingu mitte-LLM osa mediaanid langevad kokku (4,99 vs 4,85 s), kuid lexical'i enda aega R3/F1 kohta ei tea.",
+    "Kuidas jaguneb valiku ümbris (0,43 s): kogumi ühikute laadimine, documentSources ja kuluarvestuse kirjutused koos readConfig/requireChatUser kutsetega? Seda ei saa praegustest andmetest eraldada.",
+    "Kui täpne on plaani voogedastuse võit? Hinnang (~0,7 s) põhineb märkide osakaalul ja lineaarsel tokeniaja mudelil (r = 0,63), mitte voo tegelikel ajatemplitel.",
+    "Kas Qdranti HNSW-päring jagatud dokumendihulgal annaks sama tulemuse? Variandid b2/b3 jätavad vektorid jagamata, sest need pole kriitilisel teel. Kui vektorid hiljem kriitiliseks muutuvad, tuleb see eraldi kontrollida.",
+    "Mõõtejooksud kasutasid voogedastuseta vastust (streaming: false, firstTextMs null). Vestluses on voogedastus olemas (m4PilotServer.js:168-180), nii et kasutaja tajutud ooteaeg võib olla lühem kui 27 s. Seda pole mõõdetud.",
+    "R3 C20 lõppes HTTP 500-ga 74,6 s järel ja ilma jsonTrace'ita. Põhjus on teadmata; selle analüüsi ulatusest see väljas."
+   ]
+  },
+  {
+   "area": "Valikumudel (rerank): sisend, väljund, arutlus ja aeg R1, R2, R3 ja F1 jooksudes; valiku juhis ja rerankRequest (search-assist-24, main 67a57dee)",
+   "findings": [
+    {
+     "claim": "Valikusammu jaotus 255 pöördes (R1 75, R2 79, R3 74, F1 27): sisendi mediaan 17 255 tokenit (p90 20 228), väljundi mediaan 248 (p90 384), arutluse mediaan 220 (p90 346), nähtava väljundi mediaan 34 (p90 41) ja aja mediaan 4,20 s (p90 6,24 s). Jooksude kaupa oli aja mediaan / p90 järgmine: R1 4,85 / 6,76 s, R2 4,15 / 5,86 s, R3 3,94 / 5,58 s, F1 3,89 / 5,76 s. Arutluse mediaan oli vastavalt 216, 208, 219,5 ja 253. Valik võtab pöörde ajast mediaanis 15,2% (p10 6,6%, p90 23,2%).",
+     "evidence": "Arvutasin node -e skriptiga jsonTrace.stages[stage=rerank] väljadest input, output, reasoning, ms ja cachedInput, kasutades lineaarse interpolatsiooniga kvantiile. Nähtav väljund = output − reasoning, sest kõigis kirjetes oli output ≥ reasoning. Valiku osa pöördes = stage.ms / record.ms. R2-s puudub B03 (pilot_failed) ja R3-s C20 valikusamm.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Valiku aeg tuleb peaaegu ainult arutlusest. Ligikaudne mudel on: aeg ≈ 1,3 s + 11,7 ms × arutluse token + 12 ms × 1000 sisenditokenit. 84,6% valiku väljunditokenitest on arutlus. Ilma arutluseta kutse mediaan on 1,57 s. Sisendi mõju on väike: 5000 tokenit vähem säästaks 0,06–0,17 s.",
+     "evidence": "Vähimruutude regressioon 255 pöördel: ms = 1287 + 12,0·input_k + 11,3·nähtav + 11,7·arutlus, R² 0,69. Viie üle 9 s väljalangeja (A14 R3, C17 R3, B05 R2, A11 F1, B07 R1) väljajätmisel on R² 0,80 ja arutluse kordaja 11,4. Ainult arutluseta pööretel (n=72) on ms = 1211 + 34·input_k, R² 0,02. Korrelatsioonid: aeg ja arutlus 0,83, aeg ja sisend 0,19, aeg ja nähtav väljund 0,16.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Arutlusel on kaks olekut. 28% kutsetest (72/255) ei arutle üldse. Kui mudel arutleb, kulub 107–459 tokenit (p10 171, mediaan 254, p90 362). See, kas mudel arutleb, ei sõltu küsimusest: sama küsimuse kolmes jooksus (R1, R2, R3) jaotuvad tulemused nagu sõltumatu mündivise tõenäosusega 0,28.",
+     "evidence": "Küsimusi, mis on olemas kõigis kolmes jooksus: kõigis kolmes 0 tokenit 1 (sõltumatuse korral oodatav 1,5), mitte üheski 30 (oodatav 27,7), segamini 42 (oodatav 43,8). Arutluseta osakaal jooksude kaupa: R1 23%, R2 30%, R3 30%, F1 33%.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Arutlus ei paranda valiku täpsust tervikuna, aga võib parandada järjekorda. R1+R2 täpsus (tsiteeritud valikud / valikud) oli arutluseta pööretel 50,6% ja arutlusega 55,0%. Sama küsimuse paarides oli see 51,9% vs 50,3%. Kolme esimese valiku täpsus oli paarides arutluseta madalam: 67,1% vs 74,2%.",
+     "evidence": "Täpsuse arvutasin pool[].pick != null ja evidence[ref].cited põhjal: R1 224/429 = 52,2%, R2 258/467 = 55,2%. Need on samad mis failis olevad mõõdikud H1 52,2 ja 55,3. Rollide kaupa kihistatud permutatsioonitest (5000 kordust) erinevusele −4,4 pp andis p≈0,37. 30 küsimust, kus R1-s või R2-s oli täpselt üks arutluseta: 12 korral parem, 12 korral halvem, 6 viiki. Arutluse ja täpsuse korrelatsioon pöörde kaupa −0,02. Arutlusvahemikus 351+ oli täpsus 36,7% (n=13). R3 täpsust ei saa arvutada, sest R3 ekspordi jsonTrace'is pole pool'i ega evidence'it.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Kandidaatide arvu ja arutluse seost ei saa nende andmete põhjal hinnata. R1-s ja R2-s oli pool kõigis 154 pöördes 36 kandidaati (30 liidetud + 6 riigi seaduse reservi, muutuste reservi polnud). Kandidaatide teksti maht (sisend 11,5k–23k) arutlust ei ennusta, samuti mitte vestluse pikkus.",
+     "evidence": "jsonTrace.pool.length = 36 kõigis 154 pöördes, reserved = 6 kõigis. Pöördeid, kus mudel arutles: arutluse ja sisendi korrelatsioon 0,07, arutluse ja userTurns 0,05, arutluse ja küsimuse pikkuse oma −0,18. Kood: RERANK_POOL = 30 (lib/rag-v2/search/retrieval.js:109), NATIONAL_LAW_RESERVE size 6 (lib/rag-v2/search/unified.js:57).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Rolli järgi erineb peamiselt see, kas mudel arutleb, mitte arutluse pikkus. Pöörduja (CLIENT) pööretes jäeti arutlus vahele 39% juhtudest, sotsiaaltöötaja ja teenuseosutaja pööretes 21%. Arutluse mediaan arutlevates pööretes oli rollide kaupa sarnane: 264, 266 ja 242. Aja mediaan oli 3,79, 4,58 ja 4,39 s, sisendi mediaan 15,8k, 18,2k ja 18,3k. Täpsus (R1+R2) oli 48,1%, 50,5% ja 68,2%.",
+     "evidence": "plannedRole rühmad 255 pöördes: CLIENT 40/103, SOCIAL_WORKER 16/76, SERVICE_PROVIDER 16/76 arutluseta. Ainult pöördujal langes arutluseta osakaal sisendi kasvades (alla 15k: 20/40, 15–17k: 13/31, 17–19k: 5/21, üle 19k: 2/11). Sotsiaaltöötajal ja teenuseosutajal seda seost polnud.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Vestluse esimeses pöördes jääb arutlus vahele peaaegu kaks korda sagedamini kui jätkupöördes: 47% vs 25%. Suund on sama kõigis kolmes rollis, ja ka sama pikkusega küsimuste puhul. Seega paneb mudelit arutlema varasemate sõnumite olemasolu, mitte nende arv. Jätkupöörded on aga ka teist tüüpi küsimused, nii et see võib olla segav tegur.",
+     "evidence": "userTurns=1: 20/43 arutluseta, userTurns>1: 52/212. Rollide kaupa: pöörduja 65% vs 33%, sotsiaaltöötaja 27% vs 20%, teenuseosutaja 33% vs 19%. Küsimuse pikkusel 80–129 märki: esimene pööre 6/8, jätkupööre 18/77. Jätkupööretes pikkus vahelejätmist ei mõjuta (alla 80 märgi 34/135, 80–129 märki 18/77). Varasemate sõnumite arv samuti mitte: 2–3 sõnumit 14%, 4–6 sõnumit 27%, 7–10 sõnumit 32%.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Arutlust tõstavad lisaotsused kandidaatide kohta: rohkem välju kaardil või uus väljundloend. Pikem juhisetekst üksi seda ei tee. Jooksudevaheline müra on umbes 25–30 tokenit, nii et ühe 75 küsimuse jooksuga sellest väiksemat mõju ei näe.",
+     "evidence": "Arvutasin sama küsimuse paarid, kus mõlemas jooksus mudel arutles. R2 kaardiväljadega vs R1: mediaan +45, 28 korral rohkem ja 13 vähem, märgitest p≈0,03. F1 circumstance-väljaga vs R3: mediaan +62, keskmine +47, 6 rohkem ja 4 vähem (n=10), p≈0,75; arutlevate pöörete mediaan oli F1-s 310 ja R3-s 250. R3 vs R1 (valiku tekst sama, sa-21 vs sa-18): +24, 27/15, p≈0,09. Kogu jooksu arutluse mediaan oli R0 (sa-16) 208 ja R1 (sa-18, lisandus 927-märgine asjaolu reegel) 216. git diff 53f5c92b..269e7ab0 näitab, et R3 ja F1 vahel muutus valikus ainult circumstance-väli ja selle lause.",
+     "confidence": "madal"
+    },
+    {
+     "claim": "Valiku juhis RERANK_INSTRUCTIONS on 15 rida, 5108 märki ja 880 sõna. Puhvris loetakse sellest koos skeemiga 1081–1240 tokenit. Pikim osa on RERANK_CIRCUMSTANCE: 927 märki ehk 18%. SAFEGUARD-rida lõpeb selgesõnalise kontrollikäsuga \"Check the selected set for these qualifications before returning it.\" Iga kandidaat saadetakse tervikliku tekstina koos pealkirja, aasta ja kehtivusajaga, umbes 430–450 tokenit kandidaadi kohta. Väljund on JSON, kus useful ja circumstance on ID-enum'ide massiivid (maxItems 9).",
+     "evidence": "lib/rag-v2/pilot/search-assist.js:158-174 (juhis), :128 (CIRCUMSTANCE), :156 (SAFEGUARD), :190-192 (rerankSchema: enum ja maxItems), :226-228 (strict json_schema, reasoning effort low), :253-256 (rerankRequest: today, messages, assistant_question, passages). lib/rag-v2/search/retrieval.js:410-411 (passage = id, title, year, valid_from, valid_to, text: unit.input_text; card ja unit ei ole loendatavad ega lähe päringusse). Pikkused arvutasin read 118–174 node'iga hinnates. Kandidaadi tokenid: (17 255 − ~1100–1240) / 36. See on ülempiir, sest sõnumid on samuti sisendis.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Pooli vähendamine on halb vahetus. P21–P30 annavad 21,9% valikutest ja nende tsiteerimismäär (49,5%) on sama mis P1–P10-l (51,1%). Seaduse reservi P31–P36 valikuid tsiteeritakse 80,3% juhtudest. Kuna arutlus sisendi mahule ei reageeri, säästaks kuue kandidaadi (umbes 2700 tokeni) äravõtmine ainult umbes 0,03–0,09 s.",
+     "evidence": "R1+R2, 896 valikut. P1–10: 360 valikut, 51,1% tsiteeritud. P11–20: 213 valikut, 46,5%. P21–30: 196 valikut, 49,5%. P31–36: 127 valikut, 80,3%. Ajakulu kordaja 12–34 ms 1000 sisenditokeni kohta (regressioon eespool).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Valikute järjekord on informatiivne, seega järjestamise nõue peab jääma. Valikute arvu vähendamine kiirust ei too: arutlus valikute arvust ei sõltu.",
+     "evidence": "Tsiteerimismäär valiku järjekorranumbri järgi: 1. 78,6%, 2. 68,7%, 3. 62,8%, 4. 52,6%, 5. 35,6%, 6. 37,0%, 7. 26,3%, 8. 9,7%, 9. 14,3%. Korrelatsioonid: arutlus ja valikute arv −0,03, nähtav väljund ja valikute arv 0,99. Valikud 7–9 andsid 20 tsiteeritud lõiku 482-st (4,1%). Ülempiiri 9 asemel 6 kärbiks umbes 9 nähtavat tokenit, alla 0,1 s. Seemned lisatakse valiku järjekorras (retrieval.js:424, 438-443).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "F1-s märkis valik asjaolu-lõike 18 pöördes 27-st, kohati kuni 6 ID-d. Seda tegi ta ka arutluseta pööretes, näiteks C01 S1–S6 ja B01 S2–S7. Märkimine on lõtv ja käivitab vastuse arendajavihje kahes pöördes kolmest.",
+     "evidence": "Loendasin F1 jsonTrace.developer tekstidest need, mis sisaldavad \"evidence selection kept ... for it\" (circumstanceInstructions, lib/rag-v2/pilot/dialogue.js:134).",
+     "confidence": "kõrge"
+    }
+   ],
+   "options": [
+    {
+     "change": "Eemaldada valiku väljundist circumstance-loend ja selle lause \"Return in circumstance...\": valiku skeem oleks taas ainult useful, nagu search-assist-21-s. Asjaolu-lõigud määraks server. Plaan märgiks, milline tema päringutest on PLAN_CIRCUMSTANCE järgi kirjutatud asjaolu päring, ja asjaolu-lõik oleks valitud lõik, mille parim koht oli selle päringu vektorkanalis (pool ranks vector_N). Teine võimalus on asjaolu-vihje tagasi võtta.",
+     "mechanism": "Iga valitud lõigu kohta kaob üks otsus (kas see on asjaolu jaoks) ja 5–6 nähtavat tokenit. Andmetes tõstsid kandidaadi kohta tehtavad lisaotsused arutlust.",
+     "expected_gain": "Arutlevates pööretes umbes 45–60 arutlustokenit vähem, see on 0,5–0,7 s. Kõigi pöörete keskmisena (72% arutleb) umbes 0,35–0,5 s ja nähtava väljundi pealt lisaks umbes 0,05 s. Pöörde mediaanist 27 s on see umbes 1,5–2%.",
+     "basis": "F1 vs R3 sama küsimuse paarides, kus mõlemad arutlesid: mediaan +62, keskmine +47 (n=10, 6/4, ei ole statistiliselt oluline). Arutlevate pöörete mediaan F1-s 310, R3-s 250. Nähtava väljundi mediaan F1-s 39, R3-s 33. Kaardiväljade analoog (R2 vs R1 +45, p≈0,03) toetab sama mehhanismi. Mõju on segatud ADR-167..172 plaanimuudatustega ja jooksudevahelise triiviga (R3 vs R1 +24).",
+     "quality_risk": "ADR-171 vihje (üks lause ravikindlustuse jms kohta) sõltuks plaani märgist ja kanali järjestusest, mitte valiku otsusest. See võib vale lõigu märkida või õige vahele jätta. Plaani väljund kasvab paari tokeni võrra. Tabasalu kontroll (ADR-171/173) tuleb uuesti läbi teha. Praegune märkimine on aga ise lõtv: F1-s 18/27 pöördes, kuni 6 ID-d.",
+     "effort": "M",
+     "owner_decision": true,
+     "measurement": "Taasesitus väljaspool vestlust. Valikupäringud ehitatakse salvestatud pööretest uuesti: lane audit rerank.candidates ühikud + sama generatsiooni unit.input_text + skoobi sõnumid. Iga variant saadetakse 3 korda pöörde kohta, sest arutluse vahelejätmine on mündivise. Võrrelda: arutluse mediaan arutlevates kutsetes, arutluseta osakaal, ms, valikute kattuvus (Jaccard) ja see, mitu baasjooksus tsiteeritud lõiku jääb valituks. Seejärel 75 küsimuse jooks: H1 täpsus mitte üle 3 pp halvem, Tabasalu küsimus 5 korda. Hind on umbes 0,0022 USD kutse kohta (nanoUsd mediaan 2,17M), 75 × 3 × 2 kutset ≈ 1 USD."
+    },
+    {
+     "change": "Anda valikule praegune sõnum ja varasemad sõnumid eraldi väljadena, näiteks {current_message, earlier_messages}, mitte ühe messages-massiivina, kus praegune on viimane. Juhise rida 2 ja ANSWERED-reegel tuleb sõnastada uue välja järgi. Reeglite sisu ei muutu.",
+     "mechanism": "Mudel ei pea ise välja selgitama, milline sõnum on praegune päring ja millised on kontekst. Andmetes on esimeses pöördes, kus varasemaid sõnumeid pole, arutlus palju sagedamini null.",
+     "expected_gain": "Ebakindel. Kui jätkupöörete arutluseta osakaal tõuseks 25%-lt esimese pöörde tasemele 47%: 0,22 × umbes 3,0 s (254 tokenit × 11,7 ms) ≈ 0,65 s jätkupöörde kohta ja kõigi pöörete keskmisena umbes 0,55 s. See on ülempiir. Tegelik mõju võib olla ka null, sest esimene pööre on ka teist tüüpi küsimus.",
+     "basis": "Arutluseta osakaal: userTurns=1 20/43 (47%), userTurns>1 52/212 (25%). Iga rolli sees: 65/33, 27/20, 33/19%. Sama pikkusega (80–129 märki) küsimustel 6/8 vs 18/77. Varasemate sõnumite arv (2–10) mõju ei avalda, seega aitab struktuur, mitte kärpimine.",
+     "quality_risk": "Väike kuni keskmine. Jätkupöörde tuvastamine (\"it, that service, there\") ja ASKED-vastuse käsitlus peavad jääma samaks. Kontrollida pöördeid, mis jätkavad varasemat päringut, ja lühikesi vastuseid assistendi küsimusele.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Sama taasesitus 3 kordusega ainult jätkupööretel (212/255): arutluseta osakaal, arutluse mediaan, valikute kattuvus baasiga ja baasis tsiteeritud lõikude säilimine. Seejärel 75 küsimuse jooks, kus H1 täpsus ei tohi langeda üle 3 pp."
+    },
+    {
+     "change": "Eemaldada RERANK_SAFEGUARD_INSTRUCTIONS-ist (search-assist.js:156) viimane lause \"Check the selected set for these qualifications before returning it.\" Reegel ise jääb.",
+     "mechanism": "Selgesõnaline \"kontrolli enne tagastamist\" käsk muutub arutluses teiseks läbikäiguks üle valitud hulga.",
+     "expected_gain": "Teadmata. Kui see vähendaks arutlevates kutsetes 30–50 tokenit: 0,35–0,6 s neis pööretes ja umbes 0,25–0,4 s keskmiselt. Otsest mõõtmist pole.",
+     "basis": "Ainult mehhanism ja üldine muster, et lisaotsused tõstavad arutlust (R2 kaardid +45). Pikem juhisetekst üksi ei tõstnud arutlust: R0 208 → R1 216.",
+     "quality_risk": "Hinnaküsimustes võib maksevõime, soodustuse või individuaalse hindamise lõik välja jääda. Selle pärast ADR-109 reegel lisatigi.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Taasesitus 3 kordusega: arutluse mediaan arutlevates kutsetes. Hinna- ja tasuküsimuste alamhulgal: kas sotsiaalhoolekande seaduse maksevõime või soodustuse lõik jääb valituks sama sageli kui baasis. 75 küsimuse jooksus H1 ja H2."
+    },
+    {
+     "change": "Panna osa juhise ridu päringusse tingimuslikult, server teab tingimused. ASKED-rida ainult siis, kui assistant_question on olemas. ANSWERED- ja jätkureegel ainult siis, kui varasemaid sõnumeid on. CHANGE-rida ainult siis, kui muutuste reservil on grupid. Versioonireegel ainult siis, kui mõnel kandidaadil on valid_from.",
+     "mechanism": "Mudel ei pea kaaluma reegleid, mis antud pöördes ei kehti.",
+     "expected_gain": "Väike, tõenäoliselt alla 0,1–0,2 s pöörde kohta.",
+     "basis": "927-märgise reegli lisamine (R0 → R1) muutis jooksu arutluse mediaani ainult +8 tokenit. Pelk tekst maksab vähe. Puhvri osa on ainult 1081–1240 tokenit, nii et eesliite variandid puhvrit oluliselt ei kahjusta.",
+     "quality_risk": "Väike, kui tingimused on õiged. Vale tingimus jätaks vajaliku reegli ära. Näiteks kui muutuste grupid pole leitud, aga küsimus on kuupäevade võrdlus.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Taasesitus esimestel pööretel ja pööretel, kus assistant_question puudub: arutluse mediaan ja arutluseta osakaal 3 kordusega, valikute kattuvus baasiga."
+    },
+    {
+     "change": "Valiku skeemis useful- ja circumstance-elementidelt enum ära (ID-d tavaliste stringidena, maxItems jääb). validateRerank ei lükka siis valele ID-le kogu valikut tagasi, vaid filtreerib tundmatud ja korduvad ID-d välja ning lõikab üheksale. Sama teed läks ADR-162 plaani puhul.",
+     "mechanism": "Piiratud dekodeerimine võib nähtavaid tokeneid aeglustada, nagu ADR-162-s maxLength plaani puhul. See mõjutab ainult nähtavat osa, umbes 35 tokenit, ka arutluseta kutsetel.",
+     "expected_gain": "0 kuni umbes 0,5 s igas pöördes. Arutluseta kutse mediaan 1,57 s on eeltöötluse ja nähtava osa summa ülempiir.",
+     "basis": "ADR-162: plaan muutus pärast pikkuspiiride eemaldamist 2–3 korda kiiremaks. Seal jäid enum'id alles, nii et enum'i aeglust pole tõestatud (ADR-162 \"Valikumudeli skeemis on ainult enum, see jääb samaks\"). ADR-163 vastuse skeemi puhul võitu ei andnud. Regressioonis on nähtava tokeni kordaja 6–11 ms, aga ebastabiilne.",
+     "quality_risk": "Mudel võib kirjutada ID, mida pole. Praegu lükkab validateRerank (search-assist.js:277-281) kogu valiku tagasi koodiga invalid_rerank_selection ja pööre läheb liidetud järjekorrale (service.js:31-33, 428-430). Seetõttu on filtreeriv kontroll vajalik.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Arutluseta kutsete ms mediaan enne ja pärast samadel küsimustel taasesitusega, sest need eraldavad nähtava osa arutlusest. Lisaks valede ID-de arv ja valikute kattuvus. Tagasi võtta, kui arutluseta kutse mediaan ei lange vähemalt 0,2 s."
+    }
+   ],
+   "open_questions": [
+    "R3 täpsust ei saanud arvutada, sest R3 ekspordi jsonTrace'is pole pool'i ega evidence'it. Väide \"52–55% R1–R3\" on kontrollitud ainult R1 (52,2%) ja R2 (55,2%) kohta.",
+    "Praeguse main'i valikut (search-assist-24, lisalause \"keep one passage for each ... also when the passages for what was asked fill the list\") pole mõõdetud. F1 jooksis versioonil search-assist-22. Lisalause võib arutlust veelgi tõsta.",
+    "Arutluseta kutsete täpsus on paarides sama (51,9% vs 50,3%), aga kolme esimese valiku täpsus on madalam (67,1% vs 74,2%, n=30 paari). Andmed võiksid toetada ainult valikukutse arutlustaseme muutmist, kuid omanik on selle välistanud ja seda ei pakuta. Kui omanik kunagi otsust ümber vaatab, oleks ülempiir umbes −2,6 s valiku mediaanist.",
+    "Kas valikupäringuid saab salvestatud pööretest täpselt taastada (rerank.candidates ühikud + sama generatsiooni unit.input_text + skoobi sõnumid + today)? Taotluse keha ise ei salvestata, ainult bodyHash (service.js:158-163). Taasesitusmõõtmine eeldab, et generatsioon pole vahepeal muutunud.",
+    "R3 ja R1 valiku tekst on sama, kuid paarides oli R3 arutlus +24 tokenit (p≈0,09). Kas see on teenusepakkuja triiv või plaani muudatuste mõju kandidaatidele? Sellest sõltub, kui suurt efekti üks 75 küsimuse jooks üldse eristab.",
+    "Asjaolu-märkimine on F1-s lõtv (18/27 pööret, kuni 6 ID-d). Kas see tõstab vastuse arutlust ja aega? See on vastuse sammu uurimise küsimus."
+   ]
+  },
+  {
+   "area": "Vastuse ja plaani väljundi pikkus (R1, R2, R3, F1; 255 vastatud pööret: R1 75, R2 79, R3 74, F1 27)",
+   "findings": [
+    {
+     "claim": "Vastuse samm kulutab umbes 10 ms iga väljundtokeni kohta, nii arutlus- kui nähtava tokeni puhul. Vastuse sisendi suurus aega ei mõjuta.",
+     "evidence": "Kasutasin node -e skripti stages[stage=answer] väljadel ms, output ja reasoning. Usage.output sisaldab arutlust (cost.js:23: reasoning ≤ output), seega nähtav osa = output − reasoning. Theil–Sen kõigil 255 pöördel: 9,97 ms tokeni kohta, vabaliige 1,06 s. Jooksude kaupa: R1 10,5, R2 10,3, R3 9,1, F1 8,6 ms. OLS: 9,67 ± 0,55 ms, R² 0,55. Kui nähtav osa ja arutlus eraldi võtta: nähtav 7,6 ± 0,9 ms, arutlus 11,5 ± 0,8 ms. Sisendi kordaja on −0,1 ± 0,04 ms tokeni kohta. R3-s on R² ainult 0,29 teenusepakkuja poolsete erindite tõttu: C21 andis 1010 tokenit 35,8 s-ga, B22 610 tokenit (arutlus 0) 24,2 s-ga. Plaanis on Theil–Seni kalle 11,5 ms tokeni kohta.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Vastuse nähtav tekst on juba lühike. Sõnade mediaan on 167 (klient 144, spetsialist 210, teenuseosutaja 159). Kõikides jooksudes tuleb umbes 600 nähtavat tokenit, millest tekstiplokid moodustavad umbes 60%.",
+     "evidence": "Mediaanid jooksude kaupa (output / arutlus / nähtav / samm): R1 944/368/592/9,95 s, R2 994/353/614/11,47 s, R3 1033/444/594/12,74 s, F1 1099/425/600/11,54 s. Märke (plokid + piirangud + küsimus) 1210–1359, plokke 3, piiranguid 1. Sõnad: p25 123, p75 205, p90 263. Plokiteksti tokenid o200k-ga: mediaan 351.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Spetsialisti vastus on pikem ja mõtleb kauem. Osalise vastuse lisaaeg tuleb aga arutlusest, mitte tekstist.",
+     "evidence": "Mediaanid kõigist jooksudest (output / arutlus / samm / märke). Klient (n=103): 899/323/8,8 s/1086, plokke keskmiselt 2,83. Spetsialist (n=76): 1228/446/14,4 s/1721, plokke 3,62. Teenuseosutaja (n=76): 941/365/10,6 s/1218, plokke 3,04. Faktoorne: grounded (n=107) 907/287/9,7 s, partial (n=148) 1043/418/11,7 s. OLS-i kordajad nähtavale osale: spetsialist +218, partial +1,5, esimene pööre +328. Arutlusele: spetsialist +139, partial +151. Roll on segatud küsimusega: kliendi küsimused on igas juhtumis A01–10, spetsialisti 11–18 ja teenuseosutaja 19–25 (adr167-export log). Sama küsimust kolmes rollis andmetes ei ole.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Nähtava väljundi koosseis (hinnang): tekstiplokid umbes 351 tokenit, piirangud ja küsimus umbes 45, JSON-i struktuur umbes 66 (sellest \"factual\":true umbes 16) ja dialoogi olek umbes 120. Esimeses pöördes on dialoogi olek umbes 290 tokenit.",
+     "evidence": "Dialoogi olekut eksportides ei ole: otsisin new_facts ja dialogue_state, mõlemad 0 vastet. Seepärast lahutasin nähtavast osast vastuse JSON-i o200k-tokenid. Jääk on jätkupööretes (n=212) 122 (IQR 92–158) ja esimestes pööretes (n=43) 287 (IQR 217–339). cl100k-ga oleks jääk 13 ja 135. See ei saa olla õige, sest tühja oleku skelett on juba umbes 34 tokenit. Sõltumatu kinnitus: ADR-163:11 („umbes 200 tokenit vastuse järel“). Kontrolliks ehitasin A01 küsimusest käsitsi oleku, see tuli 298 tokenit. Olek kirjutatakse vastuse järel (dialogue-state-4.js:31, answer-stream.js:2). Needs ja unknowns kirjutatakse igas pöördes uuesti (dialogue-state-4.js:144).",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Elavas vestluses voogedastatakse vastuse tekst kasutajale, aga mõõdetud jooksudes voogedastust ei olnud. Teksti pikkus mõjutab elavas vestluses ainult lõpuosa, olek pikendab ainult aega allikate ja lõpliku avaldamiseni (done).",
+     "evidence": "Klient saadab päise Accept: text/event-stream (components/chat/hooks/useChatStream.js:1647). Server voogedastab, kui päis on olemas (lib/chat/m4PilotServer.js:154, 189; service.js:470-473). Esimesena läheb tekst, olek tuleb pärast (answer-stream.js:1-6). Kõigis 255 mõõdetud pöördes on stages.streaming=false ja firstTextMs=null. Jämedalt arvutades, kiirusel 8–10 ms tokeni kohta, tuleb R3+F1 elavas vestluses esimene tekst umbes 20,6–22,1 s juures, terve pööre 27,1 s juures. Sellest järeldub, et tekstiplokkide lühendamine ei vähendaks peaaegu üldse esimese teksti ooteaega.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Pikkuse sihti juhistes ei ole. Pikkust kasvatavad mitu „hoia juures“ reeglit ja rolli töökirjeldus. Lühendama suunavad vaid mõned read.",
+     "evidence": "Lühidust nõuavad: „short sentences“ (contracts.js:293), „usually one to three“ varianti (:307), kuni kaks küsimust (:310), asjaolu kohta „one short sentence“ (dialogue.js:135). Pikendavad:\n- iga variandi kohta mis, miks ja kuidas, lõpus järgmine samm (contracts.js:307-308);\n- väited eri allikatega eraldi plokkidesse (:314), kasulikke eristusi mitte kärpida (:319);\n- akt ja säte iga reegli juurde, seaduse nimi välja kirjutatud (:265, 276-277);\n- spetsialistile „assessment, coordination, documentation and next-step work“ (dialogue.js:174) ja säte iga reegli, tingimuse, kohustuse, tähtaja ja summa juurde alampunkti täpsusega (:185);\n- abiotsijale iga tagajärg, tähtaeg ja muu tee (:193-194);\n- COMPLETENESS (:274-280), FEE (:189), TIME (:235-258), MUNICIPAL_ROUTE (:219-220), PROVIDER (:143-149);\n- paranduse kinnitus esimeses lauses (:463).\nLühendavad COMMIT (:222-226) ja ASKING (:163-167). Skeem lubab 12 plokki, igaühes kuni 6000 märki (contracts.js:52-55). Rolli tööjuhis läheb tõendite järel developer-sõnumina (dialogue.js:507).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Reegel „säte iga reegli juurde“ maksab spetsialisti vastuses nähtavate tokenitena vähe: umbes 13–20 tokenit ehk 0,1–0,2 s abiotsija tasemega võrreldes.",
+     "evidence": "Loendasin regexiga §-märke ja sulgudes viiteid, mis sisaldavad §. Keskmine §-märkide arv: spetsialist 3,5, klient 1,7, teenuseosutaja 1,9. Sulgudes viidete tokenid o200k-ga: 46, 33 ja 27, mis on 8–10% plokiteksti tokenitest. Mõju arutlusele mõõta ei saa, sest korrelatsioon arutluse ja §-arvu vahel on vaid 0,14.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Isegi täiuslikult täidetud pikkuslagi annaks vähe: rollimediaani lagi säästaks keskmiselt umbes 58 tokenit ehk 0,5–0,6 s, lagi 180 sõna (spetsialistile 250) umbes 27 tokenit ehk 0,25 s.",
+     "evidence": "Simulatsioon kõigil 255 pöördel: sõnad üle lae × tegelik tokenite arv sõna kohta (keskmiselt 2,44), kiirusel 9–10 ms tokeni kohta. Rollimediaani lagi puudutaks 125 pööret 255-st, sääst keskmiselt 58 tokenit (klient 46, spetsialist 76, teenuseosutaja 57). Lagi 200 sõna: 73 pööret, 36 tokenit. Lagi 250: 32 pööret, 14 tokenit. See on ülempiir: eeldab, et arutlus ei kasva.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Vastuse samm on aja jooksul aeglustunud arutluse, mitte teksti tõttu.",
+     "evidence": "Võrdlesin samu küsimusi R1 ja R3 vahel, kliendi pöörded (n=30): arutlus +190 tokenit (mediaan), nähtav +3, märgid −128, samm +2,0 s. R2→R3: klient +101 arutlustokenit, spetsialist +110. Vastuse juhis oli kõigis kolmes jooksus answer-15 (A.run, B.run). Põhjus ei ole teada.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Plaani väljund on mediaanis 291 tokenit, millest 181 (62%) on arutlus ja ainult 112 nähtav. Plaani aeg sõltub arutlusest, mitte nähtavast osast.",
+     "evidence": "Nähtava osa koosseis (o200k, ehitasin trace.plan.queries ja plannedPlaces põhjal; korrelatsioon tegeliku nähtava osaga 1,00): päringud umbes 67 tokenit, kohad umbes 35, tsitaadid umbes 14. Korrelatsioon plaani ms-iga: arutlus 0,65, nähtav 0,09. OLS: nähtav 8,2 ± 3,5 ms, arutlus 12,7 ± 0,9 ms tokeni kohta. Plaani arutlus on kodeeritud „low“ (search-assist.js:227).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Plaan kordab jätkupööretes varasemate, juba loetud sõnumite kohti ja server viskab need kõik ära. Keskmiselt umbes 28 tokenit plaani kohta, umbes 25% nähtavast osast, läheb tühja.",
+     "evidence": "plannedPlaces võrdlus checked places'iga: 208 kohta 255-st on varasemast pöördest (turn < context.userTurns) ja nendest on alles 0. Jooksva sõnumi kohtadest on alles 43/47. Mõjutatud plaane on 187. Tühja läinud tokenid: mediaan 35, keskmine 28,2. Server jätab loetud sõnumi koha vahele (person-places.js:156). place_messages = loetamata sõnumite arv (service.js:340-341). Juhis lubab kohti ainult viimastest place_messages sõnumitest (search-assist.js:148).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Plaani kohtade tsitaatidel põhineb omavalitsuse loogika, neid ei saa lühendada.",
+     "evidence": "person-places.js kasutab tsitaati:\n- sõnumi ja lause leidmiseks (:20-29, :156-157);\n- omavalitsuse lugemiseks lausest (:162);\n- kontrolliks, kas lause on kasutaja enda oma ja kas kohta mainitakse korduvalt (:171-174);\n- eituse lugemiseks (record-scope.js:86-103).\nTsitaatide kogu kaal on umbes 14 tokenit ehk alla 0,15 s.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Müra on nii suur, et alla 1 s võitu ms-ides 75 küsimusega kinnitada ei saa. Tokenitena saab.",
+     "evidence": "Paarisvahede standardhälbed R1→R2 (n=74): vastuse ms 4100, kogu pööre 5419, nähtav osa 156 tokenit, vastuse arutlus 293, plaani nähtav osa 20, plaani arutlus 90. Vajalik pöörete arv 80% võimsusel (α=0,05): 0,5 s jaoks umbes 530, 1 s jaoks umbes 130, 60 nähtava tokeni jaoks umbes 54, plaani 30 nähtava tokeni jaoks umbes 4.",
+     "confidence": "kõrge"
+    }
+   ],
+   "options": [
+    {
+     "change": "Plaan ei kirjuta enam varasemate, juba loetud sõnumite kohti: kohtade jaoks antakse ainult loetamata sõnumid (näiteks read-märgend sisendis või eraldi väli). Plaani skeemi ja serverit ei muudeta.",
+     "mechanism": "Mudel kordab praegu loetud sõnumite kohti, aga server viskab need ära (person-places.js:156). Kui seda väljundit ei kirjutata, lüheneb plaani nähtav osa.",
+     "expected_gain": "Umbes 28 nähtavat tokenit jätkupöörde kohta, ehk umbes 0,2 s (vahemik 0,1–0,35 s, kordaja 8,2 ± 3,5 ms tokeni kohta). Esimeses pöördes võitu ei ole. Kas arutlus väheneb, ei ole teada.",
+     "basis": "208 varasema pöörde kohta, alles 0. Keskmine 28,2 tokenit plaani kohta. search-assist.js:148, service.js:340-341.",
+     "quality_risk": "Väike kuni keskmine: kui mudel jätab nüüd vahele ka jooksva sõnumi koha, kaob omavalitsus (ADR-110 juhtum: „Elame Jüris.“ tuli turn 1-ga). turn-enum'i skeemi ei soovita, sest ADR-162 järgi aeglustasid skeemi piirangud plaani 2–3 korda. Juhtum, kus olekut ei hoitud ja place_messages > 1, peab edasi töötama.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Samad 75 küsimust. Peamine mõõdik: plaani nähtavad tokenid pöörde kohta (sd 20, piisab mõnest pöördest). Lisaks plannedPlaces vs checked places: varasemaid kohti 0, jooksvaid alles ≥ 43/47 tasemel, kadunud omavalitsusi 0. Kohtade testid (ADR-110, 157, 167, 173 stsenaariumid)."
+    },
+    {
+     "change": "Dialoogi olekus tähendaks needs ja unknowns väärtus null „muutusteta“; mudel kirjutab need loendid ainult siis, kui need muutuvad. Selleks tuleb välja anda uus olekuversioon.",
+     "mechanism": "Praegu kirjutatakse needs ja unknowns igas pöördes uuesti (dialogue-state-4.js:144). Liitmiskood hoiab juba eelmised loendid, kui väärtus ei ole massiiv (dialogue-state-4.js:108). Muuta tuleb ainult skeem ([array, null]) ja juhis.",
+     "expected_gain": "Ebakindel. Näidisoleku põhjal (A01) on uuesti kirjutatud needs ja unknowns umbes 100 tokenit. Kui need jätkupöördes ei muutu, säästab see kuni umbes 1 s terviku ajast. Realistlikult 0,3–0,8 s, olenevalt sellest, kui tihti need muutuvad. Elavas vestluses lüheneb ainult aeg avaldamiseni (done), mitte esimese tekstini.",
+     "basis": "Jääkhinnang olekule 122 tokenit jätkupöördes. Tühja skeleti näide: null-väljadega 34 tokenit, uuesti kirjutatud needs ja unknowns'iga 132.",
+     "quality_risk": "Keskmine: vananenud unknowns võib panda vastuse uuesti küsima või lisama piirangu, sest ASKING loeb previousState.unknowns'i (dialogue.js:165). Mudel peab muutused aktiivselt üles märkima. Vaja on olekuversiooni tõstmist ja vanade versioonide lugemise ühilduvust.",
+     "effort": "M",
+     "owner_decision": false,
+     "measurement": "Kõigepealt mõõta andmebaasist, kui suur olek tegelikult on ja kui tihti needs ja unknowns muutuvad. responseAudit.draft hoiab mudeli täielikku JSON-i (contracts.js:226-233). Pärast muudatust: nähtavad tokenid jätkupöördes ja sama küsimuse kordamine 30-pöördelistes vestlustes (ADR-106 mõõdik)."
+    },
+    {
+     "change": "Dialoogi olek võetakse vastusekutsest välja ja tehakse eraldi väikese kutsega, mis jookseb paralleelselt plaani või vastusega.",
+     "mechanism": "Olek on vaja alles järgmiseks pöördeks ja see põhineb kasutaja sõnumitel, kuid praegu kirjutatakse see vastuse järel samas vastuses (dialogue-state-4.js:31, :139).",
+     "expected_gain": "Terviku aeg jätkupöördes umbes 120 tokenit ehk umbes 1,1–1,2 s, esimeses pöördes umbes 290 tokenit ehk umbes 2,6–2,9 s. Elavas vestluses ainult aeg avaldamiseni ja allikateni. Võimalik väike arutluse langus, mida ei ole mõõdetud.",
+     "basis": "Jääkhinnangud 122 ja 287 tokenit. ADR-163:11 „umbes 200 tokenit“. Kiirus 9–10 ms tokeni kohta.",
+     "quality_risk": "Olek ei näe enam tõendeid ega vastust (FACT_STATE_INSTRUCTIONS viitab records.scope.person'ile). Arhitektuurimuudatus läheb vastu ADR-051 ühe kutse otsusele. Projektsioonid, restore ja lean-turn'i digestid tuleb ümber teha. Iga pööre lisab ühe kutse ja selle kulu.",
+     "effort": "L",
+     "owner_decision": true,
+     "measurement": "Enne otsust täpne oleku tokenite arv andmebaasist (responseAudit.draft). Pärast: vastuse nähtavad tokenid −120 ± …, olekust välja jäetud kirjete arv (model.dropped) ja state_missing'u sagedus."
+    },
+    {
+     "change": "Pehme pikkuse siht rolli tööjuhisesse, näiteks abiotsijale umbes 120–180 sõna ja spetsialistile kuni 250.",
+     "mechanism": "Lühem nähtav tekst tähendab vähem väljundtokeneid.",
+     "expected_gain": "Ülempiir 0,25–0,6 s terviku ajast, isegi täiusliku täitmise korral. Elavas voogedastuses on tajutav võit peaaegu null. Võit on väiksem kui sama küsimuse kahe jooksu ajavahe.",
+     "basis": "Lae simulatsioon: rollimediaan 58 tokenit, 180/250 sõna 27 tokenit. Paarisvahe sd 4,1 s.",
+     "quality_risk": "Suur: võib välja jääda tingimusi, lagesid ja tagajärgi, mida COMPLETENESS ja ROLE_STEP nõuavad (ADR-046, ADR-153 N01/G02). Uus kõiki vastuseid puudutav reegel tõstis ADR-165-s arutlust kuni 1133 tokenini ja tekitas 60 s ajapiire. Kiiruse pärast ei soovita.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "Kui siiski proovida: nähtavad tokenid ja arutlustokenid rollide kaupa (umbes 54 paari 60 tokeni tuvastamiseks), lisaks sisu kontroll N01/G02-tüüpi küsimustel."
+    },
+    {
+     "change": "Spetsialistile ja teenuseosutajale nimetataks sätteid ainult 1–3, nagu abiotsijale.",
+     "mechanism": "Vähem §-viiteid tähendab vähem tokeneid ja võib-olla vähem arutlust sätete kontrollimisel.",
+     "expected_gain": "Nähtavas osas 13–20 tokenit ehk 0,1–0,2 s. Mõju arutlusele pole mõõdetud.",
+     "basis": "§-märke 3,5 vs 1,7. Sulgudes viited 46 vs 33 tokenit (keskmine).",
+     "quality_risk": "Pööraks ümber omaniku otsuse (ADR-129, dialogue.js:185: „kasutajad tahavad teada paragrahve“). Ei soovita.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "Ei soovita teha. Kui teha: § arv ja tokenid spetsialisti pöördes ning provision-check'i kirjed."
+    },
+    {
+     "change": "Välja \"factual\":true eemaldamine vastuse skeemist (server lisab selle ise).",
+     "mechanism": "Iga plokk kirjutab praegu umbes 5 tokenit konstanti.",
+     "expected_gain": "Umbes 16 tokenit vastuse kohta ehk umbes 0,15 s.",
+     "basis": "o200k vahe JSON-iga ja ilma factual'ita: keskmiselt 15,6 tokenit (spetsialist 18,1).",
+     "quality_risk": "Sisule väike. Nõuab vastuse versiooni muutmist ning validateAnswer'i ja repairAnswer'i kohandamist (contracts.js:136-139, 194), muidu tekib igale plokile factual_set parandus. Prioriteet madal.",
+     "effort": "M",
+     "owner_decision": false,
+     "measurement": "Nähtavad tokenid vastuse kohta ja parandusteadete (repairs) arv."
+    },
+    {
+     "change": "Plaani tsitaatide lühendamine või kohtade väljajätmine.",
+     "mechanism": "Plaani nähtav osa lüheneks.",
+     "expected_gain": "Tsitaadid umbes 14 tokenit, alla 0,15 s. Kõik kohad kokku umbes 35 tokenit ehk kuni umbes 0,3 s.",
+     "basis": "Plaani koosseisu arvutus. Plaani aja korrelatsioon nähtava osaga on 0,09.",
+     "quality_risk": "Lõhub omavalitsuse loogika: sõnumi leidmise, eituse ja kasutaja enda lause tuvastamise (person-places.js:20-29, 151-174). Ei soovita.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Ei soovita teha."
+    }
+   ],
+   "open_questions": [
+    "Kui suur on dialoogi olek tegelikult tokenites ja kui tihti needs ja unknowns muutuvad? Ekspordis seda ei ole. Andmebaasis hoiab responseAudit.draft mudeli täielikku JSON-i (contracts.js:226-233), nii et R1–F1 pöördeid saab mõõta ilma uute päringuteta. Sellest sõltub, kui palju toovad olekut puudutavad variandid.",
+    "Kui kaua ootab kasutaja elavas vestluses esimest teksti? service.js:471 salvestab phases.first_text, aga mõõtejooksud ei voogedastanud (streaming=false). Kui esimene tekst tuleb umbes 21 s juures, nagu hinnang näitab, ei lühenda vastuse teksti lühendamine ooteaega peaaegu üldse.",
+    "Miks kasvas kliendi pöörde arutlus R1-st R3-ni +190 tokenit, kuigi vastuse juhis oli sama (answer-15)? Kas põhjus on sisendi muutus (ADR-167/169 kirjed), teenusepakkuja või midagi muud? See on suurem ajakulu kui teksti pikkus.",
+    "Kas rolli mõju pikkusele on põhjuslik? Andmetes ei ole sama küsimust kolmes rollis, sest roll ja küsimuse sisu on segamini.",
+    "gpt-6-luna tokeniseerija ei ole teada. Kasutasin o200k-d lähendusena (cl100k ei sobi, sest tühja oleku skelett on suurem kui cl100k jääk).",
+    "Kas plaani arutlus (181 tokenit, plaani aja peamine tegur) sõltub plaani juhise pikkusest, näiteks kohtade reeglitest? Seda ei ole testitud."
+   ]
+  },
+  {
+   "area": "Osalised vastused R2-s (21.10 öö, search-assist-19 + answer-15 + dialogue-49): 42 osalist vastust 74-st. Iga osalise peamine lünk, jaotus rollide kaupa, parandusvõimalused ja nende mõju osaliste osakaalule ning arutlusele ja ajale.",
+   "findings": [
+    {
+     "claim": "R2-s oli 74 vastatud A/B/C pöördest 42 osalised (57%). Pöörduja 9/29 (31%), spetsialist 17/24 (71%), teenuseosutaja 16/21 (76%). T01–T05 olid kõik täisvastused. B03 ebaõnnestus (HTTP 500).",
+     "evidence": "node -e üle server-rag-chat-three-cases-adr165-166-raw.json → R2.records, filter id /^[ABC]/, answer.kind. Sama tulemus on failis: R2.metrics.kinds = {grounded:32, partial:42}, failed = [B03:pilot_failed].",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Klassifitseerisin 42 osalist peamise lünga järgi: (a) teema puudus kandidaatide seas 7; (b) kandidaat oli olemas, aga valik jättis välja 5; (c) tõend oli paketis, aga vastus ütles „ei saa“ 3; (d) kasutajalt on päriselt infot vaja 11; (e) muu 16. Muu jaguneb kolmeks: e1 — vastus on sisuliselt täielik, piirang ütleb ainult, et otsustab amet, kohus või hindamine, 11; e2 — teenuseosutaja omavalitsus jäi lahendamata, 4; e3 — ülearune küsimus, 1. Rollide kaupa: pöörduja c1, d5, e1 3; spetsialist a3, b3, d5, e1 6; teenuseosutaja a4, b2, c2, d1, e1 2, e2 4, e3 1.",
+     "evidence": "Lugesin läbi kõigi 42 kirje answer.limitations, answer.clarification, blocks[].refs, jsonTrace.pool[title, section, pick, ranks, reserved] ja jsonTrace.evidence[ref, cited, lane, title] (node -e väljavõtted). Klass on minu otsus. Lõikude tekste R2 jälg ei sisalda, ainult pealkirju.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "(a) Teema puudus kandidaatide seas: A11, A12, A24, A25, C16, C24, C25. Neist neli on tõenäoliselt sellised, mida avalikus korpuses ei olegi: kohalik hindamisvorm, leping, aruandluse vorm või teenuse individuaalne kestus (A11, A24, C16, C25). Kolm on tõenäoliselt otsingust mööda läinud (A12, A25, C24). Näited: A24 „Ma ei leidnud oma teabest, kuidas nädalavahetuse visiidid tuleb lepingusse vormistada ega kes nende eest maksab“ (valik võttis 36-st 1 lõigu). C25 „millises vormis või kui sageli linnale aru tuleb anda“ (valik võttis 2 lõiku). A12 küsis volitusi vahetu ohu korral, aga kandidaatide hulgas polnud psühhiaatrilise abi seaduse tahtest olenematu abi ega vältimatu sotsiaalabi sätet.",
+     "evidence": "Valitud lõike R2.pool[pick!=null] järgi: A24 1, C25 2. A12 kandidaatide pealkirjades pole PsAS-i tahtest olenematu ravi ega SHS-i vältimatu sotsiaalabi sätet. Psühhiaatrilise abi seaduse muud paragrahvid esinevad teiste pöörete kandidaatides (B18, C10), nii et seadus on korpuses olemas.",
+     "confidence": "madal"
+    },
+    {
+     "claim": "(b) Valik jättis vajaliku kandidaadi välja: A16, A17, B20, B25, C18. Näited: A17 tähtaja kohta jäid välja sotsiaalseadustiku üldosa seaduse § 25 „Menetlustähtajad hüvitise andmisel“ (P32, seaduse reservikoht) ja leht „Menetlustähtajad“ (P27); valik võttis 4 lõiku. B25 valis kolm lõiku ühest juhendist (Võlanõustamisteenuse juhend „SHS § 44 lg 2“) ja jättis välja ESTA eetikakäsiraamatu „Andmekaitse põhimõtted“ (P1, vektori 1. koht) ja võlanõustamise kvaliteedijuhise „…inimese õigused“ (P4, sõnaotsingu 2. koht). A16-s jäi välja „Isikuandmete edastamisest ametialases koostöös“ (P1 ja P7).",
+     "evidence": "R2.pool ranks ja pick (node -e). A17: P32 {reserve_vector_2:1, reserved}, P27 {lexical:22}. B25: P1 {vector:1}, P4 {lexical:2}, valitud P8, P11, P14. A16: P1 pos 1, P7 pos 7, valitud P9, P10, P12, P17, P31. Kumbki A17 lõik ei olnud evidence[] hulgas.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "(c) Tõend oli paketis, aga vastus ütles „ei saa“: A07, B23, C23. A07 tsiteeris Tartu Hooldekodu hinda (1750 €, 2026. aasta märtsi seisuga), kuid piirangus ütles „mul pole selle hooldekodu kehtivat kohamaksumust“ ja küsis hinda kasutajalt. See on vastuolus juhisega, mis keelab kirje kuupäeva tõttu piirangut kirjutada. C23 tsiteeris SHS § 83 lg 3 kümneaastast säilitustähtaega, kuid kirjutas, et see ei kehti toetatud elamise kohta. Toetatud elamine on aga erihoolekandeteenus. B23-s oli SHS § 13 „Abivajadusest teatamise kohustus“ valitud (S1), aga tsiteerimata, ja piirang ütles, et teatamiskohustuse ulatust ei saa määrata.",
+     "evidence": "A07 ja C23: vastuste plokkide täistekst (node -e). C23 ploki tekst: „See tähtaeg puudutab erihoolekandeteenuse osutajat ega anna üldist säilitustähtaega … toetatud elamise teenuse andmetele“. Toetatud elamine on SHS-i erihoolekande all (C25 pool: „… § 94. Toetatud elamise teenus“). B23: evidence S1 cited=false, pealkiri pool-ist (B23 hinnang põhineb ainult pealkirjal). Juhis: lib/rag-v2/pilot/dialogue.js:497-498 ja COMMIT_INSTRUCTIONS dialogue.js:222-226.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "(d) Kasutajalt on päriselt infot vaja: B12, B17, B24, C01, C04, C06, C08, C10, C11, C13, C17. Kolm neist on ohutusküsimused (B12, C10, C13), mida juhis nõuab. Näited: B24 küsib, kas klient suudab kohustusi tasuda (sellest sõltub maksejõuetuse menetluse sobivus). C04 küsib õppetaset (sellest sõltub, milline toetus kehtib). C13 küsib, kas noorel on konkreetne plaan. C06 küsimus rahvastikuregistri elukoha kohta on piiripealne, sest C01 ütles juba „pean Viljandis … elama hakkama“.",
+     "evidence": "Kirjete answer.clarification. Ohutusreegel: lib/rag-v2/pilot/contracts.js:309 („ask about immediate safety if it is unclear“). Tingimusliku vastuse muster: contracts.js:306.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "(e1) Vastus on tõendite põhjal sisuliselt täielik ja piirang ütleb ainult, et otsuse teeb keegi teine: A04, A05, A13, A15, A22, A23, B13, B16, B18, C03, C12. See on suurim klass, 11/42 ehk 26%. Näited: A05 „Need selguvad arstlikul hindamisel ja Sotsiaalkindlustusameti otsusega“; A13 „Selle hindab kohus“. B13 küsimus („Millal on laps hädaohus …“) on üldine, aga vastus lisas siiski juhtumipiirangu. Sama tüüpi piirang on ka 7 täisvastusel (A03, A09, A10, A18, B01, B09, B14), näiteks A18 „selle selgitab … välja Sotsiaalkindlustusamet“.",
+     "evidence": "Kirjete limitations (node -e). Juhis suunab sellised laused piirangutesse: dialogue.js:164 („limitations is for … an assessment or a decision that belongs to a specialist, an authority or a court“). COMMIT dialogue.js:223 lubab seda, kui küsimus puudutab isiku enda juhtumit. Pöörduja rolli tekst dialogue.js:176. Üldise küsimuse reegel dialogue.js:167 – B13 ja C12 rikuvad seda. Mainis on sama tekst (answer-15, dialogue-50; ASKING lisatakse real 470, COMMIT real 504).",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "(e2) Teenuseosutaja omavalitsus jäi lahendamata: A20, A21, B19, C19. A20 ja A21 küsisid „Kas suunas kliendi Tartu linn või Tartu vald?“, kuigi A19 ütles „Oleme Tartus … Linn suunas meile“. Ühelgi teenuseosutaja pöördel polnud omavalitsuse kirjeid. Hilisemad ADR-167, 172 ja 173 parandasid selle suures osas: F1-s olid A21 ja B19 täisvastused, A20 jäi osaliseks ainult lepingu tõttu ja C19 küsib maakonna reegli järgi endiselt omavalitsust. (e3) B21 küsis, kas mõeldakse ainult läbirääkimistel abistamist või ka kokkuleppe sõlmimist, kuigi plokid katsid mõlemad juhud (S5 ja S1).",
+     "evidence": "R2 evidence lane=records arv on 0 pööretel A20–A25, B19–B25 ja C19–C25. adr172-F1.json F.records (release 269e7ab0): A21 grounded, B19 grounded, A20 partial (piirang lepingu kohta), C19 partial (küsimus „Milline linn või vald teenust tellib?“). Maakonna reegel: dialogue.js:125-129.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Silt „osaline“ on mudeli enda märge, mitte sisu mõõt. 17 täisvastust 32-st sisaldasid samuti piirangut (10) või küsimust (7). Sama ohutusküsimus on C09 juures täisvastus, aga C10 ja C13 juures osaline. Ükski R2 vastus ei saanud sildi parandust (kind_changed).",
+     "evidence": "node -e: piirangu ja küsimuse olemasolu loendus. Osalistel: ainult piirang 19, ainult küsimus 6, mõlemad 17. Täisvastustel: ainult piirang 10, ainult küsimus 7, kumbki puudub 15. contracts.js:51 nimetab silti mudeli deklaratsiooniks. Parandus jätab mudeli sildi alles, kui see sobib (contracts.js:212-220). kind_changed korduste arv R2-s: 0.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Silt on jooksust jooksu ebastabiilne, kuigi koondosakaal püsib: R1 45/75, R2 42/74, R3 46/74. Eri silt samale küsimusele: R1 vs R2 22/74, R2 vs R3 26/74. Kõigis kolmes jooksus osaline oli ainult 24 küsimust ja mitte üheski 12. Stabiilsus klassiti (osaline ka R1-s ja R3-s): c 3/3, b 4/5, a 4/7, d 6/11, e2 2/4, e1 4/11. Kõige rohkem siltimise müra on e1-s. R2 pöördujate osalisi oli vähe (9) võrreldes R1-ga (16) ja R3-ga (17), aga R1 ja R3 pöördujate piirangud on samad tüübid (e1 ja d).",
+     "evidence": "node -e: R1, R2 ja R3 (adr167-export.json) answer.kind sama id järgi. Jaotus „mitu korda osaline kolmest“: 3/3 24, 2/3 21, 1/3 16, 0/3 12. R1 ja R3 pöördujate osaliste piirangud prinditud (näiteks R3 A06/A07 „ei saa täpset summat välja arvutada“, C06 „selle otsustab kohalik omavalitsus“).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Vastuse sammu aja määravad genereeritud tokenid, mitte silt. Aeg ≈ 3,0 s + 6,3 ms × (arutlus + väljund), r = 0,93. Kui tokenid ja sisend on arvesse võetud, ei lisa osalise silt aega (−0,3 s). Sisendi kordaja on ligikaudu null.",
+     "evidence": "Vähimruutude regressioon R2 74 pöördel (node -e): ms = 4751 + 6,53·gen − 0,076·input − 299·partial. Lihtregressioon ms = 3032 + 6,30·gen. Korrelatsioon gen ja ms vahel 0,93.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Osaline vastus on keskmiselt aeglasem, aga see seos on suuresti rolli ja küsimuse raskuse kaudu. R2 vastuse sammu mediaan: osaline 12,7 s ja arutlus 397, täisvastus 8,3 s ja arutlus 177. Spetsialistil ei ole vahet: osaline 13,6 s/439, täisvastus 14,6 s/446. Kui võrrelda sama küsimust jooksude R1–R3 vahel (38 küsimust, millel olid mõlemad sildid), oli osalisel jooksul mediaanis +234 arutlustokenit, +212 väljundtokenit ja +1,8 s (positiivne 27/38 juhul). e1 küsimustes oli 7 paarist 5-s osaline jooks hoopis kiirem. Seega ei näita andmed, et e1 piirangute kaotamine kiirendaks vastust.",
+     "evidence": "node -e: rollide mediaanid R2-st. Paaris võrdluses on iga küsimuse osaliste ja täisvastuste jooksude keskmiste vahe ning nende vahede mediaan. e1 paarid: A04 −3,9 s, A05 −0,2, A13 −1,0, A23 +2,6, B13 −1,5, B18 −7,1, C12 +5,2. Jooksude konfiguratsioonid erinevad (R1 search-assist-18, R2 -19, R3 -21), nii et see on seos, mitte põhjus.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Piirangu ja küsimuse tekst ise on lühike: osalistel mediaanis 231 märki ehk umbes 60–80 tokenit, mis on umbes 0,4–0,5 s vastuse sammust. See on ülempiir, mida saab sõnastuse eemaldamisega otse võita.",
+     "evidence": "node -e: limitations + clarification märkide mediaan osalistel 231 (min 66, max 453). Märkide ja tokenite suhe on hinnang: eesti keeles umbes 3–4 märki tokeni kohta. Seda ei ole mõõdetud. Ajaks teisendasin 6,3 ms tokeni kohta.",
+     "confidence": "madal"
+    },
+    {
+     "claim": "Klasside arutlus ja aeg (R2 vastuse sammu mediaanid): e1 13,1 s ja arutlus 515; d 13,6 s ja 435; a 11,6 s ja 439; e2 16,3 s ja 347; b 7,7 s ja 262; c 7,9 s ja 0; täisvastus 8,3 s ja 177. b ja c on lühikesed teenuseosutaja pöörded ilma kirjete kanalita. Kõrgeim arutlus on e1-s, aga paaris võrdlus põhjuslikku seost ei kinnita.",
+     "evidence": "node -e: jsonTrace.stages answer.ms, reasoning ja output klassi järgi. Vastuse sammu arutlus oli 0 pööretel A04, A20, B20, B23 ja C23.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Iga lisatud teadmislõik tõendites on seotud umbes 94 lisatud genereeritud tokeniga ehk umbes 0,6 s-ga. Rollide kaupa: pöörduja 128, spetsialist 96, teenuseosutaja 26. See räägib vastu b-klassi parandusele, mis lisaks valikule lõike.",
+     "evidence": "node -e: regressioonikalle generated ~ evidence[lane=knowledge].length, R2 74 pööret. Arutluse kalle on 29 tokenit lõigu kohta. Korrelatsioon teadmislõikude arvu ja arutluse vahel 0,37. See on ristlõike seos.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "R2 seis ei ole täpselt praeguse maini seis. R2-l oli valikukaartidega search-assist-19 (tagasi võetud) ja dialogue-49; mainil on search-assist-24 ja dialogue-50. Vastuse põhijuhis (answer-15) ning piirangute reeglid (ASKING ja COMMIT) on samad, nii et e1 mehhanism kehtib ka praegu. b-klassi jaotus võib praeguse valiku juures olla teine.",
+     "evidence": "server-rag-chat-three-cases-adr165-166-raw.json .run. contracts.js:20 PROMPT_VERSION 'm4-grounded-answer-15', dialogue.js:130 'm4-grounded-dialogue-50', search-assist.js:86 'rag-v2/search-assist-24', dialogue.js:123-129 versioonikirjeldused.",
+     "confidence": "kõrge"
+    }
+   ],
+   "options": [
+    {
+     "change": "e1: dialogue.js:164 lausest „limitations is for … an assessment or a decision that belongs to a specialist, an authority or a court“ jääb ära otsustaja osa. COMMIT_INSTRUCTIONS (dialogue.js:223) erand „unless … the request is about a decision on the person's own case“ asendatakse sellega, et otsustaja nimetatakse üks kord plokis (COMMIT juba ütleb „name the decider once“), mitte piirangus. Piirangusse jäävad ainult puuduv tõend ja vajalik kasutaja asjaolu.",
+     "mechanism": "Praegu suunab juhis ameti või kohtu otsuse piirangusse. Seetõttu muutub täielik vastus osaliseks või saab „ma ei saa öelda“ lause. Juhis ei lisa uut kaalutlust, vaid võtab ühe haru ära.",
+     "expected_gain": "Osaliste osakaal: ülempiir −15 pp (11/74). Realistlikult −4…−8 pp, sest e1 on kõige mürarikkam klass (ainult 4/11 olid osalised kõigis kolmes jooksus) ja 7 sama tüüpi vastust on juba täisvastused. Arutlus ja aeg: kasu ei oota. Otse kaob kuni ~0,4–0,5 s piirangu teksti, aga e1 paaris võrdluses oli 7-st 5 osalist jooksu kiiremad.",
+     "basis": "R2 e1 = 11 osalist + 7 sama piiranguga täisvastust. Juhise read dialogue.js:164, :167, :176, :223. Omaniku märkus ADR-155-s: „„ei saa kindlalt määrata“ ei ole vastus“ (dialogue.js:111).",
+     "quality_risk": "Aus märge, et otsuse teeb amet, peab jääma plokki. Kui ükski allikas otsustajat ei nimeta, ei tohi seda plokki kirjutada (limitations ei lisa fakte, dialogue.js:279). Põhijuhise muutus võib tõsta arutlust nagu ADR-165-s (A08 0 → 1133 ja 60 s ajapiirid), kuigi siin reeglit ei lisata. Puhvri eesliide muutub üks kord.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "Samad 74 küsimust kaks korda ja võrdlus R3/R4 vastu küsimuse kaupa: osaliste sildid (oodatav langus üle jooksudevahelise müra, mis on 22–26 sildivahetust 74-st), vastuse arutluse mediaan (lubatud kuni +10%), p90, 60 s ajapiire 0. Käsitsi kontroll 11 e1 ja 7 täisvastuse kohta: otsustaja on plokis nimetatud ja tsiteeritud."
+    },
+    {
+     "change": "Mõõdik: osaliste osakaal arvutatakse serveris sisu järgi (näiteks „vastusel on piirang“) ja raportis näidatakse piirangu liike. Mudeli kind jääb alles ainult jäljes. Vastust ja kasutajat see ei muuda.",
+     "mechanism": "Praegu on silt mudeli valik: sama kujuga vastus on kord osaline, kord täisvastus. Deterministlik silt kaotab selle siltimise müra (sisu muutused jäävad).",
+     "expected_gain": "Aeg 0. Arv muutub definitsiooni tõttu: R2 „piirang olemas“ = 46/74 (62%), „piirang või küsimus“ = 59/74 (80%). Kasu on see, et mõõdik on stabiilne ja eespool nimetatud parandusi saab hinnata.",
+     "basis": "17/32 täisvastust sisaldasid piirangut või küsimust. Sildivahetusi oli jooksude vahel 22 ja 26. contracts.js:51 ja :212-220.",
+     "quality_risk": "Ajalooliste numbritega võrdlemiseks tuleb vanad jooksud ümber arvutada. Seda saab teha olemasolevatest JSON-idest uut jooksu tegemata.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "R0–R3 ja F1 ümberarvutus olemasolevatest failidest. Uue silt peab samal vastusel olema iga kord sama."
+    },
+    {
+     "change": "e2: uut muudatust pole vaja (ADR-167, 172 ja 173 on mainis). Vaja on kontrollida R4-s, et pöördel „Linn suunas meile“ ei küsita linna või valla kohta ja et kirjete kanal on olemas.",
+     "mechanism": "Suunav omavalitsus on kasutaja koht (search-assist.js:148, relation „works“). Kirjete kanal jõuab teenuseosutaja pöördesse.",
+     "expected_gain": "R2 suhtes −2…−3 osalist (−3…−4 pp), mis on mainis juba sees. F1-s olid A21 ja B19 täisvastused, A20 muutus lepingupiiranguks ja C19 küsib maakonna reegli järgi. Aega ei mõjuta: sisendi kasv vastuse aega ei muuda.",
+     "basis": "R2 teenuseosutaja pöörded: kirjeid 0. F1 kirjed A20, A21, B19, C19.",
+     "quality_risk": "C19 juhtum (ainult maakond on teada) küsib endiselt. See on dialogue-50 tahtlik reegel.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "R4: A20–A25, B19–B25 ja C19–C25 kirjete kanal on olemas ja linna või valla küsimust pole, kui sõnum ütleb „Linn“ ja omavalitsus on varem nimetatud."
+    },
+    {
+     "change": "c: serveri parandus (nagu ADR-160 puhul) eemaldab piirangu lause, mis räägib ainult kirje või hinna kuupäevast või ajakohasusest („kogutud …“, „ei saa kinnitada, kas … muutunud“). Juhis keelab selle juba (dialogue.js:497-498).",
+     "mechanism": "Vastus ei saa enam iseendale vastu rääkida: tsiteerib hinda ja ütleb samas, et hinda pole. B23 ja C23 lugemisvead jäävad sellest puutumata.",
+     "expected_gain": "Osaliste osakaal ~0, sest R2-s on selliseid kaks (A04, A07) ja mõlemal jääb alles teine piirang. Aeg 0. Kasu on kvaliteedis.",
+     "basis": "A04 piirang „andmed on kogutud 2026. aasta mais; ma ei saa … kinnitada, kas … muutunud“. A07 „mul pole … kehtivat kohamaksumust“, kuigi plokk tsiteerib 1750 €.",
+     "quality_risk": "Tekstipõhine eemaldus võib kustutada õige piirangu. Reegel peab olema kitsas ja iga eemaldus jäljes kirjas.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "R4: kuupäevapiirangute arv (regulaaravaldis „kogutud|muutunud|kehtiv“) on 0. Kõik eemaldused vaadatakse käsitsi üle."
+    },
+    {
+     "change": "b (ei soovita kiiruse eesmärgi juures): kui valik võtab alla 7 lõigu, lisab server ühendatud järjestuse järgi parimad valimata teadmiskandidaadid kuni 7 lõiguni. Valiku juhist ei muudeta.",
+     "mechanism": "Valik jätab vahel välja kõrgel kohal oleva vajaliku lõigu (B25 P1 ja P4, A16 P1). Täitmine paneb selle ilma uue mudelikutseta vastuse ette.",
+     "expected_gain": "Osaliste osakaal 0…−3 pp: simulatsioonis tuli 5 b-juhtumist vajalik lõik kaasa ainult kahel (A16, B25). Aeg: 46/74 pööret saaks keskmiselt 1,46 lõiku juurde. ~94 genereeritud tokenit lõigu kohta tähendab umbes +0,6…0,9 s täidetud pöördel (seos, mitte tõestatud põhjus).",
+     "basis": "Simulatsioon R2.pool järjekorra põhjal (node -e). Kalle 94 tokenit teadmislõigu kohta. A17 ja C18 vajalikud lõigud olid kohtadel 27–32 või 7–8 ja täitmine neid ei toonud.",
+     "quality_risk": "Vastusesse tuleb lõike, mida valik pidas kasutuks. H1 (valitud lõigust tsiteeriti, praegu 55%) langeb. Võib tõsta arutlust ja aega.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "Kui seda proovida: samad 74 küsimust, mõõta b-juhtumite lahenemine, vastuse arutlus ja aeg täidetud pööretel võrreldes täitmata pööretega ning H1."
+    },
+    {
+     "change": "a2: otsida korpusesse üldine allikas omavalitsuse ja teenuseosutaja tellimuse, halduslepingu ja aruandluse kohta. Sellise allika olemasolu ma ei tea. Kui see on olemas, saab vastus tsiteerida „aruandlus ja lisanõuded lepitakse kokku tellimise lepingus; küsi tellijalt“.",
+     "mechanism": "Teenuseosutaja lepingu- ja aruandlusküsimustele pole praegu ühtegi lauset, mida tsiteerida. Seepärast läheb see piirangusse (limitations ei tohi fakte lisada, dialogue.js:279).",
+     "expected_gain": "−1…−5 pp ainult siis, kui selline allikas on olemas. R2-s on otse 2 sellist (A24, C25), F1-s on seda tüüpi piirang 7 teenuseosutaja vastusel (A20, A21, A24, A25, B20, B25, C25), millest A21 ja C25 on juba täisvastused. Aeg ~0.",
+     "basis": "R2 a-klass ja F1 teenuseosutajate piirangud. Ainult märksõnade põhjal ei olnud kandidaatide seas ühtegi tellimislepingu juhendit.",
+     "quality_risk": "Väike, kui allikas on ametlik. Konkreetse linna lepingut see ei asenda.",
+     "effort": "M",
+     "owner_decision": true,
+     "measurement": "Teenuseosutaja 21 küsimust: lepingupiirangute arv ja kas vastus nimetab tsiteeritult järgmise sammu."
+    }
+   ],
+   "open_questions": [
+    "R2 jälg sisaldab ainult lõikude pealkirju. Kas kolme kindlaima b/c juhtumi (B23 SHS § 13, A17 SÜS § 25, B20 tasuta teenus) lõigutekstid on kuskilt loetavad? F1 jälg sisaldab developer- ja evidence-osa, R2 oma mitte. Ilma tekstita on a/b/c piir hinnang.",
+    "Kas sildi „osaline“ näeb ka tavakasutaja? Leidsin selle ainult pilootkliendist (app/rag-pilot/pilot-client.jsx:89 näitab t(turn.answer.kind)). Põhivestluse komponentides (components/chat) ma seda ei leidnud. Kui kasutaja silti ei näe, on osaliste osakaal ainult sisemine mõõdik ja kasutaja jaoks loevad „ei saa“ laused.",
+    "Mis on eesmärk: madalam osaliste osakaal mõõdikuna või vähem „ma ei saa öelda“ lauseid kasutajale? Variant 2 muudab ainult mõõdikut, variant 1 muudab teksti.",
+    "Kui ükski allikas ei ütle, kes otsustab, kuhu läheb e1 sisu pärast variandi 1 muudatust? Kas siis jääb piirang alles?",
+    "Kas korpuses on üldine omavalitsuse ja teenuseosutaja tellimislepingu või aruandluse juhend (variant 6)? Mina seda ei tea.",
+    "Sildi müra tõttu (~30–35% pööretest vahetab sildi) on alla 10 pp mõju nägemiseks vaja vähemalt 2–3 kordust küsimuse kohta. Kas omanik on nõus kahekordse jooksuga?",
+    "Väljaspool ülesannet: A04 vastas hooldajatoetuse küsimusele Tallinna kirje põhjal (S23), kuigi plaani järgi elab ema Tartus. Kas see on koha viga? Ma ei kontrollinud, kumma omavalitsuse toetus siin kehtib."
+   ]
+  },
+  {
+   "area": "Sõnaotsing (leksikaalne kanal) ja omavalitsuse otsuse loogika. Kood: main 67a57dee (C:/Users/rauds/AppData/Local/Temp/sotsiaal-kiirus1). Rajapõhised ajad on ainult REG-jooksus (docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-three-cases-regression-raw.json, 21.10 õhtu, 75 pööret, jsonTrace.searchTimings). R1, R2, R3 ja F1 ekspordis searchTimings välja ei ole.",
+   "findings": [
+    {
+     "claim": "Sõnaotsing jookseb koodi järgi embeddingu ja vektorotsinguga paralleelselt, kuid fusioon ootab kõiki kanaleid. Seetõttu on sõnaotsing kriitilisel teel alati, kui ta lõpetab viimasena.",
+     "evidence": "service.js:382-436: otsing käivitub koos embeddingu päringuga ja Promise.allSettled([search, embedded]). search/retrieval.js:252-264: lexical (ainult index 0) ja vector_N käivad Promise.allSettled-is, reserve- ja change-otsing Promise.all-is. Vektori taimer sisaldab ka `await vectorFor(text)`. retrieval.js:287: rrf() käivitub alles pärast kõiki kanaleid. postgres.js:548-566 ja 211-221: üks VÕI-päring 3 paralleeltöötajaga.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Sõnaotsing lõpetas viimasena 75 pöördel 75-st. Pärast aeglaseimat vektorkanalit kulus tal veel mediaanis 2,35 s (p25 2,19; p75 2,65; min 1,65; max 3,31 s). See on tema mõju seinaajale, umbes 10% pöördest.",
+     "evidence": "node -e REG-failil: A = max(lexical, reserve_lexical) − max(kõik vector*, reserve_vector*). Sõnaotsingu enda aeg: mediaan 2887 ms (2131–4147). Aeglaseim vektor koos embeddingu ootega: mediaan 502 ms. Embeddingu faas (embedded−planned): mediaan 404 ms. Pärast `embedded`-i jooksis sõnaotsing veel mediaanis 2705 ms. Osakaal pöördest (A/ms): mediaan 10%, p10–p90 7–13%.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "R1, R2, R3 ja F1 ajad sobivad sama sõnaotsingu kuluga, aga rajapõhiselt pole seda neis tõestatud.",
+     "evidence": "Vahe (searched−embedded) − valiku LLM-i aeg, mediaanid: REG 4428, R1 4368, R2 4636, R3 4542, F1 4211 ms. REG-is jaguneb 4,43 s nii: sõnaotsingu ülejääk ~2,35 s, valiku ümber tehtav serveritöö (rerank-taimer − LLM) 0,43 s, fusion_selection − rerank 0,33 s, kaaslasesätted ja nimetatud aktid 0,27 s, merge 0,17 s.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "3–4 s põhjus on ADR-161 järgi selles, et 28–39 sõnaga VÕI-päring sobib peaaegu iga lõiguga. Tulemus on paralleelne täisskaneerimine, ts_rank kümnetele tuhandetele ridadele ja kahe tsvector'i TOAST-lahtipakkimine mitu korda reas: umbes 1,1 mln puhvrit päringu kohta. Samal ajal jookseb seaduste reservi sõnaotsing teise 3-töötajalise skaneerimisena.",
+     "evidence": "docs/rag-v2/adr-161-lexical-search-time.md, tabel ja järeldus (2,9–4,4 s; EXPLAIN 4,2–4,7 s; ühikute loend aega ei mõjuta). REG-is reserve_lexical 441–1944 ms (mediaan 694) samal ajal. GIN-indeksid on olemas (prisma/rag-v2/migrations/202609270001_version_index/migration.sql:29-30), aga laia VÕI-päringu jaoks plaanija neid ei kasuta. ADR-161 tabelis on vastuolu: skaneeritud 73–78 tuh rida, filtriga välja 47–53 tuh, teksti järgi aga ts_rank ~70 tuh reale.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Struktuurne leid: praeguste kaaludega ei pääse ainult sõnaotsingu leitud lõik kunagi valiku pooli. Täisskaneerimise ainus mõju poolile on lisapunktid lõikudele, mille vektorotsing juba leidis.",
+     "evidence": "ranking.js:9-25 (RRF), profiles.js:99 (lexical 1, vector 2), profiles.js:102 (40 kandidaati kanali kohta), retrieval.js:109 ja 341 (RERANK_POOL 30), unified.js:57 (reserv 6). Ainult sõnaotsingu leitud lõigu skoor on ülimalt 1/61 = 0,0164. Iga vektorkandidaadi skoor kohtadel 1–40 on vähemalt 2/100 = 0,02. Andmed: R1+R2 pool kokku 5544 kirjet (155 pööret) ja ainult sõnaotsingu ranke kandis 0, ka reservis 0.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Sõnaotsingu lisapunktid mõjutavad pooli koosseisu siiski märgatavalt, seega kanalit lihtsalt eemaldada ei tohi.",
+     "evidence": "R1+R2, 154 pööret, 4620 fusioonipooli kirjet. Sõnaotsingu rank oli 827-l (17,9%) ja valitud lõikudest 191-l 769-st. Hinnang (vektoriskoor ilma sõnaotsinguta < pooli madalaim sõnaotsinguta kirje): 441 kirjet (9,5%) langeks ilma lisapunktideta tõenäoliselt poolist välja. Neist 69 valiti ja 32-le vastus viitas. 125 pöördel 154-st oli vähemalt üks selline kirje. See on lähendus: poolist välja jäänud kandidaate jälg ei näita.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Kaaslasesätete rada (ADR-149) loeb ka ainult sõnaotsingu tabamusi: `found` sisaldab kogu RRF-loendit, mitte ainult pooli. Iga sõnaotsingu muudatus peab selle säilitama või mõõtma.",
+     "evidence": "search/retrieval.js:650: found = new Set([...ranked, ...reserveRanked]). Seda kasutab tingimus hit.score >= nearAndFound && found.has(hit.id) (rida 652).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Sõnaotsingu tulemuste vahemälu ei aita, sest sama küsimuse otsingutekst (küsimus + plaani päringud) peaaegu ei kordu.",
+     "evidence": "node -e R1/R2/R3 peal, võrreldud [question, ...plan.queries]: R1 ja R2 vahel identne 1/75, R1 ja R3 vahel 0/75. Küsimus ise oli sama 75/75.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Täpselt samu tulemusi andvad parandused sõltuvad serveri mälust ja protsessoritest, mida me ei tea. Kitsas tabel kohalikus masinas aitas, serveris mitte.",
+     "evidence": "ADR-164: kohalikult 7,6 s → 2,5–3,5 s, serveris 3,7–4,7 s vs 2,9–4,4 s, võeti tagasi. postgres.js:72-74: 3 töötajaga varem 1,6–1,8 s → 0,63–0,71 s (26.09, väiksem korpus). Põhi- ja reservi sõnaotsing kasutavad korraga kuni 2×3 töötajat. Postgresi vaikimisi max_parallel_workers ja max_worker_processes on 8; serveri väärtused pole teada.",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Omavalitsuse loogika ei ole kiiruse hoob. Serveri töö plaani LLM-i ja `planned`-i vahel on mediaanis ~0,3 s, ja see sisaldab kohtade kontrolli EstNLTK-ga, preflight'i ja salvestusi. Kohad võtavad plaani väljundist umbes kolmandiku.",
+     "evidence": "node -e: planned − plan.ms mediaan REG 331, R1 333, R2 304, R3 334, F1 283 ms. Otsingu sees on `scope` 103–200 ms (REG since_start_ms). R3+F1 (101 pööret): plannedPlaces JSON mediaan 127 märki (~40 tokenit), plaani nähtav väljund mediaan 114 tokenit, arutlus 185. Kohti on pöörde kohta mediaanis 1, maksimum 2.",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Kood on suur ja kihiline: kokku 1368 rida. See viitab umbes 20 ADR-ile ja 15 Codexi leiule. Repo testikomplektis neid funktsioone otse ei testita.",
+     "evidence": "wc -l: person-places.js 671, record-scope.js 508, settlements.js 189. grep: ADR-074 15 korda, ADR-167 8, ADR-103 7, lisaks Codex J1-J3, V1-V4, N1-N3, R1-R2, F1-F2, G8. tests/ kaustas leidub ainult fikstuur (tests/fixtures/rag-v2-municipal-packet.mjs). Kontrollid elavad scratchpad'i adr16x-check skriptides ja failis docs/audits/evidence/sol-proof-20261014-01/local-rag-dialogue-places.mjs (64 rida). Allika ulatuse ahel: person-places.js:574-587 (sourceRegionScope → questionRegionScope → knowledgeRegionScope/othersOwnRegion → plannedPlaceChoice → replyRegionScope → continuedRegionScope → householdScope → workScope).",
+     "confidence": "kõrge"
+    },
+    {
+     "claim": "Võrdlus R3+F1 põhjal: plaani enda kohtadega lahknes serveri lõplik omavalitsus 25 pöördel 88-st. „Plaan otsustab“ mudel oleks parandanud umbes 5 pööret ja muutnud 10 pööret vastu praegusele omaniku hoiakule (mitmetähenduslik nimi → küsi).",
+     "evidence": "node -e, 101 pööret. Plaan nimetas sihtisikule (või kasutaja works-kohale) täpselt ühe koha 88 pöördel ja lõplik region langes kokku 63-l. 25 lahknevust: 6 nimekuju (Narva → narva_linn, Tabasalu → harku_vald, sisuliselt kokkulangevad); 4 maakonda (Viljandimaa, server jättis õigesti tühjaks); 10 Viljandi (R3 C01-C10 ja F1 C10, plaan „Viljandi linn“/„Viljandi“, server ambiguous või region_required; ADR-167 hindas „linn või vald?“ küsimist õigeks); 5 Narva teenuseosutaja (R3 B20, B21; F1 B20, B21, B25). Narva juhtumeid püüab ADR-173 lahendada, F2 tulemust andmetes pole. Nimekuju teisendus on minu heuristika (NFD, väiketähed, tühik → _).",
+     "confidence": "keskmine"
+    },
+    {
+     "claim": "Ühe sammu otsus ei asenda inimeste kodude mälu. Dialoogi olek v5 loeb kontrollitud kohti iga inimese kohta (lives/not/unresolved), seega checkedTurnPlaces ja resolvePersonRegions jäävad alles. Lihtsustada saab ainult pöörde allika ulatuse koondamist.",
+     "evidence": "dialogue-state.js:246-247 (resolvePersonRegions(before.people, server.places, focus)). retrieval.js:207-243 (recordScope/searchScope). history.js:44-45 ja service.js:240-257 loevad eelmise pöörde scope'ist askedRegions, askedPerson, askedVia ja work_regions.",
+     "confidence": "kõrge"
+    }
+   ],
+   "options": [
+    {
+     "change": "Lugeda serveris (ainult lugemine) välja sõnapäringu kulu: EXPLAIN (ANALYZE, BUFFERS, SETTINGS) koos track_io_timing'uga samade 5 küsimusega, pg_column_compression(search_vector/morphology_vector), Postgresi versioon, shared_buffers, max_parallel_workers, max_worker_processes, nproc, ridade arv rag_v2_version_unit-is aktiivse ja muude config/versioonide kaupa. Lisaks lisada searchTimings tagasi jooksude eksporti.",
+     "mechanism": "Ei kiirenda midagi. Annab serveri enda alused valikutele 3 ja 4. ADR-164 näitas, et kohalik mõõtmine serverisse üle ei kandu.",
+     "expected_gain": "0 s otse. Väldib uut ADR-164 tüüpi tagasivõttu.",
+     "basis": "ADR-164 järeldus: „järgmine mõõtmine peab olema serveri enda mälu ja EXPLAIN (BUFFERS) järgi“. R3 ja F1 ekspordis searchTimings puudub, kuigi service.js:446 ja 557 salvestavad selle reale.",
+     "quality_risk": "Puudub, vastuseid ei muudeta. Toodangu andmebaasis käib üks lisapäring ~4 s.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "EXPLAIN-i Buffers (shared hit/read), I/O aeg, Workers Planned/Launched, rows removed by filter. Kas vektorid on pglz/lz4 ja kas plaanitud töötajad ka käivituvad, kui reserv jookseb samal ajal."
+    },
+    {
+     "change": "Arvutada sõnaotsingu skoor ainult vektorkandidaatidele, täisskaneerimist enam ei tehta. Pärast vektorkanaleid (põhi 4×40 ja reserv 4×40 ID-d) teeb üks PK-päring `u.id = ANY($ids)` sama ts_rank-valemiga (search_vector + 0,35 × morphology_vector) ja järjestab need ID-d. Esimesed K saavad lexical-ranke, kus K kalibreeritakse praeguse täisotsingu vastu. RRF jääb samaks. change_-reservi väike sõnaotsing jääb, nagu on.",
+     "mechanism": "Andmete (0/5544) ja RRF-matemaatika järgi on täisskaneerimise ainus mõju poolile vektorkandidaatide lisapunktid. ~320 rea skoorimine PK kaudu asendab ~25–70 tuh rea skaneerimise ja lahtipakkimise. Sõnaotsing kaob kriitiliselt teelt, sest ta ei ole enam pikem kui vektorkanalid.",
+     "expected_gain": "Pöörde mediaan ~2,1–2,35 s (8–10%) miinus uue ID-päringu aeg. Selle aeg on mõõtmata, eeldatavasti kümned millisekundid.",
+     "basis": "REG, 75 pööret. Kui ainult põhiraja sõnaotsing kaob kriitiliselt teelt, säästab see mediaanis 2112 ms (p25 1938, p75 2445). Koos seaduste reserviga 2348 ms (p25 2185, p75 2647). reserve_lexical oli aeglaseimast vektorist pikem 56 pöördel 75-st, mediaanis +252 ms.",
+     "quality_risk": "Keskmine. Lisapunktid ei lähe enam korpuse top-40 järgi, vaid kandidaatide seas. Praegu sõltub lisapunktidest hinnanguliselt 9,5% pooli kirjetest (154 pöördes 69 valikut ja 32 viidet). Muutub ka kaaslasesätete `found` (retrieval.js:650). Ranking muutub, seega vajab omaniku otsust ja kvaliteedimõõtmist.",
+     "effort": "M",
+     "owner_decision": true,
+     "measurement": "1) Serveris võrdlusjooks REG/R3 75 küsimusega, plaani päringud fikseeritud jäljest: vana ja uue pooli Jaccard, valiku sisendi kattuvus, kaaslasesätete lisandused. 2) 75 küsimuse jooks koos searchTimings ekspordiga: lanes.knowledge.lexical, A = lexical − max(vector) ja (searched−embedded) − rerank. Pöörde ms-i ei saa kasutada, sest sama küsimuse vahe kahe jooksu vahel on mediaanis 5,7 s."
+    },
+    {
+     "change": "Täpselt samu tulemusi andev lahtipakkimise vähendamine, ainult siis, kui valik 1 seda toetab: tsvector-veergudele lz4-pakkimine (kui praegu on pglz ja PG ≥ 14) ja/või päringu kuju, kus iga vektor pakitakse lahti üks kord (ADR-161 variant 2).",
+     "mechanism": "ADR-161 järgi kulub aeg TOAST-vektorite lahtipakkimisele, mitu korda rea kohta. lz4 pakib lahti kiiremini kui pglz. Üks lahtipakkimine rea kohta kaotab ADR-161 hinnangul umbes kolmandiku tööst.",
+     "expected_gain": "Teadmata, 0 kuni ~1 s. Kriitilise tee võit on ülimalt sõnaotsingu ülejääk (mediaan 2,35 s). Usaldusväärset alust praegu pole.",
+     "basis": "ADR-161 puhvrimõõdud: ~1,1 mln tabamust, 83–142 tuh lugemist. ADR-164: kohalik võit serverisse üle ei kandunud. Kas pakkimine on pglz, pole teada.",
+     "quality_risk": "Väike, tulemused on samad. lz4 eeldab olemasolevate väärtuste ümberkirjutamist, mis on andmebaasi muudatus.",
+     "effort": "M",
+     "owner_decision": true,
+     "measurement": "Serveris EXPLAIN (ANALYZE, BUFFERS) samade 5 küsimusega enne ja pärast. 75 pöördel lanes.knowledge.lexical. Päringu ID-d ja skoorid peavad olema identsed."
+    },
+    {
+     "change": "Tõsta sõnapäringu paralleeltöötajate arvu (postgres.js:69 lexicalWorkers 3 → N), kui valik 1 näitab vabu tuumi ja piisavat max_parallel_workers väärtust.",
+     "mechanism": "Rohkem töötajaid jagab skaneerimise ja ts_rank-i arvutuse laiemalt. Tulemused jäävad samaks.",
+     "expected_gain": "Teadmata. 26.09 andsid 3 töötajat ~2,5× kiirenduse. Kui tuumi on üle, võiks sõnaotsing kahaneda ~20–40%, s.t ~0,6–1,2 s. See on spekulatiivne.",
+     "basis": "Kommentaar postgres.js:72-74. Põhi- ja reservipäring kasutavad samal ajal kuni 6 töötajat ja vaikimisi piir on 8. Serveri tuumade arv pole teada.",
+     "quality_risk": "Tulemustele puudub. Andmebaasi koormus kasvab ja paralleelsete vestluste puhul võivad töötajad otsa saada.",
+     "effort": "S",
+     "owner_decision": true,
+     "measurement": "Workers Launched EXPLAIN-is ja lanes.knowledge.lexical p50/p90 75 pöördel võrreldes REG-iga."
+    },
+    {
+     "change": "Omavalitsus: struktuuri praegu mitte muuta. Oodata F2/R4 tulemusi (ADR-169/172/173) ja lisada pöörde jälge ainult silt, milline ahela samm otsuse tegi (question / search_plan / planned_choice / reply / continued / household / work).",
+     "mechanism": "Selgitab vigade allika ilma käitumist muutmata. Ühtki reeglit ei teisaldata plaani juhisesse, seega plaani arutlus ei kasva.",
+     "expected_gain": "0 s. Silumine ja järgmise otsuse alus.",
+     "basis": "Serveri osa kogu kohaloogikas on ≤ ~0,3 s (planned − plan.ms mediaan 283–334 ms). 25 lahknevusest R3+F1-s on ainult ~5 sellised, kus plaani lugemine oleks selgelt parem olnud.",
+     "quality_risk": "Puudub.",
+     "effort": "S",
+     "owner_decision": false,
+     "measurement": "Järgmises 75 pöördes otsuse sildi jaotus ja region_required põhjused rollide kaupa."
+    },
+    {
+     "change": "Omavalitsus (kahe sammuga lihtsustus). Samm A, varjurežiim: plaan annab lisaks kohtadele ühe objekti `scope` {municipality|null, person, basis: home|asked|work|earlier|reply|household|none, turn, quote}. Server kontrollib seda ja logib kokkulangevuse praeguse sourceRegionScope'iga, käitumine ei muutu. Samm B, ainult hea kokkulangevuse korral: allika ulatus tuleb kontrollitud plaani otsusest ja ahel questionRegionScope/continued/reply/plannedPlaceChoice/earlierChoice (person-places.js:376-587) kaob. checkedTurnPlaces, resolvePersonRegions ja vanade scope'ide lugejad jäävad alles.",
+     "mechanism": "Koondamise reeglid liiguvad serverist plaani, server ainult kontrollib. Kontrollid on: tsitaat on kasutaja sõnumis; tsitaadi kandidaatide hulgas on see omavalitsus; eitus samas lauses; sama nimega omavalitsused jäävad mitmetähenduslikuks, kui eelmine pööre, töökoht või sõnumi oma koht ei vali; ADR-168 kasutaja enda KOV-i reegel; tööpiirkond ainult spetsialistile ja teenuseosutajale; maakond ei ole omavalitsus.",
+     "expected_gain": "Kiirus ~0 või negatiivne. Serveri osa on ≤ 0,3 s, objekt on sama suur kui praegused kohad (~40 tokenit) ja reeglid juhises tõstavad tõenäoliselt plaani arutlust. Võit on ainult hooldatavuses: hinnanguliselt ~200–300 rida vähem ja üks otsuse tee viie asemel.",
+     "basis": "R3+F1 kokkulangevus 63/88. Lahknevustest ~5 oleks plaan parandanud (Narva teenuseosutaja) ja ~10 juhul läinuks plaan vastu omaniku „küsi, kui nimi on mitmetähenduslik“ hoiakule (Viljandi). Plaani aeg korreleerub arutlusega 0,63. ADR-165 precedent: üks reegel juhises tõstis arutlust ja tekitas 60 s ajapiire.",
+     "quality_risk": "Kõrge. Plaani juhuslikkus: C01 viiest kordusest andsid 3 „Viljandi linn“ ja 2 „Viljandi“ (ADR-167). Õige vormiga, aga vale valikut server tabada ei suuda. Säilitada tuleb vähemalt: per-isiku kodud ja kolimine/eitus; tsitaadi kontroll ja kirillitsa vaste; sama nimega omavalitsuste reeglid (ADR-157, 167B, 173); küsitud omavalitsus kui allika ulatus, mitte elukoht (ADR-074, 128, 168); järelküsimused, lühivastused ja meelde jäänud vastus (ADR-081, 084, 103, 172); kasutaja enda KOV ei lähe teisele inimesele, välja arvatud alaealine laps ja abikaasa pöörduja vestluses (ADR-168); tööpiirkonna kandumine ja asendumine ainult spetsialistile ja teenuseosutajale ning maakond ≠ omavalitsus (ADR-167, 172); sama otsus kataloogile ja teadmusrajale (Codex J1-J3, F4); kohtade lugemine ka plaani vea korral (Codex V1, service.js:360-363); asulad (ADR-103, 110); tänu- ja tervitusrada (ADR-120); interpretation-sildid vastuse ja admini „Piirkonna otsus“ jaoks; vanade pöörete salvestatud scope'ide lugemine. Repo testides neid käitumisi ei kaitsta.",
+     "effort": "L",
+     "owner_decision": true,
+     "measurement": "Samm A: kokkulangevus % rollide kaupa 75+27 pöördes, plaani arutluse ja ms-i mediaan võrreldes REG/R3-ga (lubatud kasv ≈ 0). Samm B: ADR-167, 168, 172 ja 173 tabelite ~50 juhtumit ning local-rag-dialogue-places regressioonikomplektina repo testidesse; 75 küsimuse jooks; omavalitsusega pöörded rollide kaupa, valesti määratud ja ilma jäänud pöörded võrreldes R3/F2-ga."
+    }
+   ],
+   "open_questions": [
+    "Serveri tuumade arv, RAM, shared_buffers, Postgresi versioon, max_parallel_workers ja max_worker_processes: neist sõltuvad valikud 3 ja 4.",
+    "Kas tsvector-veerud on pglz- või lz4-pakkimisega (pg_column_compression)?",
+    "Kas ts_rank arvutatakse ~25 tuhandele või ~70 tuhandele reale? ADR-161 tabel (skaneeritud 73–78 tuh, välja 47–53 tuh) ja tekst lähevad lahku. Mitu rida rag_v2_version_unit-is ei kuulu aktiivsesse põlvkonda?",
+    "Miks R3 ja F1 ekspordis searchTimings puudub? Andmebaasi reas on see olemas (service.js:446, 557). Ilma selleta ei saa R3/F1 sõnaotsingu aega otse kinnitada.",
+    "Kui suure pooli muutuse lubab omanik sõnaotsingu ümberehituses (valik 2)? Milline on kvaliteedi lävend: pooli Jaccard, valiku ja viidete kattuvus?",
+    "Kui sageli tuli kaaslasesätete found_by_question ainult sõnaotsingu tabamusest? Jälg seda ei näita.",
+    "F2/R4 tulemused (ADR-169, 172, 173: Narva teenuseosutaja, C10 Viljandi, kirjete arv) puuduvad andmetest. Neist sõltub, kas omavalitsuse loogika vajab üldse ümberehitust."
+   ]
+  }
+ ],
+ "critic": {
+  "issues": [
+   {
+    "area": "Sõnaotsing: aruanne 1 (b2, b3) ja aruanne 5 (valik 2)",
+    "claim": "b2: sõnaotsing tehakse plaani ajal ainult algse küsimusega, võit ~2,6 s, töö L. b3: plaani voogedastus annab 0,75–1,15 s.",
+    "problem": "b2 ja b3 eeldavad, et täisskaneerimine peab alles jääma. Aruanne 5 aga näitas, et ainult sõnaotsingu leitud kandidaat valiku kogumisse ei jõua. Kontrollisin: R1+R2 kogumis 0/5544. Põhjus on RRF-i arvutuses: k=60 ja kaalud lexical 1 / vector 2 (profiles.js:58,99; ranking.js:9-25). Seega annab täisskaneerimine ainult lisapunkte kandidaatidele, mille vektorotsing juba leidis. Funktsioon postgres.lexical võtab juba praegu ühikute loendi (`$6::text[] ... u.id=ANY($6)`, postgres.js:548-565), nii et vektorkandidaatide skoorimine on S–M töö. See jätab variantide terminid alles (b2 kaotab need) ega viska tööd ära. Kui sõnaotsing pole enam kriitilisel teel, kaotab b3 mõtte.",
+    "correction": "Eelistada aruande 5 valikut 2. Võit on sama suur, ~2,1–2,3 s. Arvutasin regressioonijooksust (node -e): A = max(lexical, reserve_lexical) − max(vektorkanalid), mediaan 2348 ms, p10 1880, p90 2919; sõnaotsing lõpetas viimasena 75/75 pöördes. b2 ja b3 tulevad kõne alla ainult siis, kui omanik valiku 2 tagasi lükkab. Eeltingimus: EXPLAIN peab näitama, et ~320 ID-ga päring kasutab PK-indeksit. ADR-161 järgi praegune kogu ühikute loend aega ei mõjuta, nii et täisskaneerimine võib jääda alles."
+   },
+   {
+    "area": "Sõnaotsingu kvaliteedirisk (aruanne 5, valik 2)",
+    "claim": "Valiku 2 risk: 441 kogumi kirjet (9,5%), sealhulgas 69 valikut ja 32 viidet, langeks ilma lisapunktideta kogumist välja. Lisaks: ainult sõnaotsingu leitud lõik ei pääse kogumisse \"kunagi\".",
+    "problem": "9,5% kehtib sõnakanali täieliku eemaldamise kohta, mitte valiku 2 kohta. Valikus 2 saavad vektorkandidaadid lisapunkte edasi, muutub ainult järjestuse ulatus: varem korpuse top-40, nüüd kandidaatide seas. Seepärast nihkuvad kohad ülespoole (r' ≤ r) ja kui K-d ei kalibreerita, saab lisapunkte rohkem kandidaate. Tegeliku muutuse suurust ei tea. \"Kunagi\" on liiga tugev sõna: dokumendi piirang kogumis (poolPerDocument, retrieval.js:343) võib teoreetiliselt sõnaotsingu kandidaadi sisse lasta. Andmetes juhtus see 0/5544 korral. Lisaks kaotab kaaslassätete `found` (retrieval.js:650) need tabamused, mille leidis ainult sõnaotsing.",
+    "correction": "Risk on teadmata suurusega ja 9,5% on pigem selle ülemhinnang. Mõõta võrdlusjooksuga, kus plaani päringud ja vektorid on fikseeritud: kogumi Jaccard, valiku kattuvus, baasis viidatud lõikude säilimine ja kaaslassätete muutus. K kalibreerida REG-i 75 küsimuse põhjal."
+   },
+   {
+    "area": "Allikate laadimine pärast valikut (aruanne 1, c2)",
+    "claim": "Laadimise ühendamine säästab mediaanis kuni 0,33 s ja p90-s ~1,3 s, tulemus ei muutu.",
+    "problem": "Saba on alahinnatud ja mehhanism lahtine. REG-is oli fusion_selection − rerank pööretel A19 3066 ms, C04 3373 ms ja B17 1828 ms; need on pöörded, kus mitte-LLM otsing võttis 7–9 s (node -e). hydrate teeb iga uue dokumendi kohta kaks päringut ja kontrollib siis iga ühiku uuesti: `stable(indexUnit(...)) !== stable(unit)`, search/retrieval.js:170-190, kutse tsüklis :439-441. Päringute ühendamine säästab ainult ringkäigud, mitte protsessoriaega kontrollis.",
+    "correction": "Enne muudatust lisada eraldi taimer DB-osale ja kontrollile. Kui kulu on kontrollis, on täpne hoob vahemälu, kus kontrollitud dokument hoitakse versiooni id järgi (generatsioon ei muutu). Võit: mediaanis ≤0,33 s, p90-s ~1,3 s, sabas kuni ~3 s. Kumb osa aega võtab, pole teada."
+   },
+   {
+    "area": "Valiku skeemi enum (aruanne 2)",
+    "claim": "Kui ID-del pole enum'i, võidab iga pööre 0 kuni umbes 0,5 s.",
+    "problem": "Aruande enda regressiooni järgi maksab valiku nähtav token 11,3 ms. Vastuses on see 7,6–8,5 ms (minu vähimruutude regressioon 255 pöördel: arutlus 11,6 ms, nähtav 8,5 ms). ADR-162 plaani aeglus oli ~25–30 ms tokeni kohta (adr-162:16, search-assist.js:179). Valikus on nähtavaid tokeneid ~34.",
+    "correction": "Ülempiir on ≈ 34 × (11,3 − 8) ≈ 0,1 s, mitte 0,5 s. Prioriteet madal."
+   },
+   {
+    "area": "Valiku asjaolu-loend (aruanne 2)",
+    "claim": "circumstance-loendi eemaldamine säästab keskmiselt ~0,35–0,5 s.",
+    "problem": "Alus on 10 paari ja p≈0,75. F1 ja R3 erinevad ka plaani muudatuste (ADR-167..172) ja jooksudevahelise triivi poolest. Main'il on search-assist-24 koos lisalausega ning versioonidel -23 ja -24 pole ühtegi mõõtmist (git: 269e7ab0 = -22, 67a57dee = -24), seega puudub baas. Muudatus võtab tagasi omaniku kinnitatud ADR-165/171 funktsiooni.",
+    "correction": "Tegu on hüpoteesiga: 0–0,5 s. Mõõta main'i baasi vastu vahelduva A/B taasesitusega, vähemalt 3 kordust. Arutluseta osakaal ja arutluse pikkus arutlevates kutsetes raporteerida eraldi."
+   },
+   {
+    "area": "Valiku sisendi struktuur (aruanne 2)",
+    "claim": "Kui praegune sõnum on eraldi väljal, kaob jätkupöördes kuni ~0,55 s.",
+    "problem": "Esimese pöörde 47% vs jätkupöörde 25% on segatud küsimuse liigiga. Arutluse vahelejätmine käitub kutse kaupa nagu mündivise: kolmes jooksus 1 küsimus kõigis kolmes, 30 mitte üheski, 42 segamini (kontrollitud). Nende andmete põhjal ei saa struktuuri mõju küsimuse mõjust eraldada.",
+    "correction": "Spekulatiivne, 0–0,55 s. Mõõta ainult taasesitusega, kus sama pöörde sisend saadetakse kahel kujul."
+   },
+   {
+    "area": "Teadmislõikude arv ja vastuse tokenid (aruanne 4)",
+    "claim": "Iga lisatud teadmislõik toob ≈94 genereeritud tokenit ≈ 0,6 s, seega lisaks b-täitmine 0,6–0,9 s.",
+    "problem": "See on ristlõike seos, mida segab küsimuse tüüp. Võrdlesin sama küsimust R1 ja R2 vahel (74 paari, vahede OLS, evidence lane=knowledge). Ühe lõigu kohta: genereeritud tokenid 13,9 ± 13,5, nähtav osa 11,4 ± 6,4, arutlus 2,5 ± 12,2, aeg 291 ± 167 ms.",
+    "correction": "Lõigu mõju on ~0,1–0,3 s ja vahemik on lai. b-täitmine maksab seega ~0,2–0,4 s, mitte 0,6–0,9 s. Samast järeldub, et valikute ülempiiri vähendamine 9-lt 6-le vastust märgatavalt ei kiirenda."
+   },
+   {
+    "area": "Osaliste vastuste klass c (aruanne 4)",
+    "claim": "A07 tsiteerib hinda 1750 €, kuid piirangus ütleb, et kehtivat hinda pole. See on vastuolu, mille serveri parandus peaks eemaldama.",
+    "problem": "A07 plokk ise ütleb: \"Hinnad on ülevaatlikud ja hooldekodu käest tuleb küsida kehtiv hind\". Piirang räägib \"konkreetse hooldekodu\" kehtivast hinnast ning lisaks muust sissetulekust ja võrdluspensionist (R2 A07 answer). Selget vastuolu pole. Tekstipõhine eemaldus võiks kustutada õige hoiatuse.",
+    "correction": "A07 on piiripealne juhtum. Kindel c-tõend on ainult C23; B23 hinnang põhineb ainult pealkirjal. Variant c on lubatav ainult kitsa reegli ja iga eemalduse käsitsi kontrolliga ning madala prioriteediga."
+   },
+   {
+    "area": "Dialoogi olek eraldi kutses (aruanne 3)",
+    "claim": "Jätkupöördes −1,1–1,2 s, esimeses pöördes −2,6–2,9 s.",
+    "problem": "Elavas vestluses lüheneb ainult aeg done'ni, sest tekst voogedastatakse enne olekut (answer-stream.js:1-6). Mainimata jäi takistus kuluarvestuses: real saab korraga olla ainult üks sammu olek (store.js:216 `${stage}_reserved`, :231 keeldub muul juhul). Paralleelne tasuline kutse nõuab arvestuse ümberehitust. Oleku suurus on jääkhinnang o200k-ga ja mudeli tokeniseerijat ei tea.",
+    "correction": "Töö on L, omaniku otsus. Enne tuleb responseAudit.draft'ist mõõta oleku tegelik suurus ja väljade jaotus. Esimeses pöördes on suurim osa tõenäoliselt new_facts'i sõnasõnalised tsitaadid (FACT_STATE_INSTRUCTIONS: kuni 12 fakti, tsitaat ≤240 märki), mida needs/unknowns-variant ei puuduta."
+   },
+   {
+    "area": "Kiiruse mõõdik (aruanded 1 ja 3)",
+    "claim": "Eesmärgi mõõdik on pöörde koguaeg ~27 s; voogedastus on ainult avatud küsimus.",
+    "problem": "Vestlus voogedastab: useChatStream.js:1647 saadab Accept: text/event-stream ja m4PilotServer.js:154,189 saadab delta-sündmused. Kõigis mõõdetud pööretes oli streaming=false. Hinnang R3+F1 põhjal: vastuse kutse algab mediaanis 14,5 s juures ja esimene tekst tuleb ≈20,9 s juures (TTFT 1 s + arutlus × 11,6 ms). Teksti pikkus, olek ja factual muudavad ainult done-aega.",
+    "correction": "Omanik peab valima peamõõdiku: first_text või done. Esimene samm on voogedastusega baasjooks. Variantide väärtus sõltub sellest valikust."
+   },
+   {
+    "area": "Jooksude võrreldavus (kõik aruanded)",
+    "claim": "Jooksude erinevus omistatakse muudatusele: näiteks F1 vs R3 valikus ja R1→R3 kliendi arutlus +190.",
+    "problem": "Triiv on suur ka siis, kui vastuse juhis jääb samaks (answer-15). Kliendi vastuse arutluse mediaan: REG 300, R1 201, R2 224, R3 426, F1 502 (node -e rolli kaupa). Arutluse vahelejätmine käitub mündiviskena ka vastuses: 52/255 kutset on ilma arutluseta (mediaan 6,2 vs 12,2 s), kolmes jooksus 2 küsimust alati, 41 mitte kunagi ja 30 segamini.",
+    "correction": "Järjestikused jooksud ei eralda muudatuse mõju triivist. Vaja on vahelduvat A/B-d samas sessioonis ja üksiksammu taasesitust. Mõõdikuks tokenid: vahelejätmise osakaal ja arutluse pikkus arutlevates kutsetes eraldi."
+   },
+   {
+    "area": "Pöörde ülesehitus (aruanne 1), sõnastus",
+    "claim": "Kirjete ja teenuseosutajate rada \"käivad järjest pärast teadmiste rada (pilot/retrieval.js:435)\"; skoor on ts_rank_cd (postgres.js:559).",
+    "problem": "Kirjete ja teenuseosutajate rada käivad teadmiste rajaga paralleelselt (Promise.all, pilot/retrieval.js:432). Järjest käivad ainult perioodirajad (:435). Vestluse profiil kasutab ts_rank'i (LEXICAL_RANK_PLAIN, profiles.js:58,100; postgres.js:551), mitte ts_rank_cd'd.",
+    "correction": "Järeldused jäävad samaks: kirjete rada pole kriitilisel teel ja jaotus annab täpse tulemuse, sest skoor arvutatakse iga rea kohta eraldi. Parandada viited ja sõnastus."
+   }
+  ],
+  "missing": [
+   "Main'i baas puudub: ükski jooks ei ole tehtud versioonil 67a57dee. F1 tehti versioonil 269e7ab0 (search-assist-22); main lisab search-assist-23/24 ja ADR-173. Kõik aruannete arvud on vanematest versioonidest, nii et ka lähtetase on teadmata.",
+   "Tajutud ooteaeg: tootmises voogedastatakse, aga mõõdetud pole. Hinnang: vastuse kutse algab mediaanis 14,5 s ja esimene tekst tuleb ~20,9 s juures, pööre lõpeb 27,1 s juures. Enne vastust tehtav töö on ~69% tajutud ootest. Sõnaotsingu ~2,3 s on sellest ~11%. Oleku ja teksti lühendamine first_text'i ei muuda.",
+   "Mõõtmisviis ühe muudatuse kaupa: vahelduv A/B samas sessioonis ja üksiksammu taasesitus. Põhjus: arutluse vahelejätmine on mündivise nii valikus (72/255) kui ka vastuses (52/255), kliendi vastuse arutlus triivis sama juhisega 201→502. Deterministlikke muudatusi tuleb mõõta komponenttaimeritega ja võrdsustestiga, LLM-i muudatusi tokenitega.",
+   "Saba (p90 pööre 39,4 s R3+F1-s): vastuse samm on 18–36 s. Mitte-LLM otsingu p90 on 7,0–7,4 s. REG-is olid allikate laadimine pärast valikut kuni 3,4 s (C04), named_acts kuni 1,6 s (B10) ja valiku ümbris kuni 1,5 s. Sabale keegi eraldi ei keskendunud.",
+   "Koormus: Postgresi ühenduste kogum on max 5 protsessi kohta (postgres.js:70). Iga pööre hoiab sõnaotsingus ~3 s kahte ühendust, kummaski kuni 3 töötajat. Jooksud olid eeldatavasti ühe kasutajaga, nii et samaaegsete vestluste ooteaega pole mõõdetud. Valik 2 kaotaks ka selle kitsaskoha.",
+   "Allikate laadimisel kontrollitakse iga ühik igas pöördes uuesti (search/retrieval.js:185). Kui ajakulu on seal, on täpne hoob kontrollitud dokumendi vahemälu versiooni id järgi. Vaja on taimerit, mis eraldab DB-osa ja kontrolli.",
+   "Dialoogi oleku väljade jaotus: esimese pöörde ~290 tokenist on suurem osa tõenäoliselt new_facts'i sõnasõnalised tsitaadid, mitte needs/unknowns. Mõõta responseAudit.draft'ist enne, kui olekuvariant valitakse.",
+   "Plaani arutlus (~185 tokenit ≈ 2,3 s) on plaani suurim osa. Plaane ilma arutluseta oli 11/255, nende mediaan 2,3 s vs 4,5 s. Keegi ei proovinud plaani juhise ridu taasesitusega tingimuslikuks teha (nt ROLE, ASKED või CORRECTION ainult siis, kui need kehtivad), nagu aruanne 2 pakkus valikule.",
+   "Puhverdus ei ole kiiruse hoob: vastuse puhverdatud sisend on 15–24% (R3-s 45/74 kutset ilma puhvrita), valikul ~6%. Sisendi kordaja on ≈0 või negatiivne (vastus −0,1 ms tokeni kohta), seega on see kulu küsimus. Seda ei tohi kiirusena esitada.",
+   "Kaks samaaegset valikukutset ja kiirema vastuse kasutamine: bootstrap'i järgi langeks valiku mediaan 4,2 s → 3,1 s. Sisuliselt valitaks aga sagedamini arutluseta tulemus (kolme esimese valiku täpsus 67% vs 74%), mis läheb vastu omaniku arutlustaseme otsuse mõttele. Kulu kahekordistuks ja kuluarvestus ei luba samaaegseid kutseid (store.js:216,231). Ei soovita, mainin terviklikkuse pärast.",
+   "Valiku liitmist vastusekutsega (36 kandidaati otse vastusele) keegi ei vaadanud. Sisendi maht aega ei mõjuta, kuid vastuse arutlus võib kasvada ja valiku järel tulev töö (seemned, viited, kaaslassätted) sõltub valikust. Töö L, risk kõrge. Ainult taasesituskatsena, mitte arendusplaani."
+  ],
+  "order": [
+   {
+    "change": "0. samm, mõõtmisalus ilma käitumismuutuseta. Baasjooks main 67a57dee peal (75 küsimust) voogedastusega, et saada first_text. searchTimings eksporti tagasi. Uued taimerid: allikate laadimise DB- ja kontrolliosa, seeds_hydrated, iga store-kirjutus ja access(). Serveris lugemisega EXPLAIN (ANALYZE, BUFFERS) sõnapäringule praegusel kujul ja ~320 ID-ga. Üksiksammu (plaan, valik, vastus) taasesitus vahelduva A/B-ga. Deterministlik osalise silt (aruanne 4, variant 2).",
+    "why_here": "Kõik järgnevad otsused vajavad main'i baasi, tajutud aja mõõdikut ja komponenttaimereid. Triiv sama juhisega ulatub +200 arutlustokenini, sama küsimuse aeg erineb jooksude vahel mediaanis 5,7 s.",
+    "gain": "Otsene võit 0 s. Võimaldab mõõta alla 1 s mõjusid: komponenttaimeritega mõne pöördega, tokenitena ~54 paariga 60 tokeni jaoks (aruanne 3).",
+    "risk": "Vastuseid ei muuda. EXPLAIN ANALYZE käivitab toodangubaasis ühe ~4 s lugemispäringu.",
+    "owner_decision": false
+   },
+   {
+    "change": "Sõnaotsing ainult vektorkandidaatidele (aruanne 5, valik 2). Kui põhiraja ja reservi vektorkanalid on valmis, skooritakse nende ID-d olemasoleva postgres.lexical'i unitIds-parameetriga ja sama valemiga. K kalibreeritakse REG-i vastu. RRF jääb samaks. b2 ja b3 jäävad varuks.",
+    "why_here": "Suurim deterministlik hoob. Aja võit on kindel, sest täisskaneerimine kaob kriitiliselt teelt. Kvaliteeti saab kontrollida ilma LLM-ita: võrdlusjooks fikseeritud päringute ja vektoritega.",
+    "gain": "Pöörde mediaan −2,1…−2,3 s. REG A: mediaan 2348 ms, p90 2919; sellest lahutada ID-päringu aeg, mis on mõõtmata ja eeldatavalt kümned ms. See on ~8–9% pöördest ja ~11% tajutud ootest. Lisaks vabaneb pöörde kohta 2 ühendust ja kuni 6 töötajat.",
+    "risk": "Keskmine. Lisapunktide järjestus muutub (korpuse top-40 asemel kandidaatide seas) ja kaaslassätete found kaotab ainult sõnaotsingu tabamused (retrieval.js:650). Kui plaanija jätab täisskaneerimise alles, võitu pole. Värav: kogumi Jaccard, valiku kattuvus ja baasis viidatud lõikude säilimine võrdlusjooksus.",
+    "owner_decision": true
+   },
+   {
+    "change": "Pärast valikut laaditakse valitud lõikude dokumendid ühe päringuga (aruanne 1, c2). Kui taimer näitab, et aeg kulub kontrollile, lisada kontrollitud dokumendi vahemälu versiooni id järgi.",
+    "why_here": "Täpselt sama tulemus, väike töö. Mõjub peamiselt sabale, mida teised variandid ei puuduta.",
+    "gain": "Mediaanis ≤0,33 s, p90-s ~1,3 s, sabas kuni ~3 s (REG A19 3066 ms, C04 3373 ms). DB- ja kontrolliosa jaotus pole teada.",
+    "risk": "Väike. Iga kontroll peab jääma; vahemälu suurendab mälukasutust. Võrdsustest: samad seemned ja samas järjekorras.",
+    "owner_decision": false
+   },
+   {
+    "change": "Plaanist sõltumatu otsingu ettevalmistus tehakse plaani ajal (aruanne 1, c1): directory, poliitika, õigusaktide kehtivus, documentTitles ja registry plaanist sõltumatus osas. Lisaks kaaslassätete vektorid ette valiku ajal (c3).",
+    "why_here": "Tulemus jääb samaks ja võitu saab mõõta komponenttaimeriga. Pärast valikut 2 jääb otsingus kriitilisele teele just see osa.",
+    "gain": "c1 kuni ~0,25 s (p90 0,66 s); pigem vähem, sest retrieve()'i dokumendihulk sõltub plaani piirkonnast (pilot/retrieval.js:357-359). c3 kuni ~0,15 s (p90 0,54 s).",
+    "risk": "Väike. access_changed_during_retrieval kontroll jääb alles. c3 suurendab Qdranti päringute arvu kuni ~4 korda.",
+    "owner_decision": false
+   },
+   {
+    "change": "Plaan ei kirjuta enam juba loetud sõnumite kohti (aruanne 3). Kohtade jaoks antakse ainult lugemata sõnumid, näiteks read-märge sisendis. Skeem ja server ei muutu.",
+    "why_here": "Kontrollitud raiskamine: R3+F1-s 76 varasema pöörde kohta, neist alles 0. Muudatus mõjutab 70/101 plaani ja on odav mõõta plaani taasesitusega (nähtavate tokenite sd ~20).",
+    "gain": "Mõjutatud plaanides ~30–40 nähtavat tokenit vähem (JSON-i mediaan ~114 märki), ehk 0,1–0,35 s. Kõigi pöörete keskmisena ~0,1–0,25 s. Arutluse mõju pole teada.",
+    "risk": "Väike kuni keskmine. Kui mudel jätab vahele ka jooksva koha, kaob omavalitsus. Juhise muutus võib tõsta arutlust (ADR-165 pretsedent). Kohtade regressioonid (ADR-110/157/167/173) peavad läbima.",
+    "owner_decision": false
+   },
+   {
+    "change": "Dialoogi olek. Kõigepealt mõõta responseAudit.draft'ist oleku suurus ja väljade jaotus. Seejärel kas needs/unknowns null = muutusteta (liitmiskood toetab juba, dialogue-state-4.js:108) või lühem new_facts'i tugi.",
+    "why_here": "Võib olla suurim väljundi hoob, aga suurus on ainult jääkhinnang. Mõjutab done-aega, mitte first_text'i.",
+    "gain": "Ebakindel: 0,3–1 s done-ajast, kui olek tõesti on ~120 (jätkupööre) või ~290 tokenit (esimene pööre). first_text'ile 0.",
+    "risk": "Keskmine. Vananenud unknowns võib tuua uuesti küsimise. Olekuversiooni tõstmine ja vanade versioonide lugemine. Mõõdik: sama küsimuse kordumine pikkades vestlustes (ADR-106).",
+    "owner_decision": false
+   },
+   {
+    "change": "Valiku asjaolu-loend eemaldada ja asjaolu-lõigud määrab server (aruanne 2).",
+    "why_here": "See on suurim valiku hüpotees, kuid tõend on nõrk ja muudatus võtab tagasi omaniku kinnitatud funktsiooni. Seega alles pärast deterministlikke variante ja main'i baasi.",
+    "gain": "Hüpotees: 0–0,5 s pöörde kohta (n=10 paari, p≈0,75). Ei ole tõendatud.",
+    "risk": "Keskmine. ADR-171 asjaolu-vihje hakkab sõltuma kanali järjestusest. Tabasalu kontroll tuleb uuesti teha. H1 ei tohi langeda üle 3 pp.",
+    "owner_decision": true
+   },
+   {
+    "change": "Valiku juhise väiksemad katsed, igaüks eraldi taasesitusega: praegune sõnum eraldi väljal; SAFEGUARD-rea viimane lause maha; tingimuslikud read (ASKED, ANSWERED, CHANGE, versioon).",
+    "why_here": "Väike töö, aga mõju on spekulatiivne ja mündiviske tõttu vajab iga katse ≥3 kordust. Mõõta ükshaaval.",
+    "gain": "Igaüks 0 kuni ~0,5 s ülempiir. Tõenäoliselt alla 0,2 s; tingimuslikel ridadel alla 0,1–0,2 s.",
+    "risk": "Väike kuni keskmine. Turvalause puhul võivad hinnaküsimustes kaduda maksevõime või soodustuse lõigud (ADR-109).",
+    "owner_decision": false
+   },
+   {
+    "change": "Ümbrise kattumised (aruanne 1, c4): documentSources valikukutsega samal ajal, checkReferences ja store.save korraga, restore'i korduv kontroll.",
+    "why_here": "Alles pärast 0. sammu taimereid. Puudutab turva- ja kuluarvestuse semantikat.",
+    "gain": "Mõõtmata, realistlikult 0,1–0,4 s. Ülempiirid: valiku ümbris 0,43 s, enne vastust 0,30 s, pärast vastust 0,60 s.",
+    "risk": "Turva- ja kulusemantika: kontroll enne tasulist kutset ja enne avaldamist peab jääma.",
+    "owner_decision": true
+   },
+   {
+    "change": "Kvaliteedirada aruande 4 põhjal, kiirusmõõtmistest eraldi: e1 piirangureegel, kitsas kuupäevapiirangu parandus, e2 kontroll R4-s, a2 korpuseallika otsing.",
+    "why_here": "Kiirust need ei anna; e1 võib arutlust isegi tõsta. Hoida eraldi, et ajamõõtmine ei seguneks.",
+    "gain": "Aeg ~0. Osaliste vastuste osakaal −4…−8 pp (e1, ülempiir −15 pp).",
+    "risk": "e1 muudab vastuse põhijuhist, ADR-165-s tõi see arutluse kasvu ja 60 s ajapiirid. c-parandus võib kustutada õige hoiatuse (A07).",
+    "owner_decision": true
+   },
+   {
+    "change": "Praegu ei soovita: küsimuse vektor plaani ajal (a); b1; b2 ja b3, kui valik 2 võetakse; enum maha (≤0,1 s); factual maha (~0,15 s, versioonimuudatus); pikkuse siht; vähem §-viiteid; plaani tsitaatide lühendamine; oleku eraldi kutse; b-täitmine; kogumi või valikute arvu vähendamine; kaks samaaegset kutset; omavalitsuse otsus plaani (samm B).",
+    "why_here": "Võit on alla müra või null, või on risk ja töö suuremad kui võit, või läheb muudatus vastu omaniku otsusele. Kaks samaaegset kutset valiks sisuliselt sagedamini arutluseta tulemuse.",
+    "gain": "Igaüks ~0–0,3 s või ainult done-ajale; oleku eraldi kutse 1–3 s done-ajale, kuid töö L.",
+    "risk": "Kvaliteedi kadu (pikkus, §, tsitaadid), kuluarvestuse ümberehitus (eraldi kutse, samaaegsed kutsed), arutluse kasv (omavalitsus plaanis).",
+    "owner_decision": true
+   }
+  ]
+ }
+}
