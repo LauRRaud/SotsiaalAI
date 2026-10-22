@@ -129,6 +129,11 @@
 .pilot-wait[data-variant="2"] .hs-map {
   justify-self: start;
   max-width: 100%;
+  transition: opacity 0.7s var(--ease-soft);
+}
+/* The chosen material takes the map's place: the map, pin too, fades out and keeps its room, so nothing moves. */
+.pilot-wait[data-variant="2"] .hs-map[data-gone] {
+  opacity: 0;
 }
 .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.9s var(--ease-soft);

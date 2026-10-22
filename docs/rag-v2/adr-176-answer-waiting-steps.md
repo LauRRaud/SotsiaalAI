@@ -122,3 +122,17 @@
   - omavalitsuste kirjed kokku ja küsitud omavalitsuse kirjed;
   - asjakohased kirjed (`records`-samm pärast otsingut);
   - lugemiseks valitud allikad.
+- **Paigutus 22.–23.10 lõpuks.** Omaniku järjestikused märkused, lõpuks kehtib see järjekord ülevalt alla:
+  1. **S, olek ja teema.** S-i ümber pole täpiringi („see S las pöörleb, ei ole vaja neid täppe“). S teeb alguses kolm
+     pööret ja pöörleb siis edasi nagu platvormi enda S.
+  2. **Faktide rida.** See on otse pealkirja all ja püsib igas etapis samas kohas. Omanik ei olnud kindel, kas ikoonid
+     käivad teksti ette või alla; pildid on nüüd teksti all.
+  3. **Pildid.** Kohaga küsimusel on pildid kaardi peal („ikoonirida isegi luubi ja dokumentidega eesti kaardi peal“):
+     otsingu riiul luubiga, siis leitud lehed (kuni 8, ühes reas, 1,05 × 1,34 rem) ja nende all, veidi allpool,
+     „16 sobivat allikat“. Kaardi jooned tuhmuvad nende all, nõel jääb.
+  4. **Valitud materjal.** Kui materjal on valitud, hajub kaart koos nõelaga ära ja nimekiri tuleb samasse kohta. Nimekiri
+     kaardi peal oli omaniku sõnul „nii ka imelik“, sest nõel jäi teksti sisse.
+
+  Kohata küsimusel on pildid samas järjekorras, aga ilma kaardita.
+- **Eelmise vastuse allikad (ADR-180).** Jätkuküsimusel „Mis paragrahv seda ütleb?“ tuleb samm `chosen` lipuga
+  `previous`. Pealkiri on siis „Vaatan eelmise vastuse allikaid…“.

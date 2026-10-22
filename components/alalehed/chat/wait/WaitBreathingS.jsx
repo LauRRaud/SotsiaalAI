@@ -91,7 +91,10 @@ export default function WaitBreathingS({ view, texts, map }) {
       {/* With a place, the pictures lie on the map, which fades under them (owner 22.10: "ikoonirida isegi luubi ja
           dokumentidega eesti kaardi peal"); without one they stand alone. */}
       {map || searching || pages || view.chosen ? <div className="hs-scene" data-map={map ? "1" : undefined}>
-        {map ? <div className="hs-map" data-quiet={view.found || view.chosen ? "1" : undefined}>{map}</div> : null}
+        {/* Its lines fade under the found pages; the whole map, pin too, gives way to the chosen material (owner 22.10:
+            the list on the map "nii ka imelik"; earlier "kaart hajub ära ja siis ilmub mingi materjali teema"). */}
+        {map ? <div className="hs-map" data-quiet={view.found || view.chosen ? "1" : undefined} data-gone={view.chosen ? "1" : undefined}
+          aria-hidden={view.chosen ? "true" : undefined}>{map}</div> : null}
         {searching || pages || view.chosen ? <div className="hs-stage">
           {searching ? (
             <div className="hs-search" key="search" aria-hidden="true">
