@@ -77,7 +77,9 @@ export function waitTexts(t, view) {
   const fill = (text, values) => Object.entries(values).reduce((out, [key, value]) => out.replaceAll(`{${key}}`, value), text);
   const place = view.places.length === 1 && view.places[0].length === 1 ? view.places[0][0].name : null;
   const chosenCount = view.chosen ? view.chosen.titles.length + view.chosen.more : 0;
-  const regionRecords = view.records?.catalogue ?? view.records?.region ?? null;
+  // The municipality's records as the records lane read them (its catalogue and the relevant ones), one fact, so the
+  // number on screen never changes (the index's own count by region is a wider one).
+  const catalogue = view.records?.catalogue ?? null, listed = view.records?.listed ?? null;
   const facts = [
     view.corpus && view.corpus.passages != null ? { key: "corpus", text: fill(tr(t, "chat.pilot_wait.fact_corpus", "Sotsiaal.pro andmebaasis on {documents} allikakirjet ja {passages} otsingulõiku"),
       { documents: number(view.corpus.documents), passages: number(view.corpus.passages) }) } : null,
@@ -85,12 +87,10 @@ export function waitTexts(t, view) {
       { documents: number(view.knowledge.documents), passages: number(view.knowledge.passages) }) } : null,
     view.records?.total ? { key: "records", text: fill(tr(t, "chat.pilot_wait.fact_records", "Omavalitsuste teenuse- ja kontaktikirjeid on kokku {total}"),
       { total: number(view.records.total) }) } : null,
-    place && regionRecords ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {count} omavalitsuse kirjet"),
-      { place, count: number(regionRecords) }) } : null,
+    place && catalogue ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {listed} asjakohast kirjet {catalogue} seast"),
+      { place, listed: number(listed ?? 0), catalogue: number(catalogue) }) } : null,
     view.found?.sources != null ? { key: "shortlist", text: fill(tr(t, "chat.pilot_wait.fact_shortlist", "Lühinimekirjas {passages} lõiku {sources} allikast"),
       { passages: number(view.found.passages), sources: number(view.found.sources) }) } : null,
-    view.records?.listed != null && view.records?.catalogue ? { key: "listed", text: fill(tr(t, "chat.pilot_wait.fact_listed", "Asjakohaseid kirjeid {listed} kirjest {catalogue}"),
-      { listed: number(view.records.listed), catalogue: number(view.records.catalogue) }) } : null,
     chosenCount ? { key: "chosen", text: chosenCount === 1 ? tr(t, "chat.pilot_wait.fact_chosen_one", "Lugemiseks valitud 1 allikas")
       : fill(tr(t, "chat.pilot_wait.fact_chosen", "Lugemiseks valitud {count} allikat"), { count: number(chosenCount) }) } : null,
   ].filter(Boolean);
