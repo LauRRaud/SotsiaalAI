@@ -4970,7 +4970,15 @@
       "earlier": "ранее",
       "found_one": "Подходящий источник: 1 из {documents} документов",
       "found_plain": "Подходящих источников: {sources}",
-      "found_plain_one": "Подходящий источник: 1"
+      "found_plain_one": "Подходящий источник: 1",
+      "fact_corpus": "В базе Sotsiaal.pro записей-источников: {documents}, поисковых фрагментов: {passages}",
+      "fact_knowledge": "В рамках этого вопроса документов знаний: {documents}, фрагментов: {passages}",
+      "fact_records": "Записей муниципалитетов об услугах и контактах всего: {total}",
+      "fact_region": "{place}: записей муниципалитета {count}",
+      "fact_shortlist": "В коротком списке фрагментов: {passages} из {sources} источников",
+      "fact_listed": "Подходящих записей: {listed} из {catalogue}",
+      "fact_chosen": "Выбрано для чтения источников: {count}",
+      "fact_chosen_one": "Выбран для чтения 1 источник"
     }
   },
   "documents": {

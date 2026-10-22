@@ -4970,7 +4970,15 @@
       "earlier": "from earlier",
       "found_one": "1 relevant source among {documents} documents",
       "found_plain": "{sources} relevant sources",
-      "found_plain_one": "1 relevant source"
+      "found_plain_one": "1 relevant source",
+      "fact_corpus": "The Sotsiaal.pro database holds {documents} source records and {passages} search passages",
+      "fact_knowledge": "In this question’s scope: {documents} knowledge documents and {passages} passages",
+      "fact_records": "Municipal service and contact records in total: {total}",
+      "fact_region": "{place}: {count} municipal records",
+      "fact_shortlist": "Shortlist: {passages} passages from {sources} sources",
+      "fact_listed": "Relevant records: {listed} of {catalogue}",
+      "fact_chosen": "Chosen to read: {count} sources",
+      "fact_chosen_one": "Chosen to read: 1 source"
     }
   },
   "documents": {

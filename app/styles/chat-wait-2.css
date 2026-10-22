@@ -282,6 +282,32 @@
   0%, 100% { transform: scale(1); opacity: 0.9; }
   50% { transform: scale(1.03); opacity: 1; }
 }
+/* ---------- The facts line: one reported number at a time, quiet, under everything ---------- */
+.pilot-wait[data-variant="2"] .hs-facts {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 1.4em;
+  margin-left: calc(var(--hs-mark) + var(--hs-gap));
+  font-size: 0.8em;
+  line-height: 1.4;
+  opacity: 0.72;
+}
+.pilot-wait[data-variant="2"] .hs-facts::before {
+  content: "";
+  flex: none;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+  transform: translateY(-0.12em);
+}
+.pilot-wait[data-variant="2"] .hs-fact {
+  min-width: 0;
+  animation: hs-line-in 0.5s var(--ease-soft) both;
+}
 @keyframes hs-lens {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(7.8rem); }
@@ -320,7 +346,8 @@
     --hs-mark: 2.9rem;
     --hs-gap: 0.75rem;
   }
-  .pilot-wait[data-variant="2"] .hs-stage {
+  .pilot-wait[data-variant="2"] .hs-stage,
+  .pilot-wait[data-variant="2"] .hs-facts {
     margin-left: 0;
   }
   .pilot-wait[data-variant="2"] .hs-map {
@@ -351,6 +378,9 @@
   }
   .pilot-wait[data-variant="2"] .hs-lens {
     animation: none;
+  }
+  .pilot-wait[data-variant="2"] .hs-fact {
+    animation: hs-fade 0.3s linear both;
   }
   .pilot-wait[data-variant="2"] .hs-dot {
     animation: hs-fade 0.3s linear both;
@@ -383,6 +413,9 @@ html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-material li {
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-lens {
   animation: none;
+}
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-fact {
+  animation: hs-fade 0.3s linear both;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot {
   animation: hs-fade 0.3s linear both;

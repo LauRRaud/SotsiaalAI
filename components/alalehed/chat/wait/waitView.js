@@ -12,6 +12,8 @@ const placeEntries = entries => Array.isArray(entries) && entries.length
 export function waitView(steps = []) {
   const byKind = new Map((Array.isArray(steps) ? steps : []).filter(step => step && typeof step.kind === "string").map(step => [step.kind, step]));
   const plan = byKind.get("plan"), scope = byKind.get("scope"), found = byKind.get("found"), chosen = byKind.get("chosen"), writing = byKind.get("writing");
+  const records = byKind.get("records");
+  const count = value => (Number.isInteger(value) && value >= 0 ? value : null);
   const stage = writing ? "writing" : chosen || found ? "choosing" : plan || scope ? "searching" : "reading";
   // Each place: its municipality, or both municipalities a shared name may be ({ region, name } each, region for the map).
   const read = Array.isArray(plan?.places) ? plan.places.filter(placeEntries).slice(0, 2) : [];
@@ -26,6 +28,12 @@ export function waitView(steps = []) {
     earlier,
     // How many documents the search ranked (the shortlist of passages has the same size every time, so it is not shown).
     searched: Number.isInteger(scope?.documents) && scope.documents > 0 ? scope.documents : null,
+    // What the platform holds and what this question searches, for the facts the waiting view turns through.
+    corpus: count(scope?.corpus?.documents) ? { documents: scope.corpus.documents, passages: count(scope.corpus.passages) } : null,
+    knowledge: count(scope?.knowledge?.documents) ? { documents: scope.knowledge.documents, passages: count(scope.knowledge.passages) } : null,
+    records: count(scope?.records?.total) || count(records?.catalogue)
+      ? { total: count(scope?.records?.total), region: count(scope?.records?.region), catalogue: count(records?.catalogue), listed: count(records?.listed) }
+      : null,
     found: Number.isInteger(found?.passages) ? { passages: found.passages, sources: Number.isInteger(found.sources) ? found.sources : null } : null,
     chosen: chosen && Array.isArray(chosen.titles)
       ? { titles: chosen.titles.filter(title => typeof title === "string" && title).slice(0, 4), more: Number.isInteger(chosen.more) ? chosen.more : 0,
@@ -63,7 +71,31 @@ export function waitTexts(t, view) {
       ? tr(t, sources === 1 ? "chat.pilot_wait.found_one" : "chat.pilot_wait.found", sources === 1 ? "1 sobiv allikas {documents} dokumendi seast" : "{sources} sobivat allikat {documents} dokumendi seast")
       : tr(t, sources === 1 ? "chat.pilot_wait.found_plain_one" : "chat.pilot_wait.found_plain", sources === 1 ? "1 sobiv allikas" : "{sources} sobivat allikat"))
       .replace("{sources}", String(sources)).replace("{documents}", documents ?? "");
+  // Facts the view turns through while waiting (owner 22.10: "võimalikult palju huvitavat infot"), each from a number the
+  // server reported for this question, in the order they come.
+  const number = value => new Intl.NumberFormat("et-EE").format(value);
+  const fill = (text, values) => Object.entries(values).reduce((out, [key, value]) => out.replaceAll(`{${key}}`, value), text);
+  const place = view.places.length === 1 && view.places[0].length === 1 ? view.places[0][0].name : null;
+  const chosenCount = view.chosen ? view.chosen.titles.length + view.chosen.more : 0;
+  const regionRecords = view.records?.catalogue ?? view.records?.region ?? null;
+  const facts = [
+    view.corpus && view.corpus.passages != null ? { key: "corpus", text: fill(tr(t, "chat.pilot_wait.fact_corpus", "Sotsiaal.pro andmebaasis on {documents} allikakirjet ja {passages} otsingulõiku"),
+      { documents: number(view.corpus.documents), passages: number(view.corpus.passages) }) } : null,
+    view.knowledge && view.knowledge.passages != null ? { key: "knowledge", text: fill(tr(t, "chat.pilot_wait.fact_knowledge", "Selle küsimuse ulatuses {documents} teadmusdokumenti ja {passages} lõiku"),
+      { documents: number(view.knowledge.documents), passages: number(view.knowledge.passages) }) } : null,
+    view.records?.total ? { key: "records", text: fill(tr(t, "chat.pilot_wait.fact_records", "Omavalitsuste teenuse- ja kontaktikirjeid on kokku {total}"),
+      { total: number(view.records.total) }) } : null,
+    place && regionRecords ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {count} omavalitsuse kirjet"),
+      { place, count: number(regionRecords) }) } : null,
+    view.found?.sources != null ? { key: "shortlist", text: fill(tr(t, "chat.pilot_wait.fact_shortlist", "Lühinimekirjas {passages} lõiku {sources} allikast"),
+      { passages: number(view.found.passages), sources: number(view.found.sources) }) } : null,
+    view.records?.listed != null && view.records?.catalogue ? { key: "listed", text: fill(tr(t, "chat.pilot_wait.fact_listed", "Asjakohaseid kirjeid {listed} kirjest {catalogue}"),
+      { listed: number(view.records.listed), catalogue: number(view.records.catalogue) }) } : null,
+    chosenCount ? { key: "chosen", text: chosenCount === 1 ? tr(t, "chat.pilot_wait.fact_chosen_one", "Lugemiseks valitud 1 allikas")
+      : fill(tr(t, "chat.pilot_wait.fact_chosen", "Lugemiseks valitud {count} allikat"), { count: number(chosenCount) }) } : null,
+  ].filter(Boolean);
   return {
+    facts,
     reading: tr(t, "chat.pilot_wait.reading", "Loen küsimust…"),
     searching: tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…"),
     found,

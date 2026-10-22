@@ -107,3 +107,12 @@
   - 36 on valiku kandidaatide lühinimekirja suurus (30 + 6 reservkohta) ja on alati sama.
   - Nüüd on tekst kujul „19 sobivat allikat 4512 dokumendi seast“: sobivad allikad lühinimekirjas ja dokumendid, mille
     seast otsing järjestas (`scope.documents`, teadmiste raja ulatus pärast kehtivuse ja omavalitsuse filtrit).
+- **Faktide rida.** Omanik: „võimalikult palju huvitavat infot … allikakirjed, otsingulõigud, teadmusdokumendid,
+  omavalitsuste kirjed“. S-i all vahetub iga 3,2 s järel üks rida, ja uus fakt tuleb ette kohe, kui server selle
+  saadab. Kõik arvud on selle küsimuse omad:
+  - andmebaasi allikakirjed ja otsingulõigud (kataloogi read ja nende üksused);
+  - küsimuse ulatuses olevad teadmusdokumendid ja nende lõigud;
+  - omavalitsuste kirjed kokku ja küsitud omavalitsuse kirjed;
+  - lühinimekiri (36 lõiku, nüüd koos selgitusega, mis see on);
+  - asjakohased kirjed (`records`-samm pärast otsingut);
+  - lugemiseks valitud allikad.
