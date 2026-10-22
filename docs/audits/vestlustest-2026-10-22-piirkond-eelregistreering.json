@@ -1,0 +1,52 @@
+{
+  "title": "Sotsiaal.pro vestlus: oma mainimine, sama nimega omavalitsus ja spetsialisti / teenuseosutaja tööpiirkond (ADR-167) — eelregistreering",
+  "date": "2026-10-22",
+  "run": "sol-proof-20261014-01 / three-cases-adr167",
+  "server": "sotsiaal.pro after the deploy of the ADR-167 commit (search-assist-21; answer m4-grounded-answer-15 and dialogue m4-grounded-dialogue-49 unchanged)",
+  "baseline": "R1 and R2 of 21.10.2026 (docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-three-cases-adr165-166-raw.json): the same 75 questions, search-assist-18 and -19, the same place logic. Their turns are read again from /api/admin/rag/chat-trace/<turnId> after the deploy: the trace's new records.scope is computed from each turn's stored packet, so old and new turns are read the same way. R1 as read on 22.10 before this change: a municipality in the records lane in 29/30 help seeker, 15/24 specialist and 1/21 provider turns",
+  "costCap": "one run of 75 questions, about 0.40 USD",
+  "written": "before the run and before the deploy",
+  "method": {
+    "entry": "POST /api/chat with x-rag-pilot: 1 (full turn, no stream) from the owner's signed-in ADMIN session, view role per item as in the three-case test",
+    "turns": "the 75 questions of docs/audits/vestlustest-2026-10-21-kolm-juhtumit-eelregistreering.json in their nine conversations, in the same order",
+    "trace": "every turn read from /api/admin/rag/chat-trace/<turnId>: records.region and records.scope (state, region, person, candidates, work_regions), the plan's places, answer kind, stage times",
+    "comparison": "R1, R2 and this run with the same script; run-to-run variation is large, so totals are read, and single turns only for the named cases"
+  },
+  "hypotheses": [
+    {
+      "id": "H1-specialist",
+      "measure": "SOCIAL_WORKER turns whose records lane has a municipality, and which one",
+      "expect": "at least 22 of 24 (R1: 15); in A11-A18 Tartu linn, B11-B18 Narva linn, C11-C18 Viljandi linn wherever the message names no other municipality"
+    },
+    {
+      "id": "H2-provider",
+      "measure": "SERVICE_PROVIDER turns whose records lane has a municipality",
+      "expect": "not fewer than R1 (1 of 21). A19-A25 ('Oleme Tartus …') get Tartu linn only where the plan names the place 'Tartu linn' with relation works; B19 and C19 name a county (Ida-Virumaa, Viljandimaa), which is no municipality, and are not expected to change. Descriptive beyond that"
+    },
+    {
+      "id": "H3-help-seeker",
+      "measure": "CLIENT turns whose records lane has a municipality; C10's municipality",
+      "expect": "at least 29 of 30; C10 ('Kellega ma Viljandis esimesena ühendust võtan?') searched in Viljandi linn"
+    },
+    {
+      "id": "H4-no-harm",
+      "measure": "answers given; full answers; turns with a cannot-say sentence; median and p90 whole-turn time; plan input tokens",
+      "expect": "no more failures than the baseline other than answer time limits (reported apart); full answers within ±5 of the R1/R2 range; cannot-say turns at most the R1/R2 maximum + 3; median time at most the R1/R2 maximum + 1.5 s and p90 at most + 3 s; plan input tokens at most +3%"
+    },
+    {
+      "id": "H5-assumption",
+      "measure": "specialist and provider answers of turns whose scope is work_region or work_region_choice: does an answer treat the place of work as the client's confirmed home, or send the specialist to their own municipality's social worker",
+      "expect": "descriptive: read every such answer; none should do either"
+    }
+  ],
+  "decision": {
+    "keep": "H4 holds and H1 holds",
+    "revert_work_scope": "H1 holds but H4 or H5 fails in specialist or provider turns for a reason the place of work can cause: the work scope (C) is switched off, A and B stay",
+    "revert_all": "H3 or H4 fails in help seeker turns for a reason A or B can cause"
+  },
+  "limits": [
+    "One run; the comparison reads totals against two baseline runs.",
+    "Answer time-limit failures (60 s) happen independently of this change (about 1.2% of turns on 21.10) and are reported apart.",
+    "The local check used a stub in place of EstNLTK; the server's morphology may read a word differently."
+  ]
+}

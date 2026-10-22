@@ -89,6 +89,7 @@ export default function ChatTurnTrace({ trace, locale }) {
         </table>
         {trace.records ? (
           <details><summary>{f.records} ({trace.records.region || f.none}, {trace.records.listed ?? 0}/{trace.records.catalogue ?? 0})</summary>
+            {trace.records.scope ? <p>{f.scope}: {[trace.records.scope.state, trace.records.scope.region, trace.records.scope.person, trace.records.scope.candidates.join(' / '), trace.records.scope.work_regions.length ? `${f.work}: ${trace.records.scope.work_regions.join(', ')}` : null].filter(Boolean).join(' · ')}</p> : null}
             <ul>{trace.records.entries.map(entry => <li key={entry.key}>{entry.key} · {entry.kind} · {entry.detail} · {entry.title || f.none}</li>)}</ul>
           </details>
         ) : null}

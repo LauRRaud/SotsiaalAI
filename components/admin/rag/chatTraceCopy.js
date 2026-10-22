@@ -30,7 +30,7 @@ const ET = {
     reserved: "reservkoht", finalRef: "Paketis", notPicked: "ei valinud", cited: "Vastus viitab", reason: "Miks paketis", source: "Allikas",
     heading: "Pealkirjatee", provision: "Säte", text: "Lõigu tekst", kind: "Liik", blocks: "Vastuse plokid", limitations: "Piirangud",
     clarification: "Täpsustav küsimus", repairs: "Server parandas vastuses", instructions: "Juhis (instructions)", developer: "Rolli tekst (pärast tõendeid)", modelContext: "Tõendid, nagu AI need sai",
-    model: "Mudel", reasoning: "Mõtlemise tase", maxOutput: "Vastuse piir (tokenit)", evidenceChars: "Tõendite maht (märki)", records: "Omavalitsuse kirjed",
+    model: "Mudel", reasoning: "Mõtlemise tase", maxOutput: "Vastuse piir (tokenit)", evidenceChars: "Tõendite maht (märki)", records: "Omavalitsuse kirjed", scope: "Piirkonna otsus", work: "tööpiirkond",
     stage: "Samm", input: "Sisend (tokenit)", output: "Väljund (tokenit)", usd: "Kulu (USD)", ms: "Aeg (ms)", phases: "Etapid (ms algusest)"
   },
   stages: { plan: "otsinguplaan", embedding: "vektorid", rerank: "valikumudel", answer: "vastus" },
@@ -92,7 +92,7 @@ const EN = {
     reserved: "reserved place", finalRef: "In packet", notPicked: "not picked", cited: "Answer cites", reason: "Why in the packet", source: "Source",
     heading: "Heading path", provision: "Provision", text: "Passage text", kind: "Kind", blocks: "Answer blocks", limitations: "Limitations",
     clarification: "Clarifying question", repairs: "Repaired by the server", instructions: "Instructions", developer: "Role text (after the evidence)", modelContext: "Evidence as the AI received it",
-    model: "Model", reasoning: "Reasoning effort", maxOutput: "Output limit (tokens)", evidenceChars: "Evidence size (characters)", records: "Municipal records",
+    model: "Model", reasoning: "Reasoning effort", maxOutput: "Output limit (tokens)", evidenceChars: "Evidence size (characters)", records: "Municipal records", scope: "How the municipality was decided", work: "place of work",
     stage: "Step", input: "Input (tokens)", output: "Output (tokens)", usd: "Cost (USD)", ms: "Time (ms)", phases: "Phases (ms from start)"
   },
   stages: { plan: "search plan", embedding: "vectors", rerank: "selection model", answer: "answer" },
