@@ -63,6 +63,7 @@ vastusesse läheb kataloogist ainult küsimusega seotud kirjed. Õhtul tehakse u
 
 - F1 jooksus said kõik 16 loetletud kirjet kokkuvõtte. Kirjete tekst kasvas: A19 12 800 märki, R3-s 11 600. Samade
   küsimuste vastuse sisend ei vähenenud.
-- `RELEVANT_LISTED` on nüüd 10: kolm kirjet täies sisus ja ülejäänud kokkuvõttega. R3-s seisis iga viidatud kirje kümne
-  lähima seas või oli nendega lingitud.
+- `RELEVANT_LISTED` on nüüd 10: kolm kirjet täies sisus ja ülejäänud kokkuvõttega.
+- R3-s viidati kokkuvõttega kirjetele 7 korral. Nende järjekohta jälg ei näita, seega võib mõni neist jääda nüüd kümnest
+  välja. F2 näitab, kas vastused viitavad kirjetele samamoodi.
 - Kohalik andmebaas, 16 → 10 kirjet: kirjete kanal väheneb veel 4–24%. Täiskirjed ja kontaktide kataloog jäävad samaks.

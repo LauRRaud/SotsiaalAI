@@ -34,3 +34,18 @@
   - mõlema pöörde juhis on sama.
 - **Serveris:** lühike vigade test. Sinna kuulub omaniku Tabasalu küsimus uutes vestlustes: kas vastuses on ravikindlustuse
   lause, kas vastus jääb sama pikaks ja kui kaua see aega võtab.
+
+## Kontrollid samal päeval
+
+- **F1 (search-assist-22, kolm Tabasalu pööret).**
+  - Vihje jõudis kõigisse kolme vastusesse.
+  - Valik märkis asjaoluks toimetulekuraskuse lõigud. T1 ja T2 plaani päring („ravikindlustuseta inimesele kohaliku
+    omavalitsuse abi“) ei toonud kandidaatide sekka ravikindlustuseta inimese tervishoiu lõiku.
+  - Parandus: search-assist-23, asjaolu päring asjaolu enda kohta (ADR-173).
+- **Kiirkontroll (search-assist-23, üks pööre).**
+  - Plaan kirjutas „ravikindlustuseta inimese arstiabi ja tervishoiuteenused“ ja kandidaatide seas oli kaheksa sellist
+    lõiku.
+  - Valik ei võtnud ühtegi ega märkinud midagi. 21.10, enne asjaolu loendit, võttis valik selle lõigu 3 korda 3-st.
+- **search-assist-24.** Kui sõnum kirjeldab mitut omaette vajadusega asjaolu, jätab valik igaühe kohta alles lõigu, mis
+  ütleb, mis just selle asjaolu puhul kehtib (näiteks ravikindlustuseta inimese tervishoid raha abi kõrval). Seda tehakse
+  ka siis, kui küsitud asja lõigud täidavad loendi.
