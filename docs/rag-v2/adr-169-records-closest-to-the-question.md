@@ -58,3 +58,11 @@ vastusesse läheb kataloogist ainult küsimusega seotud kirjed. Õhtul tehakse u
 - **Oodatav mõju.** Kirjete kanali tokenid vähenevad 5–37%. See on umbes 1–2k vastuse sisendtokenit pöörde kohta.
 - **Mõõtmine.** Õhtune 75 küsimuse jooks
   ([eelregistreering](../audits/vestlustest-2026-10-22-piirkond-eelregistreering.json), lisa „R4“).
+
+## Parandus pärast F1 (22.10): 10 kirjet, mitte 16
+
+- F1 jooksus said kõik 16 loetletud kirjet kokkuvõtte. Kirjete tekst kasvas: A19 12 800 märki, R3-s 11 600. Samade
+  küsimuste vastuse sisend ei vähenenud.
+- `RELEVANT_LISTED` on nüüd 10: kolm kirjet täies sisus ja ülejäänud kokkuvõttega. R3-s seisis iga viidatud kirje kümne
+  lähima seas või oli nendega lingitud.
+- Kohalik andmebaas, 16 → 10 kirjet: kirjete kanal väheneb veel 4–24%. Täiskirjed ja kontaktide kataloog jäävad samaks.

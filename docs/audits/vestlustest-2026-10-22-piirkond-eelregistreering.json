@@ -73,6 +73,60 @@
       "keep": "H4 and H1 hold",
       "revert_work_scope": "H4 fails in specialist or provider turns for a reason the place of work can cause",
       "other": "a failure that ADR-168, 169 or 170 can cause is reported with that change, and the owner decides"
+    },
+    "replaced": "owner 22.10.2026: \"tee testküsimustik lühem, ei pea 75 küsimustiku\" / \"või küsima neid, kus olid vead\": the 75-question R4 is replaced by the focused runs below"
+  },
+  "focused_runs": {
+    "written": "22.10.2026 before F1, with ADR-171 and ADR-172 (269e7ab0: search-assist-22, m4-grounded-dialogue-50) deploying",
+    "set": "27 turns in 11 conversations, the questions of R1-R3 where errors were and the targets of the fixes: help seeker A01+A10, B01+B05, C01+C10; the owner's Tabasalu question three times in new conversations; specialist A11+A16, C11+C13; provider A19,A20,A21,A24,A25 / B19,B20,B21,B25 / C19, the bare reply \"Viljandi linn\", C20,C21,C25 (scratchpad adr172-items.json, the same runner as R3)",
+    "runs": {
+      "F1": "right after the deploy of 269e7ab0 (daytime): what the fixes do",
+      "F2": "the same set at 22:03 local, the time of R1 and R2: times by question against R1, R2 and R3"
+    },
+    "hypotheses": [
+      {
+        "id": "E1-municipality",
+        "expect": "A provider 5/5 Tartu linn; B provider 4/4 Narva linn (R3: 1/4; ADR-172); specialist 4/4 with the municipality named; A01 and A10 Tartu linn; B01 and B05 Narva linn (B05 by the plan or household_region); C01 and C10 Viljandi linn where C01 is planned as Viljandi linn, else the answer asks linn or vald (reported, not a failure)"
+      },
+      {
+        "id": "E2-county-and-reply",
+        "expect": "after the bare reply \"Viljandi linn\", C20, C21 and C25 are searched in Viljandi linn (reply_kept) unless the plan names another municipality; whether C19 or a later turn asks which municipality is reported"
+      },
+      {
+        "id": "E3-circumstance",
+        "expect": "in at least 2 of the 3 Tabasalu turns the selection marks a passage for the missing health insurance and the answer has a sentence on it citing it; the answers no longer than the median of the five Tabasalu answers of 21.10 plus 20%; no failure"
+      },
+      {
+        "id": "E4-no-harm",
+        "expect": "failures only provider time limits (answer retries reported); answer input tokens lower than R3 for the same questions where a municipality is set (ADR-169); times by question reported, F2 against R1 and R2"
+      }
+    ],
+    "decision": "a fix whose hypothesis holds stays; one that fails for a reason it can cause is corrected or reverted; the work scope (ADR-167) is decided by the owner with the F2 times",
+    "limits": [
+      "A shorter conversation (fewer earlier turns) gives a shorter dialogue context: times by question are not exactly comparable with the full runs.",
+      "One or two runs; single answers vary."
+    ],
+    "results_F1": {
+      "run": "22.10.2026 09:31-09:47 UTC (12:31-12:47 local), release 269e7ab0, 27/27 answered, 0.15 USD; evidence server-rag-chat-focused-F1-raw.json and -compare.json",
+      "E1": "partly: A provider 5/5 Tartu linn, specialist 4/4, A01/A10 Tartu linn, B01/B05 Narva linn (B05 by the plan, the household rule let it through), C01 Viljandi linn. Failed: B20, B21, B25 without a municipality - the plan gave \"Narva linn suunas meile\" the relation works but the person \"üksikema\" (the client), and only the user's works place is the place of work; C10 \"Viljandis\" stayed between linn and vald although C01 was searched in Viljandi linn",
+      "E2": "held: C19 asked \"Milline linn või vald teenust tellib?\"; the reply \"Viljandi linn\" was planned as the user's works place, and C20, C21, C25 were searched in Viljandi linn",
+      "E3": "failed: the line reached all three answers, but the selection marked the passages on financial hardship (toiduabi, toimetulekutoetus), not on health care without insurance; in T1 and T2 the plan's insurance query was \"ravikindlustuseta inimesele kohaliku omavalitsuse abi\" and no such passage was among the candidates; in T3 it was (#3) and was not kept. T1 975 characters against the limit 964, T2 654, T3 855",
+      "E4": "held for failures (none) and times (median 25.2 s; the same questions R3 26.8 s, R1 24.5 s); not for the input tokens: with 16 records listed all of them get a summary, so the records text grew (A19 12.8k characters against 11.6k in R3) and the answer input of the same questions did not fall"
+    },
+    "before_F2": {
+      "written": "22.10.2026 after F1, before the next deploy and F2",
+      "changes": [
+        "search-assist-23: the municipality that referred a client to a provider or commissions its service is the user's place (person user, relation works); a stated circumstance's query asks about what the circumstance itself brings, without the subject the message asks about",
+        "ADR-173: of the two municipalities a shared name gives, the one the turn before was searched in for the same person is chosen (plan queries and asked mentions)",
+        "ADR-169 corrected: RELEVANT_LISTED 16 -> 10"
+      ],
+      "expect": {
+        "B": "B19-B25 4/4 Narva linn",
+        "C10": "Viljandi linn where C01 is searched there",
+        "T": "a passage on health care without insurance among the candidates in at least 2 of 3 and marked in at least 1",
+        "tokens": "answer input lower than F1 for the same questions with a municipality (median at least 1,000 tokens)",
+        "rest": "E1, E2 as in F1; no failures but provider time limits"
+      }
     }
   }
 }
