@@ -26,72 +26,29 @@
   width: var(--hs-mark);
   height: var(--hs-mark);
 }
-.pilot-wait[data-variant="2"] :is(.hs-ring, .hs-s) {
+.pilot-wait[data-variant="2"] .hs-s {
   position: absolute;
   inset: 0;
   display: block;
 }
-.pilot-wait[data-variant="2"] :is(.hs-ring, .hs-s) svg {
+.pilot-wait[data-variant="2"] .hs-s svg {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-/* The S: whole and solid from the start; no glow and no outline that fills (owner 22.10). It first turns a few times,
-   as the platform's own S does ("võiks alguses mõned pöörded teha"), then breathes quietly. */
+/* The S: whole and solid; no glow, no outline that fills and no ring of dots (owner 22.10: "see S las pöörleb, ei ole
+   vaja neid täppe"). It first turns a few times ("võiks alguses mõned pöörded teha"), then turns on, as the platform's
+   own S does (chat.css, conv-think-s-flip). */
 .pilot-wait[data-variant="2"] .hs-s {
-  animation: hs-turns 2.6s cubic-bezier(0.33, 0, 0.2, 1) both, hs-breath 4.4s ease-in-out 2.6s infinite;
+  animation: hs-turns 2.6s cubic-bezier(0.33, 0, 0.2, 1) both, hs-flip 3.6s ease-in-out 2.6s infinite;
 }
 .pilot-wait[data-variant="2"] .hs-s svg {
   opacity: 0.9;
 }
 .pilot-wait[data-variant="2"] .hs-fill {
   fill: currentColor;
-}
-
-/* ---------- Ring: one dot per source found, mounted only once the count is reported ---------- */
-.pilot-wait[data-variant="2"] .hs-ring {
-  animation: hs-spin 72s linear infinite;
-}
-.pilot-wait[data-variant="2"][data-stage="writing"] .hs-ring {
-  animation-play-state: paused;
-}
-.pilot-wait[data-variant="2"] .hs-dot {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: hs-dot-in 0.55s var(--ease-soft) calc(var(--i) * 45ms) both;
-}
-.pilot-wait[data-variant="2"] .hs-dot-move {
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 0.9s var(--ease-drift), opacity 0.9s var(--ease-soft);
-}
-.pilot-wait[data-variant="2"] .hs-dot circle {
-  fill: currentColor;
-  opacity: 0.5;
-  animation: hs-twinkle 2.4s ease-in-out calc(var(--i) * -0.1333s) infinite;
-}
-.pilot-wait[data-variant="2"][data-stage="writing"] .hs-dot circle {
-  animation: none;
-}
-/* Chosen: the rest dim, the chosen step inward and pulse one after another while they are read. */
-.pilot-wait[data-variant="2"] .hs-head[data-chosen] .hs-dot circle {
-  animation: none;
-}
-.pilot-wait[data-variant="2"] .hs-head[data-chosen] .hs-dot-move {
-  opacity: 0.3;
-  transform: scale(0.8);
-}
-.pilot-wait[data-variant="2"] .hs-head[data-chosen] .hs-dot-move[data-pick] {
-  opacity: 1;
-  transform: translate(var(--dx), var(--dy)) scale(1.55);
-}
-.pilot-wait[data-variant="2"] .hs-head[data-chosen] .hs-dot-move[data-pick] circle {
-  opacity: 0.72;
-}
-.pilot-wait[data-variant="2"][data-stage="choosing"] .hs-head[data-chosen] .hs-dot-move[data-pick] circle {
-  animation: hs-pick 4.5s ease-in-out calc(1.1s + var(--p) * 0.9s) infinite both;
 }
 
 /* ---------- Caption and detail ---------- */
@@ -134,31 +91,53 @@
   transition: opacity 0.2s var(--ease-soft), transform 0.3s var(--ease-soft);
 }
 
-/* ---------- Under the head, the information, one thing at a time (owner 22.10: "liiga kaardikeskne"): the search,
-   then the sources found as small pages, then the chosen material. One grid cell, so they replace each other in place;
-   the cell is never lower than the pages, so the search does not leave a jump behind it. ---------- */
+/* ---------- Under the facts, the pictures, one thing at a time (owner 22.10: "liiga kaardikeskne"): the search, then
+   the sources found as small pages, then the chosen material. One grid cell, so they replace each other in place; the
+   cell is never lower than the pages, so the search does not leave a jump behind it.
+   With a place they lie on its map (the scene, one cell too): the map stays the whole wait (owner 22.10: the map that
+   vanished left a gap) and its lines fade under them ("ikoonirida isegi luubi ja dokumentidega eesti kaardi peal");
+   its pin stays. The shelf and the pages keep to the map's width and middle; the material list may run past its
+   edge. ---------- */
+.pilot-wait[data-variant="2"] .hs-scene {
+  display: grid;
+  min-width: 0;
+  margin-left: calc(var(--hs-mark) + var(--hs-gap));
+}
+.pilot-wait[data-variant="2"] :is(.hs-scene, .hs-stage) > * {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
 .pilot-wait[data-variant="2"] .hs-stage {
   display: grid;
   align-items: center;
   min-width: 0;
   min-height: 3rem;
-  margin-left: calc(var(--hs-mark) + var(--hs-gap));
 }
-.pilot-wait[data-variant="2"] .hs-stage > * {
-  grid-area: 1 / 1;
-  min-width: 0;
+.pilot-wait[data-variant="2"] .hs-scene[data-map] .hs-stage {
+  z-index: 1;
+  align-self: center;
+  min-height: 0;
 }
-/* ---------- Place map: at the bottom of the card the whole wait, under the information (owner 22.10: "kaart ehk on
-   kuvatud selle akna all pool, et üleval kuvatakse info"), aligned with the text; it fades once the sources are found,
-   so the information above is what reads ("kaart võib tuhmuda"). */
+.pilot-wait[data-variant="2"] .hs-scene[data-map] :is(.hs-search, .hs-pages) {
+  justify-self: start;
+  justify-items: center;
+  width: min(13.5rem, 58vw);
+}
+.pilot-wait[data-variant="2"] .hs-scene[data-map] .hs-page-row {
+  justify-content: center;
+}
 .pilot-wait[data-variant="2"] .hs-map {
   justify-self: start;
   max-width: 100%;
-  margin-left: calc(var(--hs-mark) + var(--hs-gap));
+}
+.pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.9s var(--ease-soft);
 }
-.pilot-wait[data-variant="2"] .hs-map[data-quiet] {
-  opacity: 0.38;
+.pilot-wait[data-variant="2"] .hs-scene:has(> .hs-stage) .pilot-map__lines {
+  opacity: 0.55;
+}
+.pilot-wait[data-variant="2"] .hs-scene .hs-map[data-quiet] .pilot-map__lines {
+  opacity: 0.32;
 }
 /* The place is in the detail line; the map does not say it twice. */
 .pilot-wait[data-variant="2"] .pilot-map__label {
@@ -206,7 +185,7 @@
 /* No place in the question: while the search runs, a lens passes over a faint shelf of pages (no count is shown
    before the search gives one). */
 .pilot-wait[data-variant="2"] .hs-search {
-  position: relative;
+  display: grid;
   justify-self: start;
   padding: 0.25rem 0;
   animation: hs-fade 0.5s var(--ease-soft) both;
@@ -216,9 +195,16 @@
   animation: hs-page-in 0.4s var(--ease-soft) both;
   animation-delay: calc(var(--i) * 60ms);
 }
+/* The shelf the lens passes over: the lens moves along it wherever the shelf stands (at the text, or in the map's
+   middle). */
+.pilot-wait[data-variant="2"] .hs-shelf {
+  position: relative;
+  display: block;
+  width: max-content;
+}
 .pilot-wait[data-variant="2"] .hs-lens {
   position: absolute;
-  top: 0.05rem;
+  top: -0.2rem;
   left: 0;
   width: 1.2rem;
   height: 1.2rem;
@@ -279,9 +265,9 @@
   from { transform: perspective(320px) rotateY(0deg); }
   to { transform: perspective(320px) rotateY(1080deg); }
 }
-@keyframes hs-breath {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.03); opacity: 1; }
+@keyframes hs-flip {
+  from { transform: perspective(320px) rotateY(0deg); }
+  to { transform: perspective(320px) rotateY(360deg); }
 }
 /* ---------- The facts line: one reported number at a time, quiet, under everything ---------- */
 .pilot-wait[data-variant="2"] .hs-facts {
@@ -321,20 +307,6 @@
   0%, 30%, 100% { opacity: 0.45; }
   12% { opacity: 1; }
 }
-@keyframes hs-spin {
-  to { transform: rotate(360deg); }
-}
-@keyframes hs-dot-in {
-  from { opacity: 0; transform: scale(0); }
-}
-@keyframes hs-twinkle {
-  0%, 100% { opacity: 0.26; }
-  50% { opacity: 0.92; }
-}
-@keyframes hs-pick {
-  0%, 100% { opacity: 0.72; }
-  16% { opacity: 1; }
-}
 @keyframes hs-line-in {
   from { opacity: 0; transform: translateY(0.32em); }
 }
@@ -348,12 +320,12 @@
     --hs-mark: 2.9rem;
     --hs-gap: 0.75rem;
   }
-  .pilot-wait[data-variant="2"] .hs-stage,
-  .pilot-wait[data-variant="2"] .hs-facts,
-  .pilot-wait[data-variant="2"] .hs-map {
+  .pilot-wait[data-variant="2"] .hs-scene,
+  .pilot-wait[data-variant="2"] .hs-facts {
     margin-left: 0;
   }
-  .pilot-wait[data-variant="2"] .hs-map {
+  .pilot-wait[data-variant="2"] .hs-map,
+  .pilot-wait[data-variant="2"] .hs-scene[data-map] :is(.hs-search, .hs-pages) {
     justify-self: center;
   }
 }
@@ -361,16 +333,10 @@
 /* ---------- Reduced motion: a calm, static S. States still change, by fading only ----------
    Both the OS setting and the app's own (AccessibilityProvider's data-reduce-motion), as chat.css does. */
 @media (prefers-reduced-motion: reduce) {
-  .pilot-wait[data-variant="2"] .hs-s,
-  .pilot-wait[data-variant="2"] .hs-ring,
-  .pilot-wait[data-variant="2"] .hs-dot circle,
-  .pilot-wait[data-variant="2"][data-stage="choosing"] .hs-head[data-chosen] .hs-dot-move[data-pick] circle {
+  .pilot-wait[data-variant="2"] .hs-s {
     animation: none;
   }
-  .pilot-wait[data-variant="2"] .hs-dot-move {
-    transition: opacity 0.3s linear;
-  }
-  .pilot-wait[data-variant="2"] .hs-map {
+  .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
     transition: opacity 0.3s linear;
   }
   .pilot-wait[data-variant="2"] .hs-page,
@@ -383,9 +349,6 @@
   .pilot-wait[data-variant="2"] .hs-fact {
     animation: hs-fade 0.3s linear both;
   }
-  .pilot-wait[data-variant="2"] .hs-dot {
-    animation: hs-fade 0.3s linear both;
-  }
   .pilot-wait[data-variant="2"] .hs-line[data-on] {
     animation: hs-fade 0.2s linear 0.1s backwards;
   }
@@ -394,16 +357,10 @@
     transition: opacity 0.1s linear;
   }
 }
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-s,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-ring,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot circle,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"][data-stage="choosing"] .hs-head[data-chosen] .hs-dot-move[data-pick] circle {
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-s {
   animation: none;
 }
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot-move {
-  transition: opacity 0.3s linear;
-}
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map {
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.3s linear;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page,
@@ -414,9 +371,6 @@ html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-lens {
   animation: none;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-fact {
-  animation: hs-fade 0.3s linear both;
-}
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-dot {
   animation: hs-fade 0.3s linear both;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-line[data-on] {
