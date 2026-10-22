@@ -131,10 +131,6 @@
   max-width: 100%;
   transition: opacity 0.7s var(--ease-soft);
 }
-/* The chosen material takes the map's place: the map, pin too, fades out and keeps its room, so nothing moves. */
-.pilot-wait[data-variant="2"] .hs-map[data-gone] {
-  opacity: 0;
-}
 .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.9s var(--ease-soft);
 }
@@ -161,25 +157,18 @@
   flex-wrap: nowrap;
   gap: 0.4rem;
 }
-/* A small page: an outline with two text lines; each is read in turn (a quiet brightening that walks the row). The
-   pages of the search are larger than the mark beside a chosen title. */
-.pilot-wait[data-variant="2"] .hs-page,
-.pilot-wait[data-variant="2"] .hs-doc {
+/* A small page: an outline with two text lines; each is read in turn (a quiet brightening that walks the row, the
+   "sparkling" files of the owner's 22.10 note), the found ones and then the chosen ones. */
+.pilot-wait[data-variant="2"] .hs-page {
   position: relative;
   display: block;
   flex: none;
-  width: 0.8rem;
-  height: 1.02rem;
-  border: 1px solid currentColor;
-  border-radius: 0.14rem;
-}
-.pilot-wait[data-variant="2"] .hs-page {
   width: 1.05rem;
   height: 1.34rem;
+  border: 1px solid currentColor;
   border-radius: 0.18rem;
 }
-.pilot-wait[data-variant="2"] .hs-page::before,
-.pilot-wait[data-variant="2"] .hs-doc::before {
+.pilot-wait[data-variant="2"] .hs-page::before {
   content: "";
   position: absolute;
   left: 20%;
@@ -242,42 +231,6 @@
 .pilot-wait[data-variant="2"] .hs-pages-label {
   font-size: 0.95em;
   opacity: 0.88;
-}
-/* The chosen sources, every one, small and running on as one paragraph (owner 22.10: "suurelt ma neid allikate
-   nimekirja ei tahtnud"; no "+2" that hides some). A title wraps like text, so two share a line where they fit. */
-.pilot-wait[data-variant="2"] .hs-material {
-  align-self: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.8em;
-  line-height: 1.55;
-  opacity: 0.88;
-}
-.pilot-wait[data-variant="2"] .hs-material li {
-  display: inline;
-  margin-right: 0.85rem;
-  animation: hs-fade 0.5s var(--ease-soft) both;
-  animation-delay: calc(var(--i) * 110ms);
-}
-.pilot-wait[data-variant="2"] .hs-doc {
-  display: inline-block;
-  width: 0.6rem;
-  height: 0.78rem;
-  margin-right: 0.35rem;
-  vertical-align: -0.08em;
-  border-radius: 0.1rem;
-  opacity: 0.8;
-}
-.pilot-wait[data-variant="2"] .hs-doc::before {
-  top: 30%;
-  box-shadow: 0 0.16rem 0 currentColor;
-}
-.pilot-wait[data-variant="2"] .hs-doc-title {
-  overflow-wrap: anywhere;
-}
-.pilot-wait[data-variant="2"] .hs-more {
-  opacity: 0.72;
 }
 
 @keyframes hs-turns {
@@ -358,8 +311,7 @@
   .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
     transition: opacity 0.3s linear;
   }
-  .pilot-wait[data-variant="2"] .hs-page,
-  .pilot-wait[data-variant="2"] .hs-material li {
+  .pilot-wait[data-variant="2"] .hs-page {
     animation: hs-fade 0.3s linear both;
   }
   .pilot-wait[data-variant="2"] .hs-lens {
@@ -382,8 +334,7 @@ html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-s {
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-map .pilot-map__lines {
   transition: opacity 0.3s linear;
 }
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page,
-html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-material li {
+html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-page {
   animation: hs-fade 0.3s linear both;
 }
 html[data-reduce-motion="1"] .pilot-wait[data-variant="2"] .hs-lens {

@@ -94,11 +94,13 @@ export function waitTexts(t, view) {
       { total: number(view.records.total) }) } : null,
     place && catalogue ? { key: "region", text: fill(tr(t, "chat.pilot_wait.fact_region", "{place}: {listed} asjakohast kirjet {catalogue} seast"),
       { place, listed: number(listed ?? 0), catalogue: number(catalogue) }) } : null,
-    chosenCount ? { key: "chosen", text: chosenCount === 1 ? tr(t, "chat.pilot_wait.fact_chosen_one", "Lugemiseks valitud 1 allikas")
-      : fill(tr(t, "chat.pilot_wait.fact_chosen", "Lugemiseks valitud {count} allikat"), { count: number(chosenCount) }) } : null,
   ].filter(Boolean);
+  // How many sources the answer reads, under their pages (the facts line does not say it twice).
+  const chosenText = !chosenCount ? null : chosenCount === 1 ? tr(t, "chat.pilot_wait.fact_chosen_one", "Valitud 1 allikas")
+    : fill(tr(t, "chat.pilot_wait.fact_chosen", "Valitud {count} allikat"), { count: number(chosenCount) });
   return {
     facts,
+    chosenCount: chosenText,
     reading: tr(t, "chat.pilot_wait.reading", "Loen küsimust…"),
     searching: tr(t, "chat.pilot_wait.searching", "Otsin Sotsiaal.pro andmebaasist…"),
     found,

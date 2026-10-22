@@ -4998,8 +4998,8 @@
       "fact_knowledge": "В рамках этого вопроса документов знаний: {documents}, фрагментов: {passages}",
       "fact_records": "Записей муниципалитетов об услугах и контактах всего: {total}",
       "fact_region": "{place}: подходящих записей {listed} из {catalogue}",
-      "fact_chosen": "Выбрано для чтения источников: {count}",
-      "fact_chosen_one": "Выбран для чтения 1 источник"
+      "fact_chosen": "Выбрано источников: {count}",
+      "fact_chosen_one": "Выбран 1 источник"
     }
   },
   "documents": {

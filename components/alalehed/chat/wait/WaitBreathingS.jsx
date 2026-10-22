@@ -46,9 +46,12 @@ export default function WaitBreathingS({ view, texts, map }) {
   const stage = view.stageIndex;
   const fact = useFact(texts.facts || []);
   // Below the head, one thing at a time (owner 22.10: "liiga kaardikeskne"): the search (faint pages and a lens passing
-  // over them, no count yet), then the sources found as small pages, then the chosen material as a list.
+  // over them, no count yet), then the sources found as small pages, then the chosen ones, read in turn, with how many
+  // they are. No titles: "seda ei jõua niikuinii lugeda. Lihtsalt mitu faili kasutati" (owner 22.10).
   const searching = stage === 1;
-  const pages = view.found && !view.chosen ? Math.min(Math.max(view.found.sources ?? view.found.passages ?? 0, 0), PAGES_MAX) : 0;
+  const chosenCount = view.chosen ? view.chosen.titles.length + view.chosen.more : 0;
+  const pages = Math.min(Math.max(view.chosen ? chosenCount : view.found ? view.found.sources ?? view.found.passages ?? 0 : 0, 0), PAGES_MAX);
+  const pagesLabel = view.chosen ? texts.chosenCount : texts.found;
   // A place an earlier message gave says so.
   const places = texts.earlier ? texts.places.map(place => `${place} (${texts.earlier})`) : texts.places;
   const about = [view.topic, ...places].filter(Boolean).join(`${NBSP}· `);
@@ -90,12 +93,10 @@ export default function WaitBreathingS({ view, texts, map }) {
       ) : null}
       {/* With a place, the pictures lie on the map, which fades under them (owner 22.10: "ikoonirida isegi luubi ja
           dokumentidega eesti kaardi peal"); without one they stand alone. */}
-      {map || searching || pages || view.chosen ? <div className="hs-scene" data-map={map ? "1" : undefined}>
-        {/* Its lines fade under the found pages; the whole map, pin too, gives way to the chosen material (owner 22.10:
-            the list on the map "nii ka imelik"; earlier "kaart hajub ära ja siis ilmub mingi materjali teema"). */}
-        {map ? <div className="hs-map" data-quiet={view.found || view.chosen ? "1" : undefined} data-gone={view.chosen ? "1" : undefined}
-          aria-hidden={view.chosen ? "true" : undefined}>{map}</div> : null}
-        {searching || pages || view.chosen ? <div className="hs-stage">
+      {map || searching || pages ? <div className="hs-scene" data-map={map ? "1" : undefined}>
+        {/* Its lines fade under the pages; the pin stays. */}
+        {map ? <div className="hs-map" data-quiet={view.found || view.chosen ? "1" : undefined}>{map}</div> : null}
+        {searching || pages ? <div className="hs-stage">
           {searching ? (
             <div className="hs-search" key="search" aria-hidden="true">
               <span className="hs-shelf">
@@ -107,20 +108,12 @@ export default function WaitBreathingS({ view, texts, map }) {
             </div>
           ) : null}
           {pages ? (
-            <div className="hs-pages" key="pages">
+            <div className="hs-pages" key={view.chosen ? "chosen" : "found"} data-chosen={view.chosen ? "1" : undefined}>
               <span className="hs-page-row" aria-hidden="true">
                 {Array.from({ length: pages }, (_, i) => <span key={i} className="hs-page" style={{ "--i": i }} />)}
               </span>
-              {texts.found ? <span className="hs-pages-label">{texts.found}</span> : null}
+              {pagesLabel ? <span className="hs-pages-label">{pagesLabel}</span> : null}
             </div>
-          ) : null}
-          {view.chosen ? (
-            <ul className="hs-material" key="material">
-              {view.chosen.titles.map((title, i) => (
-                <li key={title} style={{ "--i": i }}><span className="hs-doc" aria-hidden="true" /><span className="hs-doc-title">{title}</span></li>
-              ))}
-              {texts.more ? <li className="hs-more" style={{ "--i": view.chosen.titles.length }}>{texts.more}</li> : null}
-            </ul>
           ) : null}
         </div> : null}
       </div> : null}
