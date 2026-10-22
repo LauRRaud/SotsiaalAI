@@ -1565,6 +1565,9 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
       cards.find((item) => item.href === here) ||
       byRoute ||
       (cardless ? { key: normalized, label: t(cardless), href: normalized } : null);
+    /* Vastuse allikas avaneb vestlusest ja sulgub vestlusesse, kust ta avati (omanik 22.10: „ei vii tagasi
+       vestlusesse"); mujal sulgeb nool akna hub'i. */
+    const sourceConversation = normalized === "/chat-source" ? String(searchParams?.get("convId") || "").trim() : "";
     return {
       cards,
       current,
@@ -1572,7 +1575,7 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
         key: "dock-close",
         label: t("room.close_panel"),
         action: "panel-close",
-        href: dockHub,
+        href: sourceConversation ? `/vestlus?conversation=${encodeURIComponent(sourceConversation)}` : dockHub,
         icon: <BackArrowIcon />,
       },
     };

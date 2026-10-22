@@ -4,6 +4,7 @@ import { serverT } from '@/lib/i18n/serverMessages';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { getPublicSiteUrl } from '@/lib/siteUrl';
+import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 // The fields of a municipality's record that the view names (lib/rag-v2/adapters/municipal-record.js); another field's
 // value stands without a name.
@@ -47,7 +48,7 @@ export default async function ChatSourcePage({ searchParams }) {
   const lines = record ? recordSourceLines(source.text, source.source_locations) : null;
   return <section style={{ padding: 24, maxWidth: 900, margin: 'auto' }}><h1>{source.title}</h1><p>{[source.provision, location, source.ref].filter(Boolean).join(' · ')}</p>
     {source.links?.length ? <p>{t('original')}: {source.links.map((url, index) => <span key={url}>{index ? ', ' : ''}<a href={url} target="_blank" rel="noopener noreferrer" title={url} style={{ overflowWrap: 'anywhere' }}>{new URL(url).hostname}</a></span>)}</p> : null}
-    <a href={`/vestlus?conversation=${encodeURIComponent(params.convId)}`}>{t('closeSource')}</a>
+    <Link href={`/vestlus?conversation=${encodeURIComponent(params.convId)}`}>{t('closeSource')}</Link>
     <details><summary>{t('version')}</summary><p style={{ overflowWrap: 'anywhere' }}>{source.version}</p>
       {!source.pages.length && source.source_locations?.map((item, index) => <p key={`${item.source_unit_id}/${index}`} style={{ overflowWrap: 'anywhere' }}>{item.path} [{item.start}–{item.end}]</p>)}</details>
     {source.superseded ? <p>{t(source.links?.length ? 'sourceChanged' : 'sourceGone')}</p>
