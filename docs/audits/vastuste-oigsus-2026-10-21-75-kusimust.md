@@ -109,3 +109,21 @@ mida vastus väidab, ja kas midagi olulist on puudu.
 | C23 | teenuseosutaja | Andmete säilitamine | Õige | |
 | C24 | teenuseosutaja | Toetatud elamise algus ja rahastus | Õige | |
 | C25 | teenuseosutaja | Teenuse mõju mõõtmine | Õige | |
+
+## Kordus 23.10: üheksa osalist vastust
+
+Omanik 23.10.2026 („nii“, „jah“): parandada osalised vastused, mille põhjus oli info puudumine (A02, A04, A12, A17, A25, B02, C18) või leidmata omavalitsuse kirje (B20, C10). Fokusjooksud F3–F6 küsisid neid samades vestlustes koos vestluse avaküsimusega. Tõend: [F3–F6](evidence/sol-proof-20261014-01/server-rag-chat-focused-F3-F6-adr183-185.json).
+
+| Id | 23.10 seis | Põhjus | Parandus |
+|---|---|---|---|
+| A02 | Paranenud, osaliselt | Tartu korra § 11 lg 3 oli paketis; vastus ei tuletanud, et kuni 600 € sissetulekuga maksab ainult koduskäigu tasu | [ADR-183](../rag-v2/adr-183-a-provision-list-is-read-whole.md): vastus ei ütle enam „määrus ei ütle“, kuid madalamat astet otse välja ei kirjuta |
+| A04 | Õige (F4, F5) | Plaan pani isikuks kasutaja, kirjed otsiti Tallinnast | [ADR-184](../rag-v2/adr-184-carer-benefit-person-and-deadline-terms.md): isik on hooldatav; vastus annab Tartu tingimuse (samal aadressil Tartus) |
+| A12 | Paranenud | Tahtest olenematu abi raam puudus | F4–F6: SHS § 105 tingimused (kohus otsustab) 3 korral 4-st; vahetu ohu kord (PsAS) puudub endiselt |
+| A17 | Osaliselt | SÜS § 25 („hüvitise andja“) ei jõudnud paketti või ei seotud teenusega | ADR-184 (search-assist-25…27): päring SÜS-i sõnadega. 10 tööpäeva oli vastuses 2 korral 4-st kaudsest allikast. F6b-s oli § 25 paketis, kuid vastus ütles, et säte ei käi teenuse kohta: SÜS § 14 (teenus on mitterahaline hüvitis) puudus. Järgmine samm: rada, mis toob sätte kõrvale sama seaduse mõiste definitsiooni |
+| A25 | Osaliselt | Andmete üleandmise õiguslik alus ei ole leitavas korpuses | Parandust pole; vastus piirab andmed vajalikuga ja nimetab nõusoleku või õigusliku aluse vajaduse |
+| B02 | Õige (F4, F5) | SHS § 133 lg 1 ja 2 olid paketis; vastus ei lugenud erandite loetelu | ADR-183: „lastetoetus … arvestatakse toimetulekutoetuse määramisel sissetuleku hulka“ |
+| B20 | Õige (F4, F5) | Narva kord (teenus on tasuta) ei jõudnud kandidaatide hulka | [ADR-185](../rag-v2/adr-185-municipal-regulations-reserve.md): omavalitsuse õigusaktidele 2 reservkohta; F5 tõi korra reservkohalt, kuigi päring Narvat ei nimetanud |
+| C10 | Õige (F2–F5) | Pöördel puudus omavalitsus | ADR-167…173 (22.10) |
+| C18 | Paranenud | Täisealise puhul „perelt nõusolek“ | F3–F5: noort käsitletakse täisealisena, alus on tema nõusolek või seadus (PsAS § 5 lg 2); üldist alust (isikuandmete kaitse üldmäärus) ei nimetata |
+
+Ajad: pöörde mediaan oli F3-s 29,7 s, F4-s 34,3 s ja F5-s 34,6 s. Suurem osa kasvust tuli valikumudeli kõnest samade tokenitega (82 → 65 tok/s, õhtune teenus). Vastus oli umbes 15% pikem (1074 → 1234 tokenit), mis võib olla answer-19 mõju. Otsing ilma mudelikutseteta läks 4,9 s pealt 5,7 s peale; sellest umbes 0,5 s on omavalitsuse reservi lisapäringud. Aegu tuleb öises jooksus uuesti mõõta.

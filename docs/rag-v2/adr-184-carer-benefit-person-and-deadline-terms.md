@@ -44,3 +44,7 @@ Fokusjooksud F4 (väljalase `8af74266`) ja F5 (`e092de45`) 23.10: samad 16 pöö
 - Tema lõigud hüvitise kohta (taotlemine, otsuse tähtaeg, otsus, maksmine, asjaolude muutus) käivad ka küsitud toetuse või teenuse kohta.
 - Kui küsitakse sellist sammu, jääb lõik, mis seda ütleb, alles.
 - Kontroll: spetsialisti vestlus A11, A12, A17 kaks korda (F6), väljalaskel `-27`.
+- **F6** (väljalase `58495e52`): plaan kirjutas mõlemas vestluses täisnimega päringu.
+  - A17a: ükski SÜS-i lõik ei jõudnud kandidaatide hulka. Päringule oli lisatud „abivajaduse hindamine“.
+  - A17b: valik võttis SÜS § 25 esimeseks lõiguks (S1), kuid vastus ütles: „Kümne tööpäeva tähtaeg on olemas hüvitise andmise otsusele, kuid see säte ei ütle sotsiaalteenuse otsuse tähtaega.“ SÜS § 14 (mitterahaline hüvitis on muu hulgas „isikule osutatav teenus“) ei olnud paketis.
+- **Lahtine:** sätte kõrvale tuleb tuua sama seaduse mõiste definitsioon. See on otsingu raja töö (ADR-149 ja ADR-182 kõrval), mitte juhise rida.
