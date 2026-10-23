@@ -79,7 +79,22 @@ Lõike järgi täpsustamine muutis ühte küsimust („perekonna määratlus“)
 
 Mõõdik `explaining_passages` sisaldab: `provisions`, `free`, `candidates`, `near`, `read`, `additions`, `sections`, iga kandidaadi läheduse (`scores`) ja etappide aja (`ms`: `naming`, `vectors`, `read`).
 
+### Päris pöörded pärast väljalaset (88ae8650, 23.10.2026)
+
+Pöörduja vaates, uues vestluses:
+
+- **„Elame Põlva vallas ja mu lapsel on raske puue. Kas tema tugiisikuks võib olla lapse vanaema?“** (jälg `9b56d2f2`)
+  - Rada käis SHS § 25 juures. Kandidaate oli 12, lävest üle sai 1 (0,581), aga see lõik § 25 ei nimetanud ja lisandust ei tulnud.
+  - Aeg: sõnapäring 40 ms, vektorid 11 ms, lugemine 48 ms.
+  - Vastus oli õige: vanaema on teise astme sugulane ega tohi tugiisikuteenust osutada (SHS § 25).
+- **„Mul on kahe eelmise kuu kommunaalmaksed maksmata. Kas toimetulekutoetuse arvestamisel võetakse see võlg eluasemekuluna arvesse?“** (jälg `4c514caa`)
+  - Rada lisas SKA toimetulekutoetuse KKK lõigu SHS § 131 juurde (0,555).
+  - Lugemine võttis 1011 ms, sest laaditi suur KKK leht (sõnapäring 50 ms, vektorid 17 ms).
+  - Vastus oli õige ja lisatud lõigule ei viidanud.
+
 ## Piirid
+
+- **Suure dokumendi lugemine:** kui läbi saanud kandidaat on pika lehe lõik, võtab lehe laadimine kuni umbes 1 s. Seda juhtub pöördes, kus rada leiab läbi saanud kandidaadi, ja sama leht oleks tulnud laadida ka lisamiseks.
 
 - **Täpsus on mõõdukas.** Viiest lisandusest üks vastas küsimusele otse. Ülejäänud olid sama sätte taust, mille vastus võib jätta kasutamata.
 - **G09 seletuskirja lõik ei jõua paketti ka selle rajaga.** Pikk lõik, mis räägib nii üürist kui ka laenumaksetest, jääb küsimusele lävest kaugemale (umbes 0,51). G09 vastus on õige [ADR-181](adr-181-a-reference-to-a-point-reads-the-point.md) lugemisreegli tõttu.
