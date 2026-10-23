@@ -1,0 +1,93 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "checkpointDate": "2026-10-23",
+  "corpusChange": {
+    "version": "v95",
+    "index": "search_generation_1bab8b415b866540e44c9ccd3f2af5cdf540ae06fca66df354cf5441a82097bd",
+    "documents": 11027,
+    "passages": 107952,
+    "added": [
+      "Sotsiaalministeerium, \"Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seaduse eelnõu seletuskiri\" (file 23.09.2025, 44 pages), Andmebaasi/juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.pdf, 81 passages",
+      "\"VIPS-spetsialistide baasõppeprogramm\", the owner's copy of 20.10.2026 (no web address found), Andmebaasi/juhendid_ja_uuringud/vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.html, 3 passages"
+    ],
+    "purchase": "84 embedding inputs, 0.008556 USD (cap 0.05 USD)",
+    "plan": "/etc/sotsiaalai/m4-corpus-chat-20261023b.json"
+  },
+  "checks": [
+    {
+      "case_id": "RAG-U01",
+      "variant_id": "chat2310v95_U01-vips",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro chat composer from the owner ADMIN session, new conversation, view role Pöörduja (help_seeker); trace read at /admin/rag/chat-trace/347b91e3-af19-4555-86e8-760f035ff91f",
+      "actual": {
+        "question": "Mis on VIPS-spetsialisti baasõpe ja millal selle piloteerimine algab?",
+        "expected": "24 EAP, five modules, pilot from about the end of 2026 to the end of 2027, the base training alone gives no competence to deliver a specific VIPS",
+        "turnId": "347b91e3-af19-4555-86e8-760f035ff91f",
+        "turnTimeUtc": "2026-10-23T12:27:39Z",
+        "prompt": "m4-grounded-dialogue-52",
+        "plan": "m4-sotsiaalai-corpus-chat-20261023-115906-32439447-ca4b-4bb8-bfcd-8b9937929410",
+        "answerKind": "grounded",
+        "answer": "VIPS-spetsialisti baasõppe eesmärk on anda alusteadmised ja -oskused VIPS-spetsialistina tegutsemiseks. 2026. aasta seisuga on õppe maht 24 EAP-d ja õpe koosneb viiest moodulist. Enamik õppest toimub e-õppena ning seda saab läbida muu töö kõrvalt. [S1] / Programmi piloteerimine algab eeldatavasti 2026. aasta lõpus ja kestab 2027. aasta lõpuni. Lõputunnistuse saamiseks tuleb läbida kõik moodulid ning täita osalemise, testide ja kodutööde nõuded. [S1] / Baasõppe lõpetamine üksi ei anna pädevust konkreetset VIPS-i ellu viia: selleks tuleb läbida ka vastava VIPS-i väljaõpe ja täita selle rakendamisega seotud muud nõuded. Lõpetajatele on kavandatud võimalus jätkata WHO Problem Management Plus (PM+) sekkumise väljaõppes. [S1]",
+        "cited": [
+          "S1 VIPS-spetsialistide baasõppeprogramm"
+        ]
+      }
+    },
+    {
+      "case_id": "RAG-G09",
+      "variant_id": "chat2310v95_G09-uur-emalt_dialogue52",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro chat composer from the owner ADMIN session, new conversation, view role Pöörduja (help_seeker); trace read at /admin/rag/chat-trace/3b3cf31a-fc96-417c-8ff9-0dba95ae1e9c",
+      "actual": {
+        "question": "Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetulekutoetuse arvestamisel arvesse?",
+        "turnId": "3b3cf31a-fc96-417c-8ff9-0dba95ae1e9c",
+        "turnTimeUtc": "2026-10-23T12:09:44Z",
+        "prompt": "m4-grounded-dialogue-52",
+        "answerKind": "partial",
+        "answer": "Kui sina ja su ema elate samas eluruumis ning teil on ühine majapidamine, siis üüri toimetulekutoetuse arvestamisel arvesse ei võeta. Üüri saab muidu arvestada jooksval kuul tasumisele kuuluva eluasemekuluna; emalt üürimine üksi ei ütle, kas välistus kehtib. [S1, S4, S5]",
+        "clarifyingQuestion": "Kas sina ja su ema elate samas eluruumis ja peate ühist majapidamist?",
+        "candidates": "The memorandum passage (p. 17) was not among the 36 candidates. Slide 54 was 3rd, chosen second and in the packet as S2, but not cited. The SKA FAQ passage on rent from the father of the child was 5th and not chosen."
+      }
+    },
+    {
+      "case_id": "RAG-G09",
+      "variant_id": "chat2310v95_G09-uur-emalt_dialogue53",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro chat composer from the owner ADMIN session, new conversation, view role Pöörduja (help_seeker); trace read at /admin/rag/chat-trace/5ccd2c63-0cc0-4cb1-92a7-8e95d386cc65",
+      "actual": {
+        "question": "Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetulekutoetuse arvestamisel arvesse?",
+        "expected": "rent paid to the mother is not counted, whether or not she lives with the applicant (SHS § 133 lg 8)",
+        "turnId": "5ccd2c63-0cc0-4cb1-92a7-8e95d386cc65",
+        "turnTimeUtc": "2026-10-23T12:36:47Z",
+        "prompt": "m4-grounded-dialogue-53",
+        "answerKind": "grounded",
+        "answer": "Ei. Sinu emana on ta sinu üleneja sugulane ning sellise üürileandja ja üürniku vahel makstavat üüri toimetulekutoetuse arvestamisel arvesse ei võeta. [S1, S3] / Üldjuhul arvestatakse toetuse arvutamisel jooksval kuul tasumisele kuuluvat üüri, kuid siin kehtib sugulasele üürimise erand. Kui taotled toetust, esita taotlus oma elukohajärgsele omavalitsusele; sinu emale makstud üür toetuse arvestust ei vähenda. [S1, S4]",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 133 lg 5–8",
+          "S3 Sotsiaalhoolekande seadus § 131 lg 1–8",
+          "S4 Sotsiaalhoolekande seadus § 133 lg 2¹–5"
+        ],
+        "note": "The core conclusion is the expected one, and the answer no longer asks whether they live together. Its last clause (\"üür toetuse arvestust ei vähenda\") is unclear, and it does not say that the other housing costs of the dwelling may still be counted (the memorandum says so, but its passage was again not among the candidates)."
+      }
+    },
+    {
+      "case_id": "RAG-G09-guard",
+      "variant_id": "chat2310v95_sister-separate-household_dialogue53",
+      "status": "PASS",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro chat composer from the owner ADMIN session, new conversation, view role Pöörduja (help_seeker); trace read at /admin/rag/chat-trace/0fffb100-e0bc-4ef4-9d9f-035bcbed2794",
+      "actual": {
+        "question": "Mu õde elab minuga samas korteris, aga meil on eraldi majapidamine ja eraldi rahaasjad. Kas teda loetakse toimetulekutoetuse taotlemisel minu perekonnaliikmeks?",
+        "turnId": "0fffb100-e0bc-4ef4-9d9f-035bcbed2794",
+        "turnTimeUtc": "2026-10-23T12:38:00Z",
+        "prompt": "m4-grounded-dialogue-53",
+        "answer": "Kui teil on õega eraldi majapidamine, ei loeta teda selle põhjal sinu perekonnaliikmeks: perekonnaliikmeteks loetakse samas eluruumis elavad ühise majapidamisega inimesed. Otsustav on seega ühine majapidamine, mitte üksnes ühine korter või eraldi rahaasjad. Selle järgi, mida kirjeldad, ei kuulu õde sinu perekonna koosseisu.",
+        "note": "Guard for ADR-181: reading § 131 lg 7 itself still applies its opening words (same dwelling, common household)."
+      }
+    }
+  ],
+  "serverRelease": "a2cf6962 (corpus v95; answer prompt m4-grounded-answer-18 and dialogue prompt m4-grounded-dialogue-53 from the deploy of 12:29 UTC)"
+}

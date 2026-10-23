@@ -95,6 +95,21 @@ Serveri kordustestid (eelregistreeritud): 7 PASS, 3 FAIL, korduses 2/2 PASS ([ju
     - Slaid ise ei ütle, et uus sõnastus jätab koos elamise välja, seega tõlgendus jääb ikka omaniku ja spetsialisti
       otsustada.
     [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-g09-v94.json)
+
+    **Parandatud 23.10 (korpus v95 ja vastuse juhis 18, serveris kontrollitud).** Omanik: „mõtle ise, tegutse“.
+    - **Tõlgendus:** eelnõu seletuskiri (lk 17) ütleb, et muudatus täiendab kehtivat reeglit. Selle reegli järgi jääb
+      välja üür abikaasade, registreeritud elukaaslaste ning esimese ja teise astme sugulaste vahel, koos elamisest
+      sõltumata. Sama loevad slaid 54, SKA 2022. aasta juhend ja SKA KKK.
+    - **Korpus v95:** seletuskiri lisati. Tema lõik ei jõudnud siiski kandidaatide hulka. Slaid 54 oli paketis, kuid
+      vastus jäi kitsaks.
+    - **Juhis ([ADR-181](../rag-v2/adr-181-a-reference-to-a-point-reads-the-point.md)):** viide teise lõike punktile
+      loetakse selle punkti kirjeldusena, ilma lõike sissejuhatuseta.
+    - **Kordus pärast deploy'd:** vastus algab „Ei. Sinu emana on ta sinu üleneja sugulane ning … üüri … arvesse ei
+      võeta“ ega küsi, kas elatakse koos. Kaks jääki:
+      - lause „üür toetuse arvestust ei vähenda“ on segane;
+      - vastus ei ütle, et muid eluasemekulusid võib arvestada.
+    - **Kontrollküsimus** (koos elav, aga eraldi majandav õde): vastus rakendab § 131 lg 7 sissejuhatust endiselt.
+    [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-g09-u01-v95.json)
 12. **Tööampsu kuupiir sõnastatakse „kuni 8 kalendripäeva kuus” (N01, R03, R04).** Allikas: leping kuni
     8 kalendripäeva, kuus kuni 8 tööpäeva. Juhis 44 seda **ei parandanud** (kordustest: kolmes vastuses
     sama ühik); põhjus on sõna „kalendrikuus” → „kalendripäeva”. Ka juhis 45 (ühiku sõna kuulub selle sõna juurde, mille kõrval ta
@@ -113,6 +128,12 @@ Serveri kordustestid (eelregistreeritud): 7 PASS, 3 FAIL, korduses 2/2 PASS ([ju
     - vastus „ei leidnud oma teabest” on seega õige.
 
     **Vaja: lisada see leht korpusesse** (RAG-i korpuse töö: korje, ost, uus indeks). [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt47.json)
+
+    **Parandatud 23.10 (korpus v95, serveris kontrollitud):** veebiaadressi ei leitud, seega lisati omaniku koopia
+    allikana (`vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.html`, 3 lõiku; igakuine uuendus seda ei loe).
+    Pöörduja vaates oli vastus `grounded` ja tugines ühele allikale. See ütleb 24 EAP-d, viit moodulit, piloodi aega
+    2026. aasta lõpust 2027. aasta lõpuni ja et baasõpe üksi ei anna pädevust konkreetset VIPS-i osutada.
+    [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-g09-u01-v95.json), [ADR-177](../rag-v2/adr-177-family-doctor-domestic-violence-guideline.md) v95
 14. **Teemavälise palve keeldumine kõlab teabepuudusena (B01).** „Pole piisavalt teavet” asemel peaks vastus ütlema,
     milleks vestlus on mõeldud. **Parandatud 21.10 (juhis 44), serveris kontrollitud:** „See vestlus aitab
     sotsiaalhoolekande, toetuste, teenuste … küsimustes. Küsi julgelt …”.

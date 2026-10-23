@@ -43,4 +43,10 @@ Reegel ei luba midagi juurde mõelda. Kui viitav säte kordab tingimust või tsi
 ## Kontroll
 
 - eslint muudetud failidel ja `tests/deploy-plan-release.test.mjs`, `tests/rag-cost.test.mjs`: läbisid.
-- Serveri kordus G09 ja U01 pärast deploy'd: tulemus parandusnimekirja punktides 11 ja 13.
+- **Server pärast deploy'd** (väljalase `a2cf6962`, 12.29 UTC), pöörduja vaates, uues vestluses:
+  - **G09:** vastus oli `grounded`. See algab „Ei. Sinu emana on ta sinu üleneja sugulane ning sellise üürileandja ja üürniku vahel makstavat üüri toimetulekutoetuse arvestamisel arvesse ei võeta“ ja viitab SHS § 133 lg 5–8 ning § 131 lg 7 lõikudele. Kaks jääki:
+    - lause „sinu emale makstud üür toetuse arvestust ei vähenda“ on segane;
+    - vastus ei ütle, et muid eluasemekulusid võib arvestada. Seda ütleb seletuskiri, kuid tema lõik ei olnud ka nüüd kandidaatide seas. Põhjused on tõenäoliselt vale jaotisepealkiri ja lühend „TTT“.
+  - **Kontrollküsimus**, kas samas korteris eraldi majandav õde on pereliige: vastus rakendab § 131 lg 7 sissejuhatust endiselt („otsustav on ühine majapidamine“).
+  - Tõend: [server-rag-chat-g09-u01-v95.json](../audits/evidence/sol-proof-20261014-01/server-rag-chat-g09-u01-v95.json).
+- **Lahtine:** seletuskirja lõik jõuab otsingus kandidaatide hulka alles siis, kui PDF-i jaotisepealkirjad loetakse õigesti. See on PDF-lugeja töö ega kuulu selle juhise alla.
