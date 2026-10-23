@@ -61,3 +61,8 @@ Kordus ilma mudelikutseteta:
 | Teine pööre, töökoht kantud linn + vald, päring „Tartu linn“ | Tartu linn + vald (enne ainult Tartu linn) |
 | Pärast vastust töökoht Tartu linn, päring „Tartu linn“ | Tartu linn |
 | Pöörduja | endine |
+
+**Pärast täiendust** (tootmises koos commit'iga `66b71d54`, 24.10; 2 pööret, 0,014 USD): sama spetsialisti vestlus.
+
+- Mõlemas pöördes oli skoop Tartu linn + vald ja kirjed tulid mõlemast.
+- Teine pööre vastas tingimuslikult („Kui klient viibib Tartu linnas, …“), lisas STAR-i dokumenteerimise ja küsis: „Kas klient viibib Tartu linnas või Tartu vallas?“
