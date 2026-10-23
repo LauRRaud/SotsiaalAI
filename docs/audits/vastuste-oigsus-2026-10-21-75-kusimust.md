@@ -127,3 +127,36 @@ Omanik 23.10.2026 („nii“, „jah“): parandada osalised vastused, mille põ
 | C18 | Paranenud | Täisealise puhul „perelt nõusolek“ | F3–F5: noort käsitletakse täisealisena, alus on tema nõusolek või seadus (PsAS § 5 lg 2); üldist alust (isikuandmete kaitse üldmäärus) ei nimetata |
 
 Ajad: pöörde mediaan oli F3-s 29,7 s, F4-s 34,3 s ja F5-s 34,6 s. Suurem osa kasvust tuli valikumudeli kõnest samade tokenitega (82 → 65 tok/s, õhtune teenus). Vastus oli umbes 15% pikem (1074 → 1234 tokenit), mis võib olla answer-19 mõju. Otsing ilma mudelikutseteta läks 4,9 s pealt 5,7 s peale; sellest umbes 0,5 s on omavalitsuse reservi lisapäringud. Aegu tuleb öises jooksus uuesti mõõta.
+
+### Lisakontroll F7 ja kontrollvastused (23.10 õhtul)
+
+Omanik küsis, kas vastused läksid sisulisemaks ja kas pikem aeg tuleb sellest.
+
+**Sihtküsimused, F7 (samad 16 pööret, väljalase `58495e52`).**
+- A04, B02 ja B20 olid õiged kolmandat korda järjest (F4, F5, F7).
+- A02 oli sama mis F5-s.
+- **A17-s on uus viga.** Kui SÜS § 25 jõuab paketti (F6b, F7), ütleb vastus, et kümne tööpäeva tähtaeg „puudutab hüvitise andmist, mitte“ sotsiaalteenust. See on õiguslikult vale: SÜS § 14 loeb teenuse mitterahaliseks hüvitiseks. § 14 ei tule § 25-ga kaasa.
+
+**Kontrollvastused F3 vs F5** (seitse vestluse avaküsimust, läbi loetud koos allikatega). Vigu ei leitud kummastki.
+
+| Id | Võrdlus | Mis erineb |
+|---|---|---|
+| A01 | Sama tase | F5 lisab dementsuse infoliini ja arsti juurde suunamise, kuid jätab välja pliidivalvuri ja koduteenuse taotlemise tee |
+| A11 | Sama tase | F3 on rohkem sätetega seotud, F5 praktilisem (eluvaldkonnad, perearst, päevahoid) |
+| A19 | Sama tase | F5 lisab 2026. a soovitused ja töötajate ettevalmistuse |
+| B01 | F3 parem | F3 nimetab eluruumi tagamise teenust ja kontakti. F4, F5 ja F7 seda ei nimeta, kuigi Narva kirje on igas jooksus paketis; F3 plaan nimetas seda päringus. Põhjus ei ole selge, jälgida |
+| B19 | F5 parem | Narva korra § 2–3 (kellel on õigus teenusele, nõustaja ülesanded) ja võlgniku õigused täitemenetluses |
+| C01 | F5 parem | Varjupaik (kellaajad), vältimatu abi, Viljandi kontakt |
+| C11 | Sama tase | F5 lisab Viljandi korra § 16 (sotsiaalkomisjon, rahastus), F3 täpsemad kestuse tingimused |
+
+**Aeg.** F7 pöörde mediaan oli 42,6 s (kell 20 Eesti aja järgi), kuid otsing ilma mudelikutseteta võttis 4,9 s nagu F3-s.
+- Kõik kolm mudelikutset olid samade tokenitega aeglasemad:
+  - plaan 88 → 48 tok/s (4,9 → 8,1 s);
+  - valik 82 → 49 tok/s;
+  - vastus 140 → 124 tok/s.
+- **Koodi mõju tokenites:**
+  - plaani sisend +8% (kaks uut rida);
+  - valiku sisend +2% (kaks lõiku rohkem);
+  - vastuse väljund 13 küsimusel +3% (F5) ja +5% (F7).
+- **F3 oli juhuslikult kiire:** kolm vastust (A02, B20, C11) tulid ilma mõtlemistokeniteta ja neli valikukutset lõppesid umbes 1,7 sekundiga.
+- **Hinnang:** kood lisab pöördele alla sekundi. Ülejäänud kasv tuleb mudelite teenuse kiirusest.
