@@ -28,4 +28,12 @@ LEGAL PROVISIONS saab ühe üldise lugemisreegli (mitte A02 ega B02 erireegli):
 
 ## Kontroll
 
-Fokusjooks F4 pärast deploy'd: samad 16 pööret kui F3-s ([ADR-185](adr-185-municipal-regulations-reserve.md) jaotis „Kontroll“).
+Fokusjooksud F4 (väljalase `8af74266`) ja F5 (`e092de45`) 23.10: samad 16 pööret kui F3-s ([ADR-185](adr-185-municipal-regulations-reserve.md) jaotis „Kontroll“).
+
+- **B02, mõlemas jooksus `grounded`.**
+  - F4: „Jah, laste peretoetused arvestatakse toimetulekutoetuse puhul sissetuleku hulka.“
+  - F5: „Lastele makstav lastetoetus ehk peretoetus arvestatakse toimetulekutoetuse määramisel sissetuleku hulka.“
+- **A02 osaliselt.**
+  - Vastus ei ütle enam, et määrus ei ütle midagi madalama sissetuleku kohta. Ta annab tasu (1 euro käigu eest ja tunnitasu kahes vahemikus).
+  - F4 märkis õigesti, et 801 eurot ei kuulu kumbagi vahemikku.
+  - Kumbki jooks ei ütle otse, et kuni 600-eurose sissetulekuga inimene maksab ainult koduskäigu tasu. Lugeja saab selle tekstist ise kätte, aga vastus seda välja ei kirjuta.

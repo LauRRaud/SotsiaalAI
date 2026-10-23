@@ -25,4 +25,19 @@ Riiklike seaduste reservkohtade päringupõhine koht ([ADR-079](adr-079-plan-lis
 
 ## Kontroll
 
-Fokusjooks F4 pärast deploy'd: samad 16 pööret kui F3-s ([ADR-185](adr-185-municipal-regulations-reserve.md) jaotis „Kontroll“).
+Fokusjooksud F4 (väljalase `8af74266`) ja F5 (`e092de45`) 23.10: samad 16 pööret kui F3-s ([ADR-185](adr-185-municipal-regulations-reserve.md) jaotis „Kontroll“).
+
+- **A04, mõlemas jooksus: isik `ema`, kirjed `tartu_linn`.** F3-s oli `user` ja `tallinn`.
+  - Vastus ütleb Tartu tingimuse ja et see praegu ei ole täidetud: „Kui elad Tallinnas ja ema Tartus, ei ole see tingimus täidetud.“
+  - Täiskohaga töö kohta ütleb vastus, et tingimused seda ei välista.
+- **A17 ühes jooksus kahest.**
+  - Plaan kirjutas mõlemas tähtaja päringu SÜS-i sõnadega: „SÜS hüvitise andja otsuse tegemise tähtaeg“.
+  - F4: valik võttis lõigu ja vastus ütles: „tuleb teha hindamisel põhinev otsus 10 tööpäeva jooksul taotluse esitamisest“ ja hilinemisest teavitamise kohustuse.
+  - F5: kuus SÜS-i lõiku olid kandidaatide seas (kohad 17–28), kuid valik ei võtnud ühtegi. Vastus ütles, et Tartu kord üldist tähtaega ei anna.
+
+## Lisa: valik loeb hüvitist samamoodi (`rag-v2/search-assist-26`)
+
+- Valiku juhis saab sama rea mis plaan (`RERANK_DEADLINE_INSTRUCTIONS`, summade rea järel). SÜS nimetab iga sotsiaaltoetust ja -teenust hüvitiseks ning selle andjat hüvitise andjaks.
+- Tema lõigud hüvitise kohta (taotlemine, otsuse tähtaeg, otsus, maksmine, asjaolude muutus) käivad ka küsitud toetuse või teenuse kohta.
+- Kui küsitakse sellist sammu, jääb lõik, mis seda ütleb, alles.
+- Kontroll: spetsialisti vestlus A11, A12, A17 kaks korda (F6).
