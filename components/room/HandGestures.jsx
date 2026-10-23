@@ -321,6 +321,10 @@ export default function HandGestures({ onStop, onOpenGuide, t }) {
     const pinch = createPinchTracker();
     const swipe = createSwipeTracker();
     const fist = createFistTracker();
+    /* `?kaed`: viimased ~30 s kaadreid ja tõmbeid window.__handTrace'is —
+       lävesid saab kalibreerida päris kaamera ees tehtud liigutuste peal. */
+    const trace = debug ? [] : null;
+    if (trace) window.__handTrace = trace;
 
     const stopStream = () => {
       stream?.getTracks().forEach((track) => track.stop());
@@ -371,10 +375,16 @@ export default function HandGestures({ onStop, onOpenGuide, t }) {
           lastMetrics = now;
           setMetrics(hand.metrics);
         }
+        if (trace) {
+          const m = hand?.metrics;
+          trace.push(hand ? { t: Math.round(now), x: hand.x, y: hand.y, edge: hand.edge, across: m?.across, twist: m?.twist, fist: closed.fist, pinched } : { t: Math.round(now) });
+          if (trace.length > 900) trace.splice(0, trace.length - 900);
+        }
         if (tap) sendHand({ action: "open" });
         // Rusikas ja tema järelvaikus ei ole tõmme: käsi ainult sulgub/avaneb.
         const still = pinched || closed.fist || closed.quiet;
         for (const event of swipe.update({ t: now, hand, pinched: still })) {
+          trace?.push({ t: Math.round(now), event: event.type, axis: event.axis, dir: event.dir });
           /* Riba ütleb, mis suund tuvastati — nii näeb kasutaja kohe, kas
              kaamera sai liigutusest aru (omanik 26.09: „ei saa aru, kas
              vasakule või paremale"). Peopesaga tehtud külgtõmme ei liiguta
@@ -485,7 +495,7 @@ export default function HandGestures({ onStop, onOpenGuide, t }) {
         {gesture ? <span className="hand-cam-gesture">{t(`room.hands_gesture_${gesture}`)}</span> : null}
         <p className="hand-cam-text" role="status">
           {debug && metrics
-            ? `${metrics.label || "–"} ${metrics.score.toFixed(2)} · ${metrics.curls.map((c) => c.toFixed(2)).join(" ")} · ${metrics.thumb.toFixed(2)} · ${metrics.pinch.toFixed(2)} · ↔${metrics.across.toFixed(2)}`
+            ? `${metrics.label || "–"} ${metrics.score.toFixed(2)} · ${metrics.curls.map((c) => c.toFixed(2)).join(" ")} · ${metrics.thumb.toFixed(2)} · ${metrics.pinch.toFixed(2)} · ↔${metrics.across.toFixed(2)} ${Math.round(metrics.twist)}°`
             : message}
         </p>
         {/* Info ja väljalülitus on üks paar riba otsas, mitte laiali
