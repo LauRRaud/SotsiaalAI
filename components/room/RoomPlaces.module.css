@@ -19,17 +19,14 @@
   --place-chip: clamp(3rem, 5.5vw, 6.75rem);
   --place-card: clamp(5.25rem, 9.8vw, 11.75rem);
   /* Avatud koha kaardid jäävad väiksemaks: kaamera suurendab neid 1,3 korda
-     ja servakoha (Mina, 19 %) neli veergu peavad ekraanile mahtuma. */
+     ja servakoha (Mina, 18 %) neli veergu peavad ekraanile mahtuma. */
   --place-open: clamp(5.25rem, 8.2vw, 9.75rem);
-  /* Märkide vahe külgsuunas mahutab hiire all kasvava kaardi (0,27 märki
-     kummalegi poole) ja jätab naabri ette veel 0,09 märki õhku, nii et kaart
-     ei kata naabrit (omanik 23.10: „ma ei taha, et need hakkavad kattuma,
-     ruumi on küll lehel"). Laiemaks ei saa: koha ja kasvanud servamärgi
-     ruum peab jääma ka naaberkoha ja ekraani serva ette (mõõdetud 1024–1920
-     px). Ridade vahel kasvab kaart ainult 0,06 märki, seal piisab
-     väiksemast vahest. */
-  --place-gap: calc(var(--place-chip) * 0.36);
-  --place-row-gap: calc(var(--place-chip) * 0.2);
+  /* Vahed on väikesed (omanik 23.10: „vahed ei pea suured olema, alles siis
+     on struktuurne muutumine, kui üks hakkab suurenema"). Ruum tekib alles
+     kasvamisel: kasvav märk läheb reas päriselt laiemaks ja naabrid nihkuvad
+     kõrvale, keegi ei jää kaardi alla. */
+  --place-gap: calc(var(--place-chip) * 0.14);
+  --place-row-gap: calc(var(--place-chip) * 0.14);
   --place-name-gap: calc(var(--place-chip) * 0.12);
   --place-name-h: 2.25rem;
   --place-ease: cubic-bezier(0.65, 0, 0.35, 1);
@@ -40,10 +37,10 @@
   --place-shade: rgba(8, 6, 5, 0.2);
   /* Hiire all kasvab märk väikeseks kaardiks, mille sees on nimi (omanik
      23.10: „kui suuremaks läheb, siis tekst juba kasti sees, mitte kasti
-     all"). Kaart on märgist 1,54 korda laiem ja 1,12 korda kõrgem. */
-  --place-pop-x: calc(var(--place-chip) * -0.27);
-  --place-pop-y: calc(var(--place-chip) * -0.06);
-  --place-pop-text: calc(var(--place-chip) * 1.54 - 1rem);
+     all"). Kaart on märgist 1,54 korda laiem ja sama kõrge, nii et
+     muutub ainult rida, kus ta seisab. */
+  --place-pop-w: calc(var(--place-chip) * 1.54);
+  --place-pop-text: calc(var(--place-pop-w) - 1rem);
 }
 :global(html.theme-light) .root {
   --place-halo: 0 1px 10px rgba(255, 255, 255, 0.8);
@@ -121,16 +118,15 @@
 }
 /* Hiire all astub kogu koht ettepoole (omanik 23.10: „võiks hoveriga kogu
    sektsioon suuremaks minna"). Ainult kogu toa vaates: kohal olles suurendab
-   kaamera. Klaviatuuriga sama, kui fookus on koha sees. 1,06, mitte 1,1:
-   äärmise märgi kasvanud kaart ei tohi puutuda naaberkohta ega ekraani serva. */
+   kaamera. Klaviatuuriga sama, kui fookus on koha sees. */
 @media (hover: hover) and (pointer: fine) {
   .world:not([data-focus]) .place:hover {
-    --place-zoom: 1.06;
+    --place-zoom: 1.1;
     z-index: 2;
   }
 }
 .world:not([data-focus]) .place:has(:focus-visible) {
-  --place-zoom: 1.06;
+  --place-zoom: 1.1;
   z-index: 2;
 }
 .world[data-focus] .place[data-on="0"] {
@@ -201,7 +197,10 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--place-row-gap) var(--place-gap);
-  max-width: calc(var(--place-chip) * 4 + var(--place-gap) * 3 + 2px);
+  /* Rida mahutab neli märki ja ühe kasvanud märgi lisalaiuse: kasvamisel
+     nihkuvad ainult sama rea naabrid, märk ei murdu teise ritta ja koht ise
+     ei muutu laiemaks. */
+  max-width: calc(var(--place-chip) * 3 + var(--place-pop-w) + var(--place-gap) * 3 + 2px);
 }
 /* Märgireas on kõik tööriistad; laual seisab ootav tööriist suurena ja tema
    märk on peidus (telefonis vastupidi, vt allpool). */
@@ -309,10 +308,11 @@
 }
 
 /* Märk: tööriist, mis praegu midagi ei oota. Hiire või fookusega kasvab ta
-   väikeseks kaardiks ja nimi tuleb kasti sisse ikooni alla (omanik 23.10:
-   „kui suuremaks läheb, siis tekst juba kasti sees, mitte kasti all";
-   heledamaks ta ei lähe). Märgi koht reas ei muutu: kasvab ainult klaas
-   (::before, inset), naabrid jäävad paigale ja paistavad serva alt härmatuna.
+   kaardiks ja nimi tuleb kasti sisse ikooni alla (omanik 23.10: „kui
+   suuremaks läheb, siis tekst juba kasti sees, mitte kasti all"; heledamaks
+   ta ei lähe). Märk läheb reas päriselt laiemaks ja sama rea naabrid
+   nihkuvad kõrvale: keegi ei jää kaardi alla („ma ei taha, et need hakkavad
+   kattuma") ja puhkeolekus on vahed väikesed.
    Klaas elab ::before-kihil, mitte märgil endal: backdrop-filteriga element
    on oma laste backdrop root ja märgi sisu ei saaks siis tuba hägustada.
    isolation hoiab kihid märgi sees; backdrop root'i see ei loo. */
@@ -331,7 +331,7 @@
   color: var(--room-text-soft);
   text-decoration: none;
   cursor: pointer;
-  transition: color 200ms var(--ease-soft);
+  transition: width 300ms var(--place-rise), color 200ms var(--ease-soft);
 }
 .mark::before {
   content: "";
@@ -343,7 +343,6 @@
   -webkit-backdrop-filter: blur(var(--card-glass-blur));
   backdrop-filter: blur(var(--card-glass-blur));
   pointer-events: none;
-  transition: inset 300ms var(--place-rise);
 }
 /* Ikoon ja nimi on üks rühm märgi keskel: kui nimi ilmub, tõuseb ikoon
    ise poole nime kõrguse võrra üles ja rühm jääb kaardi keskele. */
@@ -359,6 +358,7 @@
 .markIcon {
   display: grid;
   place-items: center;
+  transition: scale 300ms var(--place-rise);
 }
 .markIcon :global(svg) {
   width: calc(var(--place-chip) * 0.46);
@@ -393,34 +393,36 @@
   letter-spacing: 0.03em;
 }
 .mark:focus-visible {
+  width: var(--place-pop-w);
   color: var(--room-text);
   outline: none;
-  z-index: 2;
 }
 .mark:focus-visible::before {
-  inset: var(--place-pop-y) var(--place-pop-x);
   box-shadow: var(--focus-ring);
+}
+.mark:focus-visible .markIcon {
+  scale: 0.86;
 }
 .mark:focus-visible .markName {
   max-height: 2.5em;
-  margin-top: calc(var(--place-chip) * 0.06);
+  margin-top: calc(var(--place-chip) * 0.04);
   opacity: 1;
-  transition-delay: 0s, 0s, 90ms;
+  transition-delay: 0s, 0s, 120ms;
 }
 /* Hiire all ainult päris hiirega: puutel jääks :hover vajutuse järel külge. */
 @media (hover: hover) and (pointer: fine) {
   .mark:hover {
+    width: var(--place-pop-w);
     color: var(--room-text);
-    z-index: 2;
   }
-  .mark:hover::before {
-    inset: var(--place-pop-y) var(--place-pop-x);
+  .mark:hover .markIcon {
+    scale: 0.86;
   }
   .mark:hover .markName {
     max-height: 2.5em;
-    margin-top: calc(var(--place-chip) * 0.06);
+    margin-top: calc(var(--place-chip) * 0.04);
     opacity: 1;
-    transition-delay: 0s, 0s, 90ms;
+    transition-delay: 0s, 0s, 120ms;
   }
 }
 /* Ootab, aga suurte kaartide sekka ei mahtunud (või telefonis, kus suuri
@@ -450,20 +452,6 @@
   height: 1.15rem;
   line-height: 1.15rem;
 }
-/* Kasvanud märgil liigub täpp kaardi nurka kaasa. */
-.dot {
-  transition: top 300ms var(--place-rise), right 300ms var(--place-rise);
-}
-.mark:focus-visible .dot {
-  top: calc(var(--place-pop-y) - 0.3rem);
-  right: calc(var(--place-pop-x) - 0.3rem);
-}
-@media (hover: hover) and (pointer: fine) {
-  .mark:hover .dot {
-    top: calc(var(--place-pop-y) - 0.3rem);
-    right: calc(var(--place-pop-x) - 0.3rem);
-  }
-}
 
 :global(html[data-contrast="hc"]) .card,
 :global(html[data-contrast="hc"]) .mark::before {
@@ -487,9 +475,6 @@
        390 px telefonis 103 px kaart, 360 px juures 94 px. */
     --place-open: min(7rem, calc((100vw - 2rem) / 3.24 - 0.45rem));
     --place-name-h: 2rem;
-    /* Puutel märk ei kasva, seega jäävad vahed tihedaks. */
-    --place-gap: calc(var(--place-chip) * 0.14);
-    --place-row-gap: calc(var(--place-chip) * 0.14);
   }
   /* Sildi mõõt tuleb kaardi laiusest nii, et 14-täheline sõna (TEENUSEPROFIIL)
      mahub tervena; enne oli silt 8 px ja pikk sõna murdus. */
@@ -558,7 +543,7 @@
   .place,
   .card,
   .mark,
-  .mark::before,
+  .markIcon,
   .markName,
   .dot {
     transition: none !important;
@@ -573,7 +558,7 @@
 :global(html[data-reduce-motion="1"]) .place,
 :global(html[data-reduce-motion="1"]) .card,
 :global(html[data-reduce-motion="1"]) .mark,
-:global(html[data-reduce-motion="1"]) .mark::before,
+:global(html[data-reduce-motion="1"]) .markIcon,
 :global(html[data-reduce-motion="1"]) .markName,
 :global(html[data-reduce-motion="1"]) .dot {
   transition: none !important;
