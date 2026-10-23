@@ -38,4 +38,12 @@ Põhjus: valikumudel loeb liidetud järjekorrast 30 lõiku ja riiklike seaduste 
 
 ## Kontroll
 
-Fokusjooks F4 pärast deploy'd koos [ADR-183](adr-183-a-provision-list-is-read-whole.md) ja [ADR-184](adr-184-carer-benefit-person-and-deadline-terms.md) muudatustega. Samad 16 pööret kui F3-s: 9 osalist vastust ja iga vestluse avaküsimus (A01, A11, A19, B01, B19, C01, C11 on kontroll).
+- **F4** (väljalase `8af74266`, 23.10, samad 16 pööret kui F3-s: 9 osalist vastust ja iga vestluse avaküsimus): omavalitsuse kohti ei olnud üheski pöördes, kanaleid `municipal_*` ei olnud.
+  - Põhjus: `validateQuery` (`lib/rag-v2/search/ranking.js`) ehitab `poolReserve` uuesti üles ja jättis `municipal` välja. Parandatud.
+  - B20 leidis Narva korra siiski, sest plaani päring nimetas seekord Narvat („… tasuta Narva linn“) ja kord oli tavajärjekorras kohtadel 20 ja 29. Vastus: „Narva linnas osutatav võlanõustamisteenus on kliendile tasuta“ (korra § 1).
+- **Kordus ilma mudelikutseta** (värava salvestatud vektorid, valiku konks ei vali midagi; `abbreviation-municipal-1`, kolm küsimust Narva linna, Sillamäe linna ja Põlva valla skoobiga).
+  - Väljalase: 8 kanalit, bassein 36.
+  - Parandusega overlay: 12 kanalit (`municipal_*` 40 kandidaati igaüks), bassein 38, `municipal_reserved` 2.
+  - Kohad said vastava omavalitsuse aktid: Narva asendus- ja järelhooldusteenuse kord; Sillamäe asendus- ja järelhooldusteenuse kord ning sotsiaalteenuste kord; Põlva tugiisiku ja lapsehoiu korrad.
+  - Raja aeg oli sama mis väljalaskel (8,9 / 6,1 / 9,1 s vs 9,1 / 6,5 / 10,9 s).
+- **F5** pärast paranduse deploy'd: samad 16 pööret.
