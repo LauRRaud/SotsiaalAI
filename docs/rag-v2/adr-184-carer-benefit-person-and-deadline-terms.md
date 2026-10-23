@@ -30,14 +30,17 @@ Fokusjooksud F4 (väljalase `8af74266`) ja F5 (`e092de45`) 23.10: samad 16 pöö
 - **A04, mõlemas jooksus: isik `ema`, kirjed `tartu_linn`.** F3-s oli `user` ja `tallinn`.
   - Vastus ütleb Tartu tingimuse ja et see praegu ei ole täidetud: „Kui elad Tallinnas ja ema Tartus, ei ole see tingimus täidetud.“
   - Täiskohaga töö kohta ütleb vastus, et tingimused seda ei välista.
-- **A17 ühes jooksus kahest.**
-  - Plaan kirjutas mõlemas tähtaja päringu SÜS-i sõnadega: „SÜS hüvitise andja otsuse tegemise tähtaeg“.
-  - F4: valik võttis lõigu ja vastus ütles: „tuleb teha hindamisel põhinev otsus 10 tööpäeva jooksul taotluse esitamisest“ ja hilinemisest teavitamise kohustuse.
-  - F5: kuus SÜS-i lõiku olid kandidaatide seas (kohad 17–28), kuid valik ei võtnud ühtegi. Vastus ütles, et Tartu kord üldist tähtaega ei anna.
+- **A17: SÜS § 25 ei jõudnud kummaski jooksus paketti.** Plaan kirjutas mõlemas tähtaja päringu.
+  - **F4:** päring „SÜS hüvitise andja otsuse tegemise tähtaeg“ oli lühendiga ja kandidaatide seas polnud ühtegi SÜS-i lõiku.
+    - Vastus andis siiski tähtaja: „tuleb teha hindamisel põhinev otsus 10 tööpäeva jooksul taotluse esitamisest“ ja hilinemisest teavitamise kohustuse.
+    - Allikad olid SKA üldhooldusteenuse juhend ([ADR-182](adr-182-a-provision-brings-the-text-that-explains-it.md) selgitav lõik) ja HMS § 41.
+  - **F5:** päring „Sotsiaalseadustiku üldosa seadus hüvitise andja otsuse tegemise tähtaeg“ oli täisnimega ja kandidaatide seas oli kuus SÜS-i lõiku (kohad 17–28). Valik ei võtnud ühtegi. Vastus ütles, et Tartu kord üldist tähtaega ei anna.
 
-## Lisa: valik loeb hüvitist samamoodi (`rag-v2/search-assist-26`)
+## Lisa: valik loeb hüvitist samamoodi ja päring nimetab seaduse täisnimega (`rag-v2/search-assist-26`, `-27`)
+
+- `-27`: tähtaja päring nimetab seaduse täisnimega, mitte lühendiga (F4 vs F5 eespool).
 
 - Valiku juhis saab sama rea mis plaan (`RERANK_DEADLINE_INSTRUCTIONS`, summade rea järel). SÜS nimetab iga sotsiaaltoetust ja -teenust hüvitiseks ning selle andjat hüvitise andjaks.
 - Tema lõigud hüvitise kohta (taotlemine, otsuse tähtaeg, otsus, maksmine, asjaolude muutus) käivad ka küsitud toetuse või teenuse kohta.
 - Kui küsitakse sellist sammu, jääb lõik, mis seda ütleb, alles.
-- Kontroll: spetsialisti vestlus A11, A12, A17 kaks korda (F6).
+- Kontroll: spetsialisti vestlus A11, A12, A17 kaks korda (F6), väljalaskel `-27`.
