@@ -53,6 +53,6 @@ Sama küsimus kell 17.00 UTC indeksil `48dbc850` (korpus v92) andis vastuse `par
 
 - **Lõik „TÖÖVERSIOON“:** lisa 4 (WAST-i küsimustiku tööversioon) lehe päis „TÖÖVERSIOON“ loeti pealkirjaks. Sellest tekkis lõik, milles on peale pealkirja ainult see üks sõna. Selle vektor on peaaegu dokumendi pealkirja oma, seega oli lõik kõigis vektorikanalites 1. kohal ja võttis ühe kandidaadi koha. Valikumudel jättis selle välja. Pealkirjata lõikude filter seda ei püüdnud, sest lõigu tekst ei ole pealkiri. Lehe päise ja vesimärgi äratundmine on PDF-lugeja töö, mitte selle korpuse lisandi oma.
 - **SKA riskihindamise juhend:** SKA „Riskihindamine lähisuhtevägivalla juhtumites – tervishoiutöötajatele“ on koodihoidlas, kuid mitte RAG-is (`corpus_documents: 0`).
-- **Serveri ketas** on 97 % täis, vaba on 2,9 GB. Hoidla pea varukoopiaid on töökaustas 10 (`tmp/store-backup-v83` … `v92`), kokku 6,8 GB. Neid ei kustutatud, sest selleks on vaja omaniku otsust.
+- **Serveri ketas** oli 97–98 % täis. Töökaustas oli 10 hoidla pea varukoopiat (`tmp/store-backup-v83` … `v92`), kokku 6,8 GB. Omanik ütles 23.10.2026: „varukoopiad võib kustutada“. Kõik kümme kustutati. Vaba ruumi oli enne 2,0 GB ja pärast 8,7 GB, ketas on 89 % täis. Hoidla aktiivne pea (v93) jäi puutumata. Järgmine korpuse jooks teeb oma varukoopia `store-backup-v93` uuesti.
 
 Uuesti: sülearvutis `tmp/rag-v2-v93/` (plaan, ülevaatus, `tools/quality.mjs`, `tools/package.mjs`, `run-v93-start.sh`) ja serveris `run-v93.log`.
