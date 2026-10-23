@@ -37,4 +37,13 @@ Kuupäev: 23.10.2026. Teostus Claude Opus 5.5. Omanik 23.10.2026: „kas ta ei p
 | „Kas Tartus saab eakas koduteenust?“, päring „Tartu linn …“ | ainult Tartu linn | Tartu linn + vald |
 | „Ma ei ela enam Tartus“ pärast Tartu linna | eitus | eitus |
 
-**Pärast deploy'd:** pöörduja vestlused A (A01, A02, A04) ja C (C01, C10).
+**Pärast deploy'd** (väljalase `cb7a09fa`, 23.10 20.10 UTC; 5 pööret, 0,034 USD): pöörduja vestlused A (A01, A02, A04) ja C (C01, C10).
+
+- Plaan kirjutas taas „Tartu linn“ ja „Viljandi linn“. Skoop oli siiski kahe kandidaadiga ja kirjed tulid mõlemast: Tartu linn + vald 22 kirjet 95-st, Viljandi linn + vald 22 kirjet 68-st.
+- Iga vastus andis mõlema info ja lõppes küsimusega, kumb:
+  - **A01:** Tartu linna päevahoid ja koduteenus, Tartu valla koduteenus (tartuvald.ee). „Kas ema elab Tartu linnas või Tartu vallas?“
+  - **A02:** koduteenuse hind mõlemas, Tartu linnas 1 € käigu kohta + tunnitasu, Tartu vallas 40 / 60 / 120 € kuus tundide järgi.
+  - **A04:** Tartu linna tingimus (hooldaja samal aadressil; Tallinnas elades see ei täitu) ja Tartu valla taotlus.
+  - **C01:** Viljandi linna järelhooldus ja küsimus „Kas elad Viljandi linnas või Viljandi vallas?“.
+  - **C10:** Viljandi linna kontakt (Silja Simon) ja Viljandi valla sotsiaalosakonna juhi kontakt (Marta Rohtla).
+- Pöörde aeg oli 26–40 s.
