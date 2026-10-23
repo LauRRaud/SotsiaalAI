@@ -160,3 +160,14 @@ Omanik küsis, kas vastused läksid sisulisemaks ja kas pikem aeg tuleb sellest.
   - vastuse väljund 13 küsimusel +3% (F5) ja +5% (F7).
 - **F3 oli juhuslikult kiire:** kolm vastust (A02, B20, C11) tulid ilma mõtlemistokeniteta ja neli valikukutset lõppesid umbes 1,7 sekundiga.
 - **Hinnang:** kood lisab pöördele alla sekundi. Ülejäänud kasv tuleb mudelite teenuse kiirusest.
+
+### A17 pärast ADR-186 (23.10 õhtul)
+
+[ADR-186](../rag-v2/adr-186-a-provision-brings-its-act-definition.md) toob paketi seadusesätte kõrvale sama seaduse mõiste definitsiooni ja selle liigid. Vastuse juhis `m4-grounded-answer-20` loeb mõistet definitsiooni järgi.
+
+- **F9-s oli A17 kolm korda paketis SÜS § 25 koos §-dega 12, 13 ja 14.**
+  - **Kaks vastust on õiged:** sotsiaalteenus on mitterahaline hüvitis ja otsus tehakse üldjuhul kümne tööpäeva jooksul.
+  - **Kolmas vastus jättis § 25 kasutamata** ja ütles, et tähtaega ei anta.
+- **Õiguslikult vale väidet** („tähtaeg ei puuduta teenust“) F9-s ei olnud.
+- **A17 hinnang:** osaliselt, enamasti õige.
+- **A04 F9-s:** Tartu jäi linna ja valla vahel lahtiseks. Põhjus on eraldi piirkonna teema, ADR-186 seda ei mõjuta.

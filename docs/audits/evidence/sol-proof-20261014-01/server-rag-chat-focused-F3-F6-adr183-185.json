@@ -5,7 +5,9 @@
   "F4": "release 8af74266 (ADR-183 answer-19, ADR-184 search-assist-25, ADR-185 with the validateQuery gap: no municipal places), 16 turns, 0.099 USD",
   "F5": "release e092de45 (ADR-185 fixed), 16 turns, 0.090 USD",
   "F6": "release 58495e52 (search-assist-27), specialist conversation A11, A12, A17 twice, 6 turns, 0.034 USD",
-  "F7": "release 58495e52, the 16 turns of F3 again at 16:52-17:06 UTC (19:52-20:06 local), 0.096 USD; asked to separate the code from the model service: tokens and the search time without model calls are the code, tokens per second the service"
+  "F7": "release 58495e52, the 16 turns of F3 again at 16:52-17:06 UTC (19:52-20:06 local), 0.096 USD; asked to separate the code from the model service: tokens and the search time without model calls are the code, tokens per second the service",
+  "F8": "release 853dbec0 (ADR-186 first: definitions, two at most), specialist conversation A11, A12, A17 twice",
+  "F9": "release 616f16fb (ADR-186: a term with its kinds, three at most; answer-20), specialist conversation twice and the 16 turns of F3, 18:00-18:15 UTC, 0.132 USD"
  },
  "columns": [
   "id",
@@ -68,6 +70,18 @@
    "answer_ms": 16770,
    "answer_tokens_per_s": 124,
    "answer_output_tokens": 1347
+  },
+  "F9": {
+   "turn_ms": 44045,
+   "search_without_model_calls_ms": 4850,
+   "plan_ms": 8450,
+   "plan_tokens_per_s": 63,
+   "selection_ms": 13217,
+   "selection_tokens_per_s": 56,
+   "answer_ms": 16952,
+   "answer_tokens_per_s": 104,
+   "answer_output_tokens": 1243,
+   "note": "the 16 turns only"
   }
  },
  "F3": [
@@ -1405,6 +1419,184 @@
   ]
  ],
  "F7_columns": [
+  "id",
+  "turnId",
+  "kind",
+  "turn_ms"
+ ],
+ "F8": [
+  [
+   "A11a",
+   "a39df4ba-c2b9-45e0-a3c5-e3462cdf8247",
+   "partial",
+   35001
+  ],
+  [
+   "A12a",
+   "455ab321-5236-484a-9c50-6bae3ba9e42c",
+   "partial",
+   33009
+  ],
+  [
+   "A17a",
+   "2c1eeed6-5508-4882-ad31-8b567dba75fe",
+   "partial",
+   32222
+  ],
+  [
+   "A11b",
+   "84b0eb4f-c497-4993-8746-236130ee4e32",
+   "grounded",
+   32252
+  ],
+  [
+   "A12b",
+   "455ec794-1b78-4ea0-b396-bd18852eee84",
+   "partial",
+   31962
+  ],
+  [
+   "A17b",
+   "331b19ff-ca16-4874-9e77-89f6e0ca0d70",
+   "partial",
+   37749
+  ]
+ ],
+ "F9": [
+  [
+   "A11a9",
+   "2cc7490f-2df0-4d6b-8d52-ad5e7d08dfb8",
+   "partial",
+   35395
+  ],
+  [
+   "A12a9",
+   "020aa4a0-cfb5-4dcd-813e-5e1f11d15f9e",
+   "partial",
+   30344
+  ],
+  [
+   "A17a9",
+   "1ad2fbd7-a317-49e4-a69f-f02190b9c2a6",
+   "partial",
+   37025
+  ],
+  [
+   "A11b9",
+   "e95dd6a3-297f-4fe9-ad3a-16486d406187",
+   "grounded",
+   37356
+  ],
+  [
+   "A12b9",
+   "7c19a22d-99dd-462e-afb1-8d5829a77362",
+   "partial",
+   42028
+  ],
+  [
+   "A17b9",
+   "d1ecbe7f-6b6a-40b4-84cc-6fafe362f329",
+   "partial",
+   38150
+  ],
+  [
+   "A01",
+   "375d9e53-c2cd-476b-9298-8d346e9322de",
+   "grounded",
+   27414
+  ],
+  [
+   "A02",
+   "e1579ac7-4f56-4f93-b8fe-95e9edb0b08d",
+   "partial",
+   30596
+  ],
+  [
+   "A04",
+   "17b05607-0736-4d54-935a-1fdd0b112dac",
+   "partial",
+   37801
+  ],
+  [
+   "A11",
+   "9c91073b-2026-4cf7-8357-338a42027c4a",
+   "partial",
+   38055
+  ],
+  [
+   "A12",
+   "42dcb9cf-55b1-4b6b-a77f-7b149d795871",
+   "partial",
+   41316
+  ],
+  [
+   "A17",
+   "ca69e8e0-e9d2-4bf7-a31c-a5e546cfd260",
+   "partial",
+   38072
+  ],
+  [
+   "A19",
+   "2bb259fc-ac5f-4ceb-a73d-e4e7aca6a164",
+   "grounded",
+   53733
+  ],
+  [
+   "A25",
+   "26bbc7e9-ea91-4a66-be49-252d45bd1540",
+   "partial",
+   46159
+  ],
+  [
+   "B01",
+   "0686ee82-2109-4103-b90c-5a1596b62418",
+   "partial",
+   50532
+  ],
+  [
+   "B02",
+   "a257fe57-ab62-4411-b373-b6b0396dff9b",
+   "grounded",
+   53354
+  ],
+  [
+   "B19",
+   "34156288-4c60-412e-8ede-602a40d471f9",
+   "partial",
+   53528
+  ],
+  [
+   "B20",
+   "9d923070-6d1d-4f7a-9fd5-278526d55bed",
+   "grounded",
+   35993
+  ],
+  [
+   "C01",
+   "3ec4b39d-1c7d-4779-88d2-fa15d94cacd2",
+   "partial",
+   48196
+  ],
+  [
+   "C10",
+   "5a55bc33-7b47-4e47-bdee-bf10ad39f94e",
+   "grounded",
+   36341
+  ],
+  [
+   "C11",
+   "bd83bf4d-ead5-4454-8222-f0df61943e9a",
+   "grounded",
+   44045
+  ],
+  [
+   "C18",
+   "b2c22fa6-c6d1-4806-9715-897494d2ba95",
+   "partial",
+   49110
+  ]
+ ],
+ "F8_F9_columns": [
   "id",
   "turnId",
   "kind",

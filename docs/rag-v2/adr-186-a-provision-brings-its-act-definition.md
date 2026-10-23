@@ -87,3 +87,18 @@ Mõisteks ei loeta:
   - Lävi kehtib mõistele endale. Liigid tulevad temaga kaasa, nende oma lähedusest sõltumata.
   - Lisandusi on kuni 3.
 - **Vastuse juhis** `m4-grounded-answer-20` (vestluse juhis `m4-grounded-dialogue-55`). LEGAL PROVISIONS ütleb nüüd: kui siin antud sama seaduse lõik defineerib mõiste, mida teine lõik kasutab, loetakse mõistet definitsiooni järgi. Reegel kehtib kõigele, mida definitsioon mõiste alla loeb, ka siis, kui kasutaja nimetab seda teisiti.
+
+## Kontroll pärast täpsustust (F9) ja pealkirja reegel
+
+**F9** (väljalase `616f16fb`, 18.00–18.15 UTC): spetsialisti vestlus kaks korda ja samad 16 pööret kui F3-s.
+
+- **A17 kolm korda.** Igas pöördes oli paketis § 25 ning definitsioonid § 12, § 13 ja § 14.
+  - **Kaks vastust õiged.** A17a9: „Kui kavandatav otsus puudutab sotsiaalteenuse andmist või sellest keeldumist, on teenus mitterahaline hüvitis ning otsus tuleb üldjuhul teha kümne tööpäeva jooksul …“ (SÜS § 25 lg 1, § 14, § 12 lg 1). A17 vestluses samuti.
+  - **Üks vastus (A17b9) ei kasutanud § 25:** „Siin olev teave ei anna selle otsuse tegemiseks tähtaega.“ See on vastusemudeli puudus; otsing tõi kõik vajaliku.
+- **Definitsioon lisandus veel ühele pöördele:** C01, Viljandi sotsiaalhoolekandelise abi andmise kord § 47 „Eluruum“ (0,528, vastus ei kasutanud).
+  - See oli lugeja viga: sõna „eluruumi“ on § 47 pealkirja („Puudega isiku eluruumi kohandamise kulude hüvitamise toetus“) sees, kuid mõiste see pole.
+  - Parandus: pealkiri peab algama mõiste esimese sõnaga ja sisaldama kõiki mõiste sõnu. Sobivad näiteks § 14 „Mitterahaline hüvitis“, § 12 „Hüvitiste liigid“ ja SHS § 139³ „Pensionäritoetuse suurus, määramine ja maksmine“ mõiste „Pensionäritoetuse maksmise määr“ jaoks.
+  - Samast tulenevad SÜS-i ja SHS-i definitsioonid jäid alles.
+- **Auditi kordused kadusid.** Kui sama definitsioon sobis kahele sättele, oli ta kandidaat kaks korda. Nüüd on ta kandidaat ühe korra, esimese sätte juures.
+- **A04 ebaõnnestus F9-s raja välise põhjuse tõttu.** A01 plaan kirjutas „Tartu“ (linn või vald), olek jäi `region_required` ja hilisem „Tartu linn“ samast lausest seda ei uuendanud. Seda on näha ka F2-s; see on piirkonna loogika lahtine punkt, mitte selle raja oma.
+- **Ajad:** otsing ilma mudelikutseteta 4,85 s (F3 4,9 s), pöörde mediaan 44,0 s. Mudelikutsed olid veelgi aeglasemad: plaan 63, valik 56 ja vastus 104 tok/s.
