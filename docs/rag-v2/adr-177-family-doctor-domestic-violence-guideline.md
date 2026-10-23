@@ -79,3 +79,20 @@ Tõenduskatsete sessioon palus korpusesse lisada Sotsiaalministeeriumi infopäev
 - **Tõend:** `docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-g09-v94.json`.
 
 Uuesti: sülearvutis `tmp/rag-v2-v94/` ja serveris `run-v94.log`.
+
+## Korpus v95: eelnõu seletuskiri ja VIPS-spetsialistide baasõpe (23.10.2026)
+
+Omanik 23.10.2026 tõenduskatsete lahtiste punktide kohta: „muidugi kontrollide asi paranda ka“, ja selle töö kohta: „mõtle ise, tegutse“. Jooksu tegi aruande sessioon, mitte tõenduskatsete sessioon.
+
+- **G09 allikas:** „Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seaduse eelnõu seletuskiri“ (Sotsiaalministeerium, faili kuupäev 23.09.2025, 44 lk), alla laaditud Riigikogu eelnõude infosüsteemist `https://api.riigikogu.ee/api/files/64c0f7db-d45f-4914-a1d9-dac73ef84029/download`. Eelnõust tuli muudatus RT I, 30.12.2025, 3. Lk 17 ütleb, et eelnõu § 1 p 13 **täiendab** SHS § 133 lg 8: kehtiv reegel jätab üüri arvestamata abikaasade, registreeritud elukaaslaste ja esimese ja teise astme sugulaste vahel, ja muudatus lisab äriühingu. Fail `Andmebaasi/juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.pdf`, liik `policy_analysis`. Sisestus: 81 lõiku, lõikudesse jõudis 98 % sõnadest. Lk 17 selgitus on üks lõik. PDF-i tekstikihis on mõnes sõnas tühik („üleneja d“), ja lõikude jaotisepealkiri on mitmel pool vale („Lisaks muudetakse sotsiaalmaksuseaduses …“).
+- **U01 allikas:** VIPS-spetsialistide baasõppeprogrammi tekst (24 EAP, viis moodulit, piloot orienteeruvalt 2026. aasta lõpust 2027. aasta lõpuni). Omanik kopeeris selle 20.10.2026 (`Andmebaasi/Uut juurde/VIPS-spetsialist.txt`). Veebiaadressi ei leitud: tõenduskatsete sessioon otsis sm.ee lehekaardist ja saidiotsingust, TAI lehekaardist ja lehelt „Sekkumised“, vaimnetervis.ee-st ning veebiotsingust, ja 23.10 ka see sessioon sm.ee astmelise abi lehelt ja veebiotsingust. Allikaks võeti teksti esimene osa HTML-failina `vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.html`, ilma veebiaadressita; igakuine veebilehtede uuendus seda ei loe. Teine osa (VIPS-i pakkujad) jäi välja, sest Sotsiaalministeeriumi pakkujate leht on korpuses alates v91. Sisestus: 3 lõiku.
+- **Ülevaatus:** esimesel avaldamisel said mõlemad kirjed seletuskirja märkuse. Hoidla pea pandi varukoopiast tagasi, vale kviitung tõsteti kõrvale (`tmp/rag-v2-v95/discarded/`) ja rühm avaldati uuesti õigete märkustega. Pea põlvkond oli mõlemal korral sama (`generation_c0af7c15…`), sest see sõltub ainult dokumentidest.
+- **Server:** jooks 23.10.2026 kell 11.57.25–11.59.16 UTC, kulupiir 0,05 USD. Ost tegi 84/84 päringut, kulu 0,008556 USD. Indeks `search_generation_1bab8b41…` sisaldab 11 027 dokumenti ja 107 952 lõiku. Teenus töötab plaaniga `m4-corpus-chat-20261023b.json`.
+
+**G09 kordus v95-l (FAIL).** Kell 12.09 UTC pöörduja vaates, uues vestluses, jälg `3b3cf31a-fc96-417c-8ff9-0dba95ae1e9c`:
+
+- **Vastus:** „Kui sina ja su ema elate samas eluruumis ning teil on ühine majapidamine, siis üüri … arvesse ei võeta.“ ja küsimus, kas elatakse koos.
+- **Kandidaadid:** seletuskirja lõik ei olnud valikumudeli 36 kandidaadi seas. Slaidi 54 lõik oli 3. kohal, valikumudel valis selle teisena ja see oli paketis (S2), kuid vastus sellele ei viidanud. SKA KKK lõik (üüripind lapse isalt, „teise ja esimese astme üleneja ja alaneja“ leping ei ole eluruumi kasutamise alus) oli 5. kohal, aga seda ei valitud.
+- **Järeldus:** tõendeid suhtepõhise lugemise kohta on paketis piisavalt. Vastus loeb seaduse viidet „§ 131 lõike 7 punktis 1 või 2 nimetatud isikud“ koos lõike 7 sissejuhatusega. Parandus on vastuse juhises: [ADR-181](adr-181-a-reference-to-a-point-reads-the-point.md).
+
+Uuesti: sülearvutis `tmp/rag-v2-v95/` ja serveris `run-v95.log`.

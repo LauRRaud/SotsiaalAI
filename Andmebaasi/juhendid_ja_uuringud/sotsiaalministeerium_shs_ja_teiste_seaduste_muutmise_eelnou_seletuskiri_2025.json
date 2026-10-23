@@ -1,0 +1,29 @@
+{
+  "document_id": "sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025",
+  "title": "Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seaduse eelnõu seletuskiri (2025)",
+  "source_id": "sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025",
+  "source_type": "policy_analysis",
+  "authority": "Sotsiaalministeerium",
+  "publisher": "Sotsiaalministeerium",
+  "language": "et",
+  "source_url": "https://api.riigikogu.ee/api/files/64c0f7db-d45f-4914-a1d9-dac73ef84029/download",
+  "source_path": "sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.pdf",
+  "source_format": "pdf",
+  "source_sha256": "24a18c677cfa5370630409a41ee7c46ce84ddce7554c1b833717251359c86277",
+  "last_checked": "2026-10-23",
+  "retrieved_at": "2026-10-23T11:50:52.000Z",
+  "source_status": "active",
+  "historical": false,
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "audience": "BOTH",
+  "collection_id": "national_guidelines",
+  "year": 2025,
+  "collection": {
+    "collected_from": "Riigikogu eelnõude infosüsteemi fail https://api.riigikogu.ee/api/files/64c0f7db-d45f-4914-a1d9-dac73ef84029/download (faili nimi Seletuskiri.pdf)",
+    "made_by": "Sotsiaalministeeriumi koostatud seletuskiri eelnõule, millega muudeti sotsiaalhoolekande seadust ja teisi seadusi (muu hulgas toimetulekutoetus, viipekeele kaugtõlge, hooldusteenuse hügieenivahendid, üksi elava pensionäri toetus). Seadus avaldati RT I, 30.12.2025, 3.",
+    "pages": 44,
+    "words": 18677,
+    "note": "Faili metaandmetes on koostaja Kadri Mets ja loomise kuupäev 23.09.2025; see on eelnõu seletuskiri, mitte seadus. Lk 17 selgitab SHS § 133 lg 8 muudatust (üür lähisugulaste ja seotud äriühingute vahel) ja lk 11 SHS § 132 lg 5 muudatust."
+  }
+}

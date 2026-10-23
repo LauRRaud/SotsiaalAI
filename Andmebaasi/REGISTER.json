@@ -11,8 +11,8 @@
       "sources": 892
     },
     "juhendid_ja_uuringud": {
-      "files": 374,
-      "sources": 187
+      "files": 378,
+      "sources": 189
     },
     "KOV": {
       "files": 234,
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v94",
-    "index_generation": "d0945950",
+    "version": "v95",
+    "index_generation": "1bab8b41",
     "read_at": "2026-10-23",
-    "documents": 11025,
-    "units": 107868,
+    "documents": 11027,
+    "units": 107952,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,12 +105,12 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 584,
+        "documents": 586,
         "by_source_type": {
           "research_report": 281,
-          "information_material": 146,
+          "information_material": 147,
           "official_guideline": 143,
-          "policy_analysis": 14
+          "policy_analysis": 15
         }
       },
       {
@@ -195,12 +195,12 @@
         }
       },
       "juhendid_ja_uuringud": {
-        "documents": 173,
+        "documents": 175,
         "by_source_type": {
-          "information_material": 82,
+          "information_material": 83,
           "research_report": 46,
           "official_guideline": 39,
-          "policy_analysis": 6
+          "policy_analysis": 7
         }
       }
     },
@@ -35396,6 +35396,23 @@
       "sha256": "ddd2a12fa13944aa6dbd2a3ba197a4604810e8a158ddb77a43580a870311445c"
     },
     {
+      "path": "juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.pdf",
+      "category": "juhendid_ja_uuringud",
+      "role": "source",
+      "sha256": "24a18c677cfa5370630409a41ee7c46ce84ddce7554c1b833717251359c86277",
+      "original_path": "api.riigikogu.ee/api/files/64c0f7db-d45f-4914-a1d9-dac73ef84029/download",
+      "title": "Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seaduse eelnõu seletuskiri (2025)",
+      "metadata_path": "juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.json",
+      "review_status": "metadata_conversion_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.json",
+      "category": "juhendid_ja_uuringud",
+      "role": "metadata",
+      "sha256": "c109228c9561bda034218cd311c02cbdad644486506013914574d1b012c1d05c"
+    },
+    {
       "path": "juhendid_ja_uuringud/sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald.pdf",
       "category": "juhendid_ja_uuringud",
       "role": "source",
@@ -36546,6 +36563,23 @@
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
       "sha256": "00788be54d55245b05a61c2a381202cd0ba85ab08c9f9098d3936fcda388ae4a"
+    },
+    {
+      "path": "juhendid_ja_uuringud/vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.html",
+      "category": "juhendid_ja_uuringud",
+      "role": "source",
+      "sha256": "c50452dc45cd9028112b6201122dc5da53ab54202b1afd0236f198eb5a1354d2",
+      "original_path": "Uut juurde/VIPS-spetsialist.txt (omaniku koopia 20.10.2026, veebiaadress ei ole teada)",
+      "title": "VIPS-spetsialistide baasõppeprogramm",
+      "metadata_path": "juhendid_ja_uuringud/vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.json",
+      "review_status": "metadata_conversion_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "juhendid_ja_uuringud/vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.json",
+      "category": "juhendid_ja_uuringud",
+      "role": "metadata",
+      "sha256": "51efb30b3e7f4920b5a8bf82ea29819aa8ff8675e3e05ea512075d172b988bfd"
     },
     {
       "path": "juhendid_ja_uuringud/vordoigusvolinik_arvamus_toovoimetuslehe_teemal.pdf",

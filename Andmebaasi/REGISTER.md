@@ -5,7 +5,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | Kaust | Allikafaile | Faile kokku | Kasutus |
 |---|---:|---:|---|
 | ajakiri_sotsiaaltoo | 892 | 1784 | 892 artiklit: 849 PDF-i ja 43 HTML-i koos metaandmetega. |
-| juhendid_ja_uuringud | 187 | 374 | Unikaalsed PDF-id; JSON säilitab kohaliku ja serveri metaandmevariandid. |
+| juhendid_ja_uuringud | 189 | 378 | Unikaalsed PDF-id; JSON säilitab kohaliku ja serveri metaandmevariandid. |
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v94)
+## RAG-i seis: mis on serveris (korpus v95)
 
-Seis 23.10.2026: serveris töötav RAG (korpus **v94**, indeks `d0945950`) sisaldab **11 025 dokumenti** (107 868 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 23.10.2026: serveris töötav RAG (korpus **v95**, indeks `1bab8b41`) sisaldab **11 027 dokumenti** (107 952 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -27,14 +27,14 @@ Seis 23.10.2026: serveris töötav RAG (korpus **v94**, indeks `d0945950`) sisal
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 598 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 584 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Juhendid, infomaterjalid ja uuringud | 586 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 1856 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Eetikaruumi eetikamaterjalid | 35 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **11025** | |
+| **Kokku** | **11027** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -46,7 +46,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
 | `oigusaktid` | 598 | legal_act 598 |
 | `veebilehed` | 361 | web_page 360, research_report 1 |
-| `juhendid_ja_uuringud` | 173 | information_material 82, research_report 46, official_guideline 39, policy_analysis 6 |
+| `juhendid_ja_uuringud` | 175 | information_material 83, research_report 46, official_guideline 39, policy_analysis 7 |
 
 Koodihoidlas (GitHub) ei ole 4503 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
@@ -1155,6 +1155,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | Puuetega inimeste ja nende pereliikmete hoolduskoormuse uuring 2009 | [juhendid_ja_uuringud/sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_puuetega_inimeste_ja_nende_pereliikmete_hoolduskoormuse_uuri.pdf>) |
 | Puuetega inimeste töötamist toetavad meetmed | [juhendid_ja_uuringud/sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_puuetega_inimeste_tootamist_toetavad_meetmed.pdf>) |
 | Seksuaalvägivalla levimus ja hoiakud Eestis | [juhendid_ja_uuringud/sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_seksuaalvagivalla_levimus_ja_hoiakud_eestis.pdf>) |
+| Sotsiaalhoolekande seaduse ja teiste seaduste muutmise seaduse eelnõu seletuskiri (2025) | [juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_shs_ja_teiste_seaduste_muutmise_eelnou_seletuskiri_2025.pdf>) |
 | Soolise võrdõiguslikkuse monitooring 2021: Lähisuhtevägivald | [juhendid_ja_uuringud/sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_soolise_vordoiguslikkuse_monitooring_2021_lahisuhtevagivald.pdf>) |
 | Sotsiaalhoolekande programm 2024–2027 | [juhendid_ja_uuringud/sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_sotsiaalhoolekande_programm_2024_2027.pdf>) |
 | Transpordi ja tehiskeskkonna ligipääsetavuse analüüs | [juhendid_ja_uuringud/sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_transpordi_ja_tehiskeskkonna_ligipaasetavuse_analuus.pdf>) |
@@ -1208,6 +1209,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | Töövõime toetamise skeemi loomise ja juurutamise vahehindamise lõpparuanne | [juhendid_ja_uuringud/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami.pdf](<juhendid_ja_uuringud/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami.pdf>) |
 | Töövõime toetamise skeemi loomise ja juurutamise vahehindamise infoleht | [juhendid_ja_uuringud/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2.pdf](<juhendid_ja_uuringud/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_skeemi_loomise_ja_juurutamise_vahehindami_2.pdf>) |
 | Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine | [juhendid_ja_uuringud/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja.pdf](<juhendid_ja_uuringud/tootukassa_ska_sotsiaalministeerium_toovoime_toetamise_susteemi_loomise_ja_juurutamise_makromaja.pdf>) |
+| VIPS-spetsialistide baasõppeprogramm | [juhendid_ja_uuringud/vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.html](<juhendid_ja_uuringud/vips_spetsialistide_baasoppeprogramm_koopia_2026-10-20.html>) |
 | Arvamus töövõimetuslehe teemal | [juhendid_ja_uuringud/vordoigusvolinik_arvamus_toovoimetuslehe_teemal.pdf](<juhendid_ja_uuringud/vordoigusvolinik_arvamus_toovoimetuslehe_teemal.pdf>) |
 | Juhendmaterjal karjäärispetsialistidele | [juhendid_ja_uuringud/vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele.pdf](<juhendid_ja_uuringud/vordoigusvolinik_juhendmaterjal_karjaarispetsialistidele.pdf>) |
 | Võin olla puudega – laste piltsõnastik puuetest | [juhendid_ja_uuringud/vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest.pdf](<juhendid_ja_uuringud/vordoigusvolinik_voin_olla_puudega_laste_piltsonastik_puuetest.pdf>) |
@@ -2365,7 +2367,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v94, 23.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v95, 23.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 
