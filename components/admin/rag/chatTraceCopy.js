@@ -41,6 +41,7 @@ const ET = {
     question_reference: "küsimuses nimetatud säte",
     companion_provision: "sama asja ütlev seaduse säte (vektori lähedus)",
     explaining_passage: "sätet nimetav selgitus",
+    definition: "sama seaduse mõiste definitsioon",
     list_continuation: "kooloniga lõppeva lõigu järg",
     version_counterpart: "sama sätte teine redaktsioon",
     semantic_dependency: "teadmiskaardi seos",
@@ -57,14 +58,14 @@ const ET = {
   channels: { lexical: "sõnaotsing", vector: "vektor (küsimus)", vectorN: "vektor (variant {n})", reserve: "seaduste reserv", municipal: "omavalitsuse aktide reserv" },
   additions: {
     cross_references: "Sama seaduse viited", question_references: "Küsimuses nimetatud säted", named_act_references: "Teise seaduse viited",
-    companion_provisions: "Sama asja ütlevad säted", explaining_passages: "Sätet nimetavad selgitused", list_continuations: "Loetelu järg", dependency_additions: "Teadmiskaardi seosed"
+    companion_provisions: "Sama asja ütlevad säted", explaining_passages: "Sätet nimetavad selgitused", definitions: "Mõistete definitsioonid", list_continuations: "Loetelu järg", dependency_additions: "Teadmiskaardi seosed"
   },
   explain: [
     "AI loeb küsimuse ja eelnevad pöörded ning kirjutab otsinguvariandid (punkt 2). Ta tuvastab ka kohad ja isiku, et valida omavalitsuse kirjed ja kehtivad seaduseredaktsioonid.",
     "Küsimust ja iga varianti otsitakse kahes kanalis: sõnaotsing (eesti keele lemmad) ja vektorotsing (tähenduse lähedus). Kummastki tuleb kuni {candidates} kandidaati.",
     "Kohad liidetakse (RRF): kanali koht k annab 1/(k + {rrf}) punkti korda kanali kaal. Vektorikanali kaal on {vector}, sõnaotsingu kaal {lexical}.",
     "Valikumudel loeb liidetud järjekorrast kuni 30 lõiku (ühest dokumendist kuni {poolPerDocument}) ja lisaks riiklike seaduste ning pöörde omavalitsuse enda õigusaktide reservkohad. Ta jätab alles ainult küsimusse puutuvad, oma järjekorras.",
-    "Paketti tuleb kuni {topK} valitud lõiku {contextTokens} tokeni piires. Seejärel lisarajad: sama seaduse viited (kuni {referenceAdditions}), teise seaduse viited ja küsimuses nimetatud säted (kuni {namedActAdditions}, omal kohal), sama asja ütlev säte, paketi seadusesätet nimetav selgitus (kuni 2, iga sätte järel) ja loetelu järg. Lisarajad jagavad {expansionContextTokens} tokenit. Kokku on kuni {finalLimit} lõiku; ühest dokumendist kuni {perDocument}.",
+    "Paketti tuleb kuni {topK} valitud lõiku {contextTokens} tokeni piires. Seejärel lisarajad: sama seaduse viited (kuni {referenceAdditions}), teise seaduse viited ja küsimuses nimetatud säted (kuni {namedActAdditions}, omal kohal), sama asja ütlev säte, paketi seadusesätte mõiste definitsioon samast seadusest (kuni 2, iga sätte järel), paketi seadusesätet nimetav selgitus (kuni 2, iga sätte järel) ja loetelu järg. Lisarajad jagavad {expansionContextTokens} tokenit. Kokku on kuni {finalLimit} lõiku; ühest dokumendist kuni {perDocument}.",
     "Metaandmed (allika liik, väljaandja, kuupäev, kehtivus, omavalitsus) skoori otse ei muuda. Need otsustavad, millised dokumendid otsingusse üldse lähevad (kehtiv redaktsioon, pöörde omavalitsus), ja lähevad vastusele allikakaardina kaasa. Pealkirjatee ja dokumendi pealkiri on iga lõigu otsitava teksti alguses, seega mõjutavad need nii sõna- kui ka vektorotsingut. Lõigud tehakse dokumendi pealkirjade järgi: üks alajaotis on üks või mitu lõiku."
   ]
 };
@@ -99,7 +100,7 @@ const EN = {
   stages: { plan: "search plan", embedding: "vectors", rerank: "selection model", answer: "answer", answer_retry: "answer (retry)" },
   reasons: {
     ranked_seed: "ranked passage (search + selection model)", cross_reference: "own-act reference", cross_reference_named: "other act's reference",
-    question_reference: "provision the question names", companion_provision: "law provision saying the same (vector nearness)", explaining_passage: "explanation naming the provision",
+    question_reference: "provision the question names", companion_provision: "law provision saying the same (vector nearness)", definition: "the same act's definition of a term", explaining_passage: "explanation naming the provision",
     list_continuation: "continuation of a passage ending with a colon", version_counterpart: "same provision in the other version",
     semantic_dependency: "knowledge card relation", structural_expansion: "neighbouring passage", structured_record: "municipal record",
     service_provider_profile: "service provider profile", unknown: "unknown"
@@ -112,14 +113,14 @@ const EN = {
   channels: { lexical: "lexical", vector: "vector (question)", vectorN: "vector (variant {n})", reserve: "law reserve", municipal: "municipal acts reserve" },
   additions: {
     cross_references: "Own-act references", question_references: "Provisions named in the question", named_act_references: "Other acts' references",
-    companion_provisions: "Provisions saying the same", explaining_passages: "Explanations naming a provision", list_continuations: "List continuations", dependency_additions: "Knowledge card relations"
+    companion_provisions: "Provisions saying the same", explaining_passages: "Explanations naming a provision", definitions: "Definitions of terms", list_continuations: "List continuations", dependency_additions: "Knowledge card relations"
   },
   explain: [
     "The AI reads the question and the earlier turns and writes search variants (section 2). It also finds places and the person, to choose the municipality's records and the law versions in force.",
     "The question and each variant are searched in two channels: lexical (Estonian lemmas) and vector (nearness of meaning). Each gives up to {candidates} candidates.",
     "Places are fused (RRF): place k in a channel gives 1/(k + {rrf}) points times the channel's weight. The vector channel weighs {vector}, the lexical one {lexical}.",
     "The selection model reads up to 30 passages of the fused order (at most {poolPerDocument} of one document) plus the reserved places of national laws and of the turn's municipality's own regulations, and keeps only those that bear on the question, in its own order.",
-    "Up to {topK} kept passages enter the packet within {contextTokens} tokens. Then the additional lanes: own-act references (up to {referenceAdditions}), other acts' references and provisions the question names (up to {namedActAdditions}, in places of their own), the provision saying the same, an explanation naming a provision of the packet (up to 2, each after its provision) and list continuations, sharing {expansionContextTokens} tokens. At most {finalLimit} passages in all, {perDocument} of one document.",
+    "Up to {topK} kept passages enter the packet within {contextTokens} tokens. Then the additional lanes: own-act references (up to {referenceAdditions}), other acts' references and provisions the question names (up to {namedActAdditions}, in places of their own), the provision saying the same, the same act's definition of a term a provision of the packet uses (up to 2, each after its provision), an explanation naming a provision of the packet (up to 2, each after its provision) and list continuations, sharing {expansionContextTokens} tokens. At most {finalLimit} passages in all, {perDocument} of one document.",
     "Metadata (source type, publisher, date, validity, municipality) does not change a score directly. It decides which documents are searched at all (the version in force, the turn's municipality) and goes to the answer as the source card. The heading path and the document title begin every passage's searched text, so they affect both the lexical and the vector search. Passages follow the document's headings: one subsection is one or more passages."
   ]
 };
