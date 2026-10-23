@@ -43,3 +43,21 @@ Töökoht otsustab spetsialisti küsimuses, kumma omavalitsuse korda ja kontakte
 | Sama koos lausega „Linn suunas meile kliendi.“ | Tartu linn | Tartu linn (inimese sõna „linn“) |
 | „Tegutseme Viljandis võlanõustajana“ | — | Viljandi linn + vald |
 | „Narva linn suunas meile kliendi“ | Narva linn | Narva linn |
+
+## Pärast deploy'd ja täiendus (sama päev)
+
+**Väljalase `bae3b672`** (3 pööret, 0,020 USD):
+
+- **Spetsialist „Töötan Tartus sotsiaaltöötajana …“:** otsiti mõlemast omavalitsusest ja vastus küsis linna või valla kohta.
+- **Teenuseosutaja „Tegutseme Viljandis võlanõustajana …“:** vastus andis Viljandi linna võlanõustamise korra ja küsis „Kas pead silmas Viljandi linna või Viljandi valda?“.
+- **Spetsialisti teine pööre („Kellega … peaksin juhtumit arutama …?“) otsiti ainult Tartu linnast.** Sõnum ei nimetanud kohta, plaani päring nimetas „Tartu linn“ ja kantud töökohad (linn + vald) seda ei takistanud.
+
+**Täiendus:** `sharedNamePlanned` loeb professionaali töökohti ka varasemast pöördest. Kui need on veel kaks omavalitsust ja päring nimetab ühe neist, jäävad mõlemad.
+
+Kordus ilma mudelikutseteta:
+
+| Juhtum | Tulemus |
+|---|---|
+| Teine pööre, töökoht kantud linn + vald, päring „Tartu linn“ | Tartu linn + vald (enne ainult Tartu linn) |
+| Pärast vastust töökoht Tartu linn, päring „Tartu linn“ | Tartu linn |
+| Pöörduja | endine |
