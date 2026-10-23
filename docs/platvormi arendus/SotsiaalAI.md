@@ -92,6 +92,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.10 õhtu: sõnad ei murdu enam keskelt (Claude):** omanik: telefonis ja osaliselt laual
+lõigati tekste kahele reale („Mõõduk|as“). Sõna keskelt murdmist otsiti mõõtja skriptiga
+(`Range.getClientRects` iga sõna kohta) peamenüüst, profiilist, töölaualt, kovisioonist,
+Tööheaolu karussellist ja kõigist 13 Tööheaolu vormist 360–1920 px ja kolmes
+ekraaniprofiilis. Leiud olid ainult ühistes vormiosades: `ChoiceRow` (`overflow-wrap:
+anywhere`, kriipsuta lõikamine) ja `ChoiceChips` (ahne poolitus „ko-gemuste“). Nüüd: laual
+on skaala veerg vähemalt pikima sõna laiune, kitsal ekraanil väiksem polster; poolitada
+(sidekriipsuga) tohib ainult 19+ tähelist sõna, mitmerealine silt on tasakaalus. Jääk:
+„Omavalitsuste-vaheline“ poolitatakse telefonis (ei mahu tervena). Töölaua telefoni avatud
+koha sildid olid 8 px — nüüd kaardid täidavad laiuse (kaamera 1,2 → 1,08) ja 14-täheline
+sõna mahub tervena. Safari eesti poolitust ei tunne: seal murdub ainult 19+ täheline sõna.
+
 **23.10 Töölaud tootmise mõõtu, Tööheaolu väiksemaks (Claude):** omanik: töölaud „liiga
 beeta“ — märgid liiga väikesed, hiire all võiks kogu koht suureneda, kohtade allkirju pole
 vaja, nime silt paistis läbi; Tööheaolu „häirivalt suur veidi“. Märk 3,3vw → 5,5vw (1920 px

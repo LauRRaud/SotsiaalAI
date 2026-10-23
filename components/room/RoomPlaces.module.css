@@ -450,8 +450,20 @@
   .root {
     /* 52 px, lühikesel telefonil (667 px) 49 px: kolm kohta mahuvad üksteise alla. */
     --place-chip: clamp(2.75rem, 7.4svh, 3.25rem);
-    --place-open: 5.5rem;
+    /* Avatud koha kolm veergu täidavad laiuse (kaamera 1,08×, lib/roomPlaces.js):
+       390 px telefonis 103 px kaart, 360 px juures 94 px. */
+    --place-open: min(7rem, calc((100vw - 2rem) / 3.24 - 0.45rem));
     --place-name-h: 2rem;
+  }
+  /* Sildi mõõt tuleb kaardi laiusest nii, et 14-täheline sõna (TEENUSEPROFIIL)
+     mahub tervena; enne oli silt 8 px ja pikk sõna murdus. */
+  .all .cardName {
+    font-size: min(0.7rem, calc((var(--place-card) - 0.8rem) / 8.4));
+    letter-spacing: 0.03em;
+  }
+  .all .cardName[data-long="1"] {
+    font-size: min(0.62rem, calc((var(--place-card) - 0.8rem) / 9.8));
+    letter-spacing: 0.01em;
   }
   .place,
   .light {

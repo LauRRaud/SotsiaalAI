@@ -27,7 +27,20 @@
   font-size: var(--fs-small, 0.875rem);
   line-height: 1.25;
   text-align: center;
-  overflow-wrap: anywhere;
+  /* Sõna ei lõigata suvalisest kohast (omanik 23.10: „Mõõduk|as" nii telefonis
+     kui laual). `anywhere` laskis veerul kahaneda alla pikima sõna ja murdis
+     sõna kriipsuta; `break-word` murrab ainult siis, kui sõna ei mahu ka
+     tervele reale, ja ei muuda lahtri min-content mõõtu. Laual on veerud
+     pikima sõna laiused (allpool).
+     Mitmerealine silt jaotatakse ühtlasteks ridadeks („Töövälise /
+     kättesaadavuse piir", mitte „… kättesaada- / vuse piir"). Poolitada
+     (silbi kohalt, sidekriipsuga, lang="et") tohib ainult 19+ tähelist sõna,
+     mis kitsas lahtris tervena ei mahu: lühema sõna poolitas tasakaalustus
+     muidu ise („Töökorraldus-likult", „prot-sessi"). */
+  overflow-wrap: break-word;
+  hyphens: auto;
+  hyphenate-limit-chars: 19 7 6;
+  text-wrap: balance;
 }
 .option[aria-checked="true"] {
   color: var(--text-warm);
@@ -58,8 +71,11 @@
 }
 
 /* --- scale: silt vasakul, lühike skaala paremal ühes reas ------------------- */
+/* Skaala veerg ei kahane alla oma sõnade: lahter on vähemalt pikima sõna
+   laiune (min-content), muidu lõikas 1,25× ekraaniprofiil „Mõõdukas" pooleks.
+   Kitsikuses annab ruumi küsimuse silt, mis murdub tühiku kohalt. */
 .row[data-layout="scale"] {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 58%);
+  grid-template-columns: minmax(0, 1fr) minmax(min-content, 58%);
   align-items: center;
   gap: 0.4rem 1.1rem;
   padding-block: 0.3rem;
@@ -69,7 +85,7 @@
   border-bottom: 0;
 }
 .row[data-layout="scale"] .options {
-  grid-template-columns: repeat(var(--choice-count, 3), minmax(0, 1fr));
+  grid-template-columns: repeat(var(--choice-count, 3), minmax(min-content, 1fr));
 }
 
 /* Kitsas pind: skaala läheb sildi alla (lahtrid jäävad ühes reas ühelaiused),
@@ -79,6 +95,15 @@
   .row[data-layout="scale"] {
     grid-template-columns: minmax(0, 1fr);
     padding-block: 0.55rem;
+  }
+  /* Kitsal pinnal on skaala lahtrid jälle võrdsed ja täidavad rea; polster
+     ja kiri on veidi väiksemad, et „Mõõdukas" ja „Üldse mitte" mahuksid
+     390 px telefonis ühele reale (lahter 84 px). */
+  .row[data-layout="scale"] .options {
+    grid-template-columns: repeat(var(--choice-count, 3), minmax(0, 1fr));
+  }
+  .row[data-layout="scale"] .option {
+    font-size: clamp(0.8125rem, 3.5vw, 0.875rem);
   }
   /* Telefonis kaks veergu terve laiuse peale: puutesiht on tähtsam. */
   .row[data-layout="stack"] .options {
@@ -91,6 +116,7 @@
   }
   .option {
     min-height: var(--hit-target-min, 2.75rem);
+    padding-inline: 0.35rem;
   }
 }
 /* Kitsas töölaua paneel ei ole telefon: 34 kuni 40 rem laiusele pinnale mahub
@@ -106,6 +132,12 @@
     grid-template-columns: minmax(0, 1fr);
     padding-block: 0.55rem;
   }
+  .row[data-layout="scale"] .options {
+    grid-template-columns: repeat(var(--choice-count, 3), minmax(0, 1fr));
+  }
+  .row[data-layout="scale"] .option {
+    font-size: clamp(0.8125rem, 3.5vw, 0.875rem);
+  }
   /* Telefonis kaks veergu terve laiuse peale: puutesiht on tähtsam. */
   .row[data-layout="stack"] .options {
     display: grid;
@@ -117,5 +149,6 @@
   }
   .option {
     min-height: var(--hit-target-min, 2.75rem);
+    padding-inline: 0.35rem;
   }
 }
