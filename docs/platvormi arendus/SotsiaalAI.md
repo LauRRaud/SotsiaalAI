@@ -4100,7 +4100,7 @@ iOS/Safari peal, ja art. 28 paberitöö. Kumbki ei blokeeri midagi täna.
 | **Lokaalsed mudelid** | Whisper/whisper.cpp eesti dikteerimiseks seadmes; VAD; eesti TTS-mudel; PII-märkaja | päästikud: riigipartneri „kus heli töödeldakse?", kasvav pilvearve, võrguta välitöö |
 | **Häälvestlus supervisiooni-/kovisiooniruumis** | `ideed.md` 23.6. Range leping: ei salvestata vaikimisi, **automaatset transkripti ei tehta, AI ei kuula ega koosta kokkuvõtet**, superviisor ei saa ühepoolselt salvestamist käivitada | ESTA partnerlus |
 | **Piiratud häälruum tervishoiukontaktis** | `ideed.md` MVP-loend | TERVIK-reform |
-| **Kaamera / žestid** | MediaPipe brauseris, **kaader ei lahku seadmest**; vehe = liigu, näpistus = vali | VR-viilude järel |
+| **Kaamera / žestid** | MediaPipe brauseris, **kaader ei lahku seadmest**; vehe = liigu, näpistus = vali. Ruumis koodis olemas (`HandGestures.jsx`, `lib/handGestures.js`). 23.10 (omanik: „vasakule ja paremale ei tööta eriti"): korduvad tõmbed ühes suunas loevad igaüks, küljemõõdule lisandus käe keerunurk (45° keeratud käsi loeb), tõmme + langetamine ei kao; sisse logimata külastajale ei laadinud eelavamise värav mudelit (`.task`) üldse. Päris käega kaamera ees `not_run`: keerunurga lävi 35° vajab kalibreerimist (`?kaed` → `window.__handTrace`) | VR-viilude järel |
 
 ---
 ## S4. Kogu lahtine töö — täisnimekiri
