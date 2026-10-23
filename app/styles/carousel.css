@@ -247,13 +247,13 @@
      44 px vaba). Kalle laiendab astme piirdekasti rohkem kui ta ise
      kõrge on — 5deg juures jäi tagumiste astmete vahele 7 px ja nad
      lugesid kattuvatena. */
-  --desk-gap-y: clamp(0.6rem, 2vh, 1.5rem);
-  /* ASTMELINE lisavahe. Perspektiiv surub kaugemad read kaovpunkti poole
-     kokku, seega ühtlane vahe EI anna ühtlast pilti: ülemine vahe jääb
-     alumisest kitsamaks ja kaob esimesena, kui aste fookuses kasvab.
-     Iga aste saab --d korda selle sammu lisaks — vahed loevad ühtlasena
-     ja fookus mahub igas reas ära. */
-  --desk-gap-step: clamp(0.45rem, 0.75vw, 1.1rem);
+  /* Ridade vahe on ÜKS ja ühtlane (omanik 23.10: „ridade vahel erinevad
+     vahed? ühtlusta, võib veidi ka õhku rohkem olla"). Siin oli ASTMELINE
+     lisavahe (--desk-gap-step, iga aste --d korda), mis tasakaalustas
+     perspektiivi kokkusurumist. Laud on 03.08-st tasapind, seega jäi
+     sammust järele ainult see, et ülemine vahe oli alumisest ühe sammu
+     (~15 px) suurem. Nüüd 2vh + samm → 5,2vh: 860 px kõrgusel 45 px. */
+  --desk-gap-y: clamp(1rem, 5.2vh, 3rem);
   /* Perspektiiv jääb, sest teda vajab veel KAARDI tõus hoveril
      (translateZ 46px) — see on nüüd laua ainus 3D-liigutus. Väärtus on
      ajalooline: 1500px surus astmed kokku, 2400px hoidis nad loetavas
@@ -399,7 +399,6 @@
   --gc-haze: 0;
   position: relative;
   width: min(100%, 120rem);
-  margin-block-end: calc(var(--d) * var(--desk-gap-step));
   flex: 0 0 auto;
   display: flex;
   align-items: center;

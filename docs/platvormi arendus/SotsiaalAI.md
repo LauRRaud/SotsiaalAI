@@ -92,6 +92,15 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.10 hilisõhtu: töölaua märk kasvab nimega kaardiks, Tööheaolu vahed ühtlased (Claude):**
+omanik: Tööheaolu ridade vahed olid erinevad; töölaual meeldib Tööheaolu hover (kast läheb
+suuremaks), heledaks minek ei meeldi; suurenedes võiks tekst olla kasti sees. Tööheaolu
+vahe oli astmeline (perspektiivi aegne `--desk-gap-step`), ülemine vahe ~15 px suurem — nüüd
+üks vahe 5,2vh (860 px kõrgusel 45/45 px). Töölaua märk kasvab hiire või klaviatuuriga
+1,6× laiemaks kaardiks, ikoon tõuseb ja nimi tuleb kasti sisse; naabrid jäävad paigale.
+Ootav kaart kasvab 1,06× nagu Tööheaolus. Puutel märk ei kasva. Kõik 18 märgi nime mahuvad
+1920 px juures ühele reale, 1280 px juures läheb „Koosta dokument“ kahele.
+
 **23.10 õhtu: sõnad ei murdu enam keskelt (Claude):** omanik: telefonis ja osaliselt laual
 lõigati tekste kahele reale („Mõõduk|as“). Sõna keskelt murdmist otsiti mõõtja skriptiga
 (`Range.getClientRects` iga sõna kohta) peamenüüst, profiilist, töölaualt, kovisioonist,

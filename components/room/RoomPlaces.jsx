@@ -85,11 +85,11 @@ function Tool({ item, waiting, small, text, onOpen }) {
   if (small) {
     return (
       <Tag className={styles.mark} aria-label={label} {...tagProps} {...soon} onClick={(event) => onOpen(event, item, true)}>
-        <span className={styles.markIcon} aria-hidden="true">
-          {item.icon}
-        </span>
-        <span className={styles.markName} aria-hidden="true">
-          {item.label}
+        <span className={styles.markBody} aria-hidden="true">
+          <span className={styles.markIcon}>{item.icon}</span>
+          <span className={styles.markName} data-long={longestWord(item.label) >= LONG_WORD ? "1" : undefined}>
+            {item.label}
+          </span>
         </span>
         {waiting ? (
           <span className={styles.dot} aria-hidden="true">
