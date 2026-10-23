@@ -12,7 +12,7 @@ import { parseArgs } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { id } from '../lib/rag-v2/contracts.js';
 import { readJson } from '../lib/rag-v2/catalog.js';
-import { actGenitive, actSections, keepsSuperscripts, provisionMentions } from '../lib/rag-v2/search/legal-references.js';
+import { actGenitive, actSections, keepsSuperscripts, provisionMentions, sectionSubsections } from '../lib/rag-v2/search/legal-references.js';
 import { declaredValidity, estonianDate, validityState } from '../lib/rag-v2/search/legal-validity.js';
 import { LEFT_OUT, RELATION_VERSION, dayRefusal, followableNames, passageRelations, relationSection } from '../lib/rag-v2/search/provision-relations.js';
 import ACT_ABBREVIATIONS from '../lib/rag-v2/search/act-abbreviations.json' with { type: 'json' };
@@ -48,7 +48,7 @@ export async function relationReport(bundles, { date }) {
     row.documents++; row.passages += chunks.length;
     if (name === 'law') {
       let sections = []; try { sections = actSections(chunks); } catch { sections = []; }
-      versions.get(title).push({ fields, sections, state: validityState(declaredValidity(fields) ?? {}, date) });
+      versions.get(title).push({ fields, sections, state: validityState(declaredValidity(fields) ?? {}, date), subsectionsOf: key => sectionSubsections(bundle, chunks, key) });
     }
     const exact = keepsSuperscripts(bundle.version);
     for (const [passage, chunk] of chunks.entries()) {
@@ -67,7 +67,7 @@ export async function relationReport(bundles, { date }) {
     const row = (result[item.group] ??= { references: 0, followed: 0, followed_by_form: {}, left_out: {}, passages: new Map(), targets: {} });
     const act = current.get(item.title);
     row.references++;
-    const reason = act.length !== 1 ? 'act_not_one_in_force' : dayRefusal(item.fields, act[0].fields) ?? relationSection(item.relation, act[0].sections, item.exact).reason ?? null;
+    const reason = act.length !== 1 ? 'act_not_one_in_force' : dayRefusal(item.fields, act[0].fields) ?? relationSection(item.relation, act[0].sections, item.exact, act[0].subsectionsOf).reason ?? null;
     if (reason) { count(row.left_out, reason); continue; }
     row.followed++; count(row.followed_by_form, item.form); count(row.targets, item.title);
     const key = `${item.document}:${item.passage}`;
