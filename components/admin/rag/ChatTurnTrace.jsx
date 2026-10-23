@@ -12,6 +12,7 @@ function channelName(name, copy) {
   if (name === "vector") return copy.channels.vector;
   const variant = /^vector_(\d+)$/.exec(name);
   if (variant) return fill(copy.channels.vectorN, { n: variant[1] });
+  if (name.startsWith("municipal")) return `${copy.channels.municipal} (${name})`;
   return name.startsWith("reserve") ? `${copy.channels.reserve} (${name})` : name;
 }
 function Channels({ ranks, contributions, copy }) {
