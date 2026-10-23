@@ -1,5 +1,7 @@
 # ADR-187: hilisem plaan võib lahtiseks jäänud jagatud nime otsustada
 
+**Tagasi võetud 23.10.2026 ([ADR-189](adr-189-the-users-words-choose-a-shared-name.md)):** hilisema pöörde plaani nimi on samuti oletus. Linna ja valla vahel otsustavad inimese enda sõnad; kuni neid pole, toob vastus mõlema info ja küsib. Kood on eemaldatud.
+
 Kuupäev: 23.10.2026. Teostus Claude Opus 5.5. Omanik 23.10.2026 küsimusele „Kas parandan järgmisena ka selle, et hilisem täpsem omavalitsuse nimi („Tartu linn“) asendaks vestluses varasema kahemõttelise „Tartu“?“: „jah“.
 
 ## Probleem

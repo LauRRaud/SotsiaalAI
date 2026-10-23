@@ -47,3 +47,5 @@ Kahe omavalitsuse kirjed mahuvad sama eelarvesse (~11 000 tokenit) mis ühe omav
   - Võru küsimus andis Võru linna sotsiaaltööosakonna ja taotlemise;
   - Rakvere küsimus andis Rakvere toimetulekupiiri ja taotluse.
 - Tee käivitub, kui plaan kirjutab ainult linna nime (F9 ja F10: „Tartu“, „Viljandi“). Seda tõestab ülalolev kordus.
+
+**Täiendus ([ADR-189](adr-189-the-users-words-choose-a-shared-name.md), sama päev):** tee käivitub nüüd ka siis, kui plaan kirjutab „Tartu linn“ inimese „Tartus“ kohta. Linna ja valla vahel otsustavad ainult inimese enda sõnad.
