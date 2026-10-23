@@ -5,7 +5,7 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | Kaust | Allikafaile | Faile kokku | Kasutus |
 |---|---:|---:|---|
 | ajakiri_sotsiaaltoo | 892 | 1784 | 892 artiklit: 849 PDF-i ja 43 HTML-i koos metaandmetega. |
-| juhendid_ja_uuringud | 186 | 372 | Unikaalsed PDF-id; JSON säilitab kohaliku ja serveri metaandmevariandid. |
+| juhendid_ja_uuringud | 187 | 374 | Unikaalsed PDF-id; JSON säilitab kohaliku ja serveri metaandmevariandid. |
 | KOV | 78 | 234 | 78 KOV-i põhipaketti koos metaandmete ja allikaloenditega. |
 | kontaktid | 0 | 10 | Kontaktide otsingumaterjal; kattuvus KOV-pakettidega vajab ühendamist. |
 | organisatsioonid | 1 | 3 | Ühe organisatsiooni (Astangu) käsitsi koostatud pakett: sisu ja allikad. RAG-is seda paketti ei ole. Organisatsioonide enda veebilehed on RAG-is (vt „RAG-i seis“). |
@@ -16,9 +16,9 @@ Siin on andmebaasi sisendmaterjalid ja nendega seotud metaandmed. Täielik masin
 | taastatud_allikad | 0 | 22 | Serveri vanast indeksist taastatud tekst. Enne importi võrrelda põhipakettidega. |
 
 <!-- corpus-state:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
-## RAG-i seis: mis on serveris (korpus v93)
+## RAG-i seis: mis on serveris (korpus v94)
 
-Seis 22.10.2026: serveris töötav RAG (korpus **v93**, indeks `ab0ef1d3`) sisaldab **11 024 dokumenti** (107 810 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
+Seis 23.10.2026: serveris töötav RAG (korpus **v94**, indeks `d0945950`) sisaldab **11 025 dokumenti** (107 868 lõiku). Arvud on loetud korpusest skriptiga `scripts/rag-v2-register-corpus.mjs`; pärast iga korpuse täiendust käivitatakse see uuesti.
 
 | Mis on RAG-is | Dokumente | Kus on loend |
 |---|---:|---|
@@ -27,14 +27,14 @@ Seis 22.10.2026: serveris töötav RAG (korpus **v93**, indeks `ab0ef1d3`) sisal
 | Omavalitsuste kontaktid | 1638 | faili lõpus arvudena omavalitsuste kaupa (nimesid siia ei kirjutata) |
 | Ajakirja Sotsiaaltöö artiklid | 892 | jaotis „Sisufailid“ |
 | Õigusaktid | 598 | jaotis „Sisufailid“ |
-| Juhendid, infomaterjalid ja uuringud | 583 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
+| Juhendid, infomaterjalid ja uuringud | 584 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Ametlikud juhislehed (ametite veebilehed) | 1856 | jaotis „Sisufailid“; väljaandja ametlikult aadressilt lisatud on faili lõpus |
 | Organisatsioonide enda lehed (puuetega inimeste organisatsioonid, toidupank, sotsiaaltöö assotsiatsioon, kriisi- ja vaimse tervise ühingud) | 1132 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Hooldekodude kohamaksumus omavalitsuste kaupa | 79 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müügi- ja üüripunktid | 93 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Abivahendite müüjate lehed | 51 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
 | Eetikaruumi eetikamaterjalid | 35 | faili lõpus: „RAG-is olevad lehed ja kontaktid“ |
-| **Kokku** | **11024** | |
+| **Kokku** | **11025** | |
 
 <details><summary>Tehniline jaotus arendajale: kus allikafailid asuvad</summary>
 
@@ -46,7 +46,7 @@ Dokumentide arvud ei võrdu ülal olevate failide arvudega: üks fail võib anda
 | `ajakiri_sotsiaaltoo` | 892 | file 849, web 43 |
 | `oigusaktid` | 598 | legal_act 598 |
 | `veebilehed` | 361 | web_page 360, research_report 1 |
-| `juhendid_ja_uuringud` | 172 | information_material 81, research_report 46, official_guideline 39, policy_analysis 6 |
+| `juhendid_ja_uuringud` | 173 | information_material 82, research_report 46, official_guideline 39, policy_analysis 6 |
 
 Koodihoidlas (GitHub) ei ole 4503 dokumendi allikafaile; need on korpuse hoidlas (arvuti `tmp/` kaust ja server):
 
@@ -1147,6 +1147,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 | sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng | [juhendid_ja_uuringud/sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng.pdf](<juhendid_ja_uuringud/sotsiaalkindlustusamet_sexual_assault_crisis_centre_eng.pdf>) |
 | Teadlikkus tugiteenuste olemasolust pere- ja seksuaalvägivalla ning inimkaubanduse ohvritele | [juhendid_ja_uuringud/sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall.pdf](<juhendid_ja_uuringud/sotsiaalkindlustusamet_teadlikkus_tugiteenuste_olemasolust_pere_ja_seksuaalvagivall.pdf>) |
 | sotsiaalkindlustusamet_ua | [juhendid_ja_uuringud/sotsiaalkindlustusamet_ua.pdf](<juhendid_ja_uuringud/sotsiaalkindlustusamet_ua.pdf>) |
+| Infopäev sotsiaalhoolekande seaduse muudatustest toimetulekutoetuse vaatest (9.12.2025) | [juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.pdf>) |
 | Inimkaubanduse ennetamine: metodoloogia tööks noortega | [juhendid_ja_uuringud/sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf>) |
 | Inimkaubanduse teemal koolitamine: praktilised soovitused | [juhendid_ja_uuringud/sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_inimkaubanduse_teemal_koolitamine_praktilised_soovitused.pdf>) |
 | Ligipääsetavuse kulu-tulu analüüs. Lõpparuanne | [juhendid_ja_uuringud/sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne.pdf](<juhendid_ja_uuringud/sotsiaalministeerium_ligipaasetavuse_kulu_tulu_analuus_lopparuanne.pdf>) |
@@ -2364,7 +2365,7 @@ Koodihoidla allikafailid, mida RAG-is ei ole (61):
 <!-- corpus-outside:start (kirjutab scripts/rag-v2-register-corpus.mjs; käsitsi ei muudeta) -->
 ## RAG-is olevad lehed ja kontaktid
 
-Serveris töötav RAG, korpus v93, 22.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
+Serveris töötav RAG, korpus v94, 23.10.2026. Siin on loend sellest, mida jaotis „Sisufailid“ ei loetle.
 
 ### Hooldekodude kohamaksumuse lehed (79)
 

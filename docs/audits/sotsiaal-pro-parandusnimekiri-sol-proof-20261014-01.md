@@ -85,6 +85,16 @@ Serveri kordustestid (eelregistreeritud): 7 PASS, 3 FAIL, korduses 2/2 PASS ([ju
     ülalpidamiskohustuslased”), koos omavalitsuse rolliga ja ilma lubatud summata. [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-prompt46.json)
 11. **§ 133 lg 8 (sugulaselt üür) loetakse kitsalt (G09).** Vastus lisab koos elamise tingimuse ja ütleb, et mujal
     elavale emale makstud üür võib arvesse minna. Enne parandust kinnitab tõlgenduse omaniku ja spetsialisti hinnang.
+    **23.10 (korpus v94, kordustest kliendi vaates): parandatud ei ole.**
+    - Korpusesse lisati Sotsiaalministeeriumi infopäeva 9.12.2025 slaidid. Slaid 54 näitab § 133 lg 8 vana ja uut
+      sõnastust.
+    - Valikumudel luges selle lõigu (36-st 7. kohal), kuid ei valinud. Lõiku ei olnud paketis ega vastuses.
+    - Paketis olid SHS § 133 lg 8 ja § 131 lg 7. Viimase sissejuhatus on „samas eluruumis elavad ühise
+      majapidamisega“. Vastus järgib viidet „§ 131 lõike 7 punktis 1 või 2 nimetatud isikud“ ja küsib, kas ema
+      elab samas eluruumis.
+    - Slaid ise ei ütle, et uus sõnastus jätab koos elamise välja, seega tõlgendus jääb ikka omaniku ja spetsialisti
+      otsustada.
+    [Kordustest](evidence/sol-proof-20261014-01/server-rag-chat-g09-v94.json)
 12. **Tööampsu kuupiir sõnastatakse „kuni 8 kalendripäeva kuus” (N01, R03, R04).** Allikas: leping kuni
     8 kalendripäeva, kuus kuni 8 tööpäeva. Juhis 44 seda **ei parandanud** (kordustest: kolmes vastuses
     sama ühik); põhjus on sõna „kalendrikuus” → „kalendripäeva”. Ka juhis 45 (ühiku sõna kuulub selle sõna juurde, mille kõrval ta

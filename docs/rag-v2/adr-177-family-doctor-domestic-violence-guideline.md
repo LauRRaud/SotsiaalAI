@@ -56,3 +56,26 @@ Sama küsimus kell 17.00 UTC indeksil `48dbc850` (korpus v92) andis vastuse `par
 - **Serveri ketas** oli 97–98 % täis. Töökaustas oli 10 hoidla pea varukoopiat (`tmp/store-backup-v83` … `v92`), kokku 6,8 GB. Omanik ütles 23.10.2026: „varukoopiad võib kustutada“. Kõik kümme kustutati. Vaba ruumi oli enne 2,0 GB ja pärast 8,7 GB, ketas on 89 % täis. Hoidla aktiivne pea (v93) jäi puutumata. Järgmine korpuse jooks teeb oma varukoopia `store-backup-v93` uuesti.
 
 Uuesti: sülearvutis `tmp/rag-v2-v93/` (plaan, ülevaatus, `tools/quality.mjs`, `tools/package.mjs`, `run-v93-start.sh`) ja serveris `run-v93.log`.
+
+## Korpus v94: Sotsiaalministeeriumi infopäeva slaidid (23.10.2026)
+
+Tõenduskatsete sessioon palus korpusesse lisada Sotsiaalministeeriumi infopäeva 9.12.2025 slaidid „Infopäev sotsiaalhoolekande seaduse muudatustest toimetulekutoetuse vaatest“. Põhjus on tõenduskatse G09 (parandusnimekirja punkt 11): üür sugulasele, SHS § 133 lg 8. Omanik ütles 23.10.2026 tõenduskatsete lahtiste punktide kohta: „muidugi kontrollide asi paranda ka“. Selle jooksu kohta ütles ta: „ok“.
+
+- **Fail:** `Andmebaasi/juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.pdf`, 61 slaidi, liik `information_material`.
+- **Kohalik sisestus:** 58 lõiku, lõikudesse jõudis 99 % sõnadest. Slaid 54 (§ 132 lg 5 ja § 133 lg 8, vana ja uus sõnastus) on üks lõik.
+- **Tekstita slaid:** slaid 41 on Riigikogu eelnõu 732 SE lehe kuvatõmmis ilma tekstikihita. Seda üles ei kirjutatud, sest et seadus on vastu võetud, ütleb tekstina juba slaid 33.
+- **Server:** jooks 23.10.2026 kell 09.54.52–09.56.24 UTC, kulupiir 0,05 USD. Ost tegi 58/58 päringut, kulu 0,002337 USD.
+- **Indeks ja plaan:** indeks `search_generation_d0945950…` sisaldab 11 025 dokumenti ja 107 868 lõiku. Teenus töötab plaaniga `m4-corpus-chat-20261023a.json`.
+- **Kontrolli tingimus:** G09 jooksu esimene katse peatus, sest automaatrežiimi kontroll keelas teise sessiooni palvel tehtava tootmise jooksu. Jooks tehti pärast seda, kui omanik andis loa siin sessioonis ja lülitas automaatrežiimi välja.
+
+**G09 kordus kliendi vaates (FAIL).** Küsimus oli „Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetulekutoetuse arvestamisel arvesse?“.
+
+- **Vastus:** „Seega sõltub sinu olukorras sellest, kas sina ja su ema elate samas eluruumis“.
+- **Valik:** slaidi 54 lõik oli valikumudeli 36 kandidaadi seas 7. kohal, kuid seda ei valitud.
+- **Pakett:** paketis olid seadus ise (§ 133 lg 8 ja § 131 lg 7) ning Sotsiaalministeeriumi toimetulekutoetuse leht.
+- **Miks vastus nii luges:** § 133 lg 8 viitab „§ 131 lõike 7 punktis 1 või 2 nimetatud isikutele“. § 131 lg 7 algab sõnadega „samas eluruumis elavad ühise majapidamisega“, ja vastus järgib seda viidet.
+- **Mida slaid ütleb:** slaid näitab vana sõnastust, milles kooselu tingimust ei olnud, ja pealkirja „Välistatakse lähedastega seotud üürilepingud“. Seda, et uus sõnastus jätab kooselu tingimuse välja, slaid ise ei ütle.
+- **Otsus:** tõlgendus jääb omaniku ja spetsialisti otsustada, nagu parandusnimekirja punkt 11 ütleb.
+- **Tõend:** `docs/audits/evidence/sol-proof-20261014-01/server-rag-chat-g09-v94.json`.
+
+Uuesti: sülearvutis `tmp/rag-v2-v94/` ja serveris `run-v94.log`.

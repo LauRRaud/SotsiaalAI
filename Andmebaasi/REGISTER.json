@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "created_at": "2026-09-07T20:16:49.778Z",
-  "updated_at": "2026-10-22",
+  "updated_at": "2026-10-23",
   "path_base": "Andmebaasi",
   "archive": "../Arhiiv/Andmebaasi_2026-09-07",
   "import_rule": "Use source entries with their metadata. reference_lookup and review_source require reconciliation; metadata, source_register and source_planning_register are not independent knowledge documents. Folder organisation does not assert ingest acceptance.",
@@ -11,8 +11,8 @@
       "sources": 892
     },
     "juhendid_ja_uuringud": {
-      "files": 372,
-      "sources": 186
+      "files": 374,
+      "sources": 187
     },
     "KOV": {
       "files": 234,
@@ -49,11 +49,11 @@
   },
   "corpus": {
     "written_by": "rag-v2/register-corpus-1",
-    "version": "v93",
-    "index_generation": "ab0ef1d3",
-    "read_at": "2026-10-22",
-    "documents": 11024,
-    "units": 107810,
+    "version": "v94",
+    "index_generation": "d0945950",
+    "read_at": "2026-10-23",
+    "documents": 11025,
+    "units": 107868,
     "note": "What the RAG on the server holds: the documents of the corpus policy by what they are (by_content), and by where the source file is kept (from_repository, outside_repository). One file of the repository may give many documents (a municipality package gives its services, forms and contacts). On a source entry, corpus_documents is the number of corpus documents the file gives; 0 means the file is not in the corpus.",
     "by_content": [
       {
@@ -105,10 +105,10 @@
       {
         "content": "guides",
         "name": "guides, information materials and studies",
-        "documents": 583,
+        "documents": 584,
         "by_source_type": {
           "research_report": 281,
-          "information_material": 145,
+          "information_material": 146,
           "official_guideline": 143,
           "policy_analysis": 14
         }
@@ -195,9 +195,9 @@
         }
       },
       "juhendid_ja_uuringud": {
-        "documents": 172,
+        "documents": 173,
         "by_source_type": {
-          "information_material": 81,
+          "information_material": 82,
           "research_report": 46,
           "official_guideline": 39,
           "policy_analysis": 6
@@ -35223,6 +35223,23 @@
       "category": "juhendid_ja_uuringud",
       "role": "metadata",
       "sha256": "b4e7fbebdfbdc52429c890ec04f871c3d84d4d491631c9df2d477d830a9fa96c"
+    },
+    {
+      "path": "juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.pdf",
+      "category": "juhendid_ja_uuringud",
+      "role": "source",
+      "sha256": "7714e0f1ecc28190f25a0327df244bc72e17baf455a9228cb246fb06780c67e4",
+      "original_path": "www.sm.ee/sites/default/files/documents/2025-12/Infop%C3%A4ev%20sotsiaalhoolekande%20seaduse%20muudatustest%20toimetulekutoetuse%20vaatest%209.12.2025.pdf",
+      "title": "Infopäev sotsiaalhoolekande seaduse muudatustest toimetulekutoetuse vaatest (9.12.2025)",
+      "metadata_path": "juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.json",
+      "review_status": "metadata_conversion_pending",
+      "corpus_documents": 1
+    },
+    {
+      "path": "juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.json",
+      "category": "juhendid_ja_uuringud",
+      "role": "metadata",
+      "sha256": "6fcf72f500728875e624e58d87c7bd3b9d89e4453b1a092ea84c278ff74c00da"
     },
     {
       "path": "juhendid_ja_uuringud/sotsiaalministeerium_inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",

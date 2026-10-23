@@ -1,0 +1,85 @@
+{
+  "runId": "sol-proof-20261014-01",
+  "serverRelease": "a4a045f9 (corpus v94: index search_generation_d0945950, 11 025 documents, 107 868 passages; plan m4-corpus-chat-20261023a.json)",
+  "checkpointDate": "2026-10-23",
+  "preregistration": {
+    "note": "no separate preregistration file; the expectation is the one the proof-test session sent on 23.10.2026 before the run (below, expected)"
+  },
+  "corpusChange": {
+    "version": "v94",
+    "added": "Sotsiaalministeerium, \"Infopäev sotsiaalhoolekande seaduse muudatustest toimetulekutoetuse vaatest\" (9.12.2025, 61 slides), Andmebaasi/juhendid_ja_uuringud/sotsiaalministeerium_infopaev_sotsiaalhoolekande_seaduse_muudatustest_toimetulekutoetuse_vaatest_2025.pdf, sha256 7714e0f1ecc28190f25a0327df244bc72e17baf455a9228cb246fb06780c67e4",
+    "source": "https://www.sm.ee/sites/default/files/documents/2025-12/Infop%C3%A4ev%20sotsiaalhoolekande%20seaduse%20muudatustest%20toimetulekutoetuse%20vaatest%209.12.2025.pdf",
+    "passages": 58,
+    "purchase": "58 embedding inputs, 17 979 tokens, 0.002337 USD (cap 0.05 USD)",
+    "slide54Passage": "one passage: \"Välistatakse lähedastega seotud üürilepingud - § 132 lg 5 ja § 133 lg 8\" with the old and the new wording of both provisions"
+  },
+  "checks": [
+    {
+      "case_id": "RAG-G09",
+      "variant_id": "chat2310v94_G09-uur-emalt",
+      "status": "FAIL",
+      "evidence_mode": "CURRENT_RUNTIME",
+      "entrypoint": "sotsiaal.pro chat composer from the owner ADMIN session, new conversation, view role Pöörduja (help_seeker); trace read at /admin/rag/chat-trace/bf748ef4-442a-40b9-a2f2-5ed76476a7a5",
+      "actual": {
+        "question": "Üürin korterit oma emalt ja maksan talle iga kuu üüri. Kas see üür läheb toimetulekutoetuse arvestamisel arvesse?",
+        "expected": [
+          "answer: rent paid to the mother is not counted, whether or not the mother lives with the applicant (SHS § 133 lg 8)",
+          "trace: the passage of slide 54 of the info day material is in the packet and cited"
+        ],
+        "turnId": "bf748ef4-442a-40b9-a2f2-5ed76476a7a5",
+        "turnTimeUtc": "2026-10-23T09:57:07Z",
+        "prompt": "m4-grounded-dialogue-52",
+        "profile": "hybrid-estnltk-chat-v6",
+        "plan": "m4-sotsiaalai-corpus-chat-20261023-095614-5c5a777e-bc89-4bd6-abf6-6446dcbc759d",
+        "index": "search_generation_d0945950d25737b6fc83d2d5f2c41d886632fc048925ff21d0553604c25fb8c9",
+        "answerKind": "grounded",
+        "answer": "Jah, üür võib toimetulekutoetuse arvestamisel arvesse minna. Arvesse võetakse jooksval kuul tasumisele kuuluv üür eluruumi sotsiaalselt põhjendatud pinna ja kohaliku omavalitsuse kehtestatud piirmäära ulatuses. Üüri aga ei arvestata, kui üürileandja ja üürnik on seaduses nimetatud ühise eluruumi ja majapidamisega pereliikmed. Seega sõltub sinu olukorras sellest, kas sina ja su ema elate samas eluruumis ning peate ühist majapidamist. (Sotsiaalhoolekande seaduse § 133 lg 5–8; Sotsiaalhoolekande seaduse § 131 lg 7) [S1, S2, S6] / Kui teie elukorraldus ei kuulu selle erandi alla, võib üür arvesse minna. Kulu tuleb tasuda ja tasumist tõendada. Täpse arvestuse teeb toetust menetlev omavalitsus kehtivate piirmäärade järgi. [S3]",
+        "clarifyingQuestion": "Kas sina ja su ema elate samas eluruumis ning peate ühist majapidamist?",
+        "cited": [
+          "S1 Sotsiaalhoolekande seadus § 133 lg 5–8 (in force 2026-10-01)",
+          "S2 Sotsiaalhoolekande seadus § 131 lg 1–8 (in force 2026-10-01)",
+          "S3 Sotsiaalministeerium, Toimetulekutoetus > Toimetulekutoetuse arvestamise alused",
+          "S6 Sotsiaalhoolekande seadus § 133 lg 2¹–5"
+        ],
+        "packet": [
+          "S1 · Vastus viitab · järjestatud lõik (otsing + valikumudel) · Sotsiaalhoolekande seadus § 133 lg 5 lg 6 lg 6¹ lg 7 lg 7¹ lg 8",
+          "S2 · Vastus viitab · järjestatud lõik (otsing + valikumudel) · Sotsiaalhoolekande seadus § 131 lg 1 lg 2 lg 3 lg 4 lg 5 lg 6 lg 7 lg 8",
+          "S3 · Vastus viitab · järjestatud lõik (otsing + valikumudel) · Toimetulekutoetus",
+          "S4 · teadmiskaardi seos · Sotsiaalhoolekande seadus § 131 lg 9 lg 9¹ lg 10 lg 11 lg 12",
+          "S5 · teadmiskaardi seos · Sotsiaalhoolekande seadus § 132 lg 7",
+          "S6 · Vastus viitab · sama seaduse viide (lõigust S2, § 133) · Sotsiaalhoolekande seadus § 133 lg 2¹ lg 2² lg 2³ lg 3 lg 4 lg 5",
+          "S7 · sama asja ütlev seaduse säte (vektori lähedus) (lõigust S3, 0.71) · Sotsiaalhoolekande seadus § 133 lg 1 lg 1¹ lg 2",
+          "S8 · sama asja ütlev seaduse säte (vektori lähedus) (lõigust S3, 0.668) · Sotsiaalhoolekande seadus § 133 lg 9 lg 9¹ lg 9² lg 10"
+        ],
+        "infoDayPassagesAmongCandidates": [
+          { "rank": 7, "title": "Infopäev … (9.12.2025) › Eluasemekulude hüvitamise õiglasem ja läbipaistvam korraldamine (slide 54, § 132 lg 5 and § 133 lg 8)", "rrf": "0.0877", "selection": "not chosen", "packet": false },
+          { "rank": 9, "title": "Infopäev … (9.12.2025) › Toimetulekutoetus", "rrf": "0.0851", "selection": "not chosen", "packet": false },
+          { "rank": 17, "title": "Infopäev … (9.12.2025) › Eluasemekulude hüvitamise õiglasem ja läbipaistvam korraldamine (another slide)", "rrf": "0.0664", "selection": "not chosen", "packet": false }
+        ],
+        "selected": [
+          "#1 reserve: Sotsiaalhoolekande seadus § 133 (S1)",
+          "#2 reserve: Sotsiaalhoolekande seadus § 131 (S2)",
+          "#3 rank 2: Sotsiaalministeerium, Toimetulekutoetuse arvestamise alused (S3)"
+        ],
+        "candidatesRead": 36,
+        "lawTextInPacket": {
+          "SHS § 133 lg 8 (S1)": "Üüri ei võeta toimetulekutoetuse arvestamisel arvesse, kui üürileandjaks ja üürnikuks on käesoleva seaduse § 131 lõike 7 punktis 1 või 2 nimetatud isikud või kui üürileandjaks on äriühing, mille osanik, aktsionär või juhtorgani liige on taotleja ise või temaga abielus, registreeritud kooselus või abieluga sarnanevas suhtes olev isik või tema esimese ja teise astme alaneja või üleneja sugulane.",
+          "SHS § 131 lg 7 (S2)": "Toimetulekutoetuse määramisel loetakse perekonnaliikmeteks samas eluruumis elavad ühise majapidamisega: 1) abielus, registreeritud kooselus või abieluga sarnanevas suhtes olevad isikud; 2) esimese ja teise astme alanejad ja ülenejad sugulased; 3) muud isikud, keda seob ühine kodune majapidamine."
+        },
+        "latencyMs": { "first_text": 18753, "answered": 22079 },
+        "costUsd": 0.005354,
+        "costBySteps": [
+          { "step": "otsinguplaan", "input_tokens": 2156, "output_tokens": 190, "usd": "0.000364" },
+          { "step": "vektorid", "input_tokens": 84, "output_tokens": 0, "usd": "0.000011" },
+          { "step": "valikumudel", "input_tokens": 17134, "output_tokens": 203, "usd": "0.002243" },
+          { "step": "vastus", "input_tokens": 20473, "output_tokens": 365, "usd": "0.002736" }
+        ],
+        "preRating": "Claude (provisional until owner and specialist rating, RAG-12)",
+        "note": "The answer still adds the living-together condition and asks whether the mother lives with the applicant. The new passage was read by the selection model (rank 7 of 36) but not chosen, so it was not in the packet and not cited. The packet held the law itself: § 133 lg 8 refers to \"§ 131 lõike 7 punktis 1 või 2 nimetatud isikud\", and the opening words of § 131 lg 7 are \"samas eluruumis elavad ühise majapidamisega\"; the answer follows that reference word by word. Slide 54 shows the old wording without a living-together condition and its title says leases between close relatives are excluded, but it does not itself say that the new wording leaves living together out. Whether the persons named by the reference carry the opening condition of § 131 lg 7 is the reading that item 11 leaves to the owner and a specialist."
+      }
+    }
+  ],
+  "totals": { "turns": 1, "pass": 0, "fail": 1 },
+  "newPaidCalls": { "embeddingPurchaseUsd": 0.002337, "chatTurnUsd": 0.005354 },
+  "finishedAt": "2026-10-23T10:05:00Z"
+}
