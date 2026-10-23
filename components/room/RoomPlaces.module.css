@@ -15,13 +15,22 @@
      52 px lagi: 1920 px ekraanil 52 px, 1536 px juures 51 px. Nüüd 5,5vw:
      106 ja 84 px. Ootav kaart kasvab samas suhtes. Laius tuleb vw-st, et kolm
      kohta püsiksid toa oma kohtadel ka kitsamal ekraanil (4 märki + vahed on
-     ~24vw, kohtade vahe 32vw); rem-lagi järgib ekraaniprofiili. */
+     ~28vw, kohtade vahe 32vw); rem-lagi järgib ekraaniprofiili. */
   --place-chip: clamp(3rem, 5.5vw, 6.75rem);
   --place-card: clamp(5.25rem, 9.8vw, 11.75rem);
   /* Avatud koha kaardid jäävad väiksemaks: kaamera suurendab neid 1,3 korda
-     ja servakoha (Mina, 18 %) neli veergu peavad ekraanile mahtuma. */
+     ja servakoha (Mina, 19 %) neli veergu peavad ekraanile mahtuma. */
   --place-open: clamp(5.25rem, 8.2vw, 9.75rem);
-  --place-gap: calc(var(--place-chip) * 0.14);
+  /* Märkide vahe külgsuunas mahutab hiire all kasvava kaardi (0,27 märki
+     kummalegi poole) ja jätab naabri ette veel 0,09 märki õhku, nii et kaart
+     ei kata naabrit (omanik 23.10: „ma ei taha, et need hakkavad kattuma,
+     ruumi on küll lehel"). Laiemaks ei saa: koha ja kasvanud servamärgi
+     ruum peab jääma ka naaberkoha ja ekraani serva ette (mõõdetud 1024–1920
+     px). Ridade vahel kasvab kaart ainult 0,06 märki, seal piisab
+     väiksemast vahest. */
+  --place-gap: calc(var(--place-chip) * 0.36);
+  --place-row-gap: calc(var(--place-chip) * 0.2);
+  --place-name-gap: calc(var(--place-chip) * 0.12);
   --place-name-h: 2.25rem;
   --place-ease: cubic-bezier(0.65, 0, 0.35, 1);
   --place-rise: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -31,10 +40,10 @@
   --place-shade: rgba(8, 6, 5, 0.2);
   /* Hiire all kasvab märk väikeseks kaardiks, mille sees on nimi (omanik
      23.10: „kui suuremaks läheb, siis tekst juba kasti sees, mitte kasti
-     all"). Kaart on märgist 1,6 korda laiem ja 1,12 korda kõrgem. */
-  --place-pop-x: calc(var(--place-chip) * -0.3);
+     all"). Kaart on märgist 1,54 korda laiem ja 1,12 korda kõrgem. */
+  --place-pop-x: calc(var(--place-chip) * -0.27);
   --place-pop-y: calc(var(--place-chip) * -0.06);
-  --place-pop-text: calc(var(--place-chip) * 1.6 - 1rem);
+  --place-pop-text: calc(var(--place-chip) * 1.54 - 1rem);
 }
 :global(html.theme-light) .root {
   --place-halo: 0 1px 10px rgba(255, 255, 255, 0.8);
@@ -107,20 +116,21 @@
   transform: translate(-50%, -50%) scale(var(--place-zoom, 1));
   display: grid;
   justify-items: center;
-  gap: calc(var(--place-gap) * 0.85);
+  gap: var(--place-name-gap);
   transition: opacity 500ms ease, transform 420ms var(--place-rise);
 }
 /* Hiire all astub kogu koht ettepoole (omanik 23.10: „võiks hoveriga kogu
    sektsioon suuremaks minna"). Ainult kogu toa vaates: kohal olles suurendab
-   kaamera. Klaviatuuriga sama, kui fookus on koha sees. */
+   kaamera. Klaviatuuriga sama, kui fookus on koha sees. 1,06, mitte 1,1:
+   äärmise märgi kasvanud kaart ei tohi puutuda naaberkohta ega ekraani serva. */
 @media (hover: hover) and (pointer: fine) {
   .world:not([data-focus]) .place:hover {
-    --place-zoom: 1.1;
+    --place-zoom: 1.06;
     z-index: 2;
   }
 }
 .world:not([data-focus]) .place:has(:focus-visible) {
-  --place-zoom: 1.1;
+  --place-zoom: 1.06;
   z-index: 2;
 }
 .world[data-focus] .place[data-on="0"] {
@@ -162,7 +172,7 @@
   position: relative;
   display: grid;
   justify-items: center;
-  gap: var(--place-gap);
+  gap: var(--place-row-gap);
   transition: opacity 320ms ease, scale 420ms var(--place-ease);
 }
 .place[data-on="1"] .near {
@@ -184,13 +194,13 @@
 }
 .waiting {
   display: flex;
-  gap: var(--place-gap);
+  gap: var(--place-row-gap);
 }
 .marks {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--place-gap);
+  gap: var(--place-row-gap) var(--place-gap);
   max-width: calc(var(--place-chip) * 4 + var(--place-gap) * 3 + 2px);
 }
 /* Märgireas on kõik tööriistad; laual seisab ootav tööriist suurena ja tema
@@ -205,7 +215,7 @@
   --place-card: var(--place-open);
   position: absolute;
   left: 50%;
-  top: calc(var(--place-name-h) + var(--place-gap) * 0.85);
+  top: calc(var(--place-name-h) + var(--place-name-gap));
   translate: -50% 0;
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--place-card));
@@ -477,6 +487,9 @@
        390 px telefonis 103 px kaart, 360 px juures 94 px. */
     --place-open: min(7rem, calc((100vw - 2rem) / 3.24 - 0.45rem));
     --place-name-h: 2rem;
+    /* Puutel märk ei kasva, seega jäävad vahed tihedaks. */
+    --place-gap: calc(var(--place-chip) * 0.14);
+    --place-row-gap: calc(var(--place-chip) * 0.14);
   }
   /* Sildi mõõt tuleb kaardi laiusest nii, et 14-täheline sõna (TEENUSEPROFIIL)
      mahub tervena; enne oli silt 8 px ja pikk sõna murdus. */

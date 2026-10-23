@@ -97,9 +97,12 @@ omanik: Tööheaolu ridade vahed olid erinevad; töölaual meeldib Tööheaolu h
 suuremaks), heledaks minek ei meeldi; suurenedes võiks tekst olla kasti sees. Tööheaolu
 vahe oli astmeline (perspektiivi aegne `--desk-gap-step`), ülemine vahe ~15 px suurem — nüüd
 üks vahe 5,2vh (860 px kõrgusel 45/45 px). Töölaua märk kasvab hiire või klaviatuuriga
-1,6× laiemaks kaardiks, ikoon tõuseb ja nimi tuleb kasti sisse; naabrid jäävad paigale.
-Ootav kaart kasvab 1,06× nagu Tööheaolus. Puutel märk ei kasva. Kõik 18 märgi nime mahuvad
-1920 px juures ühele reale, 1280 px juures läheb „Koosta dokument“ kahele.
+1,54× laiemaks kaardiks, ikoon tõuseb ja nimi tuleb kasti sisse; naabrid jäävad paigale.
+Omaniku järgmine märkus: kasvanud kaart ei tohi naabrit katta — märkide vahe on nüüd 0,36
+märki, koha suurendus 1,06× ja Mina/Teadmine 19/81 %. Mõõdetud 1024–1920 px ja mõlema
+parallaksi äärmusega: kaart ei kata ühtegi märki ega naaberkohta, vaba ruumi 5–10 px, miski
+ei lähe ekraanilt välja. Ootav kaart kasvab 1,06× nagu Tööheaolus. Puutel märk ei kasva.
+Kõik 18 märgi nime mahuvad 1920 px juures ühele reale, kitsamal läheb „Koosta dokument“ kahele.
 
 **23.10 õhtu: sõnad ei murdu enam keskelt (Claude):** omanik: telefonis ja osaliselt laual
 lõigati tekste kahele reale („Mõõduk|as“). Sõna keskelt murdmist otsiti mõõtja skriptiga
