@@ -66,3 +66,24 @@ Mõisteks ei loeta:
 - Raja aeg oli 50–104 ms.
 
 **Päris pöörded:** pärast deploy'd A17 vestlus (A11, A12, A17) kaks korda ja samad 16 pööret kui F3–F7.
+
+## Esimene väljalase ja täpsustus (sama päev)
+
+**F8** (väljalase `853dbec0`, spetsialisti vestlus A11, A12, A17 kaks korda). Rada töötas mõlemas A17-s: § 25 oli paketis.
+
+| Lõik | A17a | A17b |
+|---|---|---|
+| SÜS § 12 „Hüvitis“ (1. aste) | 0,544 | 0,526 |
+| SÜS § 10 „Sotsiaalkaitse“ (2. aste) | 0,552 | 0,529 |
+| SÜS § 13 „Rahaline hüvitis“ | 0,514 | 0,499 |
+| SÜS § 14 „Mitterahaline hüvitis“ | 0,513 | 0,503 |
+
+- Lisandusteks said § 10 ja § 12, § 14 jäi kahe lisanduse piiri taha.
+- A17b vastus nimetas nüüd SÜS § 25 lg 1 kümmet tööpäeva, kuid lisas: „kümne tööpäeva tähtaeg on antud hüvitise otsustamiseks, mitte üldise sotsiaalteenuse otsuse tähtajana“. Lõpus küsis, kas mõeldakse koduteenuse või „hüvitise ehk toetuse“ otsust.
+
+**Täpsustus:**
+
+- **Rada.** Teine aste on mõiste kitsamad liigid: pikemad mõisted, mille sõnad hoiavad mõiste sõnu ja mida tema definitsioon kasutab (`narrowerTerm`; § 12 „hüvitis“ → § 13 ja § 14). Muud mõisted, mida definitsioon kasutab („sotsiaalkaitse“), ei tule.
+  - Lävi kehtib mõistele endale. Liigid tulevad temaga kaasa, nende oma lähedusest sõltumata.
+  - Lisandusi on kuni 3.
+- **Vastuse juhis** `m4-grounded-answer-20` (vestluse juhis `m4-grounded-dialogue-55`). LEGAL PROVISIONS ütleb nüüd: kui siin antud sama seaduse lõik defineerib mõiste, mida teine lõik kasutab, loetakse mõistet definitsiooni järgi. Reegel kehtib kõigele, mida definitsioon mõiste alla loeb, ka siis, kui kasutaja nimetab seda teisiti.
