@@ -80,9 +80,11 @@ import {
   MentorIcon,
   FieldIcon,
   ReflectionIcon,
+  EthicsIcon,
   ServiceProfileIcon,
   ServiceLogIcon,
   CaseWorkIcon,
+  CaseDeskIcon,
   OrgIcon,
   SharingsIcon,
   WellbeingRecordsIcon,
@@ -1287,7 +1289,7 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
          Kirje seisab juhtumite JÄREL: laud on päeva algusekraan, aga ta on
          tähenduses juhtumi objekti peal, mitte tema ees. */
       ...(isCaseWorkUiEnabled()
-        ? [{ key: "juhtumitoo", zone: "juhtum", roles: SPECIALIST, label: t("casework.workbench.title", "Juhtumitöö laud"), href: "/toolaud/juhtumitoo", icon: <CaseWorkIcon /> }]
+        ? [{ key: "juhtumitoo", zone: "juhtum", roles: SPECIALIST, label: t("casework.workbench.title", "Juhtumitöö laud"), href: "/toolaud/juhtumitoo", icon: <CaseDeskIcon /> }]
         : []),
       { key: "teenusekaart", zone: "teadmine", roles: ALL, label: t("chat.workspace.cards.service_map.title", "Teenusekaart"), href: "/teenusekaart", icon: <ServiceMapIcon /> },
       { key: "otsi", zone: "teadmine", roles: ALL, label: t("personal_search.title", "Minu otsing"), href: "/otsi", icon: <SearchIcon /> },
@@ -1308,7 +1310,7 @@ export default function RoomStage({ initiallyCompletedArrival = false, platformA
          ainult kutsutud osaleja oma. Klient jääb välja. */
       { key: "kovisioon", zone: "mina", roles: SPECIALIST, label: t("chat.workspace.cards.kovision.title", "Kovisioon"), href: "/toolaud/kovisioon", icon: <KovisionIcon /> },
       { key: "refleksioon", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("reflection.meta.title", "Meetodipeegel"), href: "/refleksioon", icon: <ReflectionIcon /> },
-      { key: "eetikaruum", zone: "mina", roles: SPECIALIST, label: t("ethics.title", "Eetikaruum"), href: "/eetikaruum", icon: <ReflectionIcon /> },
+      { key: "eetikaruum", zone: "mina", roles: SPECIALIST, label: t("ethics.title", "Eetikaruum"), href: "/eetikaruum", icon: <EthicsIcon /> },
       { key: "tooheaolu", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), href: "/toolaud/tooheaolu", icon: <WellbeingIcon /> },
       /* ORGANISATSIOONID (T25) — lipu taga, täpselt nagu Teenuspäevik. Kogu
          `/org` pind oli olemas ja lipud serveris sees, aga töölaualt puudus

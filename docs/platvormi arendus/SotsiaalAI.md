@@ -92,6 +92,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
 
+**23.10 Töölaud tootmise mõõtu, Tööheaolu väiksemaks (Claude):** omanik: töölaud „liiga
+beeta“ — märgid liiga väikesed, hiire all võiks kogu koht suureneda, kohtade allkirju pole
+vaja, nime silt paistis läbi; Tööheaolu „häirivalt suur veidi“. Märk 3,3vw → 5,5vw (1920 px
+ekraanil 52 → 106 px), ootav kaart samas suhtes, kohanimed Tööheaolu astmenimede mõõdus;
+hiire või klaviatuuriga astub koht 1,1× ette ja tema valgus süttib; vajutus märkide vahele
+avab koha; allkirjad ja nende tõlkevõtmed on eemaldatud. Härmatis ei töötanud töölaual
+üldse: valguskihi `mix-blend-mode` tegi Chrome'is eraldi pinna ja klaas ei näinud tuba —
+eemaldatud, märgi klaas on `::before`-kihil (doki vihje muster). Eetikaruum ja Juhtumitöö
+laud said oma ikoonid (enne Meetodipeegli ja Minu juhtumite omad). Telefonis on kohad
+üksteise all, märk ~52 px, ootav tööriist kannab arvu nurgas ja avatud koht tuleb keskele
+(enne jooksid „Mina“ kaardid ekraanilt välja). Tööheaolu laud ~14 % väiksem (plaat 278 →
+240 px, silt 26 → 20 px 1,25× profiilis). Kohalikult mõõdetud 8 vaates 1024–1920 px ja
+375–390 px telefonis, hele teema, kliendi vaade, klaviatuur; ootab-märgid võltsitud
+vastusega. Puutetahvlit ega päris ootavaid kirjeid ei nähtud.
+
 **20.10 Tööheaolu: koondis osalemise valik ja kiirkontroll 1.1 (Claude):** TÜ
 tööheaolu küsitluse võrdluse ja arendusettepaneku sammud 1–2. Töötaja saab vaates
 „Minu kirjed → Anonüümne koond“ oma kirjed piloodi koondist välja lülitada; valik

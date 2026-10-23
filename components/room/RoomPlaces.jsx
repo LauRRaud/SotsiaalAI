@@ -5,10 +5,13 @@
  *
  * Töölaua tööriistad ei seisa enam ridades laua peal, vaid toas kolmes kohas:
  * tugitooli ja lambi juures, valgustatud seinal ja riiuli juures. Suurelt on
- * ees ainult see, mis täna ootab; ülejäänud on väikesed märgid, nimi tuleb
- * hiire või fookusega. Vajutus kohale (või kerimine selle peal sisse) viib
- * kaamera sinna: kogu tuba suureneb ja nihkub, valgus süttib ja kõik selle
- * koha tööriistad tulevad loetavalt ette.
+ * ees ainult see, mis täna ootab; ülejäänud on märgid, nimi tuleb hiire või
+ * fookusega. Hiire all astub kogu koht ettepoole ja tema valgus süttib
+ * (omanik 23.10: „hoveriga kogu sektsioon suuremaks"). Vajutus kohale (nimele,
+ * märkide vahele või kerimine selle peal sisse) viib kaamera sinna: kogu tuba
+ * suureneb ja nihkub ja kõik selle koha tööriistad tulevad nimega ette.
+ * Seletavat allkirja („tugitool ja lamp: …") koha all enam ei ole (omanik
+ * 23.10: „see all kommentaar pole vaja").
  *
  * MIDA SEE KOMPONENT EI OTSUSTA. Kaardiloend ja rollid tulevad RoomStage'ist
  * (workspaceItems), tsoonid failist lib/deskZones.js, kohad ja „suur või
@@ -23,6 +26,8 @@
  *
  * PUUTEEKRAAN. Väikesel märgil ei ole seal nime (hiirt ei ole), seepärast viib
  * puudutus märgile kõigepealt selle kohta, kus tööriistad on nimega.
+ * Telefonis seisavad kohad üksteise all ja avatud koht tuleb ekraani keskele
+ * (lib/roomPlaces.js PLACE_SPOTS `ny`, NARROW_FOCUS).
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -64,6 +69,12 @@ function waitingText(waiting, t) {
   return t("room.places.waiting_count", "{count} ootab").replace("{count}", waiting.label);
 }
 
+/* Väga pikk sõna (ORGANISATSIOONID) kaardil tihedamalt, muidu murdub ta väiksel
+   kaardil sõna keskelt. Tühikuga nimi murdub tühiku kohalt ise; kuni 14 tähte
+   mahub tavakirjas (Exo 2 mõõdetud 23.10). */
+const LONG_WORD = 15;
+const longestWord = (label) => Math.max(0, ...String(label || "").split(/\s+/).map((word) => word.length));
+
 function Tool({ item, waiting, small, text, onOpen }) {
   const Tag = item.href ? "a" : "button";
   const tagProps = item.href ? { href: item.href } : { type: "button" };
@@ -80,7 +91,11 @@ function Tool({ item, waiting, small, text, onOpen }) {
         <span className={styles.markName} aria-hidden="true">
           {item.label}
         </span>
-        {waiting ? <span className={styles.dot} aria-hidden="true" /> : null}
+        {waiting ? (
+          <span className={styles.dot} aria-hidden="true">
+            {waiting.kind === "count" ? waiting.label : null}
+          </span>
+        ) : null}
       </Tag>
     );
   }
@@ -89,7 +104,9 @@ function Tool({ item, waiting, small, text, onOpen }) {
       <span className={styles.cardIcon} aria-hidden="true">
         {item.icon}
       </span>
-      <span className={styles.cardName}>{item.label}</span>
+      <span className={styles.cardName} data-long={longestWord(item.label) >= LONG_WORD ? "1" : undefined}>
+        {item.label}
+      </span>
       {text ? <span className={styles.badge}>{text}</span> : null}
     </Tag>
   );
@@ -110,6 +127,8 @@ export default function RoomPlaces({ items, zones, backItem = null, role = "", o
   const placesRef = useRef(places);
   placesRef.current = places;
   const focused = places.find((place) => place.id === focus) || null;
+  /* Koht, mille kohal hiir on: tema valgus süttib. Suurenemise teeb CSS (:hover). */
+  const [lit, setLit] = useState("");
 
   /* Roll vahetus (halduri lüliti) või koht kadus: tagasi kogu tuppa. */
   useEffect(() => {
@@ -255,11 +274,15 @@ export default function RoomPlaces({ items, zones, backItem = null, role = "", o
     [go, onSelect, touch]
   );
 
-  /* Vajutus tuhmile kohale viib sinna; vajutus tühjale toale toob kogu tuppa tagasi. */
+  /* Vajutus koha märkide vahele või tuhmile kohale viib sinna; vajutus tühjale
+     toale toob kogu tuppa tagasi. */
   const onWorldClick = (event) => {
-    if (!focus) return;
     if (event.target.closest?.("a, button")) return;
     const place = event.target.closest?.("[data-place]");
+    if (!focus) {
+      if (place) go(place.getAttribute("data-place"), { toggle: false });
+      return;
+    }
     if (!place) setFocus("");
     else if (place.getAttribute("data-place") !== focus) go(place.getAttribute("data-place"), { toggle: false });
   };
@@ -275,7 +298,8 @@ export default function RoomPlaces({ items, zones, backItem = null, role = "", o
             key={place.id}
             className={styles.light}
             data-on={place.id === focus ? "1" : "0"}
-            style={{ "--ax": `${place.ax}%`, "--ay": `${place.ay}%` }}
+            data-lit={place.id === lit ? "1" : undefined}
+            style={{ "--ax": `${place.ax}%`, "--ay": `${place.ay}%`, "--ny": `${place.ny}%` }}
             aria-hidden="true"
           />
         ))}
@@ -284,16 +308,24 @@ export default function RoomPlaces({ items, zones, backItem = null, role = "", o
             const on = place.id === focus;
             const { large, small } = splitTools(place.items, badges, role);
             const waitingByKey = new Map([...large, ...small].map((entry) => [entry.item.key, entry.waiting]));
+            /* Telefonis suuri kaarte ei ole (kolm kohta üksteise all ei mahuks):
+               suur tööriist on seal märk, mis kannab nurgas arvu. Märgireas on
+               seepärast kõik tööriistad ja CSS peidab laual need, mis seisavad
+               suurena — otsus ei oota JS-i meediapäringut ega vilgu. */
+            const largeKeys = new Set(large.map(({ item }) => item.key));
             const name = zoneName(place.id);
-            const what = t(`room.zones.${place.id}.what`, "");
             return (
               <section
                 key={place.id}
                 className={styles.place}
                 data-place={place.id}
                 data-on={on ? "1" : "0"}
-                style={{ "--ax": `${place.ax}%`, "--ay": `${place.ay}%`, "--cols": gridColumns(place.items.length, narrow) }}
+                style={{ "--ax": `${place.ax}%`, "--ay": `${place.ay}%`, "--ny": `${place.ny}%`, "--cols": gridColumns(place.items.length, narrow) }}
                 aria-label={name || undefined}
+                onPointerEnter={(event) => {
+                  if (event.pointerType === "mouse") setLit(place.id);
+                }}
+                onPointerLeave={() => setLit((current) => (current === place.id ? "" : current))}
               >
                 <button type="button" className={styles.placeName} aria-expanded={on} onClick={(event) => go(place.id, { keyboard: event.detail === 0 })}>
                   {name}
@@ -308,16 +340,19 @@ export default function RoomPlaces({ items, zones, backItem = null, role = "", o
                       ))}
                     </ul>
                   ) : null}
-                  {small.length ? (
-                    <ul className={styles.marks}>
-                      {small.map(({ item, waiting }) => (
-                        <li key={item.key}>
-                          <Tool item={item} waiting={waiting} text={waitingText(waiting, t)} small onOpen={open} />
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                  {what ? <p className={styles.what}>{what}</p> : null}
+                  <ul className={styles.marks} data-all-large={small.length ? undefined : "1"}>
+                    {place.items.map((item) => (
+                      <li key={item.key} data-large={largeKeys.has(item.key) ? "1" : undefined}>
+                        <Tool
+                          item={item}
+                          waiting={waitingByKey.get(item.key)}
+                          text={waitingText(waitingByKey.get(item.key), t)}
+                          small
+                          onOpen={open}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <ul className={styles.all} data-all="1" inert={!on}>
                   {/* Avatud kohas on tööriistad kaardiloendi järjekorras: märk ei tõsta kaarti ümber. */}

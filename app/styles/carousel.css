@@ -183,11 +183,14 @@
   --desk-cols: 5; /* suurima astme kaartide arv; GlassCarousel kirjutab üle */
   --desk-track: calc(100vw - 2 * var(--desk-pad-x) - 2 * var(--desk-gutter));
   /* Teine piir kitseneb ALLA 5 veeru (omanik 25.09, tööheaolu laud 4
-     veergu: „kaardid vist veidi laiad"): 4 → 13.4vw, 3 → 12.3vw. 5+ veergu
-     jääb 14.5vw peale, töölaud ei muutu. */
+     veergu: „kaardid vist veidi laiad"): 4 → 11.55vw, 3 → 10.6vw.
+     Kogu laud ~14 % väiksemaks (omanik 23.10: „tööheaolu on häirivalt suur
+     veidi, tekstid ja muu"): 19rem / 14.5vw → 16.5rem / 12.5vw, 1920 px
+     ekraanil plaat 278 → 240 px. Laud on nüüd ainult Tööheaolu laud
+     (töölaud on 11.10-st tuba, RoomPlaces), seega muutus ei puuduta teisi. */
   --gc-w: min(
-    19rem,
-    calc(14.5vw - max(0, 5 - var(--desk-cols)) * 1.1vw),
+    16.5rem,
+    calc(12.5vw - max(0, 5 - var(--desk-cols)) * 0.95vw),
     calc(
       (var(--desk-track) - (var(--desk-cols) - 1) * var(--desk-gap-x)) /
         var(--desk-cols)
@@ -469,7 +472,8 @@
   /* Veidi suurem (omanik 23.09): 1920 px ekraanil ~17 → ~19 px, 1200 px
      juures ~15 → ~16 px — kitsal ekraanil kasvab vähe, sest nime pikkus
      võistleb kaardi kõrgusega (vt [data-long] allpool). */
-  font-size: clamp(0.9rem, 0.66rem + 0.46vw, 1.2rem);
+  /* ~15 % väiksem (omanik 23.10, vt --gc-w): 1920 px juures 19 → 16 px. */
+  font-size: clamp(0.8rem, 0.6rem + 0.36vw, 1.02rem);
   /* Hõredam tähevahe on siltide keel — püstises sildis eriti, seal ta
      annab tähtedele õhku ilma veergu laiendamata. */
   letter-spacing: 0.14em;
@@ -487,7 +491,7 @@
    võistleb kaardi KÕRGUSEGA, ja 1200 px ekraanil on kaart 113 px kõrge,
    "Поиск помощи" aga täies kirjas 146 px. */
 .gc-tier-name[data-long="1"] {
-  font-size: clamp(0.72rem, 0.55rem + 0.34vw, 0.9rem);
+  font-size: clamp(0.66rem, 0.5rem + 0.28vw, 0.8rem);
   letter-spacing: 0.1em;
 }
 
@@ -557,9 +561,10 @@
 /* 2. voor (omanik 25.09: „ikka kuidagi suured"): veel 15 % väiksemaks,
    0,506 → 0,43, lagi 5,5 → 4,7rem. Joon kasvab osaliselt (1,36 → 1,5):
    nähtav joon ~4,6 px, et väiksem ikoon ei muutuks raskeks ega peeneks. */
+/* Lagi 4,7 → 4rem koos väiksema plaadiga (omanik 23.10); kordaja jääb. */
 .gc[data-desk="1"] .gc-icon svg {
-  width: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4.7rem);
-  height: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4.7rem);
+  width: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4rem);
+  height: clamp(2rem, calc(var(--desk-card-h) * 0.43), 4rem);
 }
 .gc[data-desk="1"] .gc-icon svg * {
   --icon-stroke: 1.5; /* brändi S sobitab end sellega (CardIcons BrandSIcon) */
@@ -597,10 +602,13 @@
   /* Lagi langeb ALLA 5 veeru (omanik 25.09: tööheaolu 4 veeru laia kaardi
      silt oli töölaua omast liiga palju suurem): 4 veergu → 1.22rem, sama
      mõõt mis töölaua pikkadel siltidel. 5+ veergu jääb 1.3rem. */
+  /* Omanik 23.10 („tekstid häirivalt suured"): 9.4cqi / 1.3rem → 8.4cqi /
+     1.1rem. 1,25× ekraaniprofiilis tuli varem 26 px, nüüd 20 px; profiilita
+     20,8 → 17,6 px. */
   font-size: clamp(
-    0.8rem,
-    min(9.4cqi, calc(1.3rem - max(0, 5 - var(--desk-cols)) * 0.08rem)),
-    1.3rem
+    0.74rem,
+    min(8.4cqi, calc(1.1rem - max(0, 5 - var(--desk-cols)) * 0.07rem)),
+    1.1rem
   );
   letter-spacing: 0.09em;
   padding: 0 0.6em 0 calc(0.6em + 0.09em);
@@ -610,9 +618,9 @@
    polster: ORGANISATSIOONID täidab ~91% kaardi laiusest. */
 .gc[data-desk="1"] .gc-label[data-long="1"] {
   font-size: clamp(
-    0.72rem,
-    min(8.6cqi, calc(1.22rem - max(0, 5 - var(--desk-cols)) * 0.08rem)),
-    1.22rem
+    0.68rem,
+    min(7.6cqi, calc(1.04rem - max(0, 5 - var(--desk-cols)) * 0.07rem)),
+    1.04rem
   );
   letter-spacing: 0.04em;
   padding: 0 0.5em 0 calc(0.5em + 0.04em);

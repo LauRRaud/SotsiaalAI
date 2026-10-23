@@ -493,6 +493,18 @@ export const ReflectionIcon = (props) => (
   </Svg>
 );
 
+/* Eetikaruum — kaalud: kaalumine, mitte peegeldus. Enne kandis ta
+   Meetodipeegli käepeeglit ja samas kohas seisis kaks ühesugust märki
+   (omanik 23.10: töölaud „liiga beeta"). */
+export const EthicsIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="12" cy="4.6" r="1.1" />
+    <path {...P} d="M12 5.7v13.8M8.5 19.5h7M5.5 7.6h13" />
+    <path {...P} d="M5.5 7.6 3 13.1M5.5 7.6l2.5 5.5M18.5 7.6 16 13.1M18.5 7.6l2.5 5.5" />
+    <path {...P} d="M3 13.1h5a2.5 2.5 0 0 1-5 0ZM16 13.1h5a2.5 2.5 0 0 1-5 0Z" />
+  </Svg>
+);
+
 /* Teenuseprofiil — teenuseosutaja kaart (ID-kaart) */
 export const ServiceProfileIcon = (props) => (
   <Svg {...props}>
@@ -524,6 +536,16 @@ export const CaseWorkIcon = (props) => (
   <Svg {...props}>
     <path {...P} d="M3.5 7.5a2 2 0 0 1 2-2h3.6c.6 0 1.15.27 1.53.73L11.8 7.8h6.7a2 2 0 0 1 2 2v8.2a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z" />
     <path {...P} d="M9 14h6" />
+  </Svg>
+);
+
+/* Juhtumitöö laud — päeva laud: külgveerg ja kaks pinda. Juhtum ise jääb
+   kaustaks (CaseWorkIcon); enne kandis laud sama kausta ja Juhtumi kohas
+   seisis kaks ühesugust märki. */
+export const CaseDeskIcon = (props) => (
+  <Svg {...props}>
+    <rect {...P} x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+    <path {...P} d="M9.5 4.5v15M9.5 12h11" />
   </Svg>
 );
 

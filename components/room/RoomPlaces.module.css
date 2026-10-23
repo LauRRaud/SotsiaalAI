@@ -1,25 +1,48 @@
 /* Töölaud: tuba on töölaud (omanik 11.10.2026).
 
    Tööriistad seisavad toas kolmes kohas. Suurelt on ees ainult see, mis ootab;
-   ülejäänud on väikesed märgid. Kohale minnes suureneb ja nihkub kogu tuba
-   (kaamera), valgus süttib ja kõik selle koha tööriistad tulevad ette.
+   ülejäänud on märgid. Hiire all astub kogu koht ettepoole ja tema valgus
+   süttib; kohale minnes suureneb ja nihkub kogu tuba (kaamera) ja kõik selle
+   koha tööriistad tulevad nimega ette.
 
    Toapilt ise on teises kihis (.room-view, room.css) ja liigub sama kaameraga:
    mõlemad loevad muutujaid --places-s, --places-tx ja --places-ty, mille
    RoomPlaces.jsx paneb elemendile .room. Suurt tumedat pinda siin ei ole:
    tuba peab jääma näha (omanik 09.10). */
 .root {
-  --place-card: clamp(5.25rem, 7.6vw, 7.625rem);
-  --place-chip: clamp(2.125rem, 3.3vw, 3.25rem);
+  /* Mõõdud (omanik 23.10: „klikitavad kastikesed ikoonidega liiga väikesed",
+     siis „suuremaks ka, et veidi täidaks rohkem ruumi"). Märk oli 3,3vw ja
+     52 px lagi: 1920 px ekraanil 52 px, 1536 px juures 51 px. Nüüd 5,5vw:
+     106 ja 84 px. Ootav kaart kasvab samas suhtes. Laius tuleb vw-st, et kolm
+     kohta püsiksid toa oma kohtadel ka kitsamal ekraanil (4 märki + vahed on
+     ~24vw, kohtade vahe 32vw); rem-lagi järgib ekraaniprofiili. */
+  --place-chip: clamp(3rem, 5.5vw, 6.75rem);
+  --place-card: clamp(5.25rem, 9.8vw, 11.75rem);
+  /* Avatud koha kaardid jäävad väiksemaks: kaamera suurendab neid 1,3 korda
+     ja servakoha (Mina, 18 %) neli veergu peavad ekraanile mahtuma. */
+  --place-open: clamp(5.25rem, 8.2vw, 9.75rem);
+  --place-gap: calc(var(--place-chip) * 0.14);
+  --place-name-h: 2.25rem;
   --place-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --place-rise: cubic-bezier(0.2, 0.8, 0.2, 1);
   --place-halo: 0 1px 10px rgba(0, 0, 0, 0.7);
   --place-wait: #f0cf8a;
   --place-wait-ink: #2a2110;
   --place-shade: rgba(8, 6, 5, 0.2);
+  /* Hiire all heledam klaas. Filtrit (brightness) siin ei ole: filter teeks
+     elemendist backdrop root'i ja nime silt ei saaks enam hägustada. */
+  --place-glass-lift: rgba(255, 244, 230, 0.09);
+  /* Nime silt seisab naabermärkide peal: tihe ja härmas, et nende ikoonid ei
+     paistaks läbi (omanik 23.10: „hover paistab läbi, peaks blur olema"). */
+  --place-tip-bg: rgba(16, 13, 11, 0.8);
+  --place-tip-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.3), inset 0 1px rgba(247, 247, 247, 0.08);
 }
 :global(html.theme-light) .root {
   --place-halo: 0 1px 10px rgba(255, 255, 255, 0.8);
   --place-shade: rgba(8, 6, 5, 0.1);
+  --place-glass-lift: rgba(255, 255, 255, 0.28);
+  --place-tip-bg: rgba(250, 248, 245, 0.9);
+  --place-tip-shadow: 0 0.4rem 1.2rem rgba(60, 45, 30, 0.16), inset 0 0 0 0.7px rgba(0, 0, 0, 0.08);
 }
 
 .world {
@@ -50,10 +73,18 @@
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(255, 190, 112, 0.36), rgba(255, 190, 112, 0.1) 38%, transparent 64%);
-  mix-blend-mode: screen;
+  /* Segamisrežiimi (mix-blend-mode: screen) siin EI OLE. See tegi Chrome'is
+     .world'ist eraldi pinna ja kõigi märkide ning kaartide klaas nägi ainult
+     seda pinda, mitte tuba: härmatist ei olnud, lamp ja prillid paistsid
+     teravalt läbi ja nime silt jäi läbipaistvaks (mõõdetud 23.10). */
   opacity: 0.22;
   transition: opacity 900ms ease;
   pointer-events: none;
+}
+/* Hiire all süttib koha enda valgus: lamp, sein või riiul. */
+.world:not([data-focus]) .light[data-lit="1"] {
+  opacity: 0.62;
+  transition-duration: 420ms;
 }
 .world[data-focus] .light {
   opacity: 0;
@@ -73,29 +104,49 @@
   position: absolute;
   left: var(--ax);
   top: var(--ay);
-  transform: translate(-50%, -50%);
+  /* Laius sisu järgi, mitte „ekraani servani": paremas servas seisval kohal
+     (82 %) jäi muidu 346 px ja neljas märk murdus uude ritta. */
+  width: max-content;
+  /* Suurendus koha enda keskme ümber: scale enne nihet hoiab keskme paigal. */
+  transform: translate(-50%, -50%) scale(var(--place-zoom, 1));
   display: grid;
   justify-items: center;
-  gap: 0.5rem;
-  transition: opacity 500ms ease;
+  gap: calc(var(--place-gap) * 0.85);
+  transition: opacity 500ms ease, transform 420ms var(--place-rise);
+}
+/* Hiire all astub kogu koht ettepoole (omanik 23.10: „võiks hoveriga kogu
+   sektsioon suuremaks minna"). Ainult kogu toa vaates: kohal olles suurendab
+   kaamera. Klaviatuuriga sama, kui fookus on koha sees. */
+@media (hover: hover) and (pointer: fine) {
+  .world:not([data-focus]) .place:hover {
+    --place-zoom: 1.1;
+    z-index: 2;
+  }
+}
+.world:not([data-focus]) .place:has(:focus-visible) {
+  --place-zoom: 1.1;
+  z-index: 2;
 }
 .world[data-focus] .place[data-on="0"] {
   opacity: 0.3;
   cursor: pointer;
 }
 
+/* Koha nimi on orientiir, mitte allmärkus: sama mõõt mis Tööheaolu laua
+   astmenimedel (carousel.css .gc-tier-name). Tähevahe lõpus on polstris
+   tasa, et nimi seisaks märkide kohal täpselt keskel. */
 .placeName {
-  min-height: 1.875rem;
-  padding: 0 0.75rem;
+  min-height: var(--place-name-h);
+  padding: 0 0.9rem 0 calc(0.9rem + 0.2em);
   border: 0;
   border-radius: 999px;
   appearance: none;
   background: none;
-  color: var(--room-text-soft);
+  color: var(--room-text);
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: clamp(0.85rem, 0.62rem + 0.42vw, 1.12rem);
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   text-shadow: var(--place-halo);
   cursor: pointer;
@@ -103,31 +154,19 @@
 }
 .placeName:hover,
 .placeName:focus-visible {
-  color: var(--room-text);
   background: rgba(248, 248, 248, 0.09);
   outline: none;
 }
 .placeName:focus-visible {
   box-shadow: var(--focus-ring);
 }
-.what {
-  margin: 0;
-  padding: 0.125rem 0.625rem;
-  border-radius: 999px;
-  background: var(--control-glass-bg);
-  color: var(--room-text-soft);
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  text-align: center;
-  max-width: 17rem;
-}
 
-/* Kogu toa vaade: suured kaardid sellele, mis ootab, ja väikesed märgid ülejäänule. */
+/* Kogu toa vaade: suured kaardid sellele, mis ootab, ja märgid ülejäänule. */
 .near {
   position: relative;
   display: grid;
   justify-items: center;
-  gap: 0.5rem;
+  gap: var(--place-gap);
   transition: opacity 320ms ease, scale 420ms var(--place-ease);
 }
 .place[data-on="1"] .near {
@@ -149,25 +188,32 @@
 }
 .waiting {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--place-gap);
 }
 .marks {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.44rem;
-  max-width: calc(var(--place-chip) * 4 + 1.375rem);
+  gap: var(--place-gap);
+  max-width: calc(var(--place-chip) * 4 + var(--place-gap) * 3 + 2px);
+}
+/* Märgireas on kõik tööriistad; laual seisab ootav tööriist suurena ja tema
+   märk on peidus (telefonis vastupidi, vt allpool). */
+.marks li[data-large="1"],
+.marks[data-all-large="1"] {
+  display: none;
 }
 
 /* Kohal: kõik selle koha tööriistad, nimega. */
 .all {
+  --place-card: var(--place-open);
   position: absolute;
   left: 50%;
-  top: 2.375rem;
+  top: calc(var(--place-name-h) + var(--place-gap) * 0.85);
   translate: -50% 0;
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--place-card));
-  gap: 0.56rem;
+  gap: calc(var(--place-card) * 0.065);
   opacity: 0;
   scale: 0.86;
   visibility: hidden;
@@ -181,19 +227,21 @@
 }
 
 /* Üks tööriist: eraldi klaaskaart, sama materjal mis teistel kaartidel
-   (--card-glass-*, tokens.css). Tuba paistab kaartide vahelt ja läbi. */
+   (--card-glass-*, tokens.css): puhas härmas klaas, servajoont ei ole
+   (omanik 23.09). Tuba paistab kaartide vahelt ja läbi. */
 .card {
   position: relative;
+  isolation: isolate;
   box-sizing: border-box;
   width: var(--place-card);
   height: calc(var(--place-card) * 0.86);
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.25rem;
+  gap: calc(var(--place-card) * 0.055);
+  padding: 0.5rem 0.4rem;
   border: 0;
-  border-radius: 1.125rem;
+  border-radius: calc(var(--place-card) * 0.15);
   appearance: none;
   background: var(--card-glass-bg);
   -webkit-backdrop-filter: blur(var(--card-glass-blur));
@@ -202,13 +250,31 @@
   font-family: var(--font-ui);
   text-decoration: none;
   cursor: pointer;
-  transition: translate 260ms var(--place-ease), filter 200ms var(--ease-soft);
+  transition: translate 260ms var(--place-rise);
+}
+/* Hiire all heledam klaas eraldi kihil, et toon saaks sujuvalt tulla. */
+.card::after,
+.mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--place-glass-lift);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-soft);
 }
 .card:hover,
 .card:focus-visible {
   translate: 0 -0.19rem;
-  filter: brightness(1.18);
   outline: none;
+}
+.card:hover::after,
+.card:focus-visible::after,
+.mark:hover::after,
+.mark:focus-visible::after {
+  opacity: 1;
 }
 .card:focus-visible,
 .mark:focus-visible {
@@ -224,12 +290,12 @@
   place-items: center;
 }
 .cardIcon :global(svg) {
-  width: calc(var(--place-card) * 0.31);
-  height: calc(var(--place-card) * 0.31);
+  width: calc(var(--place-card) * 0.3);
+  height: calc(var(--place-card) * 0.3);
 }
 .cardName {
   max-width: 100%;
-  font-size: clamp(0.53rem, calc(var(--place-card) * 0.088), 0.69rem);
+  font-size: clamp(0.5rem, calc(var(--place-card) * 0.08), 0.86rem);
   font-weight: 600;
   letter-spacing: 0.07em;
   line-height: 1.2;
@@ -237,22 +303,32 @@
   text-transform: uppercase;
   overflow-wrap: anywhere;
 }
+.cardName[data-long="1"] {
+  font-size: clamp(0.45rem, calc(var(--place-card) * 0.07), 0.78rem);
+  letter-spacing: 0.03em;
+}
 .badge {
   position: absolute;
-  top: -0.44rem;
-  right: -0.375rem;
-  padding: 0.06rem 0.5rem;
+  top: -0.5rem;
+  right: -0.45rem;
+  padding: 0.08rem 0.55rem;
   border-radius: 999px;
   background: var(--place-wait);
   color: var(--place-wait-ink);
-  font-size: clamp(0.56rem, calc(var(--place-card) * 0.09), 0.72rem);
+  font-size: clamp(0.6rem, calc(var(--place-card) * 0.075), 0.8rem);
   font-weight: 600;
   white-space: nowrap;
 }
 
-/* Väike märk: tööriist, mis praegu midagi ei oota. Nimi tuleb hiire või fookusega. */
+/* Märk: tööriist, mis praegu midagi ei oota. Nimi tuleb hiire või fookusega.
+   Klaas elab ::before-kihil, mitte märgil endal: backdrop-filteriga element on
+   oma laste backdrop root ja nime silt (.markName, märgi laps) ei saanud siis
+   midagi hägustada — naabermärgi ikoon paistis sildist läbi (omanik 23.10).
+   Sama lahendus mis doki vihjel (carousel.css .gc-shortcut-menu::before).
+   isolation hoiab kihid märgi sees; backdrop root'i see ei loo. */
 .mark {
   position: relative;
+  isolation: isolate;
   box-sizing: border-box;
   width: var(--place-chip);
   height: var(--place-chip);
@@ -260,62 +336,94 @@
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 0.81rem;
+  border-radius: calc(var(--place-chip) * 0.27);
   appearance: none;
-  background: var(--card-glass-bg);
-  -webkit-backdrop-filter: blur(var(--card-glass-blur));
-  backdrop-filter: blur(var(--card-glass-blur));
+  background: none;
   color: var(--room-text-soft);
   text-decoration: none;
   cursor: pointer;
-  transition: color 200ms var(--ease-soft), filter 200ms var(--ease-soft);
+  transition: color 200ms var(--ease-soft), translate 260ms var(--place-rise);
+}
+.mark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--card-glass-bg);
+  -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  backdrop-filter: blur(var(--card-glass-blur));
+  pointer-events: none;
 }
 .markIcon :global(svg) {
-  width: calc(var(--place-chip) * 0.5);
-  height: calc(var(--place-chip) * 0.5);
+  width: calc(var(--place-chip) * 0.46);
+  height: calc(var(--place-chip) * 0.46);
 }
 .mark:hover,
 .mark:focus-visible {
   color: var(--room-text);
-  filter: brightness(1.25);
+  translate: 0 -0.125rem;
   outline: none;
   z-index: 2;
 }
-/* Nime silt on kiirmenüü vihjega sama materjal (carousel.css .gc-shortcut-tooltip). */
+/* Nime silt on kiirmenüü vihjega sama kuju ja kiri (carousel.css
+   .gc-shortcut-tooltip), aga tihedam ja härmasem, sest tema all on teised
+   märgid, mitte tuba. */
 .markName {
   position: absolute;
   left: 50%;
-  top: calc(100% + 0.375rem);
-  translate: -50% 0;
-  padding: 0.3rem 0.7rem;
+  top: calc(100% + 0.5rem);
+  translate: -50% -0.25rem;
+  padding: 0.45rem 0.9rem 0.45rem calc(0.9rem + 0.1em);
   border-radius: 999px;
-  background: var(--control-glass-bg);
-  -webkit-backdrop-filter: var(--control-glass-blur);
-  backdrop-filter: var(--control-glass-blur);
+  background: var(--place-tip-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  backdrop-filter: blur(14px) saturate(120%);
+  box-shadow: var(--place-tip-shadow);
   color: var(--room-text);
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 520;
+  font-size: 0.82rem;
+  font-weight: 560;
   letter-spacing: 0.1em;
+  line-height: 1.2;
   text-transform: uppercase;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 160ms var(--ease-soft);
+  transition: opacity 160ms var(--ease-soft), translate 200ms var(--ease-soft);
 }
 .mark:hover .markName,
 .mark:focus-visible .markName {
   opacity: 1;
+  translate: -50% 0;
+  transition-delay: 60ms;
 }
-/* Ootab, aga suurte kaartide sekka ei mahtunud: väike täpp märgi nurgas. */
+/* Ootab, aga suurte kaartide sekka ei mahtunud (või telefonis, kus suuri
+   kaarte ei ole): märk nurgas, arvuga, kui arv on. */
 .dot {
   position: absolute;
-  top: -0.19rem;
-  right: -0.19rem;
-  width: 0.56rem;
-  height: 0.56rem;
-  border-radius: 50%;
+  top: -0.3rem;
+  right: -0.3rem;
+  box-sizing: border-box;
+  min-width: calc(var(--place-chip) * 0.16);
+  height: calc(var(--place-chip) * 0.16);
+  padding: 0 0.3rem;
+  border-radius: 999px;
   background: var(--place-wait);
+  color: var(--place-wait-ink);
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: calc(var(--place-chip) * 0.16);
+  text-align: center;
+}
+.dot:empty {
+  padding: 0;
+}
+.dot:not(:empty) {
+  min-width: 1.15rem;
+  height: 1.15rem;
+  line-height: 1.15rem;
 }
 
 :global(html[data-contrast="hc"]) .card,
@@ -327,26 +435,57 @@
   background: #ffffff;
   color: #000000;
 }
+:global(html[data-contrast="hc"]) .markName {
+  background: #000000;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: inset 0 0 0 1px #ffffff;
+}
 
+/* Telefon: toast on näha ainult sein, kolm kohta kõrvuti ei mahu. Kohad
+   seisavad üksteise all keskjoonel (`--ny`, lib/roomPlaces.js) ja märk on
+   ~52 px, puudutuse alammõõdust üle (oli 34). Suuri kaarte siin ei ole: mis
+   ootab, kannab märgi nurgas arvu nagu telefoni rakenduseikoon. */
 @media (max-width: 700px) {
   .root {
-    --place-card: 5.125rem;
-    --place-chip: 2.125rem;
+    /* 52 px, lühikesel telefonil (667 px) 49 px: kolm kohta mahuvad üksteise alla. */
+    --place-chip: clamp(2.75rem, 7.4svh, 3.25rem);
+    --place-open: 5.5rem;
+    --place-name-h: 2rem;
   }
-  .marks {
-    gap: 0.31rem;
-    max-width: calc(var(--place-chip) * 3 + 0.75rem);
+  .place,
+  .light {
+    left: 50%;
+    top: var(--ny);
   }
-  .what {
+  .waiting {
     display: none;
   }
-  .placeName {
-    letter-spacing: 0.12em;
-    padding: 0 0.375rem;
+  .marks[data-all-large="1"] {
+    display: flex;
   }
-  /* Telefonis on kohad lähestikku: avatud koha kaardid ulatuksid naabrite
-     tuhmide märkide peale. Naabrid astuvad seepärast täiesti kõrvale; teise
-     kohta saab kiirmenüüst. */
+  .marks li[data-large="1"] {
+    display: list-item;
+  }
+  /* „Pooleli" täpp ilma arvuta peab ka 46 px märgil silma jääma. */
+  .dot:empty {
+    min-width: 0.6rem;
+    height: 0.6rem;
+  }
+  .place {
+    transition: opacity 500ms ease, top 700ms var(--place-ease);
+  }
+  /* Avatud koht tuleb ekraani keskele, kuhu kaamera vaatab (NARROW_FOCUS).
+     Paigal olles jooksid servakoha kaardid ekraanilt välja. */
+  .world[data-focus] .place[data-on="1"] {
+    top: 40%;
+  }
+  .placeName {
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    padding: 0 0.6rem 0 calc(0.6rem + 0.14em);
+  }
+  /* Avatud koha kõrval ei ole naabreid näha: teise kohta saab kiirmenüüst. */
   .world[data-focus] .place[data-on="0"] {
     opacity: 0;
     pointer-events: none;
@@ -369,7 +508,9 @@
   .near,
   .all,
   .place,
-  .card {
+  .card,
+  .mark,
+  .markName {
     transition: none !important;
   }
 }
@@ -380,6 +521,8 @@
 :global(html[data-reduce-motion="1"]) .near,
 :global(html[data-reduce-motion="1"]) .all,
 :global(html[data-reduce-motion="1"]) .place,
-:global(html[data-reduce-motion="1"]) .card {
+:global(html[data-reduce-motion="1"]) .card,
+:global(html[data-reduce-motion="1"]) .mark,
+:global(html[data-reduce-motion="1"]) .markName {
   transition: none !important;
 }

@@ -12453,24 +12453,19 @@
     "back_card": "Back",
     "zones": {
       "juhtum": {
-        "name": "Casework",
-        "what": "the lit wall: people and their matters"
+        "name": "Casework"
       },
       "teadmine": {
-        "name": "Knowledge",
-        "what": "the shelf: where to find and what to write from"
+        "name": "Knowledge"
       },
       "mina": {
-        "name": "Self",
-        "what": "armchair and lamp: myself and my growth"
+        "name": "Self"
       },
       "minu_tee": {
-        "name": "My path",
-        "what": "the lit wall: my matters and where they stand"
+        "name": "My path"
       },
       "leian_abi": {
-        "name": "Finding help",
-        "what": "the shelf: where to find help"
+        "name": "Finding help"
       },
       "vaade": {
         "name": "View"

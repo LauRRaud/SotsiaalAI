@@ -12453,24 +12453,19 @@
     "back_card": "Tagasi",
     "zones": {
       "juhtum": {
-        "name": "Juhtum",
-        "what": "valgustatud sein: inimesed ja nende asjad"
+        "name": "Juhtum"
       },
       "teadmine": {
-        "name": "Teadmine",
-        "what": "riiul: kust leida ja mille põhjal kirjutada"
+        "name": "Teadmine"
       },
       "mina": {
-        "name": "Mina",
-        "what": "tugitool ja lamp: mina ise ja minu areng"
+        "name": "Mina"
       },
       "minu_tee": {
-        "name": "Minu tee",
-        "what": "valgustatud sein: minu asjad ja nende seis"
+        "name": "Minu tee"
       },
       "leian_abi": {
-        "name": "Leian abi",
-        "what": "riiul: kust abi leida"
+        "name": "Leian abi"
       },
       "vaade": {
         "name": "Vaade"
