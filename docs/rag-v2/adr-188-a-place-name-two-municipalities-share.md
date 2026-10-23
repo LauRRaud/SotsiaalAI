@@ -39,4 +39,11 @@ Kuupäev: 23.10.2026. Teostus Claude Opus 5.5. Omanik 23.10.2026 ettepanekule �
 
 Kahe omavalitsuse kirjed mahuvad sama eelarvesse (~11 000 tokenit) mis ühe omavalitsuse omad. Vaade on siis pealkirjade vaade (`titles`) ja küsimusele lähimad kirjed on näha täielikult.
 
-**Pärast deploy'd:** C-vestlus (C01, C10) ja küsimus Võru kohta.
+**Pärast deploy'd** (väljalase `fd3cd4cb`, 23.10 19.40 UTC; 5 pööret, 0,026 USD): C-vestlus (C01, C10) ning üksikküsimused Võru, Tartu („mitte kesklinnas, vaid veidi väljas“) ja Rakvere kohta.
+
+- Plaan kirjutas igas pöördes kohe linna täisnime: „Viljandi linn“, „Võru linn“, „Tartu linn“, „Rakvere linn“.
+- Kahe omavalitsuse tee seega ei käivitunud. Vastused olid selle linna kirjetega:
+  - C10 andis Viljandi linna kontakti (Silja Simon);
+  - Võru küsimus andis Võru linna sotsiaaltööosakonna ja taotlemise;
+  - Rakvere küsimus andis Rakvere toimetulekupiiri ja taotluse.
+- Tee käivitub, kui plaan kirjutab ainult linna nime (F9 ja F10: „Tartu“, „Viljandi“). Seda tõestab ülalolev kordus.
