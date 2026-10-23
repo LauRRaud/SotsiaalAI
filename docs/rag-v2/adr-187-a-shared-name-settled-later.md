@@ -38,4 +38,15 @@ Siis saab isik selle omavalitsuse sama sõnumi toel (`reason: shared_name_settle
 | A02, plaan jälle „Tartu“ | lahtine | lahtine |
 | Esimene plaan „Tartu linn“, hiljem „Tartu vald“ | Tartu linn | Tartu linn |
 
-Pärast deploy'd: pöörduja vestlused A (A01, A02, A04) ja C (C01, C10).
+**Pärast deploy'd** (väljalase `572000e1`, 23.10 19.15 UTC): pöörduja vestlused A (A01, A02, A04) ja C (C01, C10), 0,030 USD. Reegel ei saanud kummaski vestluses toimida:
+
+- **A:** plaan kirjutas seekord kohe esimeses pöördes „Tartu linn“.
+  - A01 skoop oli `person_mentioned_region` ja A02 skoop `person_region`, mõlemad Tartu linn.
+  - A04 vastus andis Tartu tingimuse: „hooldaja ja hooldatav peavad olema Tartu linna elanikud ning elama tegelikult samal aadressil“.
+- **C:** plaan kirjutas mõlemas pöördes „Viljandi“ ja ei valinud kordagi linna ega valda.
+  - C01: `quote_names_several_places`.
+  - C10: küsimus nimetab „Viljandis“ ja skoop on `question_regions` kahe kandidaadiga.
+  - C10 vastus jäi üldiseks („oma elukohajärgse omavalitsuse …“).
+  - Reeglil polnud millestki otsustada. Õige käitumine on küsida, kumb Viljandi; skriptitud test sellele ei vasta.
+
+**Lahtine:** kui küsimus nimetab kaht kandidaati (`question_regions`), võiks vastus anda mõlema kontaktid. See on eraldi otsus.
